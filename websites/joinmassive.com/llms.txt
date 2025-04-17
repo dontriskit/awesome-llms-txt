@@ -1,0 +1,69 @@
+# Massive
+
+## Docs
+
+- [SERP API](https://docs.joinmassive.com/advanced-features/serp-api.md): Extract live results from popular search engines
+- [Authentication](https://docs.joinmassive.com/isp-proxies/authentication.md): We support HTTP, HTTPS, and SOCKS5
+- [Error Types](https://docs.joinmassive.com/isp-proxies/error-types.md): Massive may respond with one of several common or custom error messages:
+- [Geotargeting](https://docs.joinmassive.com/isp-proxies/geotargeting.md): You can tune the request by providing geo parameters like an [ISO ZIP code, subdivision, and country code](https://www.iso.org/obp/ui/#search), and by [city](https://www.geonames.org/).
+- [Introduction](https://docs.joinmassive.com/isp-proxies/introduction.md): Massive ISP proxy networks use AT&T infrastructure to provide high-speed, rotating proxies across the US. With 10 Gbps speeds and automatic rotation capabilities, our proxies are perfect for your data collection needs.
+- [.NET (in C#)](https://docs.joinmassive.com/isp-proxies/samples/.net.md): .NET integrations should connect to the [Massive Network’s HTTP port](/isp-proxies/authentication#HTTP) `4080` because [.NET doesn’t broadly support HTTPS proxies yet](https://github.com/dotnet/runtime/pull/87638):
+- [Puppeteer](https://docs.joinmassive.com/isp-proxies/samples/puppeteer.md): Integrate the Massive Network into your Puppeteer workflows by setting the `--proxy-server` launch flag then calling a page object’s `authenticate` method:
+- [(Vanilla) Python](https://docs.joinmassive.com/isp-proxies/samples/python.md): To connect to the Massive Network from Python, include your encoded credentials in the proxy address (this usage doesn’t risk leaking your API token to a shared history file per the caveat for Curl):
+- [Ruby](https://docs.joinmassive.com/isp-proxies/samples/ruby.md): Ruby’s standard HTTP library doesn’t seem to support HTTPS proxy connections, so connect to the [Massive Network’s HTTP port](/isp-proxies/authentication#http) with Ruby:
+- [Scrapy (for Python)](https://docs.joinmassive.com/isp-proxies/samples/scrapy.md): After installing Scrapy (`pip install scrapy`) and creating a project (`scrapy startproject [project name]`), you can connect to the Massive Network by saving code like that below to a file in the new `[project name]/[project name]/spiders` subdirectory then running `scrapy crawl demo` from the top-level `[project name]` directory (Scrapy doesn’t seem to support HTTPS proxy connections, but you can use the [network’s HTTP port](/isp-proxies/authentication#http)):
+- [Sticky sessions](https://docs.joinmassive.com/isp-proxies/sticky-sessions.md): Our ISP proxies support sticky sessions, allowing persistent IP connections and session-based routing without expiration.
+- [Usage restrictions](https://docs.joinmassive.com/isp-proxies/usage-restrictions.md): Some limitations apply to HTTP and SOCKS5 endpoints for ISP proxies.
+- [Select Your Platform](https://docs.joinmassive.com/monetization-sdk/desktop.md): The Massive SDK is available on Windows, macOS and Linux.
+- [Mac (Objective-C)](https://docs.joinmassive.com/monetization-sdk/desktop-mac-objective-c.md): Integrate Massive SDK into your Mac application with this guide.
+- [Mac (Swift)](https://docs.joinmassive.com/monetization-sdk/desktop-mac-swift.md): Integrate Massive SDK into your Mac application with this guide.
+- [Windows (C/C++)](https://docs.joinmassive.com/monetization-sdk/desktop-windows.md): Integrate Massive SDK into your Windows application with this guide.
+- [Introduction](https://docs.joinmassive.com/monetization-sdk/introduction.md): The Massive SDK provides a new way to monetize app features and content without annoying ads or low-converting paywalls.
+- [Select Your Platform](https://docs.joinmassive.com/monetization-sdk/mobile-and-smart-tv.md): The Massive SDK is available on Android, FireOS, and iOS.
+- [Android](https://docs.joinmassive.com/monetization-sdk/mobile-android.md): Integrate Massive SDK into your Android application with this guide.
+- [iOS](https://docs.joinmassive.com/monetization-sdk/mobile-ios.md): The Massive SDK provides a new way to monetize app features and content without annoying ads or low-converting paywalls.
+- [Quickstart](https://docs.joinmassive.com/monetization-sdk/quickstart.md): The Massive SDK is available on Windows, Android, FireOS, iOS, and Linux.
+- [Fire OS](https://docs.joinmassive.com/monetization-sdk/tv-fire.md): Integrate Massive SDK into your Fire OS application with this guide.
+- [Get usage](https://docs.joinmassive.com/reporting-api-reference/get-usage.md): Get usage data for the given time range.
+
+If no time range is provided, returns usage for the past 7 days (including today).
+
+- [Introduction](https://docs.joinmassive.com/reporting-api-reference/reporting-api.md): This guide will help you get started with the Reporting API in just a few minutes.
+- [Allocate traffic for an account](https://docs.joinmassive.com/reseller-api-reference/allocate-traffic-for-an-account.md)
+- [Create new account](https://docs.joinmassive.com/reseller-api-reference/create-new-account.md)
+- [Disable account](https://docs.joinmassive.com/reseller-api-reference/disable-account.md)
+- [Enable account](https://docs.joinmassive.com/reseller-api-reference/enable-account.md)
+- [Get account](https://docs.joinmassive.com/reseller-api-reference/get-account.md)
+- [Get account usage](https://docs.joinmassive.com/reseller-api-reference/get-account-usage.md)
+- [Get list of existing accounts](https://docs.joinmassive.com/reseller-api-reference/get-list-of-existing-accounts.md)
+- [Get the allocation list](https://docs.joinmassive.com/reseller-api-reference/get-the-allocation-list.md): Get the list of allocations made via the put endpoint for the account.
+- [Authentication](https://docs.joinmassive.com/reseller-api-reference/reseller-api-authentication.md): The Proxy Resellers API uses API key authentication. You must include your API key in the header of every request to authenticate.
+- [Introduction](https://docs.joinmassive.com/reseller-api-reference/reseller-api-introduction.md): The Proxy Resellers API allows you to manage proxy reseller accounts. With this API, you can create, update, and manage accounts that are used to authenticate with the Massive Network API.
+- [Quickstart](https://docs.joinmassive.com/reseller-api-reference/reseller-api-quickstart.md): This guide will help you get started with the Proxy Resellers API in just a few minutes.
+- [Update account](https://docs.joinmassive.com/reseller-api-reference/update-account.md)
+- [Accounting](https://docs.joinmassive.com/residential/accounting.md): If you prefer to segregate requests for your customer invoicing or internal accounting, subaccounts can be provided.
+- [ASN identifier targeting](https://docs.joinmassive.com/residential/asn-type-targeting.md): You can target a request by an ASN number, a unique identification number that identifies a network or group of networks under a single routing policy on the internet.
+- [Authentication](https://docs.joinmassive.com/residential/authentication.md): We support HTTPS, HTTP, and SOCKS5
+- [Device-type targeting](https://docs.joinmassive.com/residential/device-type-targeting.md): You can target different device types to execute the request on.
+- [Error Types](https://docs.joinmassive.com/residential/error-types.md): Massive may respond with one of several common or custom error messages:
+- [Geotargeting](https://docs.joinmassive.com/residential/geotargeting.md): You can tune the request by providing geo parameters like an [ISO ZIP code, subdivision, and country code](https://www.iso.org/obp/ui/#search), and by [city](https://www.geonames.org/).
+- [Introduction](https://docs.joinmassive.com/residential/introduction.md): The Massive Network is a global edge network that’s used by partners to monitor internet performance, gather business intelligence, and detect fraud and malware.
+- [Quickstart](https://docs.joinmassive.com/residential/quickstart.md): Start crawling the web in under 5 minutes.
+- [Request routing](https://docs.joinmassive.com/residential/routing.md): Our robust proxy services allows for geotargeting, sticky sessions, device type targeting, and advanced accounting and reporting.
+- [.NET (in C#)](https://docs.joinmassive.com/residential/samples/.net.md): .NET integrations should connect to the [Massive Network’s HTTP port](/authentication#HTTP) `65534` because [.NET doesn’t broadly support HTTPS proxies yet](https://github.com/dotnet/runtime/pull/87638):
+- [FoxyProxy](https://docs.joinmassive.com/residential/samples/foxyproxy.md): How to update proxy settings in your browser
+- [Puppeteer](https://docs.joinmassive.com/residential/samples/puppeteer.md): Integrate the Massive Network into your Puppeteer workflows by setting the `--proxy-server` launch flag then calling a page object’s `authenticate` method:
+- [(Vanilla) Python](https://docs.joinmassive.com/residential/samples/python.md): To connect to the Massive Network from Python, include your encoded credentials in the proxy address (this usage doesn’t risk leaking your API token to a shared history file per the caveat for Curl):
+- [Ruby](https://docs.joinmassive.com/residential/samples/ruby.md): Ruby’s standard HTTP library doesn’t seem to support HTTPS proxy connections, so connect to the [Massive Network’s HTTP port](/authentication#http) with Ruby:
+- [Scrapy (for Python)](https://docs.joinmassive.com/residential/samples/scrapy.md): After installing Scrapy (`pip install scrapy`) and creating a project (`scrapy startproject [project name]`), you can connect to the Massive Network by saving code like that below to a file in the new `[project name]/[project name]/spiders` subdirectory then running `scrapy crawl demo` from the top-level `[project name]` directory (Scrapy doesn’t seem to support HTTPS proxy connections, but you can use the [network’s HTTP port](/authentication#http)):
+- [SwitchyOmega](https://docs.joinmassive.com/residential/samples/switchyomega.md): How to update proxy settings in your browser
+- [Sticky sessions](https://docs.joinmassive.com/residential/sticky-sessions.md): We support session persistence (AKA sticky sessions) with a customizable TTL, defaulting to 15 minutes.
+- [Usage Alerts](https://docs.joinmassive.com/residential/usage-alerts.md): How to set up usage alerts on the [partners](https://partners.joinmassive.com) page
+- [Usage restrictions](https://docs.joinmassive.com/residential/usage-restrictions.md): Some restrictions apply to the use of both the HTTP(S) and SOCKS5 endpoints.
+
+
+## Optional
+
+- [Blog](https://www.joinmassive.com/blog)
+- [Support](https://joinmassive.atlassian.net/servicedesk/customer/portal/2/group/2/create/10)
+- [Knowledge Base](https://joinmassive.atlassian.net/servicedesk/customer/portals)

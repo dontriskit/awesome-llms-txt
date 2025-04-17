@@ -1,53 +1,48 @@
-# llms.txt Guide
+# Awesome llms.txt
 
-This repository demonstrates how to extract and store `llms.txt` files from websites and provides a template for creating your own `llms.txt` to help Large Language Models (LLMs) interact with your site.
+A curated collection of `llms.txt` files from across the web. This repository indexes `llms.txt` from over 130 websites, making it easy to discover LLM‑friendly documentation endpoints and tutorials.
 
 ## What is llms.txt?
 
 `llms.txt` is a lightweight, plain-text standard (inspired by `robots.txt`) for websites to expose relevant endpoints, documentation, and content pointers to LLMs. At inference time, LLM-powered agents and crawlers can fetch this file to guide their retrieval or browsing behavior.
 
+## Popular LLM Providers
+
+An analysis of the `llms.txt` corpus shows the most referenced providers:
+
+| Provider               | Website Count |
+|------------------------|--------------:|
+| Google Vertex AI       | 91            |
+| Microsoft Azure OpenAI | 36            |
+| OpenAI                 | 28            |
+| Anthropic              | 16            |
+| Cohere                 | 10            |
+| AI21 Labs              | 3             |
+
 ## Creating Your llms.txt
 
-1. **Host at root**: Place a `llms.txt` file at the root of your domain:
-   ```
-   https://your-domain.com/llms.txt
-   ```
+For a detailed, step-by-step guide on writing your own `llms.txt`, see [Writing Your Own llms.txt](docs/guide.md).
 
-2. **Use plain text or simple key-value pairs**. Include:
-   - **Title:** Your project or site name
-   - **Description:** A short summary of your site’s purpose
-   - **Links:** A list of URLs (docs, API endpoints, tutorials, blog posts) for deeper fetches
-   - **Category:** (Optional) Keywords or categories describing your content
+## Getting Started
 
-3. **Example format**:
-   ```text
-   Title: MyProject
-   Description: A platform for AI-powered analytics.
-   Category: Analytics, AI
-
-   Links:
-     - https://your-domain.com/docs/api/overview
-     - https://your-domain.com/tutorials/llm-usage
-     - https://your-domain.com/blog/releases
-   ```
-
-4. **Optional `llms-full.txt`**: If you need to expose larger content (full docs or extended guides), host an optional file:
-   ```
-   https://your-domain.com/llms-full.txt
-   ```
-   This file can contain complete documentation or aggregated content.
-
-## Testing & Validation
-
-Use the provided scraper to verify correct hosting:
+### Install dependencies
 
 ```bash
 pip install playwright aiohttp aiofiles
 playwright install
+```
+
+### Fetch `llms.txt`
+
+```bash
 python3 scraper.py
 ```
 
-Your `llms.txt` (and `llms-full.txt`, if present) will be fetched, saved under `awesome-llms-txt/<your_domain>/`, and indexed in `_metadata.json`.
+Fetched `llms.txt` files will be saved under `websites/<your_domain>/` and indexed in `_metadata.json`.
+
+## Testing & Validation
+
+Use the provided scraper to verify correct hosting.
 
 ## Best Practices
 
@@ -59,7 +54,11 @@ Your `llms.txt` (and `llms-full.txt`, if present) will be fetched, saved under `
 
 ## Contributing
 
-Contributions and improvements are welcome! Please open issues or PRs to add your site or refine this guide.
+Contributions are welcome! Please open an issue or PR to:
+
+- Add a new site's `llms.txt`
+- Improve the guide in `docs/`
+- Refine the analysis or tooling
 
 ## License
 

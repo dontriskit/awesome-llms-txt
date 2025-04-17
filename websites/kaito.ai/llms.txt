@@ -1,0 +1,20 @@
+# Kaito AI
+
+## Kaito Whitepaper
+
+- [Attention Economy](https://docs.kaito.ai/attention-economy)
+- [Why InfoFi](https://docs.kaito.ai/why-infofi)
+- [What is Kaito](https://docs.kaito.ai/what-is-kaito)
+- [Kaito Pro — AI Platform](https://docs.kaito.ai/kaito-pro-ai-platform)
+- [Kaito Yaps — Tokenized Attention](https://docs.kaito.ai/kaito-yaps-tokenized-attention)
+- [Yaps Open Protocol](https://docs.kaito.ai/kaito-yaps-tokenized-attention/yaps-open-protocol)
+- [Kaito Connect — InfoFi Network](https://docs.kaito.ai/kaito-connect-infofi-network)
+- [Network Participants](https://docs.kaito.ai/kaito-connect-infofi-network/network-participants)
+- [Yapper Leaderboard](https://docs.kaito.ai/kaito-connect-infofi-network/yapper-leaderboard)
+- [Yapper Launchpad](https://docs.kaito.ai/kaito-connect-infofi-network/yapper-launchpad)
+- [Introducing $KAITO](https://docs.kaito.ai/introducing-usdkaito)
+- [Tokenomics](https://docs.kaito.ai/introducing-usdkaito/tokenomics)
+- [Token Release Schedule](https://docs.kaito.ai/introducing-usdkaito/token-release-schedule)
+- [Terms of Use](https://docs.kaito.ai/legal/terms-of-use)
+- [Privacy Policy](https://docs.kaito.ai/legal/privacy-policy)
+- [Airdrop Terms](https://docs.kaito.ai/legal/airdrop-terms)

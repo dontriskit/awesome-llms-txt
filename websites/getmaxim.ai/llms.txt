@@ -1,0 +1,156 @@
+title: Maxim AI Documentation - Simulate, evaluate, and observe your AI agents
+
+===
+
+- [Overview](https://getmaxim.ai/docs/analyze/overview): Explore powerful analysis tools in Maxim for generating comparison reports, creating live dashboards, and gaining actionable insights from your AI application data.
+- [Overview](https://getmaxim.ai/docs/api/overview): Welcome to the Maxim API documentation. This guide provides comprehensive information about our available APIs, their endpoints, and how to use them.
+- [Concepts](https://getmaxim.ai/docs/evaluate/concepts): Learn about the key concepts in Maxim
+- [Overview](https://getmaxim.ai/docs/evaluate/overview): Learn how to evaluate AI application performance through prompt testing, workflow automation, and continuous log monitoring. Streamline your AI testing pipeline with comprehensive evaluation tools.
+- [Overview](https://getmaxim.ai/docs/introduction/overview): Maxim streamlines AI application development and deployment by applying traditional software best practices to non-deterministic AI workflows.
+- [Concepts](https://getmaxim.ai/docs/library/concepts): Explore key concepts in AI evaluation, including evaluators, datasets, and custom tools for assessing model performance and output quality.
+- [Overview](https://getmaxim.ai/docs/library/overview)
+- [Concepts](https://getmaxim.ai/docs/observe/concepts): Learn about the key concepts of Maxim's AI Observability.
+- [Overview](https://getmaxim.ai/docs/observe/overview): Monitor AI applications in real-time with Maxim's enterprise-grade LLM observability platform.
+- [Quickstart](https://getmaxim.ai/docs/observe/quickstart): Set up distributed tracing for your GenAI applications to monitor performance and debug issues across services.
+- [Introduction](https://getmaxim.ai/docs/sdk/overview): Dive into the Maxim SDK to supercharge your AI application development
+- [Upgrading to v3](https://getmaxim.ai/docs/sdk/upgrading-to-v3): Changes in the Maxim SDK
+- [Data plane deployment](https://getmaxim.ai/docs/self-hosting/dataplane): This guide details Maxim's data plane deployment process, outlining how to establish data processing infrastructure within your cloud environment. It emphasizes enhanced security, control, and data tenancy, ensuring compliance with data residency requirements while leveraging cloud-based services.
+- [Overview](https://getmaxim.ai/docs/self-hosting/overview): Maxim offers self hosting and flexible enterprise deployment options with either full VPC isolation (Zero Touch) or hybrid setup with secure VPC peering (Data Plane), tailored to your security needs.
+- [Zero Touch Deployment](https://getmaxim.ai/docs/self-hosting/zerotouch): This guide outlines Maxim's zero-touch deployment process, covering infrastructure components, security protocols, and supported cloud providers.
+- [Raising an incident](https://getmaxim.ai/docs/support/raising-an-incident): Learn how to report bugs, issues, or incidents on the Maxim platform. This guide walks you through the process of submitting a report, ensuring your concerns are addressed promptly and efficiently.
+- [Generate and share comparison reports](https://getmaxim.ai/docs/analyze/how-to/comparison-reports): Learn how to create and analyze comparison reports to track improvements, identify trends, and make data-driven decisions across different test runs.
+- [Delete Alert](https://getmaxim.ai/docs/api/alerts/delete): Delete an alert
+- [Get Alerts](https://getmaxim.ai/docs/api/alerts/get): Get alerts for a workspace
+- [Create Alert](https://getmaxim.ai/docs/api/alerts/post): Create a new alert
+- [Update Alert](https://getmaxim.ai/docs/api/alerts/put): Update an alert
+- [Delete Dataset](https://getmaxim.ai/docs/api/datasets/delete): Delete a dataset
+- [Get Datasets](https://getmaxim.ai/docs/api/datasets/get): Get datasets or a specific dataset
+- [Create Dataset](https://getmaxim.ai/docs/api/datasets/post): Create a new dataset
+- [Update Dataset](https://getmaxim.ai/docs/api/datasets/put): Update a dataset
+- [Get evaluators](https://getmaxim.ai/docs/api/evaluators/get): Get an evaluator by ID, name or fetch all evaluators for a workspace
+- [Get Folders](https://getmaxim.ai/docs/api/folders/get): Get folder details. If id or name is provided, returns a single folder object. Otherwise, lists sub-folders under the parentFolderId (or root).
+- [Create Folder](https://getmaxim.ai/docs/api/folders/post): Create a new folder for organizing entities
+- [Delete Integration](https://getmaxim.ai/docs/api/integrations/delete): Delete an integration
+- [Get Integrations](https://getmaxim.ai/docs/api/integrations/get): Get integrations for a workspace
+- [Create Integration](https://getmaxim.ai/docs/api/integrations/post): Create a new integration for notification channels
+- [Update Integration](https://getmaxim.ai/docs/api/integrations/put): Update an integration
+- [Delete a log repository](https://getmaxim.ai/docs/api/log-repositories/delete): Delete a log repository
+- [Get log repositories](https://getmaxim.ai/docs/api/log-repositories/get): Get log repositories
+- [Create a new log repository](https://getmaxim.ai/docs/api/log-repositories/post): Create a new log repository
+- [Update log repository](https://getmaxim.ai/docs/api/log-repositories/put): Update log repository
+- [Delete Prompt](https://getmaxim.ai/docs/api/prompts/delete): Delete a prompt
+- [Get Prompts](https://getmaxim.ai/docs/api/prompts/get): Get prompts for a workspace
+- [Create Prompt](https://getmaxim.ai/docs/api/prompts/post): Create a new prompt
+- [Update Prompt](https://getmaxim.ai/docs/api/prompts/put): Update an existing prompt
+- [Delete test runs](https://getmaxim.ai/docs/api/test-runs/delete): Delete test runs from a workspace
+- [Get test runs](https://getmaxim.ai/docs/api/test-runs/get): Get test runs for a workspace
+- [Evaluate Datasets](https://getmaxim.ai/docs/evaluate/how-to/evaluate-datasets): Learn how to evaluate your AI outputs against expected results using Maxim's Dataset evaluation tools
+- [Scheduled test runs](https://getmaxim.ai/docs/evaluate/how-to/scheduled-test-runs): Learn how to schedule test runs for your prompts, prompt chains and workflows at a regular interval.
+- [Trigger Test Runs using SDK](https://getmaxim.ai/docs/evaluate/how-to/trigger-test-runs-using-sdk): Learn how to programmatically trigger test runs using Maxim's SDK with custom datasets, flexible output functions, and evaluations for your AI applications.
+- [Test your AI application via an API endpoint](https://getmaxim.ai/docs/evaluate/quickstart/run-your-first-test-on-api-workflow): Run your first test on an AI application via HTTP endpoint with ease, no code changes needed.
+- [Test your first Prompt Chain](https://getmaxim.ai/docs/evaluate/quickstart/run-your-first-test-on-prompt-chains): Test your agentic workflows using Prompt Chains with Datasets and Evaluators in minutes. View results across your test cases to find areas where it works well or needs improvement.
+- [Run your first Prompt test](https://getmaxim.ai/docs/evaluate/quickstart/run-your-first-test-on-prompt): Test your Prompts with Datasets and Evaluators in minutes. View results across your test cases to find areas where it works well or needs improvement.
+- [Test multi-turn AI conversations](https://getmaxim.ai/docs/evaluate/quickstart/simulate-and-evaluate-multi-turn-conversations): Evaluate AI chat interactions automatically using conversation simulation, without code changes
+- [Running your first test](https://getmaxim.ai/docs/introduction/quickstart/running-first-test): Learn how to get started with your first test run in Maxim
+- [Setting up your workspace](https://getmaxim.ai/docs/introduction/quickstart/setting-up-workspace): Learn how to set up workspaces, invite team members, and manage role-based access control (RBAC) in Maxim. Streamline your AI project organization and control user permission within your enterprise.
+- [OpenAI Agents SDK](https://getmaxim.ai/docs/observe/integrations/openai-agents-sdk): How to integrate Maxim's observability and real-time evaluation capabilities with OpenAI Agents SDK.
+- [Delete Dataset Columns](https://getmaxim.ai/docs/api/datasets/columns/delete): Delete dataset columns
+- [Get Dataset Columns](https://getmaxim.ai/docs/api/datasets/columns/get): Get dataset columns
+- [Create Dataset Columns](https://getmaxim.ai/docs/api/datasets/columns/post): Create dataset columns
+- [Update Dataset Columns](https://getmaxim.ai/docs/api/datasets/columns/put): Update dataset columns
+- [Delete Dataset Entries](https://getmaxim.ai/docs/api/datasets/entries/delete): Delete dataset entries
+- [Get Dataset Entries](https://getmaxim.ai/docs/api/datasets/entries/get): Get dataset entries
+- [Create Dataset entries](https://getmaxim.ai/docs/api/datasets/entries/post): Create dataset entries
+- [Update Dataset Entries](https://getmaxim.ai/docs/api/datasets/entries/put): Update dataset entries
+- [Delete Dataset Split](https://getmaxim.ai/docs/api/datasets/splits/delete): Delete dataset split
+- [Get Dataset Splits](https://getmaxim.ai/docs/api/datasets/splits/get): Get dataset splits
+- [Create Dataset Split](https://getmaxim.ai/docs/api/datasets/splits/post): Create dataset split
+- [Update Dataset Split](https://getmaxim.ai/docs/api/datasets/splits/put): Update dataset split
+- [Execute an evaluator](https://getmaxim.ai/docs/api/evaluators/execute/post): Execute an evaluator to assess content based on predefined criteria and return grading results, reasoning, and execution logs
+- [Get Folder Contents](https://getmaxim.ai/docs/api/folders/contents/get): Get the contents (entities) of a specific folder, identified by folderId or name+parentFolderId.
+- [Search logs in a log repository](https://getmaxim.ai/docs/api/log-repositories/search/post): Search logs in a log repository
+- [Get trace by ID](https://getmaxim.ai/docs/api/log-repositories/traces/get): Get a specific trace by ID
+- [Get Prompt Config](https://getmaxim.ai/docs/api/prompts/config/get): Get prompt configuration
+- [Update Prompt Config](https://getmaxim.ai/docs/api/prompts/config/put): Update prompt configuration
+- [Deploy Prompt Version](https://getmaxim.ai/docs/api/prompts/deploy/post): Deploy a prompt version
+- [Run Prompt Version](https://getmaxim.ai/docs/api/prompts/run/post): Run a specific version of a prompt
+- [Get Prompt Versions](https://getmaxim.ai/docs/api/prompts/versions/get): Get versions of a prompt
+- [Create a prompt version](https://getmaxim.ai/docs/api/prompts/versions/post): Create a prompt version
+- [Get test run entries](https://getmaxim.ai/docs/api/test-runs/entries/get): Get test run entries
+- [Share test run report](https://getmaxim.ai/docs/api/test-runs/share-report/post): Share a test run report
+- [Build an AI-powered customer support email agent](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/create-customer-support-agent): Create a workflow that automatically categorizes support emails, creates help desk tickets, and sends responses
+- [Generate and translate product descriptions with AI](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/create-product-description-generator): Build an AI workflow to generate product descriptions from images using Prompt Chains
+- [Debug AI agent errors step by step](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/debug-errors-at-every-node): Identify and fix errors at each step of your AI workflow with detailed diagnostics
+- [Deploy Prompt Chains](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/deploy-prompt-chains): Quick iterations on prompt chains should not require code deployments every time. With more and more stakeholders working on prompt engineering, its critical to keep deployments of prompt chains as easy as possible without much overhead. Prompt chain deployments on Maxim allow conditional deployment of prompt chain changes that can be used via the SDK.
+- [Build complex AI workflows with Prompt Chains](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/experiment-with-prompt-chains): Connect prompts, code, and APIs to create sophisticated AI systems using our visual editor - no coding required
+- [Query Prompt Chains via SDK](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/querying-prompt-chains): Learn how to efficiently query and retrieve prompt chains using the Maxim SDK, enabling advanced AI workflow management and customization
+- [Test your agentic workflows using chains](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/test-prompt-chains): Test Prompt Chains using datasets to evaluate performance across examples
+- [Use API nodes within chains](https://getmaxim.ai/docs/evaluate/how-to/evaluate-chains/use-api-nodes-within-chains): Make external API calls at any point in your Prompt Chain to integrate with third-party services. The API node lets you validate data, log events, fetch information, or perform any HTTP request without leaving your chain. Simply configure the endpoint, method, and payload to connect your AI workflow with external systems.
+- [Automate Prompt evaluation via CI/CD](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/automate-via-ci-cd): Trigger test runs in CI/CD pipelines to evaluate prompts automatically.
+- [Run bulk comparisons across test cases](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/bulk-comparisons-across-test-cases): Experimenting across prompt versions at scale helps you compare results for performance and quality scores. By running experiments across datasets of test cases, you can make more informed decisions, prevent regressions and push to production with confidence and speed.
+- [Compare Prompt versions](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/compare-prompt-versions): Track changes between different Prompt versions to understand what led to improvements or drops in quality.
+- [Compare Prompts in the playground](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/compare-prompts-playground): Iterating on Prompts as you evolve your AI application would need experiments across models, prompt structures, etc. In order to compare versions and make informed decisions about changes, the comparison playground allows a side by side view of results.
+- [Create and manage Prompt versions](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/create-prompt-versions): As teams build their AI applications, a big part of experimentation is iterating on the prompt structure. In order to collaborate effectively and organize your changes clearly, Maxim allows prompt versioning and comparison runs across versions.
+- [Deploy Prompts](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/deploy-prompts): Quick iterations on Prompts should not require code deployments every time. With more and more stakeholders working on prompt engineering, its critical to keep deployments of Prompts as easy as possible without much overhead. Prompt deployments on Maxim allow conditional deployment of prompt changes that can be used via the SDK.
+- [Experiment in the Prompt playground](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/experiment-in-prompt-playground): Create, refine, experiment and deploy your prompts via the playground. Organize of your prompts using folders and versions, experimenting with the real world cases by linking tools and context, and deploying based on custom logic.
+- [Set up a human annotation pipeline](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/human-annotation-pipeline): Human annotation is critical to improve your AI quality. Getting human raters to provide feedback on various dimensions can help measure the present status and be used to improve the system over time. Maxim's human-in-the-loop pipeline allows team members as well as external raters like subject matter experts to annotate AI outputs.
+- [Organize Prompts](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/organize-prompts): Building AI applications collaboratively needs Prompts to be organized well for easy reference and access. Adding Prompts to folders, tagging them, and versioning on Maxim helps you maintain a holistic Prompt CMS.
+- [Query Prompts via SDK](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/querying-prompts): Learn how to efficiently query and retrieve prompts using Maxim AI's SDK, including deployment-specific and tag-based queries for streamlined prompt management.
+- [Measure the quality of your RAG pipeline](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/rag-quality): Retrieval quality directly impacts the quality of output from your AI application. While testing prompts, Maxim allows you to connect your RAG pipeline via a simple API endpoint and evaluates the retrieved context for every run. Context specific evaluators for precision, recall and relevance make it easy to see where retrieval quality is low.
+- [Run a Prompt with tool calls](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/run-prompt-tool-calls): Ensuring your prompt selects the accurate tool call (function) is crucial for building reliable and efficient AI workflows. Maxim's playground allows you to attach your tools (API, code or schema) and measure tool call accuracy for agentic systems.
+- [Save and track Prompt experiments with sessions](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/save-prompt-session): Sessions act as a history by saving your prompt's complete state as you work. This allows you to experiment freely without fear of losing your progress.
+- [Use Prompt partials in your Prompts](https://getmaxim.ai/docs/evaluate/how-to/evaluate-prompts/use-prompt-partials): Learn how to use Prompt partials within your Prompts
+- [Automate workflow evaluation via CI/CD](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/automate-via-ci-cd): Trigger test runs in CI/CD pipelines to evaluate workflows automatically.
+- [Test your local AI endpoint](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/create-workflow-for-local-api): Learn how to test your local AI endpoint using Maxim's Workflows.
+- [Evaluate simulated sessions for agents](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/evaluate-simulated-sessions-for-agents): Learn how to evaluate your AI agent's performance using automated simulated conversations. Get insights into how well your agent handles different scenarios and user interactions.
+- [Transform API data with Workflow scripts](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/scripting-to-configure-response-structures): Customize your API requests and responses using Workflow scripts
+- [Simulate multi-turn conversations](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/simulate-multi-turn-conversations): Test your AI's conversational abilities with realistic, scenario-based simulations
+- [Test multi-turn conversations manually](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/test-multi-turn-conversations-manually): Learn how to test and simulate multi-turn conversations with your AI endpoint using Maxim's interactive Workflows
+- [Test your AI application using an API endpoint](https://getmaxim.ai/docs/evaluate/how-to/evaluate-workflows-via-api-endpoint/test-your-ai-outputs-using-application-endpoint): Expose your AI application to Maxim using your existing API endpoint
+- [Customize and share reports](https://getmaxim.ai/docs/evaluate/how-to/optimize-evaluation-processes/customize-share-reports): The run report is a single source of truth for you to understand exactly how your AI system is performing during your experiments or pre-release testing. You can customize reports to gain insights and make decisions.
+- [Re-use your test configurations using presets](https://getmaxim.ai/docs/evaluate/how-to/optimize-evaluation-processes/re-use-configuration-via-presets): As your team starts running tests regularly on your entities, make it simple and quick to configure tests and see results. Test presets are a way to help you reuse your configurations with a single click, reducing the time it takes to start a run. You can create labeled presets combining a dataset and evaluators and use them with any entity you want to test.
+- [Receive notifications for Test Run status](https://getmaxim.ai/docs/evaluate/how-to/optimize-evaluation-processes/receive-notifications-test-runs): Test runs are a core part of continuous testing workflows and could be triggered via UI or in the CI/CD pipeline. Teams need visibility into triggered runs, status updates, and result summaries without having to come to the dashboard to constantly check. Integrations with Slack and PagerDuty allow notifications to be configured for some of these events.
+- [Bring your RAG via an API endpoint](https://getmaxim.ai/docs/library/how-to/context-sources/bring-your-rag-via-an-api-endpoint): To integrate RAG context into Maxim, you need to create a context source and add your RAG context API endpoint. This context source can then be used in prompts and workflows for inferencing, enabling the model to access and utilize the relevant context during processing.
+- [Evaluate your context](https://getmaxim.ai/docs/library/how-to/context-sources/evaluate-your-context): Learn how to evaluate the quality and effectiveness of your RAG context sources in Maxim for improved AI performance and accuracy.
+- [Ingest files as a context source](https://getmaxim.ai/docs/library/how-to/context-sources/ingest-files-as-a-context-source): Ingest files as a context source in Maxim to enable RAG context for your GenAI application.
+- [Add Dataset entries using SDK](https://getmaxim.ai/docs/library/how-to/datasets/add-new-entries-using-sdk): Learn how to add new entries to a Dataset using the Maxim SDK
+- [Create a Dataset with images](https://getmaxim.ai/docs/library/how-to/datasets/create-dataset-with-files-and-images): Learn how to create a Dataset with images
+- [Curate data from production](https://getmaxim.ai/docs/library/how-to/datasets/curate-data-from-production): Learn how to extract and transform production logs into structured Datasets for model training and evaluation
+- [Curate a golden Dataset from Human Annotation](https://getmaxim.ai/docs/library/how-to/datasets/curate-golden-dataset-for-human-annotation): Learn how to curate a golden Dataset for human annotation
+- [Create a Dataset using templates](https://getmaxim.ai/docs/library/how-to/datasets/use-dataset-templates): Datasets are collections of data used for training, testing, and evaluating AI models within workflows and evaluations. Test your prompts, workflows or chains across test cases in this dataset and view results at scale. Begin with a template and customize column structure. Evolve your datasets over time from production logs or human annotation.
+- [Use splits within a Dataset](https://getmaxim.ai/docs/library/how-to/datasets/use-splits-within-a-dataset): Learn how to use splits within a Dataset
+- [Use variable columns in Datasets](https://getmaxim.ai/docs/library/how-to/datasets/use-variable-columns-in-datasets): Learn how to use variable columns in datasets
+- [Bring your existing Evaluators via API](https://getmaxim.ai/docs/library/how-to/evaluators/create-api-evaluators): Connect your evaluation system to Maxim using simple API endpoints.
+- [Create custom AI Evaluators](https://getmaxim.ai/docs/library/how-to/evaluators/create-custom-ai-evaluator): Learn how to create custom AI Evaluators when built-in Evaluators don't meet your specific evaluation needs.
+- [Set up human evaluation](https://getmaxim.ai/docs/library/how-to/evaluators/create-human-evaluators): Set up human raters to review and assess AI outputs for quality control
+- [Create Programmatic Evaluators](https://getmaxim.ai/docs/library/how-to/evaluators/create-programmatic-evaluator): Build custom code-based evaluators using Javascript or Python
+- [Use pre-built Evaluators](https://getmaxim.ai/docs/library/how-to/evaluators/use-pre-built-evaluators): Get started quickly with ready-made evaluators for common AI evaluation scenarios
+- [Create Prompt Partials](https://getmaxim.ai/docs/library/how-to/prompt-partials/create-prompt-partial): Store common prompt elements as reusable snippets that you can include across different prompts, helping you maintain consistency and reduce repetition.
+- [Create a code-based Prompt Tool](https://getmaxim.ai/docs/library/how-to/prompt-tools/create-a-code-tool): Code-based Prompt Tools allow you to create custom functions directly within the editor. This guide will show you how to create and test these tools.
+- [Create a Prompt Tool](https://getmaxim.ai/docs/library/how-to/prompt-tools/create-a-prompt-tool): Create and integrate custom prompt tools for specific tasks.
+- [Create a Schema-based Prompt Tool](https://getmaxim.ai/docs/library/how-to/prompt-tools/create-a-tool-schema): Schema-based prompt tools provide a structured way to define tools that ensure accurate and schema-compliant outputs. This approach is particularly useful when you need to guarantee that the LLM's responses follow a specific format.
+- [Create an API-based Prompt Tool](https://getmaxim.ai/docs/library/how-to/prompt-tools/create-an-api-tool): Maxim allows you to expose external API endpoints as prompt tools. The platform automatically generates function schemas based on the API's query parameters and payload structure.
+- [Evaluate Tool Call Accuracy](https://getmaxim.ai/docs/library/how-to/prompt-tools/evaluate-tool-call-accuracy): Learn how to evaluate the accuracy of tool calls
+- [Set up auto evaluation on logs](https://getmaxim.ai/docs/observe/how-to/evaluate-logs/auto-evaluation): Evaluate captured logs automatically from the UI based on filters and sampling
+- [Set up human evaluation on logs](https://getmaxim.ai/docs/observe/how-to/evaluate-logs/human-evaluation): Use human evaluation or rating to assess the quality of your logs and evaluate them.
+- [Node level evaluation](https://getmaxim.ai/docs/observe/how-to/evaluate-logs/node-level-evaluation): Evaluate any component of your trace or log to gain insights into your agent's behavior.
+- [Use spans to group units of work](https://getmaxim.ai/docs/observe/how-to/log-your-application/add-spans-to-traces): Spans help you organize and track requests across microservices within traces. A trace represents the entire journey of a request through your system, while spans are smaller units of work within that trace.
+- [Log LLM generations in your AI application traces](https://getmaxim.ai/docs/observe/how-to/log-your-application/adding-llm-call): Use generations to log individual calls to Large Language Models (LLMs)
+- [Export logs and evaluation results as CSV](https://getmaxim.ai/docs/observe/how-to/log-your-application/export-logs): Learn how to export your logs and evaluation results as a CSV file, enabling easy analysis and reporting of your AI application's performance data.
+- [Configure filters and saved views](https://getmaxim.ai/docs/observe/how-to/log-your-application/filters-and-saved-views): Learn how to efficiently filter and organize your logs with custom criteria and saved views for streamlined debugging and quick access to frequently used search patterns.
+- [Log multi-turn interactions as a session](https://getmaxim.ai/docs/observe/how-to/log-your-application/log-multiturn-interactions-as-session): Learn how to group related traces into sessions to track complete user interactions with your GenAI system.
+- [Capture your RAG pipeline](https://getmaxim.ai/docs/observe/how-to/log-your-application/logging-rag-pipeline): Retrieval-Augmented Generation (RAG) is a technique that enhances large language models by retrieving relevant information from external sources before generating responses.
+- [Send feedback for AI application traces](https://getmaxim.ai/docs/observe/how-to/log-your-application/send-user-feedback): Track and collect user feedback in application traces using Maxim's Feedback entity. Enhance your AI applications with structured user ratings and comments
+- [Setting up your first trace](https://getmaxim.ai/docs/observe/how-to/log-your-application/setting-up-trace): Learn how to set up tracing using the Maxim platform
+- [Set up automated email summaries to monitor your logs](https://getmaxim.ai/docs/observe/how-to/log-your-application/summary-emails): Learn how to set up and manage weekly summary emails for your log repository
+- [Track errors in traces](https://getmaxim.ai/docs/observe/how-to/log-your-application/track-llm-errors): Learn how to effectively track and log errors from LLM results and Tool calls in your AI application traces to improve performance and reliability.
+- [Track token usage and costs](https://getmaxim.ai/docs/observe/how-to/log-your-application/track-token-usage-and-cost): Learn how to efficiently track token usage and associated costs in your LLM application using Maxim's logging capabilities.
+- [Track tool calls](https://getmaxim.ai/docs/observe/how-to/log-your-application/track-tool-calls): Track external system calls triggered by LLM responses in your agentic workflows. Tool calls represent interactions with external services, allowing you to monitor execution time and responses.
+- [Set up custom token pricing](https://getmaxim.ai/docs/observe/how-to/log-your-application/use-custom-pricing): Learn how to set up custom token pricing in Maxim for accurate cost reporting in AI evaluations and logs, ensuring displayed costs match your actual expenses.
+- [Connect your logs to external platforms](https://getmaxim.ai/docs/observe/how-to/log-your-application/use-data-connectors): Learn how to integrate Maxim with external observability platforms using data connectors for enhanced log analysis and monitoring.
+- [Use Events to send point-in-time information](https://getmaxim.ai/docs/observe/how-to/log-your-application/use-events): Track application milestones and state changes using event logging
+- [Use tags on nodes](https://getmaxim.ai/docs/observe/how-to/log-your-application/use-tags-on-nodes): Tag your traces to group and filter workflow data effectively. Add tags to any node type - spans, generations, retrievals, events, and more.
+- [Create a PagerDuty integration](https://getmaxim.ai/docs/observe/how-to/set-up-alerts/create-a-pagerduty-integration): Send alert notifications to your PagerDuty service by creating a PagerDuty integration in Maxim.
+- [Create a Slack integration](https://getmaxim.ai/docs/observe/how-to/set-up-alerts/create-a-slack-integration): Send alert notifications directly to your Slack channels by creating a Slack integration in Maxim.
+- [Setting up alerts for performance metrics](https://getmaxim.ai/docs/observe/how-to/set-up-alerts/set-up-alerts-for-performance-metrics): Learn how to set up alerts to monitor your application's performance metrics in Maxim.
+- [Set up alerts for quality metrics](https://getmaxim.ai/docs/observe/how-to/set-up-alerts/set-up-alerts-for-quality-metrics): Learn how to set up alerts to monitor evaluation scores and quality checks in Maxim.

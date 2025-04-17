@@ -1,0 +1,31 @@
+# Avail Space
+
+## Avail Space
+
+- [Introduction](https://docs.availspace.app/avail-space/introduction): Welcome to Avail Space's Wiki & Documentation! Here, you can find all kinds of valuable resources when using Avail Space, the comprehensive dApp for the Avail ecosystem.
+- [Getting started](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started): Welcome onboard! Let's begin the journey and explore blockchain applications in seconds with Avail Space!
+- [How to install SubWallet and create a new Avail account](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/how-to-install-subwallet-and-create-a-new-avail-account): This page will give you step-by-step instructions on how to install SubWallet and create a new Avail account.
+- [Connect Existing accounts](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/connect-existing-accounts): This part will show you how to connect your accounts on one of the following wallet extensions to Avail Space.
+- [Connect via SubWallet](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/connect-existing-accounts/connect-via-subwallet): This document will show you how to connect your SubWallet accounts to Avail Space using the SubWallet extension.
+- [Connect via Talisman](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/connect-existing-accounts/connect-via-talisman): This document will show you how to connect your Talisman accounts to Avail Space using the Talisman extension.
+- [Connect via Polkadot{.js}](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/connect-existing-accounts/connect-via-polkadot-.js): This document will show you how to connect your Polkadot.js accounts to Avail Space using the Polkadot.js extension.
+- [Attach accounts on External wallets (Cold wallet + Watch-only wallet)](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/attach-accounts-on-external-wallets-cold-wallet-+-watch-only-wallet): This part will show you how to connect your accounts to Avail Space using the external wallets.
+- [Connect Ledger device](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/attach-accounts-on-external-wallets-cold-wallet-+-watch-only-wallet/connect-ledger-device): This document will show you how to connect a Ledger device to Avail Space.
+- [Connect via Polkadot Vault](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/attach-accounts-on-external-wallets-cold-wallet-+-watch-only-wallet/connect-via-polkadot-vault): This document will show you how to attach a Polkadot Vault account to Avail Space.
+- [Attach a watch-only account](https://docs.availspace.app/avail-space/web-dashboard-user-guide/getting-started/attach-accounts-on-external-wallets-cold-wallet-+-watch-only-wallet/attach-a-watch-only-account): This document will show you how to attach a watch-only account on Avail Space.
+- [Account management](https://docs.availspace.app/avail-space/web-dashboard-user-guide/account-management): This part will show you how to manage your accounts on Avail Space.
+- [Hide balances](https://docs.availspace.app/avail-space/web-dashboard-user-guide/account-management/hide-balances): This document will show you how to hide your balances on Avail Space.
+- [Disconnect accounts](https://docs.availspace.app/avail-space/web-dashboard-user-guide/account-management/disconnect-accounts): This document will show you how to disconnect your accounts on Avail Space.
+- [Switch between accounts](https://docs.availspace.app/avail-space/web-dashboard-user-guide/account-management/switch-between-accounts): This document will show you how to switch between accounts on Avail Space.
+- [Receive & transfer assets](https://docs.availspace.app/avail-space/web-dashboard-user-guide/receive-and-transfer-assets): This part will show you how to receive and transfer assets on Avail Space.
+- [Receive tokens & NFTs](https://docs.availspace.app/avail-space/web-dashboard-user-guide/receive-and-transfer-assets/receive-tokens-and-nfts): This document will show you how to receive tokens and NFTs on Avail Space.
+- [Transfer tokens](https://docs.availspace.app/avail-space/web-dashboard-user-guide/receive-and-transfer-assets/transfer-tokens): This document will show you how to transfer tokens with Avail Space.
+- [Earning](https://docs.availspace.app/avail-space/web-dashboard-user-guide/earning): This document will show you how to stake AVAIL using the Earning feature in Avail Space.
+- [Nomination pool](https://docs.availspace.app/avail-space/web-dashboard-user-guide/earning/nomination-pool): This document will show you how to stake AVAIL via nomination pool staking option on Avail Space.
+- [Direct nomination](https://docs.availspace.app/avail-space/web-dashboard-user-guide/earning/direct-nomination): This document will show you how to stake AVAIL via direct nomination staking option on Avail Space.
+- [Manage address book](https://docs.availspace.app/avail-space/web-dashboard-user-guide/manage-address-book): This document will show you how to manage Substrate & Ethereum addresses with the address book feature on Avail Space.
+- [View transaction history](https://docs.availspace.app/avail-space/web-dashboard-user-guide/view-transaction-history): This document will show how to track your transactions with the History tab on Avail Space.
+- [Customize your networks](https://docs.availspace.app/avail-space/web-dashboard-user-guide/customize-your-networks): The document will show you how to customize your networks on Avail Space.
+- [Customize endpoint/provider](https://docs.availspace.app/avail-space/web-dashboard-user-guide/customize-endpoint-provider): The document will show you how to customize endpoint/provider on Avail Space.
+- [Security](https://docs.availspace.app/avail-space/privacy-and-security/security): You and your assets are safe with Avail Space.
+- [Terms of Use](https://docs.availspace.app/avail-space/privacy-and-security/terms-of-use)

@@ -1,0 +1,27 @@
+# Akool open api documents
+
+## Docs
+
+- [Audio](https://docs.akool.com/ai-tools-suite/audio.md): Audio API documentation
+- [Background Change](https://docs.akool.com/ai-tools-suite/background-change.md)
+- [ErrorCode](https://docs.akool.com/ai-tools-suite/error-code.md): Error codes and meanings
+- [Face Swap](https://docs.akool.com/ai-tools-suite/faceswap.md)
+- [Image Generate](https://docs.akool.com/ai-tools-suite/image-generate.md): Easily create an image from scratch with our AI image generator by entering descriptive text.
+- [Jarvis Moderator](https://docs.akool.com/ai-tools-suite/jarvis-moderator.md)
+- [lipSync](https://docs.akool.com/ai-tools-suite/lip-sync.md)
+- [Streaming avatar](https://docs.akool.com/ai-tools-suite/live-avatar.md): Streaming avatar
+- [Reage](https://docs.akool.com/ai-tools-suite/reage.md)
+- [Talking Avatar](https://docs.akool.com/ai-tools-suite/talking-avatar.md): Talking Avatar API documentation
+- [Talking Photo](https://docs.akool.com/ai-tools-suite/talking-photo.md)
+- [Video Translation](https://docs.akool.com/ai-tools-suite/video-translation.md)
+- [Webhook](https://docs.akool.com/ai-tools-suite/webhook.md)
+- [Usage](https://docs.akool.com/authentication/usage.md)
+- [Streaming Avatar Integration: using Agora SDK](https://docs.akool.com/implementation-guide/streaming-avatar.md): Learn how to integrate streaming avatars using the Agora SDK
+- [Streaming Avatar SDK Best Practice](https://docs.akool.com/sdk/jssdk-best-practice.md): Learn how implement Streaming Avatar SDK step by step
+- [Streaming Avatar SDK Quick Start](https://docs.akool.com/sdk/jssdk-start.md): Learn what is the Streaming Avatar SDK
+
+
+## Optional
+
+- [Github](https://github.com/AKOOL-Official)
+- [Blog](https://akool.com/blog)

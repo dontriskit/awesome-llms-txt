@@ -1,0 +1,48 @@
+# coolLabs
+
+## Docs
+
+- [Contact](https://docs.coollabs.io/contact.md): Ways to contact us.
+- [Introduction](https://docs.coollabs.io/coolify/introduction.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/deno.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/docker.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/docker-compose.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/gatsby.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/heroku.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/introduction.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/laravel.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/nestjs.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/nextjs.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/nodejs.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/nuxtjs.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/php.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/python.md)
+- [React / Preact](https://docs.coollabs.io/coolify/v3/applications/react-preact.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/rust.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/static.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/svelte.md)
+- [null](https://docs.coollabs.io/coolify/v3/applications/vuejs.md)
+- [null](https://docs.coollabs.io/coolify/v3/architecture.md)
+- [null](https://docs.coollabs.io/coolify/v3/databases.md)
+- [null](https://docs.coollabs.io/coolify/v3/destinations.md)
+- [null](https://docs.coollabs.io/coolify/v3/faq.md)
+- [null](https://docs.coollabs.io/coolify/v3/firewall.md)
+- [Identity & Access Management](https://docs.coollabs.io/coolify/v3/iam.md)
+- [null](https://docs.coollabs.io/coolify/v3/installation.md)
+- [null](https://docs.coollabs.io/coolify/v3/introduction.md)
+- [null](https://docs.coollabs.io/coolify/v3/requirements.md)
+- [null](https://docs.coollabs.io/coolify/v3/rollsecretkey.md)
+- [null](https://docs.coollabs.io/coolify/v3/secrets.md)
+- [null](https://docs.coollabs.io/coolify/v3/services/introduction.md)
+- [null](https://docs.coollabs.io/coolify/v3/settings.md)
+- [null](https://docs.coollabs.io/coolify/v3/sources.md)
+- [How to use](https://docs.coollabs.io/fonts/how-to-use.md): How to get started with Fonts
+- [Introduction](https://docs.coollabs.io/fonts/introduction.md): What is Fonts by coolLabs?
+- [Introduction](https://docs.coollabs.io/introduction.md): What is coolLabs?
+- [Introduction](https://docs.coollabs.io/safetyper/introduction.md): What is safeTyper?
+- [Sponsorship](https://docs.coollabs.io/sponsorship.md): Learn how to sponsor coolLabs
+
+
+## Optional
+
+- [Community](https://coollabs.io/discord)

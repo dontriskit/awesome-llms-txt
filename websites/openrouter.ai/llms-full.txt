@@ -7410,7 +7410,7 @@ The `code_challenge` parameter is optional but recommended.
 
 Your user will be prompted to log in to OpenRouter and authorize your app. After authorization, they will be redirected back to your site with a `code` parameter in the URL:
 
-![Alt text](file:1e742ebd-4a96-4055-9679-e11923c463bc)
+![Alt text](file:926efbf2-45b5-4fd2-9d7c-282418f50c07)
 
 <Tip title="Use SHA-256 for Maximum Security">
   For maximum security, set `code_challenge_method` to `S256`, and set `code_challenge` to the base64 encoding of the sha256 hash of `code_verifier`.
@@ -7448,7 +7448,7 @@ When moving to production, replace the localhost/private referrer URL with a pub
 
 After the user logs in with OpenRouter, they are redirected back to your site with a `code` parameter in the URL:
 
-![Alt text](file:fd07b9c3-5d53-4e28-af9f-fe66821ac2e8)
+![Alt text](file:01583d87-9e4a-43d0-a8cb-a79aeddbbdfc)
 
 Extract this code using the browser API:
 

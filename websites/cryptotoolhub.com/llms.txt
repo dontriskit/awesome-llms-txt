@@ -1,0 +1,26 @@
+# CryptoToolHub
+
+> CryptoToolHub is a comprehensive cryptocurrency tool platform that provides various utilities to help users analyze, calculate, convert, and verify cryptocurrency operations.
+
+Important notes:
+
+- All tools are free to use, with some premium features requiring account registration
+- Supports multiple mainstream cryptocurrencies including Bitcoin, Ethereum, Solana, Binance Coin, and more
+- Data updates in real-time, with price and market data refreshed every minute
+- Available in multiple languages: English, Spanish (es), Arabic (ar), French (fr), German (de), Japanese (ja), Korean (ko), Russian (ru), and Chinese (zh)
+
+## Tools
+
+- [Crypto DCA Calculator](https://cryptotoolhub.com/tools/crypto-dca-calculator): Calculate and analyze dollar-cost averaging strategies for cryptocurrency investments
+- [Crypto Grid Trading](https://cryptotoolhub.com/tools/crypto-grid-trading): Set up and simulate grid trading strategies for cryptocurrency markets
+- [Funding Rate Arbitrage](https://cryptotoolhub.com/tools/funding-rate-arbitrage): Identify and analyze funding rate arbitrage opportunities across different exchanges
+
+## Resources
+
+- [Blog Posts](https://cryptotoolhub.com/blog): Articles, guides, and insights about cryptocurrency trading and tools
+- [Privacy Policy](https://cryptotoolhub.com/privacy-policy): Information about how we handle your data
+- [Terms of Service](https://cryptotoolhub.com/terms-of-service): Rules and guidelines for using CryptoToolHub
+
+## Authentication
+
+- [Sign In](https://cryptotoolhub.com/auth/signin): Access your account to use premium features 

@@ -8,7 +8,7 @@
 
 ## Posts / more like Random Thoughts (top 100/154)
 
-# [关于 feed 的一些想法](/blog/qxsn64cw84tmg8w3) (4月17日)
+# [关于 feed 的一些想法](/blog/qxsn64cw84tmg8w3) (April 17)
 
 今天想到两个关于 feed 的产品的点子。
 
@@ -38,7 +38,7 @@
 
 这其实可以拆成两个产品来做，一个就是纯粹的自动操作手机把各类 app 变成 feed，一个就是在 feed 的基础上做处理。即使没有第一个产品第二个也能做（可以用一些现成的 feed）。
 
-# [解决 Dependabot 生成 broken uv.lock 的问题](/blog/kd8rm20e8w5fo0rf) (4月13日)
+# [解决 Dependabot 生成 broken uv.lock 的问题](/blog/kd8rm20e8w5fo0rf) (April 13)
 
 昨天我在 Dependabot 的 uv 支持的 issue 下面发了一条评论：
 
@@ -108,7 +108,7 @@ jobs:
 
 当然，用 [hmr](/blog/mwgggl2taiigch6w) 会更高效，因为它的 invalidate 是 on-demand 的，而且不涉及重启进程。不过 hmr 0.3 我引入了一些 bug 到现在还没修复 哈哈哈
 
-# [Don't Repeat Yourself](/blog/dont-repeat-yourself) (4月9日)
+# [Don't Repeat Yourself](/blog/dont-repeat-yourself) (April 9)
 
 [Don't repeat yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 原则是一项主张，支持在代码出现重复的时候就进行封装，增加复用。我本人对这个观点是非常支持和贯彻的，甚至到了一种，我对它的副作用深有体会的地步。那先说说它有什么副作用：
 
@@ -181,7 +181,7 @@ jobs:
 
 其实有的时候，某个项目的依赖我不信任，或者我可能要不再维护了，我希望它在未来还能被复现，我也会按照常规的方法在仓库里维护一个 lockfile。我也深受其利。但这些项目我从内心会觉得它“脏了”，不再是那么优雅了。哈哈哈
 
-# [Python venv injection](/blog/xyvll3enobqm18ug) (4月3日)
+# [Python venv injection](/blog/xyvll3enobqm18ug) (April 3)
 
 对我来说，这是很常见的一种情况：
 
@@ -266,7 +266,7 @@ if os.getenv("VIRTUAL_ENV") and (venv_python := shutil.which("python")) and str(
 ## 隐患
 这样的问题在于，执行你的库的环境可能不是安装你的库的环境。这意味着如果你这个库有非纯 Python 的依赖，就很可能会报错（除非恰好用户的虚拟环境中也装了你的这个依赖）。
 
-# [关于我给博客加了 llms.txt 以及我的数字永生计划](/blog/dxkzg1ym1n06pez8) (3月17日)
+# [关于我给博客加了 llms.txt 以及我的数字永生计划](/blog/dxkzg1ym1n06pez8) (March 17)
 
 > 当别人问起为什么我愿意花时间写博客，因为
 >
@@ -332,7 +332,7 @@ if os.getenv("VIRTUAL_ENV") and (venv_python := shutil.which("python")) and str(
 
 比如这一篇的 llms.txt 就是 [location.href + llms.txt](/blog/dxkzg1ym1n06pez8/llms.txt)
 
-# [快要被 createMemo 搞疯了](/blog/uooxcpvvizyiuxbl) (3月1日)
+# [快要被 createMemo 搞疯了](/blog/uooxcpvvizyiuxbl) (March 1)
 
 以前一直以为 SolidJS 的`createMemo`是和 Vue 的`computed`一样的东西，结果今天发现不是！
 
@@ -463,7 +463,7 @@ class _:
 
 这篇文章讲的真的很中肯，提到了反应式编程的鼻祖，也讲到了新潮，而且说到了 why 和 why not，看得出来每个设计都是非常深思熟虑的结果。
 
-# [linter docs 作为训练集](/blog/dqehr4fag1scapae) (2月23日)
+# [linter docs 作为训练集](/blog/dqehr4fag1scapae) (February 23)
 
 刚刚想到，像 Ruff 这样的 linter 对每条 rule 都给出了很详细的文档，其实可以作为很好的 SFT 和 DPO 源。准备试验一下
 
@@ -563,7 +563,7 @@ class Rule(TypedDict):
 
 2025年2月25日 更新：[https://github.com/astral-sh/ruff/pull/16364](https://github.com/astral-sh/ruff/pull/16364) 居然给我 merge 了
 
-# [关于 HMR 的实现](/blog/yfw3tf2h1mzghaz7) (1月10日)
+# [关于 HMR 的实现](/blog/yfw3tf2h1mzghaz7) (January 10)
 
 [上期](./tpbohtk3z0w63et9) 谈到，我在 Python 实现了反应性原语，[然后](./mwgggl2taiigch6w) 又实现了 HMR，但是没细讲，这次写一下从反应性原语到 HMR 是怎么实现的。
 
@@ -893,7 +893,7 @@ class MemoizedMethod[T, I]:
 
 [https://github.com/fastapi/fastapi/discussions/13192#discussioncomment-11796729](https://github.com/fastapi/fastapi/discussions/13192#discussioncomment-11796729)
 
-# [如何写出好代码](/blog/icuqa0e3yrmfcol5) (1月9日)
+# [如何写出好代码](/blog/icuqa0e3yrmfcol5) (January 9)
 
 开启所有 lint 规则，然后一个个看过去 哈哈哈哈
 
@@ -901,7 +901,7 @@ class MemoizedMethod[T, I]:
 
 夸张了，这样效率比较低。不如先老老实实把 lint 规则一条条看过去。比如 ruff 的 [rules](https://docs.astral.sh/ruff/rules/)
 
-# [实现了 Python 的 HMR](/blog/mwgggl2taiigch6w) (1月6日)
+# [实现了 Python 的 HMR](/blog/mwgggl2taiigch6w) (January 6)
 
 有点兴奋，但明天还要考试，所以不能让自己一致兴奋下去😂
 
@@ -911,7 +911,7 @@ class MemoizedMethod[T, I]:
 
 <iframe src="https://player.bilibili.com/player.html?bvid=BV1TsrVYbEb7&autoplay=0" style="aspect-ratio: 33 / 20; height: auto"></iframe>
 
-# [反应式编程，但是 Python](/blog/tpbohtk3z0w63et9) (1月4日)
+# [反应式编程，但是 Python](/blog/tpbohtk3z0w63et9) (January 4)
 
 认识我的人或多或少应该都知道，我的理想之一就是把 JavaScript 的开发体验赋能 Python。[marimo](https://marimo.io/) 做的不错，但是我这种追求细节的人不止于此，所以自己实现一套反应式编程是逃不过的（另外也是因为，搜了一圈，似乎 Python 真没这种东西）
 
@@ -1076,7 +1076,7 @@ def batch[**P, T](func: Callable[P, T] | None = None) -> Callable[P, T] | Batch:
 
 留点悬念。这里面还有用到两个`create_memo`和`memoized_property`没讲
 
-# [实现一个类型安全的 (f1, f2) -> f2(f1()) 函数](/blog/pxydthha0dp6yro9) (2024年12月29日)
+# [实现一个类型安全的 (f1, f2) -> f2(f1()) 函数](/blog/pxydthha0dp6yro9) (December 29, 2024)
 
 ```python
 def compose(first, second):
@@ -1221,7 +1221,7 @@ dumps = compose(Output.dump_json, bytes.decode)
 
 完美~
 
-# [给博客加了个 giscus](/blog/iakfelvgul5yfy9t) (2024年12月28日)
+# [给博客加了个 giscus](/blog/iakfelvgul5yfy9t) (December 28, 2024)
 
 [giscus](https://giscus.app/) 是一个评论系统，拿 GitHub Discussion 当 CMS，只要提供一个仓库，一个 discussion 的 category，就能直接获得一个评论区，超方便
 
@@ -1237,7 +1237,7 @@ dumps = compose(Output.dump_json, bytes.decode)
 
 欢迎大家在评论区跟我互动哈~
 
-# [Python 读取 jsonl 的最佳实践](/blog/tfgqal68g6th6oqf) (2024年12月11日)
+# [Python 读取 jsonl 的最佳实践](/blog/tfgqal68g6th6oqf) (December 11, 2024)
 
 发现一个有趣的结论。
 
@@ -1313,7 +1313,7 @@ def iter_jsonl_data(jsonl_path: str):
 
 这个故事还是教学意义比实践意义大
 
-# [准备做一些 MCP 相关的项目](/blog/xcfwbwyd7tgvdbvk) (2024年12月9日)
+# [准备做一些 MCP 相关的项目](/blog/xcfwbwyd7tgvdbvk) (December 9, 2024)
 
 AI#DEA 主办方的一个朋友一直在安利 MCP，今天我也终于按耐不住了。试了下
 
@@ -1323,7 +1323,7 @@ AI#DEA 主办方的一个朋友一直在安利 MCP，今天我也终于按耐不
 
 而且 specification 这东西还真是。大厂推就才可能推成。coze 可能，logfire 可能，但如果我做 Prompt Hub 就做不起来。这一年要说我学会了什么，我学会了什么事儿做不成 哈哈哈
 
-# [OOP 何必是 COP](/blog/hbsd9puhglc8skko) (2024年12月8日)
+# [OOP 何必是 COP](/blog/hbsd9puhglc8skko) (December 8, 2024)
 
 tl;dr: 面向对象编程（Object-oriented programming）不必是面向类编程（Class-oriented programming）
 
@@ -1409,7 +1409,7 @@ class DynamicBoolean(int):
 
 本来以为他们会不会对这个命名有异议的，但是居然没有。看来他们对贡献挺不 opinionated 的，毕竟也是[一个 utils.py 文件](https://github.com/gradio-app/gradio/blob/main/gradio/utils.py) 1500+ 行的项目。哈哈哈
 
-# [m ask 支持 markdown 流式渲染了](/blog/sepc2cmtiuexte3p) (2024年12月5日)
+# [m ask 支持 markdown 流式渲染了](/blog/sepc2cmtiuexte3p) (December 5, 2024)
 
 发现原来 rich 有可以用来实现流式 markdown 渲染的工具，于是就集成了一下，下面是个例子，在命令行中直接对 ruff 的一条 lint 规则进行提问
 
@@ -1437,7 +1437,7 @@ class TruncatedMarkdown(Markdown):
 
 [Stream markdown - PydanticAI](https://ai.pydantic.dev/examples/stream-markdown/?h=rich.live)
 
-# [再谈一谈 Svelte 5](/blog/sggo21grr7odt3sn) (2024年12月4日)
+# [再谈一谈 Svelte 5](/blog/sggo21grr7odt3sn) (December 4, 2024)
 
 Svelte 5 发布也有一段时间了，我存量项目太多，迁移一个项目至少要半小时起步，于是就打算先缓缓。
 
@@ -1472,7 +1472,7 @@ Svelte 原本采用的是我尤其欣赏的“即使编译器不够好，但是�
 
 最后重申一下，我的观点是，Svelte 5 绝对在效率、上限上都是比 Svelte 4 高的。唯一可惜的是，门槛提高了，另一方面编码效率一定程度下降了，尤其小项目的编码效率大幅度下降。
 
-# [一言不合就 fork](/blog/hb4w5vspmvuncrpk) (2024年11月30日)
+# [一言不合就 fork](/blog/hb4w5vspmvuncrpk) (November 30, 2024)
 
 作为急急急急急国王，我遇到用不顺手的库我就 fork！甚至再发一个包！licence 什么的都不管！我是开源带恶人
 
@@ -1496,7 +1496,7 @@ Svelte 原本采用的是我尤其欣赏的“即使编译器不够好，但是�
 
 ![](/nlark/yuque/0/2024/png/26070246/1732947970927-a2155416-a35c-4f85-bdc5-8c94dd09c85b.png)
 
-# [感觉 gpt 的 vision 能力不太行](/blog/ttm4y2q7w3o6etrm) (2024年11月27日)
+# [感觉 gpt 的 vision 能力不太行](/blog/ttm4y2q7w3o6etrm) (November 27, 2024)
 
 对 gpt 的 vision 能力持怀疑态度了。
 
@@ -1525,7 +1525,7 @@ Svelte 原本采用的是我尤其欣赏的“即使编译器不够好，但是�
 
 当然，我觉得有可能跟 gpt 对图片的 tokenizing 方式有关。一方面我没试过别的 VLM，另一方面似乎只有 gpt 着重有一章讲他们对图片的处理，就是 low 分辨率有一部分 token，然后 high 分辨率的话是分成多个 tile 这样。我不太懂模型所以不知道为什么要这么干。但我感觉这样子可能会对低分辨率的图标啊头像啊logo啊这些东西反而更关注。
 
-# [Fork 了 PythonMonkey](/blog/yh3cd64t6111ubux) (2024年11月24日)
+# [Fork 了 PythonMonkey](/blog/yh3cd64t6111ubux) (November 24, 2024)
 
 ![](/nlark/yuque/0/2024/png/26070246/1732452458406-daefb64f-d071-4c03-a73f-4aed0342b917.png)
 
@@ -1606,7 +1606,7 @@ PythonMonkey 一个多月没动了。3.13 适配遥遥无期。
 
 Netlify 这儿的服务刷了差不多等量的……
 
-# [Cloudflare Zaraz 的开源托管组件](/blog/bzzswty7glvkrwcw) (2024年11月14日)
+# [Cloudflare Zaraz 的开源托管组件](/blog/bzzswty7glvkrwcw) (November 14, 2024)
 
 > 最近决定把一些我觉得挺有意思的文章翻译一下，一是自己看，二是以后跟别人讲某个观点的时候不用逼别人看英文。当然肯定不是我自己翻译的而是 gpt 翻译的
 >
@@ -1720,7 +1720,7 @@ WebCM是Managed Components API的参考实现。它是一个完整的Components 
 
 我们很快将发布Managed Components的完整规格。我们也将开源WebCM，参考实现服务器，以及许多您可以自己使用的组件。如果这对您很有趣，请通过[zaraz@cloudflare.com](mailto:zaraz@cloudflare.com)与我们联系，或加入我们的[Discord](https://discord.gg/cloudflaredev)。
 
-# [Emoji 轮播组件](/blog/my4e6uttc2qxo8vh) (2024年11月12日)
+# [Emoji 轮播组件](/blog/my4e6uttc2qxo8vh) (November 12, 2024)
 
 为了过几天传播学院的比赛的路演，这几天在用代码做动画
 
@@ -1772,7 +1772,7 @@ WebCM是Managed Components API的参考实现。它是一个完整的Components 
 
 ```
 
-# [在 terminal 中直接提问 LLM！](/blog/nvqivxall3y2gmgf) (2024年11月8日)
+# [在 terminal 中直接提问 LLM！](/blog/nvqivxall3y2gmgf) (November 8, 2024)
 
 最近要赶毕设开题和比赛路演的事情了，今天可能是近期最后更新一下 `m` 的东西。今天新加了最基本的 ask 的功能和 config 命令，长话短说，现在你可以这样使用
 
@@ -1800,7 +1800,7 @@ m --help | m ask "介绍下怎么用这个 CLI"
 
 很多时候，用某些命令行工具遇到问题的时候，没时间看文档，只想直接解决。通常需要自己复制到某个 AI Chat 的网站去问，现在只需要 ... | m ask 就可以直接提问了
 
-# [尝试双线程聊天](/blog/srl3lm75eu2tzdsz) (2024年11月7日)
+# [尝试双线程聊天](/blog/srl3lm75eu2tzdsz) (November 7, 2024)
 
 上周又被女朋友删了微信，后来就在 QQ 交流，直到今天才加回来。她叫我 QQ 也要保持联系，原来想还觉得挺麻烦，今天忽然发现挺好的
 
@@ -1814,7 +1814,7 @@ m --help | m ask "介绍下怎么用这个 CLI"
 
 但是 QQ 一个好处是它的表情比较有异域风情
 
-# [m 的诞生](/blog/kya1tmyz86lsyaae) (2024年11月6日)
+# [m 的诞生](/blog/kya1tmyz86lsyaae) (November 6, 2024)
 
 最近歪楼去做了一个项目，源于我英语不太好，commit message 总想不到最准确的表达，而 Copilot 不知道抽什么风，经常生成中文的 commit message，要么就是贼长，而且大小写、动词还是名词都不符合我同一个项目的写法。
 
@@ -1875,7 +1875,7 @@ pip install muspi-merol
 + 发起 HTTP 请求，类似 `httpx[cli]`，但是支持流式响应和柯里化传参（中途 input）
     - m get / post / ...
 
-# [水了两周（睡了两周）](/blog/capn1i7nvvat7k95) (2024年11月4日)
+# [水了两周（睡了两周）](/blog/capn1i7nvvat7k95) (November 4, 2024)
 
 这两周状态不太好，每天半夜才睡，中午/下午才起床，好多课都没上成。本来和几个传播学的师姐一起打了个传播学与AI交叉的创新创业比赛（ppt向的），但是总体不太顺利。希望能进复赛吧，希望能去北京路演 :)
 
@@ -1897,7 +1897,7 @@ pip install muspi-merol
 
 手头上有个自动化操作浏览器的项目，还有个 pdf 转 md 的项目，希望能做好。希望能这周内做好。
 
-# [阅读 Svelte 5 的 migration guide](/blog/pi761sbi9wqddvh5) (2024年10月25日)
+# [阅读 Svelte 5 的 migration guide](/blog/pi761sbi9wqddvh5) (October 25, 2024)
 
 [Svelte 5 migration guide • Docs • Svelte](https://svelte.dev/docs/svelte/v5-migration-guide)
 
@@ -1932,11 +1932,11 @@ pip install muspi-merol
 
 升级时发现 bits-ui 改了好多，唉好麻烦
 
-# [useDefaultParameterLast 和 noDelete](/blog/myu26q4csq17vw22) (2024年10月23日)
+# [useDefaultParameterLast 和 noDelete](/blog/myu26q4csq17vw22) (October 23, 2024)
 
 今天尝试把 bundle 过后的丑陋代码进行格式化，当时开启了`performance/noDelete`和`style/useDefaultParameterLast`这两项，结果就出问题了，虽然具体没发现是怎么个过程，但是现在算是知道这东西不安全了
 
-# [怎么用 late chunking 嵌入长文档](/blog/lo3irk3souedpl0h) (2024年10月22日)
+# [怎么用 late chunking 嵌入长文档](/blog/lo3irk3souedpl0h) (October 22, 2024)
 
 看了 [Jina Embeddings v3: A Frontier Multilingual Embedding Model](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/#parameter-dimensions) 了解到 late chunking（迟分）的技术，正好毕设这边要做论文 RAG，我觉得可以用上。
 
@@ -1966,7 +1966,7 @@ pip install muspi-merol
 
 更何况最近也准备推一下我这个 [LLM Web Reader Demo](https://llm-web-reader.vercel.app/read) 项目
 
-# [九阳与小家电](/blog/nl1doi3d8ywpbu17) (2024年10月19日)
+# [九阳与小家电](/blog/nl1doi3d8ywpbu17) (October 19, 2024)
 
 > [九阳股份投资价值分析报告](https://llm-web-reader.netlify.app/read?engine=llm&preview=iframe&result=rendered&url=https%3A%2F%2Fwww.sohu.com%2Fa%2F442500469_99933228)
 >
@@ -1982,11 +1982,11 @@ pip install muspi-merol
 7. **良好的现金流和流动性**：九阳的流动资产占比较高，且现金流状况良好，这为其在市场竞争中提供了充足的资金支持，能够快速响应市场变化。
 8. **适应市场趋势的能力**：九阳能够及时把握市场趋势，如疫情带来的“下厨热”，并通过产品教育和市场推广来满足消费者的需求，增强了其市场竞争力。
 
-# [No. 923](/blog/xc88oixrmv3qnl9v) (2024年10月18日)
+# [No. 923](/blog/xc88oixrmv3qnl9v) (October 18, 2024)
 
 居然也是 7 的倍数 哈哈哈
 
-# [关于 SharedWorker 踩的坑](/blog/pf8sggn8lw2cgfdb) (2024年10月16日)
+# [关于 SharedWorker 踩的坑](/blog/pf8sggn8lw2cgfdb) (October 16, 2024)
 
 ## 开发方面
 ### `console.log`不方便
@@ -2037,7 +2037,7 @@ export default defineConfig({
 
 不过目前看来，除了麻烦，用 Worker 其实没什么优势 哈哈哈
 
-# [Promplate 目前的成果总结](/blog/yeg4r445lgqz5dg8) (2024年10月10日)
+# [Promplate 目前的成果总结](/blog/yeg4r445lgqz5dg8) (October 10, 2024)
 
 正好要给一个朋友介绍一下，于是自己就整理一下：
 
@@ -2057,11 +2057,11 @@ export default defineConfig({
 
 此外还有一些面向开发者的库，在这里就不提了
 
-# [细粒度发包](/blog/wzrh6ikbgmz32fh2) (2024年10月9日)
+# [细粒度发包](/blog/wzrh6ikbgmz32fh2) (October 9, 2024)
 
 我觉得每个包就应该 atomic，一个包就完成最小的一个任务。
 
-# [无标题文档](/blog/xsgfhq3ylcek1k0q) (2024年10月8日)
+# [无标题文档](/blog/xsgfhq3ylcek1k0q) (October 8, 2024)
 
 脏数据
 
@@ -2079,7 +2079,7 @@ export default defineConfig({
 + 可信性 believability
 + 可解释性 interpretability
 
-# [在考虑换一个 markdown parser 了](/blog/yly2o4u65xusvx5u) (2024年9月30日)
+# [在考虑换一个 markdown parser 了](/blog/yly2o4u65xusvx5u) (September 30, 2024)
 
 之前随着写前端的经验和耐心越来越多，逐渐尝试了不同的 markdown renderer：
 
@@ -2097,7 +2097,7 @@ export default defineConfig({
 
 ![](/nlark/yuque/0/2024/png/26070246/1727703669249-a7c817d6-cc8f-4263-857f-9fcd741d0b6a.png)
 
-# [做了一个适合 Safari 的 banner 效果](/blog/rkklkxr3pcggrgh6) (2024年9月29日)
+# [做了一个适合 Safari 的 banner 效果](/blog/rkklkxr3pcggrgh6) (September 29, 2024)
 
 发了小红书：[https://www.xiaohongshu.com/discovery/item/66f96cee000000001a021da7](https://www.xiaohongshu.com/discovery/item/66f96cee000000001a021da7?app_platform=ios&app_version=8.55.2&apptime=1727622385&share_from_user_hidden=true&type=video&appuid=62f77a47000000001902f89a&author_share=1&xsec_token=DBy9gPVv8q0HSJQJtZK1_8lFNVibPnSK32ZmJvbz-nRb0=&xsec_source=app_share&xhsshare=WeixinSession&shareRedId=ODhINzpGOEA2NzUyOTgwNjc8OTlKPT9K)
 
@@ -2105,7 +2105,7 @@ export default defineConfig({
 
 灵感来源于：[Banners that adapt the theme-color / X](https://x.com/pacocoursey/status/1675667770502176768)
 
-# [记一个 Safari 的 bug](/blog/nty6i6khptngh1y1) (2024年9月29日)
+# [记一个 Safari 的 bug](/blog/nty6i6khptngh1y1) (September 29, 2024)
 
 input 的`click`/`select`的 eventHandler 会阻止它被选中，可能是要等到这个 handler 处理完了才会被选中
 
@@ -2122,7 +2122,7 @@ input 的`click`/`select`的 eventHandler 会阻止它被选中，可能是要�
 
 后来的解决办法，是改成用`<button>`，但我还是很喜欢用 label 和 input 这样，所以后来还是保留了 label 为 `sr-only`
 
-# [“创新预算 (innovation budget)”之于我](/blog/on-innovation-tokens) (2024年9月28日)
+# [“创新预算 (innovation budget)”之于我](/blog/on-innovation-tokens) (September 28, 2024)
 
 ![](/nlark/yuque/0/2024/png/26070246/1727495918730-bb65e3d7-a46d-44d1-8c66-4a84359a6047.png)
 
@@ -2137,13 +2137,13 @@ input 的`click`/`select`的 eventHandler 会阻止它被选中，可能是要�
 
 后来当我跟女朋友聊起这个观点的时候，想到，我大学时很多项目不了了之了，其实就是这个个性的必然结果。对于很多项目，我其实并没有对他们的技术那么有兴趣。在做着做着，发现我在为了这个目标，消耗了过多的 innovation tokens，超过了我的创新预算，而我有是一个不好意思跟别人说不做了的人，于是屡次发生了跑路的事件😂在此再次向大家抱歉一下~我保证在以后可能的合作中，我如果觉得做不下去了我会及时诚实相告。
 
-# [Cerebras 与 Groq](/blog/rek9u3gmic663ack) (2024年9月25日)
+# [Cerebras 与 Groq](/blog/rek9u3gmic663ack) (September 25, 2024)
 
 ![](/nlark/yuque/0/2024/png/26070246/1727280704638-5d515c2d-7d78-4d92-b671-7f75487c300d.png)
 
 ![](/nlark/yuque/0/2024/png/26070246/1727280715882-ba5b226d-077f-4039-8ab9-7a65673c1db2.png)
 
-# [新简历 起草](/blog/ydr1wtyhwn2hdoo3) (2024年9月25日)
+# [新简历 起草](/blog/ydr1wtyhwn2hdoo3) (September 25, 2024)
 
 我是 Muspi Merol (abbr)，庄毅辉，一名[北师珠](https://www.bnuzh.edu.cn/)的 undergraduate，一名[开源**爱好者**](https://muspi-merol.nuxt.dev/)
 
@@ -2175,7 +2175,7 @@ input 的`click`/`select`的 eventHandler 会阻止它被选中，可能是要�
 
 可以有一个向我提问的按钮，一方面用一个 Q&A 列表 RAG，另一方面可以直接发邮件通知我
 
-# [OpenAI 欺骗消费者](/blog/phgapuy9ylf3t77p) (2024年9月25日)
+# [OpenAI 欺骗消费者](/blog/phgapuy9ylf3t77p) (September 25, 2024)
 
 ![](/nlark/yuque/0/2024/png/26070246/1727244703744-eecbb8d3-026f-4309-896b-b7b898145083.png)
 
@@ -2214,13 +2214,13 @@ As a consumer who has been trusted OpenAI for more than a year, I feel deceived 
 | Total tokens | 425 |
 | Total price | $0.002125 |
 
-# [无标题文档](/blog/exs4wapv3wxhk8wi) (2024年9月23日)
+# [无标题文档](/blog/exs4wapv3wxhk8wi) (September 23, 2024)
 
 MPI 消息传递接口
 
 显式通信
 
-# [《数字图像处理》笔记](/blog/cbtg1wi0wnpu40d3) (2024年9月23日)
+# [《数字图像处理》笔记](/blog/cbtg1wi0wnpu40d3) (September 23, 2024)
 
 ### 视觉过程
 1. 光学过程
@@ -2256,13 +2256,13 @@ MPI 消息传递接口
 + 动态范围压缩
 + 灰度切分
 
-# [手机淋雨屏幕坏了](/blog/le7xqyco71b8vwmh) (2024年9月22日)
+# [手机淋雨屏幕坏了](/blog/le7xqyco71b8vwmh) (September 22, 2024)
 
 似乎什么都干得了，就是屏幕显示和触摸屏没反应
 
 好烦 感觉要体验一下没有手机的日子了
 
-# [《大数据分析》 笔记](/blog/ki77xyom1usp381t) (2024年9月20日)
+# [《大数据分析》 笔记](/blog/ki77xyom1usp381t) (September 20, 2024)
 
 ## 特征工程
 #### 属性类型
@@ -2385,7 +2385,7 @@ word2vec 缺点
 
 基于随机排列的特征重要性
 
-# [昨天在做爬虫](/blog/yorusnf5b50afr6b) (2024年9月19日)
+# [昨天在做爬虫](/blog/yorusnf5b50afr6b) (September 19, 2024)
 
 基于 playwright 的爬虫，让 LLM 来做标注
 
@@ -2427,13 +2427,13 @@ class _(Callback):  # noqa: N801
         self.max_retries -= 1
 ```
 
-# [也想做这样的图表](/blog/ht8gsdl2fuv61a1m) (2024年9月18日)
+# [也想做这样的图表](/blog/ht8gsdl2fuv61a1m) (September 18, 2024)
 
 在 py3.online/pypi 上
 
 ![](/nlark/yuque/0/2024/jpeg/26070246/1726677230674-4ca12f83-fb94-4d00-b7e0-fe8b39304a5f.jpeg)
 
-# [取 dict 的交集](/blog/nnriaprqaxuewpww) (2024年9月18日)
+# [取 dict 的交集](/blog/nnriaprqaxuewpww) (September 18, 2024)
 
 大概这样的效果：
 
@@ -2459,7 +2459,7 @@ def merge_computed_styles(computed_styles: list[dict[str, str]]):
 
 <iframe src="https://bnu.py3.online/telegraph/computed-styles-09-18"></iframe>
 
-# [Ruff Settings in VS Code](/blog/dcoyztrfle30q4xz) (2024年9月18日)
+# [Ruff Settings in VS Code](/blog/dcoyztrfle30q4xz) (September 18, 2024)
 
 为了 fix on save
 
@@ -2482,7 +2482,7 @@ def merge_computed_styles(computed_styles: list[dict[str, str]]):
 
 可以用作 py 项目的 setup template
 
-# [2024 年中秋 🥮](/blog/rpihdtc5ue687mk7) (2024年9月17日)
+# [2024 年中秋 🥮](/blog/rpihdtc5ue687mk7) (September 17, 2024)
 
 福州之旅尾声，听说爸妈来珠海找我过中秋。于是时隔四年又去了圆明新园。
 
@@ -2535,7 +2535,7 @@ def merge_computed_styles(computed_styles: list[dict[str, str]]):
 
 ---
 
-# [第一次收到别人的 PR 👻](/blog/ug7mhlnzrymt1zqx) (2024年9月17日)
+# [第一次收到别人的 PR 👻](/blog/ug7mhlnzrymt1zqx) (September 17, 2024)
 
 早上送走爸妈之后才发现今天没看 GitHub 通知，一打开
 
@@ -2643,7 +2643,7 @@ They can drop at any depth level as they wish.
 
 现在每次 commit 都会可以被安装了🥳
 
-# [记几个新认识的 tailwindcss 语法](/blog/gwrggsqvpydrgh1n) (2024年9月15日)
+# [记几个新认识的 tailwindcss 语法](/blog/gwrggsqvpydrgh1n) (September 15, 2024)
 
 偶然发现几个从没用过但有用的 tailwind 语法，记录一下：
 
@@ -2659,7 +2659,7 @@ They can drop at any depth level as they wish.
 
 ![](https://s2.loli.net/2024/09/16/RBvsGKgbMIdE1qW.jpg)
 
-# [测试 iframe](/blog/fao7eg6xlgh76sk5) (2024年9月14日)
+# [测试 iframe](/blog/fao7eg6xlgh76sk5) (September 14, 2024)
 
 <iframe src="//free-chat.asia"></iframe>
 
@@ -2667,7 +2667,7 @@ They can drop at any depth level as they wish.
 
 <iframe src="//bnu.muspimerol.site"></iframe>
 
-# [更舒适的 PyPI 浏览器](/blog/gr3vsb02xhku43x8) (2024年9月2日)
+# [更舒适的 PyPI 浏览器](/blog/gr3vsb02xhku43x8) (September 2, 2024)
 
 ![](https://opengraph.githubassets.com/4b602ec50c9045c4254d8d3f04a667749e04dcca52704c7d3d8babddbc2d4ca6/promplate/pyth-on-line/pull/61)
 
@@ -2681,7 +2681,7 @@ They can drop at any depth level as they wish.
 
 ![](https://opengraph.githubassets.com/ade55b82188401c1a45bda2d253d246a21bd1dc025f5a64523ebf1ebb4e49586/promplate/pyth-on-line/issues/64)
 
-# [最近主要在改 pyth-on-line](/blog/io4w2qz8s9ivyk21) (2024年7月1日)
+# [最近主要在改 pyth-on-line](/blog/io4w2qz8s9ivyk21) (July 1, 2024)
 
 [<console> is hard-coded, causing traceback disappear when filename specified · Issue #4901 · pyodide/pyodide](https://github.com/pyodide/pyodide/issues/4901#issuecomment-2197677348)
 
@@ -2700,7 +2700,7 @@ They can drop at any depth level as they wish.
 
 [🔗 py3.online](https://py3.online/console#ZGVmIGYoKToKICAgIHJldHVybiAxIC8gMAoKYXN5bmMgZGVmIGcoKToKICAgIHJldHVybiBmKCkKCmF3YWl0IGcoKQoK)
 
-# [第一次搞 polyfill，感叹 JavaScript 的 GC 真麻烦](/blog/in9sfz6ztdrge1g9) (2024年6月9日)
+# [第一次搞 polyfill，感叹 JavaScript 的 GC 真麻烦](/blog/in9sfz6ztdrge1g9) (June 9, 2024)
 
 GitHub Gist: [https://gist.github.com/CNSeniorious000/9fc1a72e45358dd7c9e2f16e5d26df5c](https://gist.github.com/CNSeniorious000/9fc1a72e45358dd7c9e2f16e5d26df5c)
 
@@ -2810,11 +2810,11 @@ gc()
 
 但是我 tsconfig 还是配置不对 好烦 而且这玩意算是搞了今天一天
 
-# [居然一天写了 18 小时代码](/blog/gfb48ym2k82dauls) (2024年5月23日)
+# [居然一天写了 18 小时代码](/blog/gfb48ym2k82dauls) (May 23, 2024)
 
 ![](https://s2.loli.net/2024/05/23/6pYaLACMcr2DmlF.png)
 
-# [为什么不用 Astro](/blog/oulc78xmicks80e0) (2024年5月13日)
+# [为什么不用 Astro](/blog/oulc78xmicks80e0) (May 13, 2024)
 
 astro 我觉得好的特性是它的 island，可以融合多个生态
 
@@ -2841,7 +2841,7 @@ astro 我觉得好的特性是它的 island，可以融合多个生态
 
 总之感觉 astro 是个很好的解决方案，但确实还是不适合我😂
 
-# [这个周末在抠 partial-json-parser](/blog/ub4b86y3xh3n1uyv) (2024年5月12日)
+# [这个周末在抠 partial-json-parser](/blog/ub4b86y3xh3n1uyv) (May 12, 2024)
 
 周五想到一种扁平的、2-pass 的实现，结果一直在 debug
 
@@ -2935,7 +2935,7 @@ hypothesis 真是好啊，我准备把 js 版的也用 pythonmonkey 的 js runti
     +------------------------------------
 ```
 
-# [Agent 的最终形态 必然导向](/blog/bqcods6w0kho33li) (2024年5月9日)
+# [Agent 的最终形态 必然导向](/blog/bqcods6w0kho33li) (May 9, 2024)
 
 想想，如何使得function_call的结果可以直接引用，不用LLM重述？同时又能与各家千奇百怪的LLM API的function_call格式解藕？
 
@@ -2947,7 +2947,7 @@ hypothesis 真是好啊，我准备把 js 版的也用 pythonmonkey 的 js runti
 
 这种方式真的是具有所有好处
 
-# [建了一个 PyPI 镜像](/blog/pypi-mirror) (2024年4月21日)
+# [建了一个 PyPI 镜像](/blog/pypi-mirror) (April 21, 2024)
 
 ### 仅仅在当前安装时使用
 ```shell
@@ -2999,11 +2999,11 @@ i.free-chat.asia/simple
 
 确实都可以了
 
-# [Serverless era of Python](/blog/suac126h4dw6dizd) (2024年4月3日)
+# [Serverless era of Python](/blog/suac126h4dw6dizd) (April 3, 2024)
 
 ![](https://blog.cloudflare.com/content/images/2024/04/blogpython.png)
 
-# [看到一篇很好的讲 UX 的文章](/blog/cdwdzdh6plvs79b8) (2024年4月1日)
+# [看到一篇很好的讲 UX 的文章](/blog/cdwdzdh6plvs79b8) (April 1, 2024)
 
 而且非常赞同这篇文章最后说的一段话
 
@@ -3013,11 +3013,11 @@ i.free-chat.asia/simple
 ## Invisible Details of Interaction Design [🔗](https://rauno.me/craft/interaction-design)
 ![](https://rauno.me/static/craft/og-interaction-design2.png)
 
-# [无标题文档](/blog/fi23gc4d9ahv71mn) (2024年4月1日)
+# [无标题文档](/blog/fi23gc4d9ahv71mn) (April 1, 2024)
 
 感觉我现在成了调包侠了
 
-# [Reasonify](/blog/reasonify) (2024年3月25日)
+# [Reasonify](/blog/reasonify) (March 25, 2024)
 
 一个纯 function call 思路的 agent
 
@@ -3037,7 +3037,7 @@ i.free-chat.asia/simple
 
 感觉这更像是两篇博文的标题🤔
 
-# [ubuntu 配环境 🙄](/blog/alel05e9ibefc91r) (2024年3月22日)
+# [ubuntu 配环境 🙄](/blog/alel05e9ibefc91r) (March 22, 2024)
 
 无脑更新
 
@@ -3063,7 +3063,7 @@ curl https://pyenv.run | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 ```
 
-# [个人简历](/blog/resume) (2023年11月28日)
+# [个人简历](/blog/resume) (November 28, 2023)
 
 # 庄毅辉
 **男 汉族 2002年**
@@ -3128,7 +3128,7 @@ GitHub: [Muspi Merol @CNSeniorious000](https://github.com/CNSeniorious000) / Ema
 
 东西有点多 部分内容可能已经过时了 见谅🙏
 
-# [Netlify 执行 python 构建脚本比 Vercel 快](/blog/cv3zb7ee4a5uhky1) (2023年10月12日)
+# [Netlify 执行 python 构建脚本比 Vercel 快](/blog/cv3zb7ee4a5uhky1) (October 12, 2023)
 
 最近把本人初学 web 时的[纯服务端渲染纯 html 前端的项目](https://github.com/CNSeniorious000/bnu-history-120)成功部署到了 [Netlify](https://bnu120.netlify.app) 和 [Vercel](https://bnu120.vercel.app) 上，对比了一下：
 
@@ -3138,13 +3138,13 @@ GitHub: [Muspi Merol @CNSeniorious000](https://github.com/CNSeniorious000) / Ema
 
 奇怪。一直印象中构建前端项目好像 Vercel 快一点的🤔
 
-# [节后统计](/blog/wzakrq31d4zqsbog) (2023年10月9日)
+# [节后统计](/blog/wzakrq31d4zqsbog) (October 9, 2023)
 
 ![](https://s2.loli.net/2023/10/09/OM4oA2RxT3nKbPC.png)
 
 ![](https://s2.loli.net/2023/10/09/VGpJPUNth5nkWoq.png)kan
 
-# [就msgpack压缩后大小的问题的讨论](/blog/uk4tywen79xyuqam) (2023年9月27日)
+# [就msgpack压缩后大小的问题的讨论](/blog/uk4tywen79xyuqam) (September 27, 2023)
 
 在 GitHub 上的 msgpack/msgpack 库下面，很早之前我发起了这么一个话题，今天突然得到回复了
 
@@ -3178,12 +3178,12 @@ GitHub: [Muspi Merol @CNSeniorious000](https://github.com/CNSeniorious000) / Ema
 
 [就msgpack压缩后大小的问题的讨论](https://muspimerol.site/blog/uk4tywen79xyuqam)
 
-# [promplate 文档规划](/blog/bmvwkdp9iganh9tb) (2023年9月25日)
+# [promplate 文档规划](/blog/bmvwkdp9iganh9tb) (September 25, 2023)
 
 + basic concepts
     - promplate渐进地提高你的提示工程效率。从最简单的text complete，
 
-# [为什么我要开发promplate](/blog/why-promplate) (2023年9月14日)
+# [为什么我要开发promplate](/blog/why-promplate) (September 14, 2023)
 
 每一个听说[我造这么一个轮子的人](https://www.xiaohongshu.com/explore/64e2367e000000000800df47)都会有这样的疑问：
 
@@ -3228,7 +3228,7 @@ GitHub: [Muspi Merol @CNSeniorious000](https://github.com/CNSeniorious000) / Ema
 ### 回到最初的问题
 为什么我要开发 promplate？显而易见，这是一个目标为提示工程的最佳实践的激进探索，探索成功了利己利人，失败了呢……我会谨慎行事，不允许失败 哈哈
 
-# [试着让一个实例知晓自己的变量名](/blog/auto-naming) (2023年9月5日)
+# [试着让一个实例知晓自己的变量名](/blog/auto-naming) (September 5, 2023)
 
 我创建了一个 [GitHub Gist](https://gist.github.com/CNSeniorious000/df96593dad6ea6c46dee3e96ce64d823)
 
@@ -3302,17 +3302,17 @@ class AutoNaming:
         return f"<{self.name}>"
 ```
 
-# [104 hrs 35 mins over the last 14 days](/blog/vgg9ytufpq5g9gxn) (2023年8月24日)
+# [104 hrs 35 mins over the last 14 days](/blog/vgg9ytufpq5g9gxn) (August 24, 2023)
 
 ![](https://s2.loli.net/2023/08/25/9yaAF5RJukhsUQp.png)
 
-# [51 hrs 35 mins over the last 7 days.](/blog/ppkrcaspiha5fgiz) (2023年8月11日)
+# [51 hrs 35 mins over the last 7 days.](/blog/ppkrcaspiha5fgiz) (August 11, 2023)
 
 ![](https://s2.loli.net/2023/08/11/EtqiJ9cKy2kfVgn.png)
 
 ![](https://s2.loli.net/2023/08/11/28MSOWFt35IaAm6.png)
 
-# [终于暂时地夺回了 muspimerol.site](/blog/ybufp2lsenzas8bw) (2023年8月9日)
+# [终于暂时地夺回了 muspimerol.site](/blog/ybufp2lsenzas8bw) (August 9, 2023)
 
 今天尝试将域名转出，没想到在其它域名注册商转入也要花好几十甚至几百块钱……，而且不知道为啥，快过期的域名反而无法转出了。
 
@@ -3326,7 +3326,7 @@ class AutoNaming:
 
 至少短期内是能解析了吧。希望 [Free Chat](https://free-chat.asia/) 损失的 95% 的用户能逐渐回来一些 😂
 
-# [一种DDOS的应对方式](/blog/using-cookies-to-mitigate-ddos-attacks) (2023年5月18日)
+# [一种DDOS的应对方式](/blog/using-cookies-to-mitigate-ddos-attacks) (May 18, 2023)
 
 最近网站遭到了DDOS，流量飙得老高，100GB的流量包半周就能耗完。发现攻击集中在 376 KB 的最大的bundle文件上。由于攻击来自多个IP，且（由于我比较菜）没有什么特征可以分辨，逐url逐IP的令牌桶没效果，所以一直都没有实质性的办法。
 
@@ -3406,7 +3406,7 @@ async def check_not_first(request: Request):
         return empty()
 ```
 
-# [使用后端渲染的一点心得](/blog/owdhhek8e2f5s8ug) (2023年5月16日)
+# [使用后端渲染的一点心得](/blog/owdhhek8e2f5s8ug) (May 16, 2023)
 
 ### 2023年5月16日
 最近由于要参加一个比赛，必须得捡起一个老项目。当时刚学会用 Jinja2 那套东西，用后端渲染和 Vanilla JS 实现了 SPA，现在看回以前的代码，不少令人汗颜的地方
@@ -3416,7 +3416,7 @@ async def check_not_first(request: Request):
 + 原来有 [context-processors](https://www.starlette.io/templates/#context-processors) 这个东西
 +
 
-# [如何避免 Vercel 的 Edge Function 上限](/blog/hybrid-vercel-and-netlify) (2023年4月25日)
+# [如何避免 Vercel 的 Edge Function 上限](/blog/hybrid-vercel-and-netlify) (April 25, 2023)
 
 Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Execution Units 是要计费的，这意味着对 [Free Chat](https://github.com/CNSeniorious000/free-chat) 这样的云函数密集型（？）应用就不太适合部署在这里。
 
@@ -3438,7 +3438,7 @@ Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Executi
 
 ![](https://picgo.cdn.muspimerol.site/20230425182828.png)
 
-# [大家提供的prompts](/blog/lpk67aq072bmcyli) (2023年4月11日)
+# [大家提供的prompts](/blog/lpk67aq072bmcyli) (April 11, 2023)
 
 | 标题 | 内容（超链接） | 作者（你可以留名） |
 | --- | --- | --- |
@@ -3454,7 +3454,7 @@ Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Executi
 | | | |
 | | | |
 
-# [My GSoC 2023 Proposal - SymPy](/blog/eqongggr349ufs73) (2023年4月4日)
+# [My GSoC 2023 Proposal - SymPy](/blog/eqongggr349ufs73) (April 4, 2023)
 
 # <font style="color:rgb(51, 51, 51);">Empowering SymPy Live and SymPy Gamma with Pyodide/Brython and Modern Front-end Frameworks</font>
 ## <font style="color:rgb(51, 51, 51);">Abstract</font>
@@ -3517,7 +3517,7 @@ Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Executi
 ## <font style="color:rgb(51, 51, 51);">Conclusion</font>
 <font style="color:rgb(51, 51, 51);">This project aims to enhance the functionality and performance of SymPy Live and SymPy Gamma by migrating them to Pyodide/Brython and modern front-end frameworks. The project will also improve the parsing of input expressions in SymPy Gamma to support more types of inputs. The expected outcome is a modified version of SymPy Live and SymPy Gamma with improved functionality and a modern front-end design.</font>
 
-# [重启后要启动的服务](/blog/aywvap5wpqag4h35) (2023年4月1日)
+# [重启后要启动的服务](/blog/aywvap5wpqag4h35) (April 1, 2023)
 
 + `mysqld`service mysqld start
 + `chat-proxy`poetry run uvicorn main:app --reload --host 0.0.0.0 --port 12233 --no-access-log --no-server-header --no-date-header
@@ -3531,7 +3531,7 @@ Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Executi
 + `visit-counter`poetry run uvicorn main:app --reload --host 0.0.0.0 --port 14141
 + `tmp`poetry run python3 -O main.py --reload
 
-# [Linux 生成16位密码](/blog/ff02ndtwi3vh85gg) (2023年3月30日)
+# [Linux 生成16位密码](/blog/ff02ndtwi3vh85gg) (March 30, 2023)
 
 <font style="color:rgba(236,236,241,var(--tw-text-opacity));">Linux上如何快速产生一个长度为16的随机字符串？</font>
 
@@ -3550,7 +3550,7 @@ head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1
 + 使用`fold`命令将字符流折叠成一行，每行16个字符。
 + 使用`head`命令仅输出第一行，即一个长度为16的随机字符串。
 
-# [Boolean Retrieval Homework](/blog/gi27s7pb3gwf0mzs) (2023年3月19日)
+# [Boolean Retrieval Homework](/blog/gi27s7pb3gwf0mzs) (March 19, 2023)
 
 #### Exercise 1.2
 
@@ -3855,7 +3855,7 @@ std::vector<int> and_not_query(const std::vector<int>& x, const std::vector<int>
 > In conclusion, our solution has a time complexity that is more efficient than the naive one.
 >
 
-# [计算机组成原理 第3次作业](/blog/olp3qzzrdiepql20) (2023年3月15日)
+# [计算机组成原理 第3次作业](/blog/olp3qzzrdiepql20) (March 15, 2023)
 
 1. **通过编程验证 **`**float**`** 和 **`**double**`** 类型的精度（即十进制有效位的位数），在实验报告中给出结果及解释；编程计算 **`**-8.0/0**`** 、 **`**sqrt(-4,0)**`** 的运算结果，并对结果给予解释。**
 
@@ -4159,7 +4159,7 @@ us右移2位: 13297, 0x33f1
 
 左移n位相当于将数值乘以2的n次方，右移n位相当于将数值除以2的n次方。因此，左移2位相当于将数值扩大4倍，右移2位相当于将数值缩小4倍。
 
-# [分布式计算原理与应用 第2次作业](/blog/cz22q87un2krn5hb) (2023年3月14日)
+# [分布式计算原理与应用 第2次作业](/blog/cz22q87un2krn5hb) (March 14, 2023)
 
 #### 三、中国知网——主页
 
@@ -4492,7 +4492,7 @@ us右移2位: 13297, 0x33f1
 
 ![](https://cdn.muspimerol.site/20230314213253.png)
 
-# [无标题文档](/blog/gdm85l7w2p0klcn1) (2023年3月9日)
+# [无标题文档](/blog/gdm85l7w2p0klcn1) (March 9, 2023)
 
 [new-bingo / main.py](https://gitee.com/re-bingo/new-bingo/blob/ff7944438e37cfaf381fcfdf1781bc21a2fbd69c/main.py)
 
@@ -4504,7 +4504,7 @@ us右移2位: 13297, 0x33f1
 + 懒压缩
 + 将 etag 缓存在内存中
 
-# [一个控制ChatGPT的token爆炸的想法](/blog/gaaw48y1ls4getim) (2023年3月9日)
+# [一个控制ChatGPT的token爆炸的想法](/blog/gaaw48y1ls4getim) (March 9, 2023)
 
 我在设想一种，仿照真实聊天方式的ChatGPT的请求方式。这只是一种优化。
 
@@ -4527,7 +4527,7 @@ us右移2位: 13297, 0x33f1
 
 没成功，ChatGPT不理解我的提示
 
-# [无标题文档](/blog/wwtnpczv6feex3al) (2023年3月8日)
+# [无标题文档](/blog/wwtnpczv6feex3al) (March 8, 2023)
 
 temperature 和 top_p 都是用于控制生成文本多样性的参数，但是它们的实现方式和效果略有不同
 
@@ -4544,7 +4544,7 @@ Temperature 可以类比为人类的写作时的思考难度，难度越大、�
 
 Top-p 则可以类比为人类写作时的表达方式。我们在写作时，通常会选择最相关、最精准的话语，更多的时候会使用特定的词汇和表达方式，而并非任意选择。机器也可以类似地操作，通过 Top-p 模式，控制机器只从最相关、最精准的单词和短语中进行选取，而过多的随机选择将被控制在一个阈值范围内，写出更为准确和精细的文章。
 
-# [划词检索](/blog/yc7ton53db2obhco) (2023年3月8日)
+# [划词检索](/blog/yc7ton53db2obhco) (March 8, 2023)
 
 ```javascript
 function showSelection() {
@@ -4556,7 +4556,7 @@ function showSelection() {
 document.addEventListener("selectionchange", showSelection)
 ```
 
-# [作业](/blog/zw1b8sdnb6xtocg1) (2023年3月7日)
+# [作业](/blog/zw1b8sdnb6xtocg1) (March 7, 2023)
 
 ### 第1章 分布式计算概述
 1. **什么是分布式计算？它的优缺是什么？**
@@ -4660,13 +4660,13 @@ Rest API (Http RestFul)和RPC是两种不同的通信协议和架构风格，它
 
 根据不同的场景和需求，可以选择合适的通信协议。一般来说，如果需要跨平台、跨语言、易于理解和扩展的接口，可以选择RestFul；如果需要高效、稳定、安全的接口，可以选择RPC。
 
-# [ChatCLI](/blog/qqrkfxr94rnpry6p) (2023年3月7日)
+# [ChatCLI](/blog/qqrkfxr94rnpry6p) (March 7, 2023)
 
 ```shell
 ffmpeg -i "oCam 56.mp4" -vf "setpts=0.25*PTS,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse=new=1" -r 30 "oCam 56.gif"
 ```
 
-# [typeflow](/blog/vz8fq164oaymiz6y) (2023年3月2日)
+# [typeflow](/blog/vz8fq164oaymiz6y) (March 2, 2023)
 
 最近由gRPC看到了protobuf，了解了一些IDL，我不太喜欢他们这种code-gen风格
 
@@ -4729,7 +4729,7 @@ data数据部分，每个单元为：
     1. 读其id，如果是基本类型，输出它本身
     2. 如果是对象类型，逐个将它的data链接为自己的属性
 
-# [解析pdf的一些尝试](/blog/czi6h33an3o3h3oc) (2023年2月25日)
+# [解析pdf的一些尝试](/blog/czi6h33an3o3h3oc) (February 25, 2023)
 
 + 使用`pdfplumber`
 
@@ -4757,7 +4757,7 @@ class Document:
                 print(f"\n {token} \n")
 ```
 
-# [爬取东方证券上的券商数据](/blog/ocbig39frg5azmge) (2023年2月25日)
+# [爬取东方证券上的券商数据](/blog/ocbig39frg5azmge) (February 25, 2023)
 
 代码写的比较混乱：
 
@@ -5698,7 +5698,7 @@ if __name__ == '__main__':
 }
 ```
 
-# [《生物大数据》林魁](/blog/cgz83x2x8h9uogg6) (2023年2月24日)
+# [《生物大数据》林魁](/blog/cgz83x2x8h9uogg6) (February 24, 2023)
 
 1. 组学数据的一些基本概念
 2. 参考基因组数据的模型与基本运算
@@ -5707,7 +5707,7 @@ if __name__ == '__main__':
     1. 组学数据整合的基本框架与分析
     2. 群体泛基因组的基本数据结构与分析
 
-# [《数据可视化》尹乾](/blog/zit15rovu1w5le4k) (2023年2月23日)
+# [《数据可视化》尹乾](/blog/zit15rovu1w5le4k) (February 23, 2023)
 
 Laidlaw, D. Scientific visualization course
 
@@ -5738,7 +5738,7 @@ Laidlaw, D. Scientific visualization course
 + 网络结构数据
 + 非结构化数据
 
-# [《大数据原理与技术》陈红顺](/blog/os6k2v89ydff8poy) (2023年2月23日)
+# [《大数据原理与技术》陈红顺](/blog/os6k2v89ydff8poy) (February 23, 2023)
 
 ## 第1章 大数据概述
 ### 1.1 产生背景和发展历程

@@ -1,0 +1,420 @@
+# ASAPP Docs
+
+## Docs
+
+- [Check for spelling mistakes](https://docs.asapp.com/apis/autocompose/check-for-spelling-mistakes.md): Get spelling correction for a message as it is being typed, if there is a misspelling. Only the current word
+will be corrected, once it's fully typed (so it is recommended to call this endpoint after space characters).
+
+- [Create a custom response](https://docs.asapp.com/apis/autocompose/create-a-custom-response.md): Add a single custom response for an agent
+- [Create a message analytic event](https://docs.asapp.com/apis/autocompose/create-a-message-analytic-event.md): To improve the performance of ASAPP suggestions, provide information about the actions performed by the agent while composing a message by creating `message-analytic-events`.
+
+These analytic events indicate which AutoCompose functionality was used or not. This information along with the conversation itself is used to optimize our models, resulting in better results for the agents.
+
+We track the following types of message analytic events:
+- suggestion-1-inserted: The agent selected the first of the `suggestions` from a `Suggestion` API response.
+- suggestion-2-inserted: The agent selected the second of the `suggestions` from a `Suggestion` API response.
+- suggestion-3-inserted: The agent selected the third of the `suggestions` from a `Suggestion` API response.
+- phrase-completion-accepted: The agent selected the `phraseCompletion` from a `Suggestion` API response.
+- spellcheck-applied: A correction provided in a `SpellcheckCorrection` API response was applied automatically.
+- spellcheck-undone: A correction provided in a `SpellcheckCorrection` API response was undone by clicking the undo button.
+- custom-response-drawer-inserted: The agent inserted one of their custom responses from the custom response drawer.
+- custom-panel-inserted: The agent inserted a response from their custom response list in the custom response panel.
+- global-panel-inserted: The agent inserted a response from the global response list in the global response panel.
+
+Some of the event types have a corresponding event object to provide details.
+
+- [Create a MessageSent analytics event](https://docs.asapp.com/apis/autocompose/create-a-messagesent-analytics-event.md): Create a MessageSent analytics event describing the agent's usage of AutoCompose augmentation features
+while composing a message
+
+- [Create a response folder](https://docs.asapp.com/apis/autocompose/create-a-response-folder.md): Add a single folder for an agent
+- [Delete a custom response](https://docs.asapp.com/apis/autocompose/delete-a-custom-response.md): Delete a specific custom response for an agent
+- [Delete a response folder](https://docs.asapp.com/apis/autocompose/delete-a-response-folder.md): Delete a folder for an agent
+- [Evaluate profanity](https://docs.asapp.com/apis/autocompose/evaluate-profanity.md): Get an evaluation of a text to verify if it contains profanity, obscenity or other unwanted words. This service should be called before sending a message to prevent the agent from sending profanities in the chat.
+
+- [Generate suggestions](https://docs.asapp.com/apis/autocompose/generate-suggestions.md): Get suggestions for the next agent message in the conversation. 
+
+There are several times when this should be called:
+- when an agent joins the conversation,
+- after a message is sent by either the customer or the agent,
+- and as the agent is typing in the composer (to enable completing the agent's in-progress message).
+
+Optionally, add a message to the conversation.
+
+- [Get autopilot greetings](https://docs.asapp.com/apis/autocompose/get-autopilot-greetings.md): Get autopilot greetings for an agent
+- [Get autopilot greetings status](https://docs.asapp.com/apis/autocompose/get-autopilot-greetings-status.md): Get autopilot greetings status for an agent
+- [Get custom responses](https://docs.asapp.com/apis/autocompose/get-custom-responses.md): Get custom responses for an agent. Responses are sorted by title, and folders are sorted by name.
+- [Get settings for AutoCompose clients](https://docs.asapp.com/apis/autocompose/get-settings-for-autocompose-clients.md): Get settings for AutoCompose clients, such as whether any features should not be used.
+It may be desirable to disable some features in high-latency scenarios.
+
+- [List the global responses](https://docs.asapp.com/apis/autocompose/list-the-global-responses.md): Get the global responses and folder organization for a company. Responses are sorted by text, and folders are sorted by name.
+- [Update a custom response](https://docs.asapp.com/apis/autocompose/update-a-custom-response.md): Update a specific custom response for an agent
+- [Update a response folder](https://docs.asapp.com/apis/autocompose/update-a-response-folder.md): Update a folder for an agent
+- [Update autopilot greetings](https://docs.asapp.com/apis/autocompose/update-autopilot-greetings.md): Update autopilot greetings for an agent
+- [Update autopilot greetings status](https://docs.asapp.com/apis/autocompose/update-autopilot-greetings-status.md): Update autopilot greetings status for an agent
+- [Create free text summary](https://docs.asapp.com/apis/autosummary/create-free-text-summary.md): Generates a concise, human-readable summary of a conversation.
+
+Provide an agentExternalId if you want to get the summary for a single agent's involvment with a conversation.
+
+You can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).
+
+Multilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.
+
+- [Create structured data](https://docs.asapp.com/apis/autosummary/create-structured-data.md): Creates and returns set of structured data about a conversation that is already known to ASAPP.
+
+You can use the id from ASAPP's system (conversationId or IssueId) or your own id (externalConversationId).
+
+Provide an agentExternalId if you want to get the structured data for a single agent's involvment with a conversation.
+
+- [Get conversation intent](https://docs.asapp.com/apis/autosummary/get-conversation-intent.md): Retrieves the primary intent of a conversation, represented by both an intent code and a human-readable intent name. If no intent is detected, "NO_INTENT" is returned.
+
+This endpoint requires:
+1. Intent support to be explicitly enabled for your account.
+2. A valid conversationId, which is an ASAPP-generated identifier created when using the ASAPP /conversations endpoint.
+
+Use this endpoint to gain insights into the main purpose or topic of a conversation.
+
+- [Get free text summary](https://docs.asapp.com/apis/autosummary/get-free-text-summary.md): <Warning>
+**Deprecated**
+
+Replaced by [POST /autosummary/v1/free-text-summaries](/apis/autosummary/create-free-text-summary)
+</Warning>
+
+Generates a concise, human-readable summary of a conversation.
+
+Provide an agentExternalId if you want to get the summary for a single agent's involvment with a conversation.
+
+Multilingual support: You can get summaries in languages different from English by making use of the 'Accept-Language' header.
+
+- [Provide feedback.](https://docs.asapp.com/apis/autosummary/provide-feedback.md): Create a feedback event with the full and updated summary. Each event is associated with a specific summary id. 
+
+The event must contain the final summary, in the form of text.        
+
+- [Get Twilio media stream url](https://docs.asapp.com/apis/autotranscribe-media-gateway/get-twilio-media-stream-url.md): Returns url where [Twilio media stream](/autotranscribe/deploying-autotranscribe-for-twilio) should be sent to.
+- [Start streaming](https://docs.asapp.com/apis/autotranscribe-media-gateway/start-streaming.md): This starts the transcription of the audio stream.
+
+Use in conjunction with the [stop-streaming](/apis/media-gateway/stop-streaming-audio) endpoint to control when transcription occurs for a given call. This allow you to prevent transcription of sensitive parts of a conversation, such as entering PCI data.
+
+- [Stop streaming](https://docs.asapp.com/apis/autotranscribe-media-gateway/stop-streaming.md): This stops the transcription of the audio stream.
+
+Use in conjunction with the [start-streaming](/apis/media-gateway/start-streaming-audio) endpoint to control when transcription occurs for a given call. This allow you to prevent transcription of sensitive parts of a conversation, such as entering PCI data.
+
+- [Get streaming URL](https://docs.asapp.com/apis/autotranscribe/get-streaming-url.md): Get [websocket streaming URL](/autotranscribe/deploying-autotranscribe-via-websocket) to transcribe audio in real time. This websocket is used to send audio to ASAPP's transcription service and receive transcription results.
+
+- [Create a custom vocabulary](https://docs.asapp.com/apis/configuration/custom-vocabularies/create-custom-vocabularies.md): Creates a new custom vocabulary configuration to improve transcription accuracy.
+
+Custom vocabularies are used to enhance speech-to-text transcription by providing:
+- Specific phrases that are commonly used in your domain
+- Phonetic representations ("sounds like") to help the system recognize these phrases
+
+For example, you might define:
+- Phrase: "IEEE"
+- Sounds Like: ["I triple E"]
+
+This helps the system correctly transcribe technical terms, brand names, or industry-specific terminology.
+
+The API returns immediately, but the transcription service can take up to 1 minute to incorporate the custom vocabulary change.
+
+- [Delete a custom vocabulary](https://docs.asapp.com/apis/configuration/custom-vocabularies/delete-custom-vocabularies.md): Deletes a custom vocabulary configuration
+
+- [Retrieve a custom vocabulary](https://docs.asapp.com/apis/configuration/custom-vocabularies/get-custom-vocabularies.md): Get a custom vocabulary configuration
+
+- [List custom vocabularies](https://docs.asapp.com/apis/configuration/custom-vocabularies/list-custom-vocabularies.md): Retrieves all custom vocabulary configurations.
+
+- [Retrieve a redaction entity](https://docs.asapp.com/apis/configuration/redaction-entities/get-redaction-entity.md): Get a specific redaction entity with a entity id
+
+- [List redaction entities](https://docs.asapp.com/apis/configuration/redaction-entities/list-redaction-entities.md): Lists all available redaction entities and their current activation status across different policies.
+
+Redaction entities represent different types of sensitive information that can be automatically
+redacted from conversations. Each entity can be independently enabled or disabled for different
+redaction policies:
+- Customer Immediate: Redaction in real-time for customer-facing content
+- Customer Delayed: Redaction for stored customer-facing content
+- Agent Immediate: Real-time redaction for agent-facing content
+- Auto Transcribe: Redaction in transcription output
+- Voice: Redaction in voice content
+
+The API returns immediately, but the redaction service can take up to 1 minute to incorporate the redaction change.
+
+- [Update a redaction entity](https://docs.asapp.com/apis/configuration/redaction-entities/update-redaction-entity.md): Update the policies of a specific redaction entity. Only the policies field can be modified.
+
+- [Create a segment](https://docs.asapp.com/apis/configuration/segments/create-segment.md): Creates a new `segment` to organize structured data extraction based on conversation metadata.
+
+A segment consists of:
+1. Query logic that matches conversations based on metadata
+2. A set of structured data fields to extract from matching conversations
+
+For example, you can create segments to:
+- Extract problem details from support conversations
+- Extract product and promotion info from sales conversations
+
+- [Delete a segment](https://docs.asapp.com/apis/configuration/segments/delete-segment.md): Delete a specific segment specifying the id
+- [Retrieve a segment](https://docs.asapp.com/apis/configuration/segments/get-segment.md): Get a specific segment specifying the id
+
+- [List segments](https://docs.asapp.com/apis/configuration/segments/list-segments.md): Retrieves a list of all segments.
+
+- [Update a segment](https://docs.asapp.com/apis/configuration/segments/update-segment.md): Update a specific segment specifying the id
+- [Create a structured data field](https://docs.asapp.com/apis/configuration/structured-data-fields/create-structured-data-field.md): Creates a new structured data field configuration that defines what information should be
+extracted from conversations.
+
+This endpoint supports creating two types of structured data fields:
+1. QUESTION type: Defines specific questions to be answered about the conversation
+   Example: "Did the agent offer the correct promotion?"
+
+2. ENTITY type: Defines entities to be identified and extracted
+   Example: Product names mentioned in the conversation
+
+These fields are used by the Structured Data API (/apis/autosummary/create-structured-data)
+to automatically extract the configured information from conversations.
+
+- [Delete a structured data field](https://docs.asapp.com/apis/configuration/structured-data-fields/delete-structured-data-field.md): Delete a specific structured data field specifying the id
+
+- [Retrieve a structured data field](https://docs.asapp.com/apis/configuration/structured-data-fields/get-structured-data-field.md): Get a specific structured data field specifying the id
+
+- [List structured data fields](https://docs.asapp.com/apis/configuration/structured-data-fields/list-structured-data-fields.md): Retrieves a list of all configured structured data fields.
+
+- [Update a structured data field](https://docs.asapp.com/apis/configuration/structured-data-fields/update-structured-data-field.md): Update a specific structured data field specifying the id
+
+- [Authenticate a user in a conversation](https://docs.asapp.com/apis/conversations/authenticate-a-user-in-a-conversation.md): Stores customer-specific authentication credentials for use in integrated flows.
+
+- Can be called at any point during a conversation
+- Commonly used at the start of a conversation or after mid-conversation authentication
+- May trigger additional actions, such as GenerativeAgent API signals to customer webhooks
+
+<Note>This API only accepts the customer-specific auth credentials; the customer is responsible for handling 
+the specific authentication mechanism.</Note>
+
+- [Create or update a conversation](https://docs.asapp.com/apis/conversations/create-or-update-a-conversation.md): Creates a new conversation or updates an existing one based on the provided `externalId`.
+
+Use this endpoint when:
+- Starting a new conversation
+- Updating conversation details (e.g., reassigning to a different agent)
+
+If the `externalId` is not found, a new conversation will be created. Otherwise, the existing conversation will be updated.
+
+- [List conversations](https://docs.asapp.com/apis/conversations/list-conversations.md): Retrieves a list of conversation resources that match the specified criteria.
+
+You must provide at least one search criterion in the query parameters.
+
+- [Retrieve a conversation](https://docs.asapp.com/apis/conversations/retrieve-a-conversation.md): Retrieves the details of a specific conversation using its `conversationId`.
+
+This endpoint returns detailed information about the conversation, including participants and metadata.
+
+- [List feed dates](https://docs.asapp.com/apis/file-exporter/list-feed-dates.md): Lists dates for a company feed/version/format
+
+- [List feed files](https://docs.asapp.com/apis/file-exporter/list-feed-files.md): Lists files for a company feed/version/format/date/interval
+
+- [List feed formats](https://docs.asapp.com/apis/file-exporter/list-feed-formats.md): Lists feed formats for a company feed/version/
+
+- [List feed intervals](https://docs.asapp.com/apis/file-exporter/list-feed-intervals.md): Lists intervals for a company feed/version/format/date
+
+- [List feed versions](https://docs.asapp.com/apis/file-exporter/list-feed-versions.md): Lists feed versions for a company
+
+- [List feeds](https://docs.asapp.com/apis/file-exporter/list-feeds.md): Lists feed names for a company
+
+- [Retrieve a feed file](https://docs.asapp.com/apis/file-exporter/retrieve-a-feed-file.md): Retrieves a feed file URL for a company feed/version/format/date/interval/file
+
+- [Analyze conversation](https://docs.asapp.com/apis/generativeagent/analyze-conversation.md): Call this API to trigger GenerativeAgent to analyze and respond to a conversation.
+
+This API should be called after a customer sends a message while not speaking with a live agent. The Bot replies will not be returned on this request; they will be delivered asynchronously via the webhook callback.
+
+This API also adds an optional **message** field to create a message for a given conversation before triggering the bot replies. The message object is the exact same message used in the conversations API /message endpoint
+
+- [Create stream URL](https://docs.asapp.com/apis/generativeagent/create-stream-url.md): This API creates a generative agent event streaming URL to start a streaming connection (SSE).
+
+This API should be called when the client boots-up to request a streaming_url, before it calls endpoints whose responses are delivered asynchronously (and most likely before calling any other endpoint).
+
+Provide the streamId to reconnect to a previous stream.
+
+- [Get GenerativeAgent state](https://docs.asapp.com/apis/generativeagent/get-generativeagent-state.md): This API provides the current state of the generative agent for a given conversation.
+
+- [Check ASAPP's API's health.](https://docs.asapp.com/apis/health-check/check-asapps-apis-health.md): The API Health check endpoint enables you to check the operational status of our API platform.
+
+- [Create a submission](https://docs.asapp.com/apis/knowledge-base/create-a-submission.md): Initiate a request to add a new article or update an existing one. The provided title and content will be processed to create the final version of the submission.
+- [Retrieve a submission](https://docs.asapp.com/apis/knowledge-base/retrieve-a-submission.md): Obtain the details of a specific submission using its unique identifier.
+- [Retrieve an article](https://docs.asapp.com/apis/knowledge-base/retrieve-an-article.md): Fetch a specific article by its unique identifier. If the article has not been created because the associated submission was not approved, a 404 status will be returned.
+- [Create a message](https://docs.asapp.com/apis/messages/create-a-message.md): Creates a message object, adding it to an existing conversation.
+
+Use this endpoint to record each new message in the conversation.
+
+- [Create multiple messages](https://docs.asapp.com/apis/messages/create-multiple-messages.md): This creates multiple message objects at once, adding them to an existing conversation.
+
+Use this endpoint when you need to add several messages at once, such as when importing historical conversation data.
+
+- [List messages](https://docs.asapp.com/apis/messages/list-messages.md): Lists all messages within a conversation.
+
+This messages are returned in chronological order. 
+
+- [List messages with an externalId](https://docs.asapp.com/apis/messages/list-messages-with-an-externalid.md): Get all messages from a conversation.
+
+- [Retrieve a message](https://docs.asapp.com/apis/messages/retrieve-a-message.md): Retrieve the details of a message from a conversation.
+
+- [Add a conversation metadata](https://docs.asapp.com/apis/metadata/add-a-conversation-metadata.md): Add metadata attributes of one issue/conversation
+
+- [Add a customer metadata](https://docs.asapp.com/apis/metadata/add-a-customer-metadata.md): Add metadata attributes of one customer
+
+- [Add an agent metadata](https://docs.asapp.com/apis/metadata/add-an-agent-metadata.md): Add metadata attributes of one agent
+
+- [Add multiple agent metadata](https://docs.asapp.com/apis/metadata/add-multiple-agent-metadata.md): Add multiple agent metadata items; submit items in a batch in one request
+
+- [Add multiple conversation metadata](https://docs.asapp.com/apis/metadata/add-multiple-conversation-metadata.md): Add multiple issue/conversation metadata items; submit items in a batch in one request
+
+- [Add multiple customer metadata](https://docs.asapp.com/apis/metadata/add-multiple-customer-metadata.md): Add multiple customer metadata items; submit items in a batch in one request
+
+- [Overview](https://docs.asapp.com/apis/overview.md): Overview of the ASAPP API
+- [AutoCompose](https://docs.asapp.com/autocompose.md)
+- [AutoCompose Tooling Guide](https://docs.asapp.com/autocompose/autocompose-tooling-guide.md): Learn how to use the AutoCompose tooling UI
+- [Deploying AutoCompose API](https://docs.asapp.com/autocompose/deploying-autocompose-api.md): Communicate with AutoCompose via API.
+- [Deploying AutoCompose for LivePerson](https://docs.asapp.com/autocompose/deploying-autocompose-for-liveperson.md): Use AutoCompose on your LivePerson application.
+- [Deploying AutoCompose for Salesforce](https://docs.asapp.com/autocompose/deploying-autocompose-for-salesforce.md): Use AutoCompose on Salesforce Lightning Experience.
+- [AutoCompose Product Guide](https://docs.asapp.com/autocompose/product-guide.md): Learn more about the features and insights of AutoCompose
+- [AutoSummary](https://docs.asapp.com/autosummary.md): Use AutoSummary to extract insights and data from your conversations
+- [Example Use Cases](https://docs.asapp.com/autosummary/example-use-cases.md): See examples on how AutoSummary can be used
+- [Free text Summary](https://docs.asapp.com/autosummary/free-text-summary.md): Generate conversation summaries with Free text summary
+- [Getting Started](https://docs.asapp.com/autosummary/getting-started.md): Learn how to get started with AutoSummary
+- [Intent](https://docs.asapp.com/autosummary/intent.md): Generate intents from your conversations
+- [Deploying AutoSummary for Salesforce](https://docs.asapp.com/autosummary/salesforce-plugin.md): Learn how to use the AutoSummary Salesforce plugin.
+- [AutoSummary Sandbox](https://docs.asapp.com/autosummary/sandbox.md): Learn how to use the AutoSummary Sandbox to test and validate summary generation.
+- [Structured Data](https://docs.asapp.com/autosummary/structured-data.md): Extract entities and targeted data from your conversations
+- [Segments and Customization](https://docs.asapp.com/autosummary/structured-data/segments-and-customization.md): Learn how to customize the data extracted with Structured Data.
+- [AutoTranscribe](https://docs.asapp.com/autotranscribe.md): Transcribe your audio with best in class accuracy
+- [Deploying AutoTranscribe for Amazon Connect](https://docs.asapp.com/autotranscribe/amazon-connect.md): Use AutoTranscribe in your Amazon Connect solution
+- [AutoTranscribe via Direct Websocket](https://docs.asapp.com/autotranscribe/direct-websocket.md): Use a websocket URL to send audio media to AutoTranscribe
+- [Deploying AutoTranscribe for Genesys AudioHook](https://docs.asapp.com/autotranscribe/genesys-audiohook.md): Use AutoTranscribe in your Genesys Audiohook application
+- [AutoTranscribe Product Guide](https://docs.asapp.com/autotranscribe/product-guide.md): Learn more about the use of AutoTranscribe and its features
+- [Deploy AutoTranscribe into SIPREC via Media Gateway](https://docs.asapp.com/autotranscribe/siprec.md): Integrate AutoTranscribe into your SIPREC system using ASAPP Media Gateway
+- [Deploying AutoTranscribe for Twilio](https://docs.asapp.com/autotranscribe/twilio.md): Use AutoTranscribe with Twilio
+- [AutoCompose Updates](https://docs.asapp.com/changelog/autocompose.md): New updates and improvements across AutoCompose
+- [AutoSummary Updates](https://docs.asapp.com/changelog/autosummary.md): New updates and improvements across AutoSummary
+- [AutoTranscribe Updates](https://docs.asapp.com/changelog/autotranscribe.md): New updates and improvements across AutoTranscribe
+- [GenerativeAgent Updates](https://docs.asapp.com/changelog/generativeagent.md): New updates and improvements for the GenerativeAgent
+- [ASAPP Messaging Updates - Customer Channels](https://docs.asapp.com/changelog/messaging-customer-channels.md): New updates and improvements for ASAPP Messaging - Customer Channels
+- [ASAPP Messaging Updates - Digital Agent Desk](https://docs.asapp.com/changelog/messaging-digital-agent-desk.md): New updates and improvements for ASAPP Messaging - Digital Agent Desk
+- [ASAPP Messaging Updates - Insights Manager](https://docs.asapp.com/changelog/messaging-insights-manager.md): New updates and improvements for ASAPP Messaging - Insights Manager
+- [ASAPP Messaging Updates - Virtual Agent](https://docs.asapp.com/changelog/messaging-virtual-agent.md): New updates and improvements for ASAPP Messaging - Virtual Agent
+- [ASAPP Updates](https://docs.asapp.com/changelog/overview.md): New updates and improvements across ASAPP products
+- [Reporting Updates](https://docs.asapp.com/changelog/reporting.md): New updates and improvements for the Conversation Explorer and Reporting
+- [GenerativeAgent](https://docs.asapp.com/generativeagent.md): Use GenerativeAgent to resolve customer issues safely and accurately with AI-powered conversations.
+- [Configuring Generative Agent](https://docs.asapp.com/generativeagent/configuring.md): Learn how to configure GenerativeAgent
+- [Connecting Your APIs](https://docs.asapp.com/generativeagent/configuring/connect-apis.md): Learn how to connect your APIs to GenerativeAgent with API Connections
+- [Authentication Methods](https://docs.asapp.com/generativeagent/configuring/connect-apis/authentication-methods.md): Learn how to configure Authentication methods for API connections.
+- [Mock API Users](https://docs.asapp.com/generativeagent/configuring/connect-apis/mock-apis.md): Learn how to mock APIs for testing and development.
+- [Connecting your Knowledge Base](https://docs.asapp.com/generativeagent/configuring/connecting-your-knowledge-base.md): Learn how to import and deploy your Knowledge Base for GenerativeAgent.
+- [Add via API](https://docs.asapp.com/generativeagent/configuring/connecting-your-knowledge-base/add-via-api.md): Learn how to add Knowledge Base articles programmatically using the API
+- [Deploying to GenerativeAgent](https://docs.asapp.com/generativeagent/configuring/deploying-to-generativeagent.md): Learn how to deploy GenerativeAgent.
+- [Functional Testing](https://docs.asapp.com/generativeagent/configuring/functional-testing.md): Learn how to test GenerativeAgent to ensure it handles customer scenarios correctly before production launch.
+- [Previewer](https://docs.asapp.com/generativeagent/configuring/previewer.md): Learn how to use the Previewer in AI Console to test and refine your GenerativeAgent's behavior
+- [Safety and Troubleshooting](https://docs.asapp.com/generativeagent/configuring/safety-and-troubleshooting.md): Learn about GenerativeAgent's safety features and troubleshooting.
+- [Scope and Safety Tuning](https://docs.asapp.com/generativeagent/configuring/safety/scope-and-safety-tuning.md): Learn how to customize GenerativeAgent's scope and safety guardrails
+- [Tasks Best Practices](https://docs.asapp.com/generativeagent/configuring/task-best-practices.md): Improve task writing by following best practices
+- [Conditional Templates](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/conditional-templates.md)
+- [Enter a Specific Task](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/enter-specific-task.md): Learn how to enter a specific task for GenerativeAgent
+- [Improving Tasks](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/improving.md): Learn how to improve task performance
+- [Input Variables](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/input-variables.md): Learn how to pass information from your application to GenerativeAgent.
+- [Keep Fields](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/keep-fields.md): Learn how to keep fields from API responses so GenerativeAgent can use them for more calls
+- [Mock API Connections](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/mock-api.md)
+- [Reference Variables](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/reference-variables.md): Learn how to use reference variables to store and reuse data from function responses
+- [Set Variable Functions](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/set-variable.md): Save a value from the conversation with a Set Variable Function.
+- [System Transfer Functions](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/system-transfer.md): Signal conversation control transfer to external systems with System Transfer Functions.
+- [Test Users](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/test-users.md)
+- [Trial Mode](https://docs.asapp.com/generativeagent/configuring/tasks-and-functions/trial-mode.md)
+- [Getting Started](https://docs.asapp.com/generativeagent/getting-started.md)
+- [Go Live](https://docs.asapp.com/generativeagent/go-live.md)
+- [How GenerativeAgent Works](https://docs.asapp.com/generativeagent/how-it-works.md): Discover how GenerativeAgent functions to resolve customer issues.
+- [Human in the Loop](https://docs.asapp.com/generativeagent/human-in-the-loop.md): Learn how GenerativeAgent works with human agents to handle complex cases requiring expert guidance or approval.
+- [Integrate GenerativeAgent Overview](https://docs.asapp.com/generativeagent/integrate.md)
+- [Amazon Connect](https://docs.asapp.com/generativeagent/integrate/amazon-connect.md): Integrate GenerativeAgent into Amazon Connect
+- [AutoTranscribe Websocket](https://docs.asapp.com/generativeagent/integrate/autotranscribe-websocket.md): Integrate AutoTranscribe for real-time speech-to-text transcription
+- [Example Interactions](https://docs.asapp.com/generativeagent/integrate/example-interactions.md)
+- [Genesys AudioConnector for GenerativeAgent](https://docs.asapp.com/generativeagent/integrate/genesys-audiohook.md): Learn how to integrate GenerativeAgent into Genesys Cloud using our Genesys AudioConnector integration.
+- [Handling GenerativeAgent Events](https://docs.asapp.com/generativeagent/integrate/handling-events.md)
+- [Text-only GenerativeAgent](https://docs.asapp.com/generativeagent/integrate/text-only-generativeagent.md)
+- [UniMRCP Plugin for ASAPP](https://docs.asapp.com/generativeagent/integrate/unimrcp-plugin-for-asapp.md)
+- [Reporting](https://docs.asapp.com/generativeagent/reporting.md): Learn how to track and analyze GenerativeAgent's performance.
+- [Developer Quickstart](https://docs.asapp.com/getting-started/developers.md): Learn how to get started using ASAPPs APIs
+- [Error Handling](https://docs.asapp.com/getting-started/developers/error-handling.md): Learn how ASAPP returns Errors in the API
+- [Health Check](https://docs.asapp.com/getting-started/developers/health-check.md): Check the operational status of ASAPP's API platform
+- [API Rate Limits and Retry Logic](https://docs.asapp.com/getting-started/developers/rate-limits.md): Learn about API rate limits and recommended retry logic.
+- [Setup ASAPP](https://docs.asapp.com/getting-started/intro.md): Learn how to get started with ASAPP
+- [Audit Logs](https://docs.asapp.com/getting-started/setup/audit-logs.md): Learn how to view, search, and export audit logs to track changes in AI Console.
+- [Manage Users](https://docs.asapp.com/getting-started/setup/manage-users.md): Learn how to set up and manage users.
+- [ASAPP Messaging](https://docs.asapp.com/messaging-platform.md): Use ASAPP Messaging to connect your brand to customers via messaging channels.
+- [Digital Agent Desk](https://docs.asapp.com/messaging-platform/digital-agent-desk.md): Use the Digital Agent Desk to empower agents to deliver fast and exceptional customer service.
+- [Digital Agent Desk Navigation](https://docs.asapp.com/messaging-platform/digital-agent-desk/agent-desk-navigation.md): Overview of the Digital Agent Desk navigation and features.
+- [Agent SSO](https://docs.asapp.com/messaging-platform/digital-agent-desk/agent-sso.md): Learn how to use Single Sign-On (SSO) to authenticate agents and admin users to the Digital Agent Desk.
+- [API Integration](https://docs.asapp.com/messaging-platform/digital-agent-desk/api-integration.md): Learn how to connect the Digital Agent Desk to your backend systems.
+- [Knowledge Base](https://docs.asapp.com/messaging-platform/digital-agent-desk/knowledge-base.md): Learn how to integrate your Knowledge Base with the Digital Agent Desk.
+- [Queues and Routing](https://docs.asapp.com/messaging-platform/digital-agent-desk/queues-and-routing.md): Learn how to manage conversation queues and agent routing in the Digital Agent Desk.
+- [Attributes Based Routing](https://docs.asapp.com/messaging-platform/digital-agent-desk/queues-and-routing/attributes-based-routing.md): Learn how to use Attributes Based Routing (ABR) to route chats to the appropriate Agent Queue.
+- [User Management](https://docs.asapp.com/messaging-platform/digital-agent-desk/user-management.md): Learn how to manage users and roles in the Digital Agent Desk.
+- [Insights Manager Overview](https://docs.asapp.com/messaging-platform/insights-manager.md): Analyze metrics, investigate interactions, and uncover insights for data-driven decisions with Insights Manager.
+- [Live Insights Overview](https://docs.asapp.com/messaging-platform/insights-manager/live-insights.md): Learn how to use Live Insights to monitor and analyze real-time contact center activity.
+- [Agent Performance](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/agent-performance.md): Monitor agent performance in Live Insights.
+- [Alerts, Signals & Mitigation](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/alerts,-signals---mitigation.md): Use alerts, signals, and mitigation measures to improve agent task efficiency.
+- [Customer Feedback](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/customer-feedback.md): Learn how to view customer feedback in Live Insights.
+- [Live Conversations Data](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/live-conversations-data.md): Learn how to view and interact with live conversations in Live Insights.
+- [Metric Definitions](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/metric-definitions.md): Learn about the metrics available in Live Insights.
+- [Navigation](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/navigation.md): Learn how to navigate the Live Insights interface.
+- [Performance Data](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/performance-data.md): Learn how to view performance data in Live Insights.
+- [Queue Overview (All Queues)](https://docs.asapp.com/messaging-platform/insights-manager/live-insights/queue-overview--all-queues-.md): Learn how to view and customize the performance overview for all queues and queue groups.
+- [Integration Channels](https://docs.asapp.com/messaging-platform/integrations.md): Learn about the channels and integrations available for ASAPP Messaging.
+- [Android SDK Overview](https://docs.asapp.com/messaging-platform/integrations/android-sdk.md): Learn how to integrate the ASAPP Android SDK into your application.
+- [Android SDK Release Notes](https://docs.asapp.com/messaging-platform/integrations/android-sdk/android-sdk-release-notes.md)
+- [Customization](https://docs.asapp.com/messaging-platform/integrations/android-sdk/customization.md)
+- [Deep Links and Web Links](https://docs.asapp.com/messaging-platform/integrations/android-sdk/deep-links-and-web-links.md)
+- [Miscellaneous APIs](https://docs.asapp.com/messaging-platform/integrations/android-sdk/miscellaneous-apis.md)
+- [Notifications](https://docs.asapp.com/messaging-platform/integrations/android-sdk/notifications.md)
+- [User Authentication](https://docs.asapp.com/messaging-platform/integrations/android-sdk/user-authentication.md)
+- [Apple Messages for Business](https://docs.asapp.com/messaging-platform/integrations/apple-messages-for-business.md)
+- [Chat Instead Overview](https://docs.asapp.com/messaging-platform/integrations/chat-instead.md)
+- [Android](https://docs.asapp.com/messaging-platform/integrations/chat-instead/android.md)
+- [iOS](https://docs.asapp.com/messaging-platform/integrations/chat-instead/ios.md)
+- [Web](https://docs.asapp.com/messaging-platform/integrations/chat-instead/web.md)
+- [Customer Authentication](https://docs.asapp.com/messaging-platform/integrations/customer-authentication.md)
+- [iOS SDK Overview](https://docs.asapp.com/messaging-platform/integrations/ios-sdk.md)
+- [Customization](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/customization.md)
+- [Deep Links and Web Links](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/deep-links-and-web-links.md)
+- [iOS Quick Start](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/ios-quick-start.md)
+- [iOS SDK Release Notes](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/ios-sdk-release-notes.md)
+- [Miscellaneous APIs](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/miscellaneous-apis.md)
+- [Push Notifications](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/push-notifications.md)
+- [User Authentication](https://docs.asapp.com/messaging-platform/integrations/ios-sdk/user-authentication.md)
+- [Push Notifications and the Mobile SDKs](https://docs.asapp.com/messaging-platform/integrations/push-notifications-and-the-mobile-sdks.md)
+- [User Management](https://docs.asapp.com/messaging-platform/integrations/user-management.md)
+- [Voice](https://docs.asapp.com/messaging-platform/integrations/voice.md)
+- [Web SDK Overview](https://docs.asapp.com/messaging-platform/integrations/web-sdk.md)
+- [Web App Settings](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-app-settings.md)
+- [Web Authentication](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-authentication.md)
+- [Web ContextProvider](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-contextprovider.md)
+- [Web Customization](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-customization.md)
+- [Web Examples](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-examples.md)
+- [Web Features](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-features.md)
+- [Web JavaScript API](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-javascript-api.md)
+- [Web Quick Start](https://docs.asapp.com/messaging-platform/integrations/web-sdk/web-quick-start.md)
+- [WhatsApp Business](https://docs.asapp.com/messaging-platform/integrations/whatsapp-business.md)
+- [Virtual Agent](https://docs.asapp.com/messaging-platform/virtual-agent.md): Learn how to use Virtual Agent to automate your customer interactions.
+- [Attributes](https://docs.asapp.com/messaging-platform/virtual-agent/attributes.md)
+- [Best Practices](https://docs.asapp.com/messaging-platform/virtual-agent/best-practices.md)
+- [Flows](https://docs.asapp.com/messaging-platform/virtual-agent/flows.md): Learn how to build flows to define how the virtual agent interacts with the customer.
+- [Glossary](https://docs.asapp.com/messaging-platform/virtual-agent/glossary.md)
+- [Intent Routing](https://docs.asapp.com/messaging-platform/virtual-agent/intent-routing.md): Learn how to route intents to flows or agents.
+- [Links](https://docs.asapp.com/messaging-platform/virtual-agent/links.md): Learn how to manage external links and URLs that direct customers to web pages.
+- [Reporting and Insights](https://docs.asapp.com/reporting.md)
+- [ASAPP Messaging Feed Schemas](https://docs.asapp.com/reporting/asapp-messaging-feeds.md)
+- [File Exporter](https://docs.asapp.com/reporting/file-exporter.md): Learn how to use File Exporter to retrieve data from Standalone ASAPP Services.
+- [File Exporter Feed Schema](https://docs.asapp.com/reporting/fileexporter-feeds.md)
+- [Metadata Ingestion API](https://docs.asapp.com/reporting/metadata-ingestion.md): Learn how to send metadata via Metadata Ingestion API.
+- [Building a Real-Time Event API](https://docs.asapp.com/reporting/real-time-event-api.md): Learn how to implement ASAPP's real-time event API to receive activity, journey, and queue state updates.
+- [Retrieving Data for ASAPP Messaging](https://docs.asapp.com/reporting/retrieve-messaging-data.md): Learn how to retrieve data from ASAPP Messaging
+- [Secure Data Retrieval](https://docs.asapp.com/reporting/secure-data-retrieval.md): Learn how to set up secure communication between ASAPP and your real-time event API.
+- [Transmitting Data via S3](https://docs.asapp.com/reporting/send-s3.md)
+- [Transmitting Data to SFTP](https://docs.asapp.com/reporting/send-sftp.md)
+- [Transmitting Data to ASAPP](https://docs.asapp.com/reporting/transmitting-data-to-asapp.md): Learn how to transmit data to ASAPP for Applications and AI Services.
+- [Security](https://docs.asapp.com/security.md)
+- [Data Redaction](https://docs.asapp.com/security/data-redaction.md): Learn how Data Redaction removes sensitive data from your conversations.
+- [External IP Blocking](https://docs.asapp.com/security/external-ip-blocking.md): Use External IP Blocking to block IP addresses from accessing your data.
+- [Warning about CustomerInfo and Sensitive Data](https://docs.asapp.com/security/warning-about-customerinfo-and-sensitive-data.md): Learn how to securely handle Customer Information.
+- [Support Overview](https://docs.asapp.com/support.md)
+- [Reporting Issues to ASAPP](https://docs.asapp.com/support/reporting-issues-to-asapp.md)
+- [Service Desk Information](https://docs.asapp.com/support/service-desk-information.md)
+- [Troubleshooting Guide](https://docs.asapp.com/support/troubleshooting-guide.md)
+- [Welcome to ASAPP](https://docs.asapp.com/welcome.md): Revolutionizing Contact Centers with AI

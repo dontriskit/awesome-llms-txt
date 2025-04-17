@@ -1,0 +1,68 @@
+# Civic Docs
+
+## Civic Pass
+
+- [Quickstart](https://docs.civic.com/pass/readme)
+- [Overview of Civic Pass](https://docs.civic.com/pass/introduction/overview-of-civic-pass)
+- [Key Terms & Definitions](https://docs.civic.com/pass/introduction/key-terms-and-definitions)
+- [Civic Pass Behavior](https://docs.civic.com/pass/introduction/civic-pass-behavior)
+- [Get Network Keys](https://docs.civic.com/pass/introduction/get-network-keys)
+- [Internet Computer (ICP)](https://docs.civic.com/pass/integration-guide/internet-computer-icp)
+- [Why Use Civic Pass on ICP](https://docs.civic.com/pass/integration-guide/internet-computer-icp/why-use-civic-pass-on-icp)
+- [How Civic Pass Works](https://docs.civic.com/pass/integration-guide/internet-computer-icp/how-civic-pass-works)
+- [Civic Pass Implementation Guide](https://docs.civic.com/pass/integration-guide/internet-computer-icp/civic-pass-implementation-guide)
+- [ICP Civic Credential Check Button](https://docs.civic.com/pass/integration-guide/internet-computer-icp/icp-civic-credential-check-button)
+- [Solana](https://docs.civic.com/pass/integration-guide/solana): Follow these steps for a turnkey implementation of Civic Pass on Solana and SVM chains
+- [Unsupported EVM?](https://docs.civic.com/pass/integration-guide/unsupported-evm): Let us know
+- [Issue Your Own Custom Pass](https://docs.civic.com/pass/custom-passes/issue-your-own-custom-pass): A Custom Pass is designed for dApps that wish to restrict access but do not want to use Civic IDV Services and UI components.
+- [Using the API](https://docs.civic.com/pass/custom-passes/using-the-api)
+- [Choosing How to Implement Gating](https://docs.civic.com/pass/gating-options/choosing-how-to-implement-gating)
+- [Overview of Use Cases](https://docs.civic.com/pass/use-cases/overview-of-use-cases)
+- [Agentic AI](https://docs.civic.com/pass/use-cases/agentic-ai)
+- [Airdrops](https://docs.civic.com/pass/use-cases/airdrops)
+- [Communities and DAOs](https://docs.civic.com/pass/use-cases/communities-and-daos)
+- [Event Access](https://docs.civic.com/pass/use-cases/communities-and-daos/event-access)
+- [Quadratic Voting](https://docs.civic.com/pass/use-cases/communities-and-daos/quadratic-voting)
+- [Rewards Management](https://docs.civic.com/pass/use-cases/communities-and-daos/rewards-management)
+- [Sybil-Resistant ID Verification](https://docs.civic.com/pass/use-cases/communities-and-daos/sybil-resistant-id-verification)
+- [Decentralized Finance (DeFi)](https://docs.civic.com/pass/use-cases/decentralized-finance-defi)
+- [Accredited Investor Checks](https://docs.civic.com/pass/use-cases/decentralized-finance-defi/accredited-investor-checks)
+- [Country Blocking by Residence/Nationality](https://docs.civic.com/pass/use-cases/decentralized-finance-defi/country-blocking-by-residence-nationality)
+- [On-Chain ID Verification](https://docs.civic.com/pass/use-cases/decentralized-finance-defi/on-chain-id-verification)
+- [Gaming & GameFi](https://docs.civic.com/pass/use-cases/gaming-and-gamefi)
+- [1-Player-1-Wallet](https://docs.civic.com/pass/use-cases/gaming-and-gamefi/unique-player-management)
+- [Rewards Management](https://docs.civic.com/pass/use-cases/gaming-and-gamefi/rewards-management)
+- [NFTs](https://docs.civic.com/pass/use-cases/nfts)
+- [Real-World Assets (RWAs)](https://docs.civic.com/pass/use-cases/real-world-assets-rwas)
+- [Accredited Investor Checks](https://docs.civic.com/pass/use-cases/real-world-assets-rwas/accredited-investor-checks)
+- [Country Blocking Based on Residence/Nationality](https://docs.civic.com/pass/use-cases/real-world-assets-rwas/country-blocking-based-on-residence-nationality)
+- [Tokenizing RWAs](https://docs.civic.com/pass/use-cases/real-world-assets-rwas/tokenizing-rwas)
+- [Smart Contract Development](https://docs.civic.com/pass/use-cases/smart-contract-development)
+- [Bug Bounty Program](https://docs.civic.com/pass/security/bug-bounty-program)
+- [Security & Compliance](https://docs.civic.com/pass/security/security-and-compliance)
+- [FAQs](https://docs.civic.com/pass/resources/faqs)
+- [Pricing](https://docs.civic.com/pass/resources/pricing): Last Updated: December 2024
+- [Supported Countries & Docs](https://docs.civic.com/pass/resources/supported-countries-and-docs): Last Updated: October 2024
+
+## Civic Auth
+
+- [Civic Auth](https://docs.civic.com/auth/readme)
+- [React](https://docs.civic.com/auth/integration/react)
+- [Next.JS](https://docs.civic.com/auth/integration/next.js)
+- [Node.JS](https://docs.civic.com/auth/integration/node.js)
+- [Express](https://docs.civic.com/auth/integration/node.js/express)
+- [Hono](https://docs.civic.com/auth/integration/node.js/hono)
+- [Fastify](https://docs.civic.com/auth/integration/node.js/fastify)
+- [Other OIDC / OAuth 2.0-Compliant Environments](https://docs.civic.com/auth/integration/other)
+- [FAQs](https://docs.civic.com/auth/integration/faqs)
+- [Error Codes](https://docs.civic.com/auth/integration/error-codes)
+- [Bringing your App to production](https://docs.civic.com/auth/integration/bringing-your-app-to-production): The steps you need to follow to use your App in a live environment
+- [Auth Pricing](https://docs.civic.com/auth/auth-pricing): Seamless Authentication with Just a Few Lines of Code
+- [Embedded Wallets](https://docs.civic.com/auth/web3/embedded-wallets)
+- [Auth + Embedded Wallets Pricing](https://docs.civic.com/auth/web3/auth-+-embedded-wallets-pricing): Powerful Authentication for Web3 Builders that Require Embedded Wallets for their Users
+- [Ethereum / EVM](https://docs.civic.com/auth/web3/ethereum-evm)
+- [Solana](https://docs.civic.com/auth/web3/solana)
+
+## Civic Docs
+
+- [Getting Started with Civic](https://docs.civic.com/readme)

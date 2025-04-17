@@ -1,0 +1,25 @@
+# Divi Filter
+
+## Divi Filter
+
+- [Introduction](https://docs.danielvoelk.de/introduction)
+- [Download + Installation](https://docs.danielvoelk.de/gettings-started/download-+-installation)
+- [Filter Columns](https://docs.danielvoelk.de/gettings-started/filter-columns)
+- [Filter Rows (Premium)](https://docs.danielvoelk.de/gettings-started/filter-rows-premium)
+- [Get the Premium features](https://docs.danielvoelk.de/gettings-started/get-the-premium-features)
+- [Remove white space](https://docs.danielvoelk.de/styling/remove-white-space)
+- [Filter Animation (Premium)](https://docs.danielvoelk.de/styling/filter-animation-premium)
+- [Style Active Button (Premium)](https://docs.danielvoelk.de/styling/style-active-button-premium)
+- [Where to add custom CSS?](https://docs.danielvoelk.de/styling/where-to-add-custom-css)
+- [Import Layouts](https://docs.danielvoelk.de/layouts/import-layouts)
+- [Show all elements](https://docs.danielvoelk.de/functional/show-all-elements)
+- [Filter blog posts or portfolio items](https://docs.danielvoelk.de/functional/filter-blog-posts-or-portfolio-items)
+- [Multiple filters on one page (Premium)](https://docs.danielvoelk.de/functional/multiple-filters-on-one-page-premium)
+- [Unfiltered element (Premium)](https://docs.danielvoelk.de/functional/unfiltered-element-premium)
+- [Reset filter button (Premium)](https://docs.danielvoelk.de/functional/reset-filter-button-premium)
+- [Filter already applied (Premium)](https://docs.danielvoelk.de/functional/filter-already-applied-premium)
+- [Bugs? Use the Starting Delay](https://docs.danielvoelk.de/functional/bugs-use-the-starting-delay)
+- [Fixed class](https://docs.danielvoelk.de/functional/fixed-class)
+- [Filter Specialty Sections (Premium)](https://docs.danielvoelk.de/functional/filter-specialty-sections-premium)
+- [Picky Filtering (Premium)](https://docs.danielvoelk.de/filtering-types/picky-filtering-premium)
+- [Multi select filtering (Premium)](https://docs.danielvoelk.de/filtering-types/multi-select-filtering-premium)

@@ -1,0 +1,53 @@
+# Infera
+
+## Docs
+
+- [About](https://docs.infera.org/about.md)
+- [Chat Completions](https://docs.infera.org/api-reference/endpoint/chat-completions.md)
+- [Check Node](https://docs.infera.org/api-reference/endpoint/check-node.md)
+- [Daily Points Ep](https://docs.infera.org/api-reference/endpoint/daily-points-ep.md): Endpoint to fetch daily points for a specific node by making a request to the storage service.
+
+:param request: Request payload containing node_name and last_days.
+:return: List of daily points for the specified node fetched from the storage service.
+- [Get Active Node Count](https://docs.infera.org/api-reference/endpoint/get-active-node-count.md)
+- [Get Available Models](https://docs.infera.org/api-reference/endpoint/get-available-models.md)
+- [Get Completion Time](https://docs.infera.org/api-reference/endpoint/get-completion-time.md)
+- [Get Job](https://docs.infera.org/api-reference/endpoint/get-job.md)
+- [Get Node Job Count](https://docs.infera.org/api-reference/endpoint/get-node-job-count.md)
+- [Get Node Job History](https://docs.infera.org/api-reference/endpoint/get-node-job-history.md)
+- [Get Points](https://docs.infera.org/api-reference/endpoint/get-points.md)
+- [Get Result](https://docs.infera.org/api-reference/endpoint/get-result.md)
+- [Get Total Job Count](https://docs.infera.org/api-reference/endpoint/get-total-job-count.md)
+- [Get Unique Nodes](https://docs.infera.org/api-reference/endpoint/get-unique-nodes.md)
+- [Network Stats](https://docs.infera.org/api-reference/endpoint/network-stats.md)
+- [Node Jobs Stats](https://docs.infera.org/api-reference/endpoint/node-jobs-stats.md)
+- [Node Model Mapping](https://docs.infera.org/api-reference/endpoint/node-model-mapping.md)
+- [Node Points Ep](https://docs.infera.org/api-reference/endpoint/node-points-ep.md)
+- [Ping Worker](https://docs.infera.org/api-reference/endpoint/ping-worker.md)
+- [Register Node](https://docs.infera.org/api-reference/endpoint/register-node.md)
+- [Signup](https://docs.infera.org/api-reference/endpoint/signup.md)
+- [Submit Job](https://docs.infera.org/api-reference/endpoint/submit-job.md)
+- [Update Model](https://docs.infera.org/api-reference/endpoint/update-model.md)
+- [Update Result](https://docs.infera.org/api-reference/endpoint/update-result.md)
+- [Worker Deregister](https://docs.infera.org/api-reference/endpoint/worker-deregister.md)
+- [Worker Register](https://docs.infera.org/api-reference/endpoint/worker-register.md)
+- [Introduction](https://docs.infera.org/api-reference/introduction.md)
+- [Challenges and Solutions](https://docs.infera.org/challenges.md)
+- [Introduction](https://docs.infera.org/introduction.md): Begin your journey with Infera by following these simple steps to set up and run a node, discover use cases, and explore how the network operates.
+- [Litepaper](https://docs.infera.org/litepaper.md)
+- [Docker Setup](https://docs.infera.org/node/docker-setup.md): How to setup up and run an Infera Node inside of a Docker container.
+- [Hardware Requirements](https://docs.infera.org/node/hardware-requirements.md)
+- [Infera Lite](https://docs.infera.org/node/infera-lite.md): Infera Lite is an easy-to-use chrome extension UI that connects users to a decentralized AI inference network, allowing them to contribute their GPU for AI model inference.
+- [Linking Your Node](https://docs.infera.org/node/link-node.md)
+- [Linux](https://docs.infera.org/node/linux.md): Installing the Infera Node CLI program on Linux.
+- [Mac OS](https://docs.infera.org/node/macos.md): Installing the Infera Node CLI program on Mac OS.
+- [Managing Your Node](https://docs.infera.org/node/managing-node.md)
+- [Running an Infera Node](https://docs.infera.org/node/quickstart.md): Quickstart to how to get an Infera node running on your device.
+- [Windows](https://docs.infera.org/node/windows.md): Installing the Infera Node CLI program on Windows.
+
+
+## Optional
+
+- [Github](https://github.com/inferanetwork)
+- [Twitter](https://x.com/infera_network)
+- [Discord](https://discord.com/invite/infera)

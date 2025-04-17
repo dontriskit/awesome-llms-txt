@@ -33286,9 +33286,9 @@ $`Shorten ${file}. Limit changes to minimum.`
 
 [Fetch ](/genaiscript/reference/scripts/fetch)Learn how to use fetch and fetchText in scripts to make HTTP requests and handle text responses.
 
-[Cache ](/genaiscript/reference/scripts/cache)Learn how LLM requests are cached in scripts to optimize performance and how to manage cache settings.
-
 [Cancel ](/genaiscript/reference/scripts/cancel)Learn how to immediately stop script execution with the cancel function in your automation scripts.
+
+[Cache ](/genaiscript/reference/scripts/cache)Learn how LLM requests are cached in scripts to optimize performance and how to manage cache settings.
 
 [Diff ](/genaiscript/reference/scripts/diff)Learn how to create and interpret file diffs within GenAIScript.
 

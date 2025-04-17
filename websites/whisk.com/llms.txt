@@ -1,0 +1,227 @@
+# Whisk Docs
+
+## v2.0.0
+
+- [The Whisk Platform](https://docs.whisk.com/master): Introducing the Whisk Platform.
+- [Introduction](https://docs.whisk.com/api-overview/introduction): Learn how to integrate Whisk to power your food applications using our REST API.
+- [Integration](https://docs.whisk.com/api-overview/whisk-api-integration): Learn how to integrate with the Whisk.
+- [Authentication](https://docs.whisk.com/api-overview/auth): Learn how to authenticate the use of Whisk API services.
+- [Server Token](https://docs.whisk.com/api-overview/auth/server-token): A server token allows you to enable server-to-server integration with Whisk for non-personalized data.
+- [User Access Token](https://docs.whisk.com/api-overview/auth/user-access-token): A user access token authorizes you to read, modify or write data on behalf of a specific Whisk user.
+- [Auth Flow Example](https://docs.whisk.com/api-overview/auth/user-access-token/auth-flow-example): Learn about the Whisk authentication flow.
+- [Client Token](https://docs.whisk.com/api-overview/auth/client-token): A client token allows you to access a limited subset of Whisk APIs in read-only mode.
+- [Anonymous Access from Client Apps](https://docs.whisk.com/api-overview/auth/anonymous-access-from-client-apps)
+- [Whisk Sandbox](https://docs.whisk.com/api-overview/whisk-sandbox): Whisk Sandbox allows risk and cost free testing of our API services.
+- [Getting Started](https://docs.whisk.com/api-overview/quick-start-guide)
+- [Provisioning](https://docs.whisk.com/api/provisioning)
+- [Get provisioning](https://docs.whisk.com/api/provisioning/get-provisioning): Endpoint allows to get provisioning data
+- [Autocomplete](https://docs.whisk.com/api/autocomplete): The Autocomplete endpoint allows you to guess a product a user is writing into an input field. It then may be displayed as a shopping list or search suggestion.
+- [Community](https://docs.whisk.com/api/community): The Community API service offers you the ability to discover, search, and retrieve communities related to recipe content that exist on Whisk.
+- [Get your Communities](https://docs.whisk.com/api/community/get-your-communities): This endpoint retrieves a list of communities filtered by your role and pagination.
+- [Get Communities from a Topic](https://docs.whisk.com/api/community/get-communities-by-topic): This endpoint retrieves the list of communities from a specific topic using the topic identifier and pagination filters.
+- [Discover Recommended Communities](https://docs.whisk.com/api/community/discover-recommended-communities): This endpoint retrieves a list of communities recommended to you by Whisk.
+- [Search Communities](https://docs.whisk.com/api/community/search-communities): This endpoint allows you to search for communities using keywords and various filters.
+- [Get a Community](https://docs.whisk.com/api/community/get-a-community): This endpoint retrieves community details using the community identifier.
+- [Get Recipes from a Community](https://docs.whisk.com/api/community/get-recipes-from-a-community): This endpoint retrieves a list of recipes from a specific community using the community identifier and pagination filters.
+- [Add Recipes to a Community](https://docs.whisk.com/api/community/add-recipes-to-a-community): This endpoint allows you add a batch of existing recipes in a community.
+- [Remove a Recipe from a Community](https://docs.whisk.com/api/community/remove-a-recipe-from-a-community): This endpoint allows you to remove a recipe from a community.
+- [Join a Community](https://docs.whisk.com/api/community/join-a-community): This endpoint allows to become a member of a public community.
+- [Leave a Community](https://docs.whisk.com/api/community/leave-a-community): This endpoint allows to leave a community.
+- [Posts and Reviews](https://docs.whisk.com/api/posts-and-reviews): Posts and reviews API allows to support social functions in your App, like writing reviews for recipes , add Posts (with different types attached content), leave replies.
+- [Get reviews for a recipe](https://docs.whisk.com/api/posts-and-reviews/get-reviews-for-a-recipe): API endpoint allows you to get reviews for particular recipe
+- [Create or edit review](https://docs.whisk.com/api/posts-and-reviews/create-or-edit-review): Endpoint allows to create new review or edit existing review
+- [Create a Post](https://docs.whisk.com/api/posts-and-reviews/create-a-post): Endpoint allows to create new Post
+- [Get Post by id](https://docs.whisk.com/api/posts-and-reviews/get-post-by-id): Endpoint allows to get Post by Id
+- [Delete a Post](https://docs.whisk.com/api/posts-and-reviews/delete-a-post): Endpoint allows to delete a post
+- [Edit a Post](https://docs.whisk.com/api/posts-and-reviews/edit-a-post): Endpoint allows to create new Post
+- [Report a Post](https://docs.whisk.com/api/posts-and-reviews/report-a-post): Endpoint allows to report a post
+- [Create a Post Reply](https://docs.whisk.com/api/posts-and-reviews/create-a-post-reply): Endpoint allows to create new Reply
+- [Get Post Replies](https://docs.whisk.com/api/posts-and-reviews/get-post-replies): Endpoint allows to get Reply by Id
+- [Delete a Post reply](https://docs.whisk.com/api/posts-and-reviews/delete-a-post-reply): Endpoint allows to delete a reply
+- [Report a Post reply](https://docs.whisk.com/api/posts-and-reviews/report-a-post-reply): Endpoint allows to report post reply
+- [Like a Post or Reply](https://docs.whisk.com/api/posts-and-reviews/like-a-post-or-reply): Endpoint allows to like existing post or Reply
+- [Users who liked a Post or Reply](https://docs.whisk.com/api/posts-and-reviews/users-who-liked-a-post-or-reply): Endpoint allows to get users who liked existing post or Reply
+- [Public profiles](https://docs.whisk.com/api/public-profiles): Posts and reviews API allows to support social functions in your App, like writing reviews for recipes , add Posts (with different types attached content), leave replies.
+- [Hide recipe in Public profile](https://docs.whisk.com/api/public-profiles/hide-recipe-in-public-profile): Endpoint allows user who don't want to show recipe in public profile to hide it. Recipe will remain in his recipe box (favourites)
+- [Get Recipes for Public Profile](https://docs.whisk.com/api/public-profiles/get-recipes-from-a-collection): There are recipes displayed in public profile, based on several conditions. Endpoint allows to get recipes available in public profile.
+- [Get User's public profile by user\_id](https://docs.whisk.com/api/public-profiles/get-users-public-profile-by-user_id): Endpoint allows to get user's public profile by Id
+- [Get User's public profile by username](https://docs.whisk.com/api/public-profiles/get-users-public-profile-by-username): Endpoint allows to get user's public profile by Username
+- [Custom Label](https://docs.whisk.com/api/custom-label): Custom labels are user-defined labels added to recipes.
+- [Feed](https://docs.whisk.com/api/feed)
+- [Obtain a Recipe Feed](https://docs.whisk.com/api/feed/recipe-feed)
+- [Food DB](https://docs.whisk.com/api/food-db)
+- [Autocomplete](https://docs.whisk.com/api/food-db/autocomplete): GET https://api.whisk.com/food/v2/autocomplete
+- [Search](https://docs.whisk.com/api/food-db/search): POST https://api.whisk.com/food/v2/search
+- [Get Food](https://docs.whisk.com/api/food-db/get-food): GET https://api.whisk.com/food/v2/get
+- [Food List](https://docs.whisk.com/api/food-list)
+- [Food Log](https://docs.whisk.com/api/food-log): Food logging is often used in pair with Healthy recipe recommendations
+- [Foodpairing](https://docs.whisk.com/api/foodpairing)
+- [Healthy meal recommendations](https://docs.whisk.com/api/healthy-meal-recommendations)
+- [Healthy recipe only recommendations for DA](https://docs.whisk.com/api/healthy-meal-recommendations/healthy-recipe-only-recommendations-for-da)
+- [Recipe recommendations for SH](https://docs.whisk.com/api/healthy-meal-recommendations/healthy-recipe-only-recommendations-for-sh): A method to fetch a set of recipes supporting a certain calorie goal
+- [Tailored Plan API request for Samsung TV](https://docs.whisk.com/api/healthy-meal-recommendations/tailored-plan-api-request-for-samsung-tv)
+- [Meal Plan](https://docs.whisk.com/api/meal-plans)
+- [Generate a Meal Plan](https://docs.whisk.com/api/meal-plans/generate_mealplan)
+- [Meal Object](https://docs.whisk.com/api/meal-plans/meal)
+- [Get Meals](https://docs.whisk.com/api/meal-plans/meal/meal-plan-management): A method to get a meal.
+- [Delete Meal](https://docs.whisk.com/api/meal-plans/meal/delete-meals): A method to delete a meal from a meal plan.
+- [Add a Meal](https://docs.whisk.com/api/meal-plans/meal/update-meal): A method to add a meal to a meal plan.
+- [Meal Plan Settings Object](https://docs.whisk.com/api/meal-plans/get-meal-plan-settings): The meal plan settings object
+- [Get Meal Plan Settings](https://docs.whisk.com/api/meal-plans/get-meal-plan-settings/get-meal-plan-settings)
+- [Update Meal Plan Settings](https://docs.whisk.com/api/meal-plans/get-meal-plan-settings/update-meal-plan-settings)
+- [Meal Plan Batch](https://docs.whisk.com/api/meal-plans/meal-plan-batch)
+- [Recipe](https://docs.whisk.com/api/recipes): The Recipe API service lets you read and write any internal and external recipes and your Whisk recipe collections.
+- [Get a Recipe](https://docs.whisk.com/api/recipes/get-recipe-nutrition)
+- [Search a Recipe](https://docs.whisk.com/api/recipes/recipe-search): A method to search recipes.
+- [User Recipes & Collections](https://docs.whisk.com/api/recipes/user-recipes-and-collections)
+- [Add User Recipe](https://docs.whisk.com/api/recipes/user-recipes-and-collections/add-user-recipe)
+- [Create A Recipe](https://docs.whisk.com/api/recipes/user-recipes-and-collections/create-a-recipe)
+- [Update External Recipe](https://docs.whisk.com/api/recipes/user-recipes-and-collections/updaterecipe)
+- [Get All User Recipes](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-all-user-recipes)
+- [Update User Recipe](https://docs.whisk.com/api/recipes/user-recipes-and-collections/update-user-recipe)
+- [Remove Recipe from Favorites](https://docs.whisk.com/api/recipes/user-recipes-and-collections/remove-recipe-from-favorites)
+- [Create Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/create-collection)
+- [Get All User Collections](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-all-user-collections)
+- [Get Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-collection)
+- [Get Recipes from a Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-recipes-from-a-collection)
+- [Remove Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/remove-collection)
+- [Get Smart Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-collection-1): Method for getting smart collections. Smart collections are special types of collections created automatically in Whisk. Content in smart collections also updates automatically based on user actions.
+- [Get Recipes from a Smart Collection](https://docs.whisk.com/api/recipes/user-recipes-and-collections/get-recipes-from-a-collection-1): Method allow to get all recipes in Smart collection
+- [Shopping List](https://docs.whisk.com/api/shopping-lists): The Shopping List API service offers you the ability to read and write your shopping list data.
+- [Get your Shopping Lists](https://docs.whisk.com/api/shopping-lists/get-shopping-lists): This endpoint offers you the ability to read reference details of all your shopping lists that exist in your Whisk account.
+- [Get a Shopping List](https://docs.whisk.com/api/shopping-lists/get-a-shopping-list): This endpoint allows you to read data of a shopping list.
+- [Create a Shopping List](https://docs.whisk.com/api/shopping-lists/create-a-shopping-list): This endpoint allows you create a new shopping list.
+- [Delete a Shopping List](https://docs.whisk.com/api/shopping-lists/delete-a-shopping-list): This endpoint allows you to delete any secondary shopping list.
+- [Update basic details of a Shopping List](https://docs.whisk.com/api/shopping-lists/update-basic-details-of-a-shopping-list): This endpoint allows you to update the shopping list name or set/reset it as primary.
+- [Move Items between Shopping Lists](https://docs.whisk.com/api/shopping-lists/move-items-between-shopping-lists): This endpoints allows you to move shopping list items from one shopping list to another.
+- [Add Items to a Shopping List](https://docs.whisk.com/api/shopping-lists/add-items-to-a-shopping-list-1): This endpoints allows you to add items to your shopping list.
+- [Delete an Item from a Shopping List](https://docs.whisk.com/api/shopping-lists/delete-an-item-from-a-shopping-list): This endpoint allows you remove an item from a shopping list.
+- [Update an Item in a Shopping List](https://docs.whisk.com/api/shopping-lists/update-an-item-in-a-shopping-list): This endpoint allows you update an item in a shopping list.
+- [Clear Items from a Shopping List](https://docs.whisk.com/api/shopping-lists/clear-items-from-a-shopping-list): This endpoint allows you to remove items from a shopping list.
+- [Media](https://docs.whisk.com/api/media): Media service API allow to upload images into the whisk cloud. Maximum image size is 50M
+- [Store Item](https://docs.whisk.com/api/store-item)
+- [Unit Conversion](https://docs.whisk.com/api/unit-conversion)
+- [Users](https://docs.whisk.com/api/user-model)
+- [Get a User](https://docs.whisk.com/api/user-model/get-a-user)
+- [Update User Settings using Patch](https://docs.whisk.com/api/user-model/update-a-user)
+- [Update User Settings using Post](https://docs.whisk.com/api/user-model/user-profile)
+- [Overview](https://docs.whisk.com/shopping-list-sdk/overview)
+- [Examples](https://docs.whisk.com/shopping-list-sdk/examples)
+- [Shoppable Recipes](https://docs.whisk.com/shopping-list-sdk/examples/shoppable-recipes)
+- [Shoppable Products](https://docs.whisk.com/shopping-list-sdk/examples/shoppable-products)
+- [Shoppable Media](https://docs.whisk.com/shopping-list-sdk/examples/shoppable-media)
+- [Basic Setup](https://docs.whisk.com/shopping-list-sdk/basic-setup)
+- [Basic Setup](https://docs.whisk.com/shopping-list-sdk/basic-setup/basic-setup)
+- [Methods](https://docs.whisk.com/shopping-list-sdk/basic-setup/methods)
+- [Event Listeners](https://docs.whisk.com/shopping-list-sdk/basic-setup/event-listeners)
+- [Widget](https://docs.whisk.com/shopping-list-sdk/basic-setup/widget)
+- [Subscriptions](https://docs.whisk.com/shopping-list-sdk/basic-setup/subscriptions)
+- [Global Configuration](https://docs.whisk.com/shopping-list-sdk/basic-setup/global-configuration)
+- [UTM Parameters](https://docs.whisk.com/shopping-list-sdk/basic-setup/utm-parameters)
+- [Using With SPA](https://docs.whisk.com/shopping-list-sdk/basic-setup/using-with-spa)
+- [Overview](https://docs.whisk.com/shopping-list-mobile-api/overview)
+- [Examples](https://docs.whisk.com/shopping-list-mobile-api/examples)
+- [Reference](https://docs.whisk.com/shopping-list-mobile-api/reference)
+- [Authentication Scopes](https://docs.whisk.com/resources/authentication-scopes): A list of supported auth scopes for token generation.
+- [Errors and Troubleshooting](https://docs.whisk.com/resources/error-handling): All supported errors that you may unfortunately encounter while using Whisk API.
+- [Cursor Pagination](https://docs.whisk.com/resources/cursor-pagination)
+- [Limits](https://docs.whisk.com/resources/limits)
+- [Nutrients](https://docs.whisk.com/resources/nutrients): Nutrition calculations, Macronutrients, and Micronutrients.
+- [Recipe Labels](https://docs.whisk.com/resources/recipe-labels)
+- [Filtering Recipes using Custom Labels](https://docs.whisk.com/resources/custom-labels): This topic comprehensively describes how you can use the Custom Labels filter to search recipes.
+- [Health Score, Glycemic Index, Glycemic Load](https://docs.whisk.com/resources/health-score-glycemic-index-glycemic-load)
+- [Whisk User Data](https://docs.whisk.com/resources/whisk-user-data)
+- [Integrated Retailers](https://docs.whisk.com/resources/supported-retailers): List of retailers that are integrated with Whisk.
+- [Optimizing Image Load](https://docs.whisk.com/resources/optimizing-image-load)
+- [Meal Plan](https://docs.whisk.com/resources/meal-plan)
+
+## v1.0.0
+
+- [Overview](https://docs.whisk.com/master/master)
+- [Creating An Account](https://docs.whisk.com/master/guides/creating-an-account)
+- [Getting Started](https://docs.whisk.com/master/guides/quick-start-guide)
+- [Whisk Sandbox](https://docs.whisk.com/master/guides/whisk-sandbox)
+- [Authentication](https://docs.whisk.com/master/api/auth)
+- [Server Token](https://docs.whisk.com/master/api/auth/server-token)
+- [Client Token](https://docs.whisk.com/master/api/auth/client-token)
+- [User Access Token](https://docs.whisk.com/master/api/auth/user-access-token)
+- [Anonymous Access](https://docs.whisk.com/master/api/auth/anonymous-access)
+- [Recipes](https://docs.whisk.com/master/api/recipes)
+- [Get Recipe](https://docs.whisk.com/master/api/recipes/get-recipe-nutrition)
+- [Get Recipe Categories](https://docs.whisk.com/master/api/recipes/recipe-categories)
+- [Recipe Objects](https://docs.whisk.com/master/api/recipes/recipe-objects)
+- [Recipe Discovery](https://docs.whisk.com/master/api/recipe-discovery)
+- [Recipe Feed](https://docs.whisk.com/master/api/recipe-discovery/recipe-feed)
+- [Recipe Search](https://docs.whisk.com/master/api/recipe-discovery/recipe-search)
+- [Get Similar Recipes](https://docs.whisk.com/master/api/recipe-discovery/get-similar-recipes)
+- [Shopping Lists](https://docs.whisk.com/master/api/shopping-lists)
+- [Get Shopping Lists](https://docs.whisk.com/master/api/shopping-lists/get-shopping-lists)
+- [Create A Shopping List](https://docs.whisk.com/master/api/shopping-lists/create-a-shopping-list)
+- [Add Items To A Shopping List](https://docs.whisk.com/master/api/shopping-lists/add-items-to-a-shopping-list)
+- [List Analysis](https://docs.whisk.com/master/api/shopping-lists/list-analysis)
+- [Meal Plans](https://docs.whisk.com/master/api/meal-plans)
+- [Meal Plan Management](https://docs.whisk.com/master/api/meal-plans/meal-plan-management)
+- [Delete Meals](https://docs.whisk.com/master/api/meal-plans/delete-meals)
+- [Auto-Generator](https://docs.whisk.com/master/api/meal-plans/auto-generator)
+- [Error Handling](https://docs.whisk.com/master/api/meal-plans/error-handling)
+- [Retailers](https://docs.whisk.com/master/api/retailers)
+- [Get Available Stores](https://docs.whisk.com/master/api/retailers/get-available-stores)
+- [Retailers Checkout Flow](https://docs.whisk.com/master/api/retailers/retailers-checkout-flow)
+- [Retailer Aliases](https://docs.whisk.com/master/api/retailers/retailers-aliases)
+- [OAuth Retailer Flow](https://docs.whisk.com/master/api/retailers/oauth-retailer-flow)
+- [Retailer User Info](https://docs.whisk.com/master/api/retailers/retailer-user-info)
+- [Search Store Items](https://docs.whisk.com/master/api/retailers/search-store-items)
+- [Carts](https://docs.whisk.com/master/api/carts)
+- [Create a Cart](https://docs.whisk.com/master/api/carts/create-a-cart)
+- [Update Cart Item](https://docs.whisk.com/master/api/carts/update-cart-item)
+- [Splitting Combined Items](https://docs.whisk.com/master/api/carts/split-combined-items)
+- [Add Items To Cart](https://docs.whisk.com/master/api/carts/add-items-to-cart)
+- [Add Recipes To Cart](https://docs.whisk.com/master/api/carts/add-recipes-to-cart)
+- [Get Cart Item Options](https://docs.whisk.com/master/api/carts/get-cart-item-options)
+- [Swap Cart Item Product](https://docs.whisk.com/master/api/carts/swap-cart-item-product)
+- [Delete A Cart Or A Cart Item](https://docs.whisk.com/master/api/carts/delete-a-cart-or-a-cart-item)
+- [Checkout](https://docs.whisk.com/master/api/carts/checkout)
+- [Users](https://docs.whisk.com/master/api/user-model)
+- [Get A User](https://docs.whisk.com/master/api/user-model/get-a-user)
+- [Update A User](https://docs.whisk.com/master/api/user-model/update-a-user)
+- [User Recipes & Collections](https://docs.whisk.com/master/api/user-recipes-and-collections)
+- [Add User Recipe](https://docs.whisk.com/master/api/user-recipes-and-collections/add-user-recipe)
+- [Create A Recipe](https://docs.whisk.com/master/api/user-recipes-and-collections/create-a-recipe)
+- [Update External Recipe](https://docs.whisk.com/master/api/user-recipes-and-collections/updaterecipe)
+- [Get All User Recipes](https://docs.whisk.com/master/api/user-recipes-and-collections/get-all-user-recipes)
+- [Update User Recipe](https://docs.whisk.com/master/api/user-recipes-and-collections/update-user-recipe)
+- [Remove Recipe from Favorites](https://docs.whisk.com/master/api/user-recipes-and-collections/remove-recipe-from-favorites)
+- [Create Collection](https://docs.whisk.com/master/api/user-recipes-and-collections/create-collection)
+- [Get All User Collections](https://docs.whisk.com/master/api/user-recipes-and-collections/get-all-user-collections)
+- [Get Collection](https://docs.whisk.com/master/api/user-recipes-and-collections/get-collection)
+- [Get Recipes from a Collection](https://docs.whisk.com/master/api/user-recipes-and-collections/get-recipes-from-a-collection)
+- [Remove Collection](https://docs.whisk.com/master/api/user-recipes-and-collections/remove-collection)
+- [Tools](https://docs.whisk.com/master/api/tools)
+- [Autocomplete](https://docs.whisk.com/master/api/tools/autocomplete)
+- [Overview](https://docs.whisk.com/master/shopping-list-sdk/overview)
+- [Examples](https://docs.whisk.com/master/shopping-list-sdk/examples)
+- [Shoppable Recipes](https://docs.whisk.com/master/shopping-list-sdk/examples/shoppable-recipes)
+- [Shoppable Products](https://docs.whisk.com/master/shopping-list-sdk/examples/shoppable-products)
+- [Shoppable Media](https://docs.whisk.com/master/shopping-list-sdk/examples/shoppable-media)
+- [Basic Setup](https://docs.whisk.com/master/shopping-list-sdk/basic-setup)
+- [Basic Setup](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/basic-setup)
+- [Methods](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/methods)
+- [Event Listeners](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/event-listeners)
+- [Widget](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/widget)
+- [Subscriptions](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/subscriptions)
+- [Global Configuration](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/global-configuration)
+- [UTM Parameters](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/utm-parameters)
+- [Using With SPA](https://docs.whisk.com/master/shopping-list-sdk/basic-setup/using-with-spa)
+- [Overview](https://docs.whisk.com/master/shopping-list-mobile-api/overview)
+- [Examples](https://docs.whisk.com/master/shopping-list-mobile-api/examples)
+- [Reference](https://docs.whisk.com/master/shopping-list-mobile-api/reference)
+- [Object IDs](https://docs.whisk.com/master/tips/object-ids)
+- [URL Lookup](https://docs.whisk.com/master/tips/url-lookup)
+- [Searching](https://docs.whisk.com/master/tips/searching)
+- [Multiple IDs request](https://docs.whisk.com/master/tips/multiple-ids-request)
+- [Nutrients](https://docs.whisk.com/master/resources/nutrients)
+- [Recipe Labels](https://docs.whisk.com/master/resources/recipe-labels)
+- [Health Score, Glycemic Index, Glycemic Load](https://docs.whisk.com/master/resources/health-score-glycemic-index-glycemic-load)
+- [Whisk User Data](https://docs.whisk.com/master/resources/whisk-user-data)
+- [Supported Retailers](https://docs.whisk.com/master/resources/supported-retailers)
+- [Optimizing Image Load](https://docs.whisk.com/master/resources/optimizing-image-load)

@@ -1,0 +1,16 @@
+# Docs
+
+## Docs
+
+- [Introduction](https://docs.idriss.xyz/readme): Apps uniquely enabled by crypto and AI
+- [Extension](https://docs.idriss.xyz/user-guides/extension): Crypto and AI expansion pack for your browser
+- [Creators](https://docs.idriss.xyz/user-guides/creators): Monetize your content on Twitch, YouTube, and more
+- [Prediction markets](https://docs.idriss.xyz/user-guides/prediction-markets): Decentralized community notes for the internet
+- [Tokenomics](https://docs.idriss.xyz/idriss-token/tokenomics)
+- [Retroactive distribution](https://docs.idriss.xyz/idriss-token/retroactive-distribution)
+- [Governance](https://docs.idriss.xyz/idriss-token/governance)
+- [Token sale](https://docs.idriss.xyz/idriss-token/token-sale)
+- [Terms and conditions](https://docs.idriss.xyz/idriss-token/terms-and-conditions)
+- [Brand](https://docs.idriss.xyz/resources/brand)
+- [Terms of service](https://docs.idriss.xyz/resources/terms-of-service)
+- [Privacy policy](https://docs.idriss.xyz/resources/privacy-policy)

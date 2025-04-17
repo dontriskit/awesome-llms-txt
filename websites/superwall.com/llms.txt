@@ -1,0 +1,161 @@
+# Superwall
+
+## Docs
+
+- [3rd Party Analytics](https://superwall.com/docs/3rd-party-analytics.md): Superwall can easily be integrated with 3rd party analytics tools.
+- [Manually Handling Purchases and Subscription Status](https://superwall.com/docs/advanced-configuration.md): If you need fine-grain control over the purchasing pipeline, use a purchase controller.
+- [Android](https://superwall.com/docs/android.md): The long-awaited Superwall for Android is now available! Here's how to get started!
+- [App Store Privacy Labels](https://superwall.com/docs/app-privacy-nutrition-labels.md): (iOS only) When submitting your app for review, you'll need to fill out an App Store Privacy label. When using the Superwall SDK, there are a few choices you may need to consider.
+- [Campaigns](https://superwall.com/docs/campaigns.md): Campaigns are logical groupings of paywalls to show when certain _events_ are registered and _conditions_ are met. They are an incredibly powerful tool for creating experiments and managing best-in-class monetization flows.
+- [Audiences](https://superwall.com/docs/campaigns-audience.md)
+- [Paywalled Users](https://superwall.com/docs/campaigns-paywalled-users.md)
+- [Placements](https://superwall.com/docs/campaigns-placements.md)
+- [Standard Placements](https://superwall.com/docs/campaigns-standard-placements.md)
+- [Starting an Experiment](https://superwall.com/docs/campaigns-starting-an-experiment.md)
+- [Campaign Structure](https://superwall.com/docs/campaigns-structure.md)
+- [Understanding Experiment Results](https://superwall.com/docs/campaigns-understanding-experiment-results.md)
+- [Charts](https://superwall.com/docs/charts.md): View charts detailing important metrics about your app's subscription performance, paywalls and more.
+- [Cohorting in 3rd Party Tools](https://superwall.com/docs/cohorting-in-3rd-party-tools.md): To easily view Superwall cohorts in 3rd party tools, we recommend you set user attributes based on the experiments that users are included in. You can also use custom placements for creating analytics events for actions such as interacting with an element on a paywall.
+- [Configuring the SDK](https://superwall.com/docs/configuring-the-sdk.md): As soon as your app launches, you need to configure the SDK with your **Public API Key**. You'll retrieve this from the Superwall settings page.
+- [Creating Applications](https://superwall.com/docs/creating-applications.md)
+- [Custom Paywall Analytics](https://superwall.com/docs/custom-paywall-analytics.md): Learn how to log events from paywalls, such as a button tap or product change, to forward to your analytics service.
+- [Custom Paywall Actions](https://superwall.com/docs/custom-paywall-events.md): You can set the click behavior of any element on a paywall to be a custom paywall action. This allows you to tie any tap in your paywall to hard-coded application logic.
+- [Purchasing Products Outside of a Paywall](https://superwall.com/docs/direct-purchasing.md): If you wish to purchase products directly on iOS and Android, use our SDK's `purchase` methods.
+- [Creating a Countdown Timer](https://superwall.com/docs/external-links/guide-countdown-timer.md)
+- [Managing Connectivity Issues](https://superwall.com/docs/external-links/guide-handling-connectivity-issues.md)
+- [Building Mult-Tier Paywalls](https://superwall.com/docs/external-links/guide-multi-tier-paywalls.md)
+- [Flutter](https://superwall.com/docs/external-links/guide-sdk-flutter.md)
+- [iOS](https://superwall.com/docs/external-links/guide-sdk-ios.md)
+- [React Native](https://superwall.com/docs/external-links/guide-sdk-rn.md)
+- [Showing Paywalls](https://superwall.com/docs/feature-gating.md): At the heart of Superwall's SDK lies `Superwall.shared.register(placement:params:handler:feature:)`. 
+- [Feature Gating in Paywall Settings](https://superwall.com/docs/feature-gating-in-paywall-settings.md): You can toggle particular features to be either gated or non-gated without pushing app updates.
+- [Flutter](https://superwall.com/docs/flutter.md): Superwall's Flutter SDK is now available — we can't wait for you to try it!
+- [Game Controller Support](https://superwall.com/docs/game-controller-support.md): SuperwallKit supports Game Controller input.
+- [Using New SDK Features](https://superwall.com/docs/getting-started-with-our-sdks.md): Superwall's recent SDK updates bring several new improvements and features. Here's how to get started quickly.
+- [Handling Poor Network Conditions](https://superwall.com/docs/handling-paywalls-during-poor-network-conditions.md): Superwall is built to handle any networking conditions, from poor network conditions to no network at all.
+- [Welcome](https://superwall.com/docs/home.md): Superwall gives you the ability to remotely update your purchase screen (a.k.a. paywall), without shipping app updates. Changing things like pricing, design, location, text and discounts takes a few seconds from Superwall's dashboard.
+- [User Management](https://superwall.com/docs/identity-management.md): It is necessary to uniquely identify users to track their journey within Superwall.
+- [Deep Links and In-App Previews](https://superwall.com/docs/in-app-paywall-previews.md): It's important to tell Superwall when a deep link has been opened. This enables two things:
+- [Installation](https://superwall.com/docs/installation.md): Superwall can be installed with many different package managers. Please find your preferred package manager below.
+- [iOS - CocoaPods](https://superwall.com/docs/installation-via-cocoapods.md): Install the Superwall iOS SDK via CocoaPods. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-iOS).
+- [Android - Gradle](https://superwall.com/docs/installation-via-gradle.md): Install the Superwall Android SDK via Gradle. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-Android).
+- [React Native - Package.json](https://superwall.com/docs/installation-via-package.md): Install the Superwall React Native SDK via npm or yarn. To see the latest release, [check out the repository](https://github.com/superwall/react-native-superwall).
+- [Flutter - pubspec.yaml](https://superwall.com/docs/installation-via-pubspec.md): Install the Superwall Flutter SDK via pub package manager. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-Flutter).
+- [iOS - Swift Package Manager](https://superwall.com/docs/installation-via-spm.md): Install the Superwall iOS SDK via Swift Package Manager. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-iOS).
+- [iOS](https://superwall.com/docs/ios.md)
+- [3rd Party Analytics (Legacy)](https://superwall.com/docs/legacy/legacy_3rd-party-analytics.md): Superwall can easily be integrated with 3rd party analytics tools.
+- [Purchases and Subscription Status (Legacy)](https://superwall.com/docs/legacy/legacy_advanced-configuration.md)
+- [Cohorting in 3rd Party Tools (Legacy)](https://superwall.com/docs/legacy/legacy_cohorting-in-3rd-party-tools.md): To easily view Superwall cohorts in 3rd party tools, we recommend you set user attributes based on the experiments that users are included in. You can also use custom placements for creating analytic events for actions such as interacting with an element on a paywall.
+- [Configuring the SDK (Legacy)](https://superwall.com/docs/legacy/legacy_configuring-the-sdk.md): As soon as your app launches, you need to configure the SDK with your **Public API Key**. You'll retrieve this from the Superwall settings page.
+- [Custom Paywall Actions (Legacy)](https://superwall.com/docs/legacy/legacy_custom-paywall-events.md): You can set the click behavior of any element on a paywall to be a custom paywall action. This allows you to tie any tap in your paywall to hard-coded application logic.
+- [Showing Paywalls (Legacy)](https://superwall.com/docs/legacy/legacy_feature-gating.md): At the heart of Superwall's SDK lies `Superwall.shared.register(event:params:handler:feature:)`. 
+- [User Management (Legacy)](https://superwall.com/docs/legacy/legacy_identity-management.md): It is necessary to uniquely identify users to track their journey within Superwall.
+- [Deep Links and In-App Previews (Legacy)](https://superwall.com/docs/legacy/legacy_in-app-paywall-previews.md): It's important to tell Superwall when a deep link has been opened. This enables two things:
+- [Installation (Legacy)](https://superwall.com/docs/legacy/legacy_installation.md): Superwall can be installed with many different package managers. Please find your preferred package manager below.
+- [iOS - CocoaPods (Legacy)](https://superwall.com/docs/legacy/legacy_installation-via-cocoapods.md): Install the Superwall iOS SDK via CocoaPods. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-iOS).
+- [Android - Gradle (Legacy)](https://superwall.com/docs/legacy/legacy_installation-via-gradle.md): Install the Superwall Android SDK via Gradle. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-Android).
+- [React Native - Package.json (Legacy)](https://superwall.com/docs/legacy/legacy_installation-via-package.md): Install the Superwall React Native SDK via npm or yarn. To see the latest release, [check out the repository](https://github.com/superwall/react-native-superwall).
+- [Flutter - pubspec.yaml (Legacy)](https://superwall.com/docs/legacy/legacy_installation-via-pubspec.md): Install the Superwall Flutter SDK via pub package manager. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-Flutter).
+- [iOS - Swift Package Manager (Legacy)](https://superwall.com/docs/legacy/legacy_installation-via-spm.md): Install the Superwall iOS SDK via Swift Package Manager. To see the latest release, [check out the repository](https://github.com/superwall/Superwall-iOS).
+- [Pre-Launch Checklist (Legacy)](https://superwall.com/docs/legacy/legacy_pre-launch-checklist.md): Ready to ship your app with Superwall? Here is a last minute checklist to give you confidence that you're ready to ship without issue.
+- [Retrieving and Presenting a Paywall Yourself (Legacy)](https://superwall.com/docs/legacy/legacy_presenting.md): Use this technique to get an instance of a paywall manually, using either UIKit, SwiftUI, or Jetpack Compose.
+- [Presenting Paywalls from One Another (Legacy)](https://superwall.com/docs/legacy/legacy_presenting-paywalls-from-one-another.md): Learn how to present a different paywall from one that's already presented.
+- [Setting User Attributes (Legacy)](https://superwall.com/docs/legacy/legacy_setting-user-properties.md): By setting user attributes, you can display information about the user on the paywall. You can also define [audiences](/campaigns-audience) in a campaign to determine which paywall to show to a user, based on their user attributes.
+- [Superwall Events (Legacy)](https://superwall.com/docs/legacy/legacy_tracking-analytics.md): The SDK automatically tracks some events, which power the charts in the dashboard. 
+- [Troubleshooting (Legacy)](https://superwall.com/docs/legacy/legacy_troubleshooting.md)
+- [Using RevenueCat (Legacy)](https://superwall.com/docs/legacy/legacy_using-revenuecat.md): If you want to use RevenueCat to handle your subscription-related logic with Superwall, follow this guide.
+- [Using the Superwall Delegate (Legacy)](https://superwall.com/docs/legacy/legacy_using-superwall-delegate.md): Use a Superwall delegate to help interface with 3rd party analytics, see which product was purchased on a paywall, handle custom events and more.
+- [Passing in options (Legacy)](https://superwall.com/docs/legacy/legacy_using-superwalloptions.md): When configuring the SDK you can pass in options that configure Superwall, the paywall presentation, and its appearance.
+- [RevenueCat Migration Guide](https://superwall.com/docs/migrating-from-revenuecat-to-superwall.md): A guide to migrating from RevenueCat to Superwall.
+- [Migrating from v1 to v2 - Android](https://superwall.com/docs/migrating-to-v2-android.md): SuperwallKit 2.0 is a major release of Superwall's Android SDK. This introduces breaking changes.
+- [Migrating from v1 to v2 - Flutter](https://superwall.com/docs/migrating-to-v2-flutter.md): SuperwallKit 2.0 is a major release of Superwall's Flutter SDK. This introduces breaking changes.
+- [Migrating from v1 to v2 - React Native](https://superwall.com/docs/migrating-to-v2-react-native.md): SuperwallKit 2.0 is a major release of Superwall's React Native SDK. This introduces breaking changes.
+- [Migrating from v2 to v3 - iOS](https://superwall.com/docs/migrating-to-v3.md): SuperwallKit 3.0 is a major release of Superwall's iOS SDK, previously known as `Paywall`. This introduces breaking changes.
+- [Migrating from v3 to v4 - iOS](https://superwall.com/docs/migrating-to-v4.md): SuperwallKit 4.0 is a major release of Superwall's iOS SDK. This introduces breaking changes.
+- [Observer Mode](https://superwall.com/docs/observer-mode.md): Use Observer mode to report purchases made outside of Superwall so they'll appear in your dashboard. Available for iOS and Android.
+- [Managing Localization Updates](https://superwall.com/docs/overview-localization.md)
+- [Overview](https://superwall.com/docs/overview-metrics.md): The Overview page gives you a holistic look at how your app is performing, complete with easy-to-find key metrics and top-level campaign data.
+- [General](https://superwall.com/docs/overview-settings.md): Use the Settings area to set up API keys, metadata and more.
+- [Advanced](https://superwall.com/docs/overview-settings-advanced.md)
+- [All teams](https://superwall.com/docs/overview-settings-all-teams.md)
+- [Apple Search Ads](https://superwall.com/docs/overview-settings-apple-search-ads.md): Integrate Apple Search Ads with Superwall. View details on users acquired via search ads, visualize conversions from Apple Search Ads in charts, and create powerful campaign filters to target users using search ad data. Search ad integration requires 3.12.0 of the Superwall SDK or higher.
+- [Audit Log](https://superwall.com/docs/overview-settings-audit-log.md)
+- [Billing](https://superwall.com/docs/overview-settings-billing.md)
+- [Keys](https://superwall.com/docs/overview-settings-keys.md)
+- [Projects](https://superwall.com/docs/overview-settings-projects.md)
+- [Public Beta](https://superwall.com/docs/overview-settings-public-beta.md)
+- [Refund Protection](https://superwall.com/docs/overview-settings-refund-protection.md)
+- [Revenue Tracking](https://superwall.com/docs/overview-settings-revenue-tracking.md)
+- [Team](https://superwall.com/docs/overview-settings-team.md)
+- [Users](https://superwall.com/docs/overview-users.md): Get a snapshot view of users who recently triggered a placement in your app.
+- [Autoscroll](https://superwall.com/docs/paywall-editor-autoscroll-component.md): Use Superwall's autoscroll component to create marquee-like content that automatically scrolls.
+- [Carousel](https://superwall.com/docs/paywall-editor-carousel-component.md): Use Superwall's carousel component to have items automatically progress through slides.
+- [Debugger](https://superwall.com/docs/paywall-editor-debugger.md)
+- [Drawers](https://superwall.com/docs/paywall-editor-drawer-component.md): Use Superwall's drawer component to display content presented in response to a button tap or a variable changing.
+- [Duplicating Paywalls](https://superwall.com/docs/paywall-editor-duplicating-paywalls.md)
+- [Dynamic Values](https://superwall.com/docs/paywall-editor-dynamic-values.md)
+- [Floating Toolbar](https://superwall.com/docs/paywall-editor-floating-toolbar.md)
+- [Layout](https://superwall.com/docs/paywall-editor-layout.md)
+- [Liquid](https://superwall.com/docs/paywall-editor-liquid.md)
+- [Paywall Localization](https://superwall.com/docs/paywall-editor-localization.md)
+- [Navigation](https://superwall.com/docs/paywall-editor-navigation-component.md): Use Superwall's navigation component to navigate through pages of content.
+- [Notifications](https://superwall.com/docs/paywall-editor-notifications.md)
+- [Getting Started with the Paywall Editor](https://superwall.com/docs/paywall-editor-overview.md): Use Superwall's best-in-class editor to bring virtually any paywall design to life, complete with advanced U.X. patterns. Or, browse our growing list of paywall templates to get started quickly.
+- [Previewing](https://superwall.com/docs/paywall-editor-previewing.md)
+- [Products](https://superwall.com/docs/paywall-editor-products.md)
+- [Publishing](https://superwall.com/docs/paywall-editor-publishing.md)
+- [Renaming Paywalls](https://superwall.com/docs/paywall-editor-renaming-paywalls.md)
+- [Settings](https://superwall.com/docs/paywall-editor-settings.md)
+- [Slides](https://superwall.com/docs/paywall-editor-slides-component.md): Use Superwall's slides component to create a horizontal or vertical slide UX driven by a user's gesture.
+- [Stacks](https://superwall.com/docs/paywall-editor-stacks.md)
+- [Styling Elements](https://superwall.com/docs/paywall-editor-styling-elements.md)
+- [Surveys](https://superwall.com/docs/paywall-editor-surveys.md)
+- [Theme](https://superwall.com/docs/paywall-editor-theme.md)
+- [Variables](https://superwall.com/docs/paywall-editor-variables.md)
+- [Paywalls](https://superwall.com/docs/paywalls.md): Create or edit paywalls across all of your campaigns in one place.
+- [Pre-Launch Checklist](https://superwall.com/docs/pre-launch-checklist.md): Ready to ship your app with Superwall? Here is a last minute checklist to give you confidence that you're ready to ship without issue.
+- [Retrieving and Presenting a Paywall Yourself](https://superwall.com/docs/presenting.md): Use this technique to get an instance of a paywall manually, using either UIKit, SwiftUI, or Jetpack Compose.
+- [Presenting Paywalls from One Another](https://superwall.com/docs/presenting-paywalls-from-one-another.md): Learn how to present a different paywall from one that's already presented.
+- [Adding Products](https://superwall.com/docs/products.md)
+- [React Native](https://superwall.com/docs/react-native.md): The long-awaited Superwall for React Native is now available! Here's how to get started!
+- [Setting User Attributes](https://superwall.com/docs/setting-user-properties.md): By setting user attributes, you can display information about the user on the paywall. You can also define [audiences](/campaigns-audience) in a campaign to determine which paywall to show to a user, based on their user attributes.
+- [Surveys](https://superwall.com/docs/surveys.md): Adding a paywall exit or post-purchase survey is a great way to boost conversion and get feedback on why users declined or purchased from your paywall. Once you've configured a survey, it can be attached to multiple paywalls. A user will only ever see a specific survey once unless you reset its responses.
+- [Templates](https://superwall.com/docs/templates.md): Use our template library to jump-start your paywall design process. Either plug in your products, switch them up to fit your needs, or remix them altogether.
+- [Setting up StoreKit testing](https://superwall.com/docs/testing-purchases.md): (iOS only) StoreKit testing in Xcode is a local test environment for testing in-app purchases without requiring a connection to App Store servers. Set up in-app purchases in a local StoreKit configuration file in your Xcode project, or create a synced StoreKit configuration file in Xcode from your in-app purchase settings in App Store Connect. After you enable the configuration file, the test environment uses this local data on your paywalls when your app calls StoreKit APIs.
+- [Abandoned Transaction Paywalls](https://superwall.com/docs/tips-abandoned-transaction-paywall.md): Learn how to present a a paywall when a user starts to convert, but then cancels the transaction.
+- [First Touch Paywalls](https://superwall.com/docs/tips-first-touch-paywall.md): Learn how to present a paywall the moment users interact with your app.
+- [Showing Unique Paywalls](https://superwall.com/docs/tips-paywalls-based-on-placement.md): Learn how to present a unique paywall based on the audience that was matched within a campaign.
+- [Feature Gating](https://superwall.com/docs/tips-paywalls-feature-gating.md): Learn how to toggle feature gating in a paywall.
+- [Custom Actions](https://superwall.com/docs/tips-using-custom-actions.md): Learn how to use custom actions.
+- [Superwall Events](https://superwall.com/docs/tracking-analytics.md): The SDK automatically tracks some events, which power the charts in the dashboard. 
+- [Tracking Subscription State](https://superwall.com/docs/tracking-subscription-state.md): Here's how to view whether or not a user is on a paid plan or not.
+- [How to Debug Paywall Issues in Production](https://superwall.com/docs/troubleshooting-debug-paywalls-production.md): Learn how to use the dashboard’s event logs to debug paywall behavior for real users.
+- [Paywall Memory Usage on iOS](https://superwall.com/docs/troubleshooting-paywall-memory-usage-on-iOS.md): Investigate why your paywall might look like it's using more memory than you expect in Instruments.
+- [Products Not Loading](https://superwall.com/docs/troubleshooting-products-not-loading.md): The full checklist for iOS, Android, and RevenueCat when your products won’t show.
+- [Sandbox Free Trial Isn’t Appearing](https://superwall.com/docs/troubleshooting-sandbox-free-trial-not-showing.md): Why free trials sometimes don’t show up in sandbox testing and what to do about it.
+- [StoreKit Transactions Not Clearing in Xcode](https://superwall.com/docs/troubleshooting-storekit-transaction-stuck.md): Fix for when a test transaction seems stuck or active when it shouldn’t be.
+- [Fixing Unexpected Paywall Behavior](https://superwall.com/docs/troubleshooting-unexpected-paywall-behavior.md): Step-by-step checklist when a paywall shows up when it shouldn’t—or doesn’t when it should.
+- [Using Placement Parameters](https://superwall.com/docs/using-placement-parameters.md): Placement parameters allow you to send additional data to the Superwall platform when registering placements.
+- [Using Referral or Promo Codes with Superwall](https://superwall.com/docs/using-referral-or-promo-codes-with-superwall.md): Learn how to use referral or promo codes with Superwall.
+- [Using RevenueCat](https://superwall.com/docs/using-revenuecat.md): If you want to use RevenueCat to handle your subscription-related logic with Superwall, follow this guide.
+- [Using the Superwall Delegate](https://superwall.com/docs/using-superwall-delegate.md): Use a Superwall delegate to help interface with 3rd party analytics, see which product was purchased on a paywall, handle custom placements and more.
+- [Using Superwall with Cursor](https://superwall.com/docs/using-superwall-with-cursor.md): Use our SDK footprint file, along with a custom Cursor User Rule, to use Superwall with AI.
+- [Passing in options](https://superwall.com/docs/using-superwalloptions.md): When configuring the SDK you can pass in options that configure Superwall, the paywall presentation, and its appearance.
+- [Using the Presentation Handler When Presenting Paywalls](https://superwall.com/docs/using-the-presentation-handler.md): The `PaywallPresentationHandler` enables you to monitor and respond to key events during paywall presentation, such as when a paywall is displayed, dismissed, encounters an error, or is skipped.
+- [Viewing Purchased Products](https://superwall.com/docs/viewing-purchased-products.md): There are several ways to view which product was purchased as a result of a paywall presentation.
+- [Creating Stripe Products](https://superwall.com/docs/web-checkout-adding-a-stripe-product.md): Create products in Stripe to show on your web paywalls.
+- [Configuring Stripe Keys and Settings](https://superwall.com/docs/web-checkout-configuring-stripe-keys-and-settings.md): Create your Stripe keys to connect Superwall to Stripe. Fill out some settings to configure your app.
+- [Creating an App](https://superwall.com/docs/web-checkout-creating-an-app.md): Add a Stripe app to an existing project within Superwall.
+- [Web Checkout Links](https://superwall.com/docs/web-checkout-creating-campaigns-to-show-paywalls.md): Learn how to use campaigns and placements to present web paywalls using Superwall's web checkout links.
+- [Web Checkout FAQ](https://superwall.com/docs/web-checkout-faq.md): Frequently asked questions about web checkout.
+- [Redeeming In-App](https://superwall.com/docs/web-checkout-linking-membership-to-iOS-app.md): Handle a deep link in your app and use the delegate methods.
+- [Restoring & Managing Purchases](https://superwall.com/docs/web-checkout-managing-memberships.md): Learn how users can manage their subscriptions from purchases made via the web.
+- [Overview](https://superwall.com/docs/web-checkout-overview.md): Let customers purchase products online via Stripe, and them link them to your iOS app with one seamless flow. No authentication required.
+- [Sandbox Purchases](https://superwall.com/docs/web-checkout-testing-purchases.md): Test with your web paywalls by using sandbox products.
+
+
+## Optional
+
+- [GitHub](https://github.com/superwall)
+- [Twitter](https://twitter.com/superwall)
+- [Blog](https://superwall.com/blog)

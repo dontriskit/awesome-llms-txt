@@ -1,0 +1,42 @@
+# MonsterUI Documentation
+
+> MonsterUI is a python library which brings styling to python for FastHTML apps.
+
+## API Reference
+- [API List](https://raw.githubusercontent.com/AnswerDotAI/MonsterUI/refs/heads/main/docs/apilist.txt): Complete API Reference
+
+## Examples
+- [Playground](https://monsterui.answer.ai/playground/md): FrankenUI Playground Example built with MonsterUI (original design by ShadCN)
+- [Scrollspy](https://monsterui.answer.ai/scrollspy/md): MonsterUI Scrollspy Example application
+- [Mail](https://monsterui.answer.ai/mail/md): FrankenUI Mail Example built with MonsterUI (original design by ShadCN)
+- [Forms](https://monsterui.answer.ai/forms/md): FrankenUI Forms Example built with MonsterUI (original design by ShadCN)
+- [Tasks](https://monsterui.answer.ai/tasks/md): FrankenUI Tasks Example built with MonsterUI (original design by ShadCN)
+- [Cards](https://monsterui.answer.ai/cards/md): FrankenUI Cards Example built with MonsterUI (original design by ShadCN)
+- [Dashboard](https://monsterui.answer.ai/dashboard/md): FrankenUI Dashboard Example built with MonsterUI (original design by ShadCN)
+- [Ticket](https://monsterui.answer.ai/ticket/md): MonsterUI Help Desk Example - Professional Dashboard with DaisyUI components
+- [Auth](https://monsterui.answer.ai/auth/md): FrankenUI Auth Example built with MonsterUI (original design by ShadCN)
+- [Music](https://monsterui.answer.ai/music/md): FrankenUI Music Example build with MonsterUI (Original design by ShadCN)
+
+## Optional
+- [Button | Link](https://monsterui.answer.ai/api_ref/docs_button_link/md): Buttons & Links API Reference
+- [Cards](https://monsterui.answer.ai/api_ref/docs_cards/md): Cards API Reference
+- [Containers](https://monsterui.answer.ai/api_ref/docs_containers/md): Articles, Containers & Sections API Reference
+- [Dividers](https://monsterui.answer.ai/api_ref/docs_dividers/md): Dividers API Reference
+- [Forms](https://monsterui.answer.ai/api_ref/docs_forms/md): Forms and User Inputs API Reference
+- [Html](https://monsterui.answer.ai/api_ref/docs_html/md): HTML Styling API Reference
+- [Icons | Images](https://monsterui.answer.ai/api_ref/docs_icons_images/md): Icons & Images API Reference
+- [Layout](https://monsterui.answer.ai/api_ref/docs_layout/md): Layout (Flex and Grid) API Reference
+- [Lightbox](https://monsterui.answer.ai/api_ref/docs_lightbox/md): Lightbox API Reference
+- [Lists](https://monsterui.answer.ai/api_ref/docs_lists/md): Lists API Reference
+- [Loading](https://monsterui.answer.ai/api_ref/docs_loading/md): Loading IndicatorsAPI Reference
+- [Markdown](https://monsterui.answer.ai/api_ref/docs_markdown/md): Markdown + automated HTML styling API Reference
+- [Modals](https://monsterui.answer.ai/api_ref/docs_modals/md): Modals API Reference
+- [Navigation](https://monsterui.answer.ai/api_ref/docs_navigation/md): Navigation (Nav, NavBar, Tabs, etc.) API Reference
+- [Notifications](https://monsterui.answer.ai/api_ref/docs_notifications/md): Alerts & Toasts API Reference
+- [Sliders](https://monsterui.answer.ai/api_ref/docs_sliders/md): Carousel Sliders API Reference
+- [Steps](https://monsterui.answer.ai/api_ref/docs_steps/md): Steps API Reference
+- [Tables](https://monsterui.answer.ai/api_ref/docs_tables/md): Tables API Reference
+- [Theme | Headers](https://monsterui.answer.ai/api_ref/docs_theme_headers/md): Theme and Headers API Reference
+- [Typography](https://monsterui.answer.ai/api_ref/docs_typography/md): Typography API Reference
+- [Layout](https://monsterui.answer.ai/tutorial_layout/md): MonsterUI Page Layout Guide
+- [Spacing](https://monsterui.answer.ai/tutorial_spacing/md): Padding & Margin & Spacing, Oh my! (MonsterUI Spacing Guide)

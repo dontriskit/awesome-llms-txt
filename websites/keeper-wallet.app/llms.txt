@@ -1,0 +1,41 @@
+# Keeper Wallet Docs
+
+## English
+
+- [Keeper Wallet Overview](https://docs.keeper-wallet.app/overview)
+- [Getting started](https://docs.keeper-wallet.app/browser-extension/quick-start)
+- [Switch lang](https://docs.keeper-wallet.app/browser-extension/lang)
+- [Assets](https://docs.keeper-wallet.app/browser-extension/assets)
+- [Connect website](https://docs.keeper-wallet.app/browser-extension/connect)
+- [Transactions](https://docs.keeper-wallet.app/browser-extension/tx)
+- [Accounts](https://docs.keeper-wallet.app/browser-extension/accounts)
+- [Backup](https://docs.keeper-wallet.app/browser-extension/backup)
+- [Address book](https://docs.keeper-wallet.app/browser-extension/address-book)
+- [Networks](https://docs.keeper-wallet.app/browser-extension/networks)
+- [Getting started](https://docs.keeper-wallet.app/mobile-app/quick-start)
+- [Assets](https://docs.keeper-wallet.app/mobile-app/assets)
+- [Connect website](https://docs.keeper-wallet.app/mobile-app/connect)
+- [Transactions](https://docs.keeper-wallet.app/mobile-app/tx)
+- [Security](https://docs.keeper-wallet.app/mobile-app/security)
+- [Accounts](https://docs.keeper-wallet.app/mobile-app/accounts)
+- [Getting started](https://docs.keeper-wallet.app/web-app-beta/quick-start)
+
+## Русский
+
+- [Обзор Keeper Wallet](https://docs.keeper-wallet.app/ru/overview)
+- [Начало](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/quick-start)
+- [Язык интерфейса](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/lang)
+- [Активы](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/assets)
+- [Подключение к сайту](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/connect)
+- [Транзакции](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/tx)
+- [Аккаунты](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/accounts)
+- [Резервное копирование](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/backup)
+- [Список контактов](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/address-book)
+- [Сети](https://docs.keeper-wallet.app/ru/rasshirenie-brauzera/networks)
+- [Начало](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/quick-start)
+- [Активы](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/assets)
+- [Подключение](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/connect)
+- [Транзакции](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/tx)
+- [Безопасность](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/security)
+- [Аккаунты](https://docs.keeper-wallet.app/ru/mobilnoe-prilozhenie/accounts)
+- [Начало](https://docs.keeper-wallet.app/ru/veb-prilozhenie-beta/quick-start)

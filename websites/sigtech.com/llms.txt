@@ -1,0 +1,2030 @@
+# SigTech Website
+
+## Homepage / MAGIC Introduction
+
+LIMITLESS COLLABORATION BY AI AGENTS
+------------------------------------
+
+Bring MAGIC to Capital Markets
+==============================
+
+As seen at Bloomberg **Invest** 2025,
+SigTech MAGIC (Multi-Agent Generative Investment Copilots)
+uses AI agents to automate high-value, manual workflows.
+
+[Watch Demo Button - Placeholder]
+
+[Sign Up for MAGIC Form - Placeholder, Fields: Name, Last Name, Company Name, Company Email, Consent]
+*I consent being contacted by SigTech regarding MAGIC and SigTech's other related products and services. For information about how we collect, use and share your personal data, see our Privacy Policy.*
+
+### Trusted by
+
+[List/Logos of Trusted Companies - Placeholder]
+
+## Company
+
+### A world-class team of artificial intelligence, capital markets and financial technology experts
+
+Our leadership team has more than 50 years of combined experience in financial services and financial technology from leading firms including Brevan Howard, Barclays Capital, Citigroup, Bloomberg, Symphony Communication, Moody's Analytics, Dext and JRNI.
+
+### Leadership Team
+
+#### Bin Ren - Founder & CEO
+
+Before founding SigTech at the start of 2019, Ren was the Chief Investment Officer of the Systematic Investment Group (SIG) at Brevan Howard Asset Management where he managed multiple quantitative investment funds. He started his career at Barclays Capital as an equity exotics trader managing quantitative investment strategies across all major asset classes. Before university, Ren skipped two grades in school and won three first prizes in the Chinese National Olympiads, because of which he was exempted from the Chinese National College Entrance Examination.
+
+After earning a Bachelor's degree in electrical engineering at the national gifted education program of Shanghai Jiaotong University, Ren was directly admitted with full scholarship to the PhD program for computer science at Cambridge University, UK. While there he researched the Xen virtual machine monitor that was chosen by Amazon as the foundation of the AWS cloud-computing platform.
+
+[Blog](https://bren.blog/) [LinkedIn](https://www.linkedin.com/in/bin-ren-9457362/) [X](https://x.com/0xbren)
+
+#### Stuart Broadfoot - VP, Research
+
+Stuart is VP, Research AI & Analytics at SigTech. Prior to joining, Stuart spent more than five years at Brevan Howard Asset Management as a Quantitative Analyst and Portfolio Strategist. During this time, Stuart worked on developing quantitative analytics and researching systematic trading strategies. Stuart has a master's degree in Mathematics from the University of Cambridge and a Doctor of Philosophy (Ph.D.) from Oxford University, in the field of Quantum Information Theory.
+
+[LinkedIn](https://www.linkedin.com/in/stuart-g-broadfoot/)
+
+#### Krishna Nadella - Chief Commercial Officer
+
+Krishna, the Chief Commercial Officer at SigTech, boasts over 20 years in capital markets with a specialization in FinTech and FinServ. Known for creating specialized teams, he excels at launching new commercial strategies and products. Previously at Symphony Communication Services, Krishna led the firm's transformation from an insular entity to a market infrastructure integrator. Before Symphony, he was integral to Bloomberg's Enterprise Data division expansion, launching five new products over a decade. He began his career at Citigroup, where he managed the CDO/CLO equity sales desk.
+
+Beyond finance, Krishna hosted "STATE OF MIND," a web-series discussing post-secondary education issues. Recognized among The Feminist Press' "Top 40 Under 40," he also received the Penn State Alumni Service Award and the McMaster Arch Award. Krishna serves on various boards across academic and financial institutions and regularly contributes to LinkedIn. He holds an undergraduate degree in Honors Biochemistry from McMaster University and an MBA from The Pennsylvania State University.
+
+[LinkedIn](https://www.linkedin.com/in/kcnadella/) [Email](mailto:krishna.nadella@sigtech.com)
+
+#### David Comerford-Green - General Counsel
+
+David Comerford-Green is the General Counsel of SigTech and is responsible for the group's global legal and compliance function. Before joining SigTech in January 2022, David was the Director of Legal at Dext, a B2B SaaS platform offering bookkeeping and accountancy software solutions to accountancy firms and SMBs. During his time at Dext, David advised the business on its Series C fundraising, multiple M&A transactions and latterly its acquisition by Hg Capital. David qualified as a corporate lawyer at Mayer Brown and his legal career spans a broad range of financial institutions and other industries both in the UK and the Middle East. David holds a BA in History and Economics from the University of Manchester and subsequently attended the College of Law in London.
+
+[LinkedIn](https://www.linkedin.com/in/david-comerford-green/)
+
+#### Emma Pocklington - VP, Finance
+
+Emma Pocklington is SigTech's VP, Finance. Previously, Emma was the Global Financial Manager for JRNI, a global appointment booking platform, helping the company scale across three continents and managed multiple rounds of fundraising through to Series C. Emma has extensive experience facilitating financial operations for multiple successful scale-up businesses throughout her career.
+
+[LinkedIn](https://www.linkedin.com/in/emmapocklington/)
+
+## MAGIC (Multi-Agent Generative Investment Copilots)
+
+### Frequently Asked Questions
+
+**What is MAGIC?**
+
+MAGIC (standing for Multi-Agent Generative Investment Copilots) is our user-friendly, AI-driven tool, designed to expertly answer any financial question you throw at it.
+
+It comprises a collaborative team of expert AI agents powered by large language models. Each agent is purpose-built to perform a particular task in financial research and analysis, meaning MAGIC can autonomously write code, use Python tools, call external APIs, or access public and private datasets on your behalf.
+
+Best of all, you don't need any coding knowledge to use MAGIC. All you need to do is enter a prompt-for example, "Give me the most popular finance news today", "Show me Bitcoin returns since 2019", or "Can you plot US GDP YoY over the past 5 years?" and MAGIC will handle the rest.
+
+**How does MAGIC work?**
+
+1.  First, we construct custom benchmarks to measure and optimize performance for example tasks in financial domains.
+2.  We engineer specialist knowledge and tools for the agent, enabling it to operate autonomously.
+3.  We augment the LLM with prompt engineering, adjusting its contextual information and fine-tuning behavior to enhance agent performance even further.
+4.  Finally, we adjust wider system processes within MAGIC to improve interactions with other agents.
+
+**How reliable is MAGIC?**
+
+MAGIC can be incredibly helpful in providing insights, ideas, and information. We ground the response with data provided external to the models to increase the reliability. However, as with any AI tool, you should take the results as guidance only and always exercise your independent judgment.If you want to see the code behind how MAGIC has reached a decision, you can view it in the **Actions** section of the interface.
+
+_Please refer to our [terms and conditions](https://sigtech.com/additional-terms/) for more information._
+
+**Will my data be visible to other users?**
+
+No, your data will not be shared with other users. Any data you've entered, as well as the resulting MAGIC output, will remain only visible to you within the MAGIC platform.
+
+**How do you ensure that MAGIC avoids LLM hallucinations?**
+
+The results given by MAGIC are grounded by sourced data (i.e. from documents, computations, web pages, etc), which reduces the risk of hallucinations.
+
+The LLMs delegate any financial analyses to the SigTech Framework API, which removes hallucinations by executing code with SigTech market data.
+
+The final process of collating the separate worker information also allows for reflection steps to remove inaccuracies.
+
+**How does MAGIC differ from other AI tools available in the market?**
+
+Compared with other AI tools, MAGIC stands out with its specialist knowledge and data, high-quality quantitative insights, use of credible sources, and data-powered analysis. Each agent is specially built to deal with a particular aspect of financial research and analysis, making MAGIC an ideal tool for financial and economic professionals.
+
+The MAGIC workflow is designed to enhance reliability, with tasks delegated to specialist agents to produce grounded, well-rounded results. While other LLMs are geared towards instant answers to quick queries, MAGIC is developed to facilitate complex problem-solving on a larger scale.
+
+**How fast does MAGIC work?**
+
+From receiving your prompt to coming up with a complex and detailed answer, MAGIC works in a matter of seconds. Your team of AI agents work collaboratively, carrying out their tasks to produce a solution to your query.
+
+The planning and reviewing process is slightly slower than direct language model queries. However, this systematic process enhances the quality of MAGIC's response.
+
+Like working with a junior quant researcher, MAGIC won't always get things right on the first go. But with MAGIC, it's much faster to go back to your agents and ask them to redo or refine something.
+
+**What can I use MAGIC for?**
+
+MAGIC can be used for anything related to finance, such as data analysis, strategy development, real-time insights, and more.You can use MAGIC to ask for financial insights, track the historical performance of a single stock, give an update on the latest financial news, analyze current macroeconomic factors, or even help with using SigTech's platform.Whether you're a financial journalist, portfolio manager, quantitative analyst, independent investor, or simply someone who's interested in finance, MAGIC can help get the answers you're looking for.
+
+**Where can I get help with MAGIC?**
+
+If you have a particular question you'd like help with, get in touch with your technical account manager or contact [support@sigtech.com](mailto:support%40sigtech.com). You can also refer to our [Getting started guide](https://guide.sigtech.com/v2/magic/) for an overview of how to use the tool.
+
+**Are prompts used to train the model?**
+
+No, we do not use client prompts to train the AI models.
+
+### Preview of our AI Agents at work
+
+*   **Analyze Monetary Policies by Central Banks:** AI macro analysts dissect statements, minutes and speeches by the Federal Reserve, European Central Bank, Bank of England, Bank of Japan etc.
+*   **Build and Benchmark Investment Portfolios:** AI quant analysts construct portfolios and calculate performance metrics.
+*   **Code and Backtest Trading Strategies:** AI quant analysts implement trade ideas in Python based on description.
+
+### Prompting 101: How to write an effective prompt
+
+###### MAGIC is designed to expertly deal with the heavy lifting of financial research, such as writing code, analyzing data, and backtesting trading strategies. Nevertheless, the hardest first step can sometimes be figuring out exactly how to make MAGIC work effectively for you. As with all large language models, the quality of MAGIC's response largely depends on the quality of the prompt it's given.
+
+###### To help you unlock MAGIC's full capabilities, here's a quick guide on how to write useful and effective prompts.
+
+#### What can I ask MAGIC to do?
+
+Before you start talking to MAGIC, it's good to have an idea of what you want to use it for, as well as the output you'd like to see.
+
+You can use MAGIC like a search engine to **learn facts** and **get information** for example:
+_"What's the impact of US elections on the major US indices in the last 20 years?"_
+
+Or you can instruct MAGIC to **carry out tasks**, such as:
+_"Create an enhanced index strategy on Nasdaq 100, and compare against the performance of the index."_
+
+Stuck on prompt ideas? Try one of the pre-made prompts that appear in the MAGIC interface.
+
+Once you have an idea of your use case and end goal, you can begin to build your prompt to generate a more complex response.
+
+#### Tips and tricks
+
+*   **Give clear instructions:** Describe exactly what you want MAGIC to do, and use straightforward commands (like "Write a report" or "Include graphs"). If there are multiple steps MAGIC will need to take, outline them in sequential order. You can use bullet points and lists to structure your instructions.
+*   **Provide context:** Like training a colleague, MAGIC performs better if you equip it with all the necessary information to help it succeed. It will have a better understanding of your prompt if you give detailed background information: for example, why it is carrying out a task, what your end goal is, and any surrounding information that helps to set the scene. Although MAGIC can achieve a lot with a simple prompt, adding context will help it craft a more nuanced response.
+*   **Be specific about what you would like MAGIC to do:** If you want it to write code or create data visualizations as part of its response, let it know. If you want to track the performance of a single stock for a particular period of time, specify the exact length of time. That way, you'll tailor MAGIC's response to be as relevant as possible.
+*   **Break complex prompts down:** While it's great to provide all the necessary contextual information and specific details, MAGIC can sometimes get overloaded by particularly big queries. As a result, it may forget certain details or skip steps when trying to handle everything in one go. Try prompt chaining, in which you break down long prompts into smaller sub-tasks. This helps MAGIC gather its thoughts and focus at each step, which reduces the chance of mishandling a sub-task. Also, try to stick to one idea per prompt. If you want to ask MAGIC about something unrelated, it's best to start a new conversation instead.
+*   **Use natural, conversational language:** MAGIC is powered by large language models, so the best way to interact with it is by using natural language. Talk to it as you would with a human.
+*   **Direct your query to specific agents:** Each agent in the MAGIC team has been specially designed to deal with a particular task in financial research and analysis. For example, the Fed Analyst can access Federal Reserve FOMC documents, while the SigTech Quant can retrieve financial market data and perform backtesting. So, it's well worth making use of their individual expertise. Type '@' in the chat to bring up the list of available agents you can talk directly to.
+*   **Ask MAGIC to repeat or redo a response:** Large language models can sometimes produce hallucinations: this is information that's incorrect or unrelated to your query. In such instances, you can ask MAGIC to review its own work and make corrections, or directly @ the Planner agent to walk you through how a response was generated. By asking MAGIC to self-evaluate and iterate its answer, you can gently steer it back on track.
+
+#### Example
+
+This is how we used MAGIC to come up with a recent [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7237461212773453825) about the US Purchasing Managers' Index (PMI). By providing context and asking for specific information, we were able to guide MAGIC to produce a helpful and detailed response.
+
+**Vague prompt**
+_"Can you tell me about the PMI trends over the recent years?"_
+
+In this instance, MAGIC did its best to fill in any gaps and provide a general overview. While it was still a useful starting point for learning about a brand new topic and summarizing key points, it didn't provide the level of detail and specificity we wanted to see.
+
+So, using the tips and tricks above, we made some improvements to the prompt..
+
+**Specific prompt**
+_"The US PMI recently shot up in Q2 of 2024. Can you chart the historical PMI trends for the past 10 years?_
+
+_Given the current circumstances, what are the economic indicators suggesting the potential timing for a recovery from the recent 21-month contraction trend in the US PMI, and if contractions persist, what are the likely PMI trends over the next 6 months based on key influencing factors and recent data?_
+
+_Give clear graphs and tables to corroborate your responses._"
+
+In this example, we provided context by mentioning the recent US PMI trend, before asking MAGIC to look back at previous PMI trends. We specified the time periods for MAGIC to look at, such as historical PMI trends over the past ten years and the PMI forecast for the next six months. We also instructed MAGIC to include graphs and tables in its response.
+
+Finally, we broke down the prompt into multiple sub-tasks for MAGIC to tackle, one step at a time. As a result, MAGIC's response was much more refined: it produced the exact data visualizations we wanted to see, and addressed the specific bits of information we highlighted.
+
+## Partnerships
+
+### Strategic Partnerships
+
+SigTech thrives on collaboration, extending beyond premium data providers to include technology innovators and research leaders. These strategic partnerships enhance our AI capabilities with a wide-ranging, meticulously validated suite of data and technology. Together, we deliver excellence in AI solutions, powering your expertise with our network of innovation.
+
+*   **BMLL Technologies:** Leading provider of level 3, 2 & 1 Equities, ETFs and Futures Data & Analytics. BMLL Technologies is the leading, independent provider of Level 3 Historical Data and Analytics for the world's most sophisticated Capital Markets participants. This data captures and displays the trading intentions of all market participants. [Go to BMLL](https://www.bmlltech.com/data/bmll-data-and-analytics)
+*   **BondCliQ:** US CORPORATE BOND QUOTES AND FINRA POST TRADE TRACE DATA. BondCliQ provides fingertip access to comprehensive real time US corporate bond quotes from 40+ participating dealers. The data is equity tickerized for easy cross asset analysis and covers from 2018 till the present. [Go to BondCliq](https://www.bondcliq.com/quoteandtracedata/)
+*   **CLS:** FX alternative datasets including FX Flows and Volume. CLS have access to over 50% of global FX traded volumes in the market for the 18 currencies settled in CLS Settlement, and provide datasets for spot, swap and outright forward FX instruments. [Go to CLS](https://www.cls-group.com/)
+*   **Exchange Data International (EDI):** Global Provider of Corporate Actions, Pricing, and Reference Data. Exchange Data International (EDI) delivers accurate global financial data, including reference data, corporate actions, and end-of-day pricing for equities, ETFs, options, futures, fixed income, and more. EDI enables financial institutions worldwide to make informed decisions and manage risk. [Go to EDI](https://www.exchange-data.com/)
+*   **EPFR:** FUND FLOWS AND ASSET ALLOCATIONS DATA. EPFR data and insights deliver the most complete picture of institutional and retail investor flows and fund manager allocations driving global markets, covering equity and fixed income fund flows on a daily, weekly and monthly basis and monthly fund allocations by country, sector and industry. [Go to EPFR](https://epfr.com/?utm_source=sigtech&utm_medium=referral&utm_campaign=partners)
+*   **ETF Global:** Leading provider of ETF Reference data and analysis. ETF Global® is a leading, independent provider of ETF Reference data, research, proprietary risk analytics and investment models for Exchange-Traded-Products. The ETFG research platform provides a variety of strategies to pursue return, manage risk, utilize investment analysis and generate investment ideas. [Go to ETF Global](https://www.etfg.com/)
+*   **FactEntry:** Global Fixed Income Reference Data and Evaluated Pricing. Now backed by SIX, FactEntry is a leading vendor of Fixed Income data, for both Sovereign and Corporates. Original issuance documents data is augmented by their ISO 15022 corporate actions feed to track the lifecycle of the bond. Additionally a Bond Pricing Valuation Engine utilises bond cash flow data to streamline the pricing of illiquid bonds. [Go to FactEntry](https://www.factentry.com/)
+*   **ICE:** Fixed Income and Data Services. Data is at ICE's core. Manage risk, uncover opportunities, and make informed decisions in real-time with ICE's end-to-end fixed income solutions. ICE Data Derivatives offers cross-asset analytical solutions, covering cash and derivatives products in foreign exchange, interest rates, equities, credit, energy and commodities, and valuation capabilities. [Go to ICE](https://www.ice.com/fixed-income-data-services)
+*   **Macrobond:** Time-Series and Macroeconomic Data. Macrobond is a leading global provider of software, macroeconomic and financial data from primary and third-party sources with proprietary software focused on workflow efficiency. From a single platform, they provide access to a world of macroeconomic and financial data, analytics tools to chart your insights and collaboration features that help you instantly share or publish your content. [Go to Macrobond](https://www.macrobond.com/)
+*   **QuantHouse:** Global provider of high-performance streaming, intraday and EOD market data for listed instruments. QuantHouse provides high-performance market data feeds, data products and analytics for more than 150 markets worldwide, covering listed Equities, Futures and Options. [Go to QuantHouse](https://www.iress.com/software/trading-and-market-data/Quanthouse/)
+*   **S&P Global:** OTC Derivatives Data - Swaptions. The SABR Swaptions data, originated from IHS Markit, is derived with inputs from multiple sources, including 60+ market makers, banks, major interdealer brokers and 30+ exchanges, and covers more than 20 currencies. [Go to S&P Global](https://www.marketplace.spglobal.com/en/datasets/otc-derivatives-(252))
+*   **Terrapin:** MiFID II Data Aggregator for Government and Corporate Bonds. Terrapin collects, cleans and aggregates MiFID II post-trade reports from 15+ EU/UK APAs, covering 80+ European venues, unifying all trades into a single, easy-to-use source. [Go to Terrapin](https://terrapinfinance.com/)
+
+## Legal & Terms
+
+### Customer Terms of Service (Overview)
+
+**Last updated: August 2024**
+
+These Customer Terms of Service (Terms) set out the agreement between you and SigTech and govern your use of the SigTech products and services made available to you via the SigTech platform. The Terms comprise the following documents:
+
+*   [Master Subscription Terms](https://sigtech.com/master-subscription-terms/): If your business has purchased a subscription to access SigTech's enterprise platform services, the principal commercial and legal terms which apply to are set out here
+*   [MAGIC Terms of Use](http://sigtech.com/magic-terms-of-service): These terms of use apply if you are using SigTech MAGIC
+*   [Additional Terms](http://sigtech.com/additional-terms): These include any additional terms and conditions which may apply to your use of specific products, free trials, add-ons or features on the Platform as well as our professional and other services
+
+We recommend that you read these Terms carefully and print off a copy or save them to your device for future reference.
+
+You accept and agree to these Terms by:
+
+*   signing an Order Form electronically or manually that refers to these Terms; or
+*   following the online prompts on our website indicating your acceptance of these Terms; or
+*   using the Platform or other Services provided by SigTech.
+
+We update these Terms from time to time. If you have a SigTech subscription, we will use reasonable efforts to notify you via email or an in-app notification when we make a material update to them. These Terms apply to the exclusion of any other terms that you seek to impose or incorporate, or which are implied by trade, custom, practice or course of dealing.
+
+### Master Subscription Terms
+
+**Last updated October 2022**
+
+**1\. Definitions**
+
+1.1 The following definitions and rules of interpretation in this clause apply to these Terms:
+
+**Affiliate:** means any entity that is directly or indirectly Controlling, Controlled by or under common Control with a Party.
+
+**Anti-Corruption Laws:** means all applicable anti-money laundering and anti-bribery laws or regulations of any jurisdiction.
+
+**API:** means application program interfaces.
+
+**Business Day:** means a day other than a Saturday, Sunday or public holiday, on which banks are open for business in the United Kingdom.
+
+**Confidential Information:** means any information or data that is disclosed by one Party to the other or obtained or received by a Party, whether orally or in writing, that is designated by a Party as being confidential, or which should be understood to be confidential given its nature and the circumstances surrounding its disclosure, Confidential Information shall include the Platform Content but exclude any information or data which:
+
+A) is public knowledge or subsequently becomes public knowledge other than through a breach of these Terms; or
+
+B) is already known to the other Party or in the other Party's possession at the time of disclosure or subsequently comes lawfully into the other Party's possession from a third party.
+
+**Control** (and **Controlling** and **Controlled** shall be construed accordingly) means:
+
+A) the ownership of more than fifty per cent (50%) of the voting shares of a Party or its parent; or
+
+B) the right or power to control the management of a Party.
+
+**Contract:** means the contract between you and us which comprises your Order Form(s), the Terms, any Third Party Terms, any policies incorporated by reference into the Order Forms or Terms and any amendments to any of those documents.
+
+**Cookie Policy:** means our cookie policy as published online at www.sigtech.com/privacy, and as may be updated or amended from time to time.
+
+**Cookies:** means small data files on a Device that store a User's account, Password and potentially other information.
+
+**Customer Data:** means any data, inputs, information or material uploaded to the Platform by you and any algorithms, formulae, codes or outputs generated solely by you on the Platform (other than Derived Data), including all Intellectual Property Rights with respect thereto.
+
+**Dataset:** means a specific category, sub-set or class of Market Data, or a collection of categories, sub-sets and/or classes of Market Data.
+
+**Derived Data:** means any data created by you and/or any User in connection with your and/or such User's use of the Platform and/or the Market Data and as a result of combining, processing, changing, converting or calculating the Market Data or any portion thereof with other data where the resulting data: (i) does not bear resemblance to the underlying Market Data; and (ii) cannot be readily reverse engineered, disassembled or decompiled so that a third party may access the Market Data via the Derived Data.
+
+**Devices:** means your and/or any User's infrastructure, computer and communications terminals, APIs and systems (including mobile devices) which are used to access the Platform or otherwise used in connection with this Contract.
+
+**Export Restrictions**: means all applicable sanctions and export control laws and regulations of any jurisdiction.
+
+**Fees:** means the fees, including but not limited to the Subscription Fees, set out in an Order Form which are payable by you under this Contract.
+
+**Force Majeure Event:** has the meaning given to it in clause 17.
+
+**Infringement Claim:** has the meaning given to it in clause 11.4.
+
+**Initial Subscription Term**: means the initial period of a User Subscription commencing on the date indicated as being the subscription start date on the relevant Order Form and ending 12 months thereafter, unless otherwise set out in the Order Form.
+
+**Intellectual Property Rights**: means patents, trade marks, rights (registered or unregistered) in any designs, applications for any of the foregoing, trade or business names, copyright (including rights in computer software) and topography rights, know-how, processes, names of customers, suppliers and third parties, and other proprietary knowledge and information, internet domain names, rights protecting goodwill and reputation, database rights (including rights of extraction) and all rights and forms of protection of a similar nature to any of the foregoing or having equivalent effect anywhere in the world and all rights under licences and consents in respect of any of the rights and forms of protection mentioned in this definition.
+
+**Local Entity:** shall have the meaning given to it in clause 8.10.
+
+**Losses:** means all losses, liabilities, damages, costs, expenses (including reasonable legal fees) and charges of every description arising from or in connection with this Contract.
+
+**Market Data:** means the information (including but not limited to data, text, images and sound recordings) to which you and your Users are granted access on the Platform in raw form pursuant to the terms of an Order Form or otherwise.
+
+**Normal Business Hours:** means 8.00 am to 5.00 pm local UK time on Business Days**.**
+
+**Order Form:** means the ordering document or online order evidencing Subscriptions for the Services that is entered into by the Parties and specifies the number of User licences (if applicable) and other services contracted for, applicable fees, billing periods, and other charges as agreed by the Parties.
+
+**Password:** means any password, passphrase, key, code, number, login credentials, or other authentication system issued to you and/or any User by us for the purpose of accessing and using the Platform.
+
+**Personal Data:** shall have the meaning given to 'personal data' in the General Data Protection Regulation (EU) 2016/679.
+
+**Personnel:** means employees, officers, agents, consultants, contractors and sub-contractors and their employees, officers, agents, consultants, contractors and subcontractors.
+
+**Platform:** means the software developed by us and/or our Affiliates (including its source code and the Platform Content) and made available to you and/or any Users online which enables you and/or any Users to access Market Data, research, implement and execute investment strategies based on market data inputs and other Customer Data, including all upgrades and modifications thereto.
+
+**Platform Content:** means all data, information and material owned by or licenced to us or any of our Affiliates (including Market Data) and contained within any part of the Platform but excluding the Customer Data.
+
+**Privacy Notice**: means our privacy notice as published online at [https://sigtech.com/legal/privacy-notice](https://sigtech.com/legal/privacy-notice), and as may be updated or amended from time to time.
+
+**Professional Services:** means the professional services as set out in an Order Form.
+
+**Renewal Period:** means the renewal period set out in the applicable Order Form.
+
+**Services:** means the products, features, add-ons and services provided by SigTech relating to the research, development, back testing, implementation and deployment of investment strategies.
+
+**SigTech, "we", "us" or "our":** means the applicable contracting entity as set out in the Order Form.
+
+**SigTech Materials:** means the manuals or usage guides on how to use the Platform as provided by us to you from time to time.
+
+**Subscription Fees:** means the subscription fees payable by you as set out in an Order Form.
+
+**Subscription Term:** means the subscription term set out in the applicable Order Form.
+
+**Support Services:** means the support services as set out in an Order Form.
+
+**Termination Date**: means the date on which this Contract is terminated in accordance with its terms.
+
+**Third Party Providers**: means any third party which from time to time provides Market Data, information, data, content, hardware, software or other services to SigTech and/or its Affiliates.
+
+**Third Party Terms**: has the meaning given to it in clause 4.2.
+
+**Users** (and each a **User**): means your Personnel who are authorised by you to access and use the Platform on your behalf in accordance with the terms of this Contract and the End User Terms.
+
+**User Terms and Conditions:** means the user terms and conditions which apply to each User's use of the Platform and which are made available to Users at [here](https://sigtech.com/user-terms-and-conditions/).
+
+**2\. Order Forms**
+
+2.1 This Contract shall govern all Order Forms and shall commence either (i) on the date specified on an Order Form or (ii) on the date we send you an email confirming our acceptance of your online order.
+
+2.2 To purchase our Services, you are required to complete an Order Form, which shall include details of, amongst other things, the number of User Subscriptions you wish to purchase and the Datasets you would like some or all of your Users to have access to.
+
+2.3 Our acceptance of the terms of your Order Form takes place when we have: (i) countersigned your Order Form and (ii) sent you an email outlining your order, at which point and on which date the Order Form shall take effect (unless otherwise set out in the Order Form).
+
+2.4 To access the Platform and the Services each of the individuals designated by you as a User will be required to create a user account. Any failure or delay by a User to activate his or her user account shall not extend or alter the duration or terms of any User Subscription.
+
+2.5 Each User Subscription shall commence on the subscription start date stated in the relevant Order Form and shall, unless terminated in accordance with the terms of the relevant Order Form, continue for the Subscription Term.
+
+2.6 Unless different terms are agreed in the relevant Order Form, each User Subscription shall automatically renew for the Renewal Period and then for subsequent consecutive Renewal Periods, unless either Party notifies the other Party of its election not to renew, as provided in clause 2.8.
+
+2.7 Except as expressly provided in the applicable Order Form, renewal of promotional or discount priced User Subscriptions shall be at the SigTech current list price in effect at the time of the applicable renewal.
+
+2.8 Unless otherwise set out in the Order Form, you may elect not to renew a User Subscription by notifying us writing at least 60 days prior to the expiration of the applicable Subscription Term. We may elect not to renew any User Subscription by notifying you in writing at least 30 days prior to the expiration of the applicable Subscription Term.
+
+2.9 Where either Party elects to renew only part of an Order Form, we may issue a new Order Form to reflect the changes to the Services.
+
+2.10 Unless otherwise agreed in an Order Form, during an Evaluation Period you may terminate that Order Form prior to the end of the Evaluation Period by giving at least one (1) week's prior written notice to us.
+
+**3\. License**
+
+3.1 Subject to your purchase of User Subscriptions in accordance with clause 2, we grant to you a limited, non-transferable, non-sublicensable, non-exclusive right, without the right to grant sublicenses, to permit Users to access and use:
+
+A) the Platform;
+
+B) the Services;
+
+C) the SigTech Materials; and
+
+D) any Market Data or Datasets selected by you in an Order Form.
+
+3.2 You agree and acknowledge that the Platform, the Platform Content and the Services:
+
+A) are for internal business use only; and
+
+B) may only be used for the purpose of researching, creating and generating Customer Data and/or Derived Data.
+
+3.3 We may from time to time, in our sole discretion, make any changes to the Platform, the Platform Content, the Services or the SigTech Materials that we deem necessary or reasonable to maintain or enhance the quality or delivery of our products and services to its customers or to comply with applicable laws and regulations.
+
+3.4 Subject to the restrictions set out in clause 6.1, you and your Users may freely exploit the Derived Data, including copying, storing, publishing or distributing such Derived Data.
+
+**4\. Third Party Providers**
+
+4.1 Our ability to grant you access to the Market Data and Datasets through the Platform is subject to the rights, licences and permissions obtained by us from Third Party Providers. A Third Party Provider may impose restrictions on the usage of its Market Data and Datasets and may change them from time to time. These restrictions may:
+
+A) prevent certain types of usage of its Market Data and Datasets; or
+
+B) require us or you to report usage of its Market Data and Datasets to the Third Party Provider; or
+
+C) require you to pay additional fees in connection with its Market Data and Datasets whether directly to the Third Party Provider or through SigTech.
+
+4.2 You can view any additional terms which Third Party Suppliers have provided to SigTech at [www.sigtech.com/third-party-suppliers-additional-terms](https://sigtech.com/third-party-provider-terms/) (**Third Party Terms**). We shall use commercially reasonable endeavours to ensure that this webpage is maintained with the latest versions of all additional terms imposed by Third Party Suppliers. Any such Third Party Terms are binding on you and deemed to be incorporated into and form part of this Contract.
+
+4.3 Our provision of the Market Data and Datasets is not guaranteed.
+
+4.4 We may require that you enter into a direct agreement with a Third Party Provider(s) in connection with certain Market Data or Datasets, in which case we shall not be obligated to provide the relevant Market Data or Datasets to you until we receive: (i) a copy of such agreement from you; or (ii) confirmation from the Third Party Provider that you have entered into such an agreement. If a Third Party Provider terminates the relevant agreement with you, you shall notify us without undue delay and we may, in our absolute discretion, suspend access to the relevant Market Data.
+
+4.5 We may, at any time:
+
+A) amend, suspend or revoke your access, or the access of any User to the Market Data or Dataset in whole or in part; and/or
+
+B) amend, suspend, revoke or update any or all of the information comprising the Market Data and/or cease provision of the Market Data; and
+
+C) in respect of any such amendment, revocation, cessation or update, we shall not be in breach of this Contract and have no liability to you or any User.
+
+**5\. Our obligations**
+
+5.1 We shall, during the Subscription Term, provide you with access to the Platform and make available the SigTech Materials to you on and subject to the terms of this Contract.
+
+5.2 Our provision of the Platform and the SigTech Materials shall be delivered using reasonable skill and care.
+
+5.3 We provide support to all Users via our website, email, user forums, third party instant messaging applications (such as Slack and Symphony) and by telephone. You accept that, although we will use reasonable endeavours to solve problems identified by you, the nature of software is such that no guarantee can be provided that any particular problem will be solved.
+
+5.4 We shall use commercially reasonable endeavours to make the Platform available 24 hours a day, seven days a week, during the Subscription Period, except for:
+
+A) scheduled maintenance carried out during the maintenance window which is usually 6.00 am to 10.00 am UK time on Saturdays; and
+
+B) unscheduled maintenance performed outside Normal Business Hours. We will use reasonable endeavours to give you at least 1 hour's notice in advance.
+
+5.5 We reserve the right to update the Platform at any time or to perform routine maintenance where necessary. We shall use best endeavours to ensure any updates or maintenance are performed outside Normal Business Hours.
+
+5.6 We do not:
+
+A) warrant that:
+
+1) your use of the Platform or our provision of the Market Data will be uninterrupted or error-free; or
+
+2) that the Platform will be available at all times.
+
+B) take responsibility for any delays, delivery failures, or any other loss or damage resulting from the transfer of data over communications networks and facilities, including the internet, and you acknowledge that the Platform and SigTech Materials may be subject to limitations, delays and other problems inherent in the use of such communications facilities
+
+5.7 Save as set out in an Order Form, we shall have no obligation to provide any training, guidance or consultancy services to you.
+
+**6\. Customer obligations**
+
+6.1 You shall not, and shall not attempt to, and shall procure that no User shall, or shall attempt to, do any of the following:
+
+A) use the Platform, the Market Data, Datasets and/or the SigTech Materials, including any Intellectual Property Rights in or related to any of them, in any manner which is inconsistent with the terms of this Contract;
+
+B) download, reverse engineer, copy, duplicate, reproduce, publish, distribute, display, transmit or communicate or disseminate to any third party the Platform, any Market Data or the SigTech Materials or any information obtained or derived therefrom (other than Derived Data);
+
+C) use the Market Data and/or Derived Data to create, attempt to create, or assist with the creation of, any index of tradable assets;
+
+D) use the Platform, the Market Data, the Derived Data and/or the SigTech Materials for any purpose, or in any manner, that would amount to commercial exploitation outside of your own organisation, including any purpose or manner that would compete with us, our Affiliates and/or any Third Party Providers;
+
+E) sell or attempt to sell any of the Market Data and/or any of your rights under this Contract to use the Market Data, the Platform and/or the SigTech Materials;
+
+F) use the Platform and/or the SigTech Materials in any way that violates, plagiarises or infringes upon the rights of any other person, including Intellectual Property Rights, data protection rights, the right of privacy or the right of publicity, or that would be abusive, profane, obscene, indecent, threatening, defamatory, offensive or otherwise illegal;
+
+G) use the Platform in any way that is not compliant with, or breaches, any applicable laws or regulations;
+
+H) except as expressly permitted by this Contract, give or grant (or allow others to give or grant) any third party access to or use of the Platform, the Market Data and/or the SigTech Materials;
+
+I) attempt to interfere with the proper working of the Platform, including attempting to circumvent security, usage monitoring, download restrictions, licence control or other protection mechanisms, or otherwise disrupt the operation of the Platform;
+
+J) obscure, remove or interfere with or add to any copyright notice, trade mark, trade name or other proprietary marking on, or visible during, the operation or use of the Platform or any Datasets or Market Data;
+
+K) use the Platform (and any part thereof) to do any of the following:
+
+1) upload, post, transmit or otherwise make available any viruses, corrupted files, or any other software, data, files or programs that may interrupt, damage, destroy or limit the functionality of the Platform (**Malware**);
+
+2) upload, store, transmit or otherwise make available any content, material or data that infringes any Intellectual Property Rights or data protection, privacy or other rights of any other person, or is in breach of any contractual duty or any obligation of confidence, or that does not comply with applicable laws or regulation, or is otherwise prohibited;
+
+3) engage in any fraudulent activity or further any fraudulent purpose; or
+
+4) attempt to gain unauthorised access to our systems or networks; and
+
+L) permit any User or any third party to do, or attempt to do, any of the foregoing.
+
+6.2 You shall:
+
+A) ensure that no Malware is transmitted from any Devices to the Platform and inform us immediately if you become aware of any such transmission;
+
+B) be responsible for establishing and maintaining your and each User's access to the Platform over a suitable Internet connection;
+
+C) at no cost to us, include such copyright, disclaimers and other notices in connection with the Market Data or Derived Data as we may require;
+
+D) only use the Platform in accordance with the SigTech Materials, any instructions provided by us and otherwise in accordance with this Contract;
+
+E) notify us immediately upon becoming aware of any breach, or potential breach, of this Contract or any use of the Platform by any User in breach of clause 6.1; and
+
+F) provide us with all necessary cooperation in relation to this agreement and all necessary access to such information as we may require in order for us to perform our obligations under this Contract.
+
+6.3 You acknowledge and agree that:
+
+A) you and/or any User will only be able to access Customer Data that conforms to the format and APIs supported by the Platform;
+
+B) the Platform has not been developed to meet your individual requirements;
+
+C) the Platform and/or Market Data are provided by us or any Third Party Providers on an "as is" basis;
+
+D) you accept responsibility for, and acknowledge you exercise your own independent judgement in, you selection of any of the Market Data, your use or intended use of such Market Data, and any results obtained;
+
+E) nothing contained on the Platform or in the Market Data constitutes any form of advice, assurance or guarantee;
+
+F) we shall not be responsible for any delays, delivery failures, or any other Losses resulting from the transfer of data over communications networks and facilities, including the internet;
+
+G) we shall have no liability for decisions made by you and/or any User as a result of using the Platform or the Market Data;
+
+H) any errors or disruptions in or to the Platform shall not constitute a breach of this Contract by us;
+
+I) you shall be fully responsible and liable for: (i) ensuring that you have all rights and necessary consents to use the Customer Data in connection with the Platform; and (ii) the quality and accuracy of the Customer Data; and
+
+J) we may use Cookies on the Platform and/or monitor, collect and use data on your and/or each User's use of the Platform in accordance with the terms of the Cookie Policy (which shall be incorporated herein by reference) and to ensure compliance with the terms of this Contract.
+
+**7\. Users**
+
+7.1 You shall provide a copy of the Terms to each of your Users and you shall procure that those Users comply with the Terms. A PDF version of these Terms is available for you to share with your Users on request.
+
+7.2 You shall ensure that:
+
+A) access to the Platform is restricted to registered and authorised Users;
+
+B) you shall ensure that the number of actual Users you authorise to access and use the Platform and the Services does not exceed the number of User Subscriptions set out in the Order Form(s);
+
+C) you will not allow any User login to be used by more than one individual User unless it has been reassigned in its entirety to another individual User, in which case the prior User shall no longer have any right to access or use the Platform of the Services; and
+
+D) each User shall only be permitted to have one active session on the Platform at any one time and must not disclose or share his or her Password.
+
+7.3 Any breach by a User of the terms of this Contract will be deemed to be a breach by you and the performance of any act or any omission under this Contract by a User will be deemed to be the act or omission by you.
+
+7.4 You will be fully responsible and directly liable for each User's use of the Platform, the Market Data, the SigTech Materials and compliance with the applicable provisions of this Contract and the User Terms and Conditions.
+
+7.5 Without prejudice to any other rights or remedies under this Contract, we reserve the right to suspend your access or the access of any User to the Platform from time to time at our sole discretion.
+
+7.6 Each User will be required to accept our User Terms and Conditions and our Privacy Notice online before being granted access to, and use of, the Platform.
+
+**8\. Fees**
+
+8.1 You shall pay all Fees and charges for the User Subscriptions and Services in accordance with the terms contained in the applicable Order Form.
+
+8.2 Except as set out in clause 11.6, Fees are non-refundable and non-cancellable.
+
+8.3 You are responsible for paying the Fees for all Subscriptions specified in an Order Form, whether or not such Subscriptions are used.
+
+8.4 You may add User Subscriptions, Datasets or Services (including add-ons and features) by executing an additional Order Form. Additional Subscriptions or Datasets shall be subject to the following:
+
+A) additional User Subscriptions, Datasets and/or Services will be coterminous with the applicable original Subscription Term; and
+
+B) the Subscription Fee payable in respect of any additional User Subscription(s) purchased by you will be the same as the Subscription Fee applicable to your then-existing User Subscriptions under the applicable original Order Form, pro-rated for the remainder of the Subscription Term or Renewal Term (as applicable), provided such additional User Subscriptions are on commercial terms which are identical to those which apply to your then-existing User Subscriptions.
+
+8.5 All Fees must be paid in the currency set out in the Order Form and are not subject to any deductions, credits, or other set-offs.
+
+8.6 You shall provide us with such billing and contact information as we may require and you shall promptly notify us of any changes such information.
+
+8.7 If you wish to dispute any Fees contained in any invoice, you must notify us in writing prior to the date that payment of such invoice is due or the invoice will be deemed correct and you waive your right to dispute it. Where you dispute any invoice, you shall pay any undisputed amounts in accordance with the terms of this Contract.
+
+8.8 Payment of the amount(s) described in an invoice is due within fourteen (14) days of the date of receipt of the invoice.
+
+8.9 All sums payable are exclusive of taxes (including withholding taxes, value added tax (VAT), or other taxes, but excluding income taxes imposed on us) for which you shall be liable and charged in addition thereto. If you are obliged to withhold or deduct any portion of the Fees, then we shall be entitled to receive from you such amounts as will ensure that the net receipt, after tax and duties, to us in respect of the Fees is the same as it would have been had the relevant payment not been subject to tax or duties.
+
+8.10 You may be invoiced by one of our Affiliates (each, a Local Entity). The relevant Local Entity is typically the Local Entity in your jurisdiction, or if we do not have a Local Entity in your jurisdiction, the Local Entity responsible for the jurisdiction in which you are located.
+
+8.11 If you exceed the User Subscription limit set out in your Order Form, we will immediately invoice you for the Subscription Fees incurred in respect of each such excess User for the period commencing on (and including) the date that such excess User(s) first accessed the Platform and ending on (and including) the last day of the Initial Subscription Term or Renewal Period (as applicable) and you will pay such User Fees in accordance with this clause 8.
+
+8.12 If you fail to pay any amount(s) payable under this Contract, we will be entitled to charge you interest on the overdue amount, payable by you on demand, from the due date up to the date of actual payment, after as well as before judgement, at the rate of 1.5% per month. Such interest shall accrue on a daily basis and be compounded quarterly.
+
+8.13 In respect of each Renewal Period, we shall be entitled to increase the Fees by a sum equivalent to the greater of:
+
+A) the increase in the UK Retail Price Index (RPI), as stated in the last published RPI figures; and
+
+B) up to 5%.
+
+8.14 Without prejudice to clause 8.13, we may increase or adjust the basis for calculating any Fees in our sole and absolute discretion provided that:
+
+A) such increase or adjustment will not take effect until the commencement of the next Renewal Period;
+
+B) we give you prior written notice of any such increase or adjustment in Fees at least thirty (30) days prior to the start of Renewal Period;
+
+C) if such increase or adjustment in Fees is greater than the increase permitted by clause 8.13 and you do not agree to such increase or adjustment in Fees, you may terminate this Contract by giving written notice to us prior to the expiry of the Initial Subscription Term or then current Renewal Period (as applicable), such notice not to expire before the end of the Initial Subscription Term or then current Renewal Period (as applicable); and
+
+D) if you do not give a notice of termination pursuant to (C) above, you will be taken to have accepted such increase or adjustment in Fees and will be invoiced accordingly.
+
+**9\. Professional Services**
+
+9.1 We shall provide the Professional Services (if any) as set out in the Order Form. Fees payable for any Professional Services provided by us shall be as set out in the Order Form. Unless otherwise set out in the Order Form, fees for professional services shall be payable in accordance with clause 8.
+
+9.2 We shall:
+
+A) use reasonable skill and care in our provision of the Professional Services; and
+
+B) use reasonable endeavours to meet any performance dates or milestones set out in the Order Form.
+
+9.3 You shall appoint a manager for the Professional Services and notify us who that person is in the Order Form. That person shall be responsible for overseeing the provision of the Professional Services and shall act as your primary point of contact while we are providing Professional Services.
+
+9.4 Unless otherwise set out in an Order Form, the Professional Services will be delivered remotely and our staff will not be required to attend your offices or use your equipment. You shall reimburse us for all reasonable expenses incurred by our staff in the course of providing Professional Services which require any of them to attend your offices or use your equipment, subject to production of receipts or other appropriate evidence of payment.
+
+**10\. Limitations of Liability**
+
+10.1 Unless specifically set out in an Order Form, and to the extent permitted by law, this Contract will exclude any implied conditions, warranties or other term as to, and us, our Affiliates and the Third Party Providers make no warranties (express or implied) in respect of, merchantability, fitness for a particular purpose, correctness, satisfactory quality, use of reasonable skill and care, accuracy, non-infringement, completeness, security, reliability or performance of the Platform, the Market Data, the Services or any other matter.
+
+10.2 You shall indemnify us against all Losses suffered or incurred by us arising out of, or in connection with, the Customer Data and/or your, and/or any User's, misuse of the Platform, the Market Data and/or the Derived Data.
+
+10.3 Subject to clauses 10.4 and 10.5, the maximum aggregate liability of either Party, whether in contract, tort or otherwise in connection with this Contract, shall in respect of the Initial Subscription Term or any Renewal Period, be limited to the aggregate amount of all Fees for the Initial Subscription Term or Renewal Period (as applicable).
+
+10.4 Subject to clause 10.5, and to the extent permitted by law, we will not be liable for any of the following:
+
+A) any Losses suffered as a result of any inability to access or use the Platform;
+
+B) any Losses resulting from or in connection with any Customer Data;
+
+C) any special, indirect, incidental or consequential damages, loss of profits, loss of anticipated savings, loss of business or business opportunities, loss of goodwill or loss of data,
+in each case, regardless of whether we were aware of the possibility of such loss or damage occurring, and, in the case of (A) and (B) above, arising out of your and/or any User's use of and/or reliance on the Platform, the Market Data or otherwise in connection with this Contract.
+
+10.5 Nothing in this Contract shall operate to limit or exclude either Party's liability for any of the following:
+
+A) death or personal injury caused by its negligence or the negligence of its Personnel;
+
+B) fraud or fraudulent misrepresentation;
+
+C) any other liability that cannot be excluded or limited by law; and
+
+D) in the case of you, a breach of clause 6.1(B) and the indemnity given in clause 10.2
+
+10.6 You agree that, in entering into this Contract, you have not relied on any representations (whether written or oral) of any kind other than those expressly set out in this Contract.
+
+**11\. Intellectual Property Rights**
+
+11.1 You acknowledge that all Intellectual Property Rights in the Platform, the Market Data and the SigTech Materials shall vest in us, our Affiliates and/or any Third Party Providers (as applicable) and you agree that neither you and/nor any User shall have any rights in respect of the Intellectual Property Rights in, or in relation to, the Platform, the Market Data or the SigTech Materials.
+
+11.2 You (or your licensors) will own the Intellectual Property Rights in the Customer Data and Derived Data and, save as set out in clause 6.2(C) and 11.3, we acknowledge that we shall neither own, nor have any rights in respect of, the Intellectual Property Rights in, or in relation to, the Customer Data and the Derived Data.
+
+11.3 You grant us a non-exclusive, worldwide, royalty-free, sub-licensable and irrevocable (for the duration of the Term) licence to use, copy, store, transmit and display the Customer Data and the Derived Data for the purposes of our provision of the Platform to you only. For the avoidance of doubt, such Customer Data and Derived Data shall not be made available to our other customers.
+
+11.4 Subject to clauses 11.5 and 11.7, we shall indemnify you against all Losses incurred by you as a result of any claim made against you that your use of the Platform in accordance with the terms of this Contract infringes the Intellectual Property Rights of a third party (Infringement Claim).
+
+11.5 The indemnity granted by us in clause 11.4 shall not apply to the extent that any Infringement Claim arises through, or in connection with, your and/or any User's misuse of the Platform or the breach of any terms of this Contract by you and/or any User.
+
+11.6 In the event that any Infringement Claim is brought against you we may, in our sole and absolute discretion:
+
+A) modify the Platform so that it ceases to be infringing while retaining the same or substantially the same features, functionality and performance;
+
+B) replace the Platform with a non-infringing alternative while retaining the same or substantially the same features, functionality and performance; or
+
+C) terminate this Contract and/or the relevant Order Form and refund the Fees paid by you for the Initial Subscription Term or Renewal Period (as applicable) minus any pro rata amount of User Fees paid or payable for the use of the Platform up to the Termination Date.
+
+11.7 You shall:
+
+A) promptly notify us in writing of any Infringement Claim or threat of an Infringement Claim;
+
+B) not make any admission or settlement in relation to an Infringement Claim without our prior written consent;
+
+C) provide us with all information and assistance that we may require in relation to an Infringement Claim;
+
+D) allow us complete control of the conduct of any Infringement Claim; and
+
+E) do all such acts and execute all such documents as may be required to give full effect to this clause 11.7.
+
+**12\. Termination**
+
+12.1 This Contract shall, unless terminated in accordance with its express terms, continue until the expiry of the last User Subscription, as set out in the relevant Order Form.
+
+12.2 Without affecting any other right or remedy available to us, we may terminate any Order Form and/or this Contract at any time on written notice if:
+
+A) continued access by you and/or the Users to the Platform would constitute a security risk to the Platform and/or to our other customers and users, as reasonably determined by us;
+
+B) you and/or any User have breached applicable laws or regulations in connection with your use of the Platform, including financial services regulatory requirements, Anti-Corruption Laws or Export Restrictions, or you and/or any User commits any fraudulent or criminal act;
+
+C) we determine, acting reasonably, that any User is using the Platform in breach of the applicable terms of this Contract (in particular, the restrictions set out in clause 6.1); or
+
+D) you undergo a change of Control.
+
+12.3 Without affecting any other right or remedy available to it, either Party may terminate this Contract at any time on written notice to the other if:
+
+A) the Party is in material or persistent breach of any of the terms of this Contract and either that breach is incapable of remedy, or Party fails to remedy that breach within fourteen (14) days of the date that the Party receives written notice requiring that breach to be remedied;
+
+B) the Party is the subject of a petition, order, or resolution in connection with winding up (whether solvent or insolvent), or you cease or threaten to cease to carry on all, or a material part of, your business;
+
+C) the Party is unable to pay its debts or the Party begins negotiations for, takes any proceedings concerning, proposes or makes any agreement for the deferral, rescheduling or other readjustment (or proposes or makes a general assignment or an arrangement or composition with or for the benefit of some or all of the Party's creditors) for all of (or all of a particular type of) the Party's debts;
+
+D) the Party is the subject of a petition for an administration order or an application for an administration order, or an administrator is appointed to it or notice of intention to appoint an administrator is given, or any other step is taken by any person with a view to the Party's administration under the Insolvency Act 1986 including the passing of any resolution by the Party's directors or shareholders approving the presentation of any such petition, the making of any such application or appointment or the giving of any such notice; and
+
+E) the Party suffers, or is subject to, any equivalent event, circumstance or procedure to those set out above in this clause 12.2(B) to (D) (inclusive).
+
+**13\. Consequences of Termination**
+
+13.1 On expiry or termination of this Contract for any reason:
+
+A) all rights granted to you and Users under this Contract shall cease;
+
+B) you and your Users shall cease all use of the Platform and the Market Data;
+
+C) you shall promptly pay us any sums due up to the Termination Date; and
+
+D) all Customer Data and Derived Data will be deleted from the Platform within sixty (60) days of the Termination Date.
+
+13.2 Termination or expiry of this Contract for any reason shall not affect or prejudice any of the Parties' accrued or outstanding rights or obligations at the time of termination or expiry; and the provisions of this Contract which expressly, or by their nature, survive termination.
+
+**14\. Data Protection**
+
+14.1 In this clause 14:
+
+A) "Data Protection Legislation" shall mean the Data Protection Act 2018, GDPR and the UK GDPR (as applicable) and any other applicable laws relating to the protection of personal data and the privacy of individuals (all as amended, updated or re-enacted from time to time);
+
+B) "GDPR" means the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation);
+
+C) "Personal Data", "Controller", "Processor", "Data Subject" and "Processing" shall have the same meaning as in the Data Protection Legislation.
+
+D) "UK GDPR" means the GDPR as it forms part of the law of England and Wales, Scotland and Northern Ireland by virtue of section 3 of the European Union (Withdrawal) Act 2018 and as amended by the Data Protection, Privacy and Electronic Communications (Amendments etc.) (EU Exit) Regulations 2019 (SI 2019/419).
+
+14.2 The parties acknowledge that we are a Processor acting on your behalf and that, for the purposes of this Contract:
+
+A) the types of Personal Data are: names, contact details and other personal information on invoices or receipts uploaded or any other item added or submitted to us, and the categories of Data Subjects are: your staff and any other individuals identified in documents uploaded by you ("Personal Data"); and
+
+B) the nature/purpose of the Processing is to enable us to carry out the Services (which form the subject matter of the Processing), or to provide analytics services as requested by you, and the duration of the Processing shall be the term of this Contract.
+
+14.3 We will also act as Controller in respect of our use of personal data relating to your Users and other staff.
+
+14.4 We shall comply with our obligations under the Data Protection Legislation in respect of the Personal Data and shall, where we are acting as your Processor:
+
+A) process the Personal Data only to the extent, and in such manner, as is necessary for the purpose of providing the Services and in accordance with your written instructions and this clause 14.
+
+B) implement appropriate technical and organisational measures in accordance with the Data Protection Legislation to ensure a level of security appropriate to the risks that are presented by such Processing;
+
+C) ensure that any employees or other persons authorised to Process the Personal Data are subject to appropriate obligations of confidentiality;
+
+D) on your request and taking into account the nature of the Processing and the information available to us, assist you in ensuring compliance with our obligations under Articles 32 to 36 of the General Data Protection Regulation (EU) 2016/679 (where applicable) in respect of the Personal Data;
+
+E) procure by way of a written contract that any subprocessors we appoint to carry out our processing obligations under this Contract will, at all times during the engagement, be subject to data processing obligations equivalent to those set out in this clause 14.
+
+F) not engage any third party to carry out our processing obligations under this Contract without obtaining your prior written consent, save that you hereby consent to our use of the following subprocessors: (i) members of our group; and (ii) service providers we appoint (a list of which is available on request);
+
+G) notify you, as soon as reasonably practicable, about any request or complaint received from a Data Subject (without responding to that request, unless authorised to do so by you) and assist you by technical and organisational measures, insofar as possible, for the fulfilment of your obligations in respect of such requests and complaints;
+
+I)notify you without undue delay on becoming aware of a Personal Data breach;
+
+J) on your request, make available all information necessary to demonstrate our compliance with this clause 14 and on reasonable advance notice in writing otherwise permit, and contribute to, audits you (or your authorised representative) carry out with respect to the Personal Data, provided that you shall (or shall ensure your authorised representatives shall):
+
+1) sign a non-disclosure agreement in terms acceptable to us prior to undertaking such audit;
+
+2)be accompanied by a member of our Staff at all times whilst on site during the audit;
+
+3) use your reasonable endeavours to ensure that the conduct of any such audit does not unreasonably disrupt our normal business operations; and
+
+4) comply with our relevant IT and security policies whilst carrying out any such audit.
+
+K) on termination or expiry of this Contract, destroy, delete or return (as you direct) all Personal Data and delete all existing copies of such data unless required by law to keep or store such Personal Data.
+
+14.5 You acknowledge that clause 14.4(A) shall not apply to the extent that we are required by law to Process the Personal Data other than in accordance with your instructions and we acknowledge that, in such a case, we must promptly inform you of the relevant legal requirement prior to Processing (unless the law prohibits the provision of such information on important grounds of public interest).
+
+**15\. Anti-Bribery and Export Restrictions**
+
+15.1 You undertake and warrant that:
+
+A) you will comply with all applicable Anti-Corruption Laws, and all applicable economic or trade sanctions, export control and securities laws;
+
+B) you have not violated any applicable Anti-Corruption Laws;
+
+C) you will notify us without undue delay if you have been found to have violated, or have been accused of possible violations of any applicable Anti-Corruption Laws;
+
+D) you will not take any action to cause us or any Third Party Providers to breach any Export Restrictions;
+
+E) you, your Affiliates and their respective directors are not the subject of any Export Restrictions; and
+
+F) you are not Controlled by any person or entity that is the subject of any Export Restrictions.
+
+**16\. Confidentiality and Publicity**
+
+16.1 Each Party may be given access to Confidential Information by the other Party in order to perform its obligations under this Contract. A party's Confidential Information shall not be deemed to include information that:
+
+A) is or becomes publicly known other than through any act or omission of the receiving Party;
+
+B) was in the other Party's lawful possession before the disclosure;
+
+C) is lawfully disclosed to the receiving Party by a third party without restriction on disclosure; or
+
+D) is independently developed by the receiving Party, which independent development can be shown by written evidence.
+
+16.2 Each Party shall hold the other's Confidential Information in confidence and not make the other's Confidential Information available to any third party, except that each Party may disclose the other's Confidential Information:
+
+A) to its employees, officers, representatives, service providers, subcontractors or advisers who need to know such information for the purposes of carrying out the Party's obligations under this Contract, provided always that such recipients shall be made aware of the confidential nature of the Confidential Information that receive and shall agree to reasonable confidentiality undertaking to protect such Confidential Information;
+
+B) as may be required by law, a court of competent jurisdiction or any governmental or regulatory authority; or
+
+C) as described in our Privacy Notice or under clause 14.4.
+
+16.3 Neither Party shall use the other Party's Confidential Information for any purpose other than to perform its obligations under this Contract and you will on written request or on termination of this Contract:
+
+A) cease to use our Confidential Information; and
+
+B) as soon as reasonably practicable return to us or securely destroy (or in respect of information held electronically permanently delete (to the extent technically feasible) all of our Confidential Information in your possession.
+
+16.4 You acknowledge that details of the Services, and the results of any performance tests of the Services, constitute our Confidential Information.
+
+16.5 We acknowledge that the Customer Data is your Confidential Information.
+
+16.6 On or before the Termination Date you shall:
+
+A) destroy or return to us all documents and materials containing, reflecting, incorporating or based on our Confidential Information, excluding Derived Data and Customer Data;
+
+B) erase all our Confidential Information from your computer and communications systems and devices used by you or your Users, or which is stored in electronic form;
+
+C) to the extent technically and legally practicable, erase all our Confidential Information which is stored in electronic form on systems and data storage services provided by third parties; and
+
+D) certify in writing to us, upon request, that you have complied with the requirements of this clause 16.6.
+
+16.7 Nothing in clause 16.6 shall require you to return or destroy any documents and materials containing or based on the our Confidential Information that you are required to retain by applicable law, or to satisfy the requirements of a regulatory authority or body of competent jurisdiction or the rules of any listing authority or stock exchange, to which it is subject.
+
+16.8 We may use your name, logo and relevant trademarks on our website and/or on our marketing materials, exclusively for the purposes of marketing and promotion.
+
+16.9 You agree that, if requested by us, you shall promptly provide at least one written testimony per year of your experience of using the Platform.
+
+**17\. General**
+
+17.1 **Force Majeure**. We shall not be liable to you for any delay or non-performance of your obligations under this Contract arising from any cause beyond our control including any of the following: strikes, lock-outs or other industrial disputes, pandemic or epidemic, failure of a utility service or transport or telecommunications network, act of God, war, riot, civil commotion, malicious damage, compliance with any law or governmental order, rule, regulation or direction, accident, breakdown of plant or machinery, fire, flood, storm, or default of suppliers or subcontractors (each a Force Majeure Event).
+
+17.2 **Waiver**. No failure or delay by either Party to exercise or enforce any right or remedy under this Contract shall constitute a waiver, or prejudice or restrict that Party's further right to exercise that, or any other, right or remedy.
+
+17.3 **Severability**. If any provision of this Contract is held to be invalid or unenforceable (in whole or in part) by any law, rule, order or regulation of any government or by the final determination of any court of competent jurisdiction, such invalidity or unenforceability shall not affect the other part of that provision or the other provisions of this Contract which shall remain in full force and effect.
+
+17.4 **Revision of terms**. We reserve the right to revise these Terms at any time. You are advised to check the website periodically for notices concerning such revisions. Your continued use (and the continued use by your Users) of the Platform and the Services shall be deemed to constitute acceptance of any revised terms.
+
+17.5 **Third Party Rights**
+
+A) Our Affiliates and the Third Party Providers may enforce any rights or benefits conferred by this Contract on our Affiliates and the Third Party Providers (as applicable).
+
+B) Subject to clause (A) and any permitted assignees, no person who is not a party to this Contract will have any rights under the Contracts (Rights of Third Parties) Act 1999 to benefit from or enforce this Contract.
+
+17.6 **Notices**. Notices to us must be sent to legal@sigtech.com, or to any other email address notified to you by us. We will send notices to you to the then current email address on your account.
+
+17.7 **Relationship of the Parties**
+
+A) Nothing in this Contract shall be construed as constituting a partnership between the Parties nor, except as expressly provided, shall it constitute, or be deemed to constitute, any Party as the agent of the other Party for any purpose.
+
+B) Subject to any express provisions to the contrary in this Contract, neither Party shall have the right or authority to and shall not act, enter into any contract, make any representation, give any warranty, incur any liability, assume any obligation, whether express or implied, of any kind, on behalf of the other Party, or bind the other Party in any way.
+
+17.8 **Entire Agreement**. This Contract contains the whole agreement between us and you relating to the subject matter of this Contract and supersedes all prior agreements, arrangements and understandings between the Parties relating to that subject matter.
+
+17.9 **Assignment**. You are not permitted to assign, transfer or sub-contract your rights under, or the benefit of, this Contract (in whole or in part) or purport to assign, transfer or sub-contract your rights under or the benefit of this Contract (in whole or in part) to any third party. We may assign, transfer or sub-contract our obligations or rights under this Contract (in whole or in part) to our Affiliates or Third Party Providers.
+
+17.10 **Governing law and jurisdiction**. This Contract (including any relevant non-contractual obligations) shall be governed by and construed in accordance with the laws of England and Wales and each Party irrevocably agrees that all proceedings arising out of or in connection with this Contract (including any non-contractual disputes or claims) shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+
+17.11 **Order of Precedence**. In the event of any discrepancy or inconsistency between these Terms and an Order Form, the Order Form will prevail to the extent of any such discrepancy or inconsistency.
+
+### MAGIC Platform Terms of Use
+
+**Last updated:** **October 2024**
+
+**1\. What is the MAGIC Platform?**
+
+1.1 The Multi-Agent Generative Investment Copilots ("**MAGIC**") Platform gives Users the ability to send Prompts to MAGIC Agents via the MAGIC Platform interface and receive Outputs from them, as described further [here](https://sigtech.com/products/magic/).
+
+1.2 The MAGIC Platform is operated by Sig Technologies Limited ("**SigTech**", "**we**," "**us**," or "**our**").
+
+1.3 **The MAGIC Services are provided for internal business use only (not consumers), and do not constitute any form of financial advice, assurance or guarantee.**
+
+**2\. What are these Terms?**
+
+2.1 These Terms govern your access to and use of the MAGIC Services and form an agreement between you and SigTech. By clicking the "Continue" button and (where relevant) ticking the check box presented with these Terms or by using the MAGIC Services, you agree to these Terms.
+
+2.2 You represent to us that: (A) you are lawfully able to enter into contracts, and (B) if you are purchasing credit on behalf of a company, partnership or any other incorporated entity you have legal authority to bind that entity ("**Organisation**"). Please see clause 20 for definitions of certain capitalised terms used in these Terms.
+
+2.3 These Terms do not supersede or prejudice any other terms that govern your use of other SigTech products.
+
+**3\. Users**
+
+3.1 The following describes the two types of accounts which control what tasks you can perform on the MAGIC Platform:
+
+(A) **Admin User:** You, as the Admin User, are the primary contact and will have the most control, you can access and use the MAGIC Services in accordance with these Terms and will also have responsibility for all matters relating to Charges and Payment under clause 5, monitoring usage and providing access to Authorised Users; and
+
+(B) **Authorised User:** means Personnel who are authorised by Admin Users to access and use the MAGIC Services in accordance with these Terms,
+
+together the "**Users".**
+
+3.2 You shall provide a copy of these Terms to each of your Authorised Users and you shall procure that those Authorised Users comply with the Terms. A PDF version of these Terms is available for you to share with your Authorised Users on request.
+
+3.3 You shall ensure that:
+
+(A) access to the MAGIC Platform is restricted to Authorised Users; and
+
+(B) each Authorised User shall only be permitted to have one active session on the MAGIC Platform at any one time.
+
+3.4 Any breach by an Authorised User of these Terms will be deemed to be a breach by you and your Organisation and the performance of any act or any omission under these Terms by an Authorised User will be deemed to be the act or omission by you and your Organisation.
+
+3.5 You and your Organisation will be fully responsible and directly liable for each Authorised User's use of the MAGIC Services and compliance with the applicable provisions of these Terms and SigTech's [Fair Usage Policy](https://sigtech.com/fair-usage-policy/).
+
+**4\. Access to the MAGIC Services**
+
+4.1 Unless you are already using other SigTech products, you will be required to create a user account by either contacting our account management team (support@sigtech.com) or following the relevant online prompts in order to use the MAGIC Services. You must provide us with accurate, complete and up-to-date contact information, including name and email address. You are responsible for the information you provide to us. All Users will need to create a user account. If Users have already created an account with SigTech, they only need to log into their account to start using the MAGIC Services.
+
+4.2 Once you have registered and set up an account with us, you (as Admin User) can choose the amount of credit you wish to purchase by clicking on the "Top up" button (or equivalent) in the Billings and Usage section of the Admin User's interface and then following the prompts that will appear on-screen. You may check and correct any input errors in your order up until the point at which you submit your order to us by clicking the "Confirm and Pay" button. After placing an order, we will confirm acceptance by sending you a confirmation email of your order.
+
+4.3 We may, at any time:
+
+(A) amend, suspend or revoke your access to the MAGIC Services in whole or in part; and/or
+
+(B) amend, suspend, revoke or update any or all of the information comprising the MAGIC Platform Content and/or cease provision of the MAGIC Platform Content; and
+
+(C) in respect of any such amendment, revocation, cessation or update, we shall not be in breach of these Terms and have no liability to you.
+
+**5\. Charges and Payment**
+
+5.1 You can pay for Calls in advance by purchasing credit. When you make the first payment, the Auto Top-up payment option will be triggered which means that when your balance reaches 20% or such other percentage that you choose from time to time, your credit will automatically top-up for the same amount of credit. You can opt-out of the Auto Top-Up option and instead and choose the Pay As You Go option by following the prompts on the payment page. If you choose the Pay As You Go option, you will be notified when your credit balance is approaching zero. If your credit balance is at zero, we may suspend your access to the MAGIC Services until you top-up your credit.
+
+5.2 Unless agreed otherwise, payment must be made by credit or debit card. We accept payment by most major credit and debit cards. Please note that, for security reasons, the statement address for the credit or debit card you use to pay must be the same as your contact address for the order. All payments are collected and processed via our third-party payment provider, currently Stripe.  We will notify you whenever your balance is topped-up.
+
+5.3 Credit will expire if it is not used within twelve (12) months of purchase, but we will notify you of the upcoming expiry of credit.
+
+**6\. Licence**
+
+6.1 Subject to your purchase of credit in accordance with clause 5, we grant to you a limited, non-transferable, non-sublicensable, non-exclusive right, and without the right to grant sublicenses, to permit Authorised Users to access and use the MAGIC Services:
+
+6.2 You agree and acknowledge that the MAGIC Services:
+
+(A) are for internal business use only; and
+
+(B) may only be used for the purpose of researching, creating and generating User Data and/or Outputs.
+
+6.3 We may from time to time, in our sole discretion, make any changes to the MAGIC Services, (including the addition or removal of MAGIC Agents) that we deem necessary or reasonable to maintain or enhance the quality or delivery of our products and services to our customers or to comply with our contractual obligations to third parties or to comply with applicable laws and regulations.
+
+6.4 Subject to the restrictions set out in clause 9.1, you and your Authorised Users may freely exploit the Outputs, including copying, storing, publishing or distributing such Outputs.
+
+**7\. Third Party Providers**
+
+7.1 Our ability to grant you access to the MAGIC Agents through the MAGIC Platform is subject to the rights, licences and permissions obtained by us from Third Party Providers. A Third Party Provider may impose restrictions on the usage of its MAGIC Agents and may change them from time to time. These restrictions may:
+
+(A) limit or prevent certain types of usage of its MAGIC Agent(s); or
+
+(B) require us to report usage of its MAGIC Agents to the Third Party Provider.
+
+**8\. Our obligations**
+
+8.1 We shall provide you with access to the MAGIC Services on and subject to these Terms.
+
+8.2 Our provision of the MAGIC Services shall be delivered using reasonable skill and care.
+
+8.3 We shall use commercially reasonable endeavours to make the MAGIC Platform available 24 hours a day, seven days a week, except for:
+
+(A) scheduled maintenance carried out during the maintenance window which is usually 6.00 am to 10.00 am UK time on Saturdays; and
+
+(B) unscheduled maintenance performed outside Normal Business Hours. We will use reasonable endeavours to give you at least 1 hours' notice in advance.
+
+8.4 We reserve the right to update the MAGIC Platform at any time or to perform routine maintenance where necessary. We shall use reasonable endeavours to ensure any updates or maintenance are performed outside Normal Business Hours.
+
+8.5 We do not:
+
+(A) warrant that:
+
+(I) your use of the MAGIC Platform or our provision of the MAGIC Platform Content will be uninterrupted or error-free; or
+
+(II) that the MAGIC Platform will be available at all times; or
+
+(B) take responsibility for any delays, delivery failures, or any other loss or damage resulting from the transfer of data over communications networks and facilities, including the internet, and you acknowledge that the MAGIC Services may be subject to limitations, delays and other problems inherent in the use of such communications facilities.
+
+8.6 We shall have no obligation to provide any training, guidance or consultancy services to you.
+
+**9\. Your obligations**
+
+9.1 You shall not, and shall not attempt to, and shall procure that no Authorised User shall, or shall attempt to, do any of the following:
+
+(A) use the MAGIC Services, including any Intellectual Property Rights in or related to any of them, in any manner which is inconsistent with these Terms;
+
+(B) download, reverse engineer, copy, duplicate, reproduce, publish, distribute, display, transmit or communicate or disseminate to any third party the MAGIC Platform, any MAGIC Platform Content or the SigTech Materials or any information obtained or derived therefrom (other than Outputs.);
+
+(C) use the MAGIC Platform Content and/or Outputs to create, attempt to create, or assist with the creation of, any index of tradable assets;
+
+(D) use the MAGIC Services for any purpose, or in any manner, that would amount to commercial exploitation outside of your own organisation, including any purpose or manner that would compete with us, our Affiliates and/or any Third Party Providers;
+
+(E) sell or attempt to sell any of the MAGIC Platform Content and/or any of your rights under these Terms to use the MAGIC Services;
+
+(F) use the MAGIC Services in any way that violates, plagiarises or infringes upon the rights of any other person, including Intellectual Property Rights, data protection rights, the right of privacy or the right of publicity, or that would be abusive, profane, obscene, indecent, threatening, defamatory, offensive or otherwise illegal;
+
+(G) use the MAGIC Services in any way that is not compliant with, or breaches, any applicable laws or regulations;
+
+(H) except as expressly permitted by these Terms, give or grant (or allow others to give or grant) any third party access to or use of the MAGIC Services;
+
+(I) attempt to interfere with the proper working of the MAGIC Platform, including attempting to circumvent security, usage monitoring, download restrictions, licence control or other protection mechanisms, or otherwise disrupt the operation of the MAGIC Platform;
+
+(J) obscure, remove or interfere with or add to any copyright notice, trade mark, trade name or other proprietary marking on, or visible during, the operation or use of the MAGIC Platform or any MAGIC Platform Content;
+
+(K) use the MAGIC Platform (and any part thereof) to do any of the following:
+
+(I) upload, post, transmit or otherwise make available any viruses, corrupted files, or any other software, data, files or programs that may interrupt, damage, destroy or limit the functionality of the MAGIC Platform (malware);
+
+(II) upload, store, transmit or otherwise make available any content, material or data that infringes any Intellectual Property Rights or data protection, privacy or other rights of any other person, or is in breach of any contractual duty or any obligation of confidence, or that does not comply with applicable laws or regulation, or is otherwise prohibited;
+
+(III) engage in any fraudulent activity or further any fraudulent purpose; or
+
+(IV) attempt to gain unauthorised access to our systems or networks; and
+
+(L) permit any Authorised User or any third party to do, or attempt to do, any of the foregoing.
+
+9.2 You shall:
+
+(A) ensure that no malware is transmitted from any Devices to the MAGIC Platform and inform us immediately if you become aware of any such transmission;
+
+(B) be responsible for establishing and maintaining your and each User's access to the MAGIC Platform over a suitable Internet connection;
+
+(C) at no cost to us, include such copyright, disclaimers and other notices in connection with the MAGIC Platform Content or Outputs as we may require;
+
+(D) only use the MAGIC Services in accordance with any instructions provided by us and otherwise in accordance with these Terms;
+
+(E) notify us immediately upon becoming aware of any breach, or potential breach, of these Terms or any use of the MAGIC Services by any Authorised User in breach of clause 9.1; and
+
+(F) provide us with all necessary cooperation and all necessary access to such information as we may require in order for us to perform our obligations under these Terms.
+
+9.3 You acknowledge and agree that:
+
+(A) you and/or any Authorised Users will only be able to access User Data that conforms to the format and APIs supported by the MAGIC Platform;
+
+(B) the MAGIC Platform has not been developed to meet your individual requirements;
+
+(C) the MAGIC Services are provided by us or any Third Party Providers on an "as is" basis;
+
+(D) you accept responsibility for, and acknowledge you exercise your own independent judgement in, your selection of any of the MAGIC Platform Content, your use or intended use of such MAGIC Platform Content, and any results obtained;
+
+(E) nothing contained on the MAGIC Platform or in the MAGIC Platform Content constitutes any form of financial advice, assurance or guarantee;
+
+(F) the MAGIC Platform is intended for informational purposes only and that the Outputs generated by the MAGIC Agents may not be accurate, complete, or suitable for any specific purpose and we disclaim all liability for any decisions, including investment decisions, made based on the Outputs of or use of the MAGIC Services;
+
+(G) we shall not be responsible for any delays, delivery failures, or any other Losses resulting from the transfer of data over communications networks and facilities, including the internet;
+
+(H) we shall have no liability for decisions made by you and/or any Authorised User as a result of using the MAGIC Services;
+
+(I) any errors or disruptions in or to the MAGIC Platform or MAGIC Platform Content shall not constitute a breach of these Terms by us;
+
+(J) you shall be fully responsible and liable for: (I) ensuring that you have all rights and necessary consents to use the User Data in connection with the MAGIC Platform; and (II) the quality and accuracy of the User Data;
+
+(K) we may use cookies on the Platform and/or monitor, collect and use data on your and/or each User's use of the Platform in accordance with the terms of the [Cookie Policy](https://sigtech.com/cookie-policy/) and to ensure compliance with these Terms;
+
+(L) we shall not be liable for or in relation to any unlawful, illegal, or prohibited data uploaded by you, including User Data; and
+
+(M) we shall not be liable for or in relation to any offensive, discriminatory, or unlawful content generated by the MAGIC Platform. You acknowledge the inherent risks associated with Artificial Intelligence and agree to exercise final judgment and due diligence in the use of the MAGIC Platform. You are responsible for ensuring that no unlawful, offensive, or discriminatory content is generated or used in connection with the MAGIC Platform.
+
+**10\. Limitations of Liability**
+
+10.1 To the maximum extent permitted by law, these Terms will exclude any implied conditions, warranties or other term as to, and us, our Affiliates and the Third Party Providers make no warranties (express or implied) in respect of, merchantability, fitness for a particular purpose, correctness, satisfactory quality, use of reasonable skill and care, accuracy, non-infringement, completeness, security, reliability or performance of the MAGIC Services or any other matter.
+
+10.2 You shall indemnify us against all Losses suffered or incurred by us arising out of, or in connection with:
+
+(A) the User Data including any claim that the User Data infringes, misappropriates, or violates any third-party intellectual property rights or any applicable laws; and
+
+(B) your and /or any Authorised User's, misuse of the MAGIC Platform, the Platform Content and/or the Outputs.
+
+10.3 Subject to clauses 10.4 and 10.5, SigTech's maximum aggregate liability , whether in contract, tort or otherwise in connection with these Terms, shall not exceed the greater of (a) the amounts paid or payable by you during the twelve (12) months immediately preceding the event giving rise to the claim and (b) £10,000.00.
+
+10.4 Subject to clause 10.5, and to the extent permitted by law, we will not be liable for any of the following:
+
+(A) any Losses suffered as a result of any inability to access or use the MAGIC Services
+
+(B) any Losses resulting from or in connection with any User Data; or
+
+(C) any special, indirect, incidental or consequential damages, loss of profits, loss of anticipated savings, loss of business or business opportunities, loss of goodwill or loss of data in each case, regardless of whether we were aware of the possibility of such loss or damage occurring, and, in the case of (A) and (B) above, arising out of your and/or any Authorised  User's use of and/or reliance on the MAGIC Platform, the MAGIC Platform Content or otherwise in connection with these Terms.
+
+10.5 Nothing in these Terms shall operate to limit or exclude either party's liability for any of the following:
+
+(A) death or personal injury caused by its negligence or the negligence of its Personnel;
+
+(B) fraud or fraudulent misrepresentation;
+
+(C) any other liability that cannot be excluded or limited by law; and
+
+(D) in the case of you, a breach of clause 9.1(B) and the indemnity given in clause 10.2
+
+10.6 You agree that, in entering into these Terms, you have not relied on any representations (whether written or oral) of any kind other than those expressly set out in these Terms.
+
+**11\. Intellectual Property Rights**
+
+11.1 You acknowledge that all Intellectual Property Rights in the MAGIC Services shall vest in us, our Affiliates and/or any Third Party Providers (as applicable) and you agree that neither you and/nor any Authorised User shall have any rights in respect of the Intellectual Property Rights in, or in relation to, the MAGIC Services.
+
+11.2 You (or your licensors) will, as between You and Us, own the Intellectual Property Rights in the User Data and Outputs and, save as set out in clause 9.2(C) and 11.3, we acknowledge that we shall neither own, nor have any rights in respect of, the Intellectual Property Rights in, or in relation to, the User Data and the Outputs.
+
+11.3 You grant us a non-exclusive, worldwide, royalty-free, sub-licensable and irrevocable (for the duration of the Term) licence to use, copy, store, transmit and display the User Data and the Outputs for the purposes of our provision of the MAGIC Services to you only. For the avoidance of doubt, such User Data and Outputs shall not be made available to our other customers.
+
+11.4 Subject to clauses 11.5 and 11.7, we shall indemnify you against all Losses incurred by you as a result of any claim made against you that your use of the Platform in accordance with these Terms infringes the Intellectual Property Rights of a third party ("**Infringement Claim**").
+
+11.5 The indemnity granted by us in clause 11.4 shall not apply to the extent that any Infringement Claim arises through, or in connection with, your and/or any User's misuse of the MAGIC Platform or the breach of any terms of these Terms by you and/or any User.
+
+11.6 In the event that any Infringement Claim is brought against you we may, in our sole and absolute discretion:
+
+(A) modify the MAGIC Platform so that it ceases to be infringing while retaining the same or substantially the same features, functionality and performance;
+
+(B) replace the MAGIC Platform with a non-infringing alternative while retaining the same or substantially the same features, functionality and performance; or
+
+(C) terminate your access to the MAGIC Services and refund the payments made by you for the credit
+
+11.7 You shall:
+
+(A) promptly notify us in writing of any Infringement Claim or threat of an Infringement Claim;
+
+(B) not make any admission or settlement in relation to an Infringement Claim without our prior written consent;
+
+(C) provide us with all information and assistance that we may require in relation to an Infringement Claim;
+
+(D) allow us complete control of the conduct of any Infringement Claim; and
+
+(E) do all such acts and execute all such documents as may be required to give full effect to this clause 11.7.
+
+**12\. Termination and Suspension**
+
+12.1 You can stop using the MAGIC Services at any time. We reserve the right to terminate or suspend your access to the MAGIC Services and/or delete your account at any time on written notice if we determine:
+
+(A) continued access by you and/or the Authorised Users to the MAGIC Platform would constitute a security risk to the MAGIC Platform and/or to our other customers and users, as reasonably determined by us;
+
+(B) you and/or any Authorised User have breached applicable laws or regulations in connection with your use of the MAGIC Platform, including financial services regulatory requirements, Anti-Corruption Laws or Export Restrictions, or you and/or any Authorised User commits any fraudulent or criminal act; or
+
+(C) we determine, acting reasonably, that you and/or any Authorised User is using the MAGIC Platform in breach of the applicable terms of these Terms (in particular, the restrictions set out in clause 9.1.
+
+12.2 We also may terminate your account if it has been inactive for over six (6) months, provided there is no credit remaining on your account. If we do, we will provide you with advance notice.
+
+**13\. Consequences of Termination or Suspension**
+
+13.1 On termination or suspension of your access to the MAGIC Services:
+
+(A) all rights granted to you and Authorised Users under these Terms shall cease;
+
+(B) you and your Authorised Users shall cease all use of the MAGIC Services; and
+
+(C) all User Data may be deleted from the MAGIC Platform.
+
+**14\. Data Protection**
+
+14.1 In this clause 14:
+
+(A) "Data Protection Legislation" shall mean the Data Protection Act 2018, GDPR and the UK GDPR (as applicable) and any other applicable laws relating to the protection of personal data and the privacy of individuals (all as amended, updated or re-enacted from time to time);
+
+(B) "GDPR" means the Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation);
+
+(C) "Personal Data", "Controller", "Processor", "Data Subject" and "Processing" shall have the same meaning as in the Data Protection Legislation; and
+
+(D) "UK GDPR" means the GDPR as it forms part of the law of England and Wales, Scotland and Northern Ireland by virtue of section 3 of the European Union (Withdrawal) Act 2018 and as amended by the Data Protection, Privacy and Electronic Communications (Amendments etc.) (EU Exit) Regulations 2019 (SI 2019/419).
+
+(E) The parties acknowledge that we are a Processor acting on your behalf and that, for the purposes of these Terms:
+
+(F) types of Personal Data include: names, contact details and other personal information on invoices or receipts uploaded or any other item added or submitted to us, and the categories of Data Subjects are: your staff and any other individuals identified in documents uploaded by you ("**Personal Data**"); and
+
+(G) the nature/purpose of the Processing is to enable us to carry out the Services (which form the subject matter of the Processing), or to provide analytics services as requested by you, and the duration of the Processing shall be the term of these Terms.
+
+14.2 We will also act as Controller in respect of our use of personal data relating to your Users.
+
+14.3 We shall comply with our obligations under the Data Protection Legislation in respect of the Personal Data and shall, where we are acting as your Processor:
+
+(A) process the Personal Data only to the extent, and in such manner, as is necessary for the purpose of providing the MAGIC Services and in accordance with your written instructions and this clause 14;
+
+(B) implement appropriate technical and organisational measures in accordance with the Data Protection Legislation to ensure a level of security appropriate to the risks that are presented by such Processing;
+
+(C) ensure that any employees or other persons authorised to Process the Personal Data are subject to appropriate obligations of confidentiality;
+
+(D) on your request and taking into account the nature of the Processing and the information available to us, assist you in ensuring compliance with our obligations under Articles 32 to 36 of the General Data Protection Regulation (EU) 2016/679 (where applicable) in respect of the Personal Data;
+
+(E) procure by way of a written contract that any sub-processors we appoint to carry out our processing obligations under these Terms will, at all times during the engagement, be subject to data processing obligations equivalent to those set out in this clause 14;
+
+(F) notify you, as soon as reasonably practicable, about any request or complaint received from a Data Subject (without responding to that request, unless authorised to do so by you) and assist you by technical and organisational measures, insofar as possible, for the fulfilment of your obligations in respect of such requests and complaints;
+
+(G) on your request, make available all information necessary to demonstrate our compliance with this clause 14;
+
+(H) on termination or suspension of your access to the MAGIC Services, destroy, delete or return (as you direct) all Personal Data in accordance with our then current data retention policy.
+
+**15\. Machine Learning**
+
+You acknowledge and agree that the MAGIC Platform may use your User Data to develop and improve the capabilities of the MAGIC Platform and MAGIC Services, provided that:
+
+(A) such inputs will be anonymised so that no individual can be specifically identified; and
+
+(B) such inputs will not be shared with any other user of the Platform.
+
+**16\. Anti-Bribery and Export Restrictions**
+
+You undertake and warrant that:
+
+(A) you will comply with all applicable Anti-Corruption Laws, and all applicable economic or trade sanctions, export control and securities laws;
+
+(B) you have not violated any applicable Anti-Corruption Laws;
+
+(C) you will notify us without undue delay if you have been found to have violated, or have been accused of possible violations of any applicable Anti-Corruption Laws;
+
+(D) you will not take any action to cause us to breach any Export Restrictions;
+
+(E) you, your Affiliates and their respective directors are not the subject of any Export Restrictions; and
+
+(F) you are not Controlled by any person or entity that is the subject of any Export Restrictions.
+
+**17\. Confidentiality and Publicity**
+
+17.1 Each party may be given access to Confidential Information by the other party in order to perform its obligations under these Terms. A party's Confidential Information shall not be deemed to include information that:
+
+(A) is or becomes publicly known other than through any act or omission of the receiving party;
+
+(B) was in the other party's lawful possession before the disclosure;
+
+(C) is lawfully disclosed to the receiving party by a third party without restriction on disclosure; or
+
+(D) is independently developed by the receiving party, which independent development can be shown by written evidence.
+
+17.2 Each party shall hold the other's Confidential Information in confidence and not make the other's Confidential Information available to any third party, except that each party may disclose the other's Confidential Information:
+
+(A) to its employees, officers, representatives, service providers, subcontractors or advisers who need to know such information for the purposes of carrying out the party's obligations under these Terms, provided always that such recipients shall be made aware of the confidential nature of the Confidential Information that receive and shall agree to reasonable confidentiality undertaking to protect such Confidential Information;
+
+(B) as may be required by law, a court of competent jurisdiction or any governmental or regulatory authority; or
+
+(C) as described in our [Privacy Notice](https://sigtech.com/privacy/) or under clause 17.4.
+
+17.3 Neither party shall use the other party's Confidential Information for any purpose other than to perform its obligations under these Terms and you will on written request or on termination of these Terms:
+
+(A) cease to use our Confidential Information; and
+
+(B) as soon as reasonably practicable return to us or securely destroy (or in respect of information held electronically permanently delete (to the extent technically feasible) all of our Confidential Information in your possession.
+
+17.4 You acknowledge that details of the MAGIC Services, and the results of any performance tests of the MAGIC Services, constitute our Confidential Information.
+
+17.5 We acknowledge that the User Data is your Confidential Information.
+
+17.6 On or before the Termination Date you shall:
+
+(A) destroy or return to us all documents and materials containing, reflecting, incorporating or based on our Confidential Information, excluding Outputs and User Data;
+
+(B) erase all our Confidential Information from your computer and communications systems and devices used by you or your Authorised Users, or which is stored in electronic form;
+
+(C) to the extent technically and legally practicable, erase all our Confidential Information which is stored in electronic form on systems and data storage services provided by third parties; and
+
+(D) certify in writing to us, upon request, that you have complied with the requirements of this clause 17.6.
+
+17.7 Nothing in clause 17.6 shall require you to return or destroy any documents and materials containing or based on our Confidential Information that you are required to retain by applicable law, or to satisfy the requirements of a regulatory authority or body of competent jurisdiction or the rules of any listing authority or stock exchange, to which it is subject.
+
+17.8 We may use your name, logo and relevant trademarks on our website and/or on our marketing materials, exclusively for the purposes of marketing and promotion.
+
+17.9 You agree that, if requested by us, you shall promptly provide at least one written testimony per year of your experience of using the Platform.
+
+**18\. General**
+
+18.1 **Force Majeure**. We shall not be liable to you for any delay or non-performance of our obligations under these Terms arising from any cause beyond our control including any of the following: strikes, lock-outs or other industrial disputes, pandemic or epidemic, failure of a utility service or transport or telecommunications network, act of God, war, riot, civil commotion, malicious damage, compliance with any law or governmental order, rule, regulation or direction, accident, breakdown of plant or machinery, fire, flood, storm, or default of suppliers or subcontractors (each a Force Majeure Event).
+
+18.2 **Waiver**. No failure or delay by either party to exercise or enforce any right or remedy under these Terms shall constitute a waiver, or prejudice or restrict that party's further right to exercise that, or any other, right or remedy.
+
+18.3 **Severability.** If any provision of these Terms is held to be invalid or unenforceable (in whole or in part) by any law, rule, order or regulation of any government or by the final determination of any court of competent jurisdiction, such invalidity or unenforceability shall not affect the other part of that provision or the other provisions of these Terms which shall remain in full force and effect.
+
+18.4 **Revision of terms.** We reserve the right to revise these Terms from time to time, although no such change will affect any credit that you have already purchased. We will use reasonable endeavours to notify you in advance of any such changes.
+
+18.5 **Notices**. Notices to us must be sent to legal@sigtech.com, or to any other email address notified to you by us. We will send notices to you to the then current email address on your account.
+
+18.6 **Relationship of the Parties**
+
+(A) Nothing in these Terms shall be construed as constituting a partnership between the parties nor, except as expressly provided, shall it constitute, or be deemed to constitute, any party as the agent of the other party for any purpose.
+
+(B) Subject to any express provisions to the contrary in these Terms, neither party shall have the right or authority to and shall not act, enter into any contract, make any representation, give any warranty, incur any liability, assume any obligation, whether express or implied, of any kind, on behalf of the other party, or bind the other party in any way.
+
+18.7 **Entire Agreement.** These Terms contain the whole agreement between us and you relating to the subject matter of these Terms and supersedes all prior agreements, arrangements and understandings between the parties relating to that subject matter.
+
+18.8 **Assignment.** We may assign or transfer our rights and obligations under these Terms to another entity but will always notify you in writing or by posting on the website if this happens. You may only assign or transfer your rights or your obligations under these Terms to another entity if we agree in writing.
+
+18.9 **Governing law and jurisdiction.** The Terms (including any relevant non-contractual obligations) shall be governed by and construed in accordance with the laws of England and Wales and each party irrevocably agrees that all proceedings arising out of or in connection with these Terms (including any non-contractual disputes or claims) shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+
+18.10 **Contacting Us.** Please submit any questions you have about these Terms or the MAGIC Services by email to support@sigtech.com.
+
+**19\. Definitions**
+
+19.1 The following definitions and rules of interpretation in this clause apply to these Terms:
+
+**Affiliate:** means any entity that is directly or indirectly controlling, controlled by or under common control with a party.
+
+**Anti-Corruption Laws:** means all applicable anti-money laundering and anti-bribery laws or regulations of any jurisdiction.
+
+**API:** means application program interfaces.
+
+**Business Day:** means a day other than a Saturday, Sunday or public holiday, on which banks are open for business in the United Kingdom.
+
+**Call:** means an API request sent from MAGIC or one of its Agents to an API endpoint to access or receive a service and/or data or perform a specific action.
+
+**Confidential Information**: means any information or data that is disclosed by one party to the other or obtained or received by a party, whether orally or in writing, that is designated by a party as being confidential, or which should be understood to be confidential given its nature and the circumstances surrounding its disclosure, Confidential Information shall include the Platform Content but exclude any information or data which:
+
+(A) is public knowledge or subsequently becomes public knowledge other than through a breach of these Terms; or
+
+(B) is already known to the other party or in the other party's possession at the time of disclosure or subsequently comes lawfully into the other party's possession from a third party.
+
+**Devices:** means your infrastructure, computer and communications terminals, APIs and systems (including mobile devices) which are used to access the Platform or otherwise used in connection with these Terms.
+
+**Export Restrictions:** means all applicable sanctions and export control laws and regulations of any jurisdiction.
+
+**Force Majeure Event:** has the meaning given to it in clause 18.1.
+
+**Infringement Claim**: has the meaning given to it in clause 11.4.
+
+**Intellectual Property Rights:** means patents, trade marks, rights (registered or unregistered) in any designs, applications for any of the foregoing, trade or business names, copyright (including rights in computer software) and topography rights, know-how, processes, names of customers, suppliers and third parties, and other proprietary knowledge and information, internet domain names, rights protecting goodwill and reputation, database rights (including rights of extraction) and all rights and forms of protection of a similar nature to any of the foregoing or having equivalent effect anywhere in the world and all rights under licences and consents in respect of any of the rights and forms of protection mentioned in this definition.
+
+**Losses:** means all losses, liabilities, damages, costs, expenses (including reasonable legal fees) and charges of every description arising from or in connection with these Terms.
+
+**MAGIC Agent:** means a software entity developed and maintained by SigTech that can operate independently within the MAGIC environment in response to Prompts by processing inputs, making Calls, making decisions, and executing actions to accomplish the predefined objectives defined by a Prompt.
+
+**MAGIC Platform:** means the MAGIC tool developed by us (including its source code and the Platform Content) and made available to you.
+
+**MAGIC Platform Content:** means all data, information and material owned by or licensed to us or any of our Affiliates and contained within, accessed by, or generated as Outputs by any part of the MAGIC Platform but excluding the User Data.
+
+**MAGIC Services:** means the provision of the MAGIC Platform, MAGIC Platform Content, MAGIC Agents and any SigTech Materials.
+
+**Normal Business Hours**: means 8.00 am to 5.00 pm local UK time on Business Days.
+
+**Organisation:** has the meaning given to it in clause 2.2.
+
+**Outputs:** means the new data (in whatever format, including but not limited to words, graphs and tables) generated by MAGIC Agents in response to a given Prompt from a User.
+
+**Password:** means any password, passphrase, key, code, number, login credentials, or other authentication system issued to you and/or any Authorised User by us for the purpose of accessing and using the Platform.
+
+**Personal Data:** shall have the meaning given to 'personal data' in the General Data Protection Regulation (EU) 2016/679.
+
+**Personnel**: means employees, officers, agents, consultants, contractors and sub-contractors and their employees, officers, agents, consultants, contractors and subcontractors.
+
+**Prompt:** means a natural language instruction or query provided by a user using the MAGIC interface which communicates with and guides the MAGIC Agents in completing tasks and generating Outputs.
+
+**SigTech Materials:** means the manuals or usage guides on how to use the MAGIC Platform or the MAGIC Agents as provided by us to you from time to time.
+
+**Termination Date:** means the date on which the use of the MAGIC Services is terminated.
+
+**Third Party Providers:** means any third party which from time to time provides, information, data, content, hardware, software or other services to SigTech and/or its Affiliates, including third parties to whom Calls are made by MAGIC Agents.
+
+**User Data:** means any data, inputs, information or material uploaded to the MAGIC Platform by you and any algorithms, formulae, codes or outputs generated solely by you on the MAGIC Platform (other than Outputs), including all Intellectual Property Rights with respect thereto.
+
+**Users:** has the meaning given to it in clause 3.1.
+
+### User Terms and Conditions
+
+**_PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY_**
+
+These terms and conditions (**Terms**) are a legal agreement between you and SigTech. By completing the log in process and/or accessing and using the SigTech Platform, you agree to these Terms. If you do not agree to these Terms, please do not login to the Platform, in which case you will not have access to the Platform.
+
+You should print a copy of these Terms for future reference.
+
+**_Who we are and what these Terms do_**
+
+1.  We, Sig Technologies Limited (**SigTech**) of 4th Floor, Phoenix House, 1 Station Hill, Reading, Berkshire, RG1 1NB, United Kingdom, grant to you a non-exclusive, non-transferable licence to access and use: a. the Platform;
+    b. the Services;
+    c. Market Data; and
+    d. the SigTech Materials,in each case as permitted in these Terms.
+2.  You agree and acknowledge that the Platform, the Platform Content and the Services:a. are for internal business use only; and
+    b. may only be used for the purpose of researching, creating and generating Customer Data and/or Derived Data.
+3.  SigTech may from time to time, in its sole discretion, make any changes to the Platform, the Platform Content, the Services or the SigTech Materials that it deems necessary or reasonable to maintain or enhance the quality or delivery of its products and services to its customers or to comply with applicable laws and regulations.
+4.  Subject to the restrictions set out in clause 14, you may freely exploit the Derived Data, including copying, storing, publishing or distributing such Derived Data.
+
+**_Market Data_**
+
+5\. Our ability to grant you access to the Market Data through the Platform is subject to the rights, licences and permissions obtained by us from Third Party Providers. A Third Party Provider may impose restrictions on the usage of its Market Data and may change them from time to time. These restrictions may:
+
+a. prevent certain types of usage of its Market Data; or b. require us or you to report usage of its Market Data to the Third Party Provider.
+
+6\. Our provision of the Market Data is not guaranteed.
+
+7\. We may, at any time:
+
+a. amend, suspend or revoke your access to the Market Data in whole or in part; and/or
+b. amend, suspend, revoke or update any or all of the information comprising the Market Data and/or cease provision of the Market Data,
+
+and in respect of any such amendment, revocation, cessation or update, we shall not be in breach of these Terms and have no liability to you.
+
+**_Our obligations_**
+
+8\. We shall, provide you with access to the Platform and make available the SigTech Materials to you on and subject to these Terms.
+
+9\. Our provision of the Platform and the SigTech Materials shall be delivered using reasonable skill and care.
+
+10\. We will provide support to you via our website, email, user forums, third party instant messaging applications (such as Slack and Symphony) and by telephone. Although we will use reasonable endeavours to solve problems identified by you, the nature of software is such that no guarantee can be provided that any particular problem will be solved.
+
+11\. We reserve the right to update the Platform at any time or to perform routine maintenance where necessary. We shall use best endeavours to ensure any updates or maintenance are performed outside Business Hours.
+
+12\. We do not:
+
+a. warrant that:
+
+i. your use of the Platform or our provision of the Market Data will be uninterrupted or error-free; or
+ii. that the Platform will be available at all times.
+
+b. take responsibility for any delays, delivery failures, or any other loss or damage resulting from the transfer of data over communications networks and facilities, including the internet, and you acknowledge that the Platform and SigTech Materials may be subject to limitations, delays and other problems inherent in the use of such communications facilities.
+
+13\. We shall have no obligation to provide any training, guidance or consultancy services to you.
+
+**_Restrictions_**
+
+14\. You shall not, and shall not attempt to, do any of the following:
+
+a. use the Platform, the Market Data and/or the SigTech Materials, including any Intellectual Property Rights in or related to any of them, in any manner which is inconsistent with these Terms;
+
+b. download, reverse engineer, copy, duplicate, reproduce, publish, distribute, display, transmit or communicate or disseminate to any third party the Platform, any Market Data or the SigTech Materials or any information obtained or derived therefrom (other than Derived Data);
+
+c. use the Market Data and/or Derived Data to create, attempt to create, or assist with the creation of, any index of tradable assets;
+
+d. use the Platform, the Market Data, the Derived Data and/or the SigTech Materials for any purpose, or in any manner, that would amount to commercial exploitation outside of your own organisation, including any purpose or manner that would compete with us, members of our corporate group, our affiliates and/or any Third Party Providers;
+
+e. sell or attempt to sell any of the Market Data and/or any of your rights under these Terms to use the Market Data, the Platform and/or the SigTech Materials;
+
+f. use the Platform and/or the SigTech Materials in any way that violates, plagiarises or infringes upon the rights of any other person, including Intellectual Property Rights, data protection rights, the right of privacy or the right of publicity, or that would be abusive, profane, obscene, indecent, threatening, defamatory, offensive or otherwise illegal;
+
+g. use the Platform in any way that is not compliant with, or breaches, any applicable laws or regulations;
+
+h. except as expressly permitted by these Terms, give or grant (or allow others to give or grant) any third party access to or use of the Platform, the Market Data and/or the SigTech Materials;
+
+i. attempt to interfere with the proper working of the Platform, including attempting to circumvent security, usage monitoring, download restrictions, licence control or other protection mechanisms, or otherwise disrupt the operation of the Platform;
+
+j. obscure, remove or interfere with or add to any copyright notice, trade mark, trade name or other proprietary marking on, or visible during, the operation or use of the Platform or Market Data;
+
+k. use the Platform (and any part thereof) to do any of the following:
+
+i. upload, post, transmit or otherwise make available any viruses, corrupted files, or any other software, data, files or programs that may interrupt, damage, destroy or limit the functionality of the Platform (**Malware**);
+
+ii. upload, store, transmit or otherwise make available any content, material or data that infringes any Intellectual Property Rights or data protection, privacy or other rights of any other person, or is in breach of any contractual duty or any obligation of confidence, or that does not comply with applicable laws or regulation, or is otherwise prohibited;
+
+iii. engage in any fraudulent activity or further any fraudulent purpose; or
+
+iv. attempt to gain unauthorised access to our systems or networks
+
+15\. You acknowledge and agree that:
+
+a. the Platform and/or Market Data are provided by us or any Third Party Providers on an "as is" basis;
+
+b. you accept responsibility for, and acknowledge you exercise your own independent judgement in, your selection of any of the Market Data, your use or intended use of such Market Data, and any results obtained;
+
+c. nothing contained on the Platform or in the Market Data constitutes any form of advice, assurance or guarantee;
+
+d. we shall not be responsible for any delays, delivery failures, or any other Losses resulting from the transfer of data over communications networks and facilities, including the internet;
+
+e. we shall have no liability for decisions made by you and/or any User as a result of using the Platform or the Market Data;
+
+f. any errors or disruptions in or to the Platform shall not constitute a breach of these Terms by us; and
+
+g. we may use Cookies on the Platform and/or monitor, collect and use data on your use of the Platform in accordance with the terms of the Cookie Policy (which shall be incorporated herein by reference) and to ensure compliance with these Terms.
+
+**_Intellectual Property Rights_**
+
+16\. You acknowledge that all Intellectual Property Rights in the Platform, the Market Data and the SigTech Materials shall vest in us, members of our corporate group, our affiliates and/or any Third Party Providers (as applicable) and you agree that you shall not have any rights in respect of the Intellectual Property Rights in, or in relation to, the Platform, the Market Data or the SigTech Materials.
+
+**_Limitation of liability_**
+
+17\. You acknowledge that the Platform and the SigTech Materials have not been developed to meet your individual requirements and that it is therefore your responsibility to ensure that the facilities and functions of the Platform and the SigTech Materials meet your requirements.
+
+18\. We shall not in any circumstances whatever be liable to you, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, arising under or in connection with these Terms for:
+
+a. loss of profits, sales, business, or revenue;
+b. business interruption;
+c. loss of anticipated savings;
+d. loss or corruption of data or information;
+e. loss of business opportunity, goodwill or reputation;
+
+where any of the losses set out in clause (a) to (e) (inclusive) are direct or indirect; or
+
+f. any special, indirect or consequential loss, damage, charges or expenses.
+
+19\. Other than the losses set out in clause 18 (for which we are not liable), our maximum aggregate liability under or in connection with these Terms whether in contract, tort (including negligence) or otherwise, shall in all circumstances be limited to £100. This maximum cap does not apply to clause 20.
+
+20\. Nothing in these Terms shall limit or exclude our liability for:
+
+a. death or personal injury resulting from our negligence;
+b. fraud or fraudulent misrepresentation; or
+c. any other liability that cannot be excluded or limited by English law.
+
+21\. These Terms set out the full extent of our obligations and liabilities in respect of the Platform, the Platform Content, the Services and/or the SigTech Materials.  Except as expressly stated in these Terms, there are no conditions, warranties, representations or other terms, express or implied, that are binding on us.  Any condition, warranty, representation or other term concerning the supply of the Platform, the Platform Content, the Services and/or the SigTech Materials which might otherwise be implied into, or incorporated in, these Terms whether by statute, common law or otherwise, is excluded to the fullest extent permitted by law.
+
+**_Termination_**
+
+22\. In the event that the contractual arrangements between us and the party which has nominated you as a subscriber to the Platform terminate for any reason whatsoever, these terms shall terminate with immediate effect and you shall cease to have access to the Platform, the Market Data and the SigTech Materials.
+
+23\. We reserve the right to:
+
+a. suspend your access to the Platform from time to time at our sole discretion; or
+b. terminate these Terms immediately if you commit a breach of these Terms.
+
+24\. On termination for any reason:
+
+a. all rights granted to you under these Terms shall cease; and
+b. you must immediately cease all activities authorised by these Terms.
+
+**_Communications between us_**
+
+25\. We may update these Terms at any time.  Your continued use of the Platform shall constitute your acceptance to the Terms, as varied. If you do not wish to accept the Terms (as varied) you must immediately stop using and accessing the Platform.
+
+26\. If we have to contact you, we will do so by email to the address you provided in accordance with your registration to the Platform.
+
+**_Events Outside Our Control_**
+
+27\. We will not be liable or responsible for any failure to perform, or delay in performance of, any of our obligations under these Terms that is caused by an Event Outside Our Control. An "Event Outside Our Control" is defined as any act or event beyond our reasonable control, including without limitation failure of public or private telecommunications networks.
+
+28\. If an Event Outside Our Control takes place that affects the performance of our obligations under these Terms:
+
+a. our obligations under these Terms will be suspended and the time for performance of our obligations will be extended for the duration of the Event Outside Our Control; and
+
+b. we will use our reasonable endeavours to find a solution by which our obligations under these Terms may be performed despite the Event Outside Our Control.
+
+**_How we may use your personal information_**
+
+29\. Under data protection legislation, we are required to provide you with certain information about who we are, how we process the personal data of those individuals who use the Platform and for what purposes and those individuals' rights in relation to their personal data and how to exercise them. This information is provided in [www.sigtech.com/privacy](https://sigtech.com/privacy) and it is important that you read that information.
+
+**_Other important terms_**
+
+30\. We may transfer our rights and obligations under these Terms to another organisation, but this will not affect your rights or our obligations under these Terms. You may not transfer your rights or your obligations under these Terms to another person unless we agree in writing.
+
+31\. These Terms and any document expressly referred to in it constitute the entire agreement between us and supersede and extinguish all previous agreements, promises, assurances, warranties, representations and understandings between us, whether written or oral, relating to its subject matter. You agree that you shall have no remedies in respect of any statement, representation, assurance or warranty (whether made innocently or negligently) that is not set out in these Terms or any document expressly referred to in them. You agree that you shall have no claim for innocent or negligent misrepresentation or negligent misstatement based on any statement in these Terms or any document expressly referred to in them.
+
+32\. If we fail to insist that you perform any of your obligations under these Terms, or if we do not enforce our rights against you, or if we delay in doing so, that will not mean that we have waived our rights against you and will not mean that you do not have to comply with those obligations. If we do waive a default by you, we will only do so in writing signed by us, and that will not mean that we will automatically waive any later default by you.
+
+33\. Each of the conditions of these Terms operates separately. If any court or competent authority decides that any of them are unlawful or unenforceable, the remaining conditions will remain in full force and effect.
+
+34\. These Terms, their subject matter and its formation (and any non-contractual disputes or claims) are governed by English law. We both irrevocably agree to the exclusive jurisdiction of the courts of England and Wales.
+
+**_Definitions_**
+
+35\. The following definitions and rules of interpretation in this clause apply to these Terms:
+
+**Business Day:** means a day other than a Saturday, Sunday or public holiday, on which banks are open for business in the United Kingdom.
+
+**Cookie Policy:** means our cookie policy as published online at www.sigtech.com/privacy, and as may be updated or amended from time to time.
+
+**Customer Data:** means any data, inputs, information or material uploaded to the Platform by you and any algorithms, formulae, codes or outputs generated solely by you on the Platform (other than Derived Data), including all Intellectual Property Rights with respect thereto.
+
+**Derived Data:** means any data created by you in connection with your use of the Platform and/or the Market Data and as a result of combining, processing, changing, converting or calculating the Market Data or any portion thereof with other data where the resulting data: (i) does not bear resemblance to the underlying Market Data; and (ii) cannot be readily reverse engineered, disassembled or decompiled so that a third party may access the Market Data via the Derived Data.
+
+**Intellectual Property Rights:** means patents, trade marks, rights (registered or unregistered) in any designs, applications for any of the foregoing, trade or business names, copyright (including rights in computer software) and topography rights, know-how, processes, names of customers, suppliers and third parties, and other proprietary knowledge and information, internet domain names, rights protecting goodwill and reputation, database rights (including rights of extraction) and all rights and forms of protection of a similar nature to any of the foregoing or having equivalent effect anywhere in the world and all rights under licences and consents in respect of any of the rights and forms of protection mentioned in this definition.
+
+**Losses:** means all losses, liabilities, damages, costs, expenses (including reasonable legal fees) and charges of every description arising from or in connection with these Terms.
+
+**Market Data:** means the information (including but not limited to data, text, images and sound recordings) to which you are granted access on the Platform in raw form.
+
+**Normal Business Hours:** means 8.00 am to 5.00 pm local UK time on Business Days.
+
+**Platform:** means the software developed by us and/or members of our corporate group (including its source code and the Platform Content) and made available to you and/or any Users online which enables you and/or any Users to access Market Data, research, implement and execute investment strategies based on market data inputs and other Customer Data, including all upgrades and modifications thereto.
+
+**Platform Content:** means all data, information and material owned by or licenced to us or any members of our corporate group and contained within any part of the Platform but excluding the Customer Data.
+
+**Services:** means the products, features, add-ons and services provided by SigTech relating to the research, development, back testing, implementation and deployment of investment strategies.
+
+**SigTech Materials:** means the manuals or usage guides on how to use the Platform as provided by us to you from time to time.
+
+**Third Party Providers:** means any third party which from time to time provides Market Data, information, data, content, hardware, software or other services to SigTech or any member of its corporate group.
+
+### Additional Terms (Overview)
+
+**Updated April 2023**
+
+*   [Strategy Visualisation Terms](https://sigtech.com/product-specific-terms/): These Terms and Conditions supplement our Customer Terms of Service and govern your usage of the Strategy Visualisation feature available on the Platform. *(Note: Content for these terms was not provided in the input.)*
+*   [Free Trial Terms](https://sigtech.com/free-trials-terms/): If you are using the Platform on a free trial basis, offered by us to you, then these terms and conditions will apply to you, as well as, the Master Subscription Terms. *(See below for full text)*
+*   [Fair Usage Policy:](https://sigtech.com/fair-usage-policy/) Our fair usage policy is designed so that we are able to provide the most effective service to all our customers whilst managing and reducing excessive use of our services at peak times. *(See below for full text)*
+
+#### Free Trials Terms and Conditions
+
+**Last Updated: October 2024**
+
+**1\.** We may from time to time agree to provide you with access to our Platform, Platform Content and Services, and other products and services ("**Relevant Services**") with only limited functionality ("**Free Trial**"). During any agreed Free Trial, these terms and conditions shall apply ("**Free Trial Terms**") and the terms which apply to the Relevant Services you are using shall be modified to reflect these Free Trial Terms.
+
+**2\.** We grant you a non-exclusive and non-transferable limited right to access and use the Relevant Services during the Free Trial. We reserve the right to revoke the licence granted under this paragraph 2 and terminate these Free Trial Terms, at any time and without notice by preventing you from accessing and the Relevant Services.
+
+**3\.** If you are granted a Free Trial of SigTech's enterprise platform, then you will have access to the Relevant Services until the earliest to occur of:
+
+(A) the expiry of the two-week Free Trial period or such other period determined by us;
+(B) the start date of any paid User subscriptions as set out in an Order Form to access the Platform or other services or;
+(C) termination by us, at any time, in our sole discretion.
+
+**4\.** If you are granted a Free Trial of SigTech MAGIC, we may apply reasonable usage limits the Relevant Services. Unless stated otherwise a usage limit of $100 per day (calculated at the normal costs for the Relevant Services) will apply.
+
+**5\.** Additional terms and conditions, including supplemental terms, may apply to Free Trials and you agree any such additional terms and conditions are incorporated into these Free Trial Terms by reference and are legally binding. In particular, if you are granted a Free Trial of:
+
+(A) SigTech's enterprise platform, then the [Master Subscription Terms](https://sigtech.com/master-subscription-terms/) shall apply; and
+(B) SigTech MAGIC, then the MAGIC Terms of Use shall apply.
+
+**6\.** You shall use the Relevant Services during a Free Trial strictly in accordance with the terms which apply to your use of them.
+
+**7\.** No fees shall be paid by you to access the Free Trial unless agreed between you and us.
+
+**8\.** You shall not attempt to circumvent any limitations placed on the Platform or other services during the Free Trial.
+
+**9\.** During the Free Trial, you agree that the Relevant Services are provided AS IS with no representation, guarantee or warranty of any kind as to their functionality, quality, performance, suitability or fitness for purpose.
+
+**10\.** We shall not be liable for any claim, damages, loss or other liability arising from or in connection with your use of the Relevant Services during the Free Trial.
+
+**11\.** Unless otherwise indicated, capitalised terms used in these Free Trial Terms shall have the same meaning given in the terms which apply to your use of the Relevant Services.
+
+#### Fair Usage Policy
+
+**Last Updated April 2023**
+
+SigTech implements a fair usage policy to ensure that all of our users can have the best experience when using the SigTech services and products.
+
+We expect that the majority of our users will not be impacted by this Fair Usage Policy. However, when using the SigTech services:
+
+*   You must only use our services as defined by us in the applicable terms of service.
+*   You must only use our platforms and services for the purpose advertised, described in any user guides or training guides, or as instructed by us.
+*   You must not use our platforms or services in a way which deliberately games or exploits to your advantage the design of our services, systems or billing plan (if applicable).
+
+You must not use our platforms or services fraudulently, in connection with a criminal offence, in breach of any law or statutory duty, to send, upload, download, use or reuse any material, which is offensive, abusive, indecent, defamatory, obscene or menacing, a nuisance (including to our staff) or a hoax in breach of anyone's rights or privacy or is otherwise unlawful.
+
+The examples above are not an exhaustive list of how you could be breaching our Fair Usage Policy. There may be other activities which we reasonably believe to be outside the legitimate use which may also be subject to the terms in this Fair Usage Policy.
+
+In addition, if the volume of data you submit to one of our Platforms is excessive, or the size of the data is disproportionately large, this can adversely affect our ability to provide services efficiently and effectively to our other users.  This type of behaviour may be in breach of this Fair Usage Policy.
+
+If in SigTech's reasonable opinion, you are abusing the service in a way which exceeds fair usage, we may ask you to moderate your behaviour. We may in extreme or persistent cases, suspend or even terminate your access to SigTech's services.
+
+### Third Party Provider Terms
+
+The Market Data made available by us on the Platform is provided to us by third parties.
+
+You may be required to comply with applicable third-party provider terms. Those terms may be supplied to you either by us or directly by the third-party provider.
+
+Our third-party providers do not owe you any duty of care with respect to their data or services and they do not accept any responsibility for them, except where you have entered into a direct agreement with the relevant third-party provider. If you claim an implied contract or duty exists between you and a third-party provider, or an implied contract or duty is held to exist, SigTech disclaims all liability of each third-party provider for any of your losses which may arise under that implied contract or duty.
+
+Third-party providers provide their data, software and services on an "as is" basis and do not warrant that the provision of their data, software or services will be uninterrupted, error free, timely, complete, or accurate, nor do any of them make any warranties as to the results to be obtained from use of the same.
+
+In addition to the rights and restrictions set out in agreement(s) that you have entered into with us, your use of the Platform and any other services you receive from us is subject to the following specific terms:
+
+*   [Chicago Mercantile Exchange Inc.](https://sigtech.com/third-party-provider-terms#section-2)
+*   [CLS Services Limited](https://sigtech.com/third-party-provider-terms#section-3)
+*   [CUSIP Global Services](https://sigtech.com/third-party-provider-terms#section-4)
+*   [Deutsche Börse AG](https://sigtech.com/third-party-provider-terms#section-5)
+*   [ICE Data, LP](https://sigtech.com/third-party-provider-terms#section-6)
+*   [Refinitiv Limited](https://sigtech.com/third-party-provider-terms#section-7)
+
+#### Chicago Mercantile Exchange Inc.
+
+**Usage restrictions**
+
+You: (a) must maintain all records and provide all information required by each SigTech group entity to meet SigTech's record-keeping, reporting and payment obligations to CME; (b) must maintain complete and accurate books and records, relating to all access to and use of, Market Data under the agreement you have with SigTech for the most recent five (5) year period; (c) must allow CME or any auditors acting on behalf of CME to audit your records and use of Information; (d) shall obtain and provide any consent that may be required under all applicable laws, including the EU's General Data Protection Regulation, as may be needed for CME or any auditors acting on behalf of CME to review and receive Personal Data, including but not limited to Personal Data pertaining to your users or representatives of your group, where requested by CME for purposes of verifying or ensuring compliance with your obligations to CME or where requested by regulatory authority or pursuant to a valid court order, subpoena, or other legal instrument; and (d) acknowledge and agree that use of any semi-automated trading system, by you (other than a non-professional subscriber), requires a license directly between you and CME.
+
+#### CLS Services Limited
+
+**Indemnity**
+
+You will indemnify and hold CLS, its employees, agents, successors, assigns, affiliates, settlement members and service providers harmless from any claims or demands, losses, liabilities, damages, costs, and expenses (including reasonable attorneys' fees (whether direct or indirect, arising out of your use of the service, the data, your violation of CLS's terms or conditions, or your infringement or violation of any rights of another, including intellectual property rights.
+
+#### CUSIP Global Services
+
+**CUSIP Information**
+
+You agree and acknowledges that the CUSIP Database and the information contained therein is and shall remain valuable intellectual property owned by, or licensed to, CUSIP Global Services ("CGS") and the American Bankers Association ("ABA"), and that no proprietary rights are being transferred to you in such materials or in any of the information contained therein. Any use by you outside of the clearing and settlement transactions requires a license from CGS, along with an associated fee based on usage. You agree that misappropriation of misuse of such materials will cause serious damage to CGS and ABA, and that in such event money damages may not constitute sufficient compensation to CGS and ABA; consequently, you agree that in the event of any misappropriation or misuse, CGS and ABA shall have the right to obtain injunction relief in addition to any other legal or financial remedies to which CGS and ABA may be entitled.
+
+You agree that you shall not publish or distribute in any medium the CUSIP Database or any information contained therein or summaries or subsets thereof to any person or entity except in connection with the normal clearing and settlement of security transactions. You further agree that the use of CUSIP numbers and descriptions is not intended to create or maintain, and do not service the purpose of creation or maintenance of, a master file or database of CUSIP descriptions or numbers for yourself or any third party recipient of such services and is not intended to create and does not serve in any way as a substitute for the CUSIP MASTER TAPE, PRINT, DB, INTERNET, ELECTRONIC, CD-ROM Services and/or any other future services developed by the CGS.
+
+Neither CGS, ABA nor any of their affiliates make any warranties, express or implied, as to the accuracy, adequacy or completeness of any of the information contained in the CUSIP Database, all such materials are provided to you on an "as is" basis, without any warranties as to merchantability or fitness for a particular purpose or use nor with respect to the results which may be obtained from the use of such materials. Neither CGS, ABA nor their affiliates shall have any responsibility or liability for any errors or omissions nor shall they be liable for any damages, whether direct or indirect, special or consequential, even if they have been advised of the possibility of such damages. In no event shall the liability of CGS, ABA or any of their affiliates pursuant to any cause of action, whether in contract, tort, or otherwise, exceed the fee paid you for access to such materials in the month in which such cause of action is alleged to have arisen. Furthermore, CGS and ABA shall have no responsibility or liability for delays or failures due to circumstances beyond their control.
+
+You agree that the foregoing terms and conditions shall survive any termination of your right of access to the materials identified above.
+
+#### Deutsche Börse AG
+
+**Market Data Dissemination Agreement**
+
+You may take notice of all changes to the Market Data Dissemination Agreement which are relevant to you before such changes enter into effect. In the event of an audit the timely receipt of the information on the changes by you is to be proven upon request by DBAG. DBAG's Market Data Dissemination Agreement can be found at https://www.mds.deutsche-boerse.com/resource/blob/2794938/47af0b6ae4c67e928052ce47247435d7/data/MDDA_GTC_9_1.pdf
+
+**Honesty Statements**
+
+We are required on at least a quarterly basis to request from you Honesty Statements confirming the number of access IDs entitled for the relevant Market Data. If the entitlement of an access ID commences or ceases during the period which is covered by the Honesty Statement (quarter or month) then the commencement or finish date shall be shown in the Honesty Statement and taken into account in the reporting. You are required to provide us with the Honesty Statements until the 15th day of the month following the end of a quarter so that the Honesty Statements can be taken into account in the monthly report for the last month of the quarter. We will check the correctness of the Honesty Statements using appropriate measures and any such measures of control carried out shall be documented. For the purposes of this clause, "Honesty Statement" means a binding written or electronic statement supplied by you to us containing the number of access IDs for the relevant Market Data entitled within your subscription.
+
+**Audit**
+
+Where you subscribe to any real-time DBAG Market Data, DBAG shall be entitled to carry out an audit of any such real-time Market Data for the purposes of reviewing the documents relevant for the remuneration of the Market Data usage and the technical infrastructure.
+
+#### ICE Data, LP
+
+**Warranties**
+
+ICE and its suppliers make no warranties, express or implied, as to merchantability, fitness or any other matter and shall have no liability to you or any third party.
+
+**Use of Market Data**
+
+You acknowledge that the Market Data is intended for use by institutional investors, registered brokers, professionals and others of similar sophistication and experience. You accept responsibility for, and acknowledge you exercises your own independent judgment in, your selection of any of the Market Data, your selection of the use of intended use of such, and any results obtained. Nothing contained herein shall be deemed to be a waiver of any rights existing under applicable securities law.
+
+**Third Party Rights**
+
+ICE and its third party suppliers shall constitute third party beneficiaries under this Contract.
+
+**Real Time Pricing Data**
+
+Prior to us distributing Real Time Pricing Data to you, you are required to sign an ICE Subscriber Agreement (or such other Subscriber Addendum as has received the prior written authorisation of ICE LLP and that incorporates all the terms and conditions of the Uniform Subscriber Addendum) with ICE LLP. A copy of the ICE Subscriber Agreement is available at https://www.theice.com/publicdocs/ICE_Subscriber_Addendum.pdf. You are required to sign the ICE Subscriber Agreement and return the signed copy to us. For the purposes of this clause, "Real Time Pricing Data" means real time data specifying the market prices of the traded contracts transmitted less than 10 minutes from publication via the API.
+
+#### Refinitiv Limited
+
+**Warranties**
+
+Neither Refinitiv nor its third party providers warrant that the provision of the Market Data will be uninterrupted, error free, timely, complete or accurate, nor do they make any warranties as to the results to be obtained from use of the same. Use of the Market Data and reliance thereon is at your sole risk. Neither Refinitiv not its third party providers will in any way be liable to you or any other entity or person for your inability to use the Market Data, or for any inaccuracies, errors, omissions, delays, computer virus or other infirmity or corruption, damages, claims, liabilities or losses, regardless of cause, in or arising from the use of the Market Data. The Market Data is provided on an "as is" basis and without warranty of any kind. No warranties either express or implied, including but not limited to any implied warranty of merchantability, fitness for a particular purpose, title, infringement or otherwise is provided by Refinitiv.
+
+In no event will Refinitiv or its third party providers be liable for any damages, including without limitation direct or indirect, special, incidental, or consequential damages, losses or expenses arising in connection with the Market Data even if Refinitiv or its third party providers or their representatives are advised of the possibility of such damages, losses or expenses. Further, Refinitiv or its third party providers shall not be liable in any manner for our products or services.
+
+### Website Terms of Use
+
+**What's in these terms?**
+These terms tell you the rules for using our website www.sigtech.com including any hosted software, platform and/or services accessible from this site (our site).
+
+**Who we are and how to contact us**
+Our site is issued for all purposes by SIG Technologies Limited ("STL") and the expression "we" and "our" shall be construed accordingly. STL and each of its affiliates are collectively referred to in this site as "SigTech" and references to "SigTech" are to STL and/or its relevant affiliate.
+
+We are a limited company registered in England and Wales under company number 11686070 and have our registered office at 4th Floor, Phoenix House, 1 Station Hill, Reading, Berkshire, RG1 1NB, United Kingdom.
+
+To contact us, please email [hello@sigtech.com](mailto:hello@sigtech.com).
+
+**By using our site you accept these terms**
+By using our site, you confirm that you accept these terms and that you agree to comply with them. If you do not agree to these terms, you must not use our site.
+
+We recommend that you print a copy of these terms for future reference.
+
+**There are other terms that may apply to you**
+If you purchase our services, our [Customer Terms of Service](https://sigtech.com/customer-terms-of-service/) will apply to our provision of the services to you.
+
+Our Privacy Notice sets out how we use your personal data, and our Cookie Policy sets out how we use cookies (see further under How we may use your personal information).
+
+These terms also incorporate other rules, policies and procedures that may be published from time to time on our site, each of which is incorporated by reference and each of which may be updated by us from time to time without notice to you.
+
+**We may make changes to these terms**
+We amend these terms from time to time and the revised version will take effect from when it is posted on the site. Every time you wish to use our site, please check these terms to ensure you understand the terms that apply at that time.
+
+**We may make changes to our site**
+We may update and change our site from time to time to reflect changes to our products, our users' needs and our business priorities.
+
+**We may suspend or withdraw our site**
+Our site is made available free of charge. We do not guarantee that our site, or any content on it, will always be available or be uninterrupted. We may suspend or withdraw or restrict the availability of all or any part of our site for business and operational reasons. We will try to give you reasonable notice of any suspension or withdrawal.
+
+You are also responsible for ensuring that all persons who access our site through your internet connection are aware of these terms and other applicable terms and conditions, and that they comply with them.
+
+**Our site is only for business users only**
+Our site is for business use only. We do not provide our site for private use. If you are a consumer, you must not use our site.
+
+**How you may use material on our site**
+We are the owner or the licensee of all intellectual property rights in our site, and in the material published on it. Those works are protected by copyright laws and treaties around the world. All such rights are reserved. Nothing on our site and no use of our services should be construed as granting any license or right in relation to any of our trademarks or those of our affiliates or any third party.
+
+You may print off one copy, and may download extracts, of any page(s) from our site for your personal use and you may draw the attention of others within your organization to content posted on our site. If you print off, copy, download, share or repost any part of our site in breach of these terms, your right to use our site will cease immediately and you must, at our option, return or destroy any copies of the materials you have made.
+
+You must not modify the paper or digital copies of any materials you have printed off or downloaded in any way, and you must not use any illustrations, photographs, video or audio sequences or any graphics separately from any accompanying text. Our status (and that of any identified contributors) as the authors of content on our site must always be acknowledged.
+
+You must not use any part of the content on our site for commercial purposes without obtaining a license to do so from us or our licensors.
+
+**Do not rely on information on this site**
+We have made reasonable efforts to update the information on our site. However, errors or omissions may occur due to circumstances beyond our control and no warranty is given, or representation made, regarding the accuracy, validity or completeness of the information on our site and no liability is accepted by us for the accuracy or completeness of such information. You must conduct your own due diligence and investigations rather than relying on any information on our site.
+
+**We are not responsible for websites we link to**
+Should you leave our site via a link contained within our site and view content that is not provided by us, you do so at your own risk. We provide links only as a convenience and without liability. In particular, and without limitation, you understand and agree that the ability to link to another website and the fact that a link exists does not mean that we endorse or guarantee such site, the site sponsor or the site contents. The content which you access via such links will not have been developed, checked for accuracy, or otherwise reviewed by us.
+
+We make no guarantees or representations as to, and shall have no liability for, any electronic content delivered by any third party, including, without limitation, the accuracy, subject matter, quality, sequence or timeliness of any electronic content. Your reliance on any information contained on any site reached through a link shall be your own responsibility.
+
+We are not responsible for any damages or losses arising from any delays, defects or omissions that may exist in the services, information or other content provided when you leave our site via a link. We make no guarantee or representation as to, and shall have no liability for, any content on any linked website, including, without limitation, the accuracy, subject matter, quality, sequence or timeliness of any such content.
+
+**Our responsibility for loss or damage suffered by you**
+We do not exclude or limit in any way our liability to you where it would be unlawful to do so. Different limitations and exclusions of liability will apply to liability arising as a result of the supply of any services to you, which will be set out in our [Customer Terms of Service](https://sigtech.com/customer-terms-of-service/).
+
+We exclude all implied conditions, warranties, representations or other terms that may apply to our site or any content on it.
+
+We will not be liable to you for any loss or damage, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, even if foreseeable, arising under or in connection with:
+
+use of, or inability to use, our site; or
+
+use of or reliance on any content displayed on our site.
+
+In particular, we will not be liable for loss of profits, sales, business, or revenue; business interruption; loss of anticipated savings; loss of business opportunity, goodwill or reputation; or any indirect or consequential loss or damage.
+
+**How we may use your personal information**
+We will only use your personal information as set out in our [Privacy Notice.](https://sigtech.com/privacy/)
+
+We use cookies on our website in accordance with our [Cookie Policy.](https://sigtech.com/privacy/)
+
+**We are not responsible for viruses and you must not introduce them.**
+We do not guarantee that our site will be secure or free from bugs or viruses. You are responsible for configuring your information technology, computer programs and platform to access our site. You should use your own virus protection software.
+
+You must not misuse our site by knowingly introducing viruses, trojans, worms, logic bombs or other material that is malicious or technologically harmful. You must not attempt to gain unauthorized access to our site, the server on which our site is stored or any server, computer or database connected to our site. You must not attack our site via a denial-of-service attack or a distributed denial-of service attack. By breaching this provision, you would commit a criminal offense under the Computer Misuse Act 1990. We will report any such breach to the relevant law enforcement authorities and we will co-operate with those authorities by disclosing your identity to them. In the event of such a breach, your right to use our site will cease immediately.
+
+**Rules about linking to our site**
+You may link to our home page, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it. You must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part where none exists.
+
+You must not establish a link to our site in any website that is not owned by you. Our site must not be framed on any other site, nor may you create a link to any part of our site other than the home page.
+
+We reserve the right to withdraw linking permission without notice. If you wish to link to or make any use of content on our site other than that set out above, please contact hello@sigtech.com.
+
+**Applicable law**
+These terms, their subject matter and their formation (and any non-contractual disputes or claims) are governed by English law. In the case of any dispute, we both agree to the exclusive jurisdiction of the courts of England and Wales.
+
+**Our trademarks**
+You are not permitted to use our trademarks without our approval, unless they are part of material you are using as permitted under How you may use material on our site.
+
+### Privacy Notice
+
+**Last updated: September 2022**
+
+We at **Sig Technologies Limited** ("**SigTech**") take your privacy very seriously.
+
+We want to make sure all the information we have collected about you is safe and secure whether we collect it through our website at [www.sigtech.com](https://sigtech.com/), through our online platform at platform.sigtech.com, through our mobile app ("**App**"), from you via other electronic means (such as email or social media platforms), or in-person at our events.
+
+It is important that you read this privacy policy together with any other privacy policy or fair processing policy we may provide on specific occasions when we are collecting or processing personal data about you so that you are fully aware of how and why we are using your data. This privacy policy supplements other notices and privacy policies and is not intended to override them.
+
+This website is not intended for children and we do not knowingly collect data relating to children.
+
+**Controller**
+
+SigTech is the controller and responsible for your personal data.
+
+SigTech is made up of different legal entities. This privacy policy is issued on behalf of the SigTech Group so when we mention "**SigTech**", "**we**", "**us**" or "**our**" in this privacy policy, we are referring to the relevant company in the SigTech Group responsible for processing your data.
+
+We have appointed a data protection officer (DPO) who is responsible for overseeing questions in relation to this privacy notice. If you have any questions about this privacy notice, including any requests to exercise your legal rights, please contact the DPO using the details following email address: dpo@sigtech.com.
+
+This policy shall not apply to any personal data contained in information or documents uploaded to the SigTech platform by you or on your behalf. Any such personal data will be held by us as your data processor. You are the data controller in respect of any personal data contained in documents or information you (or someone on your behalf) upload onto the SigTech platform.
+
+**1\. What data do we collect?**
+
+Personal data, or personal information, means any information about an individual from which that person can be identified. It does not include data where the identity has been removed (anonymous data). We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
+
+*   **Identity Data** includes: first name, last name, username or similar identifier, images (where video recordings are being used), voice recordings, marital status, title, date of birth and gender.
+
+*   **Contact Data** includes: job description, billing address, location, email address and telephone numbers.
+
+*   **Transaction Data** includes: details about payments, receipts or invoices between you and third parties; details about payments to and from you and us and other details of products and services you or your employer has purchased from us.
+
+*   **Technical Data** includes: internet protocol (IP) address, your login data, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform, and other technology on the devices you use to access this website our online platform or our mobile app. We may receive Technical Data about you from analytics providers (such as Google and Hotjar based outside of the EU).
+
+*   **Profile Data** includes: your username and password, purchases or orders made by you, your preferences, feedback, personal opinions and survey responses.
+
+*   **Usage Data** includes: information about how you use our website, products and services.
+
+*   **Marketing and Communications Data** includes: your preferences in receiving marketing from us and our third parties and your communication preferences.
+
+We also collect, use and share **Aggregated Data** such as statistical or demographic data for any purpose. Aggregated Data could be derived from your personal data but is not considered personal data in law as this data will not directly or indirectly reveal your identity. For example, we may aggregate your Usage Data to calculate the percentage of users accessing a specific website feature. However, if we combine or connect Aggregated Data with your personal data so that it can directly or indirectly identify you, we treat the combined data as personal data which will be used in accordance with this privacy notice.
+
+We do **not** collect any special categories of personal data about you (this includes details about your race or ethnicity, religious or philosophical beliefs, sex life, sexual orientation, political opinions, trade union membership, information about your health, and genetic and biometric data). Nor do we collect any information about criminal convictions and offences.
+
+**If you fail to provide personal data.** Where we need to collect personal data by law, or under the terms of a contract we have with you, and you fail to provide that data when requested, we may not be able to perform the contract we have or are trying to enter into with you (for example, to provide you with our services). In this case, we may have to cancel a service you have with us but we will notify you if this is the case at the time.
+
+**2\. How is your personal data collected?**
+
+We use different methods to collect data from and about you including through:
+
+Direct interactions.
+
+You may give us your Identity, Contact and Transaction Data by filling in forms or by corresponding with us by phone, video call, email, post or otherwise. This includes, but is not limited to, personal data you provide when you:
+
+*   subscribe for our products or services;
+*   request a demonstration or trial of our products and services;
+*   create an account on our platform or website;
+*   request marketing to be sent to you;
+*   apply to attend or take part in a webinar, training session or event, whether in person or online;
+*   enter a competition, promotion or survey; or
+*   give us feedback or contact us.
+
+Automated technologies or interactions.
+
+As you interact with our website, we will automatically collect Technical Data about your equipment, browsing actions and patterns. We collect this personal data by using cookies, server logs and other similar technologies. We may also receive Technical Data about you if you visit other websites employing our cookies.
+
+Third parties or publicly available sources.
+
+We will receive personal data about you from various third parties and public sources based inside and outside the EU, as set out below:
+
+*   Technical Data from analytics providers, advertising networks based and/or search information providers such as Google, LinkedIn or Hotjar.
+*   Identity, Contact, Profile, Usage and Transaction Data from providers of technical, payment and delivery services based such as Auth0 and Hubspot.
+*   Identity and Contact Data from data brokers or aggregators.
+*   Identity and Contact Data from publicly available sources such as Companies House.
+
+**3.** **How do we use your personal data?**
+
+We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
+
+*   Where we need to perform the contract we are about to enter into or have entered into with you.
+*   Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.
+*   Where we need to comply with a legal obligation.
+
+Generally, we do not rely on consent as a legal basis for processing your personal data although we will get your consent before sending third party direct marketing communications to you via email or text message. You have the right to withdraw consent to marketing at any time by contacting us.
+
+We have set out below a description of all the ways we plan to use your personal data, and which of the legal bases we rely on to do so. We have also identified what our legitimate interests are where appropriate.
+
+Note that we may process your personal data for more than one lawful ground depending on the specific purpose for which we are using your data. Please contact us if you need details about the specific legal ground we are relying on to process your personal data where more than one ground has been set out in the table below.
+
+| **What do we use your information for?** | **What type of information do we use?** | **What reason do we have to use it?** |
+| --- | --- | --- |
+| _To register or administer your SigTech account_ | Identity, Contact | Performance of a contract with you and/or your employer |
+| _To send you information which you have asked us to send to you._ | All the personal information we collect | We use this information to pursue our legitimate interest to comply with your request to contact you. |
+| _To process and deliver your or your employer's order including the management of payments, fees and charges and collection or recovery of money owed to us_ | Identity, Contact, Usage, Transaction, Marketing and Communications | Performance of a contract with you<br>Necessary for our legitimate interests (to recover debts due to us) |
+| _So that we can contact you to discuss our online platform or and services._ | Identity, Contact, Transaction, Usage, Profile | We use this information to pursue our legitimate interest to comply with your request to contact you. |
+| _To manage our relationship with you which will include account management services; notifying you about changes to our terms of service or privacy policy; or asking you to leave a review or take part in a trial of a product or service._ | All the personal information we collect | Performance of a contract with you<br>Necessary to comply with a legal obligation<br>Necessary for our legitimate interests (to keep our records updated and to study how customers use our products/services) |
+| _To send you other information which we think you might like such as details about our services or offers._ | Identity, Contact, Technical, Usage, Profile, Marketing and Communications | Necessary for our legitimate interests (to develop our products/services and grow our business) |
+| _To enter into and perform contracts where we are supplying or receiving services to you._ | All the personal information we collect | We use this information for the performance of our contract with you. |
+| _To administer and protect our business, our platform and this website (including troubleshooting, data analysis, testing, system maintenance, support, reporting and hosting of data)_ | Identity, Contact, Technical | Necessary for our legitimate interests (for running our business, provision of administration and IT services, network security, to prevent fraud and in the context of a business reorganisation or group restructuring exercise)<br>Necessary to comply with a legal obligation |
+| _To deliver relevant website and online platform content and advertisements to you and measure or understand the effectiveness of the advertising we serve to you_ | Identity, Contact, Profile, Usage, Marketing and Communications, Technical | Necessary for our legitimate interests (to study how customers use our products/services, to develop them, to grow our business and to inform our marketing strategy) |
+| _To use data analytics to improve our website, online platform, products /services, marketing, customer relationships and experiences_ | Technical, Transaction, Usage | Necessary for our legitimate interests (to define types of customers for our products and services, to keep our website updated and relevant, to develop our business and to inform our marketing strategy) |
+| _To help you if you have a question or you need technical support._ | Identity, Contact, Profile, Transaction, Usage | To pursue our legitimate interest to make sure we deal with any issues you have quickly. |
+| _To comply with our legal obligations_ | All the personal information we collect | To comply with any legal obligation or requirement |
+
+If you have told us we can use your information in a certain way, you can tell us to stop using it at any time (see **Contact** section below). **_Also look out for the link at the bottom of any email messages we send you which will also put a stop to any messages._**
+
+**4\. Marketing**
+
+We strive to provide you with choices regarding certain personal data uses, particularly around marketing and advertising. We may use your Identity, Contact, Technical, Usage and Profile Data to form a view on what we think you may want or need, or what may be of interest to you. This is how we decide which products, services and offers may be relevant for you (we call this marketing).
+
+You will receive marketing communications from us if you have requested information from us or purchased services from us and you have not opted out of receiving that marketing.
+
+We will get your express opt-in consent before we share your personal data with any third party, such as LinkedIn, for marketing purposes.
+
+You can ask us or third parties to stop sending you marketing messages at any time by following the opt- out links on any marketing message sent to you. Where you opt out of receiving these marketing messages, this will not apply to personal data provided to us as a result of your subscription to our services and products.
+
+You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies. If you disable or refuse cookies, please note that some parts of this website may become inaccessible or not function properly. For more information about the cookies we use, please see [https://sigtech.com/legal/...](https://sigtech.com/legal/cookie-policy)
+
+**5\. Who else receives your personal data?**
+
+We may share your personal data with the parties set out below:
+
+*   **Anyone you have said you are happy for us to send your details to.**
+*   **Organisations that provide services to us**: such as marketing specialists, communication companies, customer relationship management platforms (such as Hubspot), the people that manage our website or online platform on our behalf, third party payment providers, computer services (like our cloud storage services provider AWS) and third party mailing providers (such as Mandrill).
+*   **Organisations that we work with**.
+*   **Internal third parties**.
+*   **Other third parties:** third parties to whom we may choose to sell, transfer or merge parts of our business or our assets. Alternatively, we may seek to acquire other businesses or merge with them. If a change happens to our business, then the new owners may use your personal data in the same way as set out in this privacy notice.
+*   **The Government:** where the law tells us to do so or to help them with any investigations.
+*   **Police, law enforcement and security services:** to help them with any investigation, prevention of crime or matter of national security.
+
+We require all third parties to respect the security of your personal data and to treat it in accordance with the law. We do not allow our third-party service providers to use your personal data for their own purposes and only permit them to process your personal data for specified purposes and in accordance with our instructions.
+
+**6\. How long will we keep your personal data for?**
+
+By law we have to keep basic information about our customers (including Contact, Identity and Transaction Data) for six years after they cease being customers for tax purposes or after we were last in contact with you.
+
+In some circumstances you can ask us to delete your data: see **_Your rights to your personal data and complaints_** below for further information.
+
+In some circumstances we will anonymise your personal data (so that it can no longer be associated with you) for research or statistical purposes, in which case we may use this information indefinitely without further notice to you.
+
+**7\. Your rights to your personal data and complaints**
+
+You're entitled to know what personal information we hold about you and how that information is processed, which means you can ask us to do any of the following things:
+
+*   to provide access to your data;
+*   to rectify any mistakes relating to your data;
+*   to erase your data;
+*   to stop processing your data;
+*   to receive an electronic copy of your data;
+*   to object to our processing of your data;
+*   to object to any automated decision making that we may do using your personal data; and
+*   (automatic) to receive a notification of any breach of your personal data.
+
+Just let us know (see **Contact** section below) if you'd like to exercise any of your rights.
+
+If you're unhappy with how any access request has been dealt with, you have the right to complain to the Information Commissioner by calling their helpline: 0303 123 1113 or starting a live chat at [https://ico.org.uk/concerns/.](https://ico.org.uk/concerns/)
+
+You will not have to pay a fee to access your personal data (or to exercise any of the other rights). However, we may charge a reasonable fee if your request is clearly unfounded, repetitive or excessive. Alternatively, we could refuse to comply with your request in these circumstances.
+
+We may need to request specific information from you to help us confirm your identity and ensure your right to access your personal data (or to exercise any of your other rights). This is a security measure to ensure that personal data is not disclosed to any person who has no right to receive it. We may also contact you to ask you for further information in relation to your request to speed up our response.
+
+We try to respond to all legitimate requests within one month. Occasionally it could take us longer than a month if your request is particularly complex or you have made a number of requests. In this case, we will notify you and keep you updated.
+
+**8\. Changes to the privacy policy and your duty to inform us of changes**
+
+We keep our privacy policy under regular review.
+
+It is important that the personal data we hold about you is accurate and current. Please keep us informed if your personal data changes during your relationship with us.
+
+**9\. Third-party links**
+
+This website may include links to third-party websites, plug-ins and applications. Clicking on those links or enabling those connections may allow third parties to collect or share data about you. We do not control these third-party websites and are not responsible for their privacy statements. When you leave our website, we encourage you to read the privacy policy of every website you visit.
+
+**10\. Contact**
+
+We welcome any queries or enquiries or requests in respect of this notice, you can contact us by sending us an email on: dpo@sigtech.com.
+
+Our company registration details are as follows:
+
+**Sig Technologies Limited** (company registration number 11686070)
+
+Registered office: 4th Floor, Phoenix House, 1 Station Hill, Reading, Berkshire, RG1 1NB, United Kingdom.
+
+### Cookie Policy
+
+##### How SigTech uses Cookies
+
+A cookie is a small file of letters and numbers that we store on your browser or the hard drive of your computer if you agree. Cookies contain information that is transferred to your computer's hard drive.
+
+Our website uses cookies to distinguish you from other users of our website. This helps us to provide you with a good experience when you browse our website and also allows us to improve our site. We use the following cookies:
+
+*   **Necessary cookies.** These are cookies that are required for the operation of our website. They include, for example, cookies that enable you to log into secure areas of our website.
+*   **Analytical or performance cookies.** These cookies allow us to recognise, measure and track your use in anonymous form. The information collected includes the number of visitors to our site and/or users of our services, where you have come to our site from and the pages that you have visited. This helps us to improve the way our site and/or services work, for example, by determining whether you can find information easily, or by identifying the aspects of the site and/or services that are of the most interest to you.
+*   **Marketing cookies.** These cookies record your visit to our website, the pages you have visited and the links you have followed. We will use this information to make our website and any advertising displayed on it more relevant to your interests.
+*   **Other cookies.** These are third party cookies over which we have no control and may include, for example, advertising networks and providers of external services like web traffic analysis services.
+
+Below is a list of third party cookies we use which are likely to be analytical cookies, performance cookies or targeting cookies:
+
+*   **Google Analytics**. Our third-party analytics tool provider (a web analytics service provided by Google, Inc., whose servers may be in the UK, EU or in the USA). Google Analytics is a Google product which helps us understand how people engage with our website, using a set of cookies to collect information and report site usage statistics without personally identifying individual visitors to Google. The information obtained through these cookies may be disclosed to, or collected directly by, Google Analytics. For more information about Google Analytics' cookie and information practices (including the types of cookies used and their expiration date), please visit the link here: [Google Analytics](https://tools.google.com/dlpage/gaoptout).
+*   **HubSpot.** We use these cookies to collect information about how visitors use our site. HubSpot tracks visitors using browser cookies. These cookies track a visitor's movements as they navigate across the different pages of our website. The cookies will only personally identify website visitors if they are an existing contact in our system. Visitors who are not contacts in our system will be assigned a cookie but will be tracked anonymously and will not be personally identified. For more information about HubSpot's cookie and information practices (including the types of cookies used and their expiration date), please visit the link here: [HubSpot Privacy Policy](https://legal.hubspot.com/privacy-policy?__hstc=210022090.50ebcc09ad528cd0de215765f66adb49.1667214802411.1670507300397.1670582428254.8&__hssc=210022090.1.1670582428254&__hsfp=4068571554).
+*   **Hotjar.** We use these cookies in order to better understand our users' needs and to optimise our service and experience (e.g. how much time they spend on which pages, which links they choose to click, what users do and don't like, etc.) and this enables us to build and maintain our service with user feedback. Hotjar uses cookies and other technologies to collect data on our users' behaviour and their devices. This includes a device's IP address (processed during your session and stored in a de-identified form), device screen size, device type (unique device identifiers), browser information, geographic location (country only), and the preferred language used to display our website. Hotjar stores this information on our behalf in a pseudonymised user profile. Hotjar is contractually forbidden to sell any of the data collected on our behalf. For further details, please see the 'about Hotjar' section of [Hotjar's support site](https://help.hotjar.com/hc/en-us/categories/115001323967-About-Hotjar).
+*   **LinkedIn.** We install a custom LinkedIn pixel on our website which enables LinkedIn to create a cookie in the browser of any visitors, meaning a LinkedIn account holder can be retargeted via LinkedIn advertising. To find out more about LinkedIn's pixel, please visit the link here: [LinkedIn Cookie Policy](https://www.linkedin.com/legal/cookie-policy#:~:text=We%20use%20pixels%20to%20learn,place%20cookies%20on%20your%20browser.&text=Local%20storage%20enables%20a%20website,on%20your%20device(s).)
+*   **Zendesk. We use the Zopim \_\_zlcmid cookie from Zendesk to store unique user IDs of individuals with access to our online platform to triage support requests on the platform**.
+
+To deactivate the use of third party advertising cookies, you may visit the relevant third party webpage to manage the use of these types of cookies.
+
+You can choose which analytical and targeting cookies we can set by opening our Cookie Settings. Please note that if you use your browser settings to block cookies (including essential cookies) the functionality of our site and/or services may be impaired and you may not be able to access all or parts of our site and/or services.
+
+### Chart Disclaimer
+
+This chart has been prepared using the SIG Technologies Limited ("SigTech") online platform, product or services.
+
+This chart is provided for information purposes only and does not constitute an invitation, solicitation or offer to subscribe for or purchase any of the financial assets, products or services mentioned herein, nor shall it, or the fact of its distribution or communication, form the basis of, or be relied on in connection with any contract. This chart is not intended to constitute, nor should it be construed as, investment advice. This chart is not intended to provide a sufficient basis on which to make any investment decision. The information contained herein has not been provided in a fiduciary capacity, and it is not intended to be, and should not be considered as, impartial investment advice.
+
+The information, data and opinions contained in this chart are for background purposes only, are not purported to be full or complete and no reliance should be placed on them. SigTech has not verified that the sources of the information, data and opinions used by the third party publishing, disclosing or displaying to create this chart are reliable. SigTech gives no guarantee, representation, warranty or undertaking, either express or implied, regarding and accepts no liability, responsibility or duty of care for, the accuracy, validity, timeliness or completeness of any such information, data or opinion expressed by the third party publishing, disclosing or displaying this chart or that it is suitable for any particular purpose or use or it will be free from error. No obligation is undertaken by SigTech to update any information, data or material used by the third party publishing, disclosing or displaying to create this chart.
+
+Any projections or analyses contained or relating to the matters described in this chart may be based on subjective assessments and assumptions by the third party publishing, disclosing or displaying this chart and may use one among alternative methodologies that produce different results. Accordingly, to the extent this chart contains any projections or analyses, any such projections or analyses should not be viewed as factual and should not be relied upon as an accurate prediction of future results. In addition, information or analyses based on, or relating to, past performance of any financial asset, product or service mentioned herein is no guarantee and is not indicative of future results.
+
+Engaging in investment activity may expose an investor to a significant risk of losing all of the amount invested. Any person who is in any doubt about engaging in investment activity should consult an authorised person specialising in advising on such activities.
+
+© SIG Technologies Limited. All rights reserved.
+
+## Media
+
+### All our latest press coverage from across the globe
+
+###### Press Coverage
+
+*   27 March 2025
+    *   **Waters Wavelength Ep. 310: SigTech's Bin Ren**
+    *   Waters Technology
+    *   [Link](https://www.waterstechnology.com/emerging-technologies/7952345/waters-wavelength-ep-310-sigtechs-bin-ren)
+*   5 March 2025
+    *   **AI-Run Funds, Four-Day Work Weeks: Investors Say Hype Is Real**
+    *   Bloomberg.com
+    *   [Link](https://www.bloomberg.com/news/articles/2025-03-05/ai-run-funds-four-day-work-weeks-investors-say-hype-is-real)
+*   4 March 2025
+    *   **SigTech CEO Bin Ren on AI and Finance**
+    *   Bloomberg Invest
+    *   [Link](https://www.bloomberg.com/news/videos/2025-03-04/sigtech-ceo-bin-ren-on-ai-and-finance-video)
+*   4 March 2025
+    *   **SigTech CEO Ren on How AI & Finance Can Coexist**
+    *   Bloomberg TV
+    *   [Link](https://www.bloomberg.com/news/videos/2025-03-04/sigtech-ceo-ren-on-how-ai-finance-can-coexist-video)
+*   4 March 2025
+    *   **Bloomberg Intelligence: Trump Tariffs Spark Quick Retaliation**
+    *   Bloomberg Radio
+    *   [Link](https://www.bloomberg.com/news/audio/2025-03-04/bloomberg-intelligence-trump-tariffs-spark-payback-podcast)
+*   5 March 2025
+    *   **SigTech's Bin Ren on AI Agents for Investors**
+    *   Alpha Intelligence Podcast
+    *   [Link](https://youtu.be/DHqY2pMMxNk)
+
+*(Note: Additional press coverage may exist beyond this list)*
+
+## Contact Sales
+
+Get MAGIC
+=========
+
+Fill the form and our Sales team will contact you to discuss about your desired MAGIC package.
+
+**Sign Up for MAGIC Form:**
+
+*   Name
+*   Last Name
+*   Company Name (Required)
+*   Company Email Address (Required)
+*   Consent (Required): I consent being contacted by SigTech regarding MAGIC and SigTech's other related products and services. For information about how we collect, use and share your personal data, see our Privacy Policy.
+
+Limitless Collaboration by AI Agents
+------------------------------------
+
+[Find out more](https://sigtech.com/)
+
+## Onboarding Portal
+
+*(Note: This section of the website requires a password for access. Content not available.)*
+
+This content is password protected. To view it please enter your password below:
+
+Password: [Input Field Placeholder]

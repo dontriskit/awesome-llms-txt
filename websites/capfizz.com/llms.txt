@@ -1,0 +1,17 @@
+# Capfizz
+
+## Capfizz Docs
+
+- [The Black Hole of Innovation](https://docs.capfizz.com/v2/the-black-hole-of-innovation)
+- [Welcome To Capfizz Network](https://docs.capfizz.com/v2/the-black-hole-of-innovation/readme)
+- [Sentry Node](https://docs.capfizz.com/v2/sentry-node): #CapfizzNode
+- [Community Guidelines](https://docs.capfizz.com/v2/sentry-node/community-guidelines)
+- [Rewards](https://docs.capfizz.com/v2/rewards)
+- [Network Rewards](https://docs.capfizz.com/v2/rewards/network-rewards): Capfizz promises profits when users “transfer bandwidth” to the protocol and they can accumulate FIZZ to receive native Cap tokens as rewards.
+- [Referral Bonus](https://docs.capfizz.com/v2/rewards/referral-bonus)
+- [Account Boosts](https://docs.capfizz.com/v2/rewards/account-boosts)
+- [Tokenomic](https://docs.capfizz.com/v2/tokenomic): Capfizz Tokenomics
+- [Troubleshoot](https://docs.capfizz.com/v2/troubleshoot): This page will be updated regularly.
+- [FAQ](https://docs.capfizz.com/v2/faq)
+- [Privacy & Term](https://docs.capfizz.com/v2/privacy-and-term)
+- [Official Links](https://docs.capfizz.com/v2/official-links)

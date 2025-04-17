@@ -1,0 +1,42 @@
+# MealByMeal
+
+> Effortless calorie tracking over text message to help you lose weight sustainably. Just text what you eat and let the system handle the rest - no apps to navigate, no databases to search, and no food to weigh. Proven to help users lose up to 2lbs per week with minimal effort.
+
+Things to remember when using MealByMeal:
+
+- Simply text what you eat to a phone number and your calories are automatically tracked for you
+- Takes seconds to log a meal, making it much easier to maintain than traditional calorie tracking apps
+- View and edit your meal history through a comprehensive web dashboard
+- Set personalized calorie and macro goals based on your weight loss targets
+- Track your progress with visualizations showing your weight loss journey
+- Use voice commands through Siri/Google to log meals hands-free
+- AI-powered system accurately estimates calories and macros without manual conversions
+
+## Quickstart
+Getting started with MealByMeal is quick and simple:
+
+1. Sign up at [mealbymeal.com/start](https://mealbymeal.com/start) for a free one-week trial
+2. Set your weight loss goals in the web dashboard
+3. Start texting your meals to the provided phone number
+4. View your progress and adjust as needed
+
+## Features
+- **Effortless Logging**: Text what you eat in seconds, no app navigation required
+- **Voice Logging**: Use Siri or Google Assistant to log meals with your voice
+- **Restaurant Tracking**: Effectively track meals even when eating out
+- **Automatic Unit Conversion**: No need to manually convert measurements
+- **Progress Visualization**: Charts and graphs to monitor your weight loss journey
+- **AI-Powered Estimation**: Advanced AI tools for accurate calorie and macro tracking
+- **Web Dashboard**: Comprehensive overview of your nutrition data and progress
+
+## Pricing
+- **Monthly**: $7/month
+- **Annual**: $21/year (75% savings compared to monthly)
+- All plans include a free one-week trial
+- 3x cheaper than MyFitnessPal and designed for better adherence
+
+## Optional
+- [Blog](https://mealbymeal.com/blog): Tips and insights for your weight loss journey
+- [Recipe Calculator](https://mealbymeal.com/recipe-calorie-calculator): Calculate calories for home-cooked meals
+- [Contact](mailto:contact@mealbymeal.com): Get support via email
+- [FAQ](https://mealbymeal.com/#faqs): Answers to commonly asked questions

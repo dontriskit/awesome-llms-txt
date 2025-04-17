@@ -1,0 +1,39 @@
+# Clore.ai
+
+## Clore.ai
+
+- [Overview](https://docs.clore.ai/readme)
+- [Info](https://docs.clore.ai/main/info): Introduction to Clore.ai
+- [Clore coin](https://docs.clore.ai/main/clore-coin)
+- [Tokenomics](https://docs.clore.ai/main/tokenomics)
+- [Wallet](https://docs.clore.ai/main/wallet)
+- [Overview](https://docs.clore.ai/gpu-marketplace/overview): Clore.ai GPU Leasing Product
+- [Detailed Hosting Guide](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide)
+- [Installng Clore Hosting Software](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/installng-clore-hosting-software)
+- [Server Settings](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/server-settings)
+- [Clore Fleet](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/clore-fleet)
+- [Telegram bot](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/telegram-bot)
+- [How to Reinstall Drivers](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/how-to-reinstall-drivers)
+- [How to Reinstall While Keeping the Old Token](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/how-to-reinstall-while-keeping-the-old-token)
+- [How to Price Your Servers for Rental](https://docs.clore.ai/gpu-marketplace/overview/detailed-hosting-guide/how-to-price-your-servers-for-rental)
+- [Install CLORE.AI hosting](https://docs.clore.ai/gpu-marketplace/install-clore.ai-hosting)
+- [Use cases](https://docs.clore.ai/gpu-marketplace/use-cases)
+- [Maximum Fair Price (MFP)](https://docs.clore.ai/gpu-marketplace/maximum-fair-price-mfp)
+- [How to use templates (Mass rent)](https://docs.clore.ai/gpu-marketplace/how-to-use-templates-mass-rent)
+- [Clore Fleet (Mass onboarding)](https://docs.clore.ai/gpu-marketplace/clore-fleet-mass-onboarding): Instruction for Using Clore Fleet
+- [Clore Partners: High-Volume Rental System for Major Clients](https://docs.clore.ai/clore-partners-high-volume-rental-system-for-major-clients)
+- [Overview](https://docs.clore.ai/proof-of-holding/overview)
+- [Proof of Holding 2.0](https://docs.clore.ai/proof-of-holding/proof-of-holding-2.0)
+- [How to add Clore coins to the POH](https://docs.clore.ai/proof-of-holding/how-to-add-clore-coins-to-the-poh)
+- [POH marketplace](https://docs.clore.ai/proof-of-holding/overview-1)
+- [Use cases](https://docs.clore.ai/proof-of-holding/use-cases)
+- [Clore Vpn](https://docs.clore.ai/clore-vpn)
+- [Overview](https://docs.clore.ai/gigaspot/overview): GigaSPOT - Market leading compute power trading system
+- [Current Market Specifics](https://docs.clore.ai/gigaspot/current-market-specifics)
+- [Deploying on GigaSPOT](https://docs.clore.ai/gigaspot/deploying-on-gigaspot)
+- [Adapting to Russian Regulations](https://docs.clore.ai/gigaspot/adapting-to-russian-regulations)
+- [Team](https://docs.clore.ai/about/team)
+- [Links](https://docs.clore.ai/about/links)
+- [FAQ](https://docs.clore.ai/about/faq)
+- [API](https://docs.clore.ai/guidlines/api)
+- [Glossary](https://docs.clore.ai/guidlines/glossary)

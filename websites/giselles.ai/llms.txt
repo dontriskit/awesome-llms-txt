@@ -1,0 +1,51 @@
+# Giselle Docs
+
+## Docs
+
+- [Account FAQ](https://docs.giselles.ai/faq/account-billing/accounts.md): Frequently asked questions about Giselle accounts
+- [Billing FAQ](https://docs.giselles.ai/faq/account-billing/billing.md): Frequently asked questions about billing and payments for Giselle
+- [Plan FAQ](https://docs.giselles.ai/faq/account-billing/plan.md): Frequently asked questions about Giselle plans and features
+- [AI Models FAQ](https://docs.giselles.ai/faq/application/ai-models.md): Frequently asked questions about AI models and their usage in Giselle
+- [Workspace FAQ](https://docs.giselles.ai/faq/application/workspaces.md): Frequently asked questions about Giselle workspaces
+- [Privacy & Security FAQ](https://docs.giselles.ai/faq/security-support/privacy-security.md): Frequently asked questions about Giselle7s privacy and security measures
+- [Support FAQ](https://docs.giselles.ai/faq/security-support/support.md): Frequently asked questions about Giselle support services
+- [AI Parameters](https://docs.giselles.ai/glossary/ai-parameters.md): Dictionary of Generation Parameters Used Across AI Models in Giselle.
+- [Nodes in Giselle](https://docs.giselles.ai/glossary/node.md): Learn about nodes, the building blocks of AI apps on Giselle. Connect nodes with various functions to visually design powerful AI workflows.
+- [My Apps](https://docs.giselles.ai/guides/apps/myapp.md): Create and manage your personal AI applications
+- [Team Apps](https://docs.giselles.ai/guides/apps/teamapp.md): Collaborate and manage AI applications with your team
+- [Quickstart](https://docs.giselles.ai/guides/get-started/quickstart.md): Build your first AI agent with Giselle in minutes! This quick start guide covers signup to running a workflow.
+- [About Giselle](https://docs.giselles.ai/guides/introduction.md): Welcome to the home of Giselle documentation!
+- [Billing](https://docs.giselles.ai/guides/learn-about/billing.md): Manage your personal account billing and payments
+- [Open Source License](https://docs.giselles.ai/guides/learn-about/open-source-license.md): Learn about Giselle's open-source license and how it applies to your usage
+- [Plans](https://docs.giselles.ai/guides/learn-about/plans.md): Understand your Giselle subscription.
+- [Privacy & Security](https://docs.giselles.ai/guides/learn-about/privacy-security.md): Manage your account security and privacy settings
+- [Usage](https://docs.giselles.ai/guides/learn-about/usage.md): Monitor and manage your team's resource usage
+- [Authentication](https://docs.giselles.ai/guides/settings/account/Authentication.md): Connect your Giselle account with third-party services to simplify login.
+- [General](https://docs.giselles.ai/guides/settings/account/general.md): Configure your account basic settings and preferences
+- [Overview](https://docs.giselles.ai/guides/settings/account/overview.md): View and manage your teams
+- [Billing](https://docs.giselles.ai/guides/settings/team/billing.md): Check your current subscription status.
+- [General](https://docs.giselles.ai/guides/settings/team/general.md): Configure your teams basic settings and preferences
+- [Integrations](https://docs.giselles.ai/guides/settings/team/integrations.md): Configure, manage, and oversee integrations with your Giselle AI apps.
+- [Members](https://docs.giselles.ai/guides/settings/team/members.md): Invite, manage, and oversee team members' access to your Giselle AI apps.
+- [Usage](https://docs.giselles.ai/guides/settings/team/usage.md): Monitor and manage your team's AI app usage
+- [Build](https://docs.giselles.ai/guides/workspaces/build.md): Learn how to build and configure workspaces in Giselle
+- [Integrate](https://docs.giselles.ai/guides/workspaces/integrate.md): Connect your Giselle workspace with external services
+- [Preview](https://docs.giselles.ai/guides/workspaces/preview.md): Configure and use preview environments for your workspace
+- [Anthropic](https://docs.giselles.ai/models/providers/anthropic.md): Available Anthropic AI Models Overview.
+- [fal.ai](https://docs.giselles.ai/models/providers/fal.md): Overview of Available fal.ai Image Generation Models.
+- [Google](https://docs.giselles.ai/models/providers/google.md): Available Google AI Models Overview.
+- [OpenAI](https://docs.giselles.ai/models/providers/openai.md): Available OpenAI Models Overview.
+- [Overview](https://docs.giselles.ai/models/providers/overview.md): AI Model Providers.
+- [Perplexity AI](https://docs.giselles.ai/models/providers/perplexity.md): Available Perplexity AI Models Overview.
+- [Examples](https://docs.giselles.ai/prompts/examples.md): Effective Prompt Examples in Giselle’s Generator Nodes.
+- [Overview](https://docs.giselles.ai/prompts/overview.md): Prompt Engineering in Giselle’s Node-Based UI.
+- [Tips](https://docs.giselles.ai/prompts/tips.md): Practical Tips for Effective Prompt Creation in Giselle’s Generator Nodes.
+- [Product Notes](https://docs.giselles.ai/releases/product-notes.md): This document outlines key updates, improvements, and future prospects of our product.
+- [Release Notes](https://docs.giselles.ai/releases/release-notes.md): This page provides chronological information about the latest releases and updates of our product.
+- [Roadmap](https://docs.giselles.ai/releases/roadmap.md): Discover our product development plans and upcoming milestones.
+
+
+## Optional
+
+- [Website](https://giselles.ai)
+- [Open Source](https://github.com/giselles-ai/giselle)

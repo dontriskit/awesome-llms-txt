@@ -1,0 +1,504 @@
+# Platform.sh
+
+> Platform.sh is a Cloud Application Platform to host all of your web applications.
+
+Things to remember when deploying applications on the Platform.sh Cloud Application Platform:
+- *Ultimate developer flexibility*: Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Platform.sh PaaS.
+- *Application development your way*, 4 options to get started sync your GitHub repo with Platform.sh, Deploy an existing local Git repository, Kickstart a new repository, Explore Platform.sh with our Demo app
+- *Agnostic freedom*: Tight integration with external systems, stacks, and tools you already use. Choice of IaaS platform(by geo or cloud provider) and services. Choose the road you want to travel.
+- *Self-service*: All the control and customization you want to experiment. Flexible resources. Sensible, transparent, usage-based pricing. Choose self-empowerment.
+- *Composable infrastructure*: Dozens of runtimes and backend services to mix and match, Managed routing, with built-in, multiregional edge-caching, automated TLS, and WAF, Full infrastructure preview environments, isolated, but identical to production, Full abstraction from underlying cloud provider; runs precisely the same way on every major cloud
+- *Collaboration-oriented*: The ability to collaborate on the infrastructure just like you collaborate on code, Git-driven infrastructure with support for multiple repositories, Bi-directional Git integrations, activity scripts, and webhooks to plug into any external service, Instantly created preview environments—per branch, per PR, per team, per developer, per anything
+- *Scalable on every dimension*: Vertical scaling of every component, horizontal scaling of applications and workers, Fully managed, multicloud edge-caching, From a single monolith to an automated service mesh, with microservices, workers' message queues, and multiple data backends, Built-in observability tools, with infrastructure metrics, built-in APM, profiling, and tracing
+- *Stability, security, responsibility*: Automated high availability and failover of every infrastructure component, with automated and transparent security-patching, Fine-grained team permissions, with MFA everywhere—even on SSH, Short-lived SSH certificates, with MFA and external identity provider support, PCI DSS, SOC 2, GDPR compliance,
+- *Polyglot? Hyperglot? We glot you*: Platform.sh supports an array of cool languages and frameworks. Monoliths. Microservices. Multistack. So you can keep your options open. Flexible. And future-proof.
+
+## Docs
+- Get started
+
+- [Introduction](https://docs.upsun.com/get-started/introduction.md)
+- [Deploy](https://docs.upsun.com/get-started/deploy.md)
+- [Git init](https://docs.upsun.com/get-started/deploy/init.md): Initialize your project
+- [Git commit](https://docs.upsun.com/get-started/deploy/commit.md): Start getting your project into Upsun.
+- [Add data](https://docs.upsun.com/get-started/add-data.md)
+- [Git branch](https://docs.upsun.com/get-started/add-data/branch.md): Create a separate environment for development and see how it works.
+- [Git merge](https://docs.upsun.com/get-started/add-data/merge.md): Add a service and see how data works between branches.
+- [Monitor and troubleshoot](https://docs.upsun.com/get-started/monitor-and-troubleshoot.md)
+- [Git log](https://docs.upsun.com/get-started/monitor-and-troubleshoot/log.md): See what&#39;s happening inside your app.
+- [Git status](https://docs.upsun.com/get-started/monitor-and-troubleshoot/status.md): Get notified about events so you can react to them.
+- Learn
+
+- [What is Platform.sh?](https://docs.upsun.com/learn/overview.md)
+- [Philosophy](https://docs.upsun.com/learn/overview/philosophy.md): Gain insight into the philosophy of Upsun.
+- [YAML](https://docs.upsun.com/learn/overview/yaml.md): An overview of YAML and its use at Upsun.
+- [What YAML is](https://docs.upsun.com/learn/overview/yaml/what-is-yaml.md): An introduction to what YAML is and how to create and modify YAML files.
+- [Platform.sh YAML structure](https://docs.upsun.com/learn/overview/yaml/yaml-structure.md): A description of the YAML file for Upsun.
+- [Platform.sh YAML tags](https://docs.upsun.com/learn/overview/yaml/platform-yaml-tags.md): A description of custom YAML tags available for Upsun files.
+- [Structure](https://docs.upsun.com/learn/overview/structure.md): Learn about how your Upsun environments are structured and which files control that structure.
+- [Build and deploy](https://docs.upsun.com/learn/overview/build-deploy.md): See how applications get built and deployed with Upsun.
+- [Get support](https://docs.upsun.com/learn/overview/get-support.md): Find out how to get help if you&#39;re experiencing issues with Upsun.
+
+- [Tutorials](https://docs.upsun.com/learn/tutorials.md)
+- [Automate your code updates](https://docs.upsun.com/learn/tutorials/dependency-updates.md): Learn how to automate your dependency updates through a source operation.
+- [Restrict access to a service](https://docs.upsun.com/learn/tutorials/restrict-service-access.md): Learn how to restrict access to a service using a worker and additional endpoints to the service.
+- [Exporting data](https://docs.upsun.com/learn/tutorials/exporting.md): See how to export your code, files and service data.
+- [Migrating to Platform.sh](https://docs.upsun.com/learn/tutorials/migrating.md): See how to migrate your app to Upsun so it&#39;s ready to be deployed.
+- [Best practices](https://docs.upsun.com/learn/bestpractices.md)
+- [HTTP caching](https://docs.upsun.com/learn/bestpractices/http-caching.md): See your options for HTTP caching with Upsun.
+- [From monoliths through headless to microservices](https://docs.upsun.com/learn/bestpractices/oneormany.md): Choose the best app topology depending on your needs.
+- [Keep your Git repository clean](https://docs.upsun.com/learn/bestpractices/clean-repository.md): To avoid performance issues, prevent your Git repository from becoming too large.
+- [More resources](https://docs.upsun.com/learn/resources.md)
+- Frameworks
+
+- [Django](https://docs.upsun.com/guides/django.md)
+- [Deploy Django on Platform.sh](https://docs.upsun.com/guides/django/deploy.md): See how to get started deploying Django on Upsun.
+- [Configure](https://docs.upsun.com/guides/django/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Django.
+
+- [Customize](https://docs.upsun.com/guides/django/deploy/customize.md): Add some helpful dependencies, and modify your Django site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/django/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/django/deploy/next-steps.md): With Django deployed, set up your local development environment, compliance requirements, and more.
+
+- [Local development](https://docs.upsun.com/guides/django/local.md): Sync Upsun with your local environments to start contributing.
+
+- [DDEV](https://docs.upsun.com/guides/django/local/ddev.md): Set up an environment with Upsun&#39;s recommended local development tool, DDEV.
+
+- [Tethered local](https://docs.upsun.com/guides/django/local/tethered.md): Connect a locally running Django server directly to active services on a Upsun environment.
+- [Drupal](https://docs.upsun.com/guides/drupal.md)
+- [Deploy Drupal on Platform.sh](https://docs.upsun.com/guides/drupal/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Drupal.
+
+- [Configure](https://docs.upsun.com/guides/drupal/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Drupal.
+
+- [Customize](https://docs.upsun.com/guides/drupal/deploy/customize.md): Add some helpful dependencies, and modify your Drupal site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/drupal/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/drupal/deploy/next-steps.md): Upgrading, adding modules, and further development of your site.
+
+- [Using Elasticsearch with Drupal](https://docs.upsun.com/guides/drupal/elasticsearch.md): Add an Elasticsearch server to your site and connect it to Drupal.
+
+- [Using Memcached with Drupal](https://docs.upsun.com/guides/drupal/memcached.md): Configure Memcached instead of Redis for Drupal caching.
+
+- [Multiple Drupal sites in a single Project](https://docs.upsun.com/guides/drupal/multi-site.md): Upsun supports running [multiple applications](/learn/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
+
+- [Using Redis with Drupal](https://docs.upsun.com/guides/drupal/redis.md): Add Redis caching to your existing Drupal site.
+- [Using Valkey with Drupal](https://docs.upsun.com/guides/drupal/valkey.md): Add Valkey caching to your existing Drupal site.
+- [SimpleSAML](https://docs.upsun.com/guides/drupal/simplesaml.md): Configure third party authentication using SimpleSAML.
+
+- [Drupal Frequently Asked Questions (FAQ)](https://docs.upsun.com/guides/drupal/faq.md)
+- [Ibexa DXP](https://docs.upsun.com/guides/ibexa.md)
+- [Deploy Ibexa DXP on Platform.sh](https://docs.upsun.com/guides/ibexa/deploy.md): Learn how to use Ibexa DXP on Upsun.
+- [Ibexa DXP with Fastly](https://docs.upsun.com/guides/ibexa/fastly.md): Ibexa DXP is a &#34;commercial extended&#34; version of Ibexa OSS that includes, among other things, support for push-based purging on the Fastly CDN.
+
+- [Symfony](https://docs.upsun.com/guides/symfony.md)
+- [Get started](https://docs.upsun.com/guides/symfony/get-started.md): See how to get started deploying Symfony on Upsun.
+
+- [Symfony integration](https://docs.upsun.com/guides/symfony/integration.md): Learn how to use the Symfony integration for a better Upsun experience.
+
+- [Environment variables](https://docs.upsun.com/guides/symfony/environment-variables.md): Learn about the environment variables added by the Symfony integration.
+
+- [Workers](https://docs.upsun.com/guides/symfony/workers.md): Understand how to configure Symfony workers.
+
+- [Cron Jobs](https://docs.upsun.com/guides/symfony/crons.md): Understand how to configure Symfony cron jobs.
+
+- [Continous Observability with Blackfire](https://docs.upsun.com/guides/symfony/blackfire.md): Set up a continuous observability strategy for your Symfony app with Blackfire.
+- [Local development](https://docs.upsun.com/guides/symfony/local.md): Sync Upsun with your local environments to start contributing.
+
+- [FAQ](https://docs.upsun.com/guides/symfony/faq.md): Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework on Upsun.
+
+- [Laravel](https://docs.upsun.com/guides/laravel.md)
+- [Deploy Laravel on Platform.sh](https://docs.upsun.com/guides/laravel/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Laravel.
+
+- [Configure](https://docs.upsun.com/guides/laravel/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Laravel.
+
+- [Laravel Bridge](https://docs.upsun.com/guides/laravel/deploy/bridge.md): Connect your Laravel-based app to Upsun with Laravel Bridge.
+- [Scheduling tasks](https://docs.upsun.com/guides/laravel/deploy/scheduling.md): Schedule tasks for your Laravel app.
+- [Blackfire](https://docs.upsun.com/guides/laravel/deploy/blackfire.md): Set up a continuous observability strategy for your Laravel app with Blackfire.
+- [Octane](https://docs.upsun.com/guides/laravel/deploy/octane.md): Improve Laravel apps&#39; performance serving them with Laravel Octane.
+- [Deploy](https://docs.upsun.com/guides/laravel/deploy/deploy.md): Now that your Laravel app is ready, push it to Upsun and import your data.
+
+- [Run a Laravel app on your local machine](https://docs.upsun.com/guides/laravel/local-development.md): Run your Laravel app deployed on Upsun on your local machine.
+- [DDEV](https://docs.upsun.com/guides/laravel/local-development/ddev.md): Develop your Laravel app locally with **DDEV**, a tool for local PHP development environments based on Docker containers.
+- [Lando](https://docs.upsun.com/guides/laravel/local-development/lando.md): Develop your Laravel app locally with **Lando**, a development tool based on Docker containers.
+- [TYPO3](https://docs.upsun.com/guides/typo3.md)
+- [Deploy TYPO3 on Platform.sh](https://docs.upsun.com/guides/typo3/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy TYPO3.
+
+- [Configure](https://docs.upsun.com/guides/typo3/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for TYPO3.
+
+- [Customize](https://docs.upsun.com/guides/typo3/deploy/customize.md): Add some helpful dependencies, and modify your TYPO3 site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/typo3/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/typo3/deploy/next-steps.md): Upgrading, adding modules, and further development of your site.
+
+- [WordPress](https://docs.upsun.com/guides/wordpress.md)
+- [Deploy WordPress on Platform.sh](https://docs.upsun.com/guides/wordpress/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy WordPress using Composer.
+
+- [Configure](https://docs.upsun.com/guides/wordpress/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for WordPress.
+
+- [Customize](https://docs.upsun.com/guides/wordpress/deploy/customize.md): Add some helpful dependencies, and modify your WordPress site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/wordpress/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/wordpress/deploy/next-steps.md): Upgrading, adding modules, and further development of your site.
+
+- [Why you should manage WordPress with Composer](https://docs.upsun.com/guides/wordpress/composer.md): This guide will give you a greater understanding for whyUpsun recommends using Composer to manage WordPress.
+
+- [Upgrade to use Composer](https://docs.upsun.com/guides/wordpress/composer/migrate.md): Learn how to use WordPress with Composer on Upsun.
+
+- [How to Deploy WordPress without Composer on Platform.sh](https://docs.upsun.com/guides/wordpress/vanilla.md): Migrate your existing vanilla WordPress site to Upsun. 
+
+- [Configure](https://docs.upsun.com/guides/wordpress/vanilla/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for WordPress.
+
+- [Customize](https://docs.upsun.com/guides/wordpress/vanilla/customize.md): Add some helpful dependencies, and modify your WordPress site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/wordpress/vanilla/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/wordpress/vanilla/next-steps.md): Upgrading, adding modules, and further development of your site.
+
+- [Using Redis with WordPress](https://docs.upsun.com/guides/wordpress/redis.md): Configure Redis for your WordPress site.
+
+- [Pimcore PaaS](https://docs.upsun.com/guides/pimcore.md)
+- [Shopware PaaS](https://docs.upsun.com/guides/shopware.md)
+- [Gatsby](https://docs.upsun.com/guides/gatsby.md)
+- [Deploy Gatsby on Platform.sh](https://docs.upsun.com/guides/gatsby/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Gatsby.
+
+- [Configure](https://docs.upsun.com/guides/gatsby/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Gatsby.
+
+- [Deploy](https://docs.upsun.com/guides/gatsby/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/gatsby/deploy/next-steps.md): A collection of resources for the further development of your Gatsby site.
+
+- [Gatsby multi-app projects](https://docs.upsun.com/guides/gatsby/headless.md): You can use Upsun&#39;s multi-app configuration to deploy Gatsby alongside a backend CMS, pulling content into Gatsby during builds.
+
+- [Drupal](https://docs.upsun.com/guides/gatsby/headless/drupal.md): Drupal&#39;s JSON API module can be used as a data source for Gatsby via `gatsby-source-drupal`.
+
+- [Strapi](https://docs.upsun.com/guides/gatsby/headless/strapi.md): You can build out an API from scratch with Strapi, and then connect its data to a frontend Gatsby app with `gatsby-source-strapi`.
+
+- [WordPress](https://docs.upsun.com/guides/gatsby/headless/wordpress.md): WordPress&#39;s built-in content API can quickly become a content source for Gatsby with `gatsby-source-wordpress`.
+
+- [Next.js](https://docs.upsun.com/guides/nextjs.md)
+- [Deploy Next.js on Platform.sh](https://docs.upsun.com/guides/nextjs/deploy.md): Prepare to deploy Next.js.
+- [Strapi](https://docs.upsun.com/guides/strapi.md)
+- [Deploy Strapi on Platform.sh](https://docs.upsun.com/guides/strapi/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Strapi.
+
+- [Configure](https://docs.upsun.com/guides/strapi/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Strapi.
+
+- [Deploy](https://docs.upsun.com/guides/strapi/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Configuring Database Services for Strapi on Platform.sh](https://docs.upsun.com/guides/strapi/database-configuration.md): Configure a preferred database for your Strapi application on Upsun
+
+- [SQLite](https://docs.upsun.com/guides/strapi/database-configuration/sqlite.md): Configure your Strapi application to use a SQLite database on Upsun.
+
+- [PostgreSQL](https://docs.upsun.com/guides/strapi/database-configuration/postgresql.md): Configure your Strapi application to use a PostgreSQL database on Upsun.
+
+- [MySQL](https://docs.upsun.com/guides/strapi/database-configuration/mysql.md): Configure your Strapi application to use a MySQL database on Upsun.
+
+- [MongoDB](https://docs.upsun.com/guides/strapi/database-configuration/mongodb.md): Configure your strapi application to use a MongoDB database on Upsun (v3 only).
+
+- [Local development: Running Strapi on your local machine with Platform.sh](https://docs.upsun.com/guides/strapi/local-development.md): Run your Strapi application deployed on Upsun on your local machine
+
+- [Strapi v3](https://docs.upsun.com/guides/strapi/local-development/local-development-v3.md): How to develop a Strapi v3 app locally.
+- [Strapi v4](https://docs.upsun.com/guides/strapi/local-development/local-development-v4.md): How to develop a Strapi v4 app locally.
+- [Strapi multi-app projects](https://docs.upsun.com/guides/strapi/adding-frontends.md): You can use a multi-app configuration to deploy Strapi alongside a frontend application, pulling content from Strapi into the frontend during builds.
+
+- [Gatsby](https://docs.upsun.com/guides/strapi/adding-frontends/gatsby.md): You can build out an API from scratch with Strapi and then connect its data to a frontend Gatsby app with `gatsby-source-strapi`.
+
+- [Hibernate](https://docs.upsun.com/guides/hibernate.md)
+- [Deploy Hibernate ORM on Platform.sh](https://docs.upsun.com/guides/hibernate/deploy.md)
+- [Jakarta](https://docs.upsun.com/guides/jakarta.md)
+- [Deploy Jakarta on Platform.sh](https://docs.upsun.com/guides/jakarta/deploy.md)
+- [Micronaut](https://docs.upsun.com/guides/micronaut.md)
+- [Deploy Micronaut on Platform.sh](https://docs.upsun.com/guides/micronaut/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Micronaut.
+
+- [Configure](https://docs.upsun.com/guides/micronaut/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Micronaut.
+
+- [Customize](https://docs.upsun.com/guides/micronaut/deploy/customize.md): Add some helpful dependencies, and modify your Micronaut site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/micronaut/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/micronaut/deploy/next-steps.md): Resources for further developing your site.
+
+- [How to Deploy Micronaut on Platform.sh with Elasticsearch](https://docs.upsun.com/guides/micronaut/elasticsearch.md): Configure a Micronaut application with Elasticsearch.
+
+- [How to Deploy Micronaut on Platform.sh with Micronaut Data](https://docs.upsun.com/guides/micronaut/micronaut-data.md): Configure a Micronaut application with Micronaut Data.
+
+- [How to Deploy Micronaut on Platform.sh with MongoDB](https://docs.upsun.com/guides/micronaut/mongodb.md): Configure a Micronaut application with MongoDB.
+
+- [How to Deploy Micronaut on Platform.sh with Redis](https://docs.upsun.com/guides/micronaut/redis.md): Configure a Micronaut application with Redis.
+
+- [How to Deploy Micronoaut on Platform.sh with JPA](https://docs.upsun.com/guides/micronaut/jpa.md): Configure a Micronoaut application with JPA.
+
+- [Quarkus](https://docs.upsun.com/guides/quarkus.md)
+- [Deploy Quarkus on Platform.sh](https://docs.upsun.com/guides/quarkus/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Quarkus.
+
+- [Configure](https://docs.upsun.com/guides/quarkus/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Quarkus.
+
+- [Customize](https://docs.upsun.com/guides/quarkus/deploy/customize.md): Add some helpful dependencies, and modify your Quarkus site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/quarkus/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/quarkus/deploy/next-steps.md): Resources for further developing your site.
+
+- [How to Deploy Quarkus on Platform.sh with Elasticsearch](https://docs.upsun.com/guides/quarkus/elasticsearch.md): Configure a Quarkus application with Elasticsearch.
+
+- [How to Deploy Quarkus on Platform.sh with JPA](https://docs.upsun.com/guides/quarkus/jpa.md): Configure a Quarkus application with JPA.
+
+- [How to Deploy Quarkus on Platform.sh with MongoDB](https://docs.upsun.com/guides/quarkus/mongodb.md): Configure a Quarkus application with MongoDB.
+
+- [How to Deploy Quarkus on Platform.sh with Panache](https://docs.upsun.com/guides/quarkus/panache.md): Configure a Quarkus application with Panache.
+
+- [How to Deploy Quarkus on Platform.sh with Redis](https://docs.upsun.com/guides/quarkus/redis.md): Configure a Quarkus application with Redis.
+
+- [Spring](https://docs.upsun.com/guides/spring.md)
+- [Configure Spring with MariaDB/MySQL](https://docs.upsun.com/guides/spring/mysql.md): Configure a Spring application with MariaDB/MySQL.
+- [Configure Spring with PostgreSQL](https://docs.upsun.com/guides/spring/postgresql.md): Configure a Spring application with PostgreSQL.
+- [Configure Spring with RabbitMQ](https://docs.upsun.com/guides/spring/rabbitmq.md): Configure a Spring application with RabbitMQ.
+- [Configure Spring with Solr](https://docs.upsun.com/guides/spring/solr.md): Configure a Spring application with Solr.
+- [Deploy Spring on Platform.sh](https://docs.upsun.com/guides/spring/deploy.md): Create a Upsun account, download a few tools, and prepare to deploy Spring.
+
+- [Configure](https://docs.upsun.com/guides/spring/deploy/configure.md): Review the basics of what makes up a Upsun project, including its three principle configuration files and how to define them for Spring.
+
+- [Customize](https://docs.upsun.com/guides/spring/deploy/customize.md): Add some helpful dependencies, and modify your Spring site to read from a Upsun environment.
+
+- [Deploy](https://docs.upsun.com/guides/spring/deploy/deploy.md): Now that your site is ready, push it to Upsun and import your data.
+
+- [Next steps](https://docs.upsun.com/guides/spring/deploy/next-steps.md): Resources for further developing your site.
+
+- [How to Deploy Spring on Platform.sh with Elasticsearch](https://docs.upsun.com/guides/spring/elasticsearch.md): Configure a Spring application with Elasticsearch.
+
+- [How to Deploy Spring on Platform.sh with JPA](https://docs.upsun.com/guides/spring/jpa.md): Configure a Spring application with JPA.
+
+- [How to Deploy Spring on Platform.sh with MongoDB](https://docs.upsun.com/guides/spring/mongodb.md): Configure a Spring application with MongoDB.
+
+- [How to Deploy Spring on Platform.sh with Redis](https://docs.upsun.com/guides/spring/redis.md): Configure a Spring application with Redis.
+
+- Reference
+
+- [Configure apps](https://docs.upsun.com/create-apps.md)
+- [App reference](https://docs.upsun.com/create-apps/app-reference.md): Configure your app and control how it&#39;s built and deployed on Upsun.
+- [Single-runtime image](https://docs.upsun.com/create-apps/app-reference/single-runtime-image.md): See all of the options for controlling your apps and how they&#39;re built and deployed on Upsun.
+- [Composable image](https://docs.upsun.com/create-apps/app-reference/composable-image.md): Use Upsun&#39;s composable image to build and deploy your app.
+- [Source operations](https://docs.upsun.com/create-apps/source-operations.md): Run automated code updates via source operations.
+- [Runtime operations](https://docs.upsun.com/create-apps/runtime-operations.md): Set up runtime operations to run one-off commands on your project through the Upsun CLI.
+- [Configure what&rsquo;s served](https://docs.upsun.com/create-apps/web.md)
+- [PHP with front controller](https://docs.upsun.com/create-apps/web/php-basic.md): Start with a basic PHP app with a front controller for dynamic requests.
+- [Rewrite requests](https://docs.upsun.com/create-apps/web/rewrite-requests.md): Rewrite requests to be served by other parts of your app without directing users.
+- [Serve different paths](https://docs.upsun.com/create-apps/web/serve-different-directories.md): Serve directories at different places than where they are in your app.
+- [Static sites](https://docs.upsun.com/create-apps/web/static.md): Serve completely static sites
+- [Custom headers](https://docs.upsun.com/create-apps/web/custom-headers.md): Set custom headers for your static content such as custom content-types or limits to cross-origin usage.
+- [Set up multiple apps in a single project](https://docs.upsun.com/create-apps/multi-app.md): Create multiple apps within a single project, such as a CMS backend connected to a frontend to display it.
+- [Choose a project structure](https://docs.upsun.com/create-apps/multi-app/project-structure.md): Explore possible code structures you can apply to your multiple application projects.
+- [Define routes](https://docs.upsun.com/create-apps/multi-app/routes.md): Learn about the many ways you can define routes between your apps.
+- [Define relationships](https://docs.upsun.com/create-apps/multi-app/relationships.md): Find out how relationships are managed between your apps.
+- [Timezones](https://docs.upsun.com/create-apps/timezone.md): Learn more about the different timezones on Upsun and when you can customize them.
+- [Troubleshoot disks](https://docs.upsun.com/create-apps/troubleshoot-disks.md)
+- [Troubleshoot mounts](https://docs.upsun.com/create-apps/troubleshoot-mounts.md)
+- [Upgrading](https://docs.upsun.com/create-apps/upgrading.md)
+- [Use build and deploy hooks](https://docs.upsun.com/create-apps/hooks.md): Add custom scripts at different stages in the build and deploy process.
+- [Change hooks in different environments](https://docs.upsun.com/create-apps/hooks/vary-hooks-by-environment.md): Change what runs in your hooks depending on the current environment type.
+- [Comparison of hooks](https://docs.upsun.com/create-apps/hooks/hooks-comparison.md): What hooks are available in the build and deploy process and how to choose which to use.
+- [Use hooks with dependencies](https://docs.upsun.com/create-apps/hooks/hooks-and-dependencies.md): Manage dependencies for your hooks, such as compiling Sass files as part of your build.
+- [Work with workers](https://docs.upsun.com/create-apps/workers.md): Interact with your worker instances to handle background tasks for your apps.
+- [Add services](https://docs.upsun.com/add-services.md)
+- [Elasticsearch (Search service)](https://docs.upsun.com/add-services/elasticsearch.md): Elasticsearch is a distributed RESTful search engine built for the cloud.
+
+- [Gotenberg](https://docs.upsun.com/add-services/gotenberg.md): Gotenberg is a user-friendly API for PDF files.
+- [Headless Chrome](https://docs.upsun.com/add-services/headless-chrome.md): Headless Chrome is a headless browser that can be configured on projects like any other service on Upsun.
+
+- [InfluxDB (Database service)](https://docs.upsun.com/add-services/influxdb.md): InfluxDB is a time series database optimized for high-write-volume use cases such as logs, sensor data, and real-time analytics.
+
+- [Kafka (Message queue service)](https://docs.upsun.com/add-services/kafka.md): Apache Kafka is an open-source stream-processing software platform.
+
+- [MariaDB/MySQL (database service)](https://docs.upsun.com/add-services/mysql.md): See how to configure a MariaDB/MySQL server to store your data.
+- [MariaDB/MySQL Replication](https://docs.upsun.com/add-services/mysql/mysql-replication.md): In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of Upsun.
+- [Troubleshoot](https://docs.upsun.com/add-services/mysql/troubleshoot.md)
+- [Memcached (Object cache)](https://docs.upsun.com/add-services/memcached.md): Memcached is a simple in-memory object store well-suited for application level caching.
+
+- [MongoDB (Database service)](https://docs.upsun.com/add-services/mongodb.md): MongoDB is a cross-platform, document-oriented database.&lt;br&gt;&lt;br&gt;For more information on using MongoDB, see &lt;a href=&#34;https://docs.mongodb.com/manual/&#34;&gt;MongoDB&#39;s own documentation&lt;/a&gt;.
+- [Network Storage](https://docs.upsun.com/add-services/network-storage.md)
+- [OpenSearch (search service)](https://docs.upsun.com/add-services/opensearch.md): OpenSearch is a distributed RESTful search engine built for the cloud.
+
+- [PostgreSQL (Database service)](https://docs.upsun.com/add-services/postgresql.md)
+- [RabbitMQ (message queue service)](https://docs.upsun.com/add-services/rabbitmq.md): See how to configure RabbitMQ for your messaging needs.
+- [Redis (Object cache)](https://docs.upsun.com/add-services/redis.md)
+- [Valkey](https://docs.upsun.com/add-services/valkey.md)
+- [Solr (Search service)](https://docs.upsun.com/add-services/solr.md)
+- [Varnish](https://docs.upsun.com/add-services/varnish.md)
+- [Vault key management service](https://docs.upsun.com/add-services/vault.md)
+- [Define routes](https://docs.upsun.com/define-routes.md)
+- [Server Side Includes (SSI)](https://docs.upsun.com/define-routes/ssi.md): SSI commands enable you to include files within other pages.
+
+- [HTTP cache](https://docs.upsun.com/define-routes/cache.md): Upsun supports HTTP caching at the server level. Caching is enabled by default, but is only applied to `GET` and `HEAD` requests.
+
+- [HTTPS](https://docs.upsun.com/define-routes/https.md): Learn how to enable HTTPS for your site and configure TLS connections.
+- [Proxy routes](https://docs.upsun.com/define-routes/proxy.md): Pass requests to a location outside your Upsun project using proxy routes.
+- [Redirects](https://docs.upsun.com/define-routes/redirects.md): Managing redirection rules is a common requirement for web applications, especially in cases where you do not want to lose incoming links that have changed or been removed over time.
+
+- [Languages](https://docs.upsun.com/languages.md)
+- [C#/.NET Core](https://docs.upsun.com/languages/dotnet.md): Upsun supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
+
+- [Elixir](https://docs.upsun.com/languages/elixir.md): Upsun supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. Upsun Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7.
+- [Go](https://docs.upsun.com/languages/go.md): Upsun supports building and deploying applications written in Go using Go modules. They&#39;re compiled during the Build hook phase, and support both committed dependencies and download-on-demand.
+- [Java](https://docs.upsun.com/languages/java.md): Java is a general-purpose programming language, and one of the most popular in the world today. Upsun supports Java runtimes that can be used with build management tools such as Gradle, Maven, and Ant.
+- [Frameworks](https://docs.upsun.com/languages/java/frameworks.md)
+- [Moving to Platform.sh](https://docs.upsun.com/languages/java/migration.md)
+- [Tuning](https://docs.upsun.com/languages/java/tuning.md)
+- [JavaScript/Node.js](https://docs.upsun.com/languages/nodejs.md): Get started creating JavaScript apps with Node.js on Upsun.
+- [Debugging](https://docs.upsun.com/languages/nodejs/debug.md)
+- [Manage Node.js versions](https://docs.upsun.com/languages/nodejs/node-version.md): See how to manage different Node.js versions in your Upsun containers.&#34;
+- [Lisp](https://docs.upsun.com/languages/lisp.md): Upsun supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They&#39;re compiled during the Build phase, and support both committed dependencies and download-on-demand.
+- [PHP](https://docs.upsun.com/languages/php.md): Deploy PHP apps on Upsun.
+- [Extensions](https://docs.upsun.com/languages/php/extensions.md): See what PHP extensions are available with each PHP version on Upsun.
+- [Performance tuning](https://docs.upsun.com/languages/php/tuning.md)
+- [PHP-FPM sizing](https://docs.upsun.com/languages/php/fpm.md): Learn how to adjust the maximum number of PHP-FPM workers for your app
+- [Xdebug](https://docs.upsun.com/languages/php/xdebug.md)
+- [Custom Redis](https://docs.upsun.com/languages/php/redis.md)
+- [Swoole](https://docs.upsun.com/languages/php/swoole.md)
+- [Authenticated Composer](https://docs.upsun.com/languages/php/composer-auth.md): Allow Composer to authenticate against a private third-party Composer repository and download PHP packages from it.
+- [Troubleshoot](https://docs.upsun.com/languages/php/troubleshoot.md): Learn how to troubleshoot common issues in PHP.
+- [Python](https://docs.upsun.com/languages/python.md): Get started creating Python apps on Upsun.
+- [Manage dependencies](https://docs.upsun.com/languages/python/dependencies.md): See how to manage Python dependencies with different package managers.
+- [Web servers](https://docs.upsun.com/languages/python/server.md): See how to start your apps as you wish with ASGI and WSGI servers.
+- [Python in non-Python containers](https://docs.upsun.com/languages/python/python-version.md): See how to manage different Python versions in your Upsun containers.
+- [Ruby](https://docs.upsun.com/languages/ruby.md): Upsun supports deploying any Ruby application. Your application can use any Ruby application server such as Puma or Unicorn and deploying a Rails or a Sinatra app is very straight forward.
+
+- [Rust](https://docs.upsun.com/languages/rust.md)
+- [Development](https://docs.upsun.com/development.md)
+- [Project templates](https://docs.upsun.com/development/templates.md): You can initialize your projects using any of our pre-made template repositories.
+
+- [Set up your local development environment](https://docs.upsun.com/development/local.md): Set up a local development environment to test out changes to your app&#39;s code.
+- [DDEV](https://docs.upsun.com/development/local/ddev.md): Use DDEV to set up local development environments.
+- [Tethered](https://docs.upsun.com/development/local/tethered.md)
+- [Untethered](https://docs.upsun.com/development/local/untethered.md)
+- [Docksal](https://docs.upsun.com/development/local/docksal.md)
+- [Lando](https://docs.upsun.com/development/local/lando.md): Find out how to include Lando in your local development workflow.
+- [Variables overview](https://docs.upsun.com/development/variables.md): Variables give you control over your project&#39;s build process and runtime environment. You can set them in your code to make changes across your project or independent of the code for environment-specific settings.
+
+- [Set variables](https://docs.upsun.com/development/variables/set-variables.md): See how to set variables that you can later use to take control over your app&#39;s environment.
+- [Use variables](https://docs.upsun.com/development/variables/use-variables.md): See how to use variables that have already been set so you can take control over your app&#39;s environment.
+- [Access your site](https://docs.upsun.com/development/access-site.md): Find the URLs you can use to access your site via a web browser.
+
+- [Transfer files to and from your app](https://docs.upsun.com/development/file-transfer.md)
+- [HTTP Headers](https://docs.upsun.com/development/headers.md): Upsun adds a number of HTTP headers to both inbound and outbound messages. We don&#39;t modify or block existing headers on either request or response.
+
+- [Send email](https://docs.upsun.com/development/email.md): Send email from your Upsun environments.
+- [Pull code from a private Git repository](https://docs.upsun.com/development/private-repository.md): See how to pull code from a private Git repository into your Upsun build process.
+- [Use Git submodules](https://docs.upsun.com/development/submodules.md)
+- [Connect securely with SSH](https://docs.upsun.com/development/ssh.md): Keep your project and apps safe by connecting with SSH when you&#39;re interacting with your deployed environments or using the Upsun CLI.
+- [SSH keys](https://docs.upsun.com/development/ssh/ssh-keys.md): See how to authenticate your app connections using SSH keys.
+- [Troubleshoot SSH](https://docs.upsun.com/development/ssh/troubleshoot-ssh.md)
+- [Transfer data to and from a Dedicated Gen 2 cluster](https://docs.upsun.com/development/transfer-dedicated.md)
+- [Regions](https://docs.upsun.com/development/regions.md): See information about Upsun regions, including their environmental impact and IP addresses.
+- [Troubleshoot development](https://docs.upsun.com/development/troubleshoot.md): See some common solutions to issues you might run into in development.
+- [Deploy on Platform.sh](https://docs.upsun.com/development/deploy-button.md)
+- [Sanitize databases](https://docs.upsun.com/development/sanitize-db.md): Remove sensitive information from databases on preview environments to control access.
+- [MariaDB and Drupal](https://docs.upsun.com/development/sanitize-db/mariadb.md): Sanitize MariaDB data in preview environments directly or by using Drush.
+- [PostgreSQL and Django](https://docs.upsun.com/development/sanitize-db/postgresql.md): Sanitize PostgreSQL data in preview environments for Django apps.
+- [PostgreSQL and Symfony](https://docs.upsun.com/development/sanitize-db/postgresql-symfony.md): Sanitize PostgreSQL data in preview environments for Symfony apps.
+- [Integrations](https://docs.upsun.com/integrations.md)
+- [External Integrations](https://docs.upsun.com/integrations/overview.md): Upsun can be integrated with external services.
+
+- [Activity scripts](https://docs.upsun.com/integrations/activity.md): Upsun supports custom scripts that can fire in response to any activity. These scripts allow you to take arbitrary actions in response to actions in your project, such as when it deploys, when a new branch is created, etc.
+
+- [Activity reference](https://docs.upsun.com/integrations/activity/reference.md): A reference of the properties found in various activities.
+- [Utility routines](https://docs.upsun.com/integrations/activity/utility.md): The following utility routines can help simplify common tasks in your activity scripts. They&#39;re free to copy, modify, bend, fold, spindle, and mutilate as needed for your own scripts. They also demonstrate some common patterns for working with the `activity` and `project` data structures.
+
+- [Example: Discord](https://docs.upsun.com/integrations/activity/discord.md)
+- [Example: Slack](https://docs.upsun.com/integrations/activity/slack.md)
+- [Webhooks](https://docs.upsun.com/integrations/activity/webhooks.md): Webhooks allow you to host a script yourself externally that receives the same payload as an activity script and responds to the same events, but can be hosted on your own server in your own language.
+
+- [Source integrations](https://docs.upsun.com/integrations/source.md): See how to maintain your code in a third-party repository that&#39;s linked to your Upsun project.
+- [Bitbucket](https://docs.upsun.com/integrations/source/bitbucket.md): See how to manage your Upsun environments directly from your Bitbucket repository.
+- [GitHub](https://docs.upsun.com/integrations/source/github.md): See how to manage your Upsun environments directly from your GitHub repository.
+- [GitLab](https://docs.upsun.com/integrations/source/gitlab.md): See how to manage your Upsun environments directly from your GitLab repository.
+- [Resolve access](https://docs.upsun.com/integrations/source/troubleshoot.md): Learn how to troubleshoot access rights for integrated repositories.
+- [Health notifications](https://docs.upsun.com/integrations/notifications.md): Upsun can notify you when various events happen on your project, in any environment. At this time the only notification provided is a low disk space warning, but others may be added in the future.
+
+- [Increase observability](https://docs.upsun.com/increase-observability.md)
+- [Infrastructure metrics](https://docs.upsun.com/increase-observability/metrics.md): See all of the live infrastructure metrics available to give you an overview of resource usage.
+- [Dedicated Gen 2 metrics](https://docs.upsun.com/increase-observability/metrics/dedicated.md): Understand how to read metrics for {{% names/dedicated-gen-2 %}} environments.
+- [Dedicated Gen 3 metrics](https://docs.upsun.com/increase-observability/metrics/dedicated-generation-3.md): Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments.
+- [Grid metrics](https://docs.upsun.com/increase-observability/metrics/grid.md): Understand how to read metrics for Grid environments.
+- [Integrate observability](https://docs.upsun.com/increase-observability/integrate-observability.md): Find an observability service to optimize your code.
+- [Blackfire](https://docs.upsun.com/increase-observability/integrate-observability/blackfire.md): Blackfire is the official Upsun observability service for monitoring and profiling your PHP and Python apps.
+- [New Relic](https://docs.upsun.com/increase-observability/integrate-observability/new-relic.md): Upsun supports New Relic application performance monitoring.
+
+- [Tideways](https://docs.upsun.com/increase-observability/integrate-observability/tideways.md): Upsun supports Tideways APM for PHP. This functionality is only available on PHP 7.0 and later.
+
+- [Consume logs](https://docs.upsun.com/increase-observability/logs.md): See how to access or forward logs to get increased insights into your apps and services.
+- [Access logs](https://docs.upsun.com/increase-observability/logs/access-logs.md): Increase your knowledge of how your apps are performing by accessing their container and activity logs.
+- [Forward Platform.sh and Blackfire logs](https://docs.upsun.com/increase-observability/logs/forward-logs.md): Send your Upsun and Blackfire logs to a third-party service for further analysis.
+- [Forward Fastly CDN logs](https://docs.upsun.com/increase-observability/logs/forward-fastly-logs.md): Send your Fastly CDN logs to a third-party service for further analysis.
+- [Manage Platform.sh environments](https://docs.upsun.com/environments.md)
+- [Back up an environment](https://docs.upsun.com/environments/backup.md): See how to protect yourself from potential data loss by backing up your environments so they can be restored later.
+- [Restore an environment from a backup](https://docs.upsun.com/environments/restore.md): See how to restore an environment from a previous state.
+- [Cancel an activity](https://docs.upsun.com/environments/cancel-activity.md): See how to cancel running or pending activities in an environment.
+- [Change an environment&rsquo;s parent](https://docs.upsun.com/environments/change-parent.md): Learn how to change.a given environment&#39;s parent environment.
+- [Configure HTTP access control](https://docs.upsun.com/environments/http-access-control.md): Learn how to control access to.a given environment using HTTP methods.
+- [Deactivate an environment](https://docs.upsun.com/environments/deactivate-environment.md): See how to deactivate environments you aren&#39;t using.
+- [Rename the default environment](https://docs.upsun.com/environments/default-environment.md): See how to change the name of your default/production environment after creating a project.
+- [Scale your live site](https://docs.upsun.com/environments/scalability.md): Learn how to scale your live site.
+- [Set an environment&rsquo;s visibility to search engines](https://docs.upsun.com/environments/search-engine-visibility.md): Learn how to change.a given environment&#39;s visbility to search engines.
+- [Manage projects](https://docs.upsun.com/projects.md)
+- [Change a project&rsquo;s region](https://docs.upsun.com/projects/region-migration.md): See how to change the region your project is in and why you might want to do so.
+- [Change the project timezone](https://docs.upsun.com/projects/change-project-timezone.md): See how to change the timezone for a project and what it affects.
+- [Delete a project](https://docs.upsun.com/projects/delete-project.md): See how to delete projects you no longer need.
+- [Custom domains](https://docs.upsun.com/domains.md)
+- [Set up a custom domain](https://docs.upsun.com/domains/steps.md): Add a custom domain to your project once it&#39;s ready to go live.
+- [DNS and apex domains](https://docs.upsun.com/domains/steps/dns.md): See why `CNAME` records are used and how to handle apex domains.
+- [Custom TLS certificates](https://docs.upsun.com/domains/steps/tls.md)
+- [Handle subdomains](https://docs.upsun.com/domains/steps/subdomains.md): How to handle multiple subdomains in different projects.
+- [Preview environments](https://docs.upsun.com/domains/steps/custom-domains-preview-environments.md): Learn how to set up custom domains on your preview environments
+- [Content delivery networks (CDNs)](https://docs.upsun.com/domains/cdn.md): Improve performance for distributed end-users of your website with a content delivery network (CDN).
+- [Fastly setup](https://docs.upsun.com/domains/cdn/fastly.md): Learn how to configure your Fastly CDN.
+- [Managed Fastly CDN](https://docs.upsun.com/domains/cdn/managed-fastly.md): Bring your content closer to users with a Fastly CDN fully managed by Upsun.
+- [Cloudflare setup](https://docs.upsun.com/domains/cdn/cloudflare.md): Learn how to configure your Cloudflare CDN.
+- [Going Live - Troubleshooting](https://docs.upsun.com/domains/troubleshoot.md): If your site doesn&#39;t resolve after you&#39;ve made DNS changes, check potential solutions to common issues.
+
+- [Administration](https://docs.upsun.com/administration.md)
+- [Command line interface (CLI)](https://docs.upsun.com/administration/cli.md): See how to use and manage your Upsun projects directly from your terminal. Anything you can do within the Console can be done with the CLI.
+
+- [API tokens](https://docs.upsun.com/administration/cli/api-tokens.md)
+- [Command reference](https://docs.upsun.com/administration/cli/reference.md)
+- [Console](https://docs.upsun.com/administration/web.md): Upsun provides a web console so you can interact with your projects and manage your environments.
+
+- [Configure a project](https://docs.upsun.com/administration/web/configure-project.md): Configure settings that apply across a project, such as the name, access, and domain.
+- [Configure environments](https://docs.upsun.com/administration/web/configure-environment.md): Configure your environments including their name, status, and visibility.
+- [Organizations](https://docs.upsun.com/administration/organizations.md): See how to manage multiple Upsun projects at once through organizations.
+- [Administer teams](https://docs.upsun.com/administration/teams.md): Manage team access and permissions across all your projects and organizations.
+- [Administer users](https://docs.upsun.com/administration/users.md): Manage user access and permissions across all your projects and organizations.
+- [Pricing](https://docs.upsun.com/administration/pricing.md): See the basics of the plans Upsun offers and how to adjust them.
+- [Payment FAQ](https://docs.upsun.com/administration/payment-faq.md): Learn about billing cycles, supported payment methods, accepted currencies, and fraud protection on Upsun.
+- [Server upgrades](https://docs.upsun.com/administration/servers.md): Information about how some Upsun servers delivering features are updated.
+- [Security](https://docs.upsun.com/administration/security.md): For enhanced security, enable Multi-Factor Authentication (MFA) or Single Sign-On (SSO).
+- [Multifactor Authentication (MFA)](https://docs.upsun.com/administration/security/mfa.md): Enhance your organizations&#39; security with Multifactor Authentication (MFA).
+- [Single Sign-On (SSO)](https://docs.upsun.com/administration/security/sso.md): Upsun allows you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
+
+- [Security and compliance](https://docs.upsun.com/security.md)
+- [Backup and restore](https://docs.upsun.com/security/backups.md): See backup policies and the recovery point objective (RPO) and recovery time objective (RTO) for various schedules.
+- [Data retention](https://docs.upsun.com/security/data-retention.md): Upsun logs and stores various types of data as a normal part of its business. This information is only retained as needed to perform relevant business functions. Retention periods vary depending on the type of data stored. If a legal obligation, law enforcement request, or ongoing business need so requires, data may be retained after the original purpose for which it was collected ceases to exist.
+
+- [Project isolation](https://docs.upsun.com/security/project-isolation.md): Learn how project isolation is handled at Upsun
+- [Web Application Firewall (WAF)](https://docs.upsun.com/security/web-application-firewall.md): Find out which WAF options Upsun offers to help protect your site.
+- [Platform.sh WAF](https://docs.upsun.com/security/web-application-firewall/waf.md): Learn how the WAF can help protect your site from distributed denial of service (DDoS) attacks.
+- [Fastly Next-Gen WAF](https://docs.upsun.com/security/web-application-firewall/fastly-waf.md): Find out about the offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through Upsun.
+- [Dedicated environments](https://docs.upsun.com/dedicated-environments.md)
+- [Overview](https://docs.upsun.com/dedicated-environments/overview.md): Our Dedicated Environments are well-suited for those who need more resources and redundancy, along with stricter isolation requirements.
+- [Dedicated Gen 2](https://docs.upsun.com/dedicated-environments/dedicated-gen-2.md): {{% names/dedicated-gen-2 %}} is a robust, redundant layer. This section contains all resources concerning the {{% names/dedicated-gen-2 %}} product.
+- [DG2 overview](https://docs.upsun.com/dedicated-environments/dedicated-gen-2/overview.md): Dedicated Generation 2 is a robust, redundant layer. It’s well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment.
+- [DG2 development](https://docs.upsun.com/dedicated-environments/dedicated-gen-2/development.md): Learn about the cluster infrastructure of Dedicated Generation 2, and discover key details about split architecture, deployment, storage limits and memory.
+- [Environment differences](https://docs.upsun.com/dedicated-environments/dedicated-gen-2/environment-differences.md): See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your development environments (which are Grid environments).
+- [Dedicated Gen 3](https://docs.upsun.com/dedicated-environments/dedicated-gen-3.md): Learn more about the Dedicated Gen 3 offering, which provides a redundant configuration with at least 3 virtual machine instances for your production environment.
+- [DG3 overview](https://docs.upsun.com/dedicated-environments/dedicated-gen-3/overview.md): Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks.
+- [DG3 development](https://docs.upsun.com/dedicated-environments/dedicated-gen-3/development.md): Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits.
+- [Security and monitoring](https://docs.upsun.com/dedicated-environments/security-monitoring.md): Security is handled in a similar way for both Dedicated Gen 2 and Dedicated Gen 3 projects, with strict procedures that are followed to handle incidents.
+- [Dedicated backup and restores](https://docs.upsun.com/dedicated-environments/backups-restores.md): Backups are retained for different periods depending on various factors and whether you’re using a Dedicated Gen 2 or Dedicated Gen 3 Environment. These processes can be either manual or automated.
+- [Glossary](https://docs.upsun.com/glossary.md)
+- [Request features](https://docs.upsun.com/request-features.md)
+
+## API
+- [API Doc](https://api.platform.sh/): documentation of the Platform.sh API.
+
+

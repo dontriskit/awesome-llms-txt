@@ -1,0 +1,163 @@
+# Zipy
+
+## Zipy
+
+- [Welcome to Zipy ai](https://docs.zipy.ai/welcome-to-zipy-ai): Welcome to a one stop platform which solves for customer experience.
+- [Install Zipy](https://docs.zipy.ai/getting-started/install-zipy): How can I install Zipy on my product?
+- [Installing with Google Tag Manager](https://docs.zipy.ai/getting-started/installing-with-google-tag-manager): Installing Zipy with Google Tag Manager
+- [Supported frameworks](https://docs.zipy.ai/getting-started/supported-frameworks): What types of apps and frameworks does Zipy support?
+- [Security Overview](https://docs.zipy.ai/getting-started/security-overview): Zipy Security Overview
+- [Sensitive User Data](https://docs.zipy.ai/getting-started/sensitive-user-data): How does Zipy handle sensitive user data?
+- [SOC2  Type II](https://docs.zipy.ai/getting-started/soc2-type-ii): Zipy is SOC2 compliant
+- [React Native Setup](https://docs.zipy.ai/zipy-for-mobile/react-native-setup)
+- [Install React Native](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/install-react-native): How do I install Zipy in my React Native mobile application?
+- [Input Masking](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/input-masking): Blocking sensitive data on Zipy
+- [Session Replay](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/session-replay): Analyzing user journeys with Session Replays
+- [Screen Transition Capture](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/screen-transition-capture): Capturing Screen Transitions for enhanced user journey analysis
+- [Gesture Capturing](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/gesture-capturing): Capturing user Gestures for comprehensive interaction tracking
+- [Unhandled Exception Capture](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/unhandled-exception-capture): Recording unexpected errors for comprehensive issue logging and analysis
+- [Custom Logging](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/custom-logging): Recording key events and managed errors to boost app reliability and debugging efficiency
+- [Fetch and XHR Network Calls](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/fetch-and-xhr-network-calls): Monitor and log Fetch and XHR network calls seamlessly with Zipy for enhanced debugging and performance optimization.
+- [Profiling](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/profiling): Optimize application performance and gain deeper insights with Zipy's profiling tools.
+- [Device Information Capture](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/device-information-capture): Capture device information with Zipy to optimize app performance across diverse hardware configurations.
+- [Session URL Retrieval](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/session-url-retrieval): Retrieve and utilize the current session URL dynamically with Zipy's getCurrentSessionUrl function.
+- [Identify Users](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/identify-users): How do I identify my users or customers using Zipy?
+- [Firebase Integration](https://docs.zipy.ai/zipy-for-mobile/react-native-setup/firebase-integration)
+- [Flutter Setup](https://docs.zipy.ai/zipy-for-mobile/flutter-setup)
+- [Install Flutter](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/install-flutter): How do I install Zipy in my Flutter mobile application?
+- [Session Replay](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/session-replay): Analyzing user journeys with Session Replays
+- [Input Masking & Custom Masking](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/input-masking-and-custom-masking): Blocking sensitive data on Zipy
+- [Screen Transition Capture](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/screen-transition-capture): Capturing Screen Transitions for enhanced user journey analysis
+- [Gesture Capturing](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/gesture-capturing): Capturing user Gestures for comprehensive interaction tracking
+- [Unhandled Exception Capture](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/unhandled-exception-capture): Recording unexpected errors for comprehensive issue logging and analysis
+- [Custom Logging](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/custom-logging): Recording key events and managed errors to boost app reliability and debugging efficiency
+- [Http Network Calls](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/http-network-calls): Monitor and log Http calls seamlessly with Zipy for enhanced debugging and performance optimization.
+- [Dio Network Calls](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/dio-network-calls): Monitor and log Dio calls seamlessly with Zipy for enhanced debugging and performance optimization.
+- [Profiling](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/profiling): Optimize application performance and gain deeper insights with Zipy's profiling tools.
+- [Device Information Capture](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/device-information-capture): Capture device information with Zipy to optimize app performance across diverse hardware configurations.
+- [Session URL Retrieval](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/session-url-retrieval): Retrieve and utilize the current session URL dynamically with Zipy's getCurrentSessionUrl function.
+- [Identify Users](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/identify-users): How do I identify my users or customers using Zipy?
+- [Firebase Integration](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/firebase-integration)
+- [Session Recording Control](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/session-recording-control): Start, pause, resume, or stop event recording as needed.
+- [Data Sanitization](https://docs.zipy.ai/zipy-for-mobile/flutter-setup/data-sanitization): Sanitizing sensitive information in payloads, responses, and headers
+- [iOS Setup](https://docs.zipy.ai/ios-setup)
+- [Install in an iOS app](https://docs.zipy.ai/ios-setup/install-in-an-ios-app): How do I install Zipy in my iOS mobile application?
+- [Identify Users](https://docs.zipy.ai/ios-setup/identify-users): How do I identify my users or customers using Zipy?
+- [Screen Tracking & Tagging](https://docs.zipy.ai/ios-setup/screen-tracking-and-tagging): Screen Tracking and Tagging for enhanced user journey analysis
+- [Custom Logging](https://docs.zipy.ai/ios-setup/custom-logging): Recording key events and managed errors to boost app reliability and debugging efficiency
+- [Session URL Retrieval](https://docs.zipy.ai/ios-setup/session-url-retrieval): Retrieve and utilize the current session URL dynamically with Zipy's getCurrentSessionUrl function.
+- [Session Recording Control](https://docs.zipy.ai/ios-setup/session-recording-control): Start, pause, resume, or stop event recording as needed.
+- [Input Masking & Custom Masking](https://docs.zipy.ai/ios-setup/input-masking-and-custom-masking): Blocking sensitive data on Zipy
+- [Zipy Plug and Play Support](https://docs.zipy.ai/chrome-extension/zipy-plug-and-play-support): A chrome browser extension to record and replay sessions and errors
+- [Zipy Recording Control](https://docs.zipy.ai/configure/zipy-recording-control)
+- [Release Version](https://docs.zipy.ai/configure/release-version): How can I capture the release version of my application for the captured session replay?
+- [Identifying Users](https://docs.zipy.ai/configure/identifying-users): How do I identify my users or customers using Zipy?
+- [Adding Custom Identifiers](https://docs.zipy.ai/configure/adding-custom-identifiers): How do I add custom identifiers when using zipy.identify()?
+- [Anonymize Users](https://docs.zipy.ai/configure/anonymize-users): How do I anonymize my previously identified users?
+- [Source Maps](https://docs.zipy.ai/configure/source-maps): How can I upload JavaScript Source Maps via Zipy CLI?
+- [Blocking PII data](https://docs.zipy.ai/configure/blocking-pii-data): How can I block my sensitive data on Zipy?
+- [Ignoring Errors/Noise](https://docs.zipy.ai/configure/ignoring-errors-noise): Which are the errors ignored by Zipy by default, in order to reduce noise in my project?
+- [npm Update](https://docs.zipy.ai/configure/npm-update): Why is my Zipy SDK npm not getting updated and how do I resolve it?
+- [Support Integration](https://docs.zipy.ai/configure/support-integration): How to include Zipy Session Replay links in the support tickets my customers create?
+- [Session Stitching (rootDomain)](https://docs.zipy.ai/configure/session-stitching-rootdomain)
+- [Custom Events](https://docs.zipy.ai/product-features/custom-events)
+- [Session Replay](https://docs.zipy.ai/product-features/session-replay): Viewing User Journeys Via Session Replays
+- [Errors](https://docs.zipy.ai/product-features/errors): Viewing All Errors for All Users
+- [Analytics](https://docs.zipy.ai/product-features/analytics): Error and User Behaviour Analytics to solve for digital experiences
+- [Time Filters](https://docs.zipy.ai/product-features/time-filters): Time filters to slice and dice by date
+- [Multiple Filters](https://docs.zipy.ai/product-features/multiple-filters): Searching Sessions and Errors by Filtering Data
+- [Clicked Element Filters](https://docs.zipy.ai/product-features/clicked-element-filters)
+- [Manage Teams](https://docs.zipy.ai/product-features/manage-teams): Invite, manage and collaborate team members to Zipy projects
+- [Stack Trace](https://docs.zipy.ai/product-features/stack-trace): View stack trace of the javascript errors with source maps in Dev Tools
+- [Console Logs](https://docs.zipy.ai/product-features/console-logs): View Console info, warning and error logs in Dev Tools
+- [Network Requests](https://docs.zipy.ai/product-features/network-requests): View all network request response logs in Dev Tools
+- [Network Headers and Payload](https://docs.zipy.ai/product-features/network-headers-and-payload): View all network request response headers and payload in Dev Tools
+- [Custom Logs](https://docs.zipy.ai/product-features/custom-logs): How can I send custom logs to Zipy from my app?
+- [Live Users](https://docs.zipy.ai/product-features/live-users): Capturing Live Users in Zipy
+- [Alerts](https://docs.zipy.ai/product-features/alerts): Alerts in Email and Slack
+- [Slack Alerts](https://docs.zipy.ai/product-features/alerts/slack-alerts): Setting Slack Alerts in Zipy
+- [Email Alerts](https://docs.zipy.ai/product-features/alerts/email-alerts): Setting Email Alerts in Zipy
+- [Live Alerts](https://docs.zipy.ai/product-features/alerts/live-alerts)
+- [Auto Resolve Errors](https://docs.zipy.ai/product-features/auto-resolve-errors): Auto Resolve Errors in Zipy
+- [Zipy Labels Plugin](https://docs.zipy.ai/product-features/zipy-labels-plugin): Use Zipy Labels Plugin to mark critical buttons/clicks and understand user behaviour.
+- [iFrame Support](https://docs.zipy.ai/product-features/iframe-support): Does Zipy support capturing content present within the iframe element
+- [API Performance](https://docs.zipy.ai/product-features/api-performance): Use API Performance to monitor, analyze and get insights about your website's API performance
+- [Heatmaps](https://docs.zipy.ai/product-features/heatmaps): Understand which page drives the most engagement, where they don't interact and how much they scroll.
+- [Page Performance](https://docs.zipy.ai/product-features/page-performance): Zipy captures all important web vitals related to the performance of a page from your application.
+- [Seen/Unseen Sessions](https://docs.zipy.ai/product-features/seen-unseen-sessions)
+- [Install Zipy](https://docs.zipy.ai/faqs/install-zipy)
+- [Session Replay Definition](https://docs.zipy.ai/faqs/session-replay-definition): What are Session Replay in Zipy?
+- [Error Tracking](https://docs.zipy.ai/faqs/error-tracking): What kind of errors can be tracked with Zipy?
+- [Error Classification](https://docs.zipy.ai/faqs/error-classification): How are errors classified in Zipy?
+- [Environment Support](https://docs.zipy.ai/faqs/environment-support): How can I differentiate between various deployment environments on Zipy?
+- [Impact on your App](https://docs.zipy.ai/faqs/impact-on-your-app): Do I need to change my app to use Zipy?
+- [Performance Impact](https://docs.zipy.ai/faqs/performance-impact): What is the performance impact of Zipy on my app?
+- [Mobile Support](https://docs.zipy.ai/faqs/mobile-support): Can I install Zipy to track my mobile app?
+- [Network Data Capture](https://docs.zipy.ai/faqs/network-data-capture): Can I enable or disable network data capture inside Zipy?
+- [API Performance Diagnostic Help](https://docs.zipy.ai/faqs/api-performance-diagnostic-help)
+- [High DNS Time](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/high-dns-time)
+- [High SSL Connection Time](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/high-ssl-connection-time)
+- [High Connection Setup Time](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/high-connection-setup-time)
+- [Large API Response Size](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/large-api-response-size)
+- [High Response Time](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/high-response-time)
+- [Compression Not Enabled](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/compression-not-enabled)
+- [Server side API Failures](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/server-side-api-failures)
+- [Client side API Failures](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/client-side-api-failures)
+- [Insecure Connections](https://docs.zipy.ai/faqs/api-performance-diagnostic-help/insecure-connections)
+- [Errors in npm](https://docs.zipy.ai/troubleshooting/errors-in-npm): Why is Zipy npm giving a build warning - ‘ReferenceError: window is not defined’ and how to resolve?
+- [Network header missing in Zipy](https://docs.zipy.ai/troubleshooting/network-header-missing-in-zipy): Why can't I see all the network request headers in the Dev Tools section?
+- [Can't see user data in sessions](https://docs.zipy.ai/troubleshooting/cant-see-user-data-in-sessions): Why can't I see user email or other customer data inside Zipy?
+- [No recordings or errors visible](https://docs.zipy.ai/troubleshooting/no-recordings-or-errors-visible): Why can't I see any sessions or errors within Zipy after integrating the SDK or npm in my application code?
+- [No network timing split available](https://docs.zipy.ai/troubleshooting/no-network-timing-split-available): Why can't I see timing split for my API calls in API performance or other pages?
+- [Ask AI](https://docs.zipy.ai/product-videos/ask-ai): Zipy Ask AI
+- [Getting Started](https://docs.zipy.ai/product-videos/getting-started): Getting started on Zipy! It just takes a minute.
+- [Session Replay](https://docs.zipy.ai/product-videos/session-replay): What are Session Replay on Zipy?
+- [Multiple Project Creation](https://docs.zipy.ai/product-videos/multiple-project-creation): How to create of multiple Projects on Zipy?
+- [Team Management](https://docs.zipy.ai/product-videos/team-management): How to manage your team in Zipy?
+- [Alerting on Slack](https://docs.zipy.ai/product-videos/alerting-on-slack): How to set up Zipy alerts on Slack?
+- [Time Filters and Daily Alerts](https://docs.zipy.ai/product-videos/time-filters-and-daily-alerts): How to use Time Filters and Daily Alerts on Zipy?
+- [Custom Identifiers](https://docs.zipy.ai/product-videos/custom-identifiers): Video for Adding Custom Identifiers in Zipy
+- [Ignore Errors](https://docs.zipy.ai/product-videos/ignore-errors): How to ignore errors from certain URLs or third party libraries?
+- [Identify Users](https://docs.zipy.ai/product-videos/identify-users): Identify users/customers on Zipy with zipy.identify()?
+- [Dashboard](https://docs.zipy.ai/product-videos/dashboard): View all error and user behaviour analytics in Zipy dashboard
+- [Resolve Errors](https://docs.zipy.ai/product-videos/resolve-errors): Resolve errors reported within Zipy using this feature
+- [New Error Digest](https://docs.zipy.ai/product-videos/new-error-digest): Email and Slack Alerts for daily New Error Digest in Zipy
+- [Jira and Slack](https://docs.zipy.ai/product-videos/jira-and-slack): How to integrate Jira and Slack in Zipy for JIRA tickets and slack alerts
+- [Online/Offline Network Status](https://docs.zipy.ai/product-videos/online-offline-network-status): How to access Online & Offline events and check Network Request/Response Headers in Zipy?
+- [Zipy on Zipy](https://docs.zipy.ai/product-videos/zipy-on-zipy): How does Zipy use Zipy?
+- [Zipy Product Roadmap](https://docs.zipy.ai/product-videos/zipy-on-zipy/zipy-product-roadmap): Where to check Zipy Product Roadmap?
+- [Product Updates](https://docs.zipy.ai/whats-new/product-updates): Zipy RB2B Slack Integration
+- [Terms of Service](https://docs.zipy.ai/legal-and-policy/terms-of-service): Terms of Service
+- [Privacy Policy](https://docs.zipy.ai/legal-and-policy/privacy-policy): Privacy Policy - Last updated on March 23, 2023.
+- [Fulfillment Policy](https://docs.zipy.ai/legal-and-policy/fulfillment-policy): Effective from Date: 1st December 2024
+- [Cookie Policy](https://docs.zipy.ai/legal-and-policy/cookie-policy): Cookie Policy - Last updated on March 23, 2023.
+- [Acceptable Usage Policy](https://docs.zipy.ai/legal-and-policy/acceptable-usage-policy): Zipy's Acceptable Usage Policy
+- [Zipy Sub Processor List](https://docs.zipy.ai/legal-and-policy/zipy-sub-processor-list)
+- [Azure DevOps](https://docs.zipy.ai/integration/azure-devops)
+- [Factors](https://docs.zipy.ai/integration/factors): Boost Factors insights with Zipy session URL integration for enhanced user profile tracking.
+- [RB2B ](https://docs.zipy.ai/integration/rb2b)
+- [Webflow](https://docs.zipy.ai/integration/webflow): Installing Zipy with Webflow
+- [ WordPress](https://docs.zipy.ai/integration/wordpress): Installing Zipy with WordPress
+- [Amplitude](https://docs.zipy.ai/integration/amplitude): Enhance analytics by integrating Zipy with Amplitude.
+- [Coralogix](https://docs.zipy.ai/integration/coralogix): Get Zipy session url against error in Coralogix
+- [DevRev](https://docs.zipy.ai/integration/devrev): Get Zipy session url for a user in DevRev.
+- [Drift](https://docs.zipy.ai/integration/drift): Boost Drift support with Zipy Session URL for targeted assistance.
+- [Errorception](https://docs.zipy.ai/integration/errorception): Enhance error tracking in Errorception with Zipy's session URL metadata.
+- [Freshchat](https://docs.zipy.ai/integration/freshchat): Enhance Freshchat support with Zipy session URLs for faster issue resolution and improved customer experience.
+- [Google Analytics](https://docs.zipy.ai/integration/google-analytics): Get valuable insights in Google Analytics by integrating Zipy session URLs for session replay tracking.
+- [Heap](https://docs.zipy.ai/integration/heap): Enrich Heap user profiles with Zipy session URLs for better analysis.
+- [HelpScout](https://docs.zipy.ai/integration/helpscout): Streamline troubleshooting and provide personalized assistance in HelpScout support requests with Zipy session URLs.
+- [Honeybadger](https://docs.zipy.ai/integration/honeybadger): Simplify error tracking in Honeybadger with Zipy session URLs for better context and effortless debugging.
+- [Hubspot](https://docs.zipy.ai/integration/hubspot)
+- [Intercom](https://docs.zipy.ai/integration/intercom): Enhance Intercom support with Zipy session URLs for faster issue resolution and improved customer experience.
+- [Mixpanel](https://docs.zipy.ai/integration/mixpanel): Boost Mixpanel insights with Zipy session URL integration for enhanced user profile tracking.
+- [New Relic](https://docs.zipy.ai/integration/new-relic): Get a Zipy session URL against Browser Interactions in New Relic
+- [Pendo](https://docs.zipy.ai/integration/pendo): Level up Pendo user insights using Zipy session links for comprehensive session tracking and analysis.
+- [Raygun](https://docs.zipy.ai/integration/raygun): Unleash the power of Zipy session URLs in Raygun for seamless error tracking and insightful debugging.
+- [Rollbar](https://docs.zipy.ai/integration/rollbar): Unlock advanced error insights in Rollbar with Zipy session URLs for contextual debugging and efficient issue resolution.
+- [Segment](https://docs.zipy.ai/integration/segment): For better user behavior analysis use Zipy session recordings in Segment
+- [Sentry](https://docs.zipy.ai/integration/sentry): Power up your Sentry exception reports with Zipy session recording URLs for quick error resolution.
+- [Shopify](https://docs.zipy.ai/integration/shopify): Steps to integrate Zipy in Shopify
+- [Sumo Logic](https://docs.zipy.ai/integration/sumo-logic): Use Zipy session URLs with Sumo Logic logs for efficient troubleshooting.
+- [TrackJS](https://docs.zipy.ai/integration/trackjs): Gain better error insights in TrackJS with Zipy session URLs
+- [Zendesk](https://docs.zipy.ai/integration/zendesk): Improve Zendesk support using Zipy session url to resolve customer issues quickly.

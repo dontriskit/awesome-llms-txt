@@ -1,0 +1,47 @@
+# IcePanel Docs
+
+## IcePanel docs
+
+- [Welcome](https://docs.icepanel.io/introduction): Learn about starting in IcePanel and using the C4 model
+- [Getting started](https://docs.icepanel.io/getting-started): Create your first IcePanel diagram and model
+- [Modelling](https://docs.icepanel.io/features/modelling)
+- [Diagramming](https://docs.icepanel.io/features/diagramming)
+- [Diagrams section](https://docs.icepanel.io/features/diagramming/diagrams-section)
+- [Organizations](https://docs.icepanel.io/features/organizations)
+- [Landscapes](https://docs.icepanel.io/features/landscape)
+- [Domains](https://docs.icepanel.io/features/domains)
+- [Comments](https://docs.icepanel.io/features/commenting)
+- [Share links & embeds](https://docs.icepanel.io/features/sharing)
+- [Technology choices](https://docs.icepanel.io/features/technology-choices)
+- [Roles & permissions](https://docs.icepanel.io/features/collaboration)
+- [Ownership teams](https://docs.icepanel.io/features/ownership-teams)
+- [Inaccuracy score](https://docs.icepanel.io/features/accuracy-score)
+- [Recommendation score](https://docs.icepanel.io/features/recommendation)
+- [Imports](https://docs.icepanel.io/features/imports)
+- [Exports](https://docs.icepanel.io/features/export)
+- [Dependencies view](https://docs.icepanel.io/advanced-features/dependencies-view)
+- [Groups](https://docs.icepanel.io/advanced-features/groups)
+- [Tags](https://docs.icepanel.io/advanced-features/perspective-tags)
+- [Flows](https://docs.icepanel.io/advanced-features/flows)
+- [Flows section](https://docs.icepanel.io/advanced-features/flows/flows-section)
+- [Linking to reality](https://docs.icepanel.io/advanced-features/linking-to-reality)
+- [Drafts & future state design](https://docs.icepanel.io/advanced-features/draft-current-vs-future-state)
+- [Versioning](https://docs.icepanel.io/advanced-features/versioning)
+- [Code repo linking](https://docs.icepanel.io/integrations/code-repo-linking)
+- [GitLab](https://docs.icepanel.io/integrations/code-repo-linking/gitlab)
+- [GitHub](https://docs.icepanel.io/integrations/code-repo-linking/github)
+- [Bitbucket Server](https://docs.icepanel.io/integrations/code-repo-linking/bitbucket-server)
+- [Azure DevOps](https://docs.icepanel.io/integrations/code-repo-linking/azure-devops)
+- [REST API](https://docs.icepanel.io/integrations/rest-api)
+- [SSO - SAML](https://docs.icepanel.io/integrations/sso-saml)
+- [Training](https://docs.icepanel.io/expert-help/training)
+- [Pilot](https://docs.icepanel.io/expert-help/pilot)
+- [IcePanel](https://docs.icepanel.io/templates/icepanel): Yes, this is our system architecture 😉
+- [E-commerce](https://docs.icepanel.io/templates/e-commerce): An e-commerce system
+- [Low-code](https://docs.icepanel.io/templates/low-code): Low-code website builder
+- [Marketplace](https://docs.icepanel.io/templates/marketplace): A marketplace app for booking and reserving accommodations
+- [RSS feed](https://docs.icepanel.io/templates/rss-feed): Stackfeed.io architecture
+- [Bank](https://docs.icepanel.io/templates/bank): A banking system
+- [Glossary](https://docs.icepanel.io/other-information/glossary)
+- [Hotkeys](https://docs.icepanel.io/other-information/hotkeys)
+- [Troubleshooting](https://docs.icepanel.io/other-information/troubleshooting)

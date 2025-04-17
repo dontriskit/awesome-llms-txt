@@ -1,0 +1,33 @@
+# XDCScan
+
+## XDCScan
+
+- [Introduction](https://docs.xdcscan.com/readme): Welcome to the XDCScan APIs documentation 🚀.
+- [Creating an Account](https://docs.xdcscan.com/getting-started/creating-an-account)
+- [Getting an API key](https://docs.xdcscan.com/getting-started/viewing-api-usage-statistics)
+- [Endpoint URLs](https://docs.xdcscan.com/getting-started/endpoint-urls)
+- [Accounts](https://docs.xdcscan.com/api-endpoints/accounts)
+- [Contracts](https://docs.xdcscan.com/api-endpoints/contracts)
+- [Transactions](https://docs.xdcscan.com/api-endpoints/stats)
+- [Blocks](https://docs.xdcscan.com/api-endpoints/blocks)
+- [Logs](https://docs.xdcscan.com/api-endpoints/logs)
+- [Geth/Parity Proxy](https://docs.xdcscan.com/api-endpoints/geth-parity-proxy)
+- [Tokens](https://docs.xdcscan.com/api-endpoints/tokens)
+- [Stats](https://docs.xdcscan.com/api-endpoints/stats-1)
+- [FAQ](https://docs.xdcscan.com/support/faq): Frequently Asked Questions.
+- [Rate Limits](https://docs.xdcscan.com/support/rate-limits)
+- [Common Error Messages](https://docs.xdcscan.com/support/common-error-messages)
+- [Common Verification Errors](https://docs.xdcscan.com/support/common-verification-errors)
+- [Getting Help](https://docs.xdcscan.com/support/getting-help)
+
+## Testnet XDCScan
+
+- [XDC Apothem Testnet](https://docs.xdcscan.com/testnet-xdcscan/readme)
+- [Accounts](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/accounts)
+- [Contracts](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/contracts)
+- [Transactions](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/stats)
+- [Blocks](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/blocks)
+- [Logs](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/logs)
+- [Geth Proxy](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/geth-parity-proxy)
+- [Tokens](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/tokens)
+- [Stats](https://docs.xdcscan.com/testnet-xdcscan/api-endpoints/stats-1)

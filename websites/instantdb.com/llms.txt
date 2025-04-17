@@ -1,0 +1,36 @@
+# InstantDB
+
+> Instant is a modern Firebase. We make you productive by giving your frontend a real-time database. Below is a reference for documentation on using Instant.
+
+## Docs
+
+- [Common mistakes](https://instantdb.com/docs/common-mistakes): Common mistakes when working with Instant
+- [Getting started](https://instantdb.com/docs): How to use Instant with React
+- [Initializing Instant](https://instantdb.com/docs/init): How to integrate Instant with your app.
+- [Modeling data](https://instantdb.com/docs/modeling-data): How to model data with Instant's schema.
+- [Writing data](https://instantdb.com/docs/instaml): How to write data with Instant using InstaML.
+- [Reading data](https://instantdb.com/docs/instaql): How to read data with Instant using InstaQL.
+- [Instant on the Backend](https://instantdb.com/docs/backend): How to use Instant on the server with the Admin SDK.
+- [Patterns](https://instantdb.com/docs/patterns): Common patterns for working with InstantDB.
+- [Auth](https://instantdb.com/docs/auth): Instant supports magic code, OAuth, Clerk, and custom auth.
+- [Magic Code Auth](https://instantdb.com/docs/auth/magic-codes): How to add magic code auth to your Instant app.
+- [Permissions](https://instantdb.com/docs/permissions): How to secure your data with Instant's Rule Language.
+- [Managing users](https://instantdb.com/docs/users): How to manage users in your Instant app.
+- [Presence, Cursors, and Activity](https://instantdb.com/docs/presence-and-topics): How to add ephemeral features like presence and cursors to your Instant app.
+- [Instant CLI](https://instantdb.com/docs/cli): How to use the Instant CLI to manage schema and permissions.
+- [Storage](https://instantdb.com/docs/storage): How to upload and serve files with Instant.
+
+
+## Optional
+
+- [Getting started with React Native](https://instantdb.com/docs/start-rn): How to use Instant with React Native
+- [Getting started with Vanilla JS](https://instantdb.com/docs/start-vanilla): How to use Instant with Vanilla JS
+- [Showcase](https://instantdb.com/docs/showcase): Real world apps built with Instant.
+- [Google OAuth](https://instantdb.com/docs/auth/google-oauth): How to add Google OAuth to your Instant app.
+- [Sign In with Apple](https://instantdb.com/docs/auth/apple): How to add Sign In with Apple to your Instant app.
+- [Clerk](https://instantdb.com/docs/auth/clerk): How to integrate Clerk's auth flow with Instant.
+- [Platform OAuth Integration](https://instantdb.com/docs/auth/platform-oauth): Allow third-party applications to access Instant resources on behalf of users using OAuth 2.0.
+- [Devtool](https://instantdb.com/docs/devtool): Use the Instant devtool to inspect your app in development.
+- [Custom email templates and senders](https://instantdb.com/docs/emails): How to customize magic code emails.
+- [App teams (Pro)](https://instantdb.com/docs/teams): How to manage your Instant app's team members and their roles.
+- [Using Instant with LLMs](https://instantdb.com/docs/using-llms): How to use Instant with LLMs

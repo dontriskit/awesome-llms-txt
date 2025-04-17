@@ -1,0 +1,46 @@
+# Wingbits
+
+## Wingbits - English
+
+- [What is Wingbits?](https://docs.wingbits.com/introduction/readme)
+- [Who can use Wingbits Data?](https://docs.wingbits.com/introduction/who-can-use-wingbits-data)
+- [Terminology](https://docs.wingbits.com/introduction/terminology)
+- [For the DePin Crew](https://docs.wingbits.com/introduction/for-the-depin-crew)
+- [Official Wingbits Channels](https://docs.wingbits.com/introduction/official-wingbits-channels): As always, beware of scams, the links below are to all official Wingbits channels. If a channel is not listed below, it is not operated or associated with Wingbits.
+- [Our Plan](https://docs.wingbits.com/introduction/our-plan)
+- [How to get involved](https://docs.wingbits.com/introduction/how-to-get-involved)
+- [How rewards work](https://docs.wingbits.com/rewards/how-rewards-work): This section will explain how the reward system works, but to summarize, the more coverage, and the better uptime you have, the more rewards you'll earn
+- [How to maximize rewards](https://docs.wingbits.com/rewards/how-to-maximize-rewards): There are many ways to increase your rewards, some are from optimizing your station, but location can also play a major role.
+- [Hardware needed](https://docs.wingbits.com/get-started/hardware-needed)
+- [HYFIX Hardware Setup](https://docs.wingbits.com/get-started/hardware-needed/hyfix-hardware-setup): How to set up your HYFIX WB200 or MGW310 hardware.
+- [Wingbits Onboarding](https://docs.wingbits.com/get-started/hardware-needed/wingbits-onboarding): A quick guide on how to onboard your Wingbits approved hardware to the network.
+- [HYFIX Hardware FAQ](https://docs.wingbits.com/get-started/hardware-needed/hyfix-hardware-faq)
+- [How to claim your station location](https://docs.wingbits.com/get-started/how-to-claim-your-station-location): To claim your station location/hexagon, you need to register and deploy your station.
+- [BYOD Stations](https://docs.wingbits.com/get-started/byod-stations)
+- [Hardware needed](https://docs.wingbits.com/get-started/byod-stations/hardware-needed)
+- [Hardware suggestions](https://docs.wingbits.com/get-started/byod-stations/hardware-suggestions): Please see links to suggested Wingbits project "build your own device" related hardware below (mostly sourced on Amazon), broken down by region.
+- [GeoSigner FAQ](https://docs.wingbits.com/get-started/byod-stations/geosigner-faq)
+- [Setup steps guide](https://docs.wingbits.com/get-started/byod-stations/setup-steps-guide)
+- [Installing new client](https://docs.wingbits.com/get-started/byod-stations/installing-the-client)
+- [Install GeoSigner](https://docs.wingbits.com/get-started/byod-stations/install-geosigner)
+- [Debug your station](https://docs.wingbits.com/get-started/byod-stations/debug-your-station)
+- [Install wb-config tool](https://docs.wingbits.com/get-started/byod-stations/install-wb-config-tool)
+- [Theoretical range of coverage](https://docs.wingbits.com/get-started/byod-stations/theoretical-range-of-coverage): This page describes how to create a panorama for assessing 1090 MHz reception range and how to integrate this data into the tar1090 map, to visualize your theoretical aircraft tracking range.
+- [Add wallet address to your account](https://docs.wingbits.com/after-install/add-wallet-address-to-your-account): Please see the step-by-step video for how to add your wallet to your stations.
+- [Enable devnet on wallet apps](https://docs.wingbits.com/after-install/enable-devnet-on-wallet-apps): Please see guides in the subcategories for how to set up testnet on your wallet apps.
+- [Phantom](https://docs.wingbits.com/after-install/enable-devnet-on-wallet-apps/phantom): Step by step to enable devnet on your Phantom Wallet app
+- [Solflare](https://docs.wingbits.com/after-install/enable-devnet-on-wallet-apps/solflare): Step by step to enable devnet on your Solflare Wallet app
+- [Wingbits Litepaper](https://docs.wingbits.com/project/wingbits-litepaper): Version: 2024-05-08
+- [Wingbits Roadmap](https://docs.wingbits.com/project/wingbits-roadmap): Current project roadmap and status.
+- [Wingbits FAQ](https://docs.wingbits.com/project/wingbits-faq): Answers for the most commonly asked questions.
+- [Distributors of approved hardware](https://docs.wingbits.com/project/wingbits-approved-distributors)
+- [Wingbits Approved Hardware Program](https://docs.wingbits.com/project/wingbits-approved-hardware-program)
+
+## Wingbits - Arabic&#x20;
+
+- [ما هو مشروع وينجبيتس؟](https://docs.wingbits.com/copy-of-wingbits-english/introduction/readme)
+- [من يمكنه استخدام بيانات وينجبيتس؟](https://docs.wingbits.com/copy-of-wingbits-english/introduction/who-can-use-wingbits-data)
+- [المصطلحات](https://docs.wingbits.com/copy-of-wingbits-english/introduction/terminology)
+- [قنوات وينجبيتس الرسمية](https://docs.wingbits.com/copy-of-wingbits-english/introduction/official-wingbits-channels): كمات هو الحال دائما يجب الحذر من الاحتيال٬ الروابط ادناه تؤدي الى جميع القنوات الرسمية ل وينجبيتس. اذا لم تكن القناة مدرجة ادناه٬ فإنها ليست مشغلة أو مرتبطة بـ وينجبيتس
+- [الخطة العامة ل وينجبيتس](https://docs.wingbits.com/copy-of-wingbits-english/introduction/our-plan)
+- [كيفية المشاركة في المشروع](https://docs.wingbits.com/copy-of-wingbits-english/introduction/how-to-get-involved)

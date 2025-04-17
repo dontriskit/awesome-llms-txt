@@ -1,0 +1,27 @@
+# micro1 API
+
+## Docs
+
+- [Authentication](https://ai-recruiter.micro1.ai/api-reference/getting-started/authentication.md): Use the micro1 dashboard to get your API key.
+- [Introduction](https://ai-recruiter.micro1.ai/api-reference/getting-started/introduction.md): micro1's AI Recruiter API allows you to generate custom conversational interviews based on the skills you’d like to test. You call the API with the skills & more details about the role you’re hiring for, receive an interview link, and invite candidates.
+- [Event types](https://ai-recruiter.micro1.ai/api-reference/getting-started/webhooks/examples.md): List of supported event types and their payload.
+- [Introduction](https://ai-recruiter.micro1.ai/api-reference/getting-started/webhooks/introductions.md): Webhooks allow you to receive real-time notifications when specific events occur in your micro1 account. This enables you to automatically trigger actions in your systems based on these events.
+- [Get all completed reports](https://ai-recruiter.micro1.ai/api-reference/interview-reports/get-all-completed-reports.md): This endpoint retrieves reports for candidates who have completed their AI interviews. You can filter the reports by Interview ID, Candidate ID or Report ID.
+- [Create a new interview](https://ai-recruiter.micro1.ai/api-reference/interview/create-a-new-interview.md): This endpoint creates a new interview, returns a unique interview ID and a corresponding interview URL. You can send this URL to candidates, add it to a job post or alternatively, use the invite candidate endpoint to send invitations for the interview.
+- [Create a new interview (custom questions)](https://ai-recruiter.micro1.ai/api-reference/interview/create-a-new-interview-custom-questions.md): This endpoint creates a new interview with only custom questions, returns a unique interview ID and a corresponding interview URL. You can send this URL to candidates, add it to a job post or alternatively, use the invite candidate endpoint to send invitations for the interview.
+- [Delete an interview](https://ai-recruiter.micro1.ai/api-reference/interview/delete-an-interview.md): This endpoint deletes an existing interview by ID.
+- [Get all saved interviews](https://ai-recruiter.micro1.ai/api-reference/interview/get-all-saved-interviews.md): This endpoint fetches all interviews that have been previously created and saved, such as interviews for specific roles like Full Stack Engineer or LLM Engineer.
+- [Update an interview](https://ai-recruiter.micro1.ai/api-reference/interview/update-an-interview.md): This endpoint updates an existing interview by ID.
+- [Get all invited candidates](https://ai-recruiter.micro1.ai/api-reference/invite-candidate/get-all-invited-candidates.md): This endpoint retrieves all sent invites. You can search for a specific candidate, keyword or interview.
+- [Invite candidates to an interview](https://ai-recruiter.micro1.ai/api-reference/invite-candidate/invite-candidates-to-an-interview.md): This endpoint emails candidates to take the interview, returns the candidate ID, and interview URL. The candidates will then take the interview on our platform before you can receive the report data.
+- [Get a mock interview](https://ai-recruiter.micro1.ai/api-reference/mock-interview/get-a-mock-interview.md): This endpoint retrieves a sample interview question based on the provided skills and their descriptions. It helps you understand the type of questions tailored by AI interviews based on the skills provided.
+- [Create a webhook](https://ai-recruiter.micro1.ai/api-reference/webhook/create-a-webhook.md): This endpoint sets up a webhook for the AI Recruiter. It allows you to receive notifications, such as interview results, when a candidate completes the interview and the report is generated.
+- [Delete a webhook](https://ai-recruiter.micro1.ai/api-reference/webhook/delete-a-webhook.md): This endpoint deletes a webhook by ID.
+- [Get all webhooks](https://ai-recruiter.micro1.ai/api-reference/webhook/get-all-webhooks.md): This endpoint fetches all configured webhooks.
+- [Update a webhook](https://ai-recruiter.micro1.ai/api-reference/webhook/update-a-webhook.md): This endpoint updates a webhook by ID.
+
+
+## Optional
+
+- [About](https://www.micro1.ai/about-us)
+- [Blog](https://www.micro1.ai/blog)

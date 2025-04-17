@@ -1,0 +1,292 @@
+# Hypermode
+
+## Docs
+
+- [Design](https://docs.hypermode.com/badger/design.md): Architected for fast key-value storage in Go
+- [Badger](https://docs.hypermode.com/badger/overview.md): Welcome to the Badger docs!
+- [Quickstart](https://docs.hypermode.com/badger/quickstart.md): Everything you need to get started with Badger
+- [Troubleshooting](https://docs.hypermode.com/badger/troubleshooting.md): Common issues and solutions with Badger
+- [Community and Support](https://docs.hypermode.com/community-and-support.md): Get help with Hypermode and connect with other developers
+- [Configure Environment](https://docs.hypermode.com/configure-environment.md): Define environment parameters for your app
+- [Create Project](https://docs.hypermode.com/create-project.md): Initialize your Modus app with Hypermode
+- [Deploy Project](https://docs.hypermode.com/deploy.md): A git-based flow for simple deployment
+- [Initial Import (Bulk Loader)](https://docs.hypermode.com/dgraph/admin/bulk-loader.md)
+- [Debugging](https://docs.hypermode.com/dgraph/admin/debug.md)
+- [Drop Data](https://docs.hypermode.com/dgraph/admin/drop-data.md)
+- [Export Data](https://docs.hypermode.com/dgraph/admin/export.md)
+- [Import Data](https://docs.hypermode.com/dgraph/admin/import.md)
+- [Import CSV Data](https://docs.hypermode.com/dgraph/admin/import-csv.md)
+- [Import MySQL Data](https://docs.hypermode.com/dgraph/admin/import-mysql.md)
+- [Increment Tool](https://docs.hypermode.com/dgraph/admin/increment-tool.md)
+- [Live Import (Live Loader)](https://docs.hypermode.com/dgraph/admin/live-loader.md)
+- [Logs](https://docs.hypermode.com/dgraph/admin/logs.md): Dgraph logs requests for queries and mutations, and also provides audit logging capabilities with a Dgraph Enterprise license
+- [Metrics](https://docs.hypermode.com/dgraph/admin/metrics.md): Dgraph database helps administrators by providing metrics on Dgraph instance activity, disk activity, server node health, memory, and Raft leadership
+- [Retrieve Schema](https://docs.hypermode.com/dgraph/admin/schema.md)
+- [Sentry Integration](https://docs.hypermode.com/dgraph/admin/sentry.md)
+- [Traces](https://docs.hypermode.com/dgraph/admin/traces.md)
+- [Update Types](https://docs.hypermode.com/dgraph/admin/update-types.md)
+- [Changelog](https://docs.hypermode.com/dgraph/changelog.md)
+- [Command Reference](https://docs.hypermode.com/dgraph/cli/command-reference.md)
+- [Shell Completion](https://docs.hypermode.com/dgraph/cli/completion.md): Dgraph supports command-line completion, a common feature provided by shells like bash or zsh that helps you to type commands in a fast and easy way
+- [Access Control Lists](https://docs.hypermode.com/dgraph/concepts/acl.md)
+- [Badger](https://docs.hypermode.com/dgraph/concepts/badger.md)
+- [Dgraph Clients](https://docs.hypermode.com/dgraph/concepts/clients.md)
+- [Consistency Model](https://docs.hypermode.com/dgraph/concepts/consistency-model.md)
+- [Discovery](https://docs.hypermode.com/dgraph/concepts/discovery.md)
+- [DQL](https://docs.hypermode.com/dgraph/concepts/dql.md)
+- [DQL and GraphQL](https://docs.hypermode.com/dgraph/concepts/dql-graphql-layering.md)
+- [Facets](https://docs.hypermode.com/dgraph/concepts/facets.md)
+- [GraphQL](https://docs.hypermode.com/dgraph/concepts/graphql.md)
+- [Group](https://docs.hypermode.com/dgraph/concepts/group.md)
+- [Index and Tokenizer](https://docs.hypermode.com/dgraph/concepts/index-tokenize.md)
+- [Lambdas](https://docs.hypermode.com/dgraph/concepts/lambda.md)
+- [Minimal Network Calls](https://docs.hypermode.com/dgraph/concepts/minimizing-network-calls.md)
+- [Namespace and Tenant](https://docs.hypermode.com/dgraph/concepts/namespace-tenant.md)
+- [Posting List and Tablet](https://docs.hypermode.com/dgraph/concepts/posting-list.md)
+- [Protocol Buffers](https://docs.hypermode.com/dgraph/concepts/protocol-buffers.md)
+- [Query Process](https://docs.hypermode.com/dgraph/concepts/queries-process.md)
+- [Raft](https://docs.hypermode.com/dgraph/concepts/raft.md)
+- [Relationships](https://docs.hypermode.com/dgraph/concepts/relationships.md)
+- [High Availability Replication](https://docs.hypermode.com/dgraph/concepts/replication.md)
+- [Transaction and Mutation](https://docs.hypermode.com/dgraph/concepts/transaction-mutation.md)
+- [ACID Transactions](https://docs.hypermode.com/dgraph/concepts/transactions.md)
+- [WAL and Memtable](https://docs.hypermode.com/dgraph/concepts/wal-memtable.md)
+- [Workers](https://docs.hypermode.com/dgraph/concepts/workers.md)
+- [Aggregation](https://docs.hypermode.com/dgraph/dql/aggregation.md)
+- [Aliases](https://docs.hypermode.com/dgraph/dql/alias.md)
+- [cascade](https://docs.hypermode.com/dgraph/dql/cascade.md)
+- [count](https://docs.hypermode.com/dgraph/dql/count.md)
+- [debug](https://docs.hypermode.com/dgraph/dql/debug.md)
+- [expand](https://docs.hypermode.com/dgraph/dql/expand.md)
+- [Facets and Edge Attributes](https://docs.hypermode.com/dgraph/dql/facets.md)
+- [filter](https://docs.hypermode.com/dgraph/dql/filter.md)
+- [fragment](https://docs.hypermode.com/dgraph/dql/fragment.md)
+- [Functions](https://docs.hypermode.com/dgraph/dql/functions.md)
+- [groupby](https://docs.hypermode.com/dgraph/dql/groupby.md)
+- [ignorereflex](https://docs.hypermode.com/dgraph/dql/ignorereflex.md)
+- [Indexes](https://docs.hypermode.com/dgraph/dql/indexes.md)
+- [Indexing with Custom Tokenizers](https://docs.hypermode.com/dgraph/dql/indexing-custom-tokenizers.md)
+- [JSON Data Format](https://docs.hypermode.com/dgraph/dql/json.md)
+- [Language Support](https://docs.hypermode.com/dgraph/dql/language-support.md)
+- [Mutation](https://docs.hypermode.com/dgraph/dql/mutation.md)
+- [normalize](https://docs.hypermode.com/dgraph/dql/normalize.md)
+- [Pagination](https://docs.hypermode.com/dgraph/dql/pagination.md)
+- [Query Structure](https://docs.hypermode.com/dgraph/dql/query.md)
+- [RDF Data Format](https://docs.hypermode.com/dgraph/dql/rdf.md)
+- [recurse](https://docs.hypermode.com/dgraph/dql/recurse.md)
+- [Schema](https://docs.hypermode.com/dgraph/dql/schema.md)
+- [shortest](https://docs.hypermode.com/dgraph/dql/shortest.md)
+- [Sorting](https://docs.hypermode.com/dgraph/dql/sorting.md)
+- [Tips and Tricks](https://docs.hypermode.com/dgraph/dql/tips.md)
+- [Upsert](https://docs.hypermode.com/dgraph/dql/upsert.md)
+- [Variables](https://docs.hypermode.com/dgraph/dql/variables.md)
+- [Access Control Lists](https://docs.hypermode.com/dgraph/enterprise/access-control-lists.md)
+- [Audit Logging](https://docs.hypermode.com/dgraph/enterprise/audit-logs.md): With an Enterprise license, Dgraph can generate audit logs that let you track and audit all requests (queries and mutations).
+- [Binary Backups](https://docs.hypermode.com/dgraph/enterprise/binary-backups.md)
+- [Change Data Capture](https://docs.hypermode.com/dgraph/enterprise/change-data-capture.md): With a Dgraph enterprise license, you can use Dgraph's change data capture (CDC) capabilities to track data changes over time.
+- [Encryption at Rest](https://docs.hypermode.com/dgraph/enterprise/encryption-at-rest.md)
+- [Learner Nodes](https://docs.hypermode.com/dgraph/enterprise/learner-nodes.md): Learner nodes let you spin-up read-only replica instance to serve best-effort queries faster
+- [License](https://docs.hypermode.com/dgraph/enterprise/license.md)
+- [Backup List Tool](https://docs.hypermode.com/dgraph/enterprise/lsbackup.md)
+- [Multi-Tenancy](https://docs.hypermode.com/dgraph/enterprise/multitenancy.md)
+- [Enterprise Features](https://docs.hypermode.com/dgraph/enterprise/overview.md)
+- [Glossary](https://docs.hypermode.com/dgraph/glossary.md): Dgraph terms
+- [API Endpoints](https://docs.hypermode.com/dgraph/graphql/api.md): This documentation presents the Admin API and explains how to run a Dgraph database with GraphQL.
+- [IDEs and Clients](https://docs.hypermode.com/dgraph/graphql/connecting.md)
+- [HTTP Protocol](https://docs.hypermode.com/dgraph/graphql/http.md): Get the structure for GraphQL requests and responses, how to enable compression for them, and configuration options for extensions
+- [Lambda Fields](https://docs.hypermode.com/dgraph/graphql/lambda/field.md): Define JavaScript mutation functions and add them as resolvers in your JS source code
+- [Lambda Mutations](https://docs.hypermode.com/dgraph/graphql/lambda/mutation.md): Ready to use lambdas for mutations? This documentation takes you through the schemas, resolvers, and examples.
+- [Dgraph Lambda Overview](https://docs.hypermode.com/dgraph/graphql/lambda/overview.md): Lambda provides a way to write custom logic in JavaScript, integrate it with your GraphQL schema, and execute it using the GraphQL API in a few easy steps.
+- [Lambda Queries](https://docs.hypermode.com/dgraph/graphql/lambda/query.md): Get started with the @lambda directive for queries. This documentation takes you through the schemas, resolvers, and examples.
+- [Lambda Webhooks](https://docs.hypermode.com/dgraph/graphql/lambda/webhook.md): Ready to use lambdas for webhooks? This documentation takes you through the schemas, resolvers, and examples.
+- [Add Mutations](https://docs.hypermode.com/dgraph/graphql/mutation/add.md): Add mutations allows you to add new objects of a particular type. Dgraph automatically generates input and return types in the schema for the add mutation.
+- [Deep Mutations](https://docs.hypermode.com/dgraph/graphql/mutation/deep.md): Perform deep mutations at multiple levels. Deep mutations don't alter linked objects, but add nested new objects or link to existing objects.
+- [Delete Mutations](https://docs.hypermode.com/dgraph/graphql/mutation/delete.md)
+- [Mutations Overview](https://docs.hypermode.com/dgraph/graphql/mutation/overview.md): Mutations can be used to insert, update, or delete data. Dgraph automatically generates GraphQL mutation for each type that you define in your schema.
+- [Update Mutations](https://docs.hypermode.com/dgraph/graphql/mutation/update.md): Update mutations let you update existing objects of a particular type, by filtering nodes and setting or removing any field belonging to that type.
+- [Upsert Mutations](https://docs.hypermode.com/dgraph/graphql/mutation/upsert.md): Upsert mutations allow you to perform `add` or `update` operations based on whether a particular ID exists in the database.
+- [GraphQL API](https://docs.hypermode.com/dgraph/graphql/overview.md): Generate a GraphQL API and a graph backend from a single GraphQL schema.
+- [Aggregate Queries](https://docs.hypermode.com/dgraph/graphql/query/aggregate.md): Dgraph automatically generates aggregate queries for GraphQL schemas. These are compatible with the @auth directive
+- [And, Or, and Not Operators in GraphQL](https://docs.hypermode.com/dgraph/graphql/query/and-or-not.md): Every GraphQL search filter can use AND, OR, and NOT operators.
+- [Cached Results](https://docs.hypermode.com/dgraph/graphql/query/cached-results.md): Cached results can serve read-heavy workloads with complex queries to improve performance. This refers to external caching at the browser/CDN level
+- [@cascade Directive](https://docs.hypermode.com/dgraph/graphql/query/cascade.md): The @cascade directive can be applied to fields. With the @cascade directive, nodes that don’t have all fields specified in the query are removed
+- [Order and Pagination](https://docs.hypermode.com/dgraph/graphql/query/order-page.md): Every type with fields whose types can be ordered gets ordering built into the query and any list fields of that type.
+- [Overview](https://docs.hypermode.com/dgraph/graphql/query/overview.md): Dgraph automatically generates GraphQL queries for each type that you define in your schema. There are three types of queries generated for each type.
+- [Persistent Queries](https://docs.hypermode.com/dgraph/graphql/query/persistent-queries.md): Persistent queries significantly improve the performance of an app as the smaller hash signature reduces bandwidth utilization.
+- [Search and Filtering](https://docs.hypermode.com/dgraph/graphql/query/search-filtering.md): Queries generated for a GraphQL type allow you to generate a single list of objects for a type. You can also query a list of objects using GraphQL.
+- [@skip and @include Directives](https://docs.hypermode.com/dgraph/graphql/query/skip-include.md): @skip and @include directives can be applied to query fields. They let you skip or include a field based on the value of the if argument.
+- [GraphQL Variables](https://docs.hypermode.com/dgraph/graphql/query/variables.md)
+- [Similarity Search](https://docs.hypermode.com/dgraph/graphql/query/vector-similarity.md): Dgraph automatically generates GraphQL queries for each vector index that you define in your schema. There are two types of queries generated for each index.
+- [Quickstart](https://docs.hypermode.com/dgraph/graphql/quickstart.md): Deploy a GraphQL API in one step. Define your schema and Dgraph does the rest.
+- [Custom DQL](https://docs.hypermode.com/dgraph/graphql/schema/custom-dql.md): Dgraph Query Language (DQL) includes support for custom logic. Specify the DQL query you want to execute and the Dgraph GraphQL API will execute it
+- [Dgraph Schema Fragment](https://docs.hypermode.com/dgraph/graphql/schema/dgraph-schema.md): While editing your schema, this GraphQL schema fragment can be useful. It sets up the definitions of the directives that you’ll use in your schema.
+- [@auth](https://docs.hypermode.com/dgraph/graphql/schema/directives/auth.md)
+- [Custom Resolvers Overview](https://docs.hypermode.com/dgraph/graphql/schema/directives/custom.md): Dgraph creates a GraphQL API from nothing more than GraphQL types. To customize the behavior of your schema, you can implement custom resolvers.
+- [@deprecated](https://docs.hypermode.com/dgraph/graphql/schema/directives/deprecated.md)
+- [@dgraph](https://docs.hypermode.com/dgraph/graphql/schema/directives/dgraph.md)
+- [@embedding](https://docs.hypermode.com/dgraph/graphql/schema/directives/embedding.md)
+- [@generate](https://docs.hypermode.com/dgraph/graphql/schema/directives/generate.md): The @generate directive specifies which GraphQL APIs are generated for a given type. Without it, all queries & mutations are generated except subscription.
+- [@id](https://docs.hypermode.com/dgraph/graphql/schema/directives/ids.md): Dgraph database provides two types of identifiers: the ID scalar type and the @id directive.
+- [Directives](https://docs.hypermode.com/dgraph/graphql/schema/directives/overview.md)
+- [Search and Filtering](https://docs.hypermode.com/dgraph/graphql/schema/directives/search.md): What search can you build into your GraphQL API? Dgraph builds search into the fields of each type, so searching is available at deep levels in a query
+- [@withSubscription](https://docs.hypermode.com/dgraph/graphql/schema/directives/withsubscription.md)
+- [Documentation and Comments](https://docs.hypermode.com/dgraph/graphql/schema/documentation.md): Dgraph accepts GraphQL documentation comments, which get passed through to the generated API and shown as documentation in GraphQL tools.
+- [Graph Federation](https://docs.hypermode.com/dgraph/graphql/schema/federation.md): Dgraph supports Apollo federation so that you can create a gateway GraphQL service that includes the Dgraph GraphQL API and other GraphQL services
+- [GraphQL and DQL schemas](https://docs.hypermode.com/dgraph/graphql/schema/graphql-dql.md)
+- [Schema Migration](https://docs.hypermode.com/dgraph/graphql/schema/migration.md): This document describes all the things that you need to take care while doing a schema update or migration.
+- [Schema](https://docs.hypermode.com/dgraph/graphql/schema/overview.md)
+- [Relationships](https://docs.hypermode.com/dgraph/graphql/schema/relationships.md): All the data in your app form a GraphQL data graph. That graph has nodes of particular types and relationships between the nodes to form the data graph.
+- [Reserved Names](https://docs.hypermode.com/dgraph/graphql/schema/reserved.md): This document provides the full list of names that are reserved and can’t be used to define any other identifiers.
+- [Types](https://docs.hypermode.com/dgraph/graphql/schema/types.md): How to use GraphQL types to set a GraphQL schema for the Dgraph database. Includes scalars, enums, types, interfaces, union, password, & geolocation types.
+- [Authorization tips](https://docs.hypermode.com/dgraph/graphql/security/auth-tips.md): Given an authentication mechanism and a signed JSON Web Token (JWT), the `@auth` directive tells Dgraph how to apply authorization.
+- [Restrict origins](https://docs.hypermode.com/dgraph/graphql/security/cors.md)
+- [ABAC Rules](https://docs.hypermode.com/dgraph/graphql/security/graphtraversal-rules.md): Attribute Based Access Control (ABAC) on GraphQL API operations
+- [Handle JWT Token](https://docs.hypermode.com/dgraph/graphql/security/jwt.md)
+- [Mutations and GraphQL Authorization](https://docs.hypermode.com/dgraph/graphql/security/mutations.md): Learn how to use GraphQL Authorization with Mutations to protect your data and control access in Dgraph.
+- [Security](https://docs.hypermode.com/dgraph/graphql/security/overview.md): Built-in authorization with various authentication methods, so you can annotate your schema with rules that determine who can access or mutate the data
+- [RBAC Rules](https://docs.hypermode.com/dgraph/graphql/security/rbac-rules.md): Dgraph support Role Based Access Control (RBAC) on GraphQL API operations.
+- [Subscriptions](https://docs.hypermode.com/dgraph/graphql/subscriptions.md): Subscriptions allow clients to listen to real-time messages from the server. In GraphQL, it's straightforward to enable subscriptions on any type.
+- [Guides](https://docs.hypermode.com/dgraph/guides.md)
+- [Get Started with Dgraph - Advanced Text Search](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/advanced-text-search.md)
+- [Get Started with Dgraph - Basic Operations](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/basic-operations.md)
+- [Get Started with Dgraph - Fuzzy Search](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/fuzzy-search.md)
+- [Get Started with Dgraph - Geolocation](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/geolocation.md)
+- [Get Started with Dgraph](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/introduction.md)
+- [Get Started with Dgraph -  Multi-language strings](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/multi-language-strings.md)
+- [Get Started with Dgraph - String Indices](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/string-indicies.md)
+- [Get Started with Dgraph - Types and Operations](https://docs.hypermode.com/dgraph/guides/get-started-with-dgraph/types-and-operations.md)
+- [Graph Data Models 101](https://docs.hypermode.com/dgraph/guides/graph-data-models-101.md): Graphs provide an alternative to tabular data structures, allowing for a more natural way to store and retrieve data
+- [Conclusion](https://docs.hypermode.com/dgraph/guides/message-board-app/conclusion.md): This is the end of the Dgraph Learn course - Build a Message Board App in React. But there's still more to learn.
+- [Design a Schema for the App](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/design-app-schema.md): Build a Message Board App in React with Dgraph Learn. Step 2: GraphQL schema design - how graph schemas and graph queries work.
+- [GraphQL Operations](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/graphql-operations.md): Using your schema, Dgraph Cloud generated ways to interact with the graph. In GraphQL, the API can be inspected with introspection queries.
+- [GraphQL Schema](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/graphql-schema.md): How to Build a Message Board App in React. Step 2: GraphQL schema - translate the schema design to the GraphQL SDL (Schema Definition Language).
+- [Working in GraphQL](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/index.md): Developing a Message Board App in React with Dgraph Learn. Step 2: GraphQL schema design and loading, queries, and mutations.
+- [Deploy the Schema](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/load-schema-to-dgraph-cloud.md): Building a Message Board App in React. Step 2: With the schema defined, it’s just one step to get a running GraphQL backend for the app.
+- [GraphQL Mutations](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/react-graphql-mutations.md): Before you can query, you need to add data. Use GraphQL Mutations to add a user, category, posts, and sample data.
+- [GraphQL Queries](https://docs.hypermode.com/dgraph/guides/message-board-app/graphql/react-graphql-queries.md): GraphQL queries are about starting points and traversals. From simple queries to deep filters, dive into the queries use in the message board app.
+- [Build a Message Board App in React](https://docs.hypermode.com/dgraph/guides/message-board-app/introduction.md): Learn to deploy a GraphQL Backend, design a schema, and implement a React UI. This 2-hour course walks you through it.
+- [Provision a Dgraph Cloud backend](https://docs.hypermode.com/dgraph/guides/message-board-app/provision-backend.md): Dgraph Learn - Build a Message Board App in React. Deploy a backend for each app you build with Dgraph Cloud
+- [Connect to Dgraph Cloud](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/connect-to-dgraph-cloud.md): Apollo client provides a connection to the GraphQL endpoint & a GraphQL cache that lets you manipulate the visual state of the app from the internal cache
+- [Build a React UI](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/index.md): With the GraphQL backend deployed and serving the schema, you can move directly to building a UI using React and Typescript with the GraphQL Code Generator.
+- [React App Boiler Plate](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/react-app-boiler-plate.md): Jump right in thanks to the Message Board App Tutorial repo on GitHub. Get started with your Message Board App in React with GraphQL.
+- [Routing in React](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/react-routing.md): Use React Router to build a message board app. A routing library in the UI interprets the URL path and renders an appropriate page for that path.
+- [GraphQL Mutations](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/react-ui-graphql-mutations.md): With a working UI for querying sample data you added, you now need a UI to add new posts using GraphQL Mutations in Apollo React.
+- [GraphQL Queries](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/react-ui-graphql-queries.md): In this step, you can move on to the GraphQL queries that get the data to render the main pages, thanks to Apollo Client, Dgraph Cloud, and React routing.
+- [Tech Stack](https://docs.hypermode.com/dgraph/guides/message-board-app/react-ui/tech-stack.md): The tech stack for this project includes Dgraph Cloud, React, Typescript, Apollo Client 3.x, Semantic UI React, Tailwind CSS, and Luxon.
+- [Authorization Rules](https://docs.hypermode.com/dgraph/guides/to-do-app/auth-rules.md): Use the @auth directive to limit access to the user’s to-dos. This step in the GraphQL tutorial walks you through authorization rules.
+- [Using Auth0](https://docs.hypermode.com/dgraph/guides/to-do-app/auth0-jwt.md): Get an app running with Auth0. This step in the GraphQL tutorial walks you through using Auth0 in an example to-do app tutorial.
+- [Deploying on Dgraph Cloud](https://docs.hypermode.com/dgraph/guides/to-do-app/deploy.md): In just two steps on Dgraph Cloud (deployment & schema), you get a GraphQL API that you can easily use in any app.
+- [Using Firebase Authentication](https://docs.hypermode.com/dgraph/guides/to-do-app/firebase-jwt.md)
+- [Build a To-Do List App](https://docs.hypermode.com/dgraph/guides/to-do-app/introduction.md): This is a simple tutorial that will take you through making a basic to-do app using Dgraph’s GraphQL API and integrating it with Auth0
+- [Schema Design](https://docs.hypermode.com/dgraph/guides/to-do-app/schema-design.md): Starting with listing the entities that are involved in a basic to-do app, this step in the GraphQL tutorial walks you through schema design.
+- [Creating a Basic UI](https://docs.hypermode.com/dgraph/guides/to-do-app/ui.md): Create a simple to-do app and integrate it with Auth0. This step in the GraphQL tutorial walks you through creating a basic UI with React.
+- [HTTP](https://docs.hypermode.com/dgraph/http.md)
+- [Dgraph](https://docs.hypermode.com/dgraph/overview.md)
+- [Quickstart](https://docs.hypermode.com/dgraph/quickstart.md)
+- [Backups](https://docs.hypermode.com/dgraph/ratel/backups.md)
+- [Cluster](https://docs.hypermode.com/dgraph/ratel/cluster.md)
+- [Connection](https://docs.hypermode.com/dgraph/ratel/connection.md)
+- [Console](https://docs.hypermode.com/dgraph/ratel/console.md)
+- [Ratel](https://docs.hypermode.com/dgraph/ratel/overview.md): Ratel is a tool for data visualization and cluster management that's designed from the ground-up to work with Dgraph. Clone and build Ratel to get started.
+- [Schema](https://docs.hypermode.com/dgraph/ratel/schema.md)
+- [.NET](https://docs.hypermode.com/dgraph/sdks/dotnet.md)
+- [Go](https://docs.hypermode.com/dgraph/sdks/go.md)
+- [Java](https://docs.hypermode.com/dgraph/sdks/java.md)
+- [JavaScript](https://docs.hypermode.com/dgraph/sdks/javascript.md)
+- [JavaScript HTTP Client](https://docs.hypermode.com/dgraph/sdks/javascript-http.md)
+- [Overview](https://docs.hypermode.com/dgraph/sdks/overview.md): Dgraph client libraries in various programming languages.
+- [Python](https://docs.hypermode.com/dgraph/sdks/python.md)
+- [Unofficial Dgraph Clients](https://docs.hypermode.com/dgraph/sdks/unofficial-clients.md)
+- [Cluster Checklist](https://docs.hypermode.com/dgraph/self-managed/cluster-checklist.md)
+- [Cluster Setup](https://docs.hypermode.com/dgraph/self-managed/cluster-setup.md)
+- [Cluster Types](https://docs.hypermode.com/dgraph/self-managed/cluster-types.md)
+- [Config](https://docs.hypermode.com/dgraph/self-managed/config.md)
+- [Data Compression](https://docs.hypermode.com/dgraph/self-managed/data-compression.md)
+- [Data Decryption](https://docs.hypermode.com/dgraph/self-managed/decrypt.md)
+- [Dgraph Alpha](https://docs.hypermode.com/dgraph/self-managed/dgraph-alpha.md)
+- [Dgraph Zero](https://docs.hypermode.com/dgraph/self-managed/dgraph-zero.md)
+- [Download](https://docs.hypermode.com/dgraph/self-managed/download.md): Download the images and source files to build and install for a production-ready Dgraph cluster
+- [Highly Available Cluster Setup](https://docs.hypermode.com/dgraph/self-managed/ha-cluster.md)
+- [Lambda Server](https://docs.hypermode.com/dgraph/self-managed/lambda-server.md): Setup a Dgraph database with a lambda server. Dgraph Lambda is a serverless platform for running JavaScript with Dgraph
+- [Load Balancing Queries with NGINX](https://docs.hypermode.com/dgraph/self-managed/load-balancing-nginx.md)
+- [Monitoring](https://docs.hypermode.com/dgraph/self-managed/monitoring.md)
+- [Monitoring the Cluster](https://docs.hypermode.com/dgraph/self-managed/monitoring-cluster.md)
+- [Self-Managed Cluster](https://docs.hypermode.com/dgraph/self-managed/overview.md)
+- [Ports Usage](https://docs.hypermode.com/dgraph/self-managed/ports-usage.md)
+- [Production Checklist](https://docs.hypermode.com/dgraph/self-managed/production-checklist.md): Requirements to install Dgraph in a production environment
+- [Single Host Setup](https://docs.hypermode.com/dgraph/self-managed/single-host-setup.md)
+- [Single Server Cluster Setup](https://docs.hypermode.com/dgraph/self-managed/single-server-cluster.md)
+- [TLS Configuration](https://docs.hypermode.com/dgraph/self-managed/tls-configuration.md)
+- [Troubleshooting](https://docs.hypermode.com/dgraph/self-managed/troubleshooting.md)
+- [Why Dgraph?](https://docs.hypermode.com/dgraph/why-dgraph.md): Developers at startups to Fortune 500 companies choose Dgraph for their most intensive graph features
+- [Quickstart: Hyper Commerce](https://docs.hypermode.com/getting-started-with-hyper-commerce.md): Learn how to instantly get started with the Hypermode Commerce template
+- [Connect to Graph](https://docs.hypermode.com/graphs/connect.md): Connect to your graph from a SDK, IDE, or Modus
+- [Manage Data](https://docs.hypermode.com/graphs/manage-data.md): Query, mutate, and bulk manage data from your graph
+- [Manage Graph](https://docs.hypermode.com/graphs/manage-graph.md): Manage your graph's resources and configuration
+- [Manage Schema](https://docs.hypermode.com/graphs/manage-schema.md): Load and update the schema of your graph
+- [Graphs](https://docs.hypermode.com/graphs/overview.md): A fully managed graph database service powered by Dgraph
+- [Provision Graph](https://docs.hypermode.com/graphs/provision.md): Create a new graph and configure its resources
+- [Hosted Models](https://docs.hypermode.com/hosted-models.md): Iterate quickly with seamless access to the most popular models
+- [Hyp CLI](https://docs.hypermode.com/hyp-cli.md): Comprehensive reference for the Hyp CLI commands and usage
+- [Integrate API](https://docs.hypermode.com/integrate-api.md): Easily add intelligent features to your app
+- [Hypermode](https://docs.hypermode.com/introduction.md): An AI development platform that provides hosting and management capabilities for agents and knowledge graphs
+- [Modify Organization](https://docs.hypermode.com/modify-organization.md): Update organization attributes or delete your organization
+- [Modify Project](https://docs.hypermode.com/modify-project.md): Update project attributes or delete your project
+- [AI-Enabled Apps](https://docs.hypermode.com/modus/ai-enabled-apps.md): Add intelligence to your app with AI models
+- [API Generation](https://docs.hypermode.com/modus/api-generation.md): Create the signature for your API
+- [App Manifest](https://docs.hypermode.com/modus/app-manifest.md): Define the resources for your app
+- [Architecture](https://docs.hypermode.com/modus/architecture.md)
+- [Authentication](https://docs.hypermode.com/modus/authentication.md): Protect your API
+- [Basic Functions](https://docs.hypermode.com/modus/basic-functions.md): Implement simple functions with Modus
+- [Changelog](https://docs.hypermode.com/modus/changelog.md): The latest changes and improvements in Modus
+- [Contributing](https://docs.hypermode.com/modus/contributing.md)
+- [Data Fetching](https://docs.hypermode.com/modus/data-fetching.md): Pull data into your app
+- [Using DeepSeek](https://docs.hypermode.com/modus/deepseek-model.md): Use the DeepSeek-R1 Model with your Modus app
+- [Deploying](https://docs.hypermode.com/modus/deploying.md)
+- [Error Handling](https://docs.hypermode.com/modus/error-handling.md): Easily debug and handle errors
+- [Model Invoking](https://docs.hypermode.com/modus/model-invoking.md): Invoke your models with the Modus Models API
+- [Modus CLI](https://docs.hypermode.com/modus/modus-cli.md): Comprehensive reference for the Modus CLI commands and usage
+- [Modus](https://docs.hypermode.com/modus/overview.md): Welcome to the Modus docs!
+- [Project Structure](https://docs.hypermode.com/modus/project-structure.md): Understand the structure of a Modus app
+- [Quickstart](https://docs.hypermode.com/modus/quickstart.md): Run your first Modus app in a few minutes
+- [Roadmap](https://docs.hypermode.com/modus/roadmap.md): Upcoming features and improvements for Modus.
+- [Run Locally](https://docs.hypermode.com/modus/run-locally.md): Test your Modus app and iterate quickly
+- [Collections APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/collections.md): Add storage and vector search capabilities to your functions.
+- [Console APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/console.md): Capture errors and debugging information in your functions
+- [Dgraph APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/dgraph.md): Execute queries and mutations against a Dgraph database
+- [GraphQL APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/graphql.md): Access external GraphQL data sources from your functions
+- [HTTP APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/http.md): Access external HTTP endpoints from your functions
+- [Local Time APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/localtime.md): Access the user's local time and time zone in your functions
+- [AI Model APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/models.md): Invoke AI models from your functions
+- [MySQL APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/mysql.md): Execute queries against a MySQL database
+- [Neo4j APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/neo4j.md): Execute queries and mutations against a Neo4j database
+- [Modus AssemblyScript SDK](https://docs.hypermode.com/modus/sdk/assemblyscript/overview.md): Learn how to use the Modus AssemblyScript SDK
+- [PostgreSQL APIs](https://docs.hypermode.com/modus/sdk/assemblyscript/postgresql.md): Execute queries against a PostgreSQL database
+- [Collections APIs](https://docs.hypermode.com/modus/sdk/go/collections.md): Add storage and vector search capabilities to your functions.
+- [Console APIs](https://docs.hypermode.com/modus/sdk/go/console.md): Capture errors and debugging information in your functions
+- [Dgraph APIs](https://docs.hypermode.com/modus/sdk/go/dgraph.md): Execute queries and mutations against a Dgraph database
+- [GraphQL APIs](https://docs.hypermode.com/modus/sdk/go/graphql.md): Access external GraphQL data sources from your functions
+- [HTTP APIs](https://docs.hypermode.com/modus/sdk/go/http.md): Access external HTTP endpoints from your functions
+- [Local Time APIs](https://docs.hypermode.com/modus/sdk/go/localtime.md): Access the user's local time and time zone in your functions
+- [AI Model APIs](https://docs.hypermode.com/modus/sdk/go/models.md): Invoke AI models from your functions
+- [MySQL APIs](https://docs.hypermode.com/modus/sdk/go/mysql.md): Execute queries against a MySQL database
+- [Neo4j APIs](https://docs.hypermode.com/modus/sdk/go/neo4j.md): Execute queries and mutations against a Neo4j database
+- [Modus Go SDK](https://docs.hypermode.com/modus/sdk/go/overview.md): Learn how to use the Modus Go SDK
+- [PostgreSQL APIs](https://docs.hypermode.com/modus/sdk/go/postgresql.md): Execute queries against a PostgreSQL database
+- [Search](https://docs.hypermode.com/modus/search.md): Add natural language search to your app using AI embeddings
+- [Testing](https://docs.hypermode.com/modus/testing.md)
+- [Troubleshooting](https://docs.hypermode.com/modus/troubleshooting.md): Common issues, resolutions, and best practices for triaging issues in Modus.
+- [Upgrading](https://docs.hypermode.com/modus/upgrading.md)
+- [Observe Functions](https://docs.hypermode.com/observe-functions.md): Understand what's happening within your functions
+- [Quickstart](https://docs.hypermode.com/quickstart.md): Start building AI features in under five minutes
+- [Security](https://docs.hypermode.com/security.md): Data handling, privacy, and security best practices
+- [Semantic Search With Dgraph and Modus](https://docs.hypermode.com/semantic-search.md): Add natural language search to your app with Dgraph, Modus, and AI embeddings
+- [User Management](https://docs.hypermode.com/user-management.md): Add and remove users from your organization
+- [Work Locally](https://docs.hypermode.com/work-locally.md): Seamless local-to-cloud experience for rapid experimentation
+
+
+## Optional
+
+- [Hypermode Agents (waitlist)](https://hypermode.typeform.com/agents-waitlist)
+- [Hypermode Graphs (preview)](https://hypermode.com/sign-in)
+- [Dgraph Cloud](https://cloud.dgraph.io)

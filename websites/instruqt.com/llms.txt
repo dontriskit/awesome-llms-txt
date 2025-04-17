@@ -1,0 +1,114 @@
+# Instruqt Docs
+
+## Instruqt Docs
+
+- [Overview](https://docs.instruqt.com/getting-started/readme): An overview of Instruqt's lab platform, and its usage.
+- [Setting up](https://docs.instruqt.com/getting-started/set-up-instruqt): How to sign up and install the CLI.
+- [Study Room](https://docs.instruqt.com/getting-started/set-up-instruqt/study-room)
+- [Quickstart](https://docs.instruqt.com/getting-started/quickstart): Learn how to deploy your first Instruqt track.
+- [Manage tracks](https://docs.instruqt.com/tracks/manage)
+- [Create tracks](https://docs.instruqt.com/tracks/manage/create-tracks): Learn how to create tracks.
+- [Edit locally](https://docs.instruqt.com/tracks/manage/pull-a-track): Edit tracks on your local machine and push changes to Instruqt
+- [Test tracks](https://docs.instruqt.com/tracks/manage/test-a-track): Test track sandboxes by running simulated plays
+- [Track logs](https://docs.instruqt.com/tracks/manage/viewing-logs): Inspect track logs and troubleshoot your configurations
+- [Track time limits](https://docs.instruqt.com/tracks/manage/time-limits-and-idle-timeouts): Learn how to configure track time limits and idle timeouts
+- [Track feedback](https://docs.instruqt.com/tracks/manage/track-feedback): Decide when users are able to share feedback about the track.
+- [Developer workflow](https://docs.instruqt.com/tracks/manage/maintain-a-developer-workflow): Keep your track building under control using CI/CD pipelines
+- [Track tags](https://docs.instruqt.com/tracks/manage/tags): How to manage tags and add them to your content in order to group related items together.
+- [Track authors](https://docs.instruqt.com/tracks/manage/set-the-track-authors): Add and remove authors to tracks
+- [Delete tracks](https://docs.instruqt.com/tracks/manage/delete-a-track): Delete tracks to cleanup your team
+- [Custom layouts](https://docs.instruqt.com/tracks/manage/custom-layouts): Learn how to enable, and customise your lab layouts and themes. Custom layouts help you create a tailored lab experience for your product.
+- [Version control](https://docs.instruqt.com/tracks/manage/version-control): Learn how to use version control in your tracks. Version control helps you streamline development processes, enable faster iteration and delivery of tracks.
+- [Loading experience](https://docs.instruqt.com/tracks/manage/loading-experience): Learn how to configure the loading experience for tracks and challenges
+- [Challenges](https://docs.instruqt.com/tracks/challenges)
+- [Create challenges](https://docs.instruqt.com/tracks/challenges/create-challenges): Challenges are the steps in a track a user must complete.
+- [Challenge tabs](https://docs.instruqt.com/tracks/challenges/challenge-tabs): Configure different tab types in challenges.
+- [Challenge order](https://docs.instruqt.com/tracks/challenges/change-the-challenge-order): Modify the order of your track's challenges
+- [Skip challenges](https://docs.instruqt.com/tracks/challenges/skipping-challenges): Enable users to skip challenges in your tracks
+- [Add quizzes](https://docs.instruqt.com/tracks/challenges/add-a-quiz-to-a-track): Check your learners knowledge with a multiple choice question
+- [Assignment display](https://docs.instruqt.com/tracks/challenges/assignment-display-settings): Learn how to customise the presentation of your challenge for your users
+- [Assignment editor](https://docs.instruqt.com/tracks/challenges/using-markdown-editor): Modify the instructions presented to the learner
+- [Share tracks](https://docs.instruqt.com/tracks/share)
+- [Live Events](https://docs.instruqt.com/tracks/share/run-live-events): Run live events with the Instruqt Live Event dashboard
+- [Instructor tools](https://docs.instruqt.com/tracks/share/run-live-events/instructor-tools): This page covers the tools available to instructors to help them facilitate their virtual and in-person events. These tools include messaging, raised hands, and user management through the dashboard.
+- [Track invites](https://docs.instruqt.com/tracks/share/track-invite-links): Grant learners controlled access to your tracks
+- [Embed tracks](https://docs.instruqt.com/tracks/share/embed-a-track): Integrate Instruqt into your web pages or platform.
+- [Landing pages](https://docs.instruqt.com/tracks/share/landing-pages): Create a custom page to share your tracks
+- [Overview](https://docs.instruqt.com/sandboxes/overview): An overview of Instruqt sandboxes.
+- [Sandbox hosts](https://docs.instruqt.com/sandboxes/hosts)
+- [Add hosts](https://docs.instruqt.com/sandboxes/hosts/add-hosts): How to add virtual machines and containers to sandboxes.
+- [Custom VM images](https://docs.instruqt.com/sandboxes/hosts/create-a-custom-vm-image): Create custom VM images for use in your sandboxes.
+- [Custom container images](https://docs.instruqt.com/sandboxes/hosts/custom-container-images): Create custom container images for your sandboxes.
+- [Public images](https://docs.instruqt.com/sandboxes/hosts/using-custom-public-images): Build off of publicly accessible images.
+- [Windows VMs](https://docs.instruqt.com/sandboxes/hosts/run-a-windows-vm): Run instances of Windows in sandboxes.
+- [Website service](https://docs.instruqt.com/sandboxes/hosts/website-service): How to run a website in a virtual browser.
+- [SSL certificates](https://docs.instruqt.com/sandboxes/hosts/ssl-certificates): Add SSL certificates to your virtual machines.
+- [Cloud accounts](https://docs.instruqt.com/sandboxes/cloud-accounts)
+- [Securing your cloud accounts](https://docs.instruqt.com/sandboxes/cloud-accounts/securing-your-cloud-accounts)
+- [Cloud Client](https://docs.instruqt.com/sandboxes/cloud-accounts/cloud-client)
+- [AWS accounts](https://docs.instruqt.com/sandboxes/cloud-accounts/aws-accounts): Give learners access to AWS accounts.
+- [AWS Environment Variables](https://docs.instruqt.com/sandboxes/cloud-accounts/aws-accounts/aws-environment-variables)
+- [AWS Managed Policies](https://docs.instruqt.com/sandboxes/cloud-accounts/aws-accounts/aws-managed-policies)
+- [AWS IAM Policies](https://docs.instruqt.com/sandboxes/cloud-accounts/aws-accounts/aws-iam-policies)
+- [AWS SCP Policies](https://docs.instruqt.com/sandboxes/cloud-accounts/aws-accounts/aws-scp-policies)
+- [Azure subscriptions](https://docs.instruqt.com/sandboxes/cloud-accounts/azure-subscriptions): Give learners access to Azure subscriptions.
+- [Azure Environment Variables](https://docs.instruqt.com/sandboxes/cloud-accounts/azure-subscriptions/azure-environment-variables)
+- [Azure Roles](https://docs.instruqt.com/sandboxes/cloud-accounts/azure-subscriptions/azure-roles)
+- [Azure Resource Providers](https://docs.instruqt.com/sandboxes/cloud-accounts/azure-subscriptions/azure-resource-providers)
+- [GCP projects](https://docs.instruqt.com/sandboxes/cloud-accounts/gcp-projects): Give learners access to GCP projects.
+- [GCP Environment Variables](https://docs.instruqt.com/sandboxes/cloud-accounts/gcp-projects/gcp-environment-variables)
+- [GCP IAM Permissions](https://docs.instruqt.com/sandboxes/cloud-accounts/gcp-projects/gcp-iam-permissions)
+- [Lifecycle scripts](https://docs.instruqt.com/sandboxes/lifecycle-scripts)
+- [Scripting overview](https://docs.instruqt.com/sandboxes/lifecycle-scripts/scripting-overview): Introduction to scripting and how Instruqt leverages it.
+- [Track scripts](https://docs.instruqt.com/sandboxes/lifecycle-scripts/add-software-and-packages-to-a-track): Add setup and cleanup scripts to your tracks
+- [Challenge scripts](https://docs.instruqt.com/sandboxes/lifecycle-scripts/add-a-script-to-check-challenge-execution): Add setup, check, solve, and cleanup scripts to your challenges
+- [Example scripts](https://docs.instruqt.com/sandboxes/lifecycle-scripts/lifecycle-scripts-examples): Example scripts that you can use in your lifecycle scripts.
+- [Helper scripts](https://docs.instruqt.com/sandboxes/lifecycle-scripts/helper-scripts): Helper scripts are pre-written scripts to help implement lifecycle scripts.
+- [UI Checks](https://docs.instruqt.com/sandboxes/ui-checks)
+- [Global Sandbox Settings](https://docs.instruqt.com/sandboxes/manage)
+- [Hot start](https://docs.instruqt.com/sandboxes/manage/hot-start): Pre-provision sandboxes for instant access later on.
+- [Sandbox presets](https://docs.instruqt.com/sandboxes/manage/build-sandbox-presets): How to create, publish, and use sandbox presets.
+- [Custom resources](https://docs.instruqt.com/sandboxes/manage/custom-resources): How to create and use custom resources such as external cloud accounts and leverage them within your Instruqt sandbox.
+- [Cloud services and regions](https://docs.instruqt.com/sandboxes/manage/cloud-services-and-regions): How to configure services and regions that can be used later on in cloud accounts.
+- [Allowed services and regions](https://docs.instruqt.com/sandboxes/manage/cloud-services-and-regions/allowed-services-and-regions): Complete list of cloud services and regions that can be configured in Instruqt.
+- [Secrets and variables](https://docs.instruqt.com/sandboxes/runtime)
+- [Runtime variables](https://docs.instruqt.com/sandboxes/runtime/runtime-variables): How to define runtime variables and use them inside lifecycle scripts or challenge assignments.
+- [Runtime parameters](https://docs.instruqt.com/sandboxes/runtime/runtime-parameters): Inject parameters at runtime to alter tracks.
+- [Secrets](https://docs.instruqt.com/sandboxes/runtime/secrets): How to use secrets in lifecycle scripts.
+- [Integrations](https://docs.instruqt.com/settings/integrations)
+- [Salesforce (Beta)](https://docs.instruqt.com/settings/integrations/salesforce-beta): Integrate Instruqt with Salesforce and choose among options to create new leads as well as enrich existent leads and contacts with track play information.
+- [HubSpot (Beta)](https://docs.instruqt.com/settings/integrations/hubspot-beta): Integrate Instruqt with your HubSpot instance and enable options to create and enrich already existent contacts with track play information.
+- [HubSpot (Using zapier)](https://docs.instruqt.com/settings/integrations/integrate-with-hubspot)
+- [LTI](https://docs.instruqt.com/settings/integrations/integrate-with-lti): Learn how to integrate Learning Tools Interoperability (LTI) with Instruqt.
+- [Version control](https://docs.instruqt.com/settings/integrations/version-control): Learn how to integrate your version control system with Instruqt.
+- [GitHub](https://docs.instruqt.com/settings/integrations/version-control/github): Here you'll learn how to integrate the version control feature with GitHub.
+- [Authentication](https://docs.instruqt.com/settings/authentication)
+- [SSO](https://docs.instruqt.com/settings/authentication/sso): Overview of SSO and how to implement it.
+- [API keys](https://docs.instruqt.com/settings/authentication/api-keys): How to generate an API key.
+- [Platform](https://docs.instruqt.com/settings/platform)
+- [API](https://docs.instruqt.com/settings/platform/api): This reference describes the Instruqt GraphQL API and helps you get started.
+- [Webhooks](https://docs.instruqt.com/settings/platform/webhooks): Let Instruqt automatically send track data to your system.
+- [Track limits](https://docs.instruqt.com/settings/platform/track-limits): Control access to your tracks with limits.
+- [Feature overview](https://docs.instruqt.com/reference/feature-overview)
+- [Instruqt CLI](https://docs.instruqt.com/reference/cli)
+- [Commands](https://docs.instruqt.com/reference/cli/commands): Overview of Instruqt CLI commands.
+- [Configuration files](https://docs.instruqt.com/reference/cli/configuration-files): Learn about configuration files for editing locally.
+- [Assets](https://docs.instruqt.com/reference/cli/assets): Overview of assets and how to use them.
+- [Instruqt platform](https://docs.instruqt.com/reference/platform)
+- [Networking](https://docs.instruqt.com/reference/platform/networking): Learn about the key aspects of networking in the Instruqt platform.
+- [Host machine types](https://docs.instruqt.com/reference/platform/sandbox-host-machine-types): List of available Google Cloud Compute Engine machine types with their characteristics.
+- [Quotas and limits](https://docs.instruqt.com/reference/platform/quotas-and-limits)
+- [Roles and permissions](https://docs.instruqt.com/reference/platform/roles-and-permissions)
+- [Network access](https://docs.instruqt.com/reference/platform/third-party-network-access)
+- [Requirements](https://docs.instruqt.com/reference/platform/requirements)
+- [Content design tips](https://docs.instruqt.com/resources/design-effective-tracks): Keep your learners engaged and happy.
+- [Advanced use cases](https://docs.instruqt.com/resources/advanced-use-cases)
+- [Templates](https://docs.instruqt.com/resources/templates): What templates are and a list of available templates.
+- [FAQ](https://docs.instruqt.com/resources/faq): Do you have questions about Instruqt?
+- [Running Windows Client Hosts on Instruqt](https://docs.instruqt.com/resources/faq/running-windows-client-hosts-on-instruqt)
+- [Using Cleanup Scripts in SaaS and Cloud Environments](https://docs.instruqt.com/resources/faq/using-cleanup-scripts-in-saas-and-cloud-environments)
+- [Instruqt Regional Configurations and Restrictions](https://docs.instruqt.com/resources/faq/instruqt-regional-configurations-and-restrictions)
+- [Troubleshooting Instruqt CLI Authentication Issues](https://docs.instruqt.com/resources/faq/troubleshooting-instruqt-cli-authentication-issues)
+- [Copy a Track from One Organization to Another via CLI](https://docs.instruqt.com/resources/faq/copy-a-track-from-one-organization-to-another-via-cli)
+- [Network Configuration: IP and MAC Address Control](https://docs.instruqt.com/resources/faq/network-configuration-ip-and-mac-address-control)
+- [Container Troubleshooting in Instruqt](https://docs.instruqt.com/resources/faq/container-troubleshooting-in-instruqt)

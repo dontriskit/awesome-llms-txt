@@ -1,0 +1,33 @@
+# Brandfetch
+
+## Docs
+
+- [2023](https://docs.brandfetch.com/changelog/2023.md): Follow along with updates across Brandfetch’s API.
+- [2024](https://docs.brandfetch.com/changelog/2024.md): Follow along with updates across Brandfetch’s API.
+- [2025](https://docs.brandfetch.com/changelog/2025.md): Follow along with updates across Brandfetch’s API.
+- [Brand API](https://docs.brandfetch.com/docs/brand-api.md): Data for B2B Personalization
+- [Brand Search API](https://docs.brandfetch.com/docs/brand-search-api.md): Match brand names to their domain and logo
+- [Getting started](https://docs.brandfetch.com/docs/getting-started.md): Our APIs are easy to integrate, most teams are fully set up within 30 minutes.
+- [Overview](https://docs.brandfetch.com/docs/logo-link.md): Easily embed logos in your app
+- [Guidelines](https://docs.brandfetch.com/docs/logo-link/guidelines.md): Easily embed logos in your app
+- [Parameters](https://docs.brandfetch.com/docs/logo-link/parameters.md): Easily embed logos in your app
+- [Transaction API](https://docs.brandfetch.com/docs/transaction-api.md): Turn payment transactions into merchant data.
+- [Best practices](https://docs.brandfetch.com/docs/webhooks/best-practices.md): Review these best practices to make sure your webhooks remain secure and function well with your integration.
+- [Delivery behaviors](https://docs.brandfetch.com/docs/webhooks/delivery-behaviors.md): This section helps you understand different behaviors to expect regarding how Brandfetch sends events to your webhook endpoint.
+- [Event types](https://docs.brandfetch.com/docs/webhooks/event-types.md): Overview of subscribable event types
+- [Overview](https://docs.brandfetch.com/docs/webhooks/overview.md): Get notified of changes by receiving events at your webhook URL.
+- [Setup a webhook](https://docs.brandfetch.com/docs/webhooks/setup.md): Start receiving event payloads
+- [Customizing Logo Link fallbacks](https://docs.brandfetch.com/recipes/customize-logo-link-fallback.md): Learn how to handle 404s and implement loading states for Logo Link
+- [How to find the best logo for your use case](https://docs.brandfetch.com/recipes/filter-brand-logos.md): This recipe explores an effective strategy for selecting the best logo to display in company listing apps, such as those used in fintech and other industries.
+- [Overview](https://docs.brandfetch.com/recipes/overview.md): Our APIs are easy to integrate, most teams are fully set up within 30 minutes.
+- [Setup a webhook and subscribe to brand updates](https://docs.brandfetch.com/recipes/setup-webhooks.md): A quick walk through on how to fetch a brand and subscribe to receive updates using webhooks.
+- [Brand API](https://docs.brandfetch.com/reference/brand-api.md): Brand data for the internet
+- [Brand Search API](https://docs.brandfetch.com/reference/brand-search-api.md): Search for brands by name, login to get a clientId
+- [Overview](https://docs.brandfetch.com/reference/graphql/overview.md): Explore the Brandfetch GraphQL API.
+- [Query Builder](https://docs.brandfetch.com/reference/graphql/query-builder.md): Use the Query Builder to execute queries.
+- [Schema definition](https://docs.brandfetch.com/reference/graphql/schema-definition.md): A guide on viewing our schema defintion.
+- [Overview](https://docs.brandfetch.com/reference/overview.md): Learn about Brandfetch's API endpoints.
+- [Transaction API](https://docs.brandfetch.com/reference/transaction-api.md): Turn payment transactions into merchant data.
+- [Getting help](https://docs.brandfetch.com/support/getting-help.md): Our support team is always available and willing to assist you.
+- [Report inaccuracies](https://docs.brandfetch.com/support/report-inaccuracies.md): Improve our data quality by reporting inaccuracies in brands
+- [Service status](https://docs.brandfetch.com/support/service-status.md): Check the status of Brandfetch services.
