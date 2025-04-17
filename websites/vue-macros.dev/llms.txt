@@ -1,0 +1,46 @@
+# Vue Macros
+
+> Modern Way to Writing Vue App
+
+Explore more macros and syntax sugar to Vue.
+
+## Table of Contents
+
+- [Astro Integration](/guide/astro-integration.md)
+- [betterDefine](/features/better-define.md)
+- [booleanProp](/features/boolean-prop.md)
+- [Bundler Integration](/guide/bundler-integration.md)
+- [chainCall](/macros/chain-call.md)
+- [Configurations](/guide/configurations.md)
+- [defineEmit](/macros/define-emit.md)
+- [defineGeneric](/volar/define-generic.md)
+- [defineModels](/macros/define-models.md)
+- [defineOptions](/macros/define-options.md)
+- [defineProp](/macros/define-prop.md)
+- [defineProps](/macros/define-props.md)
+- [definePropsRefs](/macros/define-props-refs.md)
+- [defineRender](/macros/define-render.md)
+- [defineSlots](/macros/define-slots.md)
+- [defineStyleX](/macros/define-stylex.md)
+- [ESLint Integration](/guide/eslint-integration.md)
+- [exportExpose](/features/export-expose.md)
+- [exportProps](/features/export-props.md)
+- [exportRender](/features/export-render.md)
+- [Getting Started](/guide/getting-started.md)
+- [hoistStatic](/features/hoist-static.md)
+- [jsxDirective](/features/jsx-directive.md)
+- [jsxRef](/volar/jsx-ref.md)
+- [Migration from v2 to v3](/guide/migration-v3.md)
+- [namedTemplate](/features/named-template.md)
+- [Nuxt Integration](/guide/nuxt-integration.md)
+- [Reactivity Transform](/features/reactivity-transform.md)
+- [scriptLang](/features/script-lang.md)
+- [scriptSFC](/volar/script-sfc.md)
+- [setupComponent](/macros/setup-component.md)
+- [setupJsdoc](/volar/setup-jsdoc.md)
+- [setupSFC](/macros/setup-sfc.md)
+- [shortBind](/features/short-bind.md)
+- [shortEmits](/macros/short-emits.md)
+- [shortVmodel](/macros/short-vmodel.md)
+- [templateRef](/volar/template-ref.md)
+- [Usage](/macros/index.md)

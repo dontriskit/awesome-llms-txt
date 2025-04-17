@@ -1,0 +1,2241 @@
+# Comprehensive Coinbase Developer Platform (CDP) SDK Documentation in NodeJS
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Installation](#installation)
+3. [SDK Configuration](#sdk-configuration)
+4. [Wallet Management](#wallet-management)
+5. [Address Management](#address-management)
+6. [Transfers](#transfers)
+7. [Trades](#trades)
+8. [Smart Contract Interactions](#smart-contract-interactions)
+9. [Token Deployments](#token-deployments)
+10. [Message Signing](#message-signing)
+11. [Balances and Transactions](#balances-and-transactions)
+12. [Server-Signer Integration](#server-signer-integration)
+13. [Error Handling](#error-handling)
+
+## Introduction
+
+The Coinbase Developer Platform (CDP) SDK provides a comprehensive set of tools for interacting with blockchain networks, managing wallets, and performing various crypto operations. This document serves as a detailed guide for developers looking to integrate the CDP SDK into their applications.
+
+## Installation
+
+Install the CDP SDK using npm:
+
+```bash
+npm install @coinbase/coinbase-sdk
+```
+
+## SDK Configuration
+
+### Configuring the SDK
+
+Configure the SDK with your API key.
+
+```typescript
+import { Coinbase } from "@coinbase/coinbase-sdk";
+
+Coinbase.configureFromJson({ filePath: '~/Downloads/cdp_api_key.json' });
+```
+
+Parameters:
+- `filePath`: String path to the JSON file containing your CDP API key.
+
+Example:
+```typescript
+Coinbase.configureFromJson({ filePath: '/home/user/cdp_api_key.json' });
+```
+
+### Enabling Server-Signer
+
+Enable the Server-Signer for enhanced security in production environments.
+
+```typescript
+Coinbase.useServerSigner = true;
+```
+
+## Wallet Management
+
+### Creating a Wallet
+
+Create a new wallet on a specified network.
+
+```typescript
+import { Wallet, Coinbase } from "@coinbase/coinbase-sdk";
+
+let wallet = await Wallet.create({ networkId: Coinbase.networks.BaseMainnet });
+```
+
+Parameters:
+- `networkId`: (Optional) The network ID for the wallet. Defaults to Base Sepolia testnet.
+NodeJS Network Labels:
+| Network Name     | Coinbase.networks Constant |
+|------------------|----------------------------|
+| Base Mainnet     | Coinbase.networks.BaseMainnet |
+| Base Sepolia     | Coinbase.networks.BaseSepolia |
+| Ethereum Mainnet | Coinbase.networks.EthereumMainnet |
+| Polygon Mainnet  | Coinbase.networks.PolygonMainnet |
+| Bitcoin Mainnet  | Coinbase.networks.BitcoinMainnet |
+| Arbitrum Mainnet | Coinbase.networks.ArbitrumMainnet |
+| Optimism Mainnet | Coinbase.networks.OptimismMainnet |
+
+
+Example:
+```typescript
+let mainnetWallet = await Wallet.create({ networkId: Coinbase.networks.BaseMainnet });
+let testnetWallet = await Wallet.create(); // Defaults to Base Sepolia
+```
+
+### Exporting a Wallet
+
+Export wallet data for persistence.
+
+```typescript
+let data = wallet.export();
+```
+
+Example:
+```typescript
+let exportedData = wallet.export();
+console.log("Exported wallet data:", exportedData);
+```
+
+### Importing a Wallet
+
+Import a previously exported wallet.
+
+```typescript
+let importedWallet = await Wallet.import(fetchedData);
+```
+
+Parameters:
+- `fetchedData`: The exported wallet data object.
+
+Example:
+```typescript
+let storedData = await fetchWalletDataFromStorage();
+let restoredWallet = await Wallet.import(storedData);
+```
+
+### Saving Wallet Seed Locally
+
+Save the wallet seed to a local file (for development purposes only).
+
+```typescript
+wallet.saveSeed(filePath, encrypt);
+```
+
+Parameters:
+- `filePath`: String path where the seed will be saved.
+- `encrypt`: Boolean indicating whether to encrypt the seed.
+
+Example:
+```typescript
+wallet.saveSeed('my_wallet_seed.json', true);
+```
+
+### Loading Wallet Seed
+
+Load a previously saved wallet seed.
+
+```typescript
+await wallet.loadSeed(filePath);
+```
+
+Parameters:
+- `filePath`: String path to the saved seed file.
+
+Example:
+```typescript
+await wallet.loadSeed('my_wallet_seed.json');
+```
+
+## Address Management
+
+### Getting the Default Address
+
+Retrieve the default address of a wallet.
+
+```typescript
+let address = await wallet.getDefaultAddress();
+```
+
+Example:
+```typescript
+let defaultAddress = await wallet.getDefaultAddress();
+console.log("Default address:", defaultAddress.toString());
+```
+
+### Creating a New Address
+
+Create a new address within a wallet.
+
+```typescript
+let newAddress = await wallet.createAddress();
+```
+
+Example:
+```typescript
+let additionalAddress = await wallet.createAddress();
+console.log("New address created:", additionalAddress.toString());
+```
+
+### Listing Addresses
+
+List all addresses in a wallet.
+
+```typescript
+let addresses = wallet.getAddresses();
+```
+
+Example:
+```typescript
+let allAddresses = wallet.getAddresses();
+allAddresses.forEach(address => console.log(address.toString()));
+```
+
+## Transfers
+
+### Creating a Transfer
+
+Initiate a transfer of assets from one wallet to another.
+ETH's asset ID is Coinbase.assets.Eth
+USDC's asset ID is Coinbase.assets.Usdc
+WETH's asset ID is Coinbase.assets.Weth
+
+```typescript
+let transfer = await wallet.createTransfer({
+  amount: number,
+  assetId: string,
+  destination: string | Wallet,
+  gasless?: boolean
+});
+```
+
+Parameters:
+- `amount`: Number representing the amount to transfer.
+- `assetId`: String identifier of the asset to transfer (e.g., `Coinbase.assets.Eth`).
+- `destination`: Destination wallet or address string.
+- `gasless`: (Optional) Boolean to indicate if the transfer should be gasless (for supported assets).
+
+Example:
+```typescript
+let transfer = await wallet.createTransfer({
+  amount: 0.001,
+  assetId: Coinbase.assets.Eth,
+  destination: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+});
+await transfer.wait();
+```
+
+### Checking Transfer Status
+
+Check the status of a transfer.
+
+```typescript
+let status = await transfer.getStatus();
+```
+
+Example:
+```typescript
+let transferStatus = await transfer.getStatus();
+console.log("Transfer status:", transferStatus);
+```
+
+## Trades
+
+### Creating a Trade
+
+Initiate a trade between two assets.
+
+```typescript
+let trade = await wallet.createTrade({
+  amount: number,
+  fromAssetId: string,
+  toAssetId: string
+});
+```
+
+Parameters:
+- `amount`: Number representing the amount to trade.
+- `fromAssetId`: String identifier of the asset to trade from.
+- `toAssetId`: String identifier of the asset to trade to.
+
+Example:
+```typescript
+let trade = await wallet.createTrade({
+  amount: 0.1,
+  fromAssetId: Coinbase.assets.Eth,
+  toAssetId: Coinbase.assets.Usdc
+});
+await trade.wait();
+```
+
+### Checking Trade Status
+
+Check the status of a trade.
+
+```typescript
+let status = await trade.getStatus();
+```
+
+Example:
+```typescript
+let tradeStatus = await trade.getStatus();
+console.log("Trade status:", tradeStatus);
+```
+
+## Smart Contract Interactions
+
+### Invoking a Contract
+
+Invoke a method on a smart contract.
+
+```typescript
+let contractInvocation = await wallet.invokeContract({
+  contractAddress: string,
+  method: string,
+  args: object,
+  abi?: object[],
+  amount?: number,
+  assetId?: string
+});
+```
+
+Parameters:
+- `contractAddress`: String address of the contract.
+- `method`: String name of the method to invoke.
+- `args`: Object containing method arguments.
+- `abi`: (Optional) Array of objects describing the contract ABI.
+- `amount`: (Optional) Number representing the amount of native asset to send with the transaction.
+- `assetId`: (Optional) String identifier of the asset to send (for payable functions).
+
+Example:
+```typescript
+let contractInvocation = await wallet.invokeContract({
+  contractAddress: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  method: "transfer",
+  args: {
+    to: "0xRecipientAddress",
+    value: "1000000000000000000" // 1 token with 18 decimals
+  },
+  abi: [{ 
+    "inputs": [
+      { "name": "to", "type": "address" },
+      { "name": "value", "type": "uint256" }
+    ],
+    "name": "transfer",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "type": "function"
+  }]
+});
+await contractInvocation.wait();
+```
+
+## Token Deployments
+
+### Deploying an ERC-20 Token
+
+Deploy a new ERC-20 token contract.
+
+```typescript
+let erc20 = await wallet.deployToken({
+  name: string,
+  symbol: string,
+  totalSupply: number
+});
+```
+
+Parameters:
+- `name`: String name of the token.
+- `symbol`: String symbol of the token.
+- `totalSupply`: Number representing the total supply of tokens.
+
+Example:
+```typescript
+let myToken = await wallet.deployToken({
+  name: "My Token",
+  symbol: "MTK",
+  totalSupply: 1000000
+});
+console.log("Token deployed at:", myToken.getContractAddress());
+```
+
+### Deploying an ERC-721 Token (NFT)
+
+Deploy a new ERC-721 token (NFT) contract.
+
+```typescript
+let nft = await wallet.deployNFT({
+  name: string,
+  symbol: string,
+  baseURI: string
+});
+```
+
+Parameters:
+- `name`: String name of the NFT collection.
+- `symbol`: String symbol of the NFT collection.
+- `baseURI`: String base URI for token metadata.
+
+Example:
+```typescript
+let myNFT = await wallet.deployNFT({
+  name: "My NFT Collection",
+  symbol: "MNFT",
+  baseURI: "https://api.mynft.com/metadata/"
+});
+console.log("NFT contract deployed at:", myNFT.getContractAddress());
+```
+
+### Deploying an ERC-1155 Token (Multi-Token)
+
+Deploy a new ERC-1155 token (Multi-Token) contract.
+
+```typescript
+let multiToken = await wallet.deployMultiToken({
+  uri: string
+});
+```
+
+Parameters:
+- `uri`: String URI for token metadata.
+
+Example:
+```typescript
+let myMultiToken = await wallet.deployMultiToken({
+  uri: "https://api.mymultitoken.com/metadata/{id}.json"
+});
+console.log("Multi-Token contract deployed at:", myMultiToken.getContractAddress());
+```
+
+## Message Signing
+
+### Signing a Message
+
+Sign a message using EIP-191 standard.
+
+```typescript
+import { hashMessage } from "@coinbase/coinbase-sdk";
+
+let payloadSignature = await wallet.createPayloadSignature(hashMessage(message));
+```
+
+Parameters:
+- `message`: String message to be signed.
+
+Example:
+```typescript
+let message = "Hello, Coinbase!";
+let signature = await wallet.createPayloadSignature(hashMessage(message));
+await signature.wait();
+console.log("Signature:", signature.toString());
+```
+
+### Signing Typed Data
+
+Sign typed structured data using EIP-712 standard.
+
+```typescript
+import { hashTypedData } from "@coinbase/coinbase-sdk";
+
+let payloadSignature = await wallet.createPayloadSignature(hashTypedData({
+  domain: object,
+  types: object,
+  primaryType: string,
+  message: object
+}));
+```
+
+Parameters:
+- `domain`: Object containing domain data.
+- `types`: Object describing the structure of the data.
+- `primaryType`: String name of the primary type being signed.
+- `message`: Object containing the data to be signed.
+
+Example:
+```typescript
+let typedData = {
+  domain: {
+    name: "My dApp",
+    version: "1",
+    chainId: 1,
+    verifyingContract: "0x1234567890123456789012345678901234567890"
+  },
+  types: {
+    Person: [
+      { name: "name", type: "string" },
+      { name: "wallet", type: "address" }
+    ]
+  },
+  primaryType: "Person",
+  message: {
+    name: "John Doe",
+    wallet: "0x0123456789012345678901234567890123456789"
+  }
+};
+
+let signature = await wallet.createPayloadSignature(hashTypedData(typedData));
+await signature.wait();
+console.log("Typed data signature:", signature.toString());
+```
+
+## Balances and Transactions
+
+### Listing Balances
+
+List balances for all assets in a wallet.
+
+```typescript
+let balances = await wallet.listBalances();
+```
+
+Example:
+```typescript
+let allBalances = await wallet.listBalances();
+console.log("Wallet balances:", allBalances.toString());
+```
+
+### Getting Balance for Specific Asset
+
+Get the balance of a specific asset in a wallet.
+
+```typescript
+let balance = await wallet.getBalance(assetId);
+```
+
+Parameters:
+- `assetId`: String identifier of the asset.
+
+Example:
+```typescript
+let ethBalance = await wallet.getBalance(Coinbase.assets.Eth);
+console.log("ETH balance:", ethBalance.toString());
+```
+
+### Listing Transactions
+
+List transactions for an address.
+
+```typescript
+let transactions = await address.listTransactions(options);
+```
+
+Parameters:
+- `options`: (Optional) Object containing listing options.
+
+Example:
+```typescript
+let recentTransactions = await address.listTransactions({ limit: 10 });
+recentTransactions.forEach(tx => console.log(tx.toString()));
+```
+
+## Server-Signer Integration
+
+### Verifying Server-Signer Assignment
+
+Verify if a Server-Signer is assigned to your CDP project.
+
+```typescript
+import { ServerSigner } from "@coinbase/coinbase-sdk";
+
+let serverSigner = await ServerSigner.getDefault();
+```
+
+Example:
+```typescript
+try {
+  let signer = await ServerSigner.getDefault();
+  console.log("Server-Signer is assigned:", signer);
+} catch (error) {
+  console.error("No Server-Signer assigned:", error);
+}
+```
+
+## Error Handling
+
+The CDP SDK uses custom error types for different scenarios. Always wrap your SDK calls in try-catch blocks to handle potential errors gracefully.
+
+Example:
+```typescript
+import { TimeoutError } from '@coinbase/coinbase-sdk';
+
+try {
+  let transfer = await wallet.createTransfer({
+    amount: 0.001,
+    assetId: Coinbase.assets.Eth,
+    destination: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+  });
+  await transfer.wait();
+} catch (error) {
+  if (error instanceof TimeoutError) {
+    console.log("Transfer timed out, check status later");
+  } else {
+    console.error("Error during transfer:", error);
+  }
+}
+```
+
+Contract Reads
+const result = await readContract({
+    networkId: "base-mainnet",
+    contractAddress: "0xContractAddress",
+    method: "balanceOf",
+    args: { account: "0xAddress" },
+    abi: [/* Optional ABI array */]
+});
+
+
+This comprehensive guide covers the major functionalities of the CDP SDK in NodeJS. For the most up-to-date and detailed information, always refer to the official CDP SDK documentation.
+
+
+# Comprehensive CDP SDK Python Reference
+
+## Table of Contents
+1. [Installation and Configuration](#installation-and-configuration)
+2. [Wallet Management](#wallet-management)
+3. [Address Operations](#address-operations)
+4. [Transfers](#transfers)
+5. [Trades](#trades)
+6. [Smart Contract Interactions](#smart-contract-interactions)
+7. [Token Deployments](#token-deployments)
+8. [Message Signing](#message-signing)
+9. [Faucet Operations](#faucet-operations)
+10. [Balance Operations](#balance-operations)
+11. [Transaction Status](#transaction-status)
+
+## Installation and Configuration
+
+### Installation
+
+Install the CDP SDK using pip.
+
+```bash
+pip install cdp-sdk
+```
+
+### Importing the SDK
+
+Import all components from the CDP SDK.
+
+```python
+from cdp import *
+```
+
+### Configuring the SDK
+
+Configure the SDK with your API key credentials.
+
+```python
+Cdp.configure(api_key_name: str, api_key_private_key: str) -> None
+```
+
+- `api_key_name`: Your API key name
+- `api_key_private_key`: Your API key's private key
+
+Example:
+```python
+api_key_name = "Your API key name"
+api_key_private_key = "Your API key's private key"
+Cdp.configure(api_key_name, api_key_private_key)
+```
+
+Alternatively, configure from a JSON file.
+
+```python
+Cdp.configure_from_json(json_file_path: str) -> None
+```
+
+- `json_file_path`: Path to the JSON file containing your API key
+
+Example:
+```python
+Cdp.configure_from_json("~/Downloads/cdp_api_key.json")
+```
+
+## Wallet Management
+
+### Creating a Wallet
+
+Create a new wallet on the default network (Base Sepolia testnet).
+
+```python
+Wallet.create(network_id: str = "base-sepolia") -> Wallet
+```
+
+- `network_id`: Optional network identifier (default is "base-sepolia")
+
+Example:
+```python
+wallet = Wallet.create()
+```
+
+Create a wallet on Base Mainnet.
+
+```python
+Wallet.create(network_id: str = "base-mainnet") -> Wallet
+```
+
+Example:
+```python
+mainnet_wallet = Wallet.create(network_id="base-mainnet")
+```
+
+### Accessing Wallet Addresses
+
+Get the default address of a wallet.
+
+```python
+wallet.default_address -> Address
+```
+
+Example:
+```python
+address = wallet.default_address
+```
+
+Create an additional address in the wallet.
+
+```python
+wallet.create_address() -> Address
+```
+
+Example:
+```python
+new_address = wallet.create_address()
+```
+
+List all addresses in the wallet.
+
+```python
+wallet.addresses -> List[Address]
+```
+
+Example:
+```python
+all_addresses = wallet.addresses
+```
+
+### Exporting and Importing Wallets
+
+Export wallet data for persistence.
+
+```python
+wallet.export_data() -> WalletData
+```
+
+Example:
+```python
+wallet_data = wallet.export_data()
+```
+
+Save wallet seed to a file (for development only).
+
+```python
+wallet.save_seed(file_path: str, encrypt: bool = False) -> None
+```
+
+- `file_path`: Path to save the seed file
+- `encrypt`: Whether to encrypt the seed (default is False)
+
+Example:
+```python
+wallet.save_seed("my_seed.json", encrypt=True)
+```
+
+Import a previously exported wallet.
+
+```python
+Wallet.import_data(wallet_data: WalletData) -> Wallet
+```
+
+- `wallet_data`: Previously exported WalletData object
+
+Example:
+```python
+imported_wallet = Wallet.import_data(wallet_data)
+```
+
+Fetch a wallet by ID.
+
+```python
+Wallet.fetch(wallet_id: str) -> Wallet
+```
+
+- `wallet_id`: ID of the wallet to fetch
+
+Example:
+```python
+fetched_wallet = Wallet.fetch(wallet_id)
+```
+
+Load a saved wallet seed.
+
+```python
+wallet.load_seed(file_path: str) -> None
+```
+
+- `file_path`: Path to the saved seed file
+
+Example:
+```python
+fetched_wallet.load_seed("my_seed.json")
+```
+
+## Address Operations
+
+### Creating External Addresses
+
+Create an External Address object.
+
+```python
+ExternalAddress(network_id: str, address: str) -> ExternalAddress
+```
+
+- `network_id`: Network identifier
+- `address`: Address string
+
+Example:
+```python
+external_address = ExternalAddress("base-sepolia", "0x123456789abcdef...")
+```
+
+### Viewing Address IDs
+
+Get the hexadecimal string representation of an address.
+
+```python
+address.address_id -> str
+```
+
+Example:
+```python
+address_id = address.address_id
+```
+
+### Listing Address Historical Balances
+
+View historical balances of an asset for an address.
+
+```python
+address.historical_balances(asset_id: str) -> List[Dict]
+```
+
+- `asset_id`: Asset identifier (e.g., "eth", "usdc")
+
+Example:
+```python
+historical_balances = address.historical_balances("usdc")
+```
+
+### Listing Address Transactions
+
+View all transactions for a specific address.
+
+```python
+address.transactions() -> List[Transaction]
+```
+
+Example:
+```python
+transactions = address.transactions()
+```
+
+## Transfers
+
+### Performing a Transfer
+
+Transfer an asset from one wallet to another.
+
+```python
+wallet.transfer(amount: Union[int, float, Decimal], asset_id: str, destination: Union[str, Address, Wallet], gasless: bool = False) -> Transfer
+```
+
+- `amount`: Amount to transfer
+- `asset_id`: Asset identifier (e.g., "eth", "usdc")
+- `destination`: Recipient's address, wallet, or ENS/Basename
+- `gasless`: Whether to perform a gasless transfer (only for USDC, EURC, cbBTC on Base Mainnet)
+
+Example:
+```python
+transfer = wallet.transfer(0.00001, "eth", another_wallet)
+transfer.wait()
+```
+
+### Gasless Transfer
+
+Perform a gasless transfer of USDC on Base Mainnet.
+
+```python
+mainnet_wallet.transfer(amount: Union[int, float, Decimal], asset_id: str, destination: Union[str, Address, Wallet], gasless: bool = True) -> Transfer
+```
+
+Example:
+```python
+gasless_transfer = mainnet_wallet.transfer(0.000001, "usdc", another_wallet, gasless=True)
+gasless_transfer.wait()
+```
+
+### Transfer to ENS or Basename
+
+Transfer assets to an ENS or Basename address.
+
+```python
+wallet.transfer(amount: Union[int, float, Decimal], asset_id: str, destination: str) -> Transfer
+```
+
+Example:
+```python
+ens_transfer = wallet.transfer(0.00001, "eth", "my-ens-name.base.eth")
+ens_transfer.wait()
+```
+
+## Trades
+
+### Performing a Trade
+
+Trade one asset for another on Base Mainnet.
+
+```python
+wallet.trade(amount: Union[int, float, Decimal], from_asset_id: str, to_asset_id: str) -> Trade
+```
+
+- `amount`: Amount of the source asset to trade
+- `from_asset_id`: Source asset identifier
+- `to_asset_id`: Destination asset identifier
+
+Example:
+```python
+trade = mainnet_wallet.trade(0.00001, "eth", "usdc")
+trade.wait()
+```
+
+### Trading Full Balance
+
+Trade the full balance of one asset for another.
+
+```python
+wallet.trade(amount: Union[int, float, Decimal], from_asset_id: str, to_asset_id: str) -> Trade
+```
+
+Example:
+```python
+trade2 = mainnet_wallet.trade(mainnet_wallet.balance("usdc"), "usdc", "weth")
+trade2.wait()
+```
+
+## Smart Contract Interactions
+
+### Invoking a Contract
+
+Invoke a smart contract method.
+
+```python
+wallet.invoke_contract(contract_address: str, method: str, args: Dict[str, Any], abi: Optional[List[Dict]] = None) -> Invocation
+```
+
+- `contract_address`: Address of the smart contract
+- `method`: Name of the method to invoke
+- `args`: Arguments for the method
+- `abi`: Optional ABI if not using a standard interface (ERC-20, ERC-721, ERC-1155)
+
+Example (ERC-721 NFT transfer):
+```python
+invocation = wallet.invoke_contract(
+    contract_address="0xYourNFTContractAddress",
+    method="transferFrom",
+    args={"from": "0xFrom", "to": "0xmyEthereumAddress", "tokenId": "1000"}
+).wait()
+```
+
+Example (Arbitrary contract):
+```python
+abi = [
+    {
+        "inputs": [
+            {"internalType": "address", "name": "to", "type": "address"},
+            {"internalType": "uint256", "name": "value", "type": "uint256"}
+        ],
+        "name": "transfer",
+        "outputs": [{"internalType": "uint256", "name": '', "type": "uint256"}],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]
+
+invocation = wallet.invoke_contract(
+    contract_address="0xYourContract",
+    abi=abi,
+    method="transfer",
+    args={"to": "0xRecipient", "value": "1000"}
+).wait()
+```
+
+## Token Deployments
+
+### Deploying ERC-20 Token
+
+Deploy an ERC-20 token contract.
+
+```python
+wallet.deploy_token(name: str, symbol: str, initial_supply: int) -> DeployedContract
+```
+
+- `name`: Name of the token
+- `symbol`: Symbol of the token
+- `initial_supply`: Initial token supply
+
+Example:
+```python
+deployed_contract = wallet.deploy_token("ExampleCoin", "EXAM", 100000)
+deployed_contract.wait()
+```
+
+### Deploying ERC-721 NFT
+
+Deploy an ERC-721 NFT contract.
+
+```python
+wallet.deploy_nft(name: str, symbol: str, base_uri: str) -> DeployedContract
+```
+
+- `name`: Name of the NFT collection
+- `symbol`: Symbol of the NFT collection
+- `base_uri`: Base URI for token metadata
+
+Example:
+```python
+deployed_nft = wallet.deploy_nft("My NFT", "MNFT", "https://my-nft-base-uri.com/metadata/")
+deployed_nft.wait()
+```
+
+### Deploying ERC-1155 Multi-Token
+
+Deploy an ERC-1155 Multi-Token contract.
+
+```python
+wallet.deploy_multi_token(uri: str) -> DeployedContract
+```
+
+- `uri`: URI for token metadata (should include `{id}` placeholder)
+
+Example:
+```python
+deployed_multi_token = wallet.deploy_multi_token("https://example.com/{id}.json")
+deployed_multi_token.wait()
+```
+
+## Message Signing
+
+### EIP-191 Message Signing
+
+Sign a message using EIP-191 standard.
+
+```python
+wallet.sign_payload(message_hash: str) -> SignedPayload
+```
+
+- `message_hash`: Hash of the message to sign
+
+Example:
+```python
+message_hash = hash_messsage("hello world")
+payload_signature = wallet.sign_payload(message_hash).wait()
+```
+
+### EIP-712 Typed Data Signing
+
+Sign typed structured data using EIP-712 standard.
+
+```python
+wallet.sign_payload(typed_data_message_hash: str) -> SignedPayload
+```
+
+- `typed_data_message_hash`: Hash of the typed data message
+
+Example:
+```python
+typed_data_message = {
+    "types": {
+        "MyType": [
+            {"name": "sender", "type": "address"},
+            {"name": "amount", "type": "uint256"}
+        ]
+    },
+    "primaryType": "MyType",
+    "domain": {
+        "name": "MyDapp",
+        "version": "1",
+        "chainId": 1,
+        "verifyingContract": "0xYourContractAddress"
+    },
+    "message": {
+        "sender": "0xSenderAddress",
+        "amount": 1000
+    }
+}
+typed_data_message_hash = hash_typed_data_message(typed_data_message)
+payload_signature = wallet.sign_payload(typed_data_message_hash).wait()
+```
+
+## Faucet Operations
+
+### Requesting ETH from Faucet
+
+Request ETH from the faucet on Base Sepolia testnet.
+
+```python
+wallet.faucet() -> FaucetTransaction
+```
+
+Example:
+```python
+faucet_tx = wallet.faucet()
+```
+
+### Requesting USDC from Faucet
+
+Request USDC from the faucet on Base Sepolia testnet.
+
+```python
+wallet.faucet(asset_id: str = "usdc") -> FaucetTransaction
+```
+
+Example:
+```python
+faucet_tx = wallet.faucet(asset_id="usdc")
+```
+
+## Balance Operations
+
+### Getting All Balances
+
+Get all balances for a wallet.
+
+```python
+wallet.balances() -> Dict[str, Decimal]
+```
+
+Example:
+```python
+balances = wallet.balances()
+```
+
+### Getting Specific Asset Balance
+
+Get the balance of a specific asset.
+
+```python
+wallet.balance(asset_id: str) -> Decimal
+```
+
+- `asset_id`: Asset identifier (e.g., "eth", "usdc") or contract address
+
+Example:
+```python
+eth_balance = wallet.balance("eth")
+token_balance = wallet.balance("0x036CbD53842c5426634e7929541eC2318f3dCF7e")
+```
+
+## Transaction Status
+
+### Checking Transaction Status
+
+Check the status of a transaction (Transfer or Trade).
+
+```python
+transaction.status -> Transaction.Status
+```
+
+Example:
+```python
+while transfer.status is Transaction.Status.PENDING:
+    # Do something here
+    time.sleep(1)
+    transfer.reload()
+```
+
+### Waiting for Transaction Completion
+
+Wait for a transaction to complete.
+
+```python
+transaction.wait() -> None
+```
+
+Example:
+```python
+transfer.wait()
+```
+
+from cdp.smart_contract import SmartContract
+
+ABI = [    
+    {
+        "type": "function",
+        "name": "pureUint16",
+        "inputs": [],
+        "outputs": [{"name": "", "type": "uint16"}],
+        "stateMutability": "pure",
+    }
+]
+
+CONTRACT_ADDRESS = "0x0B54409D1B1dd1438eDF7729CDAea3E331Ae12ED"
+NETWORK_ID = "base-sepolia"
+
+uint16 = SmartContract.read(
+    NETWORK_ID,
+    CONTRACT_ADDRESS,
+    "pureUint16",
+    ABI,
+)
+
+This comprehensive reference covers the main functionalities of the Coinbase Developer Platform SDK in Python, providing detailed information about each function call, its parameters, and usage examples. This should serve as an extensive resource for an LLM to develop applications using the CDP SDK.
+
+
+# OnchainKit Complete Reference Guide
+
+## Core Setup
+
+### Basic Installation
+```bash
+npm install @coinbase/onchainkit
+```
+
+### Required Configuration
+Core provider setup needed for all OnchainKit functionality:
+
+```typescript
+import { OnchainKitProvider } from '@coinbase/onchainkit';
+import { base } from 'wagmi/chains';
+
+<OnchainKitProvider
+  apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
+  chain={base}
+  config={{
+    appearance: {
+      name: "Your App Name",
+      logo: "https://your-logo-url.com/logo.png",
+      mode: "auto", // "auto" | "light" | "dark"
+      theme: "default" // "default" | "base" | "cyberpunk" | "hacker"
+    }
+  }}
+>
+  {children}
+</OnchainKitProvider>
+```
+
+## Components
+
+### Identity Components
+
+#### `<Avatar />`
+Displays ENS or Basename avatar associated with Ethereum addresses.
+
+```typescript
+import { Avatar } from '@coinbase/onchainkit/identity';
+
+// Basic usage
+<Avatar address="0x123..." />
+
+// With chain specification
+<Avatar address="0x123..." chain={base} />
+
+// With custom styling
+<Avatar 
+  address="0x123..."
+  className="h-6 w-6"
+  loadingComponent={<LoadingSpinner />}
+  defaultComponent={<DefaultAvatar />}
+/>
+```
+
+#### `<Name />`
+Displays ENS or Basename associated with Ethereum addresses.
+
+```typescript
+import { Name } from '@coinbase/onchainkit/identity';
+
+// Basic usage
+<Name address="0x123..." />
+
+// With chain specification
+<Name address="0x123..." chain={base} />
+
+// With custom styling
+<Name 
+  address="0x123..."
+  className="text-lg font-bold"
+/>
+```
+
+#### `<Address />`
+Displays formatted Ethereum addresses.
+
+```typescript
+import { Address } from '@coinbase/onchainkit/identity';
+
+// Basic usage
+<Address address="0x123..." />
+
+// With slicing disabled
+<Address address="0x123..." isSliced={false} />
+
+// With custom styling
+<Address 
+  address="0x123..."
+  className="text-gray-600"
+/>
+```
+
+### Wallet Components
+
+#### `<Wallet />`
+Main container for wallet functionality.
+
+```typescript
+import { 
+  Wallet, 
+  ConnectWallet,
+  WalletDropdown,
+  WalletDropdownDisconnect 
+} from '@coinbase/onchainkit/wallet';
+
+<Wallet>
+  <ConnectWallet>
+    <Avatar className="h-6 w-6" />
+    <Name />
+  </ConnectWallet>
+  <WalletDropdown>
+    <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+      <Avatar />
+      <Name />
+      <Address />
+      <EthBalance />
+    </Identity>
+    <WalletDropdownDisconnect />
+  </WalletDropdown>
+</Wallet>
+```
+
+### Transaction Components
+
+#### `<Transaction />`
+Handles complete transaction lifecycle.
+
+```typescript
+import { 
+  Transaction,
+  TransactionButton,
+  TransactionStatus 
+} from '@coinbase/onchainkit/transaction';
+
+<Transaction
+  contracts={[{
+    address: contractAddress,
+    abi: contractAbi,
+    functionName: 'functionToCall',
+    args: [arg1, arg2]
+  }]}
+  onStatus={(status) => console.log(status)}
+>
+  <TransactionButton />
+  <TransactionStatus />
+</Transaction>
+```
+
+### Swap Components
+
+#### `<Swap />`
+Handles token swap functionality.
+
+```typescript
+import { 
+  Swap,
+  SwapAmountInput,
+  SwapButton,
+  SwapMessage 
+} from '@coinbase/onchainkit/swap';
+
+<Swap>
+  <SwapAmountInput
+    label="Sell"
+    swappableTokens={tokens}
+    token={fromToken}
+    type="from"
+  />
+  <SwapToggleButton />
+  <SwapAmountInput
+    label="Buy"
+    swappableTokens={tokens}
+    token={toToken}
+    type="to"
+  />
+  <SwapButton />
+  <SwapMessage />
+</Swap>
+```
+
+## Utilities
+
+### Identity Utilities
+
+#### `getName`
+Retrieves name from onchain identity provider.
+
+```typescript
+import { getName } from '@coinbase/onchainkit/identity';
+
+const name = await getName({ 
+  address: "0x123...",
+  chain: base // optional
+});
+```
+
+#### `getAddress`
+Retrieves address from onchain identity provider.
+
+```typescript
+import { getAddress } from '@coinbase/onchainkit/identity';
+
+const address = await getAddress({ 
+  name: "name.eth",
+  chain: base // optional
+});
+```
+
+### Frame Utilities
+
+#### `getFrameMetadata`
+Generates Frame metadata for use in Next.js.
+
+```typescript
+import { getFrameMetadata } from '@coinbase/onchainkit/frame';
+
+const frameMetadata = getFrameMetadata({
+  buttons: [
+    { label: "Button 1" },
+    { label: "Button 2", action: "link", target: "https://example.com" }
+  ],
+  image: "https://example.com/image.png",
+  postUrl: "https://api.example.com/frame"
+});
+```
+
+#### `getFrameMessage`
+Validates and processes Frame interaction messages.
+
+```typescript
+import { getFrameMessage } from '@coinbase/onchainkit/frame';
+
+const { isValid, message } = await getFrameMessage(frameRequest, {
+  neynarApiKey: "optional-key",
+  castReactionContext: true,
+  followContext: true
+});
+```
+
+### API Utilities
+
+#### `getTokens`
+Retrieves list of tokens on Base.
+
+```typescript
+import { getTokens } from '@coinbase/onchainkit/api';
+
+const tokens = await getTokens({ 
+  limit: "50",
+  page: "1",
+  search: "USDC"
+});
+```
+
+#### `getSwapQuote`
+Gets quote for token swap.
+
+```typescript
+import { getSwapQuote } from '@coinbase/onchainkit/api';
+
+const quote = await getSwapQuote({
+  from: fromToken,
+  to: toToken,
+  amount: "0.1",
+  useAggregator: false
+});
+```
+
+## Type Definitions
+
+### Common Types
+
+```typescript
+type Token = {
+  address: string;
+  chainId: number;
+  decimals: number;
+  image: string | null;
+  name: string;
+  symbol: string;
+};
+
+type LifecycleStatus = {
+  statusName: 'init' | 'error' | 'success' | /* other status names */;
+  statusData: any; // Varies by status
+};
+
+type Transaction = {
+  chainId: number;
+  data: string;
+  gas: bigint;
+  to: string;
+  value: bigint;
+};
+```
+
+## Error Handling
+
+All components accept `onError` callbacks for handling errors:
+
+```typescript
+<Component
+  onError={(error) => {
+    console.error(error.code, error.message);
+    // Handle error appropriately
+  }}
+/>
+```
+
+## Best Practices
+
+1. Always wrap your app with `OnchainKitProvider`
+2. Handle all lifecycle status changes through `onStatus` callbacks
+3. Use appropriate error handling for all async operations
+4. Follow proper component hierarchy (e.g., `Wallet` containing `ConnectWallet`)
+5. Implement proper type checking using provided TypeScript definitions
+
+## Common Patterns
+
+### Wallet Connection Flow
+```typescript
+<Wallet>
+  <ConnectWallet>
+    <Avatar className="h-6 w-6" />
+    <Name />
+  </ConnectWallet>
+  {isConnected && (
+    <WalletDropdown>
+      <Identity hasCopyAddressOnClick>
+        <Avatar />
+        <Name />
+        <Address />
+      </Identity>
+      <WalletDropdownDisconnect />
+    </WalletDropdown>
+  )}
+</Wallet>
+```
+
+### Transaction Flow
+```typescript
+<Transaction
+  contracts={contracts}
+  onStatus={(status) => {
+    switch(status.statusName) {
+      case 'success':
+        // Handle success
+        break;
+      case 'error':
+        // Handle error
+        break;
+      // Handle other states
+    }
+  }}
+>
+  <TransactionButton />
+  <TransactionStatus />
+</Transaction>
+```
+
+# OnchainKit Components Complete Reference
+
+## Identity Components
+
+### `<Avatar />`
+Displays ENS or Basename avatar associated with Ethereum addresses.
+
+Props (`AvatarReact`):
+```typescript
+type AvatarReact = {
+  address?: Address | null;        // The Ethereum address to fetch the avatar for
+  chain?: Chain;                   // Optional chain for domain resolution
+  className?: string;              // Optional className override for top div element
+  loadingComponent?: JSX.Element;  // Optional custom loading component
+  defaultComponent?: JSX.Element;  // Optional custom default component when no avatar
+  children?: ReactNode;            // Optional attestation badge
+};
+```
+
+Example usage:
+```typescript
+// Basic usage
+<Avatar address="0x123..." />
+
+// With loading and default states
+<Avatar 
+  address="0x123..."
+  chain={base}
+  className="h-12 w-12 rounded-full"
+  loadingComponent={<Spinner />}
+  defaultComponent={<DefaultAvatar />}
+>
+  <Badge /> // Optional attestation badge
+</Avatar>
+```
+
+### `<Name />`
+Displays ENS or Basename associated with addresses.
+
+Props (`NameReact`):
+```typescript
+type NameReact = {
+  address?: Address | null;     // Ethereum address to be displayed
+  children?: ReactNode;         // Optional attestation badge
+  chain?: Chain;               // Optional chain for domain resolution
+  className?: string;          // Optional className override
+} & HTMLAttributes<HTMLSpanElement>;
+```
+
+Example usage:
+```typescript
+// Basic usage
+<Name address="0x123..." />
+
+// With attestation and custom styling
+<Name 
+  address="0x123..."
+  chain={base}
+  className="text-xl font-bold"
+>
+  <Badge />
+</Name>
+```
+
+### `<Identity />`
+Context provider for identity components.
+
+Props (`IdentityReact`):
+```typescript
+type IdentityReact = {
+  address?: Address;           // The Ethereum address
+  chain?: Chain;              // Optional chain for resolution
+  children: ReactNode;        // Child components
+  className?: string;         // Optional styling
+  schemaId?: Address | null;  // Schema for attestation
+  hasCopyAddressOnClick?: boolean;
+};
+```
+
+Example usage:
+```typescript
+<Identity 
+  address="0x123..."
+  schemaId="0xschema..."
+  hasCopyAddressOnClick
+>
+  <Avatar />
+  <Name>
+    <Badge />
+  </Name>
+  <Address />
+</Identity>
+```
+
+## Wallet Components
+
+### `<Wallet />`
+Main container for wallet functionality.
+
+Props (`WalletReact`):
+```typescript
+type WalletReact = {
+  children: ReactNode;
+};
+```
+
+### `<ConnectWallet />`
+Handles wallet connection interface.
+
+Props (`ConnectWalletReact`):
+```typescript
+type ConnectWalletReact = {
+  children?: ReactNode;
+  className?: string;
+  text?: string;
+  withWalletAggregator?: boolean;
+};
+```
+
+### `<WalletDropdown />`
+Dropdown menu for wallet interactions.
+
+Props (`WalletDropdownReact`):
+```typescript
+type WalletDropdownReact = {
+  children: ReactNode;
+  className?: string;
+};
+```
+
+Complete wallet example:
+```typescript
+<Wallet>
+  <ConnectWallet withWalletAggregator>
+    <Avatar className="h-6 w-6" />
+    <Name />
+  </ConnectWallet>
+  <WalletDropdown>
+    <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
+      <Avatar />
+      <Name />
+      <Address />
+      <EthBalance />
+    </Identity>
+    <WalletDropdownBasename />
+    <WalletDropdownLink 
+      icon="wallet" 
+      href="https://example.com"
+    >
+      Wallet
+    </WalletDropdownLink>
+    <WalletDropdownDisconnect />
+  </WalletDropdown>
+</Wallet>
+```
+
+## Transaction Components
+
+### `<Transaction />`
+Handles complete transaction lifecycle.
+
+Props (`TransactionReact`):
+```typescript
+type TransactionReact = {
+  calls?: Call[] | Promise<Call[]> | (() => Promise<Call[]>);
+  capabilities?: WalletCapabilities;
+  chainId?: number;
+  children: ReactNode;
+  className?: string;
+  contracts?: ContractFunctionParameters[];
+  onError?: (e: TransactionError) => void;
+  onStatus?: (lifecycleStatus: LifecycleStatus) => void;
+  onSuccess?: (response: TransactionResponse) => void;
+};
+```
+
+### `<TransactionButton />`
+Transaction initiation button.
+
+Props (`TransactionButtonReact`):
+```typescript
+type TransactionButtonReact = {
+  className?: string;
+  disabled?: boolean;
+  text?: string;
+};
+```
+
+Complete transaction example:
+```typescript
+<Transaction
+  contracts={[{
+    address: contractAddress,
+    abi: contractAbi,
+    functionName: 'functionName',
+    args: [arg1, arg2]
+  }]}
+  onStatus={(status) => {
+    if (status.statusName === 'success') {
+      console.log('Transaction successful');
+    }
+  }}
+>
+  <TransactionButton text="Submit Transaction" />
+  <TransactionStatus>
+    <TransactionStatusLabel />
+    <TransactionStatusAction />
+  </TransactionStatus>
+  <TransactionToast />
+</Transaction>
+```
+
+## Swap Components
+
+### `<Swap />`
+Handles token swap functionality.
+
+Props (`SwapReact`):
+```typescript
+type SwapReact = {
+  children: ReactNode;
+  className?: string;
+  config?: SwapConfig;
+  experimental?: {
+    useAggregator: boolean;
+  };
+  isSponsored?: boolean;
+  onError?: (error: SwapError) => void;
+  onStatus?: (lifecycleStatus: LifecycleStatus) => void;
+  onSuccess?: (receipt: TransactionReceipt) => void;
+  title?: string;
+};
+```
+
+### `<SwapAmountInput />`
+Input field for swap amounts.
+
+Props (`SwapAmountInputReact`):
+```typescript
+type SwapAmountInputReact = {
+  className?: string;
+  delayMs?: number;
+  label: string;
+  swappableTokens?: Token[];
+  token?: Token;
+  type: 'to' | 'from';
+};
+```
+
+Complete swap example:
+```typescript
+<Swap
+  isSponsored={true}
+  onStatus={(status) => {
+    if (status.statusName === 'success') {
+      console.log('Swap successful');
+    }
+  }}
+>
+  <SwapAmountInput
+    label="Sell"
+    swappableTokens={tokens}
+    token={fromToken}
+    type="from"
+  />
+  <SwapToggleButton />
+  <SwapAmountInput
+    label="Buy"
+    swappableTokens={tokens}
+    token={toToken}
+    type="to"
+  />
+  <SwapButton />
+  <SwapMessage />
+  <SwapToast />
+</Swap>
+```
+
+## Fund Components
+
+### `<FundButton />`
+Provides access to funding options.
+
+Props (`FundButtonReact`):
+```typescript
+type FundButtonReact = {
+  className?: string;
+  disabled?: boolean;
+  text?: string;
+  hideText?: boolean;
+  hideIcon?: boolean;
+  fundingUrl?: string;
+  openIn?: 'popup' | 'tab';
+  popupSize?: 'sm' | 'md' | 'lg';
+  rel?: string;
+  target?: string;
+};
+```
+
+Example usage:
+```typescript
+// Basic usage
+<FundButton />
+
+// Customized
+<FundButton
+  text="Add Funds"
+  openIn="popup"
+  popupSize="lg"
+  fundingUrl={customUrl}
+  className="bg-blue-500 text-white"
+/>
+```
+
+## Frame Components
+
+### `<FrameMetadata />`
+Handles Frame metadata for social platforms.
+
+Props (`FrameMetadataReact`):
+```typescript
+type FrameMetadataReact = FrameMetadataType & {
+  ogDescription?: string;
+  ogTitle?: string;
+  wrapper?: React.ComponentType<any>;
+};
+```
+
+Example usage:
+```typescript
+<FrameMetadata
+  buttons={[
+    { label: 'Action 1' },
+    { 
+      action: 'link',
+      label: 'Visit Site',
+      target: 'https://example.com'
+    }
+  ]}
+  image={{
+    src: 'https://example.com/image.png',
+    aspectRatio: '1:1'
+  }}
+  input={{
+    text: 'Enter text...'
+  }}
+  postUrl="https://api.example.com/frame"
+/>
+```
+
+## Component Combinations
+
+### Identity with Wallet
+```typescript
+<Identity address="0x123..." hasCopyAddressOnClick>
+  <Wallet>
+    <ConnectWallet>
+      <Avatar className="h-6 w-6" />
+      <Name />
+    </ConnectWallet>
+    <WalletDropdown>
+      <Avatar />
+      <Name>
+        <Badge />
+      </Name>
+      <Address />
+      <EthBalance />
+      <WalletDropdownDisconnect />
+    </WalletDropdown>
+  </Wallet>
+</Identity>
+```
+
+### Transaction with Swap
+```typescript
+<Transaction>
+  <Swap>
+    <SwapAmountInput type="from" token={tokenA} />
+    <SwapToggleButton />
+    <SwapAmountInput type="to" token={tokenB} />
+    <SwapButton />
+    <SwapMessage />
+    <TransactionStatus />
+  </Swap>
+</Transaction>
+```
+
+### Common State Management Patterns
+```typescript
+// Lifecycle status handling
+const handleStatus = (status: LifecycleStatus) => {
+  switch (status.statusName) {
+    case 'init':
+      // Handle initialization
+      break;
+    case 'success':
+      // Handle success
+      break;
+    case 'error':
+      // Handle error
+      break;
+    default:
+      // Handle other states
+  }
+};
+
+// Using in components
+<Transaction onStatus={handleStatus}>
+  {/* Component children */}
+</Transaction>
+```
+
+# OnchainKit Checkout Component Reference
+
+## Core Components
+
+### `<Checkout />`
+Main container for checkout functionality. Handles payment processing and transaction lifecycle.
+
+Props (`CheckoutReact`):
+```typescript
+type CheckoutReact = {
+  chargeHandler?: () => Promise<string>;  // Custom charge creation handler
+  children: React.ReactNode;              // Child components
+  className?: string;                     // Optional styling
+  isSponsored?: boolean;                  // Enable gas sponsorship
+  onStatus?: (status: LifecycleStatus) => void;  // Status callback
+  productId?: string;                     // Coinbase Commerce product ID
+};
+```
+
+### `<CheckoutButton />`
+Initiates the checkout process.
+
+Props (`CheckoutButtonReact`):
+```typescript
+type CheckoutButtonReact = {
+  className?: string;          // Optional styling
+  coinbaseBranded?: boolean;   // Show Coinbase branding
+  disabled?: boolean;          // Disable button
+  icon?: React.ReactNode;      // Custom icon
+  text?: string;               // Button text
+};
+```
+
+### `<CheckoutStatus />`
+Displays current checkout status.
+
+Props (`CheckoutStatusReact`):
+```typescript
+type CheckoutStatusReact = {
+  className?: string;  // Optional styling
+};
+```
+
+## Basic Implementation
+
+```typescript
+import { 
+  Checkout, 
+  CheckoutButton, 
+  CheckoutStatus 
+} from '@coinbase/onchainkit/checkout';
+
+// Simple implementation with product ID
+<Checkout productId="your-product-id">
+  <CheckoutButton />
+  <CheckoutStatus />
+</Checkout>
+
+// With Coinbase branding and custom text
+<Checkout productId="your-product-id">
+  <CheckoutButton 
+    coinbaseBranded 
+    text="Pay with Crypto"
+  />
+  <CheckoutStatus />
+</Checkout>
+```
+
+## Advanced Implementation
+
+### With Status Handling
+```typescript
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+import type { LifecycleStatus } from '@coinbase/onchainkit/checkout';
+
+function CheckoutComponent() {
+  const handleStatus = async (status: LifecycleStatus) => {
+    const { statusName, statusData } = status;
+    
+    switch (statusName) {
+      case 'success':
+        const { chargeId, transactionReceipt, receiptUrl } = statusData;
+        // Handle successful payment
+        break;
+        
+      case 'error':
+        // Handle error
+        break;
+        
+      case 'pending':
+        // Handle pending state
+        break;
+    }
+  };
+
+  return (
+    <Checkout 
+      productId="your-product-id"
+      onStatus={handleStatus}
+      isSponsored={true}
+    >
+      <CheckoutButton coinbaseBranded />
+      <CheckoutStatus />
+    </Checkout>
+  );
+}
+```
+
+### Custom Charge Handler (Shopping Cart)
+```typescript
+import { Checkout, CheckoutButton } from '@coinbase/onchainkit/checkout';
+
+function ShoppingCartCheckout() {
+  const createCharge = async () => {
+    // Create charge on your backend
+    const response = await fetch('api/createCharge', {
+      method: 'POST',
+      body: JSON.stringify({
+        // Cart details
+        items: cart.items,
+        total: cart.total
+      })
+    });
+    
+    const data = await response.json();
+    return data.chargeId;
+  };
+
+  return (
+    <Checkout chargeHandler={createCharge}>
+      <CheckoutButton text="Complete Purchase" />
+      <CheckoutStatus />
+    </Checkout>
+  );
+}
+```
+
+## Lifecycle Status Types
+
+```typescript
+type LifecycleStatus =
+  | {
+      statusName: 'init';
+      statusData: LifecycleStatusDataShared;
+    }
+  | {
+      statusName: 'error';
+      statusData: TransactionError;
+    }
+  | {
+      statusName: 'fetchingData';
+      statusData: LifecycleStatusDataShared;
+    }
+  | {
+      statusName: 'ready';
+      statusData: {
+        chargeId: string;
+        contracts: ContractFunctionParameters[];
+      };
+    }
+  | {
+      statusName: 'pending';
+      statusData: LifecycleStatusDataShared;
+    }
+  | {
+      statusName: 'success';
+      statusData: {
+        transactionReceipts: TransactionReceipt[];
+        chargeId: string;
+        receiptUrl: string;
+      };
+    };
+```
+
+## Style Customization
+
+### Basic Styling
+```typescript
+<Checkout productId="your-product-id">
+  <CheckoutButton 
+    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+  />
+  <CheckoutStatus 
+    className="mt-4 text-sm text-gray-600"
+  />
+</Checkout>
+```
+
+### With Themed Components
+```typescript
+<OnchainKitProvider
+  config={{
+    appearance: {
+      theme: 'custom',
+      mode: 'dark'
+    }
+  }}
+>
+  <Checkout productId="your-product-id">
+    <CheckoutButton coinbaseBranded />
+    <CheckoutStatus />
+  </Checkout>
+</OnchainKitProvider>
+```
+
+## Best Practices
+
+1. **Error Handling**
+```typescript
+<Checkout
+  productId="your-product-id"
+  onStatus={(status) => {
+    if (status.statusName === 'error') {
+      const { code, message } = status.statusData;
+      // Handle specific error cases
+      switch (code) {
+        case 'INSUFFICIENT_FUNDS':
+          notifyUser('Insufficient funds for purchase');
+          break;
+        // Handle other error cases
+      }
+    }
+  }}
+>
+  <CheckoutButton />
+  <CheckoutStatus />
+</Checkout>
+```
+
+2. **Transaction Verification**
+```typescript
+const verifyCharge = async (chargeId: string) => {
+  const response = await fetch(`https://api.commerce.coinbase.com/charges/${chargeId}`, {
+    headers: {
+      'X-CC-Api-Key': 'your_api_key',
+      'Content-Type': 'application/json'
+    }
+  });
+  return response.json();
+};
+
+<Checkout
+  productId="your-product-id"
+  onStatus={async (status) => {
+    if (status.statusName === 'success') {
+      const { chargeId } = status.statusData;
+      const verification = await verifyCharge(chargeId);
+      // Handle verification result
+    }
+  }}
+>
+  <CheckoutButton />
+  <CheckoutStatus />
+</Checkout>
+```
+
+3. **Custom Button States**
+```typescript
+<Checkout productId="your-product-id">
+  <CheckoutButton 
+    text={isLoading ? 'Processing...' : 'Complete Purchase'}
+    disabled={isLoading || !isValid}
+    className={`
+      ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
+      ${!isValid ? 'bg-gray-300' : 'bg-blue-500 hover:bg-blue-600'}
+    `}
+  />
+  <CheckoutStatus />
+</Checkout>
+```

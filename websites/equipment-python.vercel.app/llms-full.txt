@@ -1,0 +1,1349 @@
+<SYSTEM>This is the full developer documentation for Equipment.</SYSTEM>
+
+# Equipment Framework Documentation for LLMs
+
+## 1. Project Overview
+
+### 1.1 Purpose
+Equipment is a comprehensive Python scaffolding framework designed to simplify and streamline project development, providing a robust and flexible foundation for applications of any scale.
+
+### 1.2 Design Principles
+- **Developer Experience**: Minimize boilerplate code and configuration overhead
+- **Flexibility**: Support various project types and development strategies
+- **Scalability**: Seamless growth from small scripts to large enterprise applications
+- **Modularity**: Easy integration with other Python tools and frameworks
+
+## 2. System Requirements
+
+### 2.1 Compatibility
+- **Operating System**: Windows, macOS, or Linux
+- **Python**: Version 3.12+
+- **Package Manager**: pip (version 21.0+)
+
+## 3. Project Structure
+
+### 3.1 Directory Layout
+```
+equipment/
+├── app/           # Core application logic
+├── config/        # Configuration management
+├── database/      # Database operations
+├── storage/       # Filesystem API
+└── tests/         # Unit and integration tests
+```
+
+### 3.2 Directory Responsibilities
+
+#### 3.2.1 `app/` Directory
+- **Purpose**: Core Application Logic
+- Contains primary business logic and application components
+- Project services defined in `app/__init__.py`
+- Implements primary project features
+
+#### 3.2.2 `config/` Directory
+- **Purpose**: Configuration Management
+- Stores configuration files (yaml, json, ini)
+- Manages application settings and environment variables
+- Supports flexible configuration across deployment scenarios
+
+#### 3.2.3 `database/` Directory
+- **Purpose**: Database Migrations
+- Contains database migration scripts
+- Powered by Alembic
+
+#### 3.2.4 `storage/` Directory
+- **Purpose**: Flexible Filesystem API
+- Implements robust file storage interface
+- Supports file operations:
+  - Writing
+  - Reading
+  - Moving
+  - Removing
+- Provides consistent API across storage backends
+
+#### 3.2.5 `tests/` Directory
+- **Purpose**: Quality Assurance
+- Comprehensive test suite
+- Includes:
+  - Unit tests for individual components
+  - Integration tests for system-wide functionality
+- Ensures code reliability
+
+### 3.3 Main Entry Points
+- `main.py`: Application start
+- `scheduler.py`: Scheduled tasks
+- `queues.py`: Background task processing
+- `web.py`: Web server configuration
+
+## Project Architecture and Directory Structure
+
+https://equipment-python.vercel.app/docs/getting-started/directory-structure
+---
+Equipment provides a meticulously designed, modular project structure that promotes clean code organization, maintainability, and scalability.
+
+### Directory Purpose and Responsibilities
+
+#### `app/`: Core Application Logic
+- 🧠 Primary business logic and components
+- 🛠️ Project services defined in `app/__init__.py`
+- 🚀 Implements core project features
+- 🔗 Central point of application functionality
+
+#### `config/`: Configuration Management
+- 🔧 Supports multiple configuration formats
+  - YAML
+  - JSON
+  - INI
+- 🌐 Manages application settings
+- 🔀 Environment variable handling
+- 🌈 Flexible deployment configurations
+
+#### `database/`: Database Migrations
+- 🗄️ Powered by Alembic
+- 📊 Manages database schema evolution
+- 🔄 Version control for database structure
+- 🛡️ Safe and incremental database changes
+
+#### `storage/`: Flexible Filesystem API
+- 📁 Robust file storage interface
+- 🔍 Consistent file system operations:
+  - Write files
+  - Read files
+  - Move files
+  - Remove files
+- 🌐 Support for multiple storage backends
+
+#### `tests/`: Quality Assurance
+- 🧪 Comprehensive test suite
+- 📋 Includes:
+  - Unit tests
+  - Integration tests
+- 🛡️ Ensures code reliability
+- 🔍 Early issue detection
+
+### Key Entry Points
+
+1. **`main.py`**
+   - Primary application startup
+   - Initializes core services
+
+2. **`scheduler.py`**
+   - Manages background tasks
+   - Implements task scheduling logic
+
+3. **`queues.py`**
+   - Handles asynchronous processing
+   - Manages background job execution
+
+4. **`web.py`**
+   - Web server configuration
+   - Defines application routes
+
+### Architectural Best Practices
+- 🧩 Modular, single-responsibility design
+- 🔗 Loose coupling between components
+- 📐 Clear separation of concerns
+- 🚀 Easy extension and maintenance
+- 🧠 Improved code readability and testability
+
+### Recommended Workflow
+1. Define services in `app/`
+2. Configure settings in `config/`
+3. Manage database migrations in `database/`
+4. Implement file operations in `storage/`
+5. Write comprehensive tests in `tests/`
+
+## Installation Guide
+
+https://equipment-python.vercel.app/docs/getting-started/installation
+---
+Get started with Equipment quickly and easily across different platforms.
+
+### System Requirements
+- 💻 **Supported Operating Systems**
+  - Windows
+  - macOS
+  - Linux
+
+- 🐍 **Python Compatibility**
+  - Python 3.12+
+  - Recommended: Latest stable Python version
+
+- 📦 **Package Management**
+  - pip (version 21.0+)
+  - Optional: pipenv, poetry, or conda
+
+### Installation Methods
+
+#### 1. Global Installation (Recommended)
+```bash
+# Install Equipment globally
+pip install equipment
+```
+
+#### 2. Virtual Environment Installation
+```bash
+# Create a virtual environment
+python -m venv equipment-env
+
+# Activate virtual environment
+# Unix/macOS
+source equipment-env/bin/activate
+
+# Windows
+equipment-env\Scripts\activate
+
+# Install Equipment
+pip install equipment
+```
+
+#### 3. Create a New Project
+```bash
+# Generate a new Equipment project
+equipment new my-app
+
+# Navigate to project directory
+cd my-app
+
+# Install project dependencies
+pip install .
+```
+
+### Verification
+```bash
+# Run the main application
+python main.py
+
+# Check Equipment version
+equipment --version
+```
+
+### Troubleshooting
+
+#### Python Version Compatibility
+- ✅ Verify Python version
+  ```bash
+  python --version
+  ```
+- 🔧 Ensure Python 3.12+ is installed
+
+#### pip Installation Issues
+```bash
+# Upgrade pip to latest version
+python -m pip install --upgrade pip
+```
+
+### Advanced Dependency Management
+- 🧰 Recommended Tools
+  - pipenv
+  - poetry
+  - conda
+
+#### Example with pipenv
+```bash
+# Install pipenv
+pip install pipenv
+
+# Create project with specific Python version
+pipenv --python 3.12
+
+# Install Equipment
+pipenv install equipment
+
+# Activate virtual environment
+pipenv shell
+```
+
+### Support Channels
+- 🐛 **Report Issues**: [GitHub Issues](https://github.com/rogervila/equipment/issues)
+- 💬 **Community Support**: [GitHub Discussions](https://github.com/rogervila/equipment/discussions)
+- 📧 **Contact**: support@equipment-python.org
+
+## 4. Installation Methods
+
+### 4.1 Global Installation
+```bash
+# Install Equipment globally
+pip install equipment
+```
+
+### 4.2 Virtual Environment Installation
+```bash
+# Create virtual environment
+python -m venv equipment-env
+source equipment-env/bin/activate  # Activate environment
+pip install equipment
+```
+
+### 4.3 New Project Creation
+```bash
+# Generate new Equipment project
+equipment new my-app
+cd my-app
+pip install .
+```
+
+### 4.4 Installation Verification
+```bash
+# Run main application
+python main.py
+
+# Check Equipment version
+equipment --version
+```
+
+## 5. Configuration Management
+
+### 5.1 Configuration Principles
+- Environment variable interpolation
+- Modular design with separate configuration files
+- Sensible default values
+- Easy environment-specific overrides
+
+### 5.2 Configuration Files
+
+#### 5.2.1 `app.yaml`
+- Manages core application settings
+- Defines application name and environment mode
+```yaml
+app:
+  name: ${APP_NAME:Equipment}
+  env: ${APP_ENV:local}
+```
+
+#### 5.2.2 `database.yaml`
+- Handles database connection configurations
+- Supports multiple database types
+- Default SQLite connection
+```yaml
+database:
+  connection: ${DB_CONNECTION:sqlite}
+  connections:
+    sqlite:
+      schema: sqlite
+      database: "${DB_DATABASE:database/database.sqlite}"
+```
+
+#### 5.2.3 Other Configuration Files
+- `log.yaml`: Logging settings
+- `queue.yaml`: Background task queue configurations
+- `storage.yaml`: File storage settings
+- `web.yaml`: Web server parameters
+
+### 5.3 Best Practices
+- Never commit sensitive information directly
+- Use environment variables for settings
+- Keep configuration files clean
+- Utilize `.env` files for local development
+
+## 6. Core Features
+
+### 6.1 Dependency Injection
+- Supports class-based and function-based dependencies
+- Reduces complexity in managing object lifecycles
+- Intuitive dependency management
+
+### 6.2 Project Initialization
+- One-command project creation
+- Standardized project structure
+- Consistent setup across project types
+
+### 6.3 Advanced Logging
+- Configurable logging system
+- Multiple log channels and formatters
+- Simple, powerful logging API
+- Environment-specific logging control
+
+### 6.4 Task Scheduling
+- Built-in task scheduler
+- Support for periodic and recurring tasks
+- Seamless queue system integration
+
+### 6.5 Queue Management
+- Synchronous and Redis-based queues
+- Asynchronous task processing
+- Easy task enqueuing and scheduling
+
+### 6.6 Database Integration
+- SQLAlchemy ORM integration
+- Multi-database driver support
+- Automatic migration handling
+
+### 6.7 Storage Management
+- Flexible Storage API
+- Operations: write, read, move, remove files
+- Filesystem abstraction layer
+
+## 7. Development Workflow
+
+### 7.1 Compilation
+Command: `equipment compile dist`
+- Converts Python files to .pyc
+- Preserves non-Python files
+- Optimizes project distribution
+
+### 7.2 Testing
+- Comprehensive TestCase base class
+- Faker integration for test data generation
+- Environment override to 'testing'
+- Optional logging control
+
+## 8. Dependency Management
+- Uses Pipenv for dependency management
+- Supports virtual environment creation
+- Version-locked package management
+
+## 9. Troubleshooting
+
+### 9.1 Common Installation Issues
+1. **Python Version Compatibility**
+   - Ensure Python 3.12+
+   - Check version: `python --version`
+
+2. **pip Installation Problems**
+   ```bash
+   # Upgrade pip
+   python -m pip install --upgrade pip
+   ```
+
+## 10. Best Practices
+- Modular design
+- Separation of concerns
+- Consistent code organization
+- Extensive documentation
+
+## 11. Contribution Guidelines
+- Follow PEP 8 style guide
+- Write comprehensive tests
+- Document new features
+- Maintain code quality
+
+## 12. Support
+- **GitHub Issues**: [Report a problem](https://github.com/rogervila/equipment/issues)
+- **Community Support**: [Discussions](https://github.com/rogervila/equipment/discussions)
+
+## 13. License
+[Insert License Information]
+
+## 14. Contact & Support
+[Insert Contact Information]
+
+## Project Compilation
+
+https://equipment-python.vercel.app/docs/features/compilation
+---
+Equipment provides a powerful compilation command to prepare your project for distribution and deployment.
+
+### Compilation Process
+- 🐍 Convert Python files to bytecode (`.pyc`)
+- 📁 Preserve complete project structure
+- 🚀 Create deployment-ready project distribution
+
+### Compilation Command
+```bash
+# Compile project into 'dist' directory
+equipment compile dist
+```
+
+### Key Features
+1. **Bytecode Conversion**
+   - Transforms `.py` files to `.pyc`
+   - Improves initial load times
+   - Enhances execution performance
+
+2. **File Preservation**
+   - Maintains original project structure
+   - Copies non-Python files as-is
+   - Ensures complete project integrity
+
+### Use Cases
+- Create distributable project packages
+- Optimize project startup performance
+- Prepare for deployment environments
+- Share project with pre-compiled bytecode
+
+### Compilation Workflow
+1. Scan project directory
+2. Convert Python files to bytecode
+3. Copy non-Python files
+4. Generate complete distribution in target directory
+
+### Best Practices
+- Use compilation before deployment
+- Verify compiled project functionality
+- Include necessary configuration files
+- Consider environment-specific compilations
+
+## Dependency Injection
+
+https://equipment-python.vercel.app/docs/features/dependency-injection
+---
+Equipment implements a powerful Dependency Injection (DI) pattern to manage object creation and lifecycle, promoting loose coupling and improved modularity.
+
+### Key Singleton Providers
+1. **Application Singletons**
+   - `app.inspiring()`: Singleton for inspirational quotes
+   - `app.scheduler()`: Manages scheduled tasks
+
+2. **Equipment-Level Singletons**
+   - `equipment.log()`: Centralized logging system
+   - `equipment.queue()`: Background task queue
+   - `equipment.database()`: Database connection management
+   - `equipment.storage()`: Flexible file storage interface
+
+### Usage Example
+```python
+from app import app
+
+# Create application instance
+app = app()
+
+# Access singleton providers
+log = app.log()
+queue = app.queue()
+database = app.database()
+storage = app.storage()
+```
+
+### Benefits
+- 🧩 Modularity
+- 🔒 Thread Safety
+- 🛠️ Configuration Flexibility
+- 🔗 Reduced Component Coupling
+
+## Queue Management
+
+https://equipment-python.vercel.app/docs/features/queue
+---
+Equipment provides a robust and flexible queue management system for handling asynchronous tasks efficiently.
+
+### Queue Drivers
+1. **Sync Driver**
+   - Immediate task processing
+   - Ideal for local development
+   - Processes tasks in the current process
+
+2. **Redis Driver**
+   - Distributed task queuing
+   - Background worker processing
+   - Supports remote task execution
+
+### Configuration
+```yaml
+# config/queue.yml
+queue:
+  connection: ${QUEUE_CONNECTION:sync}
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    db: 0
+```
+
+### Core Queue Methods
+- `push(task)`: Add task to queue
+- `push_at(task, timestamp)`: Schedule task for future execution
+
+### Usage Example
+```python
+# Queue a task for processing
+app.queue().push(
+    app.log().debug,
+    app.inspiring().quote()
+)
+
+# Run Redis queue worker
+$ py queues.py
+```
+
+### Best Practices
+- Use async processing for long-running tasks
+- Configure appropriate queue driver
+- Handle task failures gracefully
+- Monitor queue performance
+
+## Task Scheduling
+
+https://equipment-python.vercel.app/docs/features/scheduler
+---
+Equipment leverages the [schedule](https://schedule.readthedocs.io) library for powerful task scheduling.
+
+### Scheduling Capabilities
+- Interval-based scheduling
+- Time-specific task execution
+- Recurring and one-time tasks
+- Thread-safe task management
+
+### Example Task Definition
+```python
+class Scheduler(Equipment):
+    def run(self) -> None:
+        # Run task every 5 seconds
+        self.schedule.every(5).seconds.do(
+            lambda: self.log.debug('Scheduled message')
+        )
+
+        # Daily task at specific time
+        self.schedule.every().day.at("10:30").do(
+            self.generate_daily_report
+        )
+```
+
+### Running the Scheduler
+```bash
+# Start scheduler
+python scheduler.py
+```
+
+### Scheduler Workflow
+1. Initialize application context
+2. Set up scheduled tasks
+3. Execute tasks according to schedule
+4. Integrated logging and error handling
+
+### Best Practices
+- Keep scheduled tasks lightweight
+- Use logging for task tracking
+- Handle potential exceptions
+- Avoid resource-intensive operations
+
+## Logging System
+
+https://equipment-python.vercel.app/docs/features/logging
+---
+Equipment provides a robust and flexible logging system to track and record application events with extensive customization options.
+
+### Log Levels
+- `debug`: Detailed diagnostic information
+- `info`: General application events
+- `warning`: Potential issues
+- `error`: Serious problems
+- `critical`: Highest severity failures
+
+### Log Channels
+1. **stack**: Combines multiple logging outputs
+2. **single**: Single file logging
+3. **daily**: Rotating daily log files
+4. **console**: Direct console output
+5. **sqlite**: Database-backed logging
+
+### Configuration Example
+```yaml
+log:
+  level: ${LOG_LEVEL:debug}
+  channel: ${LOG_CHANNEL:stack}
+
+channels:
+  stack:
+    channels:
+      - single
+      - console
+  single:
+    formatter: json
+    filename: 'storage/logs/app.log'
+```
+
+### Basic Logging
+```python
+# Log messages at different levels
+app.log().debug('Diagnostic info')
+app.log().info('Application started')
+app.log().warning('Potential issue')
+app.log().error('Connection failed')
+app.log().critical('System failure')
+```
+
+### Best Practices
+- Use appropriate log levels
+- Avoid logging sensitive information
+- Configure log rotation
+- Use environment-specific configurations
+
+## Database Management
+
+https://equipment-python.vercel.app/docs/features/database
+---
+Equipment leverages [SQLAlchemy](https://www.sqlalchemy.org) to provide a powerful and flexible database management system.
+
+### Key Features
+- 🔌 SQLAlchemy ORM Integration
+- 🔄 Alembic Database Migrations
+- 🛡️ Robust Connection Management
+- 📊 Flexible Query Support
+
+### Configuration
+```yaml
+# config/database.yaml
+database:
+  connection: postgresql://user:pass@localhost/dbname
+  pool:
+    max_connections: 10
+    timeout: 30
+```
+
+### Database Migrations
+```bash
+# Run database migrations
+cd database/migrations
+alembic upgrade head
+```
+
+### Usage Example
+```python
+# Database interactions
+def database_operations():
+    # Raw SQL query
+    result = app.database().execute("SELECT * FROM users")
+
+    # ORM-based query
+    users = app.database().query(User).filter_by(active=True).all()
+
+    # Insert new record
+    new_user = User(name="John Doe", email="john@example.com")
+    app.database().add(new_user)
+    app.database().commit()
+```
+
+### Best Practices
+- Use migrations for schema changes
+- Leverage ORM for complex queries
+- Implement proper transaction management
+- Use connection pooling
+
+## Storage Management
+
+https://equipment-python.vercel.app/docs/features/storage
+---
+Equipment provides a flexible and intuitive Storage API for seamless file system operations.
+
+### Core Methods
+| Method | Description | Example |
+|--------|-------------|---------|
+| `write(path, content)` | Write file content | `app.storage().write('report.txt', 'Sales data')` |
+| `read(path)` | Read file contents | `content = app.storage().read('report.txt')` |
+| `exists(path)` | Check file existence | `if app.storage().exists('report.txt'):` |
+| `list(directory)` | List directory files | `files = app.storage().list('reports/')` |
+| `move(source, destination)` | Move files | `app.storage().move('old.txt', 'new.txt')` |
+| `remove(path)` | Delete files | `app.storage().remove('temp.txt')` |
+
+### Advanced Usage
+```python
+# Write JSON report
+report = {
+    'title': 'Daily Sales Report',
+    'data': {
+        'total_sales': 123456,
+        'total_profit': 45678
+    }
+}
+
+# Write and validate report
+if app.storage().write('report.json', json.dumps(report)):
+    loaded_report = json.loads(app.storage().read('report.json'))
+    app.reports().validate(loaded_report)
+```
+
+### Best Practices
+- Handle file operation exceptions
+- Use relative paths
+- Implement robust error handling
+- Validate file contents
+
+## Testing Framework
+
+https://equipment-python.vercel.app/docs/features/testing
+---
+Equipment provides a robust and developer-friendly testing framework designed to simplify and enhance the testing experience.
+
+### Base TestCase Features
+1. **Automatic Application Context**
+   - Fresh application instance for each test
+   - Isolated testing environment
+   - Consistent setup across test suites
+
+2. **Faker Integration**
+   - Pre-configured Faker instance
+   - Simplified test data generation
+   - Support for multiple data types and locales
+
+3. **Environment Management**
+   - Automatic `"testing"` environment override
+   - Prevents interactions with production configs
+   - Ensures test isolation
+
+### Example Test Case
+```python
+from tests import TestCase
+
+class UserServiceTest(TestCase):
+    def test_user_creation(self):
+        # Access application instance
+        app = self.app
+
+        # Generate test data with Faker
+        username = self.fake.user_name()
+        email = self.fake.email()
+
+        # Perform test
+        user = app.users().create(username, email)
+        self.assertIsNotNone(user)
+```
+
+### Testing Best Practices
+- Inherit from `TestCase` for consistent setup
+- Use `self.fake` for generating test data
+- Write focused, single-responsibility tests
+- Cover edge cases and error scenarios
+
+## Installation Guide
+
+https://equipment-python.vercel.app/docs/features/installation
+---
+Get started with Equipment quickly and easily across different platforms.
+
+### System Requirements
+- 🖥️ **OS**: Windows, macOS, Linux
+- 🐍 **Python**: Version 3.12+
+- 📦 **Package Management**: pip 21.0+
+
+### Installation Methods
+1. **Global Installation**
+   ```bash
+   # Install Equipment globally
+   pip install equipment
+   ```
+
+2. **Virtual Environment**
+   ```bash
+   # Create virtual environment
+   python -m venv equipment-env
+   source equipment-env/bin/activate
+   pip install equipment
+   ```
+
+3. **Create New Project**
+   ```bash
+   # Generate a new Equipment project
+   equipment new my-app
+   cd my-app
+   pip install .
+   ```
+
+### Verification
+```bash
+# Run the application
+python main.py
+
+# Check Equipment version
+equipment --version
+```
+
+### Troubleshooting
+1. **Python Version Check**
+   ```bash
+   python --version  # Ensure 3.12+
+   ```
+
+2. **Upgrade pip**
+   ```bash
+   python -m pip install --upgrade pip
+   ```
+
+### Support Channels
+- 🐞 [GitHub Issues](https://github.com/rogervila/equipment/issues)
+- 💬 [Community Discussions](https://github.com/rogervila/equipment/discussions)
+
+## Additional Documentation
+
+For more detailed information about specific features and components, please refer to the individual documentation files in the project.
+
+## Introduction
+
+https://equipment-python.vercel.app/docs/features/intro
+---
+Equipment is a comprehensive scaffolding framework designed to simplify and streamline Python project development. It provides a robust, flexible foundation that adapts to projects of any scale - from simple scripts to complex enterprise applications.
+
+### Key Design Principles
+1. **Developer Experience**: Minimize boilerplate code and configuration overhead
+2. **Flexibility**: Support various project types and development strategies
+3. **Scalability**: Seamless growth from small scripts to large applications
+4. **Modularity**: Easy integration with other Python tools and frameworks
+
+### Core Features
+- 🔧 Dependency Injection
+- 🏗️ Project Initialization
+- 📝 Advanced Logging
+- ⏰ Task Scheduling
+- 📦 Queue Management
+- 💾 Database Integration
+- 💽 Storage Management
+
+## Getting Started
+
+```bash
+# Install Equipment
+pip install equipment
+
+# Generate a new project
+equipment new my-app
+
+# Install dependencies
+cd my-app && pip install .
+```
+
+## Project Directory Structure
+
+https://equipment-python.vercel.app/docs/features/directory-structure
+---
+The project follows a modular and organized directory structure designed to promote clean code organization, separation of concerns, and maintainability.
+
+### Key Directories
+- `app/`: Core Application Logic
+- `config/`: Configuration Management
+- `database/`: Database Migrations
+- `storage/`: Flexible Filesystem API
+- `tests/`: Quality Assurance
+
+### Entry Points
+- `main.py`: Primary application entry point
+- `scheduler.py`: Manages scheduled tasks
+- `queues.py`: Handles background task processing
+- `web.py`: Implements web server configuration
+
+### Best Practices
+- Each directory has a specific, well-defined responsibility
+- Modular design allows for easy extension and maintenance
+- Separation of concerns improves code readability and testability
+
+## Configuration Management
+
+https://equipment-python.vercel.app/docs/features/configuration
+---
+Equipment provides a powerful, modular configuration system supporting multiple file formats and environment-aware settings.
+
+### Configuration Principles
+- 🌐 Environment Variable Interpolation
+- 🧩 Modular Component Configuration
+- 🔧 Sensible Default Values
+- 🌈 Environment-Specific Flexibility
+
+### Configuration Files
+1. **`app.yaml`**: Core application settings
+   ```yaml
+   app:
+     name: ${APP_NAME:Equipment}
+     env: ${APP_ENV:local}
+   ```
+
+2. **`database.yaml`**: Database connection configuration
+   ```yaml
+   database:
+     connection: ${DB_CONNECTION:sqlite}
+     connections:
+       sqlite:
+         schema: sqlite
+         database: "${DB_DATABASE:database/database.sqlite}"
+   ```
+
+3. **Other Configuration Files**
+   - `log.yaml`: Logging settings
+   - `queue.yaml`: Background task queue
+   - `storage.yaml`: File storage API
+   - `web.yaml`: Web server parameters
+
+### Environment Configuration
+- Use environment variables for dynamic settings
+- Leverage `.env` files for local development
+- Override default configurations easily
+
+### Best Practices
+- Keep sensitive information out of config files
+- Use environment-specific configurations
+- Document configuration options
+- Validate and sanitize configuration inputs
+
+## Advanced Dependency Injection
+
+https://equipment-python.vercel.app/docs/features/dependency-injection
+---
+Equipment implements a sophisticated Dependency Injection (DI) pattern to manage object lifecycles and promote modular design.
+
+### What is Dependency Injection?
+🔗 A design pattern that:
+- Manages object creation and lifecycle
+- Promotes loose coupling
+- Enhances code modularity
+- Improves testability and flexibility
+
+### Implementation Details
+#### Singleton Providers
+Equipment uses thread-safe singleton providers to manage key components:
+
+1. **Inspiring Singleton**
+   - Accessor: `app.inspiring()`
+   - Single instance of `Inspire` class
+   - Configurable quote sources
+   - Example of application service implementation
+
+2. **Scheduler Singleton**
+   - Accessor: `app.scheduler()`
+   - Single instance of `Scheduler` class
+   - Manages periodic and recurring tasks
+
+3. **Log Singleton**
+   - Accessor: `equipment.log()`
+   - Single instance of `Log` class
+   - Configurable logging settings
+   - Environment-aware logging
+
+4. **Queue Singleton**
+   - Accessor: `equipment.queue()`
+   - Single instance of `Queue` class
+   - Manages asynchronous task processing
+   - Configurable queue settings
+
+5. **Database Singleton**
+   - Accessor: `equipment.database()`
+   - Single instance of `Database` class
+   - Manages database connections
+   - Configurable database settings
+
+6. **Storage Singleton**
+   - Accessor: `equipment.storage()`
+   - Single instance of `Storage` class
+   - Manages file storage operations
+   - Configurable storage backends
+
+### App Factory Method
+```python
+from app import app
+
+# Create and configure App instance
+app = app()
+
+# Access singleton providers
+log = app.log()
+queue = app.queue()
+database = app.database()
+storage = app.storage()
+```
+
+### Benefits of Dependency Injection
+- 🧩 **Modularity**: Easy dependency management
+- 🔒 **Thread Safety**: Thread-safe singleton providers
+- 🛠️ **Configuration Flexibility**: Dynamic dependency configuration
+- 🔗 **Reduced Coupling**: Loosely connected components
+
+### Best Practices
+- Use singleton providers for shared components
+- Inject dependencies through constructors
+- Keep dependencies minimal and focused
+- Prefer composition over inheritance
+- Design for testability
+
+### Advanced Usage
+```python
+class MyService:
+    def __init__(self, log, database):
+        self._log = log
+        self._database = database
+
+    def process_data(self, data):
+        self._log.info("Processing data")
+        self._database.save(data)
+```
+
+### Customization and Extension
+- Create custom singleton providers
+- Override default implementations
+- Implement application-specific services
+- Integrate with existing dependency injection libraries
+
+## Additional Documentation
+
+For more detailed information about specific features and components, please refer to the individual documentation files in the project.
+
+## Advanced Dependency Injection
+
+https://equipment-python.vercel.app/docs/features/dependency-injection
+---
+Equipment implements a sophisticated Dependency Injection (DI) pattern to manage object lifecycles and promote modular design.
+
+### What is Dependency Injection?
+🔗 A design pattern that:
+- Manages object creation and lifecycle
+- Promotes loose coupling
+- Enhances code modularity
+- Improves testability and flexibility
+
+### Implementation Details
+#### Singleton Providers
+Equipment uses thread-safe singleton providers to manage key components:
+
+1. **Inspiring Singleton**
+   - Accessor: `app.inspiring()`
+   - Single instance of `Inspire` class
+   - Configurable quote sources
+   - Example of application service implementation
+
+2. **Scheduler Singleton**
+   - Accessor: `app.scheduler()`
+   - Single instance of `Scheduler` class
+   - Manages periodic and recurring tasks
+
+3. **Log Singleton**
+   - Accessor: `equipment.log()`
+   - Single instance of `Log` class
+   - Configurable logging settings
+   - Environment-aware logging
+
+4. **Queue Singleton**
+   - Accessor: `equipment.queue()`
+   - Single instance of `Queue` class
+   - Manages asynchronous task processing
+   - Configurable queue settings
+
+5. **Database Singleton**
+   - Accessor: `equipment.database()`
+   - Single instance of `Database` class
+   - Manages database connections
+   - Configurable database settings
+
+6. **Storage Singleton**
+   - Accessor: `equipment.storage()`
+   - Single instance of `Storage` class
+   - Manages file storage operations
+   - Configurable storage backends
+
+### App Factory Method
+```python
+from app import app
+
+# Create and configure App instance
+app = app()
+
+# Access singleton providers
+log = app.log()
+queue = app.queue()
+database = app.database()
+storage = app.storage()
+```
+
+### Benefits of Dependency Injection
+- 🧩 **Modularity**: Easy dependency management
+- 🔒 **Thread Safety**: Thread-safe singleton providers
+- 🛠️ **Configuration Flexibility**: Dynamic dependency configuration
+- 🔗 **Reduced Coupling**: Loosely connected components
+
+### Best Practices
+- Use singleton providers for shared components
+- Inject dependencies through constructors
+- Keep dependencies minimal and focused
+- Prefer composition over inheritance
+- Design for testability
+
+### Advanced Usage
+```python
+class MyService:
+    def __init__(self, log, database):
+        self._log = log
+        self._database = database
+
+    def process_data(self, data):
+        self._log.info("Processing data")
+        self._database.save(data)
+```
+
+### Customization and Extension
+- Create custom singleton providers
+- Override default implementations
+- Implement application-specific services
+- Integrate with existing dependency injection libraries
+
+## Web Development with FastAPI
+
+https://equipment-python.vercel.app/docs/features/fastapi
+---
+Equipment provides a powerful and intuitive approach to building web applications using FastAPI, combining modular design with robust configuration.
+
+### Project Structure
+```
+project/
+├── app/                # Core application logic
+│   └── __init__.py     # Equipment initialization
+├── config/             # Configuration management
+│   └── web.yaml        # Web server configuration
+└── web.py              # FastAPI server entry point
+```
+
+### Key Features
+- 🚀 FastAPI Integration
+- 🔧 Dynamic Configuration
+- 📝 Integrated Logging
+- 🧩 Dependency Injection
+- 🛡️ Type-Safe Routing
+
+### Basic Web Application Setup
+```python
+from app import app
+from fastapi import FastAPI
+
+# Initialize Equipment application
+app = app()
+
+# Create FastAPI application
+name = app.config.app.name()
+web = FastAPI(title=name)
+
+# Dynamic route with integrated services
+@web.get("/")
+async def landing():
+    return {
+        "message": app.inspiring().quote(),
+        "app_name": name
+    }
+```
+
+### Configuration Management
+```yaml
+# config/web.yaml
+web:
+  host: 0.0.0.0
+  port: 8000
+
+app:
+  name: Equipment Web Demo
+```
+
+### Server Initialization
+```python
+if __name__ == '__main__':
+    server = Server(Config(
+        app='web:web',
+        host=str(app.config.web.host()),
+        port=int(app.config.web.port()),
+    ))
+    server.run()
+```
+
+### Advanced Web Features
+1. **Dynamic Configuration**
+   - Environment-specific settings
+   - Centralized parameter management
+
+2. **Integrated Services**
+   - Automatic dependency injection
+   - Centralized logging
+   - Easy service integration
+
+### Best Practices
+- Separate configuration from code
+- Use type hints and response classes
+- Leverage Equipment's modular design
+- Implement graceful error handling
+
+### Running the Application
+```bash
+# Start the web server
+python web.py
+```
+
+## Additional Documentation
+
+For more detailed information about specific features and components, please refer to the individual documentation files in the project.
+
+## Introduction to Equipment
+
+https://equipment-python.vercel.app/docs/intro
+---
+Equipment is a revolutionary Python scaffolding framework designed to transform and simplify software development.
+
+### What is Equipment?
+🚀 A comprehensive framework that provides:
+- Robust project foundation
+- Seamless scalability
+- Minimal configuration overhead
+- Enterprise-grade development tools
+
+### Design Philosophy
+#### Core Principles
+1. **Developer Experience**
+   - Reduce boilerplate code
+   - Minimize configuration complexity
+   - Enhance productivity
+
+2. **Flexible Architecture**
+   - Supports diverse project types
+   - Adaptable to different development strategies
+   - Seamless integration with Python ecosystem
+
+3. **Scalable Design**
+   - From simple scripts to complex applications
+   - Consistent development patterns
+   - Easy horizontal and vertical scaling
+
+### Key Features
+
+#### 🔧 Dependency Injection
+- Intuitive dependency management
+- Class and function-based dependency support
+- Simplified object lifecycle management
+
+#### 🏗️ Project Initialization
+- One-command project creation
+- Standardized, modular project structure
+- Consistent setup across project types
+
+#### 📝 Advanced Logging
+- Configurable logging system
+- Multiple log channels
+- Powerful, simple logging API
+- Environment-aware logging
+
+#### ⏰ Task Scheduling
+- Built-in task scheduler
+- Periodic and recurring task support
+- Seamless queue system integration
+
+#### 📦 Queue Management
+- Synchronous and Redis-based queues
+- Asynchronous task processing
+- Easy task enqueuing
+- Distributed task handling
+
+#### 💾 Database Integration
+- SQLAlchemy ORM support
+- Multi-database driver compatibility
+- Automatic migration handling
+- Database agnostic design
+
+#### 💽 Storage Management
+- Filesystem abstraction layer
+- Local and cloud storage support
+- Easily extensible configuration
+- Consistent storage API
+
+### Quick Start
+```bash
+# Install Equipment
+pip install equipment
+
+# Generate a new project
+equipment new my-app
+
+# Install dependencies
+cd my-app && pip install .
+```
+
+### Community and Support
+🤝 Join our vibrant community:
+- [GitHub Discussions](https://github.com/rogervila/equipment/discussions)
+- [Issue Tracker](https://github.com/rogervila/equipment/issues)
+- [Contributing Guidelines](https://github.com/rogervila/equipment/blob/main/CONTRIBUTING.md)
+
+### License
+📄 Open-source software
+- Licensed under [MIT License](https://opensource.org/licenses/MIT)
+- Free for commercial and personal use
+
+### Acknowledgments
+Icons created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/toolbox)

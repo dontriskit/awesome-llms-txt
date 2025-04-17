@@ -1,0 +1,1352 @@
+# Authentication
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/authentication
+
+Learn how to gain API access.
+
+## Prerequisites
+
+Before you begin using the OpenPhone API, ensure you have:
+
+<CardGroup cols={2}>
+  <Card title="An active OpenPhone subscription" icon="check">
+    Need an account? Follow our [account creation
+    guide](https://support.openphone.com/hc/en-us/articles/1500009886621-How-to-create-an-OpenPhone-account).
+  </Card>
+
+  <Card title="Admin access" icon="user-shield">
+    Owner or admin privileges in your OpenPhone workspace.
+  </Card>
+</CardGroup>
+
+<Warning>
+  **US Messaging Registration Required:** To send text messages to US numbers
+  via the API, you must complete US Carrier Registration. Learn more
+  [here](https://support.openphone.com/hc/en-us/articles/15519949741463-Guide-to-US-carrier-registration-for-OpenPhone-customers).
+</Warning>
+
+## API key generation
+
+The OpenPhone API uses API keys for secure authentication. Follow these steps to get started:
+
+<Steps>
+  <Step title="Log in to OpenPhone">Access your OpenPhone account.</Step>
+
+  <Step title="Access API Settings">
+    Navigate to the "API" tab under workspace settings. Remember, you need
+    workspace owner or admin privileges to access this tab.
+  </Step>
+
+  <Step title="Generate your key">
+    Click "Generate API key" and provide a descriptive label. Each key provides
+    full API access.
+
+    <Tip>
+      Label your keys based on their intended use (e.g., "Production
+      Environment" or "Testing Integration")
+    </Tip>
+  </Step>
+
+  <Step title="Implement authentication">
+    Include your API key in the Authorization header of each request: `    Authorization: YOUR_API_KEY`
+    <Tip>The OpenPhone API does not use a Bearer token for authentication.</Tip>
+  </Step>
+</Steps>
+
+## Security guidelines
+
+<Info>
+  Your API key carries the same privileges as your OpenPhone account. Treat it
+  with the same level of security as your password.
+</Info>
+
+### Best practices
+
+* Keep your API keys confidential
+* Don’t share your API keys in publicly accessible areas such as GitHub or client-side code
+* Regularly rotate your API keys to enhance security
+* If a key is compromised, revoke it immediately and generate a new one
+
+### Revoking access
+
+If a key is compromised or no longer needed:
+
+1. Navigate to the "API" tab in Workspace Settings
+2. Locate the specific key
+3. Click the ellipsis (three dots) icon and select 'delete' to immediately revoke access
+4. Generate a new key if needed
+
+<Note>
+  Deleting an API key only affects the integrations using that specific key.
+  Other keys and integrations will continue to function normally.
+</Note>
+
+
+# Get a summary for a call
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/calls/get-a-summary-for-a-call
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/call-summaries/{callId}
+Retrieve an AI-generated summary of a specific call identified by its unique call ID. Call summaries are only available on OpenPhone Business plan.
+
+
+
+# Get a transcription for a call
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/calls/get-a-transcription-for-a-call
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/call-transcripts/{id}
+Retrieve a detailed transcript of a specific call identified by its unique call ID. Call transcripts are only available on OpenPhone business plan.
+
+
+
+# Get recordings for a call
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/calls/get-recordings-for-a-call
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/call-recordings/{callId}
+Retrieve a list of recordings associated with a specific call. The results are sorted chronologically, with the oldest recording segment appearing first in the list.
+
+
+
+# List calls
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/calls/list-calls
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/calls
+Fetch a paginated list of calls associated with a specific OpenPhone number and another number.
+
+
+
+# Changelog
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/changelog
+
+Stay up to date with the latest improvements to the API.
+
+## 1.2.0
+
+### Minor Changes
+
+* Adds a property `externalId` to the contact model. Adds `externalId` and `source` as optional parameters to the Create Contact (`POST /contacts`) request.
+* Adds `externalId` and `source` as optional parameters to the Update Contact (`PATCH /contacts/:id`) request.
+* Added a route to list contacts (`GET /contacts`).
+
+### Patch Changes
+
+* Fixed an issue where creating or updating a contact with an invalid custom field would result in 500 error. Sending an invalid custom field will now result in a 400 "Invalid Custom Field Item" error.
+
+## 1.1.2
+
+### Patch Changes
+
+* Fixed an issue where paginated endpoints would return a string token for the next page at the end of paginated results. Now, they will correctly return the next page token as `null`.
+* Added a callout that the `totalItems` result field for the paginated endpoints is not functioning as expected and is not returning the true total items count.
+
+## 1.1.1
+
+### Patch Changes
+
+* Fixes an issue where phone numbers in various routes were expected to be in E164 format, but the format was not being validated correctly.
+
+## 1.1.0
+
+### Minor Changes
+
+* Adds a property, `restrictions`, to the objects in the response from list phone numbers (`GET /phone-numbers`). The new property contains information about regional restrictions for outbound calling and messaging from a phone number.
+
+## 1.0.2
+
+### Patch Changes
+
+* Fixed an issue with list calls (`GET /calls`) where sending an empty participants param resulted in a 500 response. Sending an empty participants param will now result in a descriptive 400 response.
+* Fixes an issue where attempting to send a message to an international number would result in a 500 response if international messaging is not enabled in the workspace. With this fix, the 500 error response changed to a 403 with a descriptive message
+* Fixes a bug where the GET call recordings endpoint sometimes returned an empty array.
+* Fixes an issue that was preventing some call records from returning successfully from `GET /calls`
+* Fixes an issue where getting a contact by id would result in a 500 instead of a 404 when contact is not found. Now this will respond in a 404 with a descriptive message.
+* Fixes an issue where sending a message that contained only whitespace (`' '`, `'\n'`, etc.) resulted in a 500 error response. Now, this will respond with 400 and a validation error message instead.
+
+## 1.0.1
+
+### Patch Changes
+
+* Fixes an issue with List Calls (`GET /calls`) where the user ID applied by default when the user ID parameter was not sent was being set to the workspace owner instead of the phone number owner.
+
+## 1.0.0
+
+### Major Changes
+
+OpenPhone's Public API v1 release 🚀
+
+Changes from the beta version include:
+
+* The `since` query parameter on "list calls" and "list messages" has been deprecated. It used to incorrectly behave as a `createdBefore`. Please use `createdAfter` instead, or `createdBefore` to maintain current functionality.
+* The `phoneNumberId` field for "send text message" has been deprecated. Please use `from` instead.
+* `/v0` endpoints have been deprecated. Please use `/v1` instead.
+
+
+# Get contact custom fields
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contact-custom-fields/get-contact-custom-fields
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/contact-custom-fields
+Custom contact fields enhance your OpenPhone contacts with additional information beyond standard details like name, company, role, emails and phone numbers. These user-defined fields let you capture business-specific data. While you can only create or modify these fields in OpenPhone itself, this endpoint retrieves your existing custom properties. Use this information to accurately map and include important custom data when creating new contacts via the API.
+
+
+
+# Create a contact
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contacts/create-a-contact
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/contacts
+Create a contact for a workspace.
+
+
+
+# Delete a contact
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contacts/delete-a-contact
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json delete /v1/contacts/{id}
+Delete a contact by its unique identifier.
+
+
+
+# Get a contact by ID
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contacts/get-a-contact-by-id
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/contacts/{id}
+Retrieve detailed information about a specific contact in your OpenPhone workspace using the contact's unique identifier.
+
+
+
+# List contacts
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contacts/list-contacts
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/contacts
+Retrieve a paginated list of contacts associated with specific external IDs. You can optionally filter the results further by providing a list of sources. **Note**: The `externalIds` parameter is currently required to specify the contacts you want to retrieve.
+
+
+
+# Update a contact by ID
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/contacts/update-a-contact-by-id
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json patch /v1/contacts/{id}
+Modify an existing contact in your OpenPhone workspace using the contact's unique identifier.
+
+
+
+# List Conversations
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/conversations/list-conversations
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/conversations
+Fetch a paginated list of conversations of OpenPhone conversations. Can be filtered by user and/or phone numbers. Defaults to all conversations in the OpenPhone organization. Results are returned in descending order based on the most recent conversation.
+
+
+
+# API response codes
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/error-codes
+
+OpenPhone uses standard HTTP response codes to indicate request status. 
+
+## Response code categories
+
+* 2xx: Success
+* 4xx: Client-side errors
+* 5xx: Server-side errors
+
+<Info>
+  Some 4xx errors include specific error codes for programmatic handling.
+</Info>
+
+## Common response codes
+
+| Code  | Status            | Description                                                   |
+| ----- | ----------------- | ------------------------------------------------------------- |
+| `200` | OK                | Request successful                                            |
+| `201` | Created           | Resource successfully created                                 |
+| `202` | Accepted          | Request accepted for processing                               |
+| `204` | No Content        | Request successful, no content returned                       |
+| `400` | Bad Request       | Invalid parameters                                            |
+| `401` | Unauthorized      | Missing or invalid API key                                    |
+| `403` | Forbidden         | Insufficient permissions or an account setting is not enabled |
+| `404` | Not Found         | Resource doesn't exist                                        |
+| `409` | Conflict          | Conflict with another request                                 |
+| `429` | Too Many Requests | Rate limit exceeded                                           |
+| `500` | Server Error      | OpenPhone-side issue                                          |
+
+<Tip>
+  For 429 errors, implement exponential backoff in your requests.
+</Tip>
+
+
+# Introduction
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/introduction
+
+Welcome to the OpenPhone API!
+
+## Overview
+
+The OpenPhone API enables developers to integrate powerful communication features directly into their applications and workflows. Built on REST principles, our API provides a reliable and secure way to programmatically manage phone communications.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="REST architecture" icon="code">
+    Industry-standard REST API design with JSON responses for easy integration
+  </Card>
+
+  <Card title="Secure authentication" icon="lock">
+    API key-based authentication to ensure secure access to your account
+  </Card>
+
+  <Card title="JSON responses" icon="brackets-curly">
+    All API responses are returned in standardized JSON format
+  </Card>
+
+  <Card title="Developer tools" icon="screwdriver-wrench">
+    Comprehensive documentation and [resources](/mdx/guides) to accelerate development
+  </Card>
+</CardGroup>
+
+## Next steps
+
+Ready to dive deeper? Here are some helpful resources:
+
+* [Authentication guide](/mdx/api-reference/authentication) - Learn about securing your API requests
+
+* [Send your first message](/mdx/api-reference/send-your-first-message) - Quick start guide for messaging
+
+* [Build with AI LLMs](/mdx/guides/building-with-ai-llms) - Learn how to utilize this API alongside AI
+
+
+# Get a message by ID
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/messages/get-a-message-by-id
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/messages/{id}
+Get a message by its unique identifier.
+
+
+
+# List messages
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/messages/list-messages
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/messages
+Retrieve a chronological list of messages exchanged between your OpenPhone number and specified participants, with support for filtering and pagination. 
+
+
+
+# Send a text message
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/messages/send-a-text-message
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/messages
+Send a text message from your OpenPhone number to a recipient.
+
+
+
+# List phone numbers
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/phone-numbers/list-phone-numbers
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/phone-numbers
+Retrieve the list of phone numbers and users associated with your OpenPhone workspace.
+
+
+
+# Rate limits
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/rate-limits
+
+OpenPhone implements rate limiting to ensure API stability and fair usage.
+
+Each API key may make up to **10 requests per second.**
+
+Exceeding this limit may result in `429` status code errors. If you'd like to request a higher rate limit, reach out to us at [support+developers@openphone.com](mailto:support+developers@openphone.com).
+
+<Tip>
+  Implement request throttling in your application to stay within rate limits and optimize API usage.
+</Tip>
+
+
+# Send your first message
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/send-your-first-message
+
+This is a step-by-step guide for sending your first text message.
+
+## Ping!
+
+Let's get started sending text messages via the OpenPhone API.
+
+<Note> **Have you completed Carrier Registration?** If you plan to send text messages to US numbers via the API, you will also need to complete US Carrier Registration. Learn more [here](https://support.openphone.com/hc/en-us/articles/15519949741463-Guide-to-US-carrier-registration-for-OpenPhone-customers).</Note>
+
+### 1. Get phone numbers (optional)
+
+Make a call to the `GET Phone Numbers` endpoint to retrieve `userId` and `from` for the desired number (the phone number from which you'd like to send a text message). This step is optional if you already know the `userId` and `from` for the desired sending number.
+
+```
+curl --request GET \
+  --url https://api.openphone.com/v1/phone-numbers \
+  --header 'Authorization: YOUR_API_KEY'
+```
+
+### 2. Specify user ID (optional)
+
+If you'd like to send the text message as a particular OpenPhone member in your workspace, make sure to include this `userId` in your request body. If `userId` is not specified, the sender will default to the phone number owner.
+
+### 3. Send your message
+
+You are now ready to send your first text message! Once you send your text message, you will receive a 202 Success Message via the API. Nice!
+
+```
+ curl --request POST \
+  --url https://api.openphone.com/v1/messages \
+  --header 'Authorization: YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "content": "<string>",
+  "from": "<string>",
+  "to": [
+    "+15555555555"
+  ],
+  "userId": "<string>"
+}'
+```
+
+<Tip>Be sure to format phone numbers in E.164 format (+1234567890).</Tip>
+
+### Summary
+
+You are now able to send a text message to anyone in US or Canada. By using the API, you are able to programmatically send texts to your customers.
+
+
+# Create a new webhook for call summaries
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/create-a-new-webhook-for-call-summaries
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/webhooks/call-summaries
+Creates a new webhook that triggers on events from call summaries.
+
+
+
+# Create a new webhook for call transcripts
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/create-a-new-webhook-for-call-transcripts
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/webhooks/call-transcripts
+Creates a new webhook that triggers on events from call transcripts.
+
+
+
+# Create a new webhook for calls
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/create-a-new-webhook-for-calls
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/webhooks/calls
+Creates a new webhook that triggers on events from calls.
+
+
+
+# Create a new webhook for messages
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/create-a-new-webhook-for-messages
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json post /v1/webhooks/messages
+Creates a new webhook that triggers on events from messages.
+
+
+
+# Delete a webhook by ID
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/delete-a-webhook-by-id
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json delete /v1/webhooks/{id}
+Delete a webhook by its unique identifier.
+
+
+
+# Get a webhook by ID
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/get-a-webhook-by-id
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/webhooks/{id}
+Get a webhook by its unique identifier.
+
+
+
+# Lists all webhooks
+Source: https://openphone.mintlify.dev/docs/mdx/api-reference/webhooks/lists-all-webhooks
+
+https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json get /v1/webhooks
+List all webhooks for a user.
+
+
+
+# Building with AI LLMs
+Source: https://openphone.mintlify.dev/docs/mdx/guides/building-with-ai-llms
+
+Learn how to use AI Language Models to build applications with the OpenPhone API.
+
+## Introduction
+
+Building with Large Language Models (LLMs) can significantly accelerate your OpenPhone API integration development. This guide will help you effectively use LLMs to create applications with our API.
+
+<Note>
+  While we provide examples using Claude, the principles and practices outlined here apply to any capable LLM platform.
+</Note>
+
+## Getting started
+
+### Documentation setup
+
+Before beginning development with an LLM, gather and prepare the necessary documentation:
+
+<Steps>
+  <Step title="Download OpenAPI specification">
+    Get our [OpenAPI specification](https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-v1-prod.json) for detailed endpoint information.
+
+    **Tip**: Right-click and select "Save Link As..." to download the file
+  </Step>
+
+  <Step title="Get complete documentation">
+    Download and extract our [complete documentation package](https://openphone-public-api-prod.s3.us-west-2.amazonaws.com/public/openphone-public-api-llm-ready-docs-prod.zip)
+  </Step>
+
+  <Step title="Share with your LLM">
+    Provide these resources to your LLM to help it understand OpenPhone API capabilities
+  </Step>
+</Steps>
+
+## Development process
+
+### Working with LLMs
+
+<CardGroup cols={2}>
+  <Card title="Clear goals" icon="bullseye">
+    Start by clearly describing your integration objectives to the LLM
+  </Card>
+
+  <Card title="Documentation" icon="book">
+    Share relevant API documentation and specifications
+  </Card>
+
+  <Card title="Step breakdown" icon="list">
+    Let the LLM help break complex features into manageable tasks
+  </Card>
+
+  <Card title="Iterative development" icon="rotate">
+    Generate and review code one step at a time
+  </Card>
+</CardGroup>
+
+### Best practices
+
+<AccordionGroup>
+  <Accordion title="Development approach">
+    * Start with core functionality
+    * Iterate to add features
+    * Test each component thoroughly
+    * Move forward only after validation
+  </Accordion>
+
+  <Accordion title="Security considerations">
+    * Never share API keys with LLMs
+    * Keep sensitive data out of prompts
+    * Validate all generated code
+    * Follow security best practices
+  </Accordion>
+
+  <Accordion title="Performance & limits">
+    * Follow OpenPhone API rate limits
+    * Implement proper error handling
+    * Monitor API usage
+    * Optimize API calls
+  </Accordion>
+</AccordionGroup>
+
+## Example interactions
+
+Here's a practical example of how to instruct an LLM to help build with our API:
+
+<AccordionGroup>
+  <Accordion title="Sample project: message sender">
+    ```text
+    I want to build an application that:
+    1. Displays a list of all my phone numbers
+    2. Allows me to select a number to send a message with
+    3. Lets me input an external phone number to send a message to
+    4. Sends a message to the external phone number
+
+    Please help me implement this using the OpenPhone API.
+    ```
+  </Accordion>
+
+  <Accordion title="Contact management example">
+    ```text
+    Help me create a system to:
+    1. Sync contacts from my CRM
+    2. Update contact details automatically
+    3. Track message history per contact
+    4. Generate contact activity reports
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Integration patterns
+
+<CardGroup cols={2}>
+  <Card title="Message automation" icon="robot">
+    Automate message handling and responses
+  </Card>
+
+  <Card title="Contact management" icon="address-book">
+    Sync and manage contact information
+  </Card>
+
+  <Card title="Call analytics" icon="chart-line">
+    Process call summaries and recording data
+  </Card>
+
+  <Card title="Scheduling" icon="calendar">
+    Manage scheduling and reminders
+  </Card>
+</CardGroup>
+
+## Implementation checklist
+
+<Steps>
+  <Step title="Code review">
+    Thoroughly review all LLM-generated code
+  </Step>
+
+  <Step title="Testing">
+    Test extensively in a development environment
+  </Step>
+
+  <Step title="Error handling">
+    Implement comprehensive error handling and logging
+  </Step>
+
+  <Step title="Monitoring">
+    Deploy with appropriate monitoring systems
+  </Step>
+
+  <Step title="Iteration">
+    Continuously improve based on usage and feedback
+  </Step>
+</Steps>
+
+<Info>
+  Need more detailed guidance? Check out our comprehensive [API Reference](/api-reference/introduction) for detailed endpoint documentation and examples.
+</Info>
+
+
+# Integration contacts
+Source: https://openphone.mintlify.dev/docs/mdx/guides/contacts
+
+Learn more about working with contacts via the OpenPhone API.
+
+## Understanding integration contacts
+
+Integration contacts are contacts that are created and managed through the OpenPhone API. They provide a programmatic way to import contact records from external sources into your OpenPhone workspace.
+
+### Key characteristics
+
+<CardGroup cols={1}>
+  <Card title="Distinct from app contacts">
+    Integration contacts are separate from contacts created directly in the OpenPhone app, with their own specific behaviors and management flow.
+  </Card>
+
+  <Card title="API-first management">
+    These contacts are designed to be managed exclusively through API endpoints, enabling automated contact management and integration with your existing systems. They cannot be modified or deleted within OpenPhone.
+  </Card>
+</CardGroup>
+
+### Important behaviors and limitations
+
+<CardGroup cols={1}>
+  <Card title="Preserving contact IDs">
+    When you create an integration contact using the `POST /contacts` endpoint, it's essential to save the `id` returned in the response. This `id` will be required for all future operations involving the contact.
+  </Card>
+
+  <Card title="Visibility in the OpenPhone app">
+    After creating an integration contact, it will only appear in the OpenPhone app—whether in the conversation list, contact list, or search results—if there's an associated conversation with a matching phone number.
+  </Card>
+
+  <Card title="Read-only status">
+    At present, integration contacts are read-only within the OpenPhone app. To make any updates or changes to an integration contact, you will need to use the `PATCH /contacts/:id` endpoint.
+  </Card>
+</CardGroup>
+
+## Contact field structure
+
+OpenPhone organizes contact information using two distinct field types. Understanding these is crucial for effective contact management.
+
+<AccordionGroup>
+  <Accordion title="Default fields" defaultOpen={true}>
+    Every contact in OpenPhone includes these predefined fields:
+
+    * First Name
+    * Last Name
+    * Role
+    * Company
+    * Emails
+    * Phone Numbers
+
+    These fields maintain consistent properties across all contacts and form the foundation of contact information.
+  </Accordion>
+
+  <Accordion title="Custom fields">
+    Custom fields allow for flexible, user-defined contact properties. Supported data types include:
+
+    * Address
+    * Boolean
+    * Date
+    * Multi-select
+    * Number
+    * String
+    * URL
+
+    <Note>
+      **Managing Custom Fields:** Custom field definitions can only be modified within the OpenPhone app. The API does not currently support creating or editing custom field definitions.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+## Creating and managing contacts
+
+Follow these steps to effectively create and manage contacts through the API:
+
+<Steps>
+  <Step title="Retrieve custom fields">
+    First, call the `GET /contact-custom-fields` endpoint to retrieve your workspace's custom contact field definitions.
+  </Step>
+
+  <Step title="Prepare contact data">
+    Structure your contact data according to both default and custom fields:
+
+    ```json
+    {
+      "defaultFields": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phoneNumbers": [
+          {
+            "name": "primary",
+            "value": "+1234567890"
+          }
+        ]
+      },
+      "customFields": {
+        // Include any custom field values here
+      }
+    }
+    ```
+  </Step>
+
+  <Step title="Create the contact">
+    Use the `POST /contacts` endpoint to create the contact and store the returned contact ID for future operations.
+  </Step>
+
+  <Step title="Manage the contact">
+    Use the saved contact ID with the `PATCH /contacts/:id` endpoint for any future updates to the contact's information.
+  </Step>
+</Steps>
+
+<Tip>
+  Always validate phone numbers are in E.164 format (+1234567890) before creating or updating contacts to ensure proper functionality.
+</Tip>
+
+
+# Sync your contacts
+Source: https://openphone.mintlify.dev/docs/mdx/guides/sync-contacts
+
+Implement a one-way contact sync from Google Sheets to OpenPhone using Javascript.
+
+## Overview
+
+This guide provides a foundation for implementing a one-way sync from Google Sheets to OpenPhone using JavaScript. You may need to adjust some details based on your specific requirements and environment. Remember to thoroughly test the implementation to ensure data integrity.
+
+## Development guide
+
+<AccordionGroup>
+  <Accordion title="1. Setup and authentication">
+    ##### 1.1 OpenPhone API.
+
+    * Obtain your OpenPhone API key from the OpenPhone dashboard.
+
+    ##### 1.2 Google Sheets API
+
+    * Enable the Google Sheets API in your Google Cloud Console.
+    * Create service account credentials and download the JSON key file.
+
+    ##### 1.3 Google Sheets
+
+    * Create a Google Sheet in the following format:
+
+      | contactId | firstName | lastName | phone          | email                                       |
+      | --------- | --------- | -------- | -------------- | ------------------------------------------- |
+      |           | Jane      | Doe      | (555) 555-5555 | [jane@example.com](mailto:jane@example.com) |
+
+    * Share your Google Sheet with the service account email address.
+  </Accordion>
+
+  <Accordion title="2. Environment setup">
+    ##### 2.1 Ensure you have Node.js installed on your system.
+
+    ##### 2.2 Create a new Node.js project and initialize it
+
+    ```bash
+    mkdir openphone-sync
+    cd openphone-sync
+    npm init -y
+    ```
+
+    ##### 2.3 Install required packages
+
+    ```bash
+    npm install googleapis axios dotenv node-cron
+    ```
+
+    ##### 2.4 Create a .env file to store environment variables
+
+    ```bash
+    OPENPHONE_API_KEY=your_openphone_api_key
+    GOOGLE_APPLICATION_CREDENTIALS=path/to/your/credentials.json
+    GOOGLE_SHEET_ID=your_google_sheet_id
+    ```
+  </Accordion>
+
+  <Accordion title="3. Implement the sync process">
+    ##### 3.1 Create a new file named `sync.js` and add the setup functions
+
+    ```js
+    require("dotenv").config();
+    const { google } = require("googleapis");
+    const axios = require("axios");
+    const cron = require("node-cron");
+
+    const OPENPHONE_API_BASE_URL = "https://api.openphone.com/v1";
+
+    const openPhone = axios.create({
+      baseURL: OPENPHONE_API_BASE_URL,
+      headers: {
+        Authorization: process.env.OPENPHONE_API_KEY,
+        "Content-Type": "application/json",
+        },
+    });
+
+    const googleAuth = new google.auth.GoogleAuth({
+      keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+    ```
+
+    ##### 3.2 Add the OpenPhone API helper functions
+
+    ```js
+    async function createOpenPhoneContact(contactData) {
+      const response = await openPhone.post("/contacts", contactData);
+      return response.data.data;
+    }
+
+    async function updateOpenPhoneContact(contactId, contactData) {
+      const response = await openPhone.patch(`/contacts/${contactId}`, contactData);
+      return response.data.data;
+    }
+    ```
+
+    ##### 3.3 Add the Google Sheets to OpenPhone contacts mapping function
+
+    ```js
+    function mapFields(sheetRow) {
+      if (!sheetRow.firstName) {
+        console.warn("Missing required firstName in row: ", sheetRow);
+        return;
+      }
+      return {
+        defaultFields: {
+          firstName: sheetRow.firstName,
+          lastName: sheetRow.lastName,
+          phoneNumbers: sheetRow.phone
+            ? [{ name: "primary", value: sheetRow.phone }]
+            : undefined,
+          emails: sheetRow.email
+            ? [{ name: "primary", value: sheetRow.email }]
+            : undefined,
+        },
+      };
+    }
+    ```
+
+    ##### 3.4 Add the Google Sheets helper functions
+
+    ```js
+    async function getGoogleSheetsData() {
+      const sheets = google.sheets({ version: "v4", googleAuth });
+
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: "Sheet1!A1:Z", // First sheet and all initial columns
+      });
+
+      const rows = response.data.values;
+      const headers = rows[0]; // First row contains headers
+      return rows.slice(1).map((row) => { // Skip the first row and map the contact data
+        const contact = {};
+        headers.forEach((header, index) => {
+          contact[header] = row[index];
+        });
+        return contact;
+      });
+    }
+
+    async function updateSheetWithContactId(rowNumber, contactId) {
+      const sheets = google.sheets({ version: "v4", googleAuth });
+
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: `Sheet1!A${rowNumber + 2}`, // +2 to account for 1-based index and header row
+        valueInputOption: "RAW",
+        resource: { values: [[contactId]] },
+      });
+    }
+    ```
+
+    ##### 3.4 Finally, tie it all together
+
+    ```js
+    async function syncContacts() {
+      const sheetContacts = await getGoogleSheetsData();
+
+      for (const [rowNumber, sheetRow] of sheetContacts.entries()) {
+        const mappedContact = mapFields(sheetRow);
+        if (sheetRow.contactId) {
+          await updateOpenPhoneContact(sheetRow.contactId, mappedContact);
+        } else {
+          const { id } = await createOpenPhoneContact(mappedContact);
+          await updateSheetWithContactId(rowNumber, id);
+        }
+      }
+
+      console.log("Sync completed successfully");
+    }
+
+    // Run sync every hour
+    cron.schedule("0 * * * *", syncContacts);
+    console.log("Sync process started. Running every hour.");
+    ```
+  </Accordion>
+
+  <Accordion title="4. Running the sync process">
+    ```bash
+    node sync.js
+    ```
+
+    This will start the sync process, which will run every hour.
+  </Accordion>
+</AccordionGroup>
+
+## Considerations and Optimizations
+
+* Implement deletion logic to remove contacts from OpenPhone that are no longer present in the Google Sheet.
+* Implement pagination for fetching OpenPhone contacts if you have a large number of contacts.
+* Implement more robust error handling and retry mechanisms.
+* Implement logging for auditing and troubleshooting purposes.
+* Consider using a database to store the state of the sync process and to track changes between syncs.
+* Consider implementing rate-limiting and an incremental sync to reduce API calls and processing time.
+* For production use, consider deploying this script to a cloud platform like Heroku or AWS Lambda for better reliability and scalability.
+
+
+# Webhooks
+Source: https://openphone.mintlify.dev/docs/mdx/guides/webhooks
+
+A reference for API-generated webhook payloads.
+
+## Overview
+
+OpenPhone API webhooks allow developers to receive real-time notifications for various events, such as calls, messages, and transcripts. By integrating webhooks into your workflows, you can automate processes, enhance user experiences, and seamlessly connect OpenPhone with other systems.
+
+<Note>**Important note:** Webhooks created in the OpenPhone app are not compatible with those created via the API. You cannot access or modify app webhooks through the API, or API webhooks in the app.</Note>
+
+## Webhooks payload sample data models
+
+Each webhook event provides a structured payload with specific data. We've provided sample payloads below for the most common webhook events.
+
+### Calls
+
+These webhooks are triggered in response  in response to call-related events: `call.ringing`, `call.completed`, and `call.recording.completed`.
+The following is an example of the payload for a `call.ringing` event.
+
+```json
+{
+  "id": "EV0ea54cadfbf342e6ac4ca1f22ed1700c",
+  "object": "event",
+  "apiVersion": "v4",
+  "createdAt": "2022-06-24T19:35:46.825Z",
+  "type": "call.ringing",
+  "data": {
+   "object": {
+        "id": "ACsXlF0",
+        "object": "call",
+        "answeredAt": "2022-01-01T00:00:00Z",
+        "answeredBy": "USlHhXmRMz",
+        "initiatedBy": "USlHhXmRMz",
+        "direction": "outgoing",
+        "status": "ringing",
+        "completedAt": "2022-01-01T00:10:00Z",
+        "createdAt": "2022-01-01T00:00:00Z",
+        "duration": 60,
+        "forwardedFrom": "UShYmRNzlm",
+        "forwardedTo": "UShXmRMzln",
+        "phoneNumberId": "PN1ZmRMzlx",
+        "participants": [
+          "+15555555555"
+        ],
+        "updatedAt": "2022-01-01T00:00:00Z",
+        "userId": "USlHhXmRMz"
+      }
+  }
+}
+```
+
+### Call Summaries
+
+This webhook is triggered in response to a `call.summary.completed` event.
+
+```json
+{
+  "id": "EV0ea54cadfbf342e6ac4ca1f22ed1700c",
+  "object": "event",
+  "apiVersion": "v4",
+  "createdAt": "2022-06-24T19:35:46.825Z",
+  "type": "callSummary",
+  "data": {
+    "object": {
+      "callId":"AC16558bc5f73445598a2627f5a94fe014",
+      "object": "callSummary",
+      "status": "completed",
+      "summary": [
+        "You talked about the weather."
+      ],
+      "nextSteps": [
+        "Bring an umbrella."
+      ]
+    }
+  }
+}
+```
+
+### Call Transcripts
+
+This webhook is triggered in response to a `call.transcript.completed` event.
+
+```json
+{
+  "id": "EV0ea54cadfbf342e6ac4ca1f22ed1700c",
+  "object": "event",
+  "apiVersion": "v4",
+  "createdAt": "2022-06-24T19:35:46.825Z",
+  "type": "callTranscript",
+  "data": {
+    "object": {
+      "callId": "AC16558bc5f73445598a2627f5a94fe014",
+      "object": "callTranscript",
+      "createdAt": "2022-06-24T19:34:50.279Z",
+      "dialogue": [
+        {
+          "content": "Hello, world!",
+          "start": 5.123456,
+          "end": 10.123456,
+          "identifier": "+19876543210",
+          "userId": "USlHhXmRMz"
+        }
+      ],
+      "duration": 5,
+      "status": "completed"
+    }
+  }
+}
+```
+
+### Messages
+
+This webhook is triggered in response to message events such as `message.received` and `message.delivered`. Below is a sample payload for a `message.received` event.
+
+```json
+{
+  "id": "EVc67ec998b35c41d388af50799aeeba3e",
+  "object": "event",
+  "apiVersion": "v4",
+  "createdAt": "2022-01-23T16:55:52.557Z",
+  "type": "message.received",
+  "data": {
+    "object": {
+      "id": "AC24a8b8321c4f4cf2be110f4250793d51",
+      "object": "message",
+      "from": "+19876543210",
+      "to": ["+15555555555"],
+      "direction": "incoming",
+      "text": "Hello, world!",
+      "status": "delivered",
+      "createdAt": "2022-01-23T16:55:52.420Z",
+      "userId": "USu5AsEHuQ",
+      "phoneNumberId": "PNtoDbDhuz"
+    }
+  }
+}
+```
+
+
+# Contact the team
+Source: https://openphone.mintlify.dev/docs/mdx/pricing-support/contact-the-team
+
+Stuck? Need Help?
+
+Drop us a line at [support+developers@openphone.co](mailto:support+developers@openphone.co).
+
+
+# Tips for minimizing costs
+Source: https://openphone.mintlify.dev/docs/mdx/pricing-support/minimizing-costs
+
+We’ve provided the below tips to help you minimize segment counts and save money.
+
+<CardGroup cols={2}>
+  <Card title="Watch Your character count" icon="square-1">
+    Standard Latin alphabet characters, numbers, and basic punctuation use 160 characters per segment.
+  </Card>
+
+  <Card title="Be cautious with special characters" icon="square-2">
+    Some special characters (é, ñ, ß) reduce segment capacity to 70 characters.
+  </Card>
+
+  <Card title="Minimize emoji usage" icon="square-3">
+    Most emojis count as two characters. Extensive use can quickly increase segment count.
+  </Card>
+
+  <Card title="Avoid line breaks" icon="square-4">
+    Each line break counts as a character.
+  </Card>
+
+  <Card title="Use URL shorteners" icon="square-5">
+    Long URLs can span multiple segments. Shortened links save space.
+  </Card>
+
+  <Card title="Leverage common abbreviations" icon="square-6">
+    Use widely understood abbreviations to reduce character count.
+  </Card>
+</CardGroup>
+
+
+# Pricing overview
+Source: https://openphone.mintlify.dev/docs/mdx/pricing-support/pricing-overview
+
+Welcome to OpenPhone's simple and transparent API pricing structure.
+
+## Our pricing philosophy
+
+At OpenPhone, we believe in transparent and fair pricing. Sometimes it can be hard to understand the true cost of something when it’s buried in the fine print. We are committed to helping you clearly understand and manage your costs when using our platform.
+
+## Core pricing model
+
+Our pricing is based on message segments, making it easy to calculate costs:
+
+<CardGroup cols={2}>
+  <Card title="Local (US and Canada) SMS" icon="location-pin">
+    <p>\$0.01 per segment</p>
+  </Card>
+
+  <Card title="International SMS" icon="globe">
+    <p>\$0.01 + country-specific rate per segment</p>
+    <p className="text-sm">Rates vary by destination country</p>
+  </Card>
+</CardGroup>
+
+<Info>
+  For detailed international rates by country, see our [International Pricing Guide](https://www.openphone.com/rates).
+</Info>
+
+## Understanding message segments
+
+A message segment is our basic billing unit. Learn more below:
+
+<AccordionGroup>
+  <Accordion title="Segment length">
+    Each segment can contain up to 160 standard characters (letters, numbers, spaces, basic punctuation)
+  </Accordion>
+
+  <Accordion title="Special characters">
+    Messages with special characters (é, ñ, emoji) have a 70 character limit per segment
+  </Accordion>
+
+  <Accordion title="Long messages">
+    Messages longer than one segment are automatically split and billed as multiple segments
+  </Accordion>
+
+  <Accordion title="Segment calculator">
+    Use our recommended [Segment Calculator](https://twiliodeved.github.io/message-segment-calculator/) to estimate message costs
+  </Accordion>
+</AccordionGroup>
+
+## API message types
+
+You're only charged for outgoing API-powered messages, which include:
+
+<CardGroup cols={2}>
+  <Card title="Direct API Usage" icon="code">
+    Messages sent through direct API calls
+  </Card>
+
+  <Card title="Integration Messages" icon="puzzle-piece">
+    Messages sent via applications built with our API
+  </Card>
+</CardGroup>
+
+## How our billing works
+
+We use a credit-based system for all API messaging charges:
+
+<Steps>
+  <Step title="Purchase credits">
+    Add funds to your account through the "Plans & Billing" tab
+  </Step>
+
+  <Step title="Automatic deduction">
+    Credits are automatically deducted when messages are sent
+  </Step>
+
+  <Step title="Credit management">
+    Monitor your balance and enable auto-recharge to prevent service interruptions
+  </Step>
+</Steps>
+
+## Important service notes
+
+### Requirements & limitations
+
+1. An active OpenPhone subscription is required for API access.
+2. MMS is not supported in the current API version.
+3. Partial credits cannot be used for sending messages; the API will return an error.
+
+<Warning>
+  If your credit balance is insufficient for a message's full cost, the API will return an error and the message won't be sent.
+</Warning>
+
+### Support & assistance
+
+<Info>Need help understanding our pricing or managing your costs? Our team is here to help. Email us at [support+developers@openphone.co](mailto:support+developers@openphone.co) with any questions. </Info>
+
+
+# Terms of Service
+Source: https://openphone.mintlify.dev/docs/mdx/pricing-support/terms-of-service
+
+Developer API Terms of Service
+
+Please read these Developer API Terms of Service (the “Agreement”) carefully before using the API and Service (each as defined below) offered by OpenPhone Technologies, Inc. (“OpenPhone”). By clicking on the “Accept” or “Submit” button, you or the entity or company that you represent (“You,” “Your,” “Yours” or “Developer”) are unconditionally consenting to be bound by and are becoming a party to this Agreement. Your use of any portion of the API or Service, as well as your submission of any registration form or similar document that references this Agreement shall also constitute assent to this Agreement. If you do not unconditionally agree to all of the terms of this Agreement, click the “Decline” button and you shall have no right to use the API or Service. If you are entering into this Agreement on behalf of an entity, then you represent and warrant that you are authorized to bind such entity to the terms of this Agreement. If the terms of this Agreement are considered an offer, acceptance is expressly limited to such terms.
+
+WHEREAS, OpenPhone owns and operates a business phone, texting, and collaborative workspace system and application (the “Service”);
+
+WHEREAS, Developer desires to acquire from OpenPhone, and OpenPhone desires to provide to Developer, the right and license to access and use certain technologies and develop integrations to the Services as more fully described herein;
+
+NOW THEREFORE, the parties hereto, in consideration of the foregoing and other good and valuable consideration recognized by the parties, hereby agree as follows:
+
+​
+
+1. Definitions
+   The following terms shall have the following meanings for the purpose of this Agreement:
+
+1.1 “Acceptable Use Policy” means OpenPhone’s acceptable use policy for Developers creating Integrations, available at [https://www.openphone.com/terms](https://www.openphone.com/terms), which may be updated by OpenPhone from time to time.
+
+1.2 “API” means OpenPhone’s application programming interfaces and specifications thereto, as it is provided by OpenPhone to Developer, to enable Developer and End Users to interface with the Service.
+
+1.3 “Documentation” means documentation and information regarding the API and Service that are delivered by OpenPhone to Developer in any form (including the documentation set forth at [https://www.openphone.com/docs](https://www.openphone.com/docs), including any updates to such documentation provided by OpenPhone from time to time.
+
+1.4 “End User” means a user that accesses the API or the Service through the Integration for such user’s own benefit.
+
+1.5 “End User Content” means any information, data, text, content or other materials that Developer or End Users upload, submit, transmit, display, post, store, or otherwise make available through the Service, including through the API or the Integration.
+
+1.6 “Integration” means a software application or process that utilizes the API to make the Services compatible and/or interoperable with another software application or platform.
+
+1.7 “OpenPhone Data” means any information, data, text or other content provided by or on behalf of OpenPhone to Developer about an individual End User.
+
+1.8 “OpenPhone Terms of Service” means OpenPhone’s standard terms of service, available at [https://www.openphone.com/terms](https://www.openphone.com/terms), which may be updated by OpenPhone from time to time.
+
+​
+2\. API, Service and OpenPhone Data License; Restrictions
+2.1 License. Subject to the terms and conditions of this Agreement, OpenPhone hereby grants Developer a non-exclusive, non-transferable, non-sublicensable, revocable, and limited right and license during the Term to access and use the Service, API and OpenPhone Data (a) to build one or more Integrations that connect to the Service, and (b) to permit End Users who have agreed to the OpenPhone Terms of Service to access the Service via such Integrations, in each case, in accordance with the Documentation, Acceptable Use Policy, and the OpenPhone Terms of Service. For the avoidance of doubt, Developer may not make any Integration or provide access to the Service to any End User or any other person or entity who has not agreed to the OpenPhone Terms of Service.
+
+2.2 Registration; Monetization. Prior to accessing the API or developing an Integration, Developer shall complete OpenPhone’s standard registration process and provide all requested information, including, without limitation, (i) contact information for Developer, (ii) the purpose, features, and functionality of the Integration, and (iii) whether Developer intends to charge End Users for or otherwise monetize the Integration. Developer may not charge End Users for access to the Services via the Integration or otherwise monetize the Integration without OpenPhone’s prior written approval.
+
+2.3 Responsibilities. Developer is solely responsible for the acts or omissions of Developer and each End User in connection with their use of the API and Service in connection with the Integration. Developer’s agreements with End Users must: (i) be no less protective of OpenPhone’s rights and ownership than this Agreement and the OpenPhone Terms of Service; (ii) not grant greater use or access rights to the Service or API than those rights, licenses and permissions described in OpenPhone Terms of Service; (iii) include substantially and materially similar restrictions to those set forth in Section 2.5 with respect to the Service and API to the extent applicable; and (iv) require, as a condition of accessing the Services via the Integration, that End Users have agreed to the OpenPhone Terms of Service. Developer shall prohibit unauthorized access to or use of the API and to promptly notify OpenPhone of any such unauthorized access or use. Developer accepts and assumes all responsibility for complying with all applicable laws and regulations in connection with all of Developer’s and End Users’ activities involving the API, the Service, End User Content and OpenPhone Data.
+
+2.4 Updates and Modifications. Developer understands and agrees that the specifications for the API and the Service shall be defined by OpenPhone in its sole discretion, and Developer is responsible for its development and other costs associated with Developer’s use of the API or Integration. OpenPhone reserves the right to modify, change, update and/or enhance the API and/or the Service (each a “Modification”) at any time in OpenPhone’s sole and exclusive discretion. Developer acknowledges and agrees that such Modifications may affect Developer’s and End Users’ ability to access the Service and may require Developer to make changes to the Integration. OpenPhone shall not be liable for any costs incurred by Developer arising out of or in connection with any Modification.
+
+2.5 License Restrictions.
+
+2.5.1 Except as expressly permitted hereunder, Developer shall not, and shall require that End Users do not (i) use any method to access or use the Service other than as permitted through the API, (ii) provide the API or access to the Service to any third parties other than End Users, (iii) permit or enable third parties to copy or obtain the API or access to the Service in any manner not expressly authorized in this Agreement, (iv) use the API or Service, in any manner that violates applicable laws, (v) license, sell, re-sell, rent, lease, transfer, assign, reproduce, distribute, or alter the API, Service or any portion of the API or Service, or permit or enable any third parties to do so; (vi) use the Service, the API, or any documentation or other materials received from OpenPhone in connection with this Agreement, to develop a product or service that competes with the Service; (vii) modify, translate, adapt, merge, make derivative works of, disassemble, decompile, reverse compile or reverse engineer, or otherwise attempt to discover the source code or underlying algorithms of any part of the Service or API except to the extent the foregoing restrictions are expressly prohibited by applicable law; (viii) remove or destroy any copyright notices or other proprietary markings contained on or in the Service or API; (ix) access or use the API or Service in any manner that could disable, overburden, damage, disrupt or impair the API or Service or interfere with any other party’s access to or use of the API or Service or use any device, software or routine that causes the same; (x) attempt to gain unauthorized access to, interfere with, damage or disrupt the API or Service, accounts registered to other users, or the computer systems or networks connected to the API or Service; (xi) circumvent, remove, alter, deactivate, degrade or thwart any technological measure or content protections of the API or Service; (xii) use any robot, spider, crawlers, scraper, or other automatic device, process, software or queries that intercepts, “mines,” scrapes, extracts, or otherwise accesses the API or Service to monitor, extract, copy or collect information or data from or through the API or Service; or (xiii) introduce any viruses, trojan horses, worms, logic bombs or other materials that are malicious or technologically harmful into OpenPhone’s systems.
+
+2.6 Public Announcement. The timing and content of any advertisements, announcements, press releases or other promotional activity relating to this Agreement, and the use of one party’s name or trademarks by the other party shall be subject to the prior approval of both parties. Notwithstanding the foregoing, OpenPhone may reference Developer as a Developer in advertisements, press releases, or other marketing or promotional activities regarding OpenPhone’s products or services.
+
+​
+3\. Ownership; Licenses; Third-Party Materials
+3.1 OpenPhone Ownership. As between OpenPhone and Developer, OpenPhone retains all rights, title and interest in and to all intellectual property rights embodied in or pertaining to the API, Service, OpenPhone Data, and OpenPhone Marks (as defined in Section 3.3), and all improvements, modifications, enhancements, and derivative works of any of the foregoing. There are no implied licenses under this Agreement, and any rights not expressly granted to Developer hereunder are reserved by OpenPhone or its licensors. Developer shall not take any action inconsistent with OpenPhone’s ownership of the API, Service, OpenPhone Data, or OpenPhone Marks.
+
+3.2 Integration; End User Content. As between OpenPhone and Developer, to the extent permitted by applicable law, Developer retains ownership of the Integration, subject to the license granted to OpenPhone in the following sentence. Developer grants OpenPhone a perpetual, non-exclusive, sublicensable (through multiple tiers of sublicensees) royalty-free, fully paid right and license to use, copy, host, store, transfer, display, perform, reproduce, modify for the purpose of formatting for display, and distribute the Integration and End User Content, in whole or in part, in any and all media or distribution methods (now known or later developed) for the purposes of operating and providing the Service to Developer and End Users, and any for any other lawful business purpose, including to improve the usability, functionality, and accuracy of the Service.
+
+3.3 Trademark License. Developer will prominently include the words \[“Powered by OpenPhone”] wherever it makes the Service available to End Users (including in the end-user facing interface of the Integration) and in all marketing and promotional materials that reference the functionality provided by the Service or Integration. OpenPhone hereby grants Developer a limited, non-exclusive, non-transferable, non-sublicensable, royalty-free license to use OpenPhone’s trademarks, service marks, and logos (collectively “OpenPhone Marks”) during the Term on Developer’s websites or promotional materials solely to (i) attribute OpenPhone as the provider of the Service and (ii) otherwise advertise and promote the availability of access to the Service in the Integration. Developer agrees to use the OpenPhone Marks only in a form identified by OpenPhone in writing for use hereunder and such quality standards as may be reasonably established by OpenPhone and communicated to Developer from time to time in writing. Developer shall obtain OpenPhone’s prior written approval of any material change in the style and manner in which any of the OpenPhone Marks are proposed to be used. Developer shall not use the OpenPhone Marks in a manner that disparages OpenPhone or its products or services, portrays OpenPhone in a false, competitively adverse or poor light, or dilutes the OpenPhone Marks. Except as expressly provided for in this Section 3.3, OpenPhone reserves all right, title, and interest in and to the OpenPhone Marks. All goodwill arising from Developer’s use of the OpenPhone Marks shall inure to the benefit of OpenPhone. Developer hereby grants OpenPhone a limited, non-exclusive, non-transferable, non-sublicensable, royalty-free license to use Developer’s trademarks, service marks, and logos (collectively “Developer Marks”) on OpenPhone’s websites or promotional materials solely to advertise and promote the availability of access to the Service in the Integration and in accordance with Section 2.6. OpenPhone shall obtain Developer’s prior written approval of any material change in the style and manner in which any of the Developer Marks are proposed to be used. Developer shall not use the Developer Marks in a manner that disparages Developer or its products or services, portrays Developer in a false, competitively adverse or poor light, or dilutes the Developer Marks. Developer reserves all right, title, and interest in and to the Developer Marks. All goodwill arising from OpenPhone’s use of the Developer Marks shall inure to the benefit of Developer.
+
+3.4 Feedback. Developer agrees that submission of any ideas, suggestions, documents, proposals or other feedback provided to OpenPhone (“Feedback”) is at Developer’s own risk and that OpenPhone has no obligations (including obligations of confidentiality) with respect to such Feedback. Developer represents and warrants that it has all rights necessary to submit the Feedback. Developer hereby grants to OpenPhone a fully paid, royalty-free, perpetual, irrevocable, worldwide, non-exclusive, transferrable, and fully sublicensable right and license to use, reproduce, perform, display, distribute, adapt, modify, re-format, create derivative works of, and otherwise exploit in any manner, any and all Feedback without restriction of compensation.
+
+3.5 Content and Data.
+
+3.5.1 End User Content. Developer represents and warrants that (i) before any End User may engage with the Integration or Service, Developer shall ensure that it provides all notices and obtains all consents required under applicable law to enable OpenPhone to process End User Content in accordance with OpenPhone’s privacy policy (currently available at [https://www.openphone.com/privacy](https://www.openphone.com/privacy)); (ii) it has sufficient rights, consents, and permissions to grant the licenses to OpenPhone set forth in Section 3.2 and to input the End User Content into the Service and (iii) the End User Content does not infringe, misappropriate, or otherwise violate any third party’s intellectual property rights, privacy rights, rights of publicity, moral rights, or other proprietary rights. Developer shall not (i) make representations or other statements with respect to End User Content that are contrary to or otherwise inconsistent with OpenPhone’s privacy policy or (ii) interfere with any independent efforts by OpenPhone to provide End User notice or obtain End User consent.
+
+3.5.2 OpenPhone Data. OpenPhone Data shall only be used for the purpose of making the Service available to End Users in accordance with the OpenPhone Terms of Service and Developer shall delete all OpenPhone Data in accordance with the Documentation. Developer shall be responsible for obtaining consent directly from End Users for any other use of the End User’s information or data. To the extent that End User submits any information or data directly to Developer, Developer shall be solely responsible for ensuring that Developer’s use of that data is in compliance with any applicable laws and Developer’s own stated privacy policy.
+
+3.5.3 DMCA. OpenPhone complies with the Digital Millennium Copyright Act (the “DMCA”) with regard to End User Content and all other content uploaded, submitted, transmitted, displayed, posted, stored, or otherwise made available on the Service that allegedly violates a third party’s copyright. OpenPhone reserves the right to delete or disable any content alleged to be infringing, and to terminate access to the Services for repeat alleged infringers. OpenPhone’s complete Copyright Dispute Policy is available at \[insert link].
+
+3.6 Third Party Services. Developer acknowledges and agrees that: (i) the Service may incorporate certain information, data, and materials from third party providers (collectively, “Third Party Services”), including without limitation through integrations or connectors to such Third Party Services that are provided by OpenPhone; (ii) Third Party Services may only be used in conjunction with the Service; and (iii) Developer’s use of the Third Party Services hereunder shall be subject to (and Developer agrees it is bound by) the third party terms and conditions referenced at Third Party Terms [https://www.openphone.com/terms](https://www.openphone.com/terms) (the “Third Party Terms Site”), as they may be modified from time to time by OpenPhone and/or its third party licensors or suppliers at any time in accordance with this Section 3.6 (collectively, the “Third Party Terms”), and which are incorporated into this Agreement by reference. In the event that OpenPhone makes any update to the Third Party Terms, OpenPhone shall use reasonable efforts to notify Developer of such update (email to suffice) at least 2 weeks in advance, which notice shall describe the applicable update, as well as the effective date of such update (which shall be at least 2 weeks after the date of such notice). Provided that OpenPhone has followed the foregoing procedure, any use by Developer of the Service following the effective date of an update to the Third Party Terms shall constitute acceptance of such update. OpenPhone does not make any representations or warranties with respect to Third Party Services or any third party providers. OpenPhone cannot and does not guarantee that the Service shall incorporate (or continue to incorporate) any particular Third Party Services.
+
+​
+4\. Term and Termination
+4.1 Term. This Agreement shall commence upon Developer’s first use of the API and/or Service and shall continue until terminated in accordance herewith.
+
+4.2 Termination. OpenPhone may terminate this Agreement at any time for any reason or no reason at all upon ten (10) days’ written notice. Developer may terminate this Agreement at any time for any reason or no reason at all upon thirty (30) days’ written notice. Either party may terminate this Agreement immediately upon written notice to the other party (a) if the other party breaches any warranty, representation, covenant or obligation under this Agreement (or, in the case of Developer, the OpenPhone Terms of Service) and, if such breach is curable, fails to cure such breach within ten (10) days after receiving written notice of the breach from the non-breaching party; or (b) if the other party is subject to a dissolution, receivership, liquidation, insolvency, conservatorship, consolidation, reorganization, sale of substantially all of its assets, cessation of business, voluntary or involuntary bankruptcy. OpenPhone immediately may suspend Developer’s or any End User’s access to the API or Service or terminate this Agreement (i) if Developer monetizes the Integration without OpenPhone’s prior approval, (ii) if required to do so by law, or (iii) if OpenPhone determines such action is necessary to prevent a security risk or other creditable risk of harm or liability to OpenPhone, the Service, the API, or any third parties.
+
+4.3 Effect of Termination; Survival\*\*.\*\* The provisions of Sections 1, 2.5, 3, 4.3, 5, 6.2, 7, 8 and 9 shall survive any expiration or termination of this Agreement. All other rights and obligations of the parties shall cease upon expiration or termination of this Agreement, and Developer shall cease use of the API, Service and OpenPhone Data as of the effective date of termination.
+
+​
+5\. Confidential Information
+5.1 Confidential Information. Each party and their respective affiliates, directors, officers, employees, authorized representatives, agents and advisors (including attorneys, accountants, consultants, bankers and financial advisors) shall keep confidential all proprietary information concerning the other party’s business procedures, present and future products, services, operations, marketing materials, fees, technology, policies or plans of the other party that is received or obtained during the negotiation or performance of the Agreement, whether such information is oral or written, and whether or not labeled as confidential by such party (collectively “Confidential Information”).
+
+5.2 Use of Confidential Information. For as long as Confidential Information of the disclosing party is in possession of the receiving party, the receiving party shall take reasonable steps, at least substantially equivalent to the steps it takes to protect its own proprietary information, to prevent the use, duplication or disclosure of Confidential Information other than in accordance with this Agreement. Each party may disclose Confidential Information of the other party to its employees or agents who are directly involved in negotiating or performing this Agreement and who are apprised of their obligations under this Section and directed by the receiving party to treat such information confidentially, or as required by law or by a supervising regulatory agency of a receiving party. Neither party shall disclose, share, rent, sell or transfer to any third party any Confidential Information of the other party except as expressly permitted by this Agreement. The receiving party shall use Confidential Information of the other party only as necessary to perform this Agreement.
+
+5.3 Exceptions. Notwithstanding anything to the contrary, the obligations of the receiving party set forth in this Section 5 shall not apply to any information of the disclosing party that: (a) is or becomes a part of the public domain through no wrongful act of the receiving party; (b) was in the receiving party’s possession free of any obligation of confidentiality at the time of the disclosing party’s communication thereof to the receiving party; (c) is developed by the receiving party completely independent from the Confidential Information of the disclosing party; or (d) is required by law or regulation to be disclosed, but only to the extent and for the purpose of such required disclosure after providing the disclosing party with advance written notice if reasonably possible such that the disclosing party is afforded an opportunity to contest the disclosure or seek an appropriate protective order.
+
+5.4 Remedies. Upon the request of the disclosing party following the termination of this Agreement, the other party shall promptly return all Confidential Information of the disclosing party in its possession, and shall promptly destroy such materials containing such information (and any copies, extracts, and summaries thereof) and shall further provide the other party with written confirmation of such return or destruction upon written request. In the event a party discovers that Confidential Information of the other party has been used in an unauthorized manner or disclosed in violation of this Section 5, the party discovering the unauthorized use or disclosure shall promptly notify the other party of such event. In addition, the non-disclosing party shall be entitled to all other remedies available at law or equity, including injunctive relief.
+
+​
+6\. Limited Representations and Warranties
+6.1 General. Each party represents and warrants that (i) it is a duly incorporated or organized entity in its state of incorporation or organization and that it has the full power and authority to enter into and perform its obligations under this Agreement; (ii) the execution and performance by it of its obligations under this Agreement do not constitute a breach of or conflict with any other agreement or arrangement by which it is bound; (iii) this Agreement is a legal, valid and binding obligation of the party executing this Agreement; (iv) no consent or approval of any other party is required in connection with the execution, delivery, performance, or enforceability of this Agreement; and (v) it shall comply with all applicable laws, rules, and regulations in connection with performance of such party’s obligations under this Agreement.
+
+6.2 Warranty Disclaimer. EXCEPT FOR THE REPRESENTATIONS AND WARRANTIES EXPRESSLY SET FORTH IN THIS SECTION 6, THE API, SERVICE, AND OPENPHONE DATA ARE EACH PROVIDED “AS IS” AND OPENPHONE AND ITS LICENSORS EXPRESSLY DISCLAIM ALL WARRANTIES AND CONDITIONS, EXPRESS, IMPLIED OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES FOR TITLE, NON-INFRINGEMENT, MERCHANTABILITY, QUIET ENJOYMENT, FITNESS FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR TRADE USAGE. OPENPHONE DOES NOT REPRESENT OR WARRANT THAT (I) THE API, OR THE SERVICE SHALL MEET DEVELOPER’S REQUIREMENTS (SUCH AS THE QUALITY, EFFECTIVENESS, REPUTATION AND OTHER CHARACTERISTICS OF THE API AND SERVICE); (II) DEVELOPER’S OR ITS USERS’ USE OF THE API AND SERVICE SHALL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE; OR (III) THE ADVICE, RESULTS, OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED FROM USE OF THE SERVICE OR API SHALL BE ACCURATE OR RELIABLE. DEVELOPER ACKNOWLEDGES THAT THE SERVICE MAY INCLUDE THIRD PARTY SERVICES AND THAT OPENPHONE IS NOT LIABLE, AND DEVELOPER AGREES NOT TO SEEK TO HOLD OPENPHONE LIABLE, FOR ANY THIRD PARTY SERVICES, AND THAT THE RISK OF INJURY FROM SUCH THIRD PARTY SERVICES RESTS ENTIRELY WITH DEVELOPER.
+
+​
+7\. Indemnification
+Developer agrees to indemnify, defend and hold harmless OpenPhone, and parents, subsidiaries, affiliates, officers, employees, agents, partners, suppliers, and licensors, from and against any and all third-party losses, costs, liabilities, and claims (including reasonable attorneys’ fees) relating to or arising out of (a) Developer’s use or misuse of the API, Service, OpenPhone Data or intentional misconduct; (b) Developer’s violation of this Agreement; (c) Developer’s violation of any applicable law, rule or regulation; and (d) Developer’s violation of any other party’s right, including without limitation any right of privacy or intellectual property rights. Developer may not enter into any settlement or compromise of any such claim without prior written consent of OpenPhone. OpenPhone reserves the right, at its own cost, to assume the exclusive defense and control of any matter otherwise subject to indemnification by Developer, in which event Developer shall fully cooperate with OpenPhone in asserting any available defenses.
+
+​
+8\. Limitation of Liability
+TO THE FULLEST EXTENT PROVIDED BY LAW, IN NO EVENT SHALL OPENPHONE BE LIABLE FOR ANY LOSS OF PROFITS, REVENUE OR DATA, INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, OR DAMAGES OR COSTS DUE TO BUSINESS INTERRUPTION, IN EACH CASE WHETHER OR NOT OPENPHONE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT, THE SERVICE, THE API, OPENPHONE DATA OR ANY COMMUNICATIONS, INTERACTIONS OR MEETINGS WITH OTHER USERS OF THE SERVICE OR THIRD PARTIES, ON ANY THEORY OF LIABILITY, INCLUDING TO THE EXTENT RESULTING FROM: (I) THE USE OR INABILITY TO USE THE SERVICE OR API; (II) ANY OTHER MATTER RELATED TO THE SERVICE OR API OR OPENPHONE DATA, WHETHER BASED ON WARRANTY, COPYRIGHT, CONTRACT, TORT (INCLUDING NEGLIGENCE), PRODUCT LIABILITY OR ANY OTHER LEGAL THEORY, OR (III) FOR ANY AMOUNT EXCEEDING THE GREATER OF (X) THE AMOUNT OF FEES PAID TO OPENPHONE DURING THE TWELVE MONTHS IMMEDIATELY PRECEDING THE CLAIM OR (Y) \$100 (ONE HUNDRED DOLLARS). NOTWITHSTANDING THE FOREGOING, THE LIMITATIONS SET FORTH IN THIS SECTION 8 SHALL NOT LIMIT A PARTY’S LIABILITY UNDER SECTION 5 (CONFIDENTIALITY) OR SECTION 7 (INDEMNIFICATION). OPENPHONE ASSUMES NO RESPONSIBILITY FOR THE TIMELINESS, DELETION, MIS-DELIVERY OR FAILURE TO STORE ANY END USER CONTENT.
+
+​
+9\. Miscellaneous
+9.1 Assignment. Developer may not assign this Agreement without the prior written consent of OpenPhone. Subject to the foregoing limitation, this Agreement is binding upon and inures to the benefit of the successors and assigns of the respective parties hereto.
+
+9.2 Independent Contractors. The relationship of the parties hereto is that of independent contractors. The parties hereto are not deemed to be agents, partners or joint ventures of the others for any purpose as a result of this Agreement or the transactions contemplated thereby. Nothing herein shall be deemed or construed as granting to either party or any right or authority to assume or to create any obligation or responsibility, express or implied, for, on behalf of, or in the name of the other party. All financial and other obligations associated with each party’s business are the sole responsibility of such party.
+
+9.3 Third Party Beneficiaries. This Agreement is not intended and shall not be construed to create any rights or benefits upon any person not a party to this Agreement.
+
+9.4 Force Majeure. Neither party shall be liable to the other in any way whatsoever for any failure or delay in performance of any of the obligations under this Agreement (other than obligations to make payment), arising out of any event or circumstance beyond the reasonable control of such party (including war, rebellion, civil commotion, terror, strikes, lock-outs or industrial disputes; fire, explosion, earthquake, acts of God, flood, drought or bad weather; acts of terror; epidemics, pandemics, or quarantine restrictions; or order by any government department, council or other constituted body).
+
+9.5 Costs and Expenses. Unless specifically provided for elsewhere in this Agreement, each party shall bear its own costs and expenses, including legal fees, accounting fees and taxes incurred in connection with the negotiation and performance of this Agreement.
+
+9.6 Compliance with Law. Developer shall at all times comply with all applicable international, federal, state and local laws and shall not engage in any illegal or unethical practices. Without limiting any of the foregoing, Developer agrees that it shall not permit the use of the Service or API or OpenPhone Data, export, or re-export the Service or API or OpenPhone Data, (a) into, or to or for the benefit of a national or resident of, any country to which the United States has embargoed goods, or (b) to anyone on the United States Treasury Department’s list of Specially Designated Nationals or the U.S. Commerce Department’s Table of Denial Orders, or license or otherwise permit use of the Service or API or OpenPhone Data for any activities involving nuclear materials or weapons, missile or rocket technologies, proliferation of chemical or biological weapons, or any other purpose prohibited by applicable law or in any jurisdiction where the Service is prohibited.
+
+9.7 Notices. Except as otherwise provided, all notices under this Agreement shall be delivered by email, or physical mail to the other party at the address or number set forth in this Agreement. Notices to OpenPhone sent by physical mail shall also be sent via email to [support+developers@openphone.com](mailto:support+developers@openphone.com). Notices shall be deemed to have been given (i) at the time of delivery when delivered by email, (ii) at the time of delivery when delivered personally, or (iii) three (3) business days after having been sent by physical mail.
+
+9.8 Entire Agreement; Modification. This Agreement, including any exhibits or other documents attached hereto or referenced herein, each of which is hereby incorporated into this Agreement and made an integral part hereof, constitutes the entire agreement between the parties relating to the subject matter hereof and there are no representations, warranties or commitments except as set forth herein. This Agreement supersedes all prior understandings, negotiations and discussions, written or oral, of the parties relating to the transactions contemplated by this Agreement. This Agreement may not be changed orally but only by an agreement in writing, signed by the party against whom enforcement of any waiver, change, modification, or discharge is sought.
+
+9.9 Headings; Construction. The headings to the clauses, sub-clause and parts of this Agreement are inserted for convenience of reference only and are not intended to be part of or to affect the meaning or interpretation of this Agreement. The terms “this Agreement,” “hereof,” “hereunder” and any similar expressions refer to this Agreement and not to any particular Section or other portion of this Agreement. As used in this Agreement, the words “include” and “including,” and variations thereof, shall be deemed to be followed by the words “without limitation” and the word “discretion” means sole discretion.
+
+9.10 Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of California without giving effect to any conflict of law principles. The Federal and State courts located in San Francisco County, California shall be the exclusive venue for any disputes under this Agreement, and the parties hereby consent to the personal jurisdiction of those courts for such purposes.
+
+9.11 Provisions Severable. If any provision of this Agreement shall be or become wholly or partially invalid, illegal or unenforceable, such provision shall be enforced to the extent that it is legal and valid and the validity, legality and enforceability of the remaining provisions shall in no way be affected or impaired. This Agreement shall be binding upon and inure to the benefit of the parties hereto and their respective successors, legal representatives and permitted assigns.
+
+9.12 Waivers; Cumulative Remedies. No failure or delay by a party to insist upon the strict performance of any term or condition under this Agreement or to exercise any right or remedy available under this Agreement at law or in equity, shall imply or otherwise constitute a waiver of such right or remedy, and no single or partial exercise of any right or remedy by any party shall preclude exercise of any other right or remedy. All rights and remedies provided in this Agreement are cumulative and not alternative; and are in addition to all other available remedies at law or in equity.
+
+9.13 Counterparts. This Agreement may be executed in two or more counterparts, each of which together shall be deemed an original, but all of which shall constitute one and the same instrument.
+
+

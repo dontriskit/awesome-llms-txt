@@ -1,0 +1,81 @@
+# 1millionbot
+
+## English
+
+- [Create a virtual assistant](https://docs.1millionbot.com/readme): Below we show you some usage guides to create from a basic assistant to an advanced one.
+- [Create DialogFlow credentials](https://docs.1millionbot.com/create-credentials-dialogflow): How to create DialogFlow credentials for your chatbot
+- [Conversations](https://docs.1millionbot.com/chatbot/conversations): Monitor and manage past and present interactions between users and your virtual assistant through this section.
+- [Channels](https://docs.1millionbot.com/chatbot/channels): Integrate your assistant in any of the next channels
+- [Web](https://docs.1millionbot.com/chatbot/channels/web)
+- [Twitter](https://docs.1millionbot.com/chatbot/channels/twitter)
+- [Slack](https://docs.1millionbot.com/chatbot/channels/slack)
+- [Telegram](https://docs.1millionbot.com/chatbot/channels/telegram)
+- [Teams](https://docs.1millionbot.com/chatbot/channels/teams)
+- [Facebook Messenger](https://docs.1millionbot.com/chatbot/channels/facebook-messenger)
+- [Instagram Messenger](https://docs.1millionbot.com/chatbot/channels/instagram-messenger)
+- [WhatsApp Cloud API](https://docs.1millionbot.com/chatbot/channels/whatsapp-cloud-api)
+- [WhatsApp Twilio](https://docs.1millionbot.com/chatbot/channels/whatsapp-twilio)
+- [Customize](https://docs.1millionbot.com/chatbot/customize): Customize your chatbot's appearance, instructions, messages, services, and settings to provide a personalized and engaging user experience.
+- [Knowledge Base](https://docs.1millionbot.com/chatbot/knowledge-base)
+- [Intents](https://docs.1millionbot.com/chatbot/knowledge-base/intents)
+- [Create an intent](https://docs.1millionbot.com/chatbot/knowledge-base/intents/create-an-intent)
+- [Training Phrases with Entities](https://docs.1millionbot.com/chatbot/knowledge-base/intents/training-phrases-with-entities)
+- [Extracting values with parameters](https://docs.1millionbot.com/chatbot/knowledge-base/intents/extracting-values-with-parameters)
+- [Rich responses](https://docs.1millionbot.com/chatbot/knowledge-base/intents/rich-responses): Each assistant integration in a channel allows you to display rich responses.
+- [Best practices](https://docs.1millionbot.com/chatbot/knowledge-base/intents/best-practices)
+- [Entities](https://docs.1millionbot.com/chatbot/knowledge-base/entities)
+- [Create an entity](https://docs.1millionbot.com/chatbot/knowledge-base/entities/create-an-entity)
+- [Types of entities](https://docs.1millionbot.com/chatbot/knowledge-base/entities/entity-types)
+- [Synonym generator](https://docs.1millionbot.com/chatbot/knowledge-base/entities/synonym-generator)
+- [Best practices](https://docs.1millionbot.com/chatbot/knowledge-base/entities/best-practices)
+- [Training](https://docs.1millionbot.com/chatbot/knowledge-base/training)
+- [Validation and training of the assistant](https://docs.1millionbot.com/chatbot/knowledge-base/training/validation-and-training-of-the-assistant)
+- [Library](https://docs.1millionbot.com/chatbot/knowledge-base/library)
+- [Chatbot](https://docs.1millionbot.com/insights/chatbot): Get a comprehensive view of your chatbot's interaction with users, understand user behavior, and measure performance metrics to optimize the chatbot experience.
+- [Live chat](https://docs.1millionbot.com/insights/live-chat): Analyze the performance of the live chat service, measure the effectiveness of customer support, and optimize resource management based on real-time data.
+- [Survey](https://docs.1millionbot.com/insights/surveys): Analyze survey results to better understand customer satisfaction and the perception of the service provided.
+- [Reports](https://docs.1millionbot.com/insights/reports): Monthly reports with all the most relevant statistics.
+- [Leads](https://docs.1millionbot.com/leads/leads): Gain detailed control of your leads and manage key information for future marketing and sales actions.
+- [Surveys](https://docs.1millionbot.com/surveys/surveys): Manage your surveys and goals to collect valuable opinions and measure the success of your interactions with customers.
+- [IAM](https://docs.1millionbot.com/account/iam): Manage roles and permissions to ensure the right content is delivered to the right user.
+- [Security](https://docs.1millionbot.com/profile/security): Be in control and protect your account information.
+
+## Spanish
+
+- [Crear un asistente virtual](https://docs.1millionbot.com/es/readme): A continuación te mostramos unas guías de uso para crear desde un asistente básico hasta uno avanzado.
+- [Crear credenciales DialogFlow](https://docs.1millionbot.com/es/create-credentials-dialogflow): Como crear tus credenciales DialogFlow para tu chatbot
+- [Conversaciones](https://docs.1millionbot.com/es/chatbot/conversations): Supervisa y administra las interacciones pasadas y presentes entre los usuarios y tu asistente virtual a través de esta sección.
+- [Canales](https://docs.1millionbot.com/es/chatbot/channels)
+- [Web](https://docs.1millionbot.com/es/chatbot/channels/web)
+- [Twitter](https://docs.1millionbot.com/es/chatbot/channels/twitter)
+- [Slack](https://docs.1millionbot.com/es/chatbot/channels/slack)
+- [Telegram](https://docs.1millionbot.com/es/chatbot/channels/telegram)
+- [Teams](https://docs.1millionbot.com/es/chatbot/channels/teams)
+- [Facebook Messenger](https://docs.1millionbot.com/es/chatbot/channels/facebook-messenger)
+- [Instagram Messenger](https://docs.1millionbot.com/es/chatbot/channels/instagram-messenger)
+- [WhatsApp Cloud API](https://docs.1millionbot.com/es/chatbot/channels/whatsapp-cloud-api)
+- [WhatsApp Twilio](https://docs.1millionbot.com/es/chatbot/channels/whatsapp-twilio)
+- [Personalizar](https://docs.1millionbot.com/es/chatbot/customize): Personaliza la apariencia, instrucciones, mensajes, servicios y ajustes de tu chatbot para ofrecer una experiencia de usuario personalizada y atractiva.
+- [Base de Conocimiento](https://docs.1millionbot.com/es/chatbot/knowledge-base)
+- [Intenciones](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents)
+- [Crear una intención](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents/create-an-intent)
+- [Frases de entrenamiento con entidades](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents/training-phrases-with-entities)
+- [Extracción de valores con parámetros](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents/extracting-values-with-parameters)
+- [Respuestas enriquecidas](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents/rich-responses): Cada integración del asistente en un canal permite mostrar respuestas enriquecidas.
+- [Mejores prácticas](https://docs.1millionbot.com/es/chatbot/knowledge-base/intents/best-practices)
+- [Entidades](https://docs.1millionbot.com/es/chatbot/knowledge-base/entities)
+- [Crear una entidad](https://docs.1millionbot.com/es/chatbot/knowledge-base/entities/create-an-entity)
+- [Tipos de entidades](https://docs.1millionbot.com/es/chatbot/knowledge-base/entities/entity-types)
+- [Generador de sinónimos](https://docs.1millionbot.com/es/chatbot/knowledge-base/entities/synonym-generator)
+- [Mejores prácticas](https://docs.1millionbot.com/es/chatbot/knowledge-base/entities/best-practices)
+- [Entrenamiento](https://docs.1millionbot.com/es/chatbot/knowledge-base/training)
+- [Validación y entrenamiento del asistente](https://docs.1millionbot.com/es/chatbot/knowledge-base/training/validation-and-training-of-the-assistant)
+- [Biblioteca](https://docs.1millionbot.com/es/chatbot/knowledge-base/biblioteca)
+- [Chatbot](https://docs.1millionbot.com/es/analiticas/chatbot): Obtén una visión integral de la interacción de tu chatbot con los usuarios, comprende el comportamiento del usuario y mide las métricas de rendimiento para optimizar la experiencia del chatbot.
+- [Chat en vivo](https://docs.1millionbot.com/es/analiticas/live-chat): Analiza el rendimiento del servicio de chat en vivo, mide la eficacia de la atención al cliente y optimiza la gestión de recursos con base en datos en tiempo real.
+- [Encuestas](https://docs.1millionbot.com/es/analiticas/surveys): Analiza los resultados de las encuestas para comprender mejor la satisfacción del cliente y la percepción del servicio proporcionado.
+- [Informes](https://docs.1millionbot.com/es/analiticas/reports): Informes mensuales con todas las estadísticas más relevantes.
+- [Leads](https://docs.1millionbot.com/es/leads/leads): Obtén un control detallado de tus leads y administra la información clave para futuras acciones de marketing y ventas.
+- [Encuestas](https://docs.1millionbot.com/es/encuestas/surveys): Gestiona tus encuestas y objetivos para recoger opiniones valiosas y medir el éxito de tus interacciones con los clientes.
+- [IAM](https://docs.1millionbot.com/es/cuenta/iam): Administra roles y permisos para garantizar que el contenido adecuado se muestra al usuario adecuado.
+- [Seguridad](https://docs.1millionbot.com/es/perfil/security): Ten el control y protege la información de tu cuenta.

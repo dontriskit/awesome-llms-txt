@@ -1,0 +1,306 @@
+# Authentication
+Source: https://ai-recruiter.micro1.ai/api-reference/getting-started/authentication
+
+Use the micro1 dashboard to get your API key.
+
+1. Login in to your [micro1 account.](https://www.client.micro1.ai/login)
+
+2. Click on the bottom left to go to settings
+
+3. Click generate API key button.
+
+### Using the API Key
+
+Once you have generated your API key, you need to include it in the header of each API request. The API key is passed in the header using the following format:
+
+```bash
+x-api-key: YOUR_API_KEY
+```
+
+**Example Request**
+
+Here is an example of how to include the API key in a cURL request:
+
+```Bash
+curl -X GET https://public.api.micro1.ai/interview \
+-H "x-api-key: YOUR_API_KEY"
+```
+
+**Header Details**
+
+* Header Name: x-api-key
+
+* Header Value: YOUR\_API\_KEY
+  Replace YOUR\_API\_KEY with the actual API key you generated from the client portal.
+
+**Error Handling**
+
+If your API key is missing, invalid, or expired, the API will respond with an error. Below are common HTTP status codes related to authentication:
+
+* **401 Unauthorized**: The request was made without a valid API key or the key was incorrect.
+
+* **403 Forbidden**: The API key does not have the necessary permissions to access the requested resource.
+
+**Example Error Response**
+
+```JSON
+{
+  "status": false,
+  "message": "Unauthorized: API key is missing or invalid."
+}
+```
+
+
+# Introduction
+Source: https://ai-recruiter.micro1.ai/api-reference/getting-started/introduction
+
+micro1's AI Recruiter API allows you to generate custom conversational interviews based on the skills you’d like to test. You call the API with the skills & more details about the role you’re hiring for, receive an interview link, and invite candidates.
+
+The candidate then goes through a conversational interview and a coding exercise (if they're an engineer). After they finish, you will receive reports on how they did. The report will include an AI rating per skill, a description of that rating, soft skills rating, proctoring score, and more.
+
+Use our AI Recruiter to interview 100x more candidates at 1/10th the cost per interview.
+
+Any questions? reach us at [support@micro1.ai](mailto:support@micro1.ai), we'll respond within 6 hours max.
+
+## Base URL
+
+```bash
+https://public.api.micro1.ai
+```
+
+
+# Event types
+Source: https://ai-recruiter.micro1.ai/api-reference/getting-started/webhooks/examples
+
+List of supported event types and their payload.
+
+### `interview_report.created`
+
+Occurs whenever an **interview report is successfully generated**.
+
+<Accordion title="Sample Request Body">
+  ```json
+  {
+    "event": "interview_report.created",
+    "data": {
+      "report_id": "h0gqkAcaDJ",
+      "interview_id": "123e4567-e89b-12d3-a456-426614174000",
+      "interview_name": "Full Stack Engineer Interview",
+      "candidate_id": "123e4567-e89b-12d3-a456-426614174000",
+      "candidate_name": "John Doe",
+      "candidate_email_id": "john.doe@micro1.ai",
+      "report_date": "2024-01-01",
+      "report_url": "https://micro1.ai/report/h0gqkAcaDJ.pdf",
+      "interview_recording_url": "https://micro1.ai/interview/h0gqkAcaDJ.mp4",
+      "proctoring_score": 85,
+      "proctoring_violations": [
+        {
+          "type": "tab_switch",
+          "value": "3",
+          "description": "3 tab switches detected, indicating multitasking or external searches."
+        }
+      ],
+      "interview_transcript": [
+        {
+          "timestamp": 100,
+          "role": "interviewer",
+          "content": "Can you tell me about yourself?"
+        }
+      ],
+      "technical_skills_evaluation": [
+        {
+          "skill": "React.js",
+          "ai_evaluation": {
+            "feedback": "Candidate has demonstrated a solid understanding of optimizing FastAPI performance.",
+            "rating": "Senior"
+          },
+          "timestamp": 100
+        }
+      ],
+      "soft_skills_evaluation": [
+        {
+          "skill": "Overall",
+          "ai_evaluation": {
+            "feedback": "Candidate demonstrated clear and organized thoughts throughout the interview, effectively addressing each question with relevant examples and explanations",
+            "rating": "Senior"
+          }
+        }
+      ],
+      "coding_skills_evaluation": {
+        "feedback": "The candidate has demonstrated a good understanding of the problem",
+        "rating": "Senior"
+      },
+      "custom_question_evaluation": [
+        {
+          "question_text": "Are you willing to relocate?",
+          "answer_text": "Yes, I am willing to relocate",
+          "ai_evaluation": {
+            "feedback": "Candidate is willing to relocate with a 20% chance",
+            "rating": "Senior"
+          }
+        }
+      ],
+      "date_created": "2021-01-01 00:00:00",
+      "date_modified": "2021-01-01 00:00:00",
+      "status": "active"
+    }
+  }
+  ```
+</Accordion>
+
+### `interview_recording.completed`
+
+Occurs whenever the **interview recording is successfully processed and available**.
+
+<Accordion title="Sample Request Body">
+  ```json
+  {
+    "event": "interview_recording.completed",
+    "data": {
+      "report_id": "ABCD1234",
+      "interview_recording_url": "https://url_to_interview_recording.mp4"
+    }
+  }
+  ```
+</Accordion>
+
+
+# Introduction
+Source: https://ai-recruiter.micro1.ai/api-reference/getting-started/webhooks/introductions
+
+Webhooks allow you to receive real-time notifications when specific events occur in your micro1 account. This enables you to automatically trigger actions in your systems based on these events.
+
+## Webhook Structure
+
+All webhook payloads follow this general structure:
+
+```json
+{
+  "event": "event.type",
+  "data": {
+    // Event-specific data
+  }
+}
+```
+
+## Common Fields
+
+| Field   | Type   | Description                                            |
+| ------- | ------ | ------------------------------------------------------ |
+| `event` | string | The type of event that triggered the webhook           |
+| `data`  | object | Event-specific payload containing relevant information |
+
+## Available Events
+
+Here are the events you can subscribe to:
+
+### Interview Events
+
+* `interview_report.created` - Triggered when a new interview report is created
+* `interview_recording.completed` - Triggered when an interview recording is completed
+
+
+# Get all completed reports
+Source: https://ai-recruiter.micro1.ai/api-reference/interview-reports/get-all-completed-reports
+
+get /interview/reports
+This endpoint retrieves reports for candidates who have completed their AI interviews. You can filter the reports by Interview ID, Candidate ID or Report ID.
+
+
+
+# Create a new interview
+Source: https://ai-recruiter.micro1.ai/api-reference/interview/create-a-new-interview
+
+post /interview
+This endpoint creates a new interview, returns a unique interview ID and a corresponding interview URL. You can send this URL to candidates, add it to a job post or alternatively, use the invite candidate endpoint to send invitations for the interview.
+
+
+
+# Create a new interview (custom questions)
+Source: https://ai-recruiter.micro1.ai/api-reference/interview/create-a-new-interview-custom-questions
+
+openapi.json post /custom/interview
+This endpoint creates a new interview with only custom questions, returns a unique interview ID and a corresponding interview URL. You can send this URL to candidates, add it to a job post or alternatively, use the invite candidate endpoint to send invitations for the interview.
+
+
+
+# Delete an interview
+Source: https://ai-recruiter.micro1.ai/api-reference/interview/delete-an-interview
+
+delete /interview/{interviewId}
+This endpoint deletes an existing interview by ID.
+
+
+
+# Get all saved interviews
+Source: https://ai-recruiter.micro1.ai/api-reference/interview/get-all-saved-interviews
+
+get /interviews
+This endpoint fetches all interviews that have been previously created and saved, such as interviews for specific roles like Full Stack Engineer or LLM Engineer.
+
+
+
+# Update an interview
+Source: https://ai-recruiter.micro1.ai/api-reference/interview/update-an-interview
+
+put /interview/{interviewId}
+This endpoint updates an existing interview by ID.
+
+
+
+# Get all invited candidates
+Source: https://ai-recruiter.micro1.ai/api-reference/invite-candidate/get-all-invited-candidates
+
+get /interview/invites
+This endpoint retrieves all sent invites. You can search for a specific candidate, keyword or interview.
+
+
+
+# Invite candidates to an interview
+Source: https://ai-recruiter.micro1.ai/api-reference/invite-candidate/invite-candidates-to-an-interview
+
+post /interview/invite
+This endpoint emails candidates to take the interview, returns the candidate ID, and interview URL. The candidates will then take the interview on our platform before you can receive the report data.
+
+
+
+# Get a mock interview
+Source: https://ai-recruiter.micro1.ai/api-reference/mock-interview/get-a-mock-interview
+
+openapi.json post /mock/interview
+This endpoint retrieves a sample interview question based on the provided skills and their descriptions. It helps you understand the type of questions tailored by AI interviews based on the skills provided.
+
+
+
+# Create a webhook
+Source: https://ai-recruiter.micro1.ai/api-reference/webhook/create-a-webhook
+
+post /webhook
+This endpoint sets up a webhook for the AI Recruiter. It allows you to receive notifications, such as interview results, when a candidate completes the interview and the report is generated.
+
+
+
+# Delete a webhook
+Source: https://ai-recruiter.micro1.ai/api-reference/webhook/delete-a-webhook
+
+delete /webhook/{webhookId}
+This endpoint deletes a webhook by ID.
+
+
+
+# Get all webhooks
+Source: https://ai-recruiter.micro1.ai/api-reference/webhook/get-all-webhooks
+
+get /webhooks
+This endpoint fetches all configured webhooks.
+
+
+
+# Update a webhook
+Source: https://ai-recruiter.micro1.ai/api-reference/webhook/update-a-webhook
+
+put /webhook/{webhookId}
+This endpoint updates a webhook by ID.
+
+
+

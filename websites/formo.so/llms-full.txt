@@ -1,0 +1,1905 @@
+# Authentication
+Source: https://docs.formo.so/api-reference/authentication
+
+Learn how to authenticate your Formo API requests.
+
+All API endpoints require authentication using a Workspace API key. You'll need to include this key in the request headers for all API calls.
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/auth-flow.png" alt="API Authentication Flow Diagram" />
+</Frame>
+
+## Workspace API Key
+
+Find your API key in your workspace settings. This key is unique to your workspace and should be kept secure.
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/workspace-api-key.png" alt="Where to find your Workspace API key" />
+</Frame>
+
+## API Key Authentication
+
+Include the API key in the request headers:
+
+```bash
+Authorization Header x-api-key: your_workspace_api_key
+```
+
+## Validate API Key
+
+Validates a workspace API key and returns workspace details.
+
+```bash
+POST https://api.formo.so/api/validate-api-key
+```
+
+### Request Body
+
+```json
+{
+	"apiKey": "string"
+}
+```
+
+### Response
+
+```json
+{
+	"isSuccess": true,
+	"data": {
+		"validated": true,
+		"details": "API key validated successfully for workspace: {workspace_name}",
+		"teamId": "string"
+	}
+}
+```
+
+### Error Responses
+
+* `401` - Missing or invalid API key
+* `500` - Server error
+
+
+# List Form Responses
+Source: https://docs.formo.so/api-reference/endpoint/list
+
+GET /webhooks/{formId}/poll
+Retrieve form response data from Formo API
+
+Retrieves form responses with transformed field data. Returns the most recent form submissions with field values mapped to readable keys based on the form configuration.
+
+<Note>
+  Need help finding your Form ID? Check out our guide on [Locating Your Form
+  ID](/api-reference/webhooks#finding-your-form-id).
+</Note>
+
+## Field Value Transformations
+
+The API automatically transforms certain field values based on their type:
+
+* Select/Radio fields: Values are transformed to their display labels
+* Checkbox groups: Values are transformed into an array of `{label, value}` objects
+* Identity fields: Address objects are flattened to strings
+
+## Notes
+
+* The endpoint returns the 10 most recent form submissions
+* Field names in the response are derived from form field labels, converted to snake\_case
+* All timestamps are returned in ISO 8601 format
+
+
+# Subscribe to Webhook
+Source: https://docs.formo.so/api-reference/endpoint/subscribe
+
+POST /webhooks
+Create webhook subscriptions for form events
+
+Creates or updates a webhook subscription for receiving form events.
+
+<Note>
+  Need help finding your Form ID? Check out our guide on [Locating Your Form
+  ID](/api-reference/webhooks#finding-your-form-id).
+</Note>
+
+### Event Types
+
+* `FORM_SUBMISSION` - Triggered when a form submission is received
+* `FORM_UPDATED` - Triggered when a form is updated
+
+## Notes
+
+* If a webhook subscription already exists for the same form and target URL, the event types will be merged with existing ones
+* Duplicate event types are automatically removed
+* Only `FORM_SUBMISSION` and `FORM_UPDATED` are valid event types
+* The webhook will be automatically activated upon creation
+
+
+# Unsubscribe from Webhook
+Source: https://docs.formo.so/api-reference/endpoint/unsubscribe
+
+DELETE /webhooks
+Remove webhook subscription
+
+Removes a webhook subscription using either a webhook ID or target URL as a query parameter. You must provide either `webhookId` or `targetUrl` as a query parameter.
+
+
+# Overview
+Source: https://docs.formo.so/api-reference/overview
+
+The Formo REST API lets you query events, view wallet profile data, and configure webhooks.
+
+## SQL Query API
+
+* Query and filter raw analytics events, materialized views, and metrics.
+* Return an activity/event stream for a user.
+* Export analytics data periodically to Kafka or AWS S3.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+## Wallet Profiles API
+
+* Fetch wallet profile properties including net worth and wallet labels
+* Detect if a user is a bot with wallet reputation scores
+* Real-time activation API that unifies wallet profile data with in-app wallet messaging
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+## Forms API
+
+Use the Forms API to trigger webhooks based on form responses.
+
+## Base URL
+
+All API requests should be made to:
+
+```bash
+https://api.formo.so/api
+```
+
+## Authentication
+
+API requests require a Workspace API key in the request headers.
+
+```bash
+x-api-key: your_workspace_api_key
+```
+
+<Info>
+  See our [Authentication Guide](/api-reference/authentication) for detailed
+  setup instructions and best practices.
+</Info>
+
+## Response Format
+
+All API responses follow this structure:
+
+```json
+{
+  "isSuccess": boolean,
+  "data": object | null,
+  "message": string | null,
+  "error": object | null
+}
+```
+
+## Quick Links
+
+* [Authentication Guide](/api-reference/authentication)
+* [Webhook Integration](/api-reference/webhooks)
+
+## Support & Feedback
+
+<CardGroup cols={2}>
+  <Card title="Slack" icon="slack" href="https://formo.so/slack">
+    Join our Slack community
+  </Card>
+
+  <Card title="Twitter" icon="x" href="https://x.com/getformo">
+    Send us a tweet or DM us any time
+  </Card>
+
+  <Card title="Email" icon="envelope" href="mailto:support@formo.so">
+    Email us at [support@formo.so](mailto:support@formo.so)
+  </Card>
+
+  <Card title="Founder" icon="comments" href="mailto:yos@formo.so">
+    Bug him at [yos@formo.so](mailto:yos@formo.so) (share anything that’s on your mind - the good and the bad).
+  </Card>
+</CardGroup>
+
+
+# Webhooks
+Source: https://docs.formo.so/api-reference/webhooks
+
+Receive event notifications with webhooks.
+
+# Forms Webhooks
+
+Formo uses webhooks to notify your application about form events in real-time. You can subscribe to different event types and receive notifications when forms are submitted or updated.
+Configure webhooks to subscribe to form events with the Formo API.
+
+## Finding Your Form ID
+
+Before setting up webhooks, you'll need your Form ID. To locate it:
+
+1. Click on the form you want to track
+2. Navigate to Settings
+3. Select General from the sidebar
+4. Find and copy your Form ID from the displayed information
+
+![Finding your Form ID](https://mintlify.s3.us-west-1.amazonaws.com/formo/images/form-id.png)
+
+## Available Webhook Events
+
+* `FORM_SUBMISSION`: Triggered when a user submits a form
+* `FORM_UPDATED`: Triggered when a form is updated
+
+## Managing Webhooks
+
+### Creating Webhooks
+
+To create a new webhook subscription, use the [Subscribe to Webhook](/api-reference/endpoint/subscribe) endpoint.
+
+### Listing Webhooks
+
+To view all your webhook subscriptions for a form, use the [List Webhooks](/api-reference/endpoint/list) endpoint.
+
+### Removing Webhooks
+
+To remove a webhook subscription, use the [Unsubscribe from Webhook](/api-reference/endpoint/unsubscribe) endpoint.
+
+## Event Payload
+
+When an event occurs, Formo will send a POST request to your webhook URL with the following payload structure:
+
+```json
+{
+	"formId": "string",
+	"formTitle": "string",
+	"submissionId": "string",
+	"submittedAt": "string"
+	// Form field data with transformed values
+}
+```
+
+## Best Practices
+
+1. **Verify Requests**: Always validate that requests are coming from Formo by checking the API key
+2. **Handle Retries**: Implement retry logic in case your endpoint is temporarily unavailable
+3. **Process Asynchronously**: Handle webhook events asynchronously to prevent timeouts
+4. **Monitor Events**: Keep track of webhook delivery status for debugging
+
+
+# Supported Chains
+Source: https://docs.formo.so/chains/overview
+
+The Formo data platform supports major chains across the Ethereum and Solana ecosystems.
+
+## EVM
+
+Formo is committed to supporting builders on EVM. Formo supports 20+ EVM chains.
+
+| Chain                   | Forms | Analytics |
+| :---------------------- | :---- | :-------- |
+| Abstract Mainnet        | ✅     | ⏳         |
+| Abstract Testnet        | ✅     | ⏳         |
+| Arbitrum Mainnet        | ✅     | ⏳         |
+| Arbitrum Nova           | ✅     |           |
+| Arbitrum Sepolia        | ✅     | ⏳         |
+| Avalanche Mainnet       | ✅     |           |
+| Avalanche Fuji          | ✅     |           |
+| Base Mainnet            | ✅     | ⏳         |
+| Base Sepolia            | ✅     | ⏳         |
+| Berachain               | ✅     |           |
+| Berachain bArtio        | ✅     |           |
+| Blast Mainnet           | ✅     |           |
+| Blast Sepolia           | ✅     |           |
+| BOB                     | ✅     |           |
+| BOB Sepolia             | ✅     |           |
+| BNB Smart Chain Mainnet | ✅     | ⏳         |
+| BNB Smart Chain Testnet | ✅     | ⏳         |
+| Celo Mainnet            | ✅     |           |
+| Celo Alfajores          | ✅     |           |
+| Ethereum Mainnet        | ✅     | ⏳         |
+| Ethereum Sepolia        | ✅     | ⏳         |
+| Fraxtal Mainnet         | ✅     |           |
+| Fraxtal Testnet         | ✅     |           |
+| Gnosis Mainnet          | ✅     |           |
+| Gnosis Testnet          | ✅     |           |
+| ImmutableX Mainnet      | ✅     |           |
+| ImmutableX Testnet      | ✅     |           |
+| Ink Mainnet             | ✅     |           |
+| Ink Sepolia             | ✅     |           |
+| Kaia Mainnet            | ✅     |           |
+| Kaia Kairos             | ✅     |           |
+| Lens Sepolia            | ✅     |           |
+| Linea Mainnet           | ✅     |           |
+| Linea Sepolia           | ✅     |           |
+| Mantle Mainnet          | ✅     |           |
+| Mantle Sepolia          | ✅     |           |
+| Mode Mainnet            | ✅     |           |
+| Mode Testnet            | ✅     |           |
+| Morph                   | ✅     |           |
+| Morph Testnet           | ✅     |           |
+| Odyssey                 | ✅     |           |
+| Optimism Mainnet        | ✅     | ⏳         |
+| Optimism Sepolia        | ✅     | ⏳         |
+| Polygon Mainnet         | ✅     | ⏳         |
+| Polygon Amoy            | ✅     | ⏳         |
+| Polygon zkEVM Mainnet   | ✅     |           |
+| Polygon zkEVM Cardona   | ✅     |           |
+| Redstone                | ✅     |           |
+| Redstone Garnet         | ✅     |           |
+| Ronin                   | ✅     |           |
+| Ronin Saigon            | ✅     |           |
+| Scroll Mainnet          | ✅     |           |
+| Scroll Sepolia          | ✅     |           |
+| Sei                     | ✅     |           |
+| Sei Testnet             | ✅     |           |
+| Soneium                 | ✅     |           |
+| Soneium Minato          | ✅     |           |
+| Sonic Mainnet           | ✅     |           |
+| Sonic Testnet           | ✅     |           |
+| Sonic Blaze             | ✅     |           |
+| Story Testnet           | ✅     |           |
+| Unichain                | ✅     |           |
+| Unichain Sepolia        | ✅     |           |
+| World Chain             | ✅     |           |
+| World Chain Sepolia     | ✅     |           |
+| XMTP Sepolia            | ✅     |           |
+| zkSync Era Mainnet      | ✅     | ⏳         |
+| zkSync Era Sepolia      | ✅     | ⏳         |
+| Zora Mainnet            | ✅     |           |
+| Zora Sepolia            | ✅     |           |
+
+> Don't see your chain? [Let us know](mailto:support@formo.so).
+
+## SVM
+
+Formo is committed to supporting builders on Solana.
+
+| Chain          | Forms | Analytics |
+| :------------- | :---- | :-------- |
+| Solana Mainnet | ✅     | ⏳         |
+| Solana Testnet | ✅     | ⏳         |
+
+
+# Spec: Chain
+Source: https://docs.formo.so/data/events/chain
+
+
+
+The `chain_changed` event is emitted whenever the user's chain network changes.
+It includes the chain ID the user switched to.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "chain_changed", 
+    "payload": {
+        "chain_id": 1,
+        "address": "0x8e6ca77a7e044ba836a97beb796c124ca3a6a154"
+    }
+}
+```
+
+
+# Spec: Common Fields
+Source: https://docs.formo.so/data/events/common
+
+
+
+Here’s the payload of a typical call with common fields included:
+
+```json
+{
+    "id": "48555101eee2f44ac0f0632fcb7c7c9f6ce0012ae395ae79f8a0d515e4f5e41f"
+    "action": "page_hit",
+    "version": "1",
+    "project_id": "d5naNbBlqxSBXLuNa6zwc"
+    "session_id": "117b982a451dc22edea6413b8e20958216c0a5b3baaa1d90699c42dbf4e74e33",    
+    "anonymous_id": "c2bc0ebe-d852-49d1-9efd-e45744850ae0",
+    "user_id": "a46e6878-1ed5-4a81-9185-83608df2fcb6",
+    "address": "0x8e6ca77a7e044ba836a97beb796c124ca3a6a154",    
+    "payload": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+        "locale": "en-US",
+        "location": "ID",
+        "referrer": "https://chatgpt.com/",
+        "utm_source": "chatgpt.com",
+        "utm_medium": "linkedin",
+        "utm_campaign": "early-access",
+        "utm_term": null,
+        "utm_content": null,
+        "ref": "vitalik.eth",
+        ...
+    }
+    "timestamp": "2025-04-03 18:21:00",    
+}
+```
+
+
+# Spec: Connect
+Source: https://docs.formo.so/data/events/connect
+
+
+
+The `connect` event is emitted whenever the user's connects a wallet.
+It includes the newly connected chain ID and wallet address of the user.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "connect",
+    "payload": {
+        "chain_id": 1,
+        "address": "0x8e6ca77a7e044ba836a97beb796c124ca3a6a154"
+    } 
+}
+```
+
+
+# Spec: Disconnect
+Source: https://docs.formo.so/data/events/disconnect
+
+
+
+The `disconnect` event is emitted whenever the user's connects a wallet.
+It includes the disconnected chain ID and wallet address of the user.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "disconnect",  
+    "payload": {
+        "chain_id": 1,
+        "address": "0x8e6ca77a7e044ba836a97beb796c124ca3a6a154"
+    }
+}
+```
+
+
+# Spec: Identify
+Source: https://docs.formo.so/data/events/identify
+
+
+
+The `identify` event lets you tie a user to their actions and record traits about them.
+It includes a unique User ID, wallet name, and wallet rdns.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "identify",   
+    "payload": {
+        "user_id": "0c93652b-a366-4c92-ab87-0c0ab4fba5aa",
+        "address": "0x9798d87366bdfc5d70b300abdffc4f9e95369b3d",
+        "provider_name": "MetaMask",
+        "rdns": "io.metamask"
+    }
+}
+```
+
+
+# Overview
+Source: https://docs.formo.so/data/events/overview
+
+Learn the API calls and properties of Formo events.
+
+The Formo Event Spec outlines how to send event data to Formo's APIs and the proper format to capture events using Formo's SDKs and APIs.
+
+## Events API
+
+The Events API supports the following calls, each gathering important data about the user:
+
+| API call                                | Description                                                    |
+| --------------------------------------- | -------------------------------------------------------------- |
+| [Identify](/data/events/identify)       | Identifies a visitor or user                                   |
+| [Track](/data/events/track)             | Records a custom action with arbitrary data                    |
+| [Page](/data/events/page)               | Records a page view on your app                                |
+| [Connect](/data/events/connect)         | Records when a user connects their wallet to your application  |
+| [Disconnect](/data/events/disconnect)   | Records when a user disconnects their wallet                   |
+| [Chain](/data/events/chain)             | Records when a user switches to a different blockchain network |
+| [Signature](/data/events/signature)     | Records signature requests and their statuses                  |
+| [Transaction](/data/events/transaction) | Records blockchain transactions and their statuses             |
+
+## Event Properties
+
+Event data is collected as JSON and includes common properties along with API-specific properties in the `payload`.
+
+```
+`id` String
+`project_id` String
+`session_id` String
+`anonymous_id` String
+`user_id` Nullable(String)
+`address` Nullable(String)
+`action` LowCardinality(String)
+`version` LowCardinality(String)
+`payload` String
+`timestamp` DateTime
+```
+
+
+# Spec: Page
+Source: https://docs.formo.so/data/events/page
+
+
+
+The `page_hit` event records whenever a user views a page of your website.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "page_hit",   
+    "payload": {
+        "pathname": "/faucets",
+        "href": "https://formo.so/faucets?utm_source=chatgpt.com",
+        "hash": "#submit"
+    }
+}
+```
+
+
+# Spec: Signature
+Source: https://docs.formo.so/data/events/signature
+
+
+
+The `signature` event is emitted whenever the user's signs an message.
+It includes the signature status (requested, rejected, confirmed), message, signature hash, chain ID, and wallet address.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "signature", 
+    "payload": {
+        "status": "confirmed",
+        "chain_id": 84532,
+        "message": "{\"domain\":{\"name\":\"Example DApp\",\"version\":\"1\",\"chainId\":84532,\"verifyingContract\":\"0xcccccccccccccccccccccccccccccccccccccccc\"},\"message\":{\"from\":{\"name\":\"Alice\",\"wallet\":\"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826\"},\"to\":{\"name\":\"Bob\",\"wallet\":\"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB\"},\"content\":\"zcvzxcvzxvc\"},\"primaryType\":\"Mail\",\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Person\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"wallet\",\"type\":\"address\"}],\"Mail\":[{\"name\":\"from\",\"type\":\"Person\"},{\"name\":\"to\",\"type\":\"Person\"},{\"name\":\"content\",\"type\":\"string\"}]}}",
+        "signature_hash": "0x399754103c4a39c1228deaf0880a932d04a4fe906343de37f65a21aa2969400617cf5f7b134c81adbe0cf4f1ba93ad30597095c3c46434202911d321f98d8acb1c"
+        "address": "0x8e6ca77a7e044ba836a97beb796c124ca3a6a154"
+    }
+}
+```
+
+
+# Spec: Track
+Source: https://docs.formo.so/data/events/track
+
+
+
+The Track API call is how you record any [custom events](/features/product-analaytics/custom-events) your users perform,
+along with any properties that describe the action.
+
+
+# Spec: Transaction
+Source: https://docs.formo.so/data/events/transaction
+
+
+
+The `transaction` event is emitted whenever the user's performs a transaction.
+It includes the transaction status (started, broadcasted, rejected), to address, data, value, transaction hash, chain ID, and wallet address.
+
+Here’s the payload of a typical call with most common fields removed:
+
+```json
+{
+    "action": "transaction",
+    "payload": {
+        "status": "broadcasted",
+        "chain_id": 84532,
+        "data": "0xa4136862000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000086173646661647366000000000000000000000000000000000000000000000000",
+        "to": "0x76BB9C9758F62822Abaa652D49e52Ce85383FC26",
+        "value": "0x1",
+        "transaction_hash": "0x489daee9ded2bfcceb9f9c3edeaf695bd2c3acef0dfb7558e461b2aba59378ba"
+    }
+}
+```
+
+
+# Reverse ETL
+Source: https://docs.formo.so/data/reverse-etl
+
+Export events and query results to downstream destinations like data warehouses, data lakes, and event streaming platforms.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Set up a Reverse ETL pipeline to export events and the results of a query to a downstream destination.
+Data exports can be executed on a defined schedule or on-demand.
+
+Common uses cases include:
+
+* Push events to Kafka as part of an event-driven architecture.
+* Hydrating a data lake or data warehouse on AWS S3 with real-time data.
+* Exporting data to other systems that consume data.
+
+
+# Warehouse schema
+Source: https://docs.formo.so/data/schema
+
+Explore the data schema of the Formo data warehouse, including events, users, and wallet profiles.
+
+> 🚧 This page is in progress. Please come back later. 🚧
+
+Formo’s extensive data catalog provides detailed insights on events, users, andwallet profiles across chains.
+
+* **Events** and **Users** are first-party data. Access is restricted to members of each workspace.
+* **Wallet profiles** do not include project-specific data and is globally accessible.
+
+You can query raw data with the [SQL Query API](/api-reference/overview#sql-query-api) and export queries to your own data warehouse with [Reverse ETL](/data/reverse-etl).
+
+
+# What we collect
+Source: https://docs.formo.so/data/what-we-collect
+
+Learn about what data Formo collects and how we protect visitor privacy.
+
+We collect as little information as is necessary to give you actionable analytics in web3.
+Here is a list of what we do and don’t collect from your visitors.
+
+### NO Cookies
+
+> We do NOT read nor set any cookies.
+
+We care about the privacy of your visitors. Cookies are something that can track visitors across multiple pages or even multiple websites.
+
+*We do not store, use, retrieve, nor extract cookies from visitor’s devices.*
+
+### NO IP addresses
+
+> We do NOT collect IP addresses.
+
+The raw IP address data is never stored in our logs, databases, or anywhere on disk at all.
+
+### NO Fingerprinting
+
+> We do NOT use device fingerprinting.
+> We do not attempt to generate a device-persistent identifier because they are considered personal data under GDPR.
+> Every single HTTP request sends the IP address and the User-Agent to the server so that’s what we use.
+
+We generate a daily changing identifier using the visitor’s IP address and User-Agent.
+To anonymize these datapoints and make them impossible to relate back to the user, we run them through a hash function with a rotating salt.
+
+### User Agent
+
+> We collect and store user agents.
+
+User agents are the identifiers of the browser and device of the visitor. Browsers or devices identify themselves to websites.
+We collect and store the user agent to identify the browser and device of the visitor.
+
+### Country
+
+> We collect and store country of each visitor.
+
+We collect visitor country based on the their time zone, not their IP address. Every country has their own time zone and modern devices automatically update the time zone when the device travels.
+The time zone is limited to a country, so we can’t get data about a city or region within a country.
+
+### Language
+
+> We collect and store language of each visitor.
+
+Devices are set to a certain language. We collect the language of the device being used by a visitor.
+
+### URL
+
+> We collect and store URLs.
+
+We collect the URL to track page visits and referrers.
+
+### Referrer
+
+> We collect and store referrers.
+
+Referrers answer the question “Where did this visitor come from?”. Browsers send the URL of the previous website as a referrer.
+We also check UTM-parameters. You can see a list of your site's referrers in your dashboard.
+
+### UTM parameters
+
+> We collect and store UTM parameters.
+
+UTM parameters such as `utm_source`, `utm_medium`, and `utm_campaign`, are a way to track the source of a visitor.
+They are added to a URL to track where a visitor came from.
+
+We track these UTM codes:
+
+* `utm_source` (e.g.: google.com)
+* `utm_medium` (e.g.: search)
+* `utm_campaign` (e.g.: summer\_sale)
+* `utm_content` (e.g.: summer\_sale)
+* `utm_term` (e.g.: summer\_sale)
+
+### Referral parameters
+
+> We collect and store referral parameters.
+
+Referral parameters such as `referral` and `ref` are a way to track who referred a visitor.
+They are added to a URL to track where a visitor came from.
+
+We track these UTM codes and assign it to each user:
+
+* `referral` (e.g.: google.com)
+* `ref` (e.g.: search)
+
+### Wallet Type
+
+> We collect and store the crypto wallet type of visitors.
+
+We collect the wallet type (EIP6963's `rdns` identifier) to identify the wallet type of the visitor.
+
+### Wallet Address
+
+> We collect and store wallet addresses.
+
+We collect the wallet address to identify a visitor.
+
+### Chain Id
+
+> We collect and store chain ids.
+
+We collect the chain id to identify the connected chain of the visitor.
+
+### Wallet Connected
+
+> We collect and store wallet connected status.
+
+We collect the wallet connected status to identify if a visitor has connected their wallet.
+
+### Sig and Tx Metadata
+
+> We collect and store signature and transaction metadata.
+
+We show you user activity feeds, similar to a blockchain explorer.
+To display this data, we collect signature and transaction metadata such as statuses (success, failed, pending, etc.) and hashes.
+
+
+# Core Concepts
+Source: https://docs.formo.so/features/concepts
+
+Learn about the core concepts of Formo: events, users, and properties.
+
+Here are 3 core concepts you need to know:
+
+1. **Events** are the things that happen in your app.
+2. **Users** are the people who use your app.
+3. **Properties** are the attributes of your users and events.
+
+<Frame>
+  <img width="500" src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/event.avif" alt="Events and Users" />
+</Frame>
+
+### Events
+
+An event is **a data point that represents an interaction between a user and your product.**
+
+Events can be a wide range of interactions. For example, every time a user connects a wallet or performs an transaction on your app, there are details which describe that action the moment it happens.
+
+Actions like visiting a page, connecting a wallet, and depositing on a DeFi protocol can all be tracked as an event in Formo.
+
+### Users
+
+A user is **the specific individual who completed an interaction with your product.**
+
+Each user has a unique identifier that you can use to track their activity. Formo uses wallet addresses as a user identifier for logged-in users and an autogenerated visitor ID for anonymous users.
+
+### Properties
+
+Properties are **additional information about users and events.**
+
+* Event properties are attributes that describe details specific to the particular instance of an event. For example, if you had a Purchase Completed event, you could specify what the user purchased, the total value of the order, and the payment method used.
+* User properties are traits describing the user and apply across all their future events until the properties are modified. Formo's SDK captures several user properties by default, and you can also set up your own properties to track.
+
+Additional examples:
+
+* A Connect Wallet event has wallet address and chain ID (Ethereum, Base, etc.)
+* A Page View event has page URL, referrer URL, and other metadata.
+* A User has net worth and first-touch UTM parameter properties.
+
+
+# Metrics
+Source: https://docs.formo.so/features/metrics
+
+A list of metrics you can track with Formo and their definitions.
+
+### Visitors
+
+How many unique visitors are interacting with your site or dapp across multiple page views and events.
+A visitor is only counted once within a 24 hour window. The 24 hour limit is necessary to comply with GDPR.
+
+### Current Visitors
+
+How many unique visitors are currently interacting with your site or dapp.
+
+### Unique Active Wallets
+
+How many unique wallets are actively interacting with your site or dapp.
+
+We also collect other wallet details, such as the wallet address, wallet type, and wallet profiles.
+
+### Wallet Connects
+
+How many users have connected their crypto wallets to your dapp.
+
+### Transactions
+
+How many transactions have been made across your site or dapp.
+
+### Page Views
+
+How many times a page has been viewed across your site or dapp.
+
+### Sessions
+
+A session (also known as a visit) is a set of actions that a user takes on your site.
+Each session is a 24 hour window. If a visitor returns after this window, a new session is counted.
+
+This is useful for debugging and identifying problems on your site.
+For example, if visitors are not completing transactions, you can see which pages were visited and what events were triggered to identify a common problem on your site that is preventing visitors from completing.
+
+### Average Session Time
+
+How long a user spends on your site or dapp.
+
+### Bounce Rate
+
+The bounce rate is the relative number of visitors who have left the site after a single page view, compared to the total number of unique visitors.
+
+### UTM parameters
+
+How many users come to your site or dapp from a particular source. We track these UTM codes:
+
+* `utm_source` (e.g.: google.com)
+* `utm_medium` (e.g.: search)
+* `utm_campaign` (e.g.: summer\_sale)
+
+### Countries
+
+Countries are the statistics for the country of origin of the visitors.
+
+### Devices
+
+How many users are using a particular device such as desktop, mobile, tablet, etc.
+
+### Browsers
+
+Browser is the statistics of the browser used by the visitor. It is extracted from the User-Agent and Client Hints HTTP headers.
+
+### Referrals
+
+How many users are referred to your site or dapp by a particular user. We use the `referral` and `ref` query parameters to track referrals.
+
+### Referrers / Sources
+
+How many users are referred to your site or dapp by a particular source such as a search engines, social media platform, etc.
+
+Referrers are the statistics for the referring site. The data is extracted from the Referers (with a r) HTTP header and may not be set by the browser. In these cases it will be listed as unknown.
+
+### Events
+
+Events are user-defined custom events. They have a name and optional metadata key/value pairs. When you expand the activity feed, you can view and filter the metadata.
+
+Metadata can be anything. For example, you can define an event Button clicked and track which button was clicked as the metadata field `button=Header`.
+
+### Wallet Profiles
+
+Wallet profiles are a collection of onchain and offchain data about a wallet.
+
+### Wallet Address
+
+Formo uses the wallet address as a persistent identifier for a visitor where available.
+
+### Wallet Type
+
+How many users are using a particular wallet type such as MetaMask, Rainbow Wallet, etc.
+
+### Wallet Reputation Score
+
+A score that indicates the quality and intent of a wallet address.
+
+### Wallet Labels
+
+Labels are assigned to a wallet address based on its past onchain activity and public information offchain.
+
+### Chain Id
+
+How many users are using a particular chain such as Ethereum, Polygon, etc.
+
+### Dapps
+
+How many users are using a particular dapp such as Uniswap, OpenSea, etc.
+
+### Tokens
+
+How many users hold a particular token such as USDC, USDT, etc.
+
+### Retention Rate
+
+Retention rates: the percentage of customers who continue to use your service or product over a predetermined period.
+
+### Churn Rate
+
+The percentage of customers who stop using your service or product over a predetermined period.
+
+### Active users
+
+The number of users interacting with your community or platform within a certain time frame.
+Expressed through monthly, weekly, or daily active users (MAUs, WAUs, and DAUs).
+
+### Customer Acquisition Cost (CAC)
+
+How much you've spent to acquire a customer.
+
+### Average Revenue Per User (ARPU)
+
+How much revenue you've made from your site or dapp.
+
+### Customer Lifetime Value (CLTV)
+
+CLV estimates the total revenue a user generates over their entire engagement with your dapp.
+
+
+# Activity feed
+Source: https://docs.formo.so/features/product-analytics/activity
+
+Track user behavior in real-time with a detailed activity feed showing page views, wallet connects, transactions and custom events.
+
+### Activity Metrics
+
+On the Activity page, you can see live visitor counts, total page views, average session duration, and bounce rate.
+
+<Frame caption="Track your page views, average session time, and bounce rate.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-activity-0.png" alt="Product Analytics Activity" />
+</Frame>
+
+### Activity Feed
+
+The real-time Activity Feed helps you **get actionable insights into onchain user behaviour.**.
+
+Formo automatically tracks page views, wallet connects, signatures, and transactions on your dapp.
+You can also track your own custom events with <a href="/install">the SDK</a>.
+
+The Activity Feed empowers you to measure key events in the user lifecycle, identify drop-off points, and boost retention.
+
+<Frame caption="The activity feed shows you what users are doing in real-time.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-activity-1.png" alt="Product Analytics Activity" />
+</Frame>
+
+### Filters
+
+Apply filters to understand how different segments of users interact with your app at different times.
+
+<Frame caption="Filter and search data at different points in time, from last week to last year.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-activity-2.png" alt="Product Analytics Activity" />
+</Frame>
+
+Next, let's look at your <a href="/features/wallet-intelligence/users">**Users**</a>.
+
+
+# Alerts
+Source: https://docs.formo.so/features/product-analytics/alerts
+
+Get real-time alerts when high-value users visit your dapp or when critical events occur.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Alerts helps you get notified of high-value whales and critical user actions:
+
+* Get notified when whales and high-value users visit your app
+* Get notified of specific events (drop off, conversions)
+
+Get alerts as an email or Slack message in realtime.
+
+
+# Contract events
+Source: https://docs.formo.so/features/product-analytics/contract-events
+
+Track and analyze smart contract events across blockchains in real-time with automatic decoding and alerts.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Formo makes decoding contract activity on EVM blockchains as simple as possible.
+Simply specify a contract address and ABI to start streaming contract events across multiple different chains.
+
+<Frame caption="You can add one or more smart contracts to your project and specify events you care about.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/product-analytics-contract-events.png" alt="Product Analytics Contract Events" />
+</Frame>
+
+Once added, Formo will start ingesting your contract events into our data platform.
+You will see these events on the [Activity Feed](/product-analytics/activity) and [Wallet Profile](/wallet-intelligence/wallet-profiles) pages.
+You can get notifications of important contract events with [Alerts](/features/product-analytics/alerts).
+
+> See the latest list of supported chains [here](/chains/overview).
+
+
+# Custom events
+Source: https://docs.formo.so/features/product-analytics/custom-events
+
+Track custom events and user actions such as clicks and conversions with structured data collection.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+The Formo SDK offers an easy-to-use event collection library that allows you to track custom events in your dapp.
+Ensure high quality, structured data with Formo.
+
+```js
+    formo.track(
+		"product_added", {
+			product_id: "123",
+			product_name: "Formo T-shirt",
+			price: 100,
+			quantity: 2
+		}
+	)
+```
+
+When naming events, Formo recommends establishing a consistent naming convention that uses:
+
+* Consistent formatting: Formo converts all events to be lower case with underscores: `song_played`. Otherwise, 'Song Played' and 'song played' will be two separate events. This naming convention helps to prevent messy data, especially when multiple teams send the same event.
+* A consistent syntax: Song Played and Played Song are also considered separate events. For example, a standard of `[Noun] + [Past-Tense Verb]` ensures all your events are consistent.
+* A consistent actor: Does 'Message Sent' mean that the user sent a message or that you sent a message to the user? If all your events are named in a way that reflects the user's perspective, the meaning is clear immediately.
+
+Seamlessly integrate with Formo's [Wallet Intelligence](/features/wallet-intelligence) to get a holistic view of each customer from anonymous to known.
+
+Use [Funnels](/features/product-analytics/funnels) to understand how users interact with your dapp.
+
+
+# Funnels
+Source: https://docs.formo.so/features/product-analytics/funnels
+
+Track user journeys and conversion rates through your dapp with powerful funnel analytics.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+<Frame caption="Create a funnel by adding steps to your dapp and measuring the conversion rate at each step.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-funnels.png" alt="Product Analytics Funnels" />
+</Frame>
+
+Funnels help you understand how users interact with your dapp.
+
+* Analyze the user flow through your website and the different pages.
+* Go beyond pageviews and use any custom events to build a funnel.
+* Measure the conversion rate to understand the percentage of visitors who started the user flow and ended with a conversion event.
+* Measure the percentage drop-off between the individual funnel steps to spot where you lose the most users.
+* Use filters to segment your audience. Filter conversion funnels by marketing campaign, traffic source, device, and more.
+
+
+# Growth metrics
+Source: https://docs.formo.so/features/product-analytics/growth-metrics
+
+Track key growth metrics like visitors, wallets, transactions, and user acquisition channels to understand your product performance.
+
+Measure the number of visitors, wallets, and transactions
+to discover which tactics drive product adoption and growth.
+
+<Frame caption="Track your visitors, wallets, and transactions.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-overview.png" alt="Product Analytics Overview" />
+</Frame>
+
+See where your users are coming from by referrer, UTM parameters, and referrals.
+
+<Frame caption="Understand where your users are coming from.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-referrers.png" alt="Product Analytics Referrers" />
+</Frame>
+
+<br />
+
+<Frame caption="Understand what devices, browers, and operating system users are on.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-devices.png" alt="Product Analytics Devices" />
+</Frame>
+
+See where your users are coming from by country.
+
+<Frame caption="Understand where your users are coming from.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-countries.png" alt="Product Analytics Countries" />
+</Frame>
+
+See the top pages that your users are visiting.
+
+<Frame caption="Understand what users are seeing on your site or dapp.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-pages.png" alt="Product Analytics Pages" />
+</Frame>
+
+See the top wallets of your visitors and users.
+
+<Frame caption="Understand what wallets are being used on your dapp.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-wallets.png" alt="Product Analytics Wallets" />
+</Frame>
+
+Apply filters to understand how different segments of users interact with your app at different times.
+
+<Frame caption="Filter and search data at different points in time, from last week to last year.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/dapp-analytics-datetime.png" alt="Product Analytics Filter by Date" />
+</Frame>
+
+***
+
+> 🚧 Retention and churn metrics is in development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+
+# Overview
+Source: https://docs.formo.so/features/product-analytics/overview
+
+Track and analyze user behavior, engagement, and growth metrics for your dapp with web3-native analytics.
+
+Product analytics helps you **understand who is using your dapp and how it is being used**:
+
+* 📈 <a href="/features/product-analytics/growth-metrics">**Growth metrics.**</a> Track visitor counts, DAU, WAU, MAU, transactions, retention, and churn. Measure engagement and growth over time.
+* 🏃‍♀️‍➡️ <a href="/features/product-analytics/activity">**Activity feed.**</a> Get actionable insights into onchain user behaviour. Uncover hidden drop-off points and retention drivers.
+* ⚡️ <a href="/features/product-analytics/custom-events">**Custom events.**</a> Track custom user actions such as clicks, signups, and purchases in your app.
+* 🌐 <a href="/features/product-analytics/contract-events">**Contract events.**</a> Track smart contract events happening onchain in realtime.
+* 📊 <a href="/features/product-analytics/funnels">**Funnels.**</a> Follow the user journey from page view to conversion with multi-step funnel analysis.
+* 🔔 <a href="/features/product-analytics/alerts">**Alerts.**</a> Get notified about whales and critical user actions.
+
+Track the full user journey, from the first click to the final transaction with a web3-native attribution engine.
+
+
+# Form builder
+Source: https://docs.formo.so/features/token-gated-forms/form-builder
+
+Create token-gated forms for web3 communities with a no-code form builder. Build custom forms, verify social accounts, and collect responses from your community members.
+
+Create **token gated forms** for onchain users and web3 communities.
+Easily create signup forms, surveys, and more with no code needed.
+
+* ✅ **Verified socials.** Verify Twitter accounts, Discord usernames, Farcaster, and more.
+* 🎨 **Custom branding.** Customize your backgrounds, colours, and logo to match your brand.
+* 🎨 **Extensive template library.** Choose from a variety of form templates or build your own.
+
+<Frame caption="Use Formo's Form Builder to create and customize forms for web3.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-form-builder-0.png" alt="Token Gated Form Builder" />
+</Frame>
+
+Formo enables you to create sophisticated forms that can be gated by token ownership, NFT collections, or other onchain credentials. Whether you're running a DAO, NFT project, or web3 community, the Form Builder helps you collect information, manage signups, and gather feedback from your community members in a secure and verifiable way.
+
+<Frame caption="Share your forms.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-form-builder-1.png" alt="Token Gated Form Builder" />
+</Frame>
+
+<Frame caption="View all of your form responses.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-form-builder-2.png" alt="Token Gated Form Builder" />
+</Frame>
+
+Formo supports <a href="/features/token-gated-forms/zapier">Zapier</a> so
+you can connect Formo with thousands of other apps to get things done faster.
+
+<Frame caption="Zapier integration.">
+  <img src="https://framerusercontent.com/images/sRTW2pknxZmTYqCwBSs4ilIJI4.png?scale-down-to=1024" alt="Token Gated Form Builder" />
+</Frame>
+
+
+# Token gating
+Source: https://docs.formo.so/features/token-gated-forms/token-gating
+
+Control access to your forms by requiring responders to hold specific tokens, NFTs, or complete identity verification.
+
+Formo supports token gating, giving you full control over who can access your forms.
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-token-gate-3.png" alt="Token Gated Form Builder" />
+</Frame>
+
+Your form will verify that responders fulfill your requirements before continuing.
+Formo supports 15+ chains and is continuously adding more.
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-token-gate-0.png" alt="Token Gated Form Builder" />
+</Frame>
+
+Choose from different types of token gating requirements, such as ERC20, NFT, proof-of-personhood, and onchain attestations:
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-token-gate-1.png" alt="Token Gated Form Builder" />
+
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-token-gate-2.png" alt="Token Gated Form Builder" />
+</Frame>
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/token-gated-forms-token-gate-3.png" alt="Token Gated Form Builder" />
+</Frame>
+
+Use Formo to launch waitlists, signup forms, and surveys for your community.
+
+It's the best way to launch in web3.
+
+Token gating allows you to restrict form access based on blockchain-based requirements. This powerful feature enables you to create exclusive experiences for your token holders, NFT collectors, or verified community members. Whether you're running a token-gated waitlist, collecting feedback from your NFT holders, or creating exclusive surveys for your community, Formo's token gating makes it easy to verify onchain credentials.
+
+
+# World ID
+Source: https://docs.formo.so/features/token-gated-forms/world-id
+
+Enable World ID verification to ensure your form submissions come from real, unique humans.
+
+World ID allows you to anonymously and securely verify that you are a real and unique human (and not a bot) for easy online verification like signing into social apps and ensuring fair online activities like voting or buying concert tickets.
+
+<Frame caption="World ID is a simple way to verify that you are a real and unique human.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/forms-world-id-0.png" alt="Token Gated Forms World ID" />
+</Frame>
+
+You can add enable World ID for your forms in the 'Settings page':
+
+<Frame caption="Enable World ID for your forms.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/forms-world-id-1.png" alt="Token Gated Forms World ID" />
+</Frame>
+
+Enable 'Connect World ID' and you are good to go!
+
+
+# Zapier integration
+Source: https://docs.formo.so/features/token-gated-forms/zapier
+
+Formo integrates with thousands of other platforms so you can trigger actions from offchain to onchain.
+
+## What is Zapier?
+
+Zapier lets you [connect Formo to 2,000+ other web services](https://zapier.com/apps/formo/integrations). Automated connections called Zaps, set up in minutes with no coding, can automate your day-to-day tasks and build workflows between apps that otherwise wouldn't be possible.
+
+Each Zap has one app as the Trigger, where your information comes from and which causes one or more Actions in other apps, where your data gets sent automatically.
+
+Sign up for a free Zapier account, from there you can jump right in. To help you hit the ground running, here are some Zap ideas:
+
+## Setting Up Slack Integration in Zapier
+
+### Prerequisites
+
+* A Zapier account
+* Your Formo Workspace API Key
+
+### Get your API Key
+
+To find your API Key, go to your workspace settings page with the 'Settings' link on the left sidebar:
+
+<Frame caption="Find your API Key in your workspace settings page.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/zapier-0.png" alt="Token Gated Forms Zapier" />
+</Frame>
+
+* Click the copy button in the 'Workspace API Key' to copy it.
+* You will need this in Step 2.
+
+### Step 1: Initial Zapier Setup
+
+1. Log into your Zapier account.
+2. Click "Create Zap" in the top navigation.
+
+### Step 2: Configure Formo Trigger
+
+1. In the trigger section, search for and select "Formo."
+2. Choose "New Form Event" as your trigger event.
+3. Connect your Formo account:
+   * Go to your Formo team settings page.
+   * Paste your Formo API key in Zapier to authenticate.
+
+### Step 3: Configure Form Settings
+
+1. Locate your Form ID:
+   * Navigate to your form's edit page in Formo.
+   * Copy the Form ID from your current URL (e.g., the form ID of `https://app.formo.so/20uTXhGkUKCYkssRDKLtm/edit` is `20uTXhGkUKCYkssRDKLtm`)
+2. In Zapier, paste in your Form ID.
+3. Select your desired event type:
+   * "New Form Response" - triggers when someone submits a response to your form.
+   * "Form Updates" - triggers when form data is modified.
+
+### Step 4: Configure Slack Action (Slack Example)
+
+1. Click the plus (+) icon to add an action.
+2. Search for and select "Slack" as your action app.
+3. Choose your desired Slack action:
+   * "Send Channel Message" (recommended for team notifications.)
+   * "Send Direct Message" (for individual notifications.)
+4. Connect your Slack account if not already connected.
+
+### Step 5: Customize Slack Message
+
+1. Select the Slack channel or user to receive notifications.
+2. Design your message format using Formo form fields.
+3. Include relevant information such as:
+   * Submission timestamp
+   * Form name
+   * Response data
+   * Any custom fields
+
+### Step 6: Test and Enable
+
+1. Click "Test & Review" to verify your setup.
+2. Check your Slack channel to confirm the test message.
+3. If everything looks correct, click "Publish" to enable your Zap.
+
+### Troubleshooting
+
+* If triggers aren't working, verify your API key is correct.
+* Ensure your Form ID matches exactly.
+* Check that your Slack permissions are properly configured.
+
+## Setting Up Other Integrations in Zapier
+
+You can set up Formo to integrate with thousands of apps in the [Zapier app marketplace](https://zapier.com/apps)!
+
+Follow our Slack integration guide as an example.
+
+
+# Audience insights
+Source: https://docs.formo.so/features/wallet-intelligence/audience-insights
+
+Get comprehensive insights into your Web3 audience including their onchain activity, top dapps, tokens, chains, and user segmentation by net worth and spending patterns.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Identify, understand, engage, and grow your Web3 audience.
+Get aggregated insights into your audience's onchain activity and other user properties:
+
+* Top dapps
+* Top tokens
+* Top chains
+* A breakdown of users by net worth
+* A breakdown of users by wallet spend / ARPU
+* <a href="/features/wallet-intelligence/wallet-labels">Wallet labels</a>
+
+
+# Overview
+Source: https://docs.formo.so/features/wallet-intelligence/overview
+
+Understand and target web3 users with comprehensive wallet intelligence features including user tracking, wallet profiles, labels, reputation scoring, messaging, audience insights, and segmentation.
+
+Wallet intelligence helps you **understand and target users in web3**:
+
+* 📈 <a href="/features/wallet-intelligence/users">**Know your users.**</a> Capture wallet addresses of visitors and users in real-time.
+* 🕵️‍♀️ <a href="/features/wallet-intelligence/wallet-profiles">**Wallet profiles.**</a> Turn anonymous wallets into high-value users. Track usage of specific, high-value wallets on your dapp.
+* 🏷️ <a href="/features/wallet-intelligence/wallet-labels">**Wallet labels.**</a> Understand each user's interests and behaviour with wallet labels.
+* 📊 <a href="/features/wallet-intelligence/wallet-score">**Wallet reputation score.**</a> Use autogenerated wallet labels, onchain attestations, and proof-of-personhood to segment and rank your users.
+* 💬 <a href="/features/wallet-intelligence/wallet-messaging">**Wallet messaging.**</a> Send the right message to your target users with deep personalization and insights.
+* 🏃‍♀️‍➡️ <a href="/features/wallet-intelligence/audience-insights">**Audience insights.**</a> View your users' token holdings and top apps. Uncover users using similar apps.
+* 🧑‍🧒‍🧒 <a href="/features/wallet-intelligence/segments">**Segments.**</a> Define groups of users that share one or more properties.
+
+
+# User segments
+Source: https://docs.formo.so/features/wallet-intelligence/segments
+
+Create and manage user segments in Formo, grouping users based on demographics, behaviors, and wallet properties.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Segments are groups of users that share a certain set of properties or who perform a similar sequence of events.
+Formo lets you define segments, view the list of users that comprise them, compare them in your analysis, and share them with your team.
+
+<Frame caption="A segment is a group of users who share a property or set of properties.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-segments.png" alt="Audience Segmentation" />
+</Frame>
+
+Target exactly the right people based on any number or combination of conditions:
+
+* US Users: Users who are from the US
+* DeFi Users: Users with the 'DeFi Trader' or 'Dex User' <a href="/features/wallet-intelligence/wallet-labels">Wallet label</a>
+* Whales: Users with the 'Whale' label who have net worth above \$1M.
+* Dropped-Off Users: Users who did not come back the following week
+
+You can use both offchain and onchain properties to create your segments.
+
+
+# Users
+Source: https://docs.formo.so/features/wallet-intelligence/users
+
+Track and analyze wallet addresses of visitors and users in real-time, with automatic labeling and segmentation.
+
+### Wallets
+
+**View wallet addresses of visitors and users who arrive on your site or app.**
+
+Each user is automatically <a href="/features/wallet-intelligence/wallet-labels">labelled</a> and grouped into <a href="/features/wallet-intelligence/segments">segments</a> such as 'New User' or 'Returning User'.
+Understand the top wallets, devices, OS, and net worth of your users.
+
+<Frame caption="Understand who your users are with real-time, accurate data.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-users.png" alt="Wallet Intelligence Users" />
+</Frame>
+
+Select a user to view their <a href="/features/wallet-intelligence/wallet-profiles">Wallet Profile</a> page, which shows more detail about the user's activity and profile.
+
+
+# Wallet labels
+Source: https://docs.formo.so/features/wallet-intelligence/wallet-labels
+
+Understand user interests and behavior with automatically generated wallet labels based on onchain activity, reputation, and user properties.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+**Wallet Labels** are more than just simple tags or annotations. They provide valuable context and clarity to blockchain addresses, enhancing the readability and understanding of onchain data.
+
+<Frame caption="Turn anonymous visitors into high-value users with wallet labels.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-wallet-labels.png" alt="Wallet Labels" />
+</Frame>
+
+Each tracked user on Formo is assigned wallet labels based on their onchain activity and other data. Example labels include:
+
+* DeFi Trader
+* Gamer
+* Perp DEX User
+* Top 10% on Base
+* NFT Whale
+* ETH Staker
+* Coinbase Verified
+
+This helps you understand your users interests and behaviour. Wallet labels help you target qualified users who in your Ideal Customer Profile (ICP.)
+
+*Let us know what you'd like to know about your users. Message us on [Slack](https://formo.so/slack) or [email](mailto:yos@formo.so).*
+
+
+# Wallet messaging
+Source: https://docs.formo.so/features/wallet-intelligence/wallet-messaging
+
+Send targeted messages to web3 users across multiple channels including in-app notifications, XMTP, and Farcaster, with deep personalization based on wallet intelligence.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+Activate your top, high-value web3 users, at scale. Use wallet messaging to unify [wallet profile data](/features/wallet-intelligence/wallet-profiles) with real-time activation.
+
+<Frame caption="Wallet messaging helps you reach and activate dormant users.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-messaging.png" alt="Wallet Messaging" />
+</Frame>
+
+Wallet messaging supports the following channels:
+
+* In-App Notifications (Web SDK)
+* XMTP Messages
+* Farcaster Direct Casts
+
+
+# Wallet profiles
+Source: https://docs.formo.so/features/wallet-intelligence/wallet-profiles
+
+Turn anonymous wallets into high-value users with detailed profiles showing onchain activity, DeFi positions, and user behavior.
+
+Formo's **Wallet Profiles** unifies data from offchain and onchain data sources to give you a 360° view of your users.
+Turn anonymous wallets into high-value users and track usage of specific, high-value wallets on your dapp.
+
+<Frame caption="View a detailed profile of a user's wallet address.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-wallet-profile.png" alt="Wallet Intelligence Wallet Profile" />
+</Frame>
+
+Gain a complete view of each user's behaviour across chains and platforms:
+
+* Wallet address, ENS profile, net worth, and transaction frequency
+* Real-time feed of what each user is doing on your dapp, with full attribution through referrers and UTM sources
+* Dapps the user has interacted with
+* DeFi positions and token balances of the user across multiple chains
+
+<Frame caption="View a user's DeFi positions and token balances across multiple chains.">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-wallet-profile-dapps-tokens.png" alt="Wallet Intelligence Wallet Profile Dapps Tokens" />
+</Frame>
+
+> In the future, you will see:
+>
+> * Wallet labels based on the user's onchain activity (DeFi Trader, NFT Collector, etc.)
+> * NFTs held by the user
+> * Linked multiple wallets
+> * CAC/ARPU/LTV
+
+*Let us know what you'd like to know about your users. Message us on [Slack](https://formo.so/slack) or [email](mailto:yos@formo.so).*
+
+
+# Wallet reputation score
+Source: https://docs.formo.so/features/wallet-intelligence/wallet-score
+
+Segment and rank web3 users with an automatically calculated reputation score based on onchain activity, wallet labels, attestations, and proof-of-personhood.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+<Frame caption="Wallet Reputation Score">
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/formo/images/wallet-intelligence-wallet-profile-dapps-tokens.png" alt="Wallet Reputation Score" />
+</Frame>
+
+Each user is assigned a **Wallet Reputation Score.** This score is calculated from their onchain footprint, <a href="/features/wallet-intelligence/wallet-labels">wallet labels</a>, attestations, and proof-of-personhood.
+Use this score to segment and rank your users.
+
+
+# Install Formo
+Source: https://docs.formo.so/install
+
+Installing Formo is easy. This guide will show you how to do it with our SDKs.
+
+Pick your stack and add the code below to your codebase.
+
+<Tabs>
+  <Tab icon="code" title="Browser">
+    Install this script in the `<head>` tag of your website:
+
+    ```html
+    <script>
+      const script = document.createElement('script');
+      const writeKey = '<YOUR_WRITE_KEY>';
+
+      script.src = 'https://unpkg.com/@formo/analytics';
+      script.onload = function () {
+        FormoAnalytics.init(writeKey)
+          .then((formo) => {
+            window.formo = formo;
+          })
+          .catch((error) => {
+            console.error('Error initializing FormoAnalytics:', error);
+          });
+      };
+      document.head.appendChild(script);
+    </script>
+    ```
+
+    Ensure you pass a valid `writeKey` when initializing the SDK. Replace `<YOUR_WRITE_KEY>` with your project's **Write Key** in your project settings.
+    The write key is a unique identifier for your project. Formo uses this key to send events from a source to the correct destination.
+  </Tab>
+
+  <Tab icon="rectangle-terminal" title="React">
+    For a React app, the best approach is installing the NPM package rather than using the inlined script.
+
+    #### 1. Install the Formo Analytics SDK
+
+    ```bash
+      npm install @formo/analytics --save
+    ```
+
+    #### 2. Use `FormoAnalyticsProvider` in your app
+
+    Wrap your React app in the FormoAnalyticsProvider provided by the SDK.
+
+    ```tsx
+      // App.tsx (or App.js)
+
+      import React from 'react';
+      import ReactDOM from 'react-dom/client';
+      import { FormoAnalyticsProvider } from '@formo/analytics';
+      import App from './App';
+
+      const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+      root.render(
+        <React.StrictMode>
+          <FormoAnalyticsProvider writeKey="<YOUR_WRITE_KEY>">
+            <App />
+          </FormoAnalyticsProvider>
+        </React.StrictMode>
+      );
+    ```
+
+    Replace `<YOUR_WRITE_KEY>` with your project Write key. You can find it in your project settings.
+
+    #### 3. Tracking Events
+
+    Formo autocaptures events like page views, wallet connects, and wallet actions for you.
+    You can use the `useFormoAnalytics` hook to track custom dapp events.
+
+    ```tsx
+      import React, { useEffect } from 'react';
+      import { useFormoAnalytics } from '@formo/analytics';
+
+      const HomePage = () => {
+        const analytics = useFormoAnalytics();
+
+        useEffect(() => {
+          // Track a custom event
+          analytics.track('custom_event', { key: 'value' });
+        }, [analytics]);
+
+        return <div>Welcome to the Home Page!</div>;
+      };
+
+      export default HomePage;
+    ```
+  </Tab>
+
+  <Tab icon="react" title="Next.js">
+    For a NextJS app, the best approach is installing the NPM package rather than using the inlined script.
+
+    #### 1. Install the Formo Analytics SDK
+
+    ```bash
+      npm install @formo/analytics --save
+    ```
+
+    #### 2. Use `FormoAnalyticsProvider` in your app
+
+    Create a new `AnalyticsProvider.tsx` client component.
+
+    ```tsx
+      // AnalyticsProvider.tsx
+
+      'use client';
+
+      import { FormoAnalytics, FormoAnalyticsProvider } from '@formo/analytics';
+      import React, { FC, useEffect } from 'react';
+
+      type FormoAnalyticsProviderProps = {
+        writeKey: string,
+        children: React.ReactNode,
+      };
+
+      // The provider component
+      export const AnalyticsProvider: FC<FormoAnalyticsProviderProps> = ({
+        writeKey,
+        children,
+      }) => {
+        return (
+          <FormoAnalyticsProvider writeKey={writeKey}>
+            {children}
+          </FormoAnalyticsProvider>
+        );
+      };
+
+      export default AnalyticsProvider;
+    ```
+
+    Wrap your Next.js app in your main layout file with the newly created `AnalyticsProvider` component:
+
+    ```tsx
+      // app/layout.tsx
+
+      import { AnalyticsProvider } from './AnalyticsProvider';
+
+      export default function RootLayout({
+        children,
+      }: {
+        children: React.ReactNode,
+      }) {
+        return (
+          <html lang='en'>
+            <body>
+              <AnalyticsProvider writeKey='YOUR_WRITE_KEY'>
+                Your Page Content
+              </AnalyticsProvider>
+            </body>
+          </html>
+        );
+      }
+    ```
+
+    Replace `<YOUR_WRITE_KEY>` with your project Write key. You can find it in your project settings.
+
+    #### 3. Tracking Events
+
+    Formo autocaptures events like page views, wallet connects, and wallet actions for you.
+    You can use the `useFormoAnalytics` hook to track custom dapp events.
+
+    ```tsx
+      import React, { useEffect } from 'react';
+      import { useFormoAnalytics } from '@formo/analytics';
+
+      const HomePage = () => {
+        const analytics = useFormoAnalytics();
+
+        useEffect(() => {
+          // Track a custom event
+          analytics.track('custom_event', { key: 'value' });
+        }, [analytics]);
+
+        return <div>Welcome to the Home Page!</div>;
+      };
+
+      export default HomePage;
+    ```
+  </Tab>
+</Tabs>
+
+To test that things are working, navigate to your site and open the network tab of the developer tools in your browser (usually F12 or Ctrl/Command + Shift + I).
+Search for 'events' and make sure you get a 200 response code in the status column.
+
+## SDK API Reference
+
+Refer to the corresponding SDK documentation for the implementation specifics:
+
+<CardGroup>
+  <Card title="Web SDK" icon="globe" iconType="solid" href="/sdks/web">
+    Web SDK (Browser, React, Next.js)
+  </Card>
+</CardGroup>
+
+## Code Examples
+
+Check out working examples of Formo on Github:
+
+<CardGroup>
+  <Card title="Example Next.js App" icon="file-code" href="https://github.com/getformo/formo-analytics-example-next">
+    A working example of Formo in a Next.js app.
+  </Card>
+
+  <Card title="Example React App" icon="file-code" href="https://github.com/getformo/formo-analytics-example-react">
+    A working example of Formo in a React app.
+  </Card>
+</CardGroup>
+
+## Support & Feedback
+
+<CardGroup cols={2}>
+  <Card title="Slack" icon="slack" href="https://formo.so/slack">
+    Join our Slack community
+  </Card>
+
+  <Card title="Twitter" icon="x" href="https://x.com/getformo">
+    Send us a tweet or DM us any time
+  </Card>
+
+  <Card title="Email" icon="envelope" href="mailto:support@formo.so">
+    Email us at [support@formo.so](mailto:support@formo.so)
+  </Card>
+
+  <Card title="Founder" icon="comments" href="mailto:yos@formo.so">
+    Bug him at [yos@formo.so](mailto:yos@formo.so) (share anything that's on your mind - the good and the bad).
+  </Card>
+</CardGroup>
+
+
+# Mobile SDK
+Source: https://docs.formo.so/sdks/mobile
+
+Track user events in your mobile apps with SDKs for React Native, iOS, and Android.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+
+# Server-Side SDK
+Source: https://docs.formo.so/sdks/server
+
+Track user events server-side with SDKs for Node.js, Python, and other backend languages.
+
+> 🚧 In development. <a href="https://cal.com/formo/30min">Reach out</a> to get early access. 🚧
+
+
+# Web SDK
+Source: https://docs.formo.so/sdks/web
+
+Track user events in web applications with the Formo Web SDK.
+
+## Installation
+
+[Install](/install) the JavaScript SDK via CDN or NPM.
+
+```bash
+npm install @formo/analytics --save
+```
+
+## API
+
+The Web3 SDK implements the standard [Events API](/data/events#events-api).
+
+```ts
+interface IFormoAnalytics {
+  identify(params: { address: Address }): Promise<void>;
+  page(): void;
+  track(action: string, payload: Record<string, any>): Promise<void>;
+  reset(): void;
+  connect(params: { chainId: ChainID; address: Address }): Promise<void>;
+  disconnect(params: { chainId?: ChainID; address?: Address }): Promise<void>;
+  chain(params: { chainId: ChainID; address?: Address }): Promise<void>;
+  signature(params: { status: SignatureStatus; chainId?: ChainID; address: Address; message: string; signatureHash?: string; }): Promise<void>;
+  transaction(params: { status: TransactionStatus; chainId: ChainID; address: Address; data?: string; to?: string; value?: string; transactionHash?: string; }): Promise<void>;
+}
+```
+
+## Configuration
+
+### Batching
+
+To support high-performance environments, the SDK sends events in batches.
+The SDK queues in memory every event the track method logs.
+
+```tsx
+<AnalyticsProvider
+    writeKey={API_KEY}
+    options={{
+        flushAt: 3,
+        flushInterval: 1000 * 10, // 10 secs
+    }}
+>
+```
+
+Customize this behavior with the `flushAt` and `flushInterval` configuration parameters.
+
+### Debugging
+
+Control the level of logs the SDK prints to the console with the following logLevel settings:
+
+```tsx
+<AnalyticsProvider
+    writeKey={API_KEY}
+    options={{
+        logger: {
+            enabled: true,
+            levels: ["error", "warn", "info"],
+        },
+    }}
+>
+```
+
+| Log Level | Description                                                                                        |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| trace     | Shows the most detailed diagnostic information, useful for tracing program execution flow.         |
+| debug     | Shows all messages, including function context information for each public method the SDK invokes. |
+| info      | Shows informative messages about normal application operation.                                     |
+| warn      | Default. Shows error and warning messages.                                                         |
+| error     | Shows error messages only.                                                                         |
+
+
+# Start Here
+Source: https://docs.formo.so/start-here
+
+Measure what matters with Formo's web3 data platform.
+
+<Note>
+  Data is the lifeblood of any business. It helps you understand your customers, make impactful data-driven decisions, and drive growth.
+
+  Without data, you're lost in a dark forest. Start measuring what matters.
+</Note>
+
+## What is Formo?
+
+[Formo](https://formo.so) is a web3 data platform that helps you understand your users and how they engage with your app so you can build a better product.
+[Learn why we're building Formo](https://formo.so/about).
+
+Here's an overview of what Formo can do:
+
+## Product Analytics
+
+**Product analytics** is actionable analytics designed for onchain apps:
+
+* 📊 **Track web3 growth metrics.** Track visitor counts, DAU, WAU, MAU, transactions, retention, and churn. Measure engagement and growth over time.
+* 🎯 **Onchain Attribution.** Identify the top channels and growth initiatives that drive onchain activity. Understand where users come from.
+* 🔒 **Privacy-friendly.** No cookies, no personal data. Just clear, privacy-friendly insights limited to a single device, a single website, and a single day. Formo helps your dapp align with GDPR standards.
+
+Get actionable insights into onchain user behaviour.
+
+## Wallet Intelligence
+
+**Wallet intelligence** helps you understand and activate your high-value users:
+
+* 🕵️‍♂️ **Wallet profiles.** Turn anonymous wallets into high-value users with unified onchain and offchain data. Track usage of specific, high-value wallets on your dapp.
+* 💯 **Wallet labels and reputation score.** Use wallet labels, onchain attestations, and proof-of-personhood to segment and rank your users.
+* 💬 **Wallet messaging.** Activate high-value target users with deep personalization and insights.
+
+## Token Gated Forms
+
+**Token Gated Forms** helps you launch waitlists, forms, and surveys in web3:
+
+* 🔐 **Token gating.** Capture wallet data, token balances, attestations, and other onchain signals.
+* ✅ **Verified socials.** Verify Twitter accounts, Discord usernames, Farcaster, and more.
+* 🎨 **Extensive template library.** Choose from a variety of form templates or build your own.
+
+Focus on building amazing products and experiences. Spend less time building analytics, and more time building products with Formo.
+
+## Next Steps
+
+Now that you understand the basics, it's time to get set up:
+
+<Steps>
+  <Step title="Create a workspace">
+    Sign in to [app.formo.so](https://app.formo.so) to create your workspace and add your project.
+  </Step>
+
+  <Step title="Install Formo">
+    [Install Formo](/install) on your dapp. The Formo SDK supports Browser, React, and Next.js.
+  </Step>
+
+  <Step title="Success!">
+    Start capturing actionable data about your users and how they interact with your dapp.
+  </Step>
+</Steps>
+
+## Support & Feedback
+
+<CardGroup cols={2}>
+  <Card title="Slack" icon="slack" href="https://formo.so/slack">
+    Join our Slack community
+  </Card>
+
+  <Card title="Twitter" icon="x" href="https://x.com/getformo">
+    Send us a tweet or DM us any time
+  </Card>
+
+  <Card title="Email" icon="envelope" href="mailto:support@formo.so">
+    Email us at [support@formo.so](mailto:support@formo.so)
+  </Card>
+
+  <Card title="Founder" icon="comments" href="mailto:yos@formo.so">
+    Bug him at [yos@formo.so](mailto:yos@formo.so) (share anything that’s on your mind - the good and the bad).
+  </Card>
+</CardGroup>
+
+

@@ -1,0 +1,933 @@
+﻿# Tidio
+> Tidio is a customer support software suite comprising live chat, chatbot, AI chatbot (AI agent), help desk, and ticketing features. Tidio integrates with websites, ecommerce platforms (such as Shopify and WooCommerce), communications channels (such as Facebook Messenger, Instagram, and WhatsApp), and other tools to provide automated, enhanced customer service.
+
+
+Learn more about the Tidio customer service platform:
+
+
+## About Tidio
+- [Tidio Homepage](https://www.tidio.com/)
+- [About Tidio](https://www.tidio.com/about/): Learn about Tidio, the B2B SaaS company behind customer service software.
+  - [About Lyro](https://www.tidio.com/blog/lyro-conversational-ai/): Meet Lyro, the AI agent for customer service
+- [Tidio Pricing](https://www.tidio.com/pricing/): See how much Tidio costs.
+  - [Tidio Premium Plans](https://www.tidio.com/tidio-premium/): Find out more about Tidio Premium.
+
+
+## Access
+- [Log In](https://www.tidio.com/panel/login): Log into your Tidio account.
+- [Sign Up](https://www.tidio.com/panel/register): Register a new Tidio account.
+
+
+## Demos
+- [AI Agent Playground](https://www.tidio.com/ai-agent/playground/): Experience Lyro, Tidio’s AI agent in action.
+- [Watch Tidio Demo](https://www.tidio.com/watch-demo/): Watch a video demo of Tidio.
+
+
+## Tidio Comparisons
+- [Tidio vs Gorgias](https://www.tidio.com/vs/gorgias/)
+- [Tidio vs Intercom](https://www.tidio.com/vs/intercom/)
+- [Tidio vs LiveChat](https://www.tidio.com/vs/live-chat/)
+- [Tidio vs Zendesk](https://www.tidio.com/vs/zendesk/)
+
+
+## Features
+- [All Features Overview](https://www.tidio.com/features/)
+
+
+### Core Features 
+- [Lyro](https://www.tidio.com/ai-agent/): AI agent for customer service and conversational AI chatbot
+- [Flows](https://www.tidio.com/flows/): Automation and rule-based chatbot builder
+- [Help Desk](https://www.tidio.com/help-desk/): Help desk software
+- [Live Chat](https://www.tidio.com/live-chat/): Live chat software for websites
+- [Ticketing System](https://www.tidio.com/ticketing/)
+
+
+### Additional Features
+- [Analytics Dashboard](https://www.tidio.com/analytics/)
+- [Team Departments Feature](https://www.tidio.com/departments/)
+- [Visitors List Tool](https://www.tidio.com/visitors-list/)
+
+
+### Features by Use Case
+- [Tidio for Ecommerce](https://www.tidio.com/industry/ecommerce/)
+- [Tidio for Customer Service](https://www.tidio.com/solutions/customer-service/)
+- [Tidio for Marketing and Sales](https://www.tidio.com/solutions/marketing-and-sales/)
+
+
+## Integrations
+- [All Integrations](https://www.tidio.com/integrations/): See how Tidio can integrate with your technology stack, including:
+  - ActiveCampaign
+  - Adobe Commerce
+  - Agile CRM
+  - Brevo
+  - Drupal
+  - Ecwid
+  - Google Analytics (GA4)
+  - Google Tag Manager
+  - HubSpot
+  - Instagram
+  - Jimdo
+  - Joomla
+  - Judge.me
+  - Klaviyo
+  - Mailchimp
+  - MailerLite
+  - Messenger
+  - Omnisend
+  - OpenAPI
+  - OpenCart
+  - Pipedrive
+  - PrestaShop
+  - Salesforce
+  - SendInBlue
+  - Shift4Shop
+  - Shopify
+  - Shopware
+  - Site123
+  - Squarespace
+  - Webydo
+  - Weebly
+  - WhatsApp
+  - Wix
+  - WooCommerce
+  - WordPress
+  - Zapier
+  - Zendesk
+  - Zendesk Sell
+  - Zoho CRM
+
+
+### Channel Integrations
+- [Instagram Integration](https://www.tidio.com/instagram/)
+- [Messenger Integration](https://www.tidio.com/messenger/)
+- [WhatsApp Integration](https://www.tidio.com/whatsapp-integration/)
+- [Shared Inbox](https://www.tidio.com/shared-inbox/)
+- [Multichannel Communication](https://www.tidio.com/multichannel/)
+
+
+### Platform Integrations
+- [BigCommerce Integration](https://www.tidio.com/bigcommerce/)
+- [Ecwid Integration](https://www.tidio.com/ecwid/)
+- [Shopify Integration](https://www.tidio.com/integrations/shopify/)
+- [WordPress Integration](https://www.tidio.com/integrations/wordpress/)
+- [PrestaShop Integration](https://www.tidio.com/prestashop/)
+- [Shopware Integration](https://www.tidio.com/shopware/)
+- [Squarespace Integration](https://www.tidio.com/squarespace/)
+- [Weebly Integration](https://www.tidio.com/weebly/)
+- [Wix Integration](https://www.tidio.com/wix/)
+
+
+## Resources
+- [Tidio Blog](https://www.tidio.com/blog/)
+- [Resources](https://www.tidio.com/resources/)
+- [ROI and Automation Calculators](https://www.tidio.com/resources/calculators/)
+- [Flow Builder Calculator](https://www.tidio.com/resources/calculators/flows/)
+- [Tidio ROI Calculator](https://roi-calculator.tidio.com/)
+- [Case Studies](https://www.tidio.com/resources/case-studies/)
+  - [Ad Hoc Atelier Case Study](https://www.tidio.com/blog/ad-hoc-atelier-case-study/)
+  - [ADT Case Study](https://www.tidio.com/blog/adt-case-study/)
+  - [Bella Santé Case Study](https://www.tidio.com/blog/bella-sante-case-study/)
+  - [Endeksa Case Study](https://www.tidio.com/blog/endeksa-case-study/)
+  - [Eye-oo Case Study](https://www.tidio.com/blog/eye-oo-case-study/)
+  - [Gecko Hospitality Case Study](https://www.tidio.com/blog/gecko-hospitality-case-study/)
+  - [Integratec Case Study](https://www.tidio.com/blog/integratec-case-study/)
+  - [Lyro Case Study](https://www.tidio.com/blog/lyro-case-study/)
+  - [Procosmet Case Study](https://www.tidio.com/blog/procosmet-case-study/)
+  - [Shockbyte Case Study](https://www.tidio.com/blog/shockbyte-case-study/)
+  - [Suitor Case Study](https://www.tidio.com/blog/suitor-case-study/)
+  - [Wulff Beltton Case Study](https://www.tidio.com/blog/wulff-beltton-case-study/)
+- [Ebooks](https://www.tidio.com/resources/ebooks/)
+  - [AI-Assisted Customer Service Ebook](https://www.tidio.com/resources/ebooks/ai-assisted-customer-service-ebook/)
+  - [Customer Service Automation Guide](https://www.tidio.com/resources/ebooks/customer-service-automation-guide/)
+  - [Ecommerce AI Chatbots Guide](https://www.tidio.com/resources/ebooks/ecommerce-rule-based-ai-chatbots-guide/)
+  - [Help Desk Checklist](https://www.tidio.com/resources/ebooks/help-desk-checklist/)
+  - [Helpdesk Market Research](https://www.tidio.com/resources/ebooks/helpdesk-market-research/)
+  - [In-Store Experiences Online Ebook](https://www.tidio.com/resources/ebooks/in-store-experiences-online-ebook/)
+  - [Sales Automation Ebook](https://www.tidio.com/resources/ebooks/sales-automation-ebook/)
+- [Holiday Season Tips](https://www.tidio.com/resources/holiday-season/)
+- [Podcasts](https://www.tidio.com/resources/podcasts/)
+- [Webinars](https://www.tidio.com/resources/webinars/)
+
+
+## Contact
+- [Contact](https://www.tidio.com/contact/): Get in touch with Tidio and its support team.
+- [Contact Sales](https://www.tidio.com/contact-sales/): Book a demo and talk to sales.
+
+
+## Blog
+- [Tidio Blog: All Things Live Chat, Chatbots & Business Growth](https://www.tidio.com/blog/): We show you how AI & automation can take your business to new heights. Explore subjects related to customer service, business growth, e-commerce & more.
+- [News & Trends of 2021. What Should We Expect In 2022?](https://www.tidio.com/blog/2021-trends/): Discover the biggest 2021 trends. Learn the results of our study on people's opinions on trends of 2021. Check out predictions on what to expect in 2022?
+- [6 Easy Steps to Measure Customer Satisfaction [Metrics, Pros&Cons]](https://www.tidio.com/blog/6-steps-to-measure-customer-satisfaction-of-any-business/): How to provide a high level of customer satisfaction? Why is it important? What are the best measurement tools (metrics)? Read the article and find out.
+- [50+ Great Abandoned Cart Email Subject Lines Examples [with Templates]](https://www.tidio.com/blog/abandoned-cart-email-subject-lines-examples/): Struggling to increase eCommerce sales? Here are 50+ best-abandoned cart subject line examples to make more of your customers complete purchases.
+- [Best Abandoned Cart Email Examples to Recover Sales](https://www.tidio.com/blog/abandoned-cart-email/): Discover how to write abandoned cart emails with best practices and top tools. Use cart recovery email examples and templates to recover sales effectively.
+- [How to Add Live Chat to Website in 10 Minutes [8 Steps]](https://www.tidio.com/blog/add-chat-to-website/): Learn how to add chat to website in 8 easy steps. Discover the benefits of having a live chat widget and find answers for the FAQs related to this solution.
+- [Key Add-to-Cart Conversion Rate Statistics (2025)](https://www.tidio.com/blog/add-to-cart-conversion-rate-statistics/): Check out the latest add-to-cart conversion rate statistics. Discover the best ways to improve your cart conversions, attract customers, and grow your sales.
+- [7 Types Of Advertising Appeals & Examples [Marketing + Social]](https://www.tidio.com/blog/advertising-appeals/): Learn to use different types of ad appeals (e.g. emotional, rational, or social). See real advertising appeal examples and use them to get more customers.
+- [AI Biases: Are We Ready to Be Stereotyped by Robots?](https://www.tidio.com/blog/ai-biases/): Explore modern AI biases and discover what people think about those prejudices. Check out examples of AI-generated pictures reinforcing popular stereotypes.
+- [22 Best AI Chatbots for 2025 [ChatGPT & Alternatives]](https://www.tidio.com/blog/ai-chatbot/): Discover the best AI chatbots for your business and personal use. Compare the key features and pricing of top artificial intelligence chatbots on the market.
+- [7 AI Customer Service Strategies That Drive Results](https://www.tidio.com/blog/ai-customer-service-/): Get the latest on AI customer service with real-life examples, benefits, and use cases. See how you can quickly scale your business with AI agents.
+- [10+ Crucial AI Customer Service Statistics (2025)](https://www.tidio.com/blog/ai-customer-service-statistics/): Gain a deep understanding of top AI customer service statistics. Explore the trends in AI customer service and discover tips to optimize business efficiency.
+- [7 AI Customer Service Strategies That Drive Results](https://www.tidio.com/blog/ai-customer-service/): Get the latest on AI customer service with real-life examples, benefits, and use cases. See how you can quickly scale your business with AI agents.
+- [AI Customer Support Software: 10 Best Solutions (2025)](https://www.tidio.com/blog/ai-customer-support-software/): Improve client support with top AI customer support software solutions. See how to automate responses and increase customer support efficiency with AI.
+- [Love in the Age of AI Dating Apps [2025 Statistics]](https://www.tidio.com/blog/ai-dating-apps/): Can AI be the great facilitator of matchmaking in the modern world? Will AI play a critical role in the future of love and prevent us from dating apps scammers?
+- [Boost Profitability With AI for Custom Printing Services](https://www.tidio.com/blog/ai-for-custom-printing-services/): Learn how AI solves the biggest challenges of the custom printing industry. See examples of DTF businesses that improved customer service with AI.
+- [AI for Customer Success: Automations, Use Cases & Benefits](https://www.tidio.com/blog/ai-for-customer-success/): Learn how to use AI for customer success. Discover how customer success teams can use AI tools to build stronger relationships and boost business revenue.
+- [How AI for Flower Companies Simplifies Busy Seasons](https://www.tidio.com/blog/ai-for-flower-companies/): AI is transforming the flower industry. See the top AI solutions for floral companies and established flower brands using AI.
+- [When Machines Dream: A Dive in AI Hallucinations [Study]](https://www.tidio.com/blog/ai-hallucinations/): AI is notorious for spreading false information, known as AI hallucinations. Find out more about the issue, its impact on our lives, and what we can do about it.
+- [10 Top AI Help Desk Software for Stellar Customer Service | Tidio](https://www.tidio.com/blog/ai-helpdesk/): Discover detailed reviews of the best AI helpdesk tools for your business. Learn what an artificial intelligence help desk is with benefits and real-life use cases.
+- [AI in Education: Will Tech Destroy Education or Save It?](https://www.tidio.com/blog/ai-in-education/): What are the risks or potential benefits of using AI technology in education? Find out more about different attitudes to artificial intelligence and e-learning.
+- [AI Knowledge Base: Elements, Tools & Benefits [Full Guide]](https://www.tidio.com/blog/ai-knowledge-base/): Check out our guide on AI knowledge base software, as well as its core elements and types. Learn key tips to integrate AI into the knowledge base system.
+- [AI Recruitment Statistics: What Is the Future of Hiring?](https://www.tidio.com/blog/ai-recruitment/): Can AI recruitment replace HR professionals? Explore new insights from companies using AI for recruitment, current trends, and statistics about AI in HR.
+- [10 Best AI Sales Assistant Software [2025 Reviews]](https://www.tidio.com/blog/ai-sales-assistant-software/): Check out the top 10 AI sales assistant software available along with the key features, ratings, and pricing. Learn more about what makes the best AI sales tools.
+- [10+ Essential AI Statistics You Need to Know for 2025 | Tidio](https://www.tidio.com/blog/ai-statistics/): A selection of the most important, research-based AI statistics for your business success. Find out about AI net worth, its growth scale, and other cool AI stats.
+- [AI or Not: AI-Generated Images, Art, Photos Vs Real [AI Test]](https://www.tidio.com/blog/ai-test/): Take the AI test and see if you can recognize things created by humans and AI. Find out the results of our study and AI statistics.
+- [10 Best AI Tools for Ecommerce To Boost Sales in 2025](https://www.tidio.com/blog/ai-tools-for-ecommerce/): Discover the best AI tools for ecommerce in detailed reviews with pros, cons, and pricing. Learn the benefits and the main features you should look out for.
+- [Will AI Take Your Job? Fear of AI and AI Trends for 2025](https://www.tidio.com/blog/ai-trends/): Amazing statistics about AI taking our jobs and interactions between humans and AI. Original data and trends based on AI research from 2023.
+- [Apology Letter to Customers: 7 Short Messages for Mistakes](https://www.tidio.com/blog/apology-letter-to-customers/): A good business apology letter to customers can make up for bad service, errors with orders, and more. Use our email templates filling them in with your details.
+- [What Is Automated Ticket Routing & How To Set It Up [Guide]](https://www.tidio.com/blog/automated-ticket-routing/): Discover the difference between manual and automated ticket routing. Learn the use cases and how to set up an automatic routing system for your business.
+- [A Guide to the 10 Best Automated Ticketing Systems in 2025](https://www.tidio.com/blog/automated-ticketing-system/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [12 Best B2B Lead Generation Strategies [+Tips & Tools]](https://www.tidio.com/blog/b2b-lead-generation-strategies/): Discover what B2B lead generation is and why it's important. Learn the top strategies for gathering B2B leads with tips, best practices, and automation tools.
+- [5 Examples of Bad Customer Service [How to Handle Service Complaints]](https://www.tidio.com/blog/bad-customer-service/): Most customers stop shopping with a company due to a bad customer service experience. Make sure stories of poor service don't ruin your reputation.
+- [Banking Chatbot: Examples, Use Cases & Best Practices](https://www.tidio.com/blog/banking-chatbot/): Learn how to use a banking chatbot effectively with real-life examples and best practices. Compare the top chatbots in banking available on the market today.
+- [16 Top Benefits of Chatbots for Businesses & Customers](https://www.tidio.com/blog/benefits-of-chatbots/): Discover the financial benefits of chatbots for your business. Check out the chatbot pros and cons for customers. Learn how to get the most out of your bots.
+- [Top 10 Benefits of Live Chat To Improve Customer Service](https://www.tidio.com/blog/benefits-of-live-chat/): Discover the main benefits of live chat for your customer service and sales teams. Learn the real-life examples of companies that profit from live chat benefits.
+- [Top 22 BigCommerce Apps to Grow Your Business (2025)](https://www.tidio.com/blog/best-bigcommerce-apps/): Discover the best BigCommerce apps with their pros, cons, and pricing comparison. Learn how to choose the best BigCommerce plugin for your business.
+- [35 Best Books for Business Owners and Entrepreneurs](https://www.tidio.com/blog/best-books-for-business-owners/): Check out the best books for business owners to add to your entrepreneurship bookshelf. Learn what each of them can help you with and grow your business.
+- [14 Powerful AI Chatbot Platforms for Businesses [2023]](https://www.tidio.com/blog/best-chatbot-platforms/): See the best paid and free platforms for building chatbots. Read reviews, compare pros, cons, & pricing. Pick the best one and develop the bot you need.
+- [Top 20 Best Customer Service Books You Need To Read](https://www.tidio.com/blog/best-customer-service-books/): From thousands, we present you with the 20 best books on customer service. Learn different approaches to customer support and transform your company.
+- [36 Effective Lead Generation Tools & Software for 2023](https://www.tidio.com/blog/best-lead-generation-tools/): Find out what the best lead generation tools for your business are. Compare main features, pricing, and find out how to choose the best lead software for you.
+- [16 Best Live Chat Software for Websites [2025 Reviews]](https://www.tidio.com/blog/best-live-chat-software/): Compare the pros, cons, and pricing of the best live chat software. Learn the benefits and how to choose the right live chat service for your business website.
+- [20 Best Places to Sell Online [Platforms & Websites to Sell Items]](https://www.tidio.com/blog/best-places-to-sell-online/): A comparison of the best eCommerce platforms and websites where you can sell things. Find out if you should use eBay, Etsy, or Shopify.
+- [Live Chat Etiquette: Best Practices, Tips, Guidelines & Examples](https://www.tidio.com/blog/best-practices-for-live-chat-etiquette/): Essential live chat etiquette rules for customer service agents and professional support teams. Find out the dos and don't of chatting with customers like a pro.
+- [17 Best Shopify Apps to Get More Customers in 2025](https://www.tidio.com/blog/best-shopify-apps/): Here are the 17 best Shopify apps that you can try for free. Explore the ultimate list of must-have Shopify plugins to increase sales and customer satisfaction.
+- [39 Successful & Beautiful Shopify Stores for Inspiration](https://www.tidio.com/blog/best-shopify-stores/): Discover the best Shopify stores on the internet. Find out which popular brands have stores on Shopify and explore top Shopify store examples.
+- [15 Best Small Business Ideas to Start in 2025 [List]](https://www.tidio.com/blog/best-small-business-ideas/): Explore our data-driven list of small business ideas. Check info on earnings, watch insider videos, see what skills and budget you need to start.
+- [The 10 Best Tawk.to Alternatives and Competitors (2025)](https://www.tidio.com/blog/best-tawk-to-alternatives/): Do you like Tawk.to live chat tool but miss some features like auto-responses? Check out our list of the best Tawk.to alternatives and competitors.
+- [Best Time to Send Emails: What Fresh Studies & Practice Tell Us](https://www.tidio.com/blog/best-time-to-send-email/): What is the best time to send emails? Find out how to choose the best days and hours to send emails, increase your open rates, and boost sales.
+- [25 Best WooCommerce Plugins & Extensions for 2024](https://www.tidio.com/blog/best-woocommerce-plugins/): Explore top WooCommerce plugins for WordPress—from page customization to checkout and shipping integrations. Slash the cost with the best free add-ons.
+- [BigCommerce vs Shopify: Pricing & Features (2025)](https://www.tidio.com/blog/bigcommerce-vs-shopify/): Compare BigCommerce vs. Shopify pricing, SEO, dropshipping, and other features. Read the reviews and choose the right platform for your business.
+- [16 Black Friday Marketing Strategies You Should Try in 2025](https://www.tidio.com/blog/black-friday-marketing/): Learn how to optimize ecommerce sales with top Black Friday marketing strategies. Leverage chatbots and email marketing to get the most out of your sales.
+- [Top 100+ Black Friday Quotes, Slogans and Lines About Shopping](https://www.tidio.com/blog/black-friday-phrases/): See catchy Black Friday marketing slogans, phrases, and lines. Learn how to promote your store during this global sales time and boost your sales.
+- [Black Friday Facts & Cyber Monday Stats [Report 2025]](https://www.tidio.com/blog/black-friday-trends/): Discover the results of our Black Friday statistics study. Learn about Cyber Monday and Black Friday trends and predictions to prepare for the Holiday season.
+- [30+ Best Quotes About Chatbots and Technology](https://www.tidio.com/blog/brainy-quotes-about-chatbots-and-technology/): Read a selection of the best chatbot quotes. See quotes about technology from famous scientists, developers and top journalists.
+- [How to Create a Brand Voice: Definition & Tips [+Examples]](https://www.tidio.com/blog/brand-voice/): Learn how to identify your brand voice to connect with your customers. Analyze brand voice charts and see the best examples from top brands.
+- [8 Business Ideas for College Students [+How to Start]](https://www.tidio.com/blog/business-for-students/): Need a side business idea you can do as a college student? Take a look at the list of the best small capital and online businesses you can start at university.
+- [120+ Best Canned Response Examples & How to Create Them](https://www.tidio.com/blog/canned-responses/): See over 120+ canned responses examples for Gmail and live chat. Learn how to create the best quick replies for customer service conversations.
+- [10 Best Shopping Cart Abandonment Software in 2025](https://www.tidio.com/blog/cart-abandonment-software/): Discover the best cart abandonment software for your ecommerce website. Compare the reviews and choose a tool that reduces your cart abandonment rate.
+- [5 Tips to Measure and Optimize Case Deflection](https://www.tidio.com/blog/case-deflection/): Learn what case deflection is and how to measure it. Find out different types of customer case deflection and relevant tips to enhance the client experience.
+- [AI customer service](https://www.tidio.com/blog/category/ai-customer-service/): AI is changing how we look at customer service. Learn how this technology works and how you can use it for your business.
+- [Alternatives](https://www.tidio.com/blog/category/alternatives/): You want to choose the best platform for your business. Learn the comparisons between the top players available on the market.
+- [Apps and Integrations | Tidio](https://www.tidio.com/blog/category/apps-and-integrations/): A beautiful Live Chat solution. Talk with your customers in real time and increase your sales. Available in free and paid version.
+- [Business Case Studies: Success with Live Chat from Tidio](https://www.tidio.com/blog/category/case-studies/): Meet entrepreneurs who grew thanks to Tidio. Check out real-life case studies and learn how to make the most of live chat, chatbots & email marketing.
+- [Chatbots: Articles & News Library [Free Expert Advice]](https://www.tidio.com/blog/category/chatbots/): Learn how chatbots can help your business grow. Our experts explore the latest trends and show you how to make the most of chatbot automation.
+- [Customer service tactics](https://www.tidio.com/blog/category/customer-service-tactics/): Customer service is a vital part of a successful business. Check out the useful tactics to scale your support.
+- [Customer service tech](https://www.tidio.com/blog/category/customer-service-tech/): Learn which customer service tech is worth the hype and which ones you should pass on. Discover the top software for your business needs.
+- [Email](https://www.tidio.com/blog/category/email/): Email is still the backbone of customer service. Check out our articles on the developments of email marketing. Learn how to use this channel to grow your business and improve the customer experience.
+- [Helpdesk](https://www.tidio.com/blog/category/helpdesk/): A beautiful Live Chat solution. Talk with your customers in real time and increase your sales. Available in free and paid version.
+- [Articles on Using Live Chat for Customer Support & Sales](https://www.tidio.com/blog/category/live-chat/): Discover insights on how to use the real-time customer service in a form of a live chat. Check out the best tools, helpful guides, and comparisons.
+- [Online sales & marketing](https://www.tidio.com/blog/category/online-sales/): Check out insights on how to increase your business sales and conversions. Read through the guides and find the best tech for your business.
+- [Product news](https://www.tidio.com/blog/category/product-news/): Check out our latest product launches and releases. Explore the newest features, changes, and updates that we have implemented in order to help your business grow even faster.
+- [Shopify | Tidio](https://www.tidio.com/blog/category/shopify/): A beautiful Live Chat solution. Talk with your customers in real time and increase your sales. Available in free and paid version.
+- [Tech library](https://www.tidio.com/blog/category/tech-library/): Explore our library of statistics for ecommerce, live chat, chatbots, customer service, and others. Dive into the numbers to see both the big picture and details.
+- [WordPress | Tidio](https://www.tidio.com/blog/category/wordpress/): A beautiful Live Chat solution. Talk with your customers in real time and increase your sales. Available in free and paid version.
+- [Say Hello to Tidio Chat Flows: Intelligent Conversion Tools](https://www.tidio.com/blog/chat-flows/): Learn more about the transition from Chatbots to Chat Flows and the benefits they can bring. Find out what awaits us in the future development of Tidio Flows.
+- [Chat GPT-3 Statistics: Is the Future Already Here? (2025) | Tidio](https://www.tidio.com/blog/chat-gpt/): Are you excited about all the cool things ChatGPT can do? Or do you fear it? Read our research to learn how it can influence people's lives, jobs, and future.
+- [6 Best Chat Platforms for Business & Online Chatting in 2025](https://www.tidio.com/blog/chat-platforms/): Compare the pros, cons, and pricing of the best chat platforms available online. Discover must-have chat features for boosting your customer support efforts.
+- [10 Customer Service Chat Handling Skills for Agents](https://www.tidio.com/blog/chat-support-skills/): Find out what the essential live chat agent skills are and how to provide customer service via live chat. Best practices for chat agents to keep customers happy.
+- [Chat Surveys: Tips and Best Practices | Tidio](https://www.tidio.com/blog/chat-survey/): Learn the types of chat surveys and how to implement them on your website. Discover how to enrich your customer service and experience with chat surveys and how to create them properly.
+- [How to Provide Your Customers with Chat Transcripts?](https://www.tidio.com/blog/chat-transcript/): Find out what a chat transcript is and the benefits it brings to your company and customers. Learn how to easily get your transcripts and offer them to clients.
+- [10 Best Chat Widgets for Your Website [AI & Free Chat Support]](https://www.tidio.com/blog/chat-widgets/): We’ve tested and reviewed the best chat widgets out there. Compare the chat widget features and pricing, and find the best one for your business needs.
+- [9 Best ChatBot Alternatives & Competitors to Try for Free in 2025](https://www.tidio.com/blog/chatbot-alternatives/): The ultimate comparison of the most popular ChatBot alternatives and competitors with pros, cons, and pricing. Learn what the best alternative to chatbots is.
+- [Chatbot Analytics: 9 Key Metrics You Must Track in 2025](https://www.tidio.com/blog/chatbot-analytics/): The ultimate guide to chatbot analytics. Find out what bot metrics and KPIs you should measure and discover easy ways to optimize your chatbot performance.
+- [10 Best Chatbot APIs for Websites [+ Free AI Integrations & Documentations]](https://www.tidio.com/blog/chatbot-api/): Learn what chatbot APIs are and how to use them. Compare the best conversational AI APIs for websites with the main features, pricing, and documentation.
+- [10 Best Chatbot Apps for Android and iOS [2025 Reviews]](https://www.tidio.com/blog/chatbot-app/): Check out the best chatbot apps for your business and personal needs. Discover the pros, cons, pricing, and ratings of each of the mobile chatbot apps.
+- [What Is Chatbot Automation? [Benefits & Main Features]](https://www.tidio.com/blog/chatbot-automation/): Learn what chatbot automation is and how it can assist your business. Discover the positive impact of automated bots on sales and customer service efforts.
+- [10 Essential Chatbot Best Practices & Tips for Your Business](https://www.tidio.com/blog/chatbot-best-practices/): Discover the essential chatbot best practices for development and implementation. Check out examples of chatbot best practices for security and design.
+- [7 Best Chatbot Builders for 2025 [Easy, Fast, No Code]](https://www.tidio.com/blog/chatbot-builder/): Discover the top 7 chatbot builders and their pros, cons, and pricing. Learn what you should look for in a bot maker and pick the right one for your business.
+- [4 Biggest Chatbot Challenges and How to Solve Them](https://www.tidio.com/blog/chatbot-challenges/): Discover four significant chatbot challenges businesses struggle with. Learn how to solve chatbot issues and start developing your bots more effectively.
+- [Chatbot Design Best Practices & Examples: How to Design a Bot](https://www.tidio.com/blog/chatbot-design/): Find out how to design a chatbot for your website fast and without coding. Read about the most important chatbot best practices and see inspiring tips.
+- [10 Best Chatbot Development Services [2024 Data]](https://www.tidio.com/blog/chatbot-development-services/): Discover our recommended chatbot development services. Use innovative solutions to enhance customer engagement and streamline business operations.
+- [A Full Guide to Chatbot Development [Best Practices & Tools]](https://www.tidio.com/blog/chatbot-development/): Learn the key steps for successful chatbot development. Compare the top platforms available and explore industries that can benefit from bot development.
+- [12 Chatbot Examples From Top Brands [Inspiration 2024]](https://www.tidio.com/blog/chatbot-examples/): Get inspired by various chatbot examples and see how big brands use conversational AI to grow their business.
+- [10 Must-Have Chatbot Features for Your Business [+Examples]](https://www.tidio.com/blog/chatbot-features/): Explore the essential chatbot features for your business needs. Discover real-life examples, use cases, and top benefits of each chatbot functionality.
+- [Chatbot Flowchart Examples & Decision Tree Diagram](https://www.tidio.com/blog/chatbot-flowchart/): Discover what chatbot flowcharts and bot decision trees are with examples and useful templates. Learn how to quickly build a decision bot in four easy steps.
+- [7 Easy Ways to Use Chatbots for Business [Examples]](https://www.tidio.com/blog/chatbot-for-business/): Find out why businesses need chatbots. Discover the most effective techniques for using your own chatbot for business in marketing and customer service.
+- [Lead Generation Chatbots: Tools, Use Cases & Tips (2025)](https://www.tidio.com/blog/chatbot-for-lead-generation/): Learn practical use cases of lead generation chatbots and see how to set one up yourself. Compare the best lead generation bot tools and their main features.
+- [9+ Best Open Source Chatbot Frameworks Compared (2025)](https://www.tidio.com/blog/chatbot-framework/): Learn what open-source chatbot frameworks are and why you should use them. Compare the best bot frameworks to find the right one for yourself.
+- [15 Innovative Chatbot Ideas for Businesses [Cool & Unique]](https://www.tidio.com/blog/chatbot-ideas/): Discover the best chatbot ideas for your business and personal use with examples. Learn about the benefits of each bot idea and add them to your website.
+- [8 Steps for a Winning Chatbot Implementation Strategy](https://www.tidio.com/blog/chatbot-implementation/): Discover the steps to implement a successful chatbot strategy, its key benefits, and how to use Lyro AI to improve your customer support efforts.
+- [Chatbot Intent: Classification, Examples & Detection Strategies](https://www.tidio.com/blog/chatbot-intents/): Learn what chatbot intents are and discover their benefits. Explore chatbot intent examples across various industries and the essential steps for training them.
+- [What Is Chatbot Marketing? Benefits, Examples & Tips](https://www.tidio.com/blog/chatbot-marketing/): Discover what chatbot marketing is and what are its benefits. Learn how to create an effective chatbot marketing strategy for your business and what to avoid.
+- [500+ Best Chatbot Name Ideas to Get Customers to Talk](https://www.tidio.com/blog/chatbot-names/): Discover the best chatbot names for your type of business. Browse through ideas of various types of bot names and check a list of chatbot name generators.
+- [The Ultimate Guide to Crafting a Chatbot Persona | Tidio](https://www.tidio.com/blog/chatbot-persona/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [Want a Chatbot to Succeed? Give It a Personality](https://www.tidio.com/blog/chatbot-personality/): People have a better experience if chatbots show human-like personalities, new research shows.
+- [Chatbot Pricing: How Much Does a Chatbot Cost? (2025)](https://www.tidio.com/blog/chatbot-pricing/): Discover all you need to know about chatbot cost and find your best chatbot pricing model. Learn how much it costs to develop a chatbot in-house.
+- [How to Write Chatbot Scripts [Examples & Dialogue Templates]](https://www.tidio.com/blog/chatbot-scripts/): Learn how to write the best chatbot scripts quickly. Discover the best tools for chatbot scripting. See the best chatbot scripts examples & use our sample sheet.
+- [9 Best Chatbot Software to Use in 2025 ](https://www.tidio.com/blog/chatbot-software/): Struggling with endless queries? Let AI chatbot software do the heavy lifting. Learn the pros, cons, and pricing of top solutions.
+- [80+ Chatbot Statistics & Trends in 2025 [Usage, Adoption Rates]](https://www.tidio.com/blog/chatbot-statistics/): Chatbot statistics and trends that will shape the future of online customer service. Are chatbots effective? Find out who chatbot users are and what they expect.
+- [16 Free Chatbot Templates: Conversation Flow Messages](https://www.tidio.com/blog/chatbot-template/): Discover the best free chatbot templates for increasing sales and growing your business. Learn how to use bot templates and why you should give them a go.
+- [How To Do Chatbot Testing? Guide, Types of Tests & Checklist | Tidio](https://www.tidio.com/blog/chatbot-testing/): Discover what chatbot testing is, different types, and how to do it effectively. Learn the main features you should test and go through the bot testing checklist.
+- [6 Different Types of Chatbots [Classification & Categories]](https://www.tidio.com/blog/chatbot-types/): Learn more about various chatbot types and their benefits. Compare different chatbot technologies and decide which one works best for your specific needs.
+- [7 Best Chatbot UI Design Examples for Website [+ Templates]](https://www.tidio.com/blog/chatbot-ui/): Explore the best examples of real-life chatbot interfaces. Find out what makes a good chatbot UI and discover the principles of good chatbot UX/UI.
+- [23 Best Chatbot Use Cases for Customer Service & More (2025)](https://www.tidio.com/blog/chatbot-use-cases/): What are chatbots used for? Discover the real-life examples of chatbot use cases to apply for your business and find the best chatbots for each use case.
+- [Chatbot vs. Live Chat Explained: Which Is Better in 2024?](https://www.tidio.com/blog/chatbot-vs-live-chat/): What is the difference between live chat and chatbots? Check out the ultimate chatbot vs. live chat comparison with the pros, cons, and features described.
+- [Chatbot vs. AI Virtual Assistant: What Are the Differences? 2025](https://www.tidio.com/blog/chatbot-vs-virtual-assistant/): Learn the differences between a chatbot vs. AI virtual assistant. Compare the features of chatbots and virtual assistants and pick the one that fits your needs.
+- [Chatbots vs Conversational AI: Is There Any Difference?](https://www.tidio.com/blog/chatbots-vs-conversational-ai/): Learn the differences and similarities between chatbots vs. conversational AI. Discover examples of each and how to build your own conversational chatbots.
+- [ChatGPT for Customer Service: Best OpenAI Use Cases](https://www.tidio.com/blog/chatgpt-customer-service/): Discover what is ChatGPT customer service and how to use it for your business. Check out the top companies that use OpenAI customer service successfully.
+- [15 Christmas Marketing Ideas to Boost Your Sales (2025)](https://www.tidio.com/blog/christmas-marketing/): Discover the best Christmas marketing ideas to stand out among your competition. Learn about useful Christmas campaign tips to boost your holiday sales.
+- [8+ Creative Christmas Newsletter Ideas & Examples](https://www.tidio.com/blog/christmas-newsletter/): Check out Christmas newsletter ideas for your business. Pick the best template and learn how to write captivating Holiday letters your clients will remember.
+- [Cold Email Vs. Cold Call | Which One is Better? [Pros & Cons]](https://www.tidio.com/blog/cold-email-vs-cold-call/): Cold calling is dead and cold emailing is better. Or is it? It's hard to rule out one technique completely in favor of another. Let's consider the pros & cons of each.
+- [Grammar Drama: These Common Grammar Mistakes Make You’re* Company Look Dumb](https://www.tidio.com/blog/common-grammar-mistakes/): Read our study revealing which common grammar mistakes can influence your company's image and reputation.
+- [11 Companies That Use AI-Generated Customer Support ](https://www.tidio.com/blog/companies-that-use-ai-generated-customer-support/): Discover the top companies that use AI-generated customer support successfully. Learn how you can leverage AI to grow your business and drive revenue.
+- [10 Best Complaint Management Software Systems in 2025](https://www.tidio.com/blog/complaint-management-software/): Check out the top complaint management software available. Compare their pros, cons, and pricing, and pick a complaint management tool suitable for you.
+- [A Quick Guide to Consumer Behavior [+ Examples]](https://www.tidio.com/blog/consumer-behavior/): Consumer behavior is about how people buy and use goods or services. If you want to sell more, you must understand your customers' needs and motivations.
+- [Conversational AI for Customer Service: Full Guide With Tips](https://www.tidio.com/blog/conversational-ai-customer-service/): Learn what conversational AI customer service is and how it works. Discover tips for an effective use of conversational AI for customer service in your field.
+- [12 Best Conversational AI Platforms [Reviews for 2025]](https://www.tidio.com/blog/conversational-ai-platforms/): Explore top conversational AI platforms for your business needs. Learn the key benefits of using conversational AI solutions to streamline support processes.
+- [What Is Conversational AI & How It Works? [2025 Guide]](https://www.tidio.com/blog/conversational-ai/): Learn what conversational AI is, its benefits, and how it works. Discover conversational AI examples, best practices, and top platforms to use for your business.
+- [What Is Conversational Commerce? [Benefits & Examples]](https://www.tidio.com/blog/conversational-commerce/): Discover what conversational commerce is with real-life examples and benefits. Learn how to solve the challenges of conversational selling and implement it.
+- [Conversational Customer Service: Channels & Best Practices](https://www.tidio.com/blog/conversational-customer-service/): Learn what conversational customer service is with channels, best practices, and trends. Learn how businesses boost efficiency with conversational support.
+- [What Are Conversational Interfaces? [The Ultimate Guide]](https://www.tidio.com/blog/conversational-interfaces/): Learn how conversational interfaces work and the different types you can use. Check out practical conversational UI examples and tips for implementing them.
+- [What Is Conversational Marketing? [Guide & Examples]](https://www.tidio.com/blog/conversational-marketing/): What is conversational marketing? How can it help your business? A step-by-step guide to implementing conversation marketing illustrated with examples.
+- [CRM vs. Ticketing System: What’s the Difference? [+Benefits]](https://www.tidio.com/blog/crm-vs-ticketing-system/): Discover the importance of CRM and ticketing software for enhanced customer service. Compare the similarities and differences of using each tool for support.
+- [Customer Acquisition Cost: Master the Killer Metric and Improve CAC Fast](https://www.tidio.com/blog/customer-acquisition-cost/): What is CAC and how to calculate it. Average CAC for industries. CAC/LTV ratio. Calculation examples & methods to improve Customer Acquisition Cost.
+- [What Is Customer Care in Business: Definition & Examples](https://www.tidio.com/blog/customer-care/): Learn what customer care aka assistance means in business. How its definition is different from customer service and consumer experience.
+- [7 Best Customer Communication Management Software in 2025](https://www.tidio.com/blog/customer-communication-management-software/): Explore the top customer communication management software on the market. Compare the CCM software reviews and get a suitable tool for your business.
+- [10 Best Customer Communication Tools for Your Business](https://www.tidio.com/blog/customer-communication-tools/): Compare the pros, cons, and pricing of the top customer communication tools. Learn the benefits, examples, and choose the right system for your business.
+- [How to Improve Customer Communication: 6 Effective Strategies](https://www.tidio.com/blog/customer-communication/): What is customer communication? Management and tools to establish effective interactions with clients and improve your consumer relations.
+- [How to Handle Customer Complaints [10+ Response Examples]](https://www.tidio.com/blog/customer-complaints/): How to handle customer complaints? Learn how to deal with customer service complaints and see the best resolution templates.
+- [10 Best Customer Database Software for a Small Business (2025)](https://www.tidio.com/blog/customer-database-software/): What is customer database management? Find out how it can boost your sales. Best customer database software that your company can use for free.
+- [Top 12 Customer Engagement Software for Businesses in 2025](https://www.tidio.com/blog/customer-engagement-software/): Explore the best customer engagement software for your business. Compare top customer engagement tools and choose one option that best works for you.
+- [What's Customer Engagement? [Importance + Strategies]](https://www.tidio.com/blog/customer-engagement/): Learn these 10 customer engagement strategies and tools to turn customers into loyal fans. Find out how other brands engage with clients.
+- [What Is Customer Experience Automation? [Full Guide]](https://www.tidio.com/blog/customer-experience-automation/): Learn what customer experience automation is and how it works. Explore the main benefits, use cases, and detailed customer experience software reviews.
+- [7 Best Customer Experience Software for 2025 [Reviews]](https://www.tidio.com/blog/customer-experience-software/): Discover the best customer experience software tools with their pros and cons. Learn why your business needs customer experience management solutions.
+- [How to Build an Effective Customer Experience Strategy](https://www.tidio.com/blog/customer-experience-strategy/): Learn what customer experience strategy is with its elements. Use a guide, tips, and some best practices to build a successful CX strategy for your business.
+- [99 Customer Experience Statistics & Interesting CX Trends (2025)](https://www.tidio.com/blog/customer-experience-study/): What are the most important customer experience trends? Browse the most comprehensive list of CX statistics based on original research.
+- [What Is Customer Experience? [Definition & How to Improve]](https://www.tidio.com/blog/customer-experience/): What does CX mean? Customer experience definition, examples, and metrics. 3 easy tips to improve customer experience and how it affects your business.
+- [6 Best Customer Feedback Strategies [+Importance]](https://www.tidio.com/blog/customer-feedback/): Learn strategies to manage and use customer feedback in your business. Discover effective ways of asking for feedback from clients and why they’re important.
+- [6 Ways to Improve Your Company’s Customer Focus](https://www.tidio.com/blog/customer-focus/): What is customer focus? Why does focusing on the customer matter so much? Definition, tips, and good examples of customer-focused businesses.
+- [How to Create a Customer Journey Map? [+Examples]](https://www.tidio.com/blog/customer-journey-map/): Learn what customer journey mapping is, its benefits, and how to do it. Discover best practices, useful tools, and templates to design your customer journey.
+- [What is Customer Lifetime Value? [Formula & Examples]](https://www.tidio.com/blog/customer-lifetime-value/): Find out the Customer Lifetime Value definition in marketing and how to calculate it. Use our simple calculator with the CLV formula to boost your sales.
+- [What Is Customer Loyalty? [Definition, Tips & Examples]](https://www.tidio.com/blog/customer-loyalty/): Learn what customer loyalty is and why it's important for your business development. See the best examples of customer loyalty programs and get inspired.
+- [10 Best Customer Messaging Platforms to Consider in 2025](https://www.tidio.com/blog/customer-messaging-platforms/): Check out our list of the best customer messaging tools for your needs. Compare the features, pros, and cons, and choose the best fit for your business.
+- [What Are 8 Customer Needs and How to Identify Them?](https://www.tidio.com/blog/customer-needs/): The ultimate guide to identifying customer needs. Learn how anticipating customer needs can help your business grow and deliver better experiences.
+- [Mastering Customer Onboarding Emails – Examples, Practices, and Tips](https://www.tidio.com/blog/customer-onboarding-emails/): Do you know why onboarding emails are important and what are customer onboarding best practices? Check out these 15 examples and tips.
+- [Best Practices for Customer Onboarding (2025)](https://www.tidio.com/blog/customer-onboarding/): Discover what customer onboarding is and why it's important. Find tips, best practices, and a checklist to create a winning customer onboarding process.
+- [What Is Customer Orientation In Marketing : Examples & Skills](https://www.tidio.com/blog/customer-orientation/): Check what customer orientation is in marketing & learn its benefits. See examples of customer-oriented companies and learn steps to implement the approach.
+- [What Is A Good Customer Relationship: Definition & Example](https://www.tidio.com/blog/customer-relationship/): Learn about the significance of customer relations and their benefits. Explore tips that can help you forge a solid connection with clients and boost their loyalty.
+- [11 Best Customer Retention Software Tools to Reduce Churn](https://www.tidio.com/blog/customer-retention-software/): Check out the best customer retention software reviews with pros, cons, and pricing compared. Learn how to choose the right tool for your business needs.
+- [15 Effective Strategies to Boost Ecommerce Customer Retention](https://www.tidio.com/blog/customer-retention/): Learn about the best ecommerce customer retention strategies for your business. Discover what a good returning customer rate means for your website.
+- [Customer Satisfaction: All You Need to Know in 2025 [+Tips]](https://www.tidio.com/blog/customer-satisfaction-/): Find out what customer satisfaction is, how to measure it, and why it matters. Explore online resources we've hand-picked to help you!
+- [Customer Satisfaction Survey: 100+ Sample Questions & Guide](https://www.tidio.com/blog/customer-satisfaction-survey/): Learn how to make various types of customer satisfaction surveys. See examples of questions, dos & don'ts, and use one of our handy ready-made templates.
+- [Customer Satisfaction: All You Need to Know in 2025 [+Tips]](https://www.tidio.com/blog/customer-satisfaction/): Find out what customer satisfaction is, how to measure it, and why it matters. Explore online resources we've hand-picked to help you!
+- [Top 10 Customer Segmentation Tools & Software Reviewed ](https://www.tidio.com/blog/customer-segmentation-software/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [Customer Segmentation: The Ultimate Guide for Success](https://www.tidio.com/blog/customer-segmentation/): Learn all about customer segmentation and the benefits it can bring to your business. Explore practical tips to use for a solid customer segmentation strategy.
+- [What Is Customer Self-Service? [Examples, Tips & Tools]](https://www.tidio.com/blog/customer-self-service/): Find out what customer self-service is with its benefits. Discover leading self-service examples and best practices you can use to improve client engagement.
+- [What Is Customer Service Automation? [Full Guide]](https://www.tidio.com/blog/customer-service-automation/): Learn what automated customer service is and how to automate your client support. Discover pros, cons, and best tools for customer service automation.
+- [9 Best Customer Service Channels to Consider in 2025](https://www.tidio.com/blog/customer-service-channels/): Check out the most effective customer service channels on the market. Compare their features and benefits and choose the best option for your business.
+- [10 Best Customer Service Chatbots in 2025 [Full Guide]](https://www.tidio.com/blog/customer-service-chatbot/): Discover top customer service chatbots along with their benefits and features. Explore customer service chatbot examples and learn how to create your own.
+- [What Is Customer Service? [Definition and Examples]](https://www.tidio.com/blog/customer-service-definition/): Read the definition of customer service. Explore the best examples of customer support, customer service jobs, and necessary requirements.
+- [25 Customer Service Email Templates [+Best Practices]](https://www.tidio.com/blog/customer-service-email/): Use our 25 customer service email templates to resolve issues. See the best tips on how to write emails that help you handle inquiries and delight customers.
+- [Top 18 Customer Service Interview Questions & Answers [+Tips]](https://www.tidio.com/blog/customer-service-interview-questions/): What are employers looking for in a customer service representative? Prepare for your customer service interview questions with sample STAR-based answers.
+- [Customer Service Manager [Job Description, Skills, More]](https://www.tidio.com/blog/customer-service-manager/): What are the customer service manager job description and duties? Discover all you need to know about customer service manager skills and salary.
+- [Top 12 Customer Service Metrics: Measure Performance Quality](https://www.tidio.com/blog/customer-service-metrics/): The definitive guide to customer service metrics with correct formulas and examples. Learn what the best customer service KPIs are and how to meet them.
+- [15 Customer Service Scenarios for Role Play [Tips & Examples]](https://www.tidio.com/blog/customer-service-scenarios/): Use these customer service role-play scripts for training and onboarding agents. Learn how to deal with difficult customers or prepare for interview questions.
+- [17 Key Customer Service Skills [List & Resume Examples]](https://www.tidio.com/blog/customer-service-skills/): Do you know what are the most important skills for customer service? Check out the customer service skills examples you should list on your resume.
+- [The 10 Best Customer Service Software Platforms (2025)](https://www.tidio.com/blog/customer-service-software/): Check out the ultimate guide to customer service software. Learn about the best features and support tools for improving customer service in your company.
+- [Top 200+ Customer Service Statistics & Trends (2025)](https://www.tidio.com/blog/customer-service-statistics/): Check out various customer service statistics based on relevant research. Learn more about customer expectations, retention, and social media stats.
+- [Full Guide To Creating A Winning Customer Service Strategy](https://www.tidio.com/blog/customer-service-strategy/): Discover useful tips to create a top-notch customer service strategy and win more clients. Learn the importance of optimizing your customer support strategy.
+- [Customer Service Training for Employees: Activities & Examples](https://www.tidio.com/blog/customer-service-training/): Find out which customer service training courses are best for your team. Try out some exciting training exercises to improve your service skills before enrolling.
+- [13 Best Customer Success Interview Questions With Answers](https://www.tidio.com/blog/customer-success-interview-questions/): A selection of tough customer success interview questions that you should ask as a recruiter and example answers and tips for candidates.
+- [What Is a Customer Success Manager? [All You Need to Know]](https://www.tidio.com/blog/customer-success-manager/): Learn what customer success managers do for businesses & how they differ from customer support. Explore CSM duties, KPIs, skills, job descriptions & more.
+- [12 Key Customer Success Metrics & KPIs [+Benchmarks]](https://www.tidio.com/blog/customer-success-metrics/): Discover customer success KPIs with key SaaS metrics examples. Calculate and learn the importance of measuring the right customer success metrics.
+- [10 Best Customer Success Software Tools To Boost Sales | Tidio](https://www.tidio.com/blog/customer-success-software/): Learn what customer success software is with its main features. Compare the pros, cons, and pricing of the top 10 tools to pick the right one for your business.
+- [Customer Success 101: Definitions, Importance, & More](https://www.tidio.com/blog/customer-success/): Find out what customer success is, why it is important, and how to create a customer success strategy. Check out some tools to help you out with it.
+- [Customer Support vs. Service [Definition + Software]](https://www.tidio.com/blog/customer-support/): Learn what customer support is and its role within organizations. Discover the best tools and software to assist the teams and tips for improving support teams.
+- [Should I Put Cybernetic Enhancements In My Body?](https://www.tidio.com/blog/cybernetic-enhancements/): 10 most desired cybernetic enhancements and biohacking ideas. Find out what are the most popular modifications, implants, and body upgrade technologies.
+- [15 Best Discount Code Ideas To Boost Sales [Examples]](https://www.tidio.com/blog/discount-code-ideas/): Discover the top discount codes with real-life examples and tips on how to use them. Learn the benefits of promo codes and how to get the most out of them.
+- [Distribution List vs. Shared Mailbox: What Are The Differences?](https://www.tidio.com/blog/distribution-list-vs-shared-mailbox/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [Top 12 Drift Alternatives & Competitors in 2025 [Free and Paid]](https://www.tidio.com/blog/drift-alternatives/): While Drift is an excellent customer relationship management system, there are other great CRM alternatives. Here's a full list with a feature overview.
+- [What Is Ecommerce Automation and How to Use It?](https://www.tidio.com/blog/ecommerce-automation/): Learn what ecommerce automation is and its benefits. Discover how to use automation in ecommerce and the best tools to implement in your online store.
+- [15 Best Ecommerce Case Studies to Learn From (2025)](https://www.tidio.com/blog/ecommerce-case-studies/): Get inspired by the best ecommerce case studies every marketer should learn from. Read more about the success stories of the most popular online stores.
+- [The Best Ecommerce Chatbots for Your Website [+Examples]](https://www.tidio.com/blog/ecommerce-chatbots/): Look through examples of ecommerce chatbots and learn some best practices for using yours. Discover the top ecommerce bots with detailed comparisons.
+- [Ecommerce Conversion Rate Benchmarks & Tips (2025)](https://www.tidio.com/blog/ecommerce-conversion-rate/): Explore key ecommerce conversion rate benchmarks for various categories. Learn how you can improve the ecommerce conversion rate of your online store.
+- [10 Best Practices for Ecommerce Customer Service](https://www.tidio.com/blog/ecommerce-customer-service/): Discover all you need to know about ecommerce customer service. Learn how to improve your ecommerce service with best practices and useful software.
+- [Sales Tactics Bundle for Your Ecommerce Growth Strategy](https://www.tidio.com/blog/ecommerce-growth-strategy/): Learn how to optimize your ecommerce growth strategy using the best CX practices. Increase your sales by delighting your customers at all buying stages.
+- [The 10 Best Ecommerce Help Desk Software [Reviews]](https://www.tidio.com/blog/ecommerce-help-desk/): Learn the benefits and main features of an ecommerce help desk software. Discover the best systems available online with pros, cons, and pricing compared.
+- [19 Best Ecommerce Integration Software for Businesses (2025)](https://www.tidio.com/blog/ecommerce-integrations/): Learn all about the benefits of using ecommerce integrations for your online store. Check out the best types of integration software to upscale your business.
+- [Ecommerce Launch Checklist: 15 Steps to Start an Online Store](https://www.tidio.com/blog/ecommerce-launch-checklist/): Explore the ultimate ecommerce launch checklist to help kickstart your online store. Check out the best tips for developing your ecommerce launch strategy.
+- [13 Best Ecommerce Live Chat for Online Stores in 2025](https://www.tidio.com/blog/ecommerce-live-chat/): Discover the top ecommerce live chat software for your businesses with detailed reviews. Learn how to choose the best ecommerce chat for your online store.
+- [8 Top eCommerce Platforms Compared & Reviewed (2025)](https://www.tidio.com/blog/ecommerce-platforms/): Find the best eCommerce platform for beginners, startups, small businesses, and enterprises. Compare their features, pricing, and pros and cons.
+- [Ecommerce Return Policy: Examples & Templates (2025) ](https://www.tidio.com/blog/ecommerce-return-policy/): Learn the best practices for how to create a return policy for ecommerce. Get inspired by the ecommerce return policy templates & examples of refund policies.
+- [Ecommerce Sales Funnel Optimization Guide [+Examples]](https://www.tidio.com/blog/ecommerce-sales-funnel-optimization/): Learn how to build an ecommerce sales funnel for your business. Discover the best practices for online sales funnel optimization and boost your conversions.
+- [10+ Must-Know Ecommerce Statistics for 2025 [Report]](https://www.tidio.com/blog/ecommerce-statistics/): A hand-picked selection of crucial ecommerce statistics for your business. Learn about ecommerce sales growth, most bought products, revenue, and more.
+- [Top 10 Ecommerce UX Best Practices for Success [+Examples]](https://www.tidio.com/blog/ecommerce-ux-best-practices/): Find out how leading brands stay ahead by implementing ecommerce UX best practices. Learn more about the impact of user experience on an online store.
+- [10 Top Ecommerce Website Designs & How to Build Yours](https://www.tidio.com/blog/ecommerce-website/): Wondering how to build an eCommerce website that sells? Learn how to do it step-by-step, find the best eCommerce website builder & see inspiring examples.
+- [Ecwid vs Shopify: Which is Best in 2025? [Comparison]](https://www.tidio.com/blog/ecwid-vs-shopify/): See the latest Ecwid vs Shopify feature comparison. Find the best solution for your online ecommerce store. Explore pricing, dropshipping, integrations, & more!
+- [What Is Email Automation? [Benefits, Examples, and Best Practices]](https://www.tidio.com/blog/email-automation/): With email automation, you can send personalized messages to boost customer engagement and retention. Automation will help you grow on autopilot.
+- [20+ Best Email Campaigns [Email Campaign Ideas and Examples]](https://www.tidio.com/blog/email-campaigns/): Get more clicks, audience, and sales. Easily build your email campaigns from scratch or with email templates. Start today. For free.
+- [What Is Effective Email Communication? [7 Tips & Examples]](https://www.tidio.com/blog/email-communication/): To have effective email communication, you need to follow some email etiquette rules, which include choosing the right email style, including a subject line and formatting and proofreading the text, and more.
+- [Easy Guide to Email Design Best Practices [+Template Gallery]](https://www.tidio.com/blog/email-design/): Email design gives that first impression that can make or break your campaigns. Try these email design best practices to ensure the impression is right.
+- [Professional Email Header Design: 7 Best Practice Examples](https://www.tidio.com/blog/email-header-design/): Learn to create effective email header designs. Use them as newsletter headers or anywhere else. See examples & boost your email open rate.
+- [6 Tips to Use Analytics For Effective Email Marketing](https://www.tidio.com/blog/email-marketing-analytics/): Start tracking the right data to improve the quality of your email marketing campaigns! Here are some of the best tips for doing email marketing analytics.
+- [10 Best Email Marketing Services [Comparison for 2023]](https://www.tidio.com/blog/email-marketing-services/): Check out the best email marketing services and compare their pros, cons, and pricing. Learn more about the benefits of using these tools for your business.
+- [10+ Essential Email Marketing Statistics for 2025](https://www.tidio.com/blog/email-marketing-statistics/): Discover an average open rate for emails and benchmarks for ROI. Learn the most important email marketing statistics and trends for your next campaign.
+- [10 Best Email Marketing Templates for 2023 [Free Download]](https://www.tidio.com/blog/email-marketing-templates/): Professional email marketing templates for online businesses. Browse categories and learn how to create email templates for marketing.
+- [Free Email Newsletter Templates + Newsletter Examples](https://www.tidio.com/blog/email-newsletter-templates/): Ready to use email templates for newsletters you can try for free. Inspirational newsletter examples and tips for starting successful newsletter campaigns.
+- [How to Write Email Subject Lines to Boost Open Rates [Examples]](https://www.tidio.com/blog/email-subject-lines/): Discover the secret of writing good email subject lines for sales and higher open rates. Best email subject line examples and templates you can use.
+- [The 2025 Guide to AI-Powered Enterprise Chatbots](https://www.tidio.com/blog/enterprise-chatbots/): Discover practical use cases of enterprise chatbots and how you can implement one right away.
+- [10 Best Enterprise Help Desk Software (2025 Reviews) | Tidio](https://www.tidio.com/blog/enterprise-help-desk/): Find out the best enterprise help desk software on the market. Compare the features, pros, and cons to choose the best help desk option for your business.
+- [Facebook Chatbot: A Definitive Guide for Businesses](https://www.tidio.com/blog/facebook-chatbot/): Discover what a Facebook chatbot is with the most successful examples. Learn how to set up your Messenger bot and strategies for effective implementation.
+- [How to Add Facebook Messenger Live Chat Integration to Your Site](https://www.tidio.com/blog/facebook-live-chat-integration/): All you need to know about Facebook Messenger for customer service. Find out how to add Facebook live chat on your website and use it for support.
+- [What Is a FAQ Chatbot? Benefits, Types & Use Cases](https://www.tidio.com/blog/faq-chatbot/): Read about what an FAQ chatbot is and the benefits it brings. Discover its use cases and learn how to create one on your company’s website.
+- [Top 10 FAQ Software for Your Business [+Create FAQ Pages]](https://www.tidio.com/blog/faq-software/): Check out the best FAQ software for your business with pros, cons, and pricing compared. Learn the benefits, best practices, and how to create FAQ guides.
+- [Best Finance Chatbot for Banking & Personal Financial Advice](https://www.tidio.com/blog/finance-chatbots/): Discover what the best chatbots for banks and financial services are with pros, cons, and reviews. Learn the use cases and benefits of finance chatbots.
+- [7 Effective Email Follow-Up Techniques to Increase Conversions](https://www.tidio.com/blog/follow-up-email/): Discover how to create emails that grab the attention of your recipients. 7 best techniques for writing personal, professional, and marketing emails.
+- [18 Free CRM Software for Your Business [Reviews 2025]￼](https://www.tidio.com/blog/free-crm-software/): Learn what free CRM software is and how to choose the right one. Discover the pros, cons, and free features of the best free client management software.
+- [19 Best Free Live Chat Software for Website Support in 2025](https://www.tidio.com/blog/free-live-chat/): Discover the best free live chat software for your website with pros, cons, and pricing comparisons. Learn the benefits and main features of free chat services.
+- [50+ Best Free Minimalist WordPress Themes (2025)](https://www.tidio.com/blog/free-minimalist-wordpress-themes/): Discover 50 top free minimalist WordPress themes with ratings, pros & cons. Learn how to choose the right minimal WordPress theme for your website.
+- [30 Best Free WordPress Themes for 2025 [Blogs & More]](https://www.tidio.com/blog/free-wordpress-themes/): See the best free WordPress themes for blogs, portfolios, ecommerce, photographers, & more. Discover ratings, pros & cons. Pick the one you like & need.
+- [10 Best Freshdesk Alternatives & Competitors (2025)](https://www.tidio.com/blog/freshdesk-alternatives/): Compare the best Freshdesk alternatives with pros, cons, and pricing. Check out top Freshdesk competitors to find the right one for your business needs.
+- [10 Best Front Alternatives and Competitors [Free & Paid] | Tidio](https://www.tidio.com/blog/front-alternatives/): Explore the best Front app alternatives to use for your customer service. Compare the main features, pros, cons, and pricing of the top Front competitors.
+- [Will AI Text-to-Image Generators Turn Us All Into Artists?](https://www.tidio.com/blog/generative-ai-dall-e-examples/): Explore the best text-to-image apps and find out which AI can generate the most realistic images and photos. See examples of generative AI art from DALL·E 2.
+- [Top 14 Gladly Alternatives For Your Customer Service Needs | Tidio](https://www.tidio.com/blog/gladly-alternatives/): Discover the complete list of the top Gladly alternatives available on the market. Learn the pros, cons, and pricing of Gladly competitors to find the right one for your business.
+- [7 Ways to Deliver Excellent Customer Service [Examples]](https://www.tidio.com/blog/good-customer-service/): Good customer service definition, examples, and techniques for customer service reps. Best low-effort ways to deliver excellent service to all customers.
+- [Top 10 Gorgias Alternatives & Competitors for Ecommerce](https://www.tidio.com/blog/gorgias-alternatives/): Discover the top Gorgias alternatives with pros, cons, and pricing compared. Check detailed reviews and learn which Gorgias competitor is best for you.
+- [Gorgias vs. Zendesk: The Ultimate Comparison Guide for 2025](https://www.tidio.com/blog/gorgias-vs-zendesk/): Explore the main differences between Gorgias vs. Zendesk. Compare the features and pricing models of each tool and select the one that works for you.
+- [15 Easy & Proven Ways to Grow Your Email List in 2025](https://www.tidio.com/blog/grow-email-list/): Learn what email lists are and why you need them. Discover how to grow your email list with the most effective tactics, best practices, and real-life examples.
+- [10 Help Desk Best Practices and Tips for Quality Support](https://www.tidio.com/blog/help-desk-best-practices/): Learn about help desk best practices and how to implement each one for your needs. Discover the importance of using help desk in your support processes.
+- [12-Step Help Desk Checklist for CX Excellence [Guide]](https://www.tidio.com/blog/help-desk-checklist-for-cx/): Explore the most practical help desk checklist and improve the way you operate your customer service. Download a useful free helpdesk checklist template.
+- [Help Desk Management: 7 Best Practices for Success](https://www.tidio.com/blog/help-desk-management/): Discover the best help desk management practices to boost team performance and user satisfaction. Review the features of top help desk management tools.
+- [15 Help Desk Templates to Copy-Paste for Quick Replies](https://www.tidio.com/blog/help-desk-template/): Explore the most practical help desk templates and their core benefits. Learn how to create and use a help desk response template for your support needs.
+- [20 Best Help Desk Ticketing Systems & Software (2025)](https://www.tidio.com/blog/help-desk-ticketing-system/): Learn all about the help desk ticketing system, its benefits, and main features. Discover the best ticketing software available on the market and how to use it.
+- [Help Desk vs. Service Desk: What Are the Differences?](https://www.tidio.com/blog/help-desk-vs-service-desk/): Learn the differences between help desk vs. service desk. Discover the benefits of each solution and how to pick the best service for your support needs.
+- [What Is Help Desk Workflow? [Examples & Steps to Use]](https://www.tidio.com/blog/help-desk-workflow/): Learn what help desk workflow is and why it’s important. Explore the most practical help desk workflow examples and the tips you can use to implement them.
+- [Help Scout vs. Zendesk: The Ultimate Comparison Guide (2025)](https://www.tidio.com/blog/help-scout-vs-zendesk/): Learn about the key differences between Help Scout vs. Zendesk solutions. Compare the reviews about Zendesk and Help Scout and choose the best option for your needs.
+- [15 Essential Help Desk Metrics & KPIs [+ Best Practices] | Tidio](https://www.tidio.com/blog/helpdesk-metrics/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [12 Best Help Desk Software for 2025 [Complete Guide] | Tidio](https://www.tidio.com/blog/helpdesk-software/): Learn what help desk software is with benefits, main features, and best practices. Discover the top help desk solutions with pros, cons, and pricing compared.
+- [Top 10 HelpScout Alternatives & Competitors [Similar Apps]](https://www.tidio.com/blog/helpscout-alternative/): Discover the best Help Scout competitors with pros, cons, and pricing comparisons. Choose the best Help Scout alternative to handle your customer service.
+- [Making $23.000+ in Sales with Live Chat and Chatbots](https://www.tidio.com/blog/high-ticket-dropshipping/): Learn how to build a fortune-making dropshipping business from scratch. Real-life case study. Plus a free chatbot tutorial at the end!
+- [Best 10 Hiver Alternatives for Team Collaboration (2025)](https://www.tidio.com/blog/hiver-alternatives/): Discover the best Hiver alternatives and competitors for your business support needs. Learn why you need a Hiver alternative for your customer service team.
+- [Tell Us About Your Customer Service Nightmares](https://www.tidio.com/blog/horrible-customer-service-stories/): From long wait times to unhelpful reps, dealing with support is often an exercise in frustration. Check out our selection of real customer service horror stories.
+- [How Does Shopify Work & How to Use It [Guide for Beginners]](https://www.tidio.com/blog/how-does-shopify-work/): Learn how Shopify works. We cover everything: from starting your store to shutting it down and everything in between. Videos & resources included.
+- [How Does Technology Affect Our Mental Health? [Study]](https://www.tidio.com/blog/how-does-technology-affect-us/): Discover the results of our study on the technological impacts on society. Learn the effects that the internet, digital devices, and social media have on us.
+- [How to Build Great Ecommerce Referral Programs [+ Examples]](https://www.tidio.com/blog/how-referral-programs-can-help-your-small-e-commerce-business/): We will show you how referral marketing can be your secret weapon to increase brand awareness, generate leads, and boost sales.
+- [How Smart Is AI After All These Years?](https://www.tidio.com/blog/how-smart-are-gpt-3-chatbots/): What is the smartest virtual assistant? We interrogated Alexa, Cortana, GPT-3, chatbots, and other AI apps to find out how smart bots are after all these years.
+- [5 Easy Steps to Build an Email List from Scratch for Free](https://www.tidio.com/blog/how-to-build-an-email-list/): The best ways to build relationships with customers and persuade them to leave their email addresses and complete opt-in forms described with examples.
+- [How to Create a Chatbot: Build Your Own Bot for Free (2025)](https://www.tidio.com/blog/how-to-create-a-chatbot-for-a-website/): Discover how to make a chatbot from scratch in a chatbot editor. Easily build your own chatbot in eight short steps and in less than 15 minutes.
+- [How to Deal With Angry Customers: 8 Practical Steps & Examples](https://www.tidio.com/blog/how-to-deal-with-angry-customers/): What are the types of angry customers and how to deal with them? Examples of dealing with a difficult customer and tips for handling angry clients.
+- [How to Generate Leads Online for Every Business](https://www.tidio.com/blog/how-to-generate-leads-online-for-every-business/): Lead generation strategies for every business illustrated with real-life examples and case studies backed with data. Find the best way to generate leads for you.
+- [How to Make a Logo in 8 Easy Steps [Ideas, Examples & Tips]](https://www.tidio.com/blog/how-to-make-a-logo/): Check out an easy formula for designing amazing logos. All you need to know about developing a logo, looking for ideas & inspiration. Plus, logo design tips.
+- [How to Make a Newsletter: Start to Create Online Campaigns Now](https://www.tidio.com/blog/how-to-make-a-newsletter/): Do you want to create a newsletter but don't know how? This simple step-by-step guide will show you how to create a newsletter campaign for free.
+- [How to Sell Art Online and Make Money [10 Tips, Ideas, & Sites]](https://www.tidio.com/blog/how-to-sell-art-online/): Learn the ins and outs of selling art online. Tips from successful artists on how to start, reach your audience, and earn money.
+- [How to Sell on Facebook Marketplace: Beginner's Tips for 2025](https://www.tidio.com/blog/how-to-sell-on-facebook-marketplace/): Learn the best tips and tricks for selling things on the Facebook app. Start posting on FB marketplace locally or shipping items as a small business.
+- [How to Sell Online with a Low-Traffic Website](https://www.tidio.com/blog/how-to-sell-online/): How to generate more online sales on a low traffic website? Check short and long-term ideas that will help you attract more targeted visitors.
+- [How to Create & Set up an Online Store [in 5 Simple Steps]](https://www.tidio.com/blog/how-to-set-up-an-online-store/): Want to set up an online store? Great! We'll show you how to create an online store from the ground up in 5 easy steps. Build & open an online store in no time!
+- [How to Spot Misinformation? [Fake News Statistics]](https://www.tidio.com/blog/how-to-spot-fake-news/): What is fake news? Is there a difference between misinformation and disinformation? Everything you need to know to spot fake news and fight disinformation.
+- [How to Start a Dropshipping Business [Ultimate Guide + Examples]](https://www.tidio.com/blog/how-to-start-a-dropshipping-business/): Want to start a dropshipping business better than your competitors? We'll show you how to set up a successful store online - even if you have little or no money.
+- [20+ Best Email Opening Sentences & Greetings [Email Starters]](https://www.tidio.com/blog/how-to-start-an-email/): Find out how to start an email to make a good impression and get a fast reply. Effective email opening lines for personal, professional, and formal emails.
+- [How to Start an Online Business [8 Simple Steps]](https://www.tidio.com/blog/how-to-start-an-online-business/): 8 steps to start an online business: Find the right product · Do a competitive analysis · Build a website · Add plugins · Launch your website · Make the sale
+- [How to Start an Online Boutique: Clothing Store in 7 Easy Steps](https://www.tidio.com/blog/how-to-start-an-online-clothing-store/): Starting an online boutique on a budget? Read this simple guide to know how to start an online clothing store from scratch and sell right away.
+- [How to Get Sales on Shopify: 10 Effective Strategies to Scale](https://www.tidio.com/blog/how-to-start-selling-on-shopify/): Learn how to get sales on Shopify with proven strategies. Discover how to optimize and market your store to increase sales and grow your online business.
+- [How to Use WordPress to Build a Website [Beginner's Guide]](https://www.tidio.com/blog/how-to-use-wordpress/): Learn how to build a WordPress website like a pro. Explore our step-by-step tutorial for beginners and find a wealth of actionable tips and unique insights.
+- [How To Write a Professional Email: Format, Tips & Examples](https://www.tidio.com/blog/how-to-write-a-professional-email/): Write excellent professional emails with our checklist. Learn what is the professional email format and how to write business emails that get more replies.
+- [10 Best HubSpot Alternatives and Competitors in 2025](https://www.tidio.com/blog/hubspot-alternatives/): Learn about the best HubSpot alternatives with pros, cons, and pricing compared. Discover which HubSpot competitor is the right choice for your business.
+- [What is Inbound Marketing? [Definition & 15 Tactics]](https://www.tidio.com/blog/inbound-marketing/): Attract, engage, and delight customers with 15 tactics in this guide to inbound marketing strategy. Learn inbound methodology on real-life examples.
+- [19 Ways to Effectively Increase Your Conversion Rate](https://www.tidio.com/blog/increase-conversion-rate/): Explore practical tips to help increase the conversion rate of your online store. Learn how to leverage the power of live chat and chatbots to drive conversions.
+- [26 Ways to Increase Online Sales for Ecommerce Stores](https://www.tidio.com/blog/increase-online-sales/): Learn how to increase online sales from your ecommerce website. Discover the best strategies to boost your online business and gain new customers faster.
+- [7 Best Instagram Bots for More Follows, Likes & Replies](https://www.tidio.com/blog/instagram-bots/): Are you wondering if you should use bots for Instagram? Find out how Instagram bot and automation services work and what the best Instagram bots are.
+- [What Are Instagram Chatbots and How to Use Them?](https://www.tidio.com/blog/instagram-chatbot/): Find out what Instagram chatbots are. Discover the best ways to use them for increasing sales, automating IG support, and engaging your followers.
+- [Integrating Ticketing Into Your CS Stack: Expert Insights | Tidio](https://www.tidio.com/blog/integrating-ticketing-into-your-cs-stack/): Explore insights for integrating ticketing into your customer service stack. Learn best practices from Tidio experts to improve customer satisfaction with ticketing.
+- [Intelligent Virtual Assistants (IVAs): Definition, Use Cases, Tips](https://www.tidio.com/blog/intelligent-virtual-assistants/): Learn what intelligent virtual assistants are with real-life use cases and top benefits. Explore practical tips for implementing AI-powered virtual assistants.
+- [11 Best Intercom Alternatives for Customer Service](https://www.tidio.com/blog/intercom-alternatives/): Discover Intercom alternatives with similar features and choose the best one for your business. Compare the pros, cons, and pricing of the top competitors.
+- [Is My Phone Listening to Me? Truth or Myth](https://www.tidio.com/blog/is-my-phone-listening-to-me/): Have you ever wondered: “Is my phone spying on me?” Find out how voice recognition apps work and what personal data your smartphone collects.
+- [10 Best Kayako Alternatives for Customer Support (2025)](https://www.tidio.com/blog/kayako-alternatives/): Explore the best Kayako alternatives on the market and their key features and pricing. Learn why you should pick a Kayako alternative for your support team.
+- [6 Tips for Building a Great Knowledge Base Chatbot](https://www.tidio.com/blog/knowledge-base-chatbots/): Get the six tips you need to build and maintain an efficient, engaging knowledge base chatbot. Discover the key benefits of making AI part of your team.
+- [10 Lead Generation Landing Page Tips to Convert Like a Superstar](https://www.tidio.com/blog/lead-generation-landing-page/): See the top 10 lead generation landing page tips to make pages that engage, convince, and turn “just browsing” into click, fill, and commit to buy.
+- [A-Z Guide to a Lead Generation Strategy for Small Businesses](https://www.tidio.com/blog/lead-generation-strategy-for-small-businesses/): Learn how to master the lead generation process and start selling like a pro. See examples, ideas, & case studies supported with data.
+- [10+ Lead Magnet Ideas for Businesses [+Examples to Inspire Yours]](https://www.tidio.com/blog/lead-magnet-ideas/): Give your lead generation strategy a boost with these proven lead magnet ideas and examples that are collecting tons of emails right now.
+- [The 7 Best Free Live Chat Apps for Customer Service in 2025](https://www.tidio.com/blog/live-chat-apps/): Explore popular customer service management solutions with live chat apps for Android, iOS, web, and desktop. Rating, pros, cons, and reviews included.
+- [Live Chat Button: How to Quickly Add It to Your Website](https://www.tidio.com/blog/live-chat-button/): Discover what a live chat button is with its functionalities and top benefits to your business. Learn how to install and customize a chat button on your website.
+- [5 Best Live Chat for Sales Teams [+Tips & Techniques]](https://www.tidio.com/blog/live-chat-for-sales/): Discover the best live chat for sales with pros, cons, and pricing comparisons. Learn how to use sales live chat to boost your revenue and grow the business.
+- [Live Chat Icons [Examples & How To Customize Them]](https://www.tidio.com/blog/live-chat-icon/): Choose the live chat icon for your website. Discover examples of web chat icons and how to customize them. Learn what icons to use for your chat support.
+- [8 Efficient Ways to Use Live Chat for Lead Generation [Guide]](https://www.tidio.com/blog/live-chat-lead-generation/): Discover the most effective strategies to leverage live chat for lead generation. Learn how to optimize live chat to successfully convert your visitors into leads.
+- [70+ Ready-to-Use Live Chat Scripts [Examples and Templates]](https://www.tidio.com/blog/live-chat-scripts/): Explore ready-to-use live chat scripts for various customer service situations. Use these templates to automate your support and boost customer experience.
+- [24 Essential Live Chat Statistics You Should Know (2025)](https://www.tidio.com/blog/live-chat-statistics/): A selection of the most important live chat statistics and trends. Find out stats about the average chat response times, market size, and channel preferences.
+- [10 Best Live Chat Triggers to Boost Visitor Engagement](https://www.tidio.com/blog/live-chat-triggers/): Learn more about live chat triggers, their benefits, and some of the most practical use cases. Get inspired with different trigger message examples.
+- [10 Best LiveChat Alternatives & Competitors in 2022 [Comparison]](https://www.tidio.com/blog/livechat-alternatives/): Explore the best LiveChat alternatives and competitors available on the web. Learn about several LiveChat options by comparing their pros, cons, and pricing.
+- [Press Release: Tidio Expands Lyro AI to Email Ticketing](https://www.tidio.com/blog/lyro-ai-to-support-email-ticketing/): Tidio’s Lyro AI now automates ticketing, achieving 80% resolution rates and streamlining customer support across channels for faster, more efficient service.
+- [Lyro AI Training: Best Practices & Step-By-Step Guide | Tidio](https://www.tidio.com/blog/lyro-ai-training/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [Meet Lyro: The First Conversational AI for SMBs ](https://www.tidio.com/blog/lyro-conversational-ai/): Discover Lyro, the first conversational AI for customer service automation, designed with SMBs in mind. Explore its features and all the benefits it can bring.
+- [New Milestone Release — Our Latest Enhancements to Lyro AI Chatbot](https://www.tidio.com/blog/lyro-product-release/): Learn about the new enhancements to Lyro, Tidio's AI chatbot. Check out how these changes can help your business grow and improve customer service.
+- [AI Battle: Lyro vs Ada In-Depth Comparison (2025)](https://www.tidio.com/blog/lyro-vs-ada/): Learn the comparison of Tidio Lyro AI vs Ada CX software. Discover how the two systems compare when asked support questions from various categories.
+- [AI Battle: Lyro vs Zowie In-Depth Comparison (2025)](https://www.tidio.com/blog/lyro-vs-zowie/): Check out the comparison of Tidio Lyro AI vs Zowie AI software. Learn how these systems compare based on the number of scenarios and categories.
+- [All You Need To Know About Adobe Commerce (2025)](https://www.tidio.com/blog/magento-ecommerce/): Discover the pros, cons, pricing, and features of Adobe Commerce. Find out what Adobe Commerce is, its alternatives, and examples of websites.
+- [10 Best Adobe Commerce Live Chat Extensions Reviewed (2025)](https://www.tidio.com/blog/magento-live-chat/): Discover the best Adobe Commerce live chat solutions for your business. Learn the pros, cons, and pricing of each Adobe Commerce chat extension in detailed reviews.
+- [Adobe Commerce vs. Shopify: Which Is The Best Platform? (2025)](https://www.tidio.com/blog/magento-vs-shopify/): Learn Adobe Commerce vs. Shopify differences. Read our honest review on the platforms’ cost, extensions, themes, and more to choose the best one for your needs.
+- [9 Best ManyChat Alternatives & Competitors in 2025](https://www.tidio.com/blog/manychat-alternatives/): Discover the top ManyChat competitors with their pros, cons, and pricing. Compare the best ManyChat alternatives in a table and find the one for your needs.
+- [15 Best Marketing Automation Software Tools [2024 Update]](https://www.tidio.com/blog/marketing-automation-software/): Compare features and pricing plans of the best marketing automation tools. Find the right marketing automation platform for your business.
+- [What Is Marketing Automation and How Can It Help Your Business?](https://www.tidio.com/blog/marketing-automation/): Discover what marketing automation is and start using popular marketing automation techniques to save time and increase your sales.
+- [Must-Know Metaverse Statistics and Predictions for 2025](https://www.tidio.com/blog/metaverse/): Would you remain yourself in the metaverse? Read our study to find out how the metaverse may influence people's identities, lifestyle, and finances.
+- [35 Inspiring Mission and Vision Statement Examples](https://www.tidio.com/blog/mission-and-vision-statement-examples/): Discover the best vision and mission statement examples. Learn how to write a perfect vision and mission statement to maximize your brand potential.
+- [Top 10+ Mobile Commerce Statistics for 2025 [Report]](https://www.tidio.com/blog/mobile-commerce-statistics/): Explore the top mobile commerce statistics. Discover the state of the mobile ecommerce market and find out what are the mobile shopping behavior patterns.
+- [What Is Multichannel Customer Service? [Benefits & Software]](https://www.tidio.com/blog/multichannel-customer-service/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [How to Build a Multilingual Chatbot in 2025? [+Benefits] ](https://www.tidio.com/blog/multilingual-chatbot/): Learn how to make a multilingual chatbot for your specific needs. Find out how to benefit from using multilingual chatbots in your customer service processes.
+- [7 Key Features to Look for in a Multilingual Live Chat Solution](https://www.tidio.com/blog/multilingual-live-chat/): Learn the key features to look for when selecting the best multilingual live chat solution. Explore how multilingual chat can help boost customer engagement.
+- [How to Handle Multiple Chats at the Same Time? [Tips]](https://www.tidio.com/blog/multiple-chat/): Learn how your customer service agents can handle multiple chats simultaneously. Compare the pros, cons, and pricing of the top five multichat platforms.
+- [9 Tips to Make Newsletter Signups That Work [Signup Examples]](https://www.tidio.com/blog/newsletter-signup/): Does a simple "Subscribe to our Newsletter" work? Check out the best signup form examples and learn to create newsletter signups that drive up sales.
+- [What Is NLP Chatbot & How To Build One: Full Guide](https://www.tidio.com/blog/nlp-chatbots/): Discover what NLP chatbots are and how to build one for your website. Learn the benefits, main features, and real-life use cases of NLP technology.
+- [9 Best Olark Alternatives to Enhance Customer Support [2024] | Tidio](https://www.tidio.com/blog/olark-alternatives/): Explore the top Olark alternatives, comparing pros, cons, and pricing. Learn Olark's drawbacks and decide which competitor best suits your business.
+- [What Is Omnichannel Customer Service? [Best Practices]](https://www.tidio.com/blog/omnichannel-customer-service/): Learn what omnichannel customer service is and its benefits. Discover how to build omnichannel support with real-life examples and the best software to use.
+- [10 Best Omnichannel Support Software For Businesses (2025)](https://www.tidio.com/blog/omnichannel-support-software/): Compare the top 10 omnichannel support software with pros, cons, and pricing. Learn the benefits and main features of omnichannel service solutions.
+- [Online Shopping Statistics: Ecommerce Trends for 2025](https://www.tidio.com/blog/online-shopping-statistics/): Over 30 up-to-date online shopping statistics. Learn how many people shop online and what businesses can do to capitalize on the newest ecommerce trends.
+- [8 Best Open Source Helpdesk Ticketing Systems in 2025 [Free]](https://www.tidio.com/blog/open-source-helpdesk/): Check out the top open source helpdesk systems and compare their pros and cons. Explore the benefits of using free helpdesk software for your own needs.
+- [10 Best Packaging Design Ideas to Inspire Your Brand](https://www.tidio.com/blog/packaging-design/): Explore the best examples of product packaging design and learn how to make your own projects. Find out what good packaging is all about.
+- [Phare Circus: How a Social Enterprise Used Chat to Boost Ticket Sales](https://www.tidio.com/blog/phare-circus-from-running-a-school-to-launching-a-social-enterprise/): See how a circus in Cambodia used free Tidio live chat to get more ticket bookings and grow in popularity. Bonus: Facebook Messenger integration tutorial.
+- [10 Best Artificial Intelligence (AI) Plugins for WordPress in 2025](https://www.tidio.com/blog/plugins-ai-wordpress/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [6 Pop-Up Advertising Strategies That Work [+Examples]](https://www.tidio.com/blog/pop-up-advertising/): Learn more about pop-up advertising and why you should use it on your website. Explore the best pop-up strategies you can implement to boost conversions.
+- [Positive Scripting in Customer Service: Key Success Tips](https://www.tidio.com/blog/positive-scripting/): Explore positive scripting tips and practical examples designed to transform your customer interactions and improve the overall experience.
+- [Pre-Sales Support: Benefits, Strategies, and Best Practices](https://www.tidio.com/blog/pre-sales-support/): Learn how you can use pre-sales support to boost sales for your business. Discover the best practices for excellent pre-sales support.
+- [Preparing for Black Friday: Ultimate Customer Service Checklist](https://www.tidio.com/blog/preparing-for-black-friday/): Here's the ultimate checklist for preparing for the upcoming Black Friday. Use these Black Friday tips to help alleviate your customer service.
+- [Top 10 PrestaShop Live Chat Modules for Better Engagement](https://www.tidio.com/blog/prestashop-live-chat/): Explore the best PrestaShop live chat modules for your site. Compare the features of various PrestaShop live chat add-ons and find one that suits your needs.
+- [What Is Proactive Customer Service? [6 Best Examples]](https://www.tidio.com/blog/proactive-customer-service/): Find out the differences between reactive and proactive customer service. Explore the best examples of proactive service companies and their techniques.
+- [What Is Proactive Live Chat: Examples, Tips & Tools](https://www.tidio.com/blog/proactive-live-chat/): Learn all about proactive live chat and find the best ways to implement it in your business strategy. Explore the top proactive chat tools you can use on your site.
+- [What Is Product Marketing? [Strategy, KPIs , Examples]](https://www.tidio.com/blog/product-marketing/): Read our guide and learn what product marketing is, plan an efficient product marketing strategy in 2023, and perfect your product life cycle.
+- [How to Create a Professional Email Signature [Tips & Examples]](https://www.tidio.com/blog/professional-email-signature/): All you need to know and do to create business email signatures that make you look professional. Signature templates and examples you can use.
+- [Importance of Ratings & Reviews [Complete Guide 2025]](https://www.tidio.com/blog/ratings-and-reviews/): Learn the importance of ratings and reviews for your business and the best practices to use. Discover top tools to get the best results from your online reviews.
+- [Reads and Finds | Tidio](https://www.tidio.com/blog/reads-and-finds/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [How to Use Real Estate Chatbots to Drive Leads & Close Deals](https://www.tidio.com/blog/real-estate-chatbots/): Discover everything you need to know about real estate chatbots, including benefits, use cases, and real-life examples.
+- [What Is Real-Time Sales & How It Boosts Your Revenue](https://www.tidio.com/blog/real-time-sales/): Find out what real-time sales is and how it can accelerate your sales process. Discover its use cases and benefits of this approach for your business.
+- [A Quick Guide to Relationship Marketing [Best Ideas & Examples]](https://www.tidio.com/blog/relationship-marketing/): Do you know what is relationship marketing? Check out the best relationship marketing examples and strategies to grow your business fast.
+- [How Restaurants Can Effectively Use Chatbots?](https://www.tidio.com/blog/restaurant-chatbot/): Discover how chatbots can be used in a restaurant. See the best examples of restaurant chatbots for inspiration. Learn how to build a chatbot for restaurants.
+- [Retail Chatbot: Top Use Case Examples, Benefits & Tips](https://www.tidio.com/blog/retail-chatbot/): Learn how to use retail chatbots to boost sales and improve customer service at your store. Discover best practices and real-life examples of chatbots in retail.
+- [Retail Customer Service [Tips, Skills & Examples]](https://www.tidio.com/blog/retail-customer-service/): What is retail customer service? Learn how to deliver a great shopping experience from examples. Discover retailing customer service tips, skills, and more.
+- [10 Best Returns Management Software for Ecommerce (2025)](https://www.tidio.com/blog/returns-management-software/): Discover the best returns management tool for your ecommerce business. Compare the pros, cons, and pricing, and pick a tool that caters to your needs.
+- [The 10 Top SaaS Help Desk Software in 2025 [Reviews]](https://www.tidio.com/blog/saas-help-desk/): Discover the best SaaS help desk solutions with pros, cons, and pricing compared. Learn the main benefits, key features, and best practices for the system.
+- [Use Sales Chatbots to Boost Your Revenue: 7 Best Tools](https://www.tidio.com/blog/sales-chatbot/): Discover the best sales chatbot software that boosts conversions and helps to grow your business. Learn how to use chatbots for sales to get the best results.
+- [Top 10 Best AI Sales Funnel Software for 2025 [Reviews]](https://www.tidio.com/blog/sales-funnel-software/): Check out the top AI sales funnel software to grow your business. Compare the main features and pricing, and pick the best funnel tool that fits your needs.
+- [How to Create a Sales Process That Actually Works [7 Steps]](https://www.tidio.com/blog/sales-process/): Build a 7-step sales process and bring in more customers to your business. Explore tips, resources, and best practices for mapping effective sales cycles.
+- [36 Sales Tools for Sales Representatives & Marketers | Tidio](https://www.tidio.com/blog/sales-tools/): Explore the best sales tools for prospecting, contact management, sales enablement, automation, and marketing. Find the right platform for your sales team.
+- [10 Essential Self-Service Statistics & Trends [2024 Data]](https://www.tidio.com/blog/self-service-statistics/): Gain major insights into the top self-service statistics. Explore key trends shaping customer self-service and discover the best tips to optimize your business.
+- [Top 10 Shared Inbox Tools for Team Collaboration (2025)](https://www.tidio.com/blog/shared-inbox-tools/): Learn about the best shared inbox tools available for your support team. Find out how to promote efficiency for your agents using shared inbox management.
+- [8 Shopify Abandoned Cart Apps & Tips for Your Store](https://www.tidio.com/blog/shopify-abandoned-cart-apps/): Find out all you need to know about Shopify abandoned carts. Discover best practices and Shopify abandoned cart apps to help you convert more visitors.
+- [12 Best Shopify Competitors & Alternatives (2025 Market Share)](https://www.tidio.com/blog/shopify-alternatives/): Discover the best Shopify alternatives to choose the right one for your ecommerce store. Compare the pros, cons, and pricing of the top Shopify competitors.
+- [5 Best Shopify Bots for Auto Checkout & Sneaker Bots Examples](https://www.tidio.com/blog/shopify-bots/): Discover what a Shopify bot is and what the best sneaker bots are. Choose the best Shopify chatbot for your website to help you increase sales.
+- [10 Best Shopify Chatbot Apps for 2025 [Ranking]](https://www.tidio.com/blog/shopify-chatbot/): See the comparison of the best Shopify chatbot apps. Compare their reviews, main features, highlights, and pricing. Choose the best for your business.
+- [15 Strategies for Shopify Conversion Rate Optimization](https://www.tidio.com/blog/shopify-conversion-rate-optimization/): Learn the top Shopify conversion rate optimization strategies to scale your business effectively. Discover real-life examples and the top Shopify CRO tools.
+- [How To to Start Dropshipping on Shopify & Costs? [Full Guide]](https://www.tidio.com/blog/shopify-dropshipping/): How to start dropshipping with Shopify? See the pros, cons, risks, & costs involved. Read advice from successful Shopify dropshippers. Find reliable suppliers.
+- [How to Create a Shopify Landing Page That Converts?](https://www.tidio.com/blog/shopify-landing-page/): Learn how to create a Shopify landing page. Discover the best Shopify landing page builders and some tips to remember. Get inspired by great examples.
+- [10 Best Live Chat for Shopify [+Free Apps for Ecommerce 2025] ](https://www.tidio.com/blog/shopify-live-chat/): Discover the best Shopify live chat apps with pros, cons, and pricing compared. Check out the main features of live chat for Shopify to choose the right option.
+- [Shopify Marketing Strategy: 8 Tactics to Ramp up Online Sales](https://www.tidio.com/blog/shopify-marketing-strategy/): Learn 8 effective marketing strategies to grow Shopify store from using chatbots and sales automation, to creating tutorials, to simplifying check out.
+- [17 Best Shopify Plugins & Add Ons for Ecommerce in 2025](https://www.tidio.com/blog/shopify-plugins/): Discover the top Shopify plugins and add-ons for your online business. Check out the Shopify extensions with ratings, main features, and pricing compared.
+- [Shopify Pricing Plans & Fees in 2025 [How Much It Costs]](https://www.tidio.com/blog/shopify-pricing/): We break down five Shopify pricing plans to help you decide which one is best for your needs. Check how much Shopify costs monthly (except subscription fees).
+- [Shopify vs Shopify Plus: Key Differences (2025) | Tidio](https://www.tidio.com/blog/shopify-vs-shopify-plus/): Compare Shopify vs Shopify Plus pricing, features, and benefits. Discover whether Shopify Plus is worth it for your business and how to upgrade to the plan.
+- [Shopify vs. Wix: Which Is Better for Ecommerce in 2025?](https://www.tidio.com/blog/shopify-vs-wix/): Discover the winner in the Shopify vs. Wix battle. Compare different features, key functions, and choose the right ecommerce platform for your business.
+- [Best Shopping Bot Software: Create A Bot For Online Shopping](https://www.tidio.com/blog/shopping-bot/): Learn what shopping bots are and their benefits for your online business. Discover real-life examples and the five best shopping bots available on the market.
+- [40+ Essential Shopping Cart Abandonment Statistics (2025)](https://www.tidio.com/blog/shopping-cart-abandonment-statistics/): Learn the essential shopping cart abandonment statistics. Get insights on the latest trends to reduce your store's abandonment rate and boost conversions.
+- [Top 10 Shopping Cart Abandonment Recovery Strategies](https://www.tidio.com/blog/shopping-cart-abandonment/): Is your shopping cart abandonment rate above the average? Explore the best ecommerce cart recovery strategies and reduce your checkout drop-offs.
+- [The Ultimate Guide to Shopware Ecommerce Platform](https://www.tidio.com/blog/shopware-ecommerce/): Everything you need to know about Shopware and its features. Find out how to start a Shopware ecommerce business and set up your own store in minutes.
+- [Shrug Emoji Copy-Paste: Type IDK Emoticon Using Keyboard](https://www.tidio.com/blog/shrug-emoji/): Stop copy-pasting shrugging emoji every time you mean 'whatever.' You can type shrug emoticon text in seconds on Android, iPhone and other devices.
+- [12 Small Business Statistics: Facts & Numbers for 2025](https://www.tidio.com/blog/small-business-statistics/): Small business statistics and trends you must know in 2023. Discover how many small businesses there are in the US, average revenue, failure rate, and more.
+- [11 Key Social Commerce Statistics To Know (2025)](https://www.tidio.com/blog/social-commerce-statistics/): Discover the latest social commerce statistics and insights. Find out how to use the intersection of social media and ecommerce to your business advantage.
+- [Social Media Chatbots: Complete Guide, Platforms & Tips](https://www.tidio.com/blog/social-media-chatbot/): Learn what social media chatbots and bots are with benefits and best practices. Discover a detailed comparison of the best social chatbots for your business.
+- [Unsolicited Emails: 5 Rules to Improve Your Email Deliverability Rates](https://www.tidio.com/blog/spam-filters-and-email-deliverability-rates/): What is a spam filter? Find out what it is, what you should do and avoid to keep your marketing emails safe from the spam folder.
+- [Top 8 Squarespace Chat Plugins for 2025 [Ranking]](https://www.tidio.com/blog/squarespace-chat-plugin/): Discover the best Squarespace chat plugins on the market. Compare their features and pricing. Find out which one is the right fit for your business.
+- [Subscribe Button Guide: How to Use Subscription Buttons in 2021](https://www.tidio.com/blog/subscribe-button/): Why is it important to get subscribers and how to get more of them? Find the tips and secrets in our ultimate guide and download subscribe button examples.
+- [Best Support Quotes and Phrases for 6 Types of Customer Service](https://www.tidio.com/blog/support-quotes-and-phrases-for-customer-service/): Whatever communication channel is used in a company, they all require a different set of support phrases. There are also support quotes that describe the work of customer service well.
+- [21 Best Thank You for Your Order Messages [Free Templates]](https://www.tidio.com/blog/thank-you-for-your-order/): Explore the best thank you note ideas for customers. Learn how to thank your customers for making a purchase and prepare your own business thank-you cards.
+- [Trending Products to Sell Online [Popular & Niche Ideas for 2023]](https://www.tidio.com/blog/things-to-sell-online/): Find the best things to sell online. Trending products for eCommerce, dropshipping, and easy things you can make at home and sell in 2023.
+- [Ticket Escalation Process: Steps, Management Tips & Templates](https://www.tidio.com/blog/ticket-escalation/): Learn what a ticket escalation process is with key steps and scenarios. Discover tips and real-life examples to improve your customer escalation management.
+- [What Is Ticket Tagging and How to Do It Right [In-Depth Guide]](https://www.tidio.com/blog/ticket-tagging/): Learn what ticket tagging is and the benefits of using it. Discover best practices for tagging tickets to improve organization and boost your team's productivity.
+- [Ticket Triage: 7 Tips to Successfully Triage Support Tickets](https://www.tidio.com/blog/ticket-triage/): Learn about ticket triage and its importance to your customer support. Discover how to triage the ticketing system and tips to get the most out of the process.
+- [9 Essential Help Desk Ticketing System Features](https://www.tidio.com/blog/ticketing-system-features/): Learn all about the must-have ticketing system features. Discover their benefits and learn how to access the key help desk system features on your platform.
+- [Launching Tidio AI to Empower SMBs With AI Features](https://www.tidio.com/blog/tidio-ai-features/): Discover the new Tidio AI features and what they can do for your business. Learn more about Tidio artificial intelligence technology for customer service.
+- [9 Best Tidio Alternatives Compared | Tidio](https://www.tidio.com/blog/tidio-alternatives/): Discover the top Tidio alternatives and get a detailed look at their pros, cons, main features, and pricing.
+- [AI-Powered Help Desk: Features Designed for Smarter Service  | Tidio](https://www.tidio.com/blog/tidio-help-desk/): Ditch your traditional help desk for powerful AI software. Tidio’s latest release automates your help desk processes with an unmatched resolution rate.
+- [Tidio Supports Ukraine: Press Statement](https://www.tidio.com/blog/tidio-supports-ukraine/): Tidio’s press statement about the support it provides to Ukraine in the face of war.
+- [15 TikTok Statistics & Trends You Should Know in 2025](https://www.tidio.com/blog/tiktok-statistics/): Find out who uses TikTok and how much time people spend on the platform. Must-know TikTok trends and statistics for marketers, influencers, and parents.
+- [9 Helpful Tips on Training a Chatbot: How to Train an AI?](https://www.tidio.com/blog/training-a-chatbot/): Learn how to train a chatbot for your business website with a step-by-step guide. Discover terms related to training a chatbot, useful tips, and examples.
+- [7 Types of Customer Service [How to Choose the Best One]](https://www.tidio.com/blog/types-of-customer-service/): Learn about different types of customer service and their pros and cons. Discover how to choose the best kind for you and create an omnichannel experience.
+- [7 Types of Customers in Consumers & How to Deal With Them](https://www.tidio.com/blog/types-of-customers/): Find out how different types of customers engage with your brand and website. It helps you understand and satisfy their needs to increase your bottom line.
+- [9 Best Unified Messaging Platforms to Consider in 2025](https://www.tidio.com/blog/unified-messaging-platform/): Check out the best unified messaging communications platforms for your website. Explore the benefits of using a unified messaging tool.
+- [Beginner’s Guide to AI Shopping Assistant For Ecommerce](https://www.tidio.com/blog/virtual-shopping-assistant/): Discover what virtual shopping assistants are and how they improve customer service. Check real-life examples and learn what tasks virtual assistants do.
+- [What is Voice of the Customer? [+10 VoC Techniques]](https://www.tidio.com/blog/voice-of-the-customer/): Learn all about voice of the customer (VoC). Its definition and how to capture it. What VoC techniques and tools are best to interpret customer feedback.
+- [Best Web Chat Tools & Services in 2025 [10+ App Reviews]](https://www.tidio.com/blog/web-chats/): Web chat services and tools help you support your leads, prospects, and customers in real-time to grow your business. Learn the differences between the apps.
+- [What is Web Self-Service? [Types, Examples & Software]](https://www.tidio.com/blog/web-self-service/): A beautiful Live Chat solution. Talk with your customers in real-time and increase your sales. Available in the free and paid versions.
+- [16 Best Website Visitor Tracking Tools [2025 Reviews]](https://www.tidio.com/blog/website-visitor-tracking-tools/): Explore the top website visitor tracking tools with pros, cons, and pricing comparisons. Learn the key metrics to use for tracking website visitors effectively.
+- [10 Best Welcome Messages for Customers [+Examples]](https://www.tidio.com/blog/welcome-message/): Learn how to write effective welcome messages for customers. Discover the best greeting messages for websites, chat messages, and onboarding emails.
+- [What Is a Chatbot? How It Works and Why You Need It](https://www.tidio.com/blog/what-is-a-chatbot/): Find out more about what a chatbot is and how it works. Get informed on the best use cases of these smart AI assistants and discover their biggest benefits.
+- [What Is Live Chat? [Meaning, Features, and Functionality]](https://www.tidio.com/blog/what-is-live-chat/): Learn what live chat is, how it works, and what best practices to use. Discover benefits, features, and top use case examples of online live chat for websites.
+- [How to Build Trust in Ecommerce [Benchmarks for 2025]](https://www.tidio.com/blog/what-makes-a-website-trustworthy/): Do you know how to get more customers to trust your online store? 19+ essential statistics about online trust factors and different ways to earn credibility.
+- [Whatsapp Automation: Tools, Examples & How To Use It](https://www.tidio.com/blog/whatsapp-automation/): Learn what WhatsApp automation is and how to create your own. Discover real-life use cases of automated WhatsApp messages and the best tools to use.
+- [WhatsApp vs WhatsApp Business Account [Features & Benefits]](https://www.tidio.com/blog/whatsapp-business/): Find out how to create a WhatsApp business account and chat with customers. Discover the difference between WhatsApp and WhatsApp Business features.
+- [7 Best WhatsApp Chatbot Tools: List Of Assistant Bot Platforms](https://www.tidio.com/blog/whatsapp-chatbot-tools/): Discover the best WhatsApp chatbot tools on the web and compare their pros, cons, and pricing. Learn what you should look for in a WhatsApp bot platform.
+- [How To Create A WhatsApp Chatbot in 8 Steps [Free & No-Code]](https://www.tidio.com/blog/whatsapp-chatbot/): Find out what is a WhatsApp chatbot, what are the benefits of using it, and how to easily create a WhatsApp chatbot in 10 simple steps.
+- [Why Is Customer Service Important? [10 Compelling Reasons]](https://www.tidio.com/blog/why-is-customer-service-important/): Customer service is key to customer retention, increase in profit, and more. We compiled 10 data-based reasons why customer service is so important.
+- [Top 6 Wix Chatbots & How to Add One to Your Site (2025)](https://www.tidio.com/blog/wix-chatbot/): Discover the best Wix chatbots for your site. Check the pros, cons, and compare the pricing. Learn how to add a bot to your Wix website in a few easy steps.
+- [5 Best Wix Live Chat Apps & How to Add One to Your Site (2025)](https://www.tidio.com/blog/wix-live-chat/): Check out the best Wix live chat apps with pros, cons, and pricing compared. Learn the benefits of a Wix chat app and how to easily add it to your website.
+- [10 Best WooCommerce Chatbot Plugins in 2025 [Free]](https://www.tidio.com/blog/woocommerce-chatbot/): Explore top WooCommerce chatbots and find the "Woobot" for your store. Learn which chatbot plugins for WooCommerce have the best features and pricing.
+- [WooCommerce vs Adobe Commerce: Who Wins? [2025 Comparison]](https://www.tidio.com/blog/woocommerce-vs-magento/): Read the latest comparison of WooCommerce vs Adobe Commerce. Discover which platform is better in term of setup time, pricing, and built-in features.
+- [WooCommerce vs Shopify: Which Is Best for Your Store in 2023?](https://www.tidio.com/blog/woocommerce-vs-shopify/): Read the latest comparison of WooCommerce vs Shopify. Discover who wins the battle when it comes to setup time, pricing, integrations, and sales features.
+- [9 Best WordPress Alternatives & Competitors [+Free Platforms]](https://www.tidio.com/blog/wordpress-alternatives/): Find out the best WordPress alternatives for bloggers, developers, and online store owners. We've got a list of the most popular WP competitors for 2023.
+- [10 Best WordPress Chat Plugins Compared for 2024](https://www.tidio.com/blog/wordpress-chat-plugin/): See the comparison of the best WordPress chat plugins with their core features, highlights, reviews, and pricing plans. Find out which one is the best for you.
+- [10+ Best WordPress Chatbot Plugins for Your Website in 2025](https://www.tidio.com/blog/wordpress-chatbot/): Discover the best WordPress chatbot plugins to add to your website and what features to look out for. Learn how to add a chatbot to your WordPress site.
+- [15 Best WordPress Ecommerce Plugins [Reviews 2025]](https://www.tidio.com/blog/wordpress-ecommerce-plugins/): Discover essential WordPress ecommerce plugins for your business. Learn what to look for and compare the 15 best ecommerce plugins for WordPress.
+- [40 Best Ecommerce WordPress Themes (2025)](https://www.tidio.com/blog/wordpress-ecommerce-themes/): Discover the most popular and the best WordPress ecommerce themes for your business. Learn how to choose the right theme for your online store.
+- [30 Best WordPress Plugins Compared [2022 Ranking]](https://www.tidio.com/blog/wordpress-plugins/): It may be hard to choose the best WordPress plugins for your business. Let’s look at the WordPress plugin ecosystem for each major WordPress plugin use.
+- [10 Best WordPress Ticket System Plugins for Your Website](https://www.tidio.com/blog/wordpress-ticket-system/): Compare the pros, cons, and pricing of the best WordPress ticket systems. Learn how to choose the right WordPress help desk solution for your website.
+- [9 Top WordPress Ecommerce Website Examples [WP Store List]](https://www.tidio.com/blog/wp-ecommerce-examples/): Looking for examples of real WordPress (WP) eCommerce stores? Get inspired by our hand-picked selection of successful small & medium WordPress shops.
+- [Wide-Scale Generative AI Adoption: A Recap of Year in Prompts | Tidio](https://www.tidio.com/blog/year-of-chatgpt/): Embark on celebrating how the world changed since the wide-scale generative AI adoption. Check out our summary of a year with generative AI.
+- [18 Best Zendesk Alternatives in 2025 [Detailed Reviews]](https://www.tidio.com/blog/zendesk-alternatives/): Learn detailed reviews of the top Zendesk competitors with pros, cons, and pricing compared. Choose the right Zendesk alternative for your business needs.
+- [Zendesk vs. HubSpot: The Ultimate Comparison Guide for 2025](https://www.tidio.com/blog/zendesk-vs-hubspot/): Discover the differences between Zendesk vs. HubSpot. Compare the features of Zendesk and HubSpot and choose a solution that fulfills your requirements.
+- [Zendesk vs. Intercom: The Ultimate Comparison Guide for 2025](https://www.tidio.com/blog/zendesk-vs-intercom/): Find out the core differences between Zendesk vs. Intercom. Compare the features of both tools and decide on either Zendesk or Intercom for your needs.
+- [Zendesk vs. Salesforce: Comprehensive Software Comparison](https://www.tidio.com/blog/zendesk-vs-salesforce/): Discover an in-depth comparison of Zendesk vs. Salesforce. Check out a detailed chart ranking, top features review, and key differences to find your winner.
+- [Top 11 Zoho Desk Alternatives and Competitors in 2025](https://www.tidio.com/blog/zoho-desk-alternatives/): Explore the best Zoho Desk alternatives for your service teams. Compare the pros and cons, and pricing of Zoho alternatives and find a suitable tool for you.
+
+
+## Help
+- [Help Center](https://help.tidio.com/hc/en-us): Help articles and frequently asked questions.
+- [Transfer flows between projects](https://help.tidio.com/hc/en-us/articles/10147126351516-Transfer-flows-between-projects)
+- [How to create a good FAQ for Lyro](https://help.tidio.com/hc/en-us/articles/10624642054556-How-to-create-a-good-FAQ-for-Lyro)
+- [Email Marketing consent](https://help.tidio.com/hc/en-us/articles/10975935523484-Email-Marketing-consent)
+- [Developer resources in Tidio](https://help.tidio.com/hc/en-us/articles/11293965311900-Developer-resources-in-Tidio)
+- [Campaigns in Tidio](https://help.tidio.com/hc/en-us/articles/11350532232220-Campaigns-in-Tidio)
+- [The monthly conversations limit](https://help.tidio.com/hc/en-us/articles/11874534946460-The-monthly-conversations-limit)
+- [Troubleshooting reCAPTCHA issues](https://help.tidio.com/hc/en-us/articles/12254028986268-Troubleshooting-reCAPTCHA-issues)
+- [How visitors can remove their chat history](https://help.tidio.com/hc/en-us/articles/12425531041052-How-visitors-can-remove-their-chat-history)
+- [Custom Ticket Views (Helpdesk)](https://help.tidio.com/hc/en-us/articles/12504280832668-Custom-Ticket-Views-Helpdesk)
+- [Lyro Tasks (Custom Flows)](https://help.tidio.com/hc/en-us/articles/12642003268764-Lyro-Tasks-Custom-Flows)
+- [Lyro Analytics](https://help.tidio.com/hc/en-us/articles/12642627073948-Lyro-Analytics)
+- [Lyro Multilanguage Support](https://help.tidio.com/hc/en-us/articles/12643043611036-Lyro-Multilanguage-Support)
+- [Introducing the New Tidio Panel](https://help.tidio.com/hc/en-us/articles/12956993872028-Introducing-the-New-Tidio-Panel)
+- [Re-integration guide for Tidio Bot App users on Shopify](https://help.tidio.com/hc/en-us/articles/13271977498140-Re-integration-guide-for-Tidio-Bot-App-users-on-Shopify)
+- [Automatic Upgrades](https://help.tidio.com/hc/en-us/articles/13590446473372-Automatic-Upgrades)
+- [The Lyro AI agent limit](https://help.tidio.com/hc/en-us/articles/13924459295900-The-Lyro-AI-agent-limit)
+- [Service-Level Agreements (SLA) in Helpdesk](https://help.tidio.com/hc/en-us/articles/13991292488348-Service-Level-Agreements-SLA-in-Helpdesk)
+- [Live Video Calls](https://help.tidio.com/hc/en-us/articles/14288764954268-Live-Video-Calls)
+- [The Spam folder (Helpdesk)](https://help.tidio.com/hc/en-us/articles/14443994314652-The-Spam-folder-Helpdesk)
+- [The Tidio Academy](https://help.tidio.com/hc/en-us/articles/14467147973020-The-Tidio-Academy)
+- [Data sources - Lyro's knowledge base](https://help.tidio.com/hc/en-us/articles/14543666652316-Data-sources-Lyro-s-knowledge-base)
+- [How do flows, Lyro, and live operators work together?](https://help.tidio.com/hc/en-us/articles/14667264947356-How-do-flows-Lyro-and-live-operators-work-together)
+- [Migrating from Gorgias to Tidio](https://help.tidio.com/hc/en-us/articles/14738063957660-Migrating-from-Gorgias-to-Tidio)
+- [Migrating from Zendesk to Tidio](https://help.tidio.com/hc/en-us/articles/14793198268188-Migrating-from-Zendesk-to-Tidio)
+- [Migrating from Intercom to Tidio](https://help.tidio.com/hc/en-us/articles/14887197665180-Migrating-from-Intercom-to-Tidio)
+- [Migrating from LiveChat to Tidio](https://help.tidio.com/hc/en-us/articles/14935079418652-Migrating-from-LiveChat-to-Tidio)
+- [Lyro Copilot](https://help.tidio.com/hc/en-us/articles/15126324714012-Lyro-Copilot)
+- [How to import knowledge from your existing system into Lyro](https://help.tidio.com/hc/en-us/articles/15276522313116-How-to-import-knowledge-from-your-existing-system-into-Lyro)
+- [Recommend Products (flow action for Shopify)](https://help.tidio.com/hc/en-us/articles/15492634099100-Recommend-Products-flow-action-for-Shopify)
+- [The Dashboard](https://help.tidio.com/hc/en-us/articles/15492687231132-The-Dashboard)
+- [Lyro - a quick setup](https://help.tidio.com/hc/en-us/articles/15607494952604-Lyro-a-quick-setup)
+- [How to disable Cloudflare's firewall for Lyro?](https://help.tidio.com/hc/en-us/articles/15657091240604-How-to-disable-Cloudflare-s-firewall-for-Lyro)
+- [Product Recommendations in Lyro](https://help.tidio.com/hc/en-us/articles/15960742181148-Product-Recommendations-in-Lyro)
+- [Helpdesk - a quick setup](https://help.tidio.com/hc/en-us/articles/16460674921372-Helpdesk-a-quick-setup)
+- [Flows: Making an API call (HTTP request)](https://help.tidio.com/hc/en-us/articles/16747427756188-Flows-Making-an-API-call-HTTP-request)
+- [Responding to Instagram and Facebook comments](https://help.tidio.com/hc/en-us/articles/17526859097756-Responding-to-Instagram-and-Facebook-comments)
+- [Install Tidio on your Website](https://help.tidio.com/hc/en-us/articles/5378348485660-Install-Tidio-on-your-Website)
+- [Install Tidio on Shopify](https://help.tidio.com/hc/en-us/articles/5379640857884-Install-Tidio-on-Shopify)
+- [Install Tidio on WordPress](https://help.tidio.com/hc/en-us/articles/5379807094684-Install-Tidio-on-WordPress)
+- [Install Tidio on Prestashop](https://help.tidio.com/hc/en-us/articles/5386385576220-Install-Tidio-on-Prestashop)
+- [Install Tidio on OpenCart](https://help.tidio.com/hc/en-us/articles/5386435052956-Install-Tidio-on-OpenCart)
+- [Install Tidio on Wix](https://help.tidio.com/hc/en-us/articles/5387156466204-Install-Tidio-on-Wix)
+- [Install Tidio on BigCommerce](https://help.tidio.com/hc/en-us/articles/5388741092380-Install-Tidio-on-BigCommerce)
+- [Install Tidio on Squarespace](https://help.tidio.com/hc/en-us/articles/5388856309148-Install-Tidio-on-Squarespace)
+- [Install Tidio on Jimdo](https://help.tidio.com/hc/en-us/articles/5388912230940-Install-Tidio-on-Jimdo)
+- [Install Tidio on Webydo](https://help.tidio.com/hc/en-us/articles/5389524330524-Install-Tidio-on-Webydo)
+- [Install Tidio on 3dcart](https://help.tidio.com/hc/en-us/articles/5389632238748-Install-Tidio-on-3dcart)
+- [Install Tidio on Site123](https://help.tidio.com/hc/en-us/articles/5389680306844-Install-Tidio-on-Site123)
+- [Install Tidio on Weebly](https://help.tidio.com/hc/en-us/articles/5389789173404-Install-Tidio-on-Weebly)
+- [Install Tidio on Joomla](https://help.tidio.com/hc/en-us/articles/5389988792988-Install-Tidio-on-Joomla)
+- [Install Tidio on Adobe Commerce (previously Magento)](https://help.tidio.com/hc/en-us/articles/5390102690844-Install-Tidio-on-Adobe-Commerce-previously-Magento)
+- [Install Tidio on Drupal](https://help.tidio.com/hc/en-us/articles/5390148434076-Install-Tidio-on-Drupal)
+- [Install Tidio on Panierdachat](https://help.tidio.com/hc/en-us/articles/5390190715164-Install-Tidio-on-Panierdachat)
+- [Install the same Tidio Chat on two or more websites](https://help.tidio.com/hc/en-us/articles/5390230431004-Install-the-same-Tidio-Chat-on-two-or-more-websites)
+- [Uninstall Tidio](https://help.tidio.com/hc/en-us/articles/5390360523804-Uninstall-Tidio)
+- [Install Tidio on WooCommerce](https://help.tidio.com/hc/en-us/articles/5390406573852-Install-Tidio-on-WooCommerce)
+- [Install Tidio on Ecwid (by Lightspeed)](https://help.tidio.com/hc/en-us/articles/5390605750940-Install-Tidio-on-Ecwid-by-Lightspeed)
+- [Creating an Account and Logging In](https://help.tidio.com/hc/en-us/articles/5390861883804-Creating-an-Account-and-Logging-In)
+- [Log in to an existing Account - WordPress](https://help.tidio.com/hc/en-us/articles/5390940669084-Log-in-to-an-existing-Account-WordPress)
+- [Start Using the Tidio Panel](https://help.tidio.com/hc/en-us/articles/5391464363548-Start-Using-the-Tidio-Panel)
+- [Customize your chat widget](https://help.tidio.com/hc/en-us/articles/5398825058588-Customize-your-chat-widget)
+- [Start Collecting Leads](https://help.tidio.com/hc/en-us/articles/5399003714204-Start-Collecting-Leads)
+- [Glossary](https://help.tidio.com/hc/en-us/articles/5399089934364-Glossary)
+- [Going Offline](https://help.tidio.com/hc/en-us/articles/5399286434460-Going-Offline)
+- [Tidio Notifications](https://help.tidio.com/hc/en-us/articles/5401257409308-Tidio-Notifications)
+- [Unable to Log In](https://help.tidio.com/hc/en-us/articles/5401264375708-Unable-to-Log-In)
+- [Live Chat Conversations](https://help.tidio.com/hc/en-us/articles/5401394437020-Live-Chat-Conversations)
+- [Why use Tidio?](https://help.tidio.com/hc/en-us/articles/5404789865756-Why-use-Tidio)
+- [Download Tidio Mobile App](https://help.tidio.com/hc/en-us/articles/5404870681884-Download-Tidio-Mobile-App)
+- [Download Tidio Desktop App](https://help.tidio.com/hc/en-us/articles/5404983876124-Download-Tidio-Desktop-App)
+- [Unable to install the Desktop App on my Mac](https://help.tidio.com/hc/en-us/articles/5404991015580-Unable-to-install-the-Desktop-App-on-my-Mac)
+- [Integration with Messenger](https://help.tidio.com/hc/en-us/articles/5405093718556-Integration-with-Messenger)
+- [Integration with Zendesk](https://help.tidio.com/hc/en-us/articles/5405098705692-Integration-with-Zendesk)
+- [Integration with Hubspot (Legacy)](https://help.tidio.com/hc/en-us/articles/5405152450460-Integration-with-Hubspot-Legacy)
+- [Integration with Mailchimp](https://help.tidio.com/hc/en-us/articles/5405162191004-Integration-with-Mailchimp)
+- [Integration with Pipedrive](https://help.tidio.com/hc/en-us/articles/5405249077404-Integration-with-Pipedrive)
+- [Integration with Agile CRM](https://help.tidio.com/hc/en-us/articles/5405336076188-Integration-with-Agile-CRM)
+- [Integration with Instagram](https://help.tidio.com/hc/en-us/articles/5420121350428-Integration-with-Instagram)
+- [Integration with Google Analytics (GA4)](https://help.tidio.com/hc/en-us/articles/5422047432732-Integration-with-Google-Analytics-GA4)
+- [Integration with Zapier](https://help.tidio.com/hc/en-us/articles/5422427950236-Integration-with-Zapier)
+- [Integration with Zendesk Sell](https://help.tidio.com/hc/en-us/articles/5422529156764-Integration-with-Zendesk-Sell)
+- [Troubleshooting Mobile Notifications](https://help.tidio.com/hc/en-us/articles/5422648477468-Troubleshooting-Mobile-Notifications)
+- [Apple Watch Notifications](https://help.tidio.com/hc/en-us/articles/5422758042268-Apple-Watch-Notifications)
+- [Android notifications](https://help.tidio.com/hc/en-us/articles/5422794618396-Android-notifications)
+- [Troubleshooting Apple Notifications](https://help.tidio.com/hc/en-us/articles/5422838719004-Troubleshooting-Apple-Notifications)
+- [Offline Email Notifications](https://help.tidio.com/hc/en-us/articles/5422847876380-Offline-Email-Notifications)
+- [Allow notifications in your browser](https://help.tidio.com/hc/en-us/articles/5422972527260-Allow-notifications-in-your-browser)
+- [My Notifications are delayed](https://help.tidio.com/hc/en-us/articles/5423043053468-My-Notifications-are-delayed)
+- [The Tidio trial version](https://help.tidio.com/hc/en-us/articles/5423133940764-The-Tidio-trial-version)
+- [Upgrading your Account](https://help.tidio.com/hc/en-us/articles/5423267856540-Upgrading-your-Account)
+- [Contact Tidio Support](https://help.tidio.com/hc/en-us/articles/5423451000604-Contact-Tidio-Support)
+- [The Free version and downgrading your account](https://help.tidio.com/hc/en-us/articles/5423925248412-The-Free-version-and-downgrading-your-account)
+- [Affiliate Program](https://help.tidio.com/hc/en-us/articles/5444003167388-Affiliate-Program)
+- [Invoices](https://help.tidio.com/hc/en-us/articles/5444059862044-Invoices)
+- [Manage your Subscription (invoicing and card details)](https://help.tidio.com/hc/en-us/articles/5444202350620-Manage-your-Subscription-invoicing-and-card-details)
+- [The Channels Section](https://help.tidio.com/hc/en-us/articles/5444464711836-The-Channels-Section)
+- [Change and add Languages in your Chat Widget](https://help.tidio.com/hc/en-us/articles/5444549160476-Change-and-add-Languages-in-your-Chat-Widget)
+- [Manage Operators](https://help.tidio.com/hc/en-us/articles/5444623501084-Manage-Operators)
+- [Manage Multiple Projects](https://help.tidio.com/hc/en-us/articles/5444671465756-Manage-Multiple-Projects)
+- [Contact Properties](https://help.tidio.com/hc/en-us/articles/5444927889052-Contact-Properties)
+- [Canned Responses](https://help.tidio.com/hc/en-us/articles/5444940053276-Canned-Responses)
+- [Switch Between Projects](https://help.tidio.com/hc/en-us/articles/5444981932444-Switch-Between-Projects)
+- [The Visitors List](https://help.tidio.com/hc/en-us/articles/5445057900188-The-Visitors-List)
+- [Delete your account](https://help.tidio.com/hc/en-us/articles/5445092500764-Delete-your-account)
+- [Localization: Change the Language of your Tidio Panel](https://help.tidio.com/hc/en-us/articles/5445130355484-Localization-Change-the-Language-of-your-Tidio-Panel)
+- [The Settings section](https://help.tidio.com/hc/en-us/articles/5445240966812-The-Settings-section)
+- [The Contacts List](https://help.tidio.com/hc/en-us/articles/5445297342236-The-Contacts-List)
+- [Use the Contacts List efficiently](https://help.tidio.com/hc/en-us/articles/5445385494940-Use-the-Contacts-List-efficiently)
+- [The Analytics section](https://help.tidio.com/hc/en-us/articles/5445427745052-The-Analytics-section)
+- [Permissions](https://help.tidio.com/hc/en-us/articles/5445519346972-Permissions)
+- [Adding a new Flow](https://help.tidio.com/hc/en-us/articles/5452397323676-Adding-a-new-Flow)
+- [Departments](https://help.tidio.com/hc/en-us/articles/5453510820764-Departments)
+- [Install Tidio on Shopware](https://help.tidio.com/hc/en-us/articles/5453569643164-Install-Tidio-on-Shopware)
+- [Flow Templates](https://help.tidio.com/hc/en-us/articles/5453629504028-Flow-Templates)
+- [Triggers](https://help.tidio.com/hc/en-us/articles/5453654525212-Triggers)
+- [Conditions](https://help.tidio.com/hc/en-us/articles/5453789640476-Conditions)
+- [Actions](https://help.tidio.com/hc/en-us/articles/5453966368412-Actions)
+- [The "Transfer to operator" message](https://help.tidio.com/hc/en-us/articles/5454035882140-The-Transfer-to-operator-message)
+- [My Flows section](https://help.tidio.com/hc/en-us/articles/5454075611804-My-Flows-section)
+- [Flow Legal Disclosures](https://help.tidio.com/hc/en-us/articles/5454151513372-Flow-Legal-Disclosures)
+- [Troubleshooting Flow and Widget Display](https://help.tidio.com/hc/en-us/articles/5454235427612-Troubleshooting-Flow-and-Widget-Display)
+- [The Monthly Flow limit](https://help.tidio.com/hc/en-us/articles/5454293485596-The-Monthly-Flow-limit)
+- [The Flows section](https://help.tidio.com/hc/en-us/articles/5454344047004-The-Flows-section)
+- [Conversion Rate](https://help.tidio.com/hc/en-us/articles/5454492145052-Conversion-Rate)
+- [Disable Tidio for specific subpages](https://help.tidio.com/hc/en-us/articles/5454505438620-Disable-Tidio-for-specific-subpages)
+- [Tidio Loading Speed](https://help.tidio.com/hc/en-us/articles/5462176187932-Tidio-Loading-Speed)
+- [Hide or Disable Tidio on Your Website](https://help.tidio.com/hc/en-us/articles/5462207344540-Hide-or-Disable-Tidio-on-Your-Website)
+- [Set the Profile Picture](https://help.tidio.com/hc/en-us/articles/5462864605340-Set-the-Profile-Picture)
+- [Troubleshooting changes in your Tidio widget settings - Ensure widget visibility on your website](https://help.tidio.com/hc/en-us/articles/5462904830364-Troubleshooting-changes-in-your-Tidio-widget-settings-Ensure-widget-visibility-on-your-website)
+- [Privacy Policy and GDPR Compliance](https://help.tidio.com/hc/en-us/articles/5462910440220-Privacy-Policy-and-GDPR-Compliance)
+- [Assigning conversations to operators](https://help.tidio.com/hc/en-us/articles/5462956784540-Assigning-conversations-to-operators)
+- [Forgotten Password or Email](https://help.tidio.com/hc/en-us/articles/5462967872284-Forgotten-Password-or-Email)
+- [Types of files supported](https://help.tidio.com/hc/en-us/articles/5463017425308-Types-of-files-supported)
+- [How are Security Matters handled at Tidio?](https://help.tidio.com/hc/en-us/articles/5463064556828-How-are-Security-Matters-handled-at-Tidio)
+- [Chat Conversations Report](https://help.tidio.com/hc/en-us/articles/5463069831836-Chat-Conversations-Report)
+- [Chat history](https://help.tidio.com/hc/en-us/articles/5463122747036-Chat-history)
+- [The number of Visitors at Tidio differs from Google Analytics](https://help.tidio.com/hc/en-us/articles/5463183826076-The-number-of-Visitors-at-Tidio-differs-from-Google-Analytics)
+- [Forward Emails to Tidio (Helpdesk)](https://help.tidio.com/hc/en-us/articles/5463218241436-Forward-Emails-to-Tidio-Helpdesk)
+- [Bugs Bounty & Bugs Reports](https://help.tidio.com/hc/en-us/articles/5463281889948-Bugs-Bounty-Bugs-Reports)
+- [Request a Feature and share your Feedback](https://help.tidio.com/hc/en-us/articles/5463284555932-Request-a-Feature-and-share-your-Feedback)
+- [Banned Visitors](https://help.tidio.com/hc/en-us/articles/5463328751516-Banned-Visitors)
+- [Chat Transcripts](https://help.tidio.com/hc/en-us/articles/5463385056284-Chat-Transcripts)
+- [Import Contacts into Tidio](https://help.tidio.com/hc/en-us/articles/5463416657052-Import-Contacts-into-Tidio)
+- [Send Shopify Products to Customers directly from Tidio](https://help.tidio.com/hc/en-us/articles/5463521049500-Send-Shopify-Products-to-Customers-directly-from-Tidio)
+- [Automatic Contacts Import – Shopify](https://help.tidio.com/hc/en-us/articles/5463567052444-Automatic-Contacts-Import-Shopify)
+- [Show Tidio Widget Only on Specific Pages](https://help.tidio.com/hc/en-us/articles/5463603462172-Show-Tidio-Widget-Only-on-Specific-Pages)
+- [Widget SDK](https://help.tidio.com/hc/en-us/articles/5463607160860-Widget-SDK)
+- [Opening the widget automatically](https://help.tidio.com/hc/en-us/articles/5464289229340-Opening-the-widget-automatically)
+- [Set up Tracking](https://help.tidio.com/hc/en-us/articles/5464775051292-Set-up-Tracking)
+- [Widget Position](https://help.tidio.com/hc/en-us/articles/5464851341724-Widget-Position)
+- [Opening the Chat Widget from a custom button or a link](https://help.tidio.com/hc/en-us/articles/5464856955932-Opening-the-Chat-Widget-from-a-custom-button-or-a-link)
+- [Send Emails from Tidio](https://help.tidio.com/hc/en-us/articles/5464880720284-Send-Emails-from-Tidio)
+- [Flow and Handoff Analytics](https://help.tidio.com/hc/en-us/articles/5465124266396-Flow-and-Handoff-Analytics)
+- [The Helpfulness Metric](https://help.tidio.com/hc/en-us/articles/5465167637148-The-Helpfulness-Metric)
+- [Flow Metrics - Helpfulness and Handoff](https://help.tidio.com/hc/en-us/articles/5465229894940-Flow-Metrics-Helpfulness-and-Handoff)
+- [Helpdesk (Ticketing)](https://help.tidio.com/hc/en-us/articles/5465389809948-Helpdesk-Ticketing)
+- [Disable Text Input](https://help.tidio.com/hc/en-us/articles/5465426393756-Disable-Text-Input)
+- [Flow Strategies](https://help.tidio.com/hc/en-us/articles/5465464630556-Flow-Strategies)
+- [Edit your initial message (first flow)](https://help.tidio.com/hc/en-us/articles/5472137896988-Edit-your-initial-message-first-flow)
+- [Create an FAQ Flow](https://help.tidio.com/hc/en-us/articles/5472264436636-Create-an-FAQ-Flow)
+- [Autoresponder Flow for Missed Conversations](https://help.tidio.com/hc/en-us/articles/5472478502300-Autoresponder-Flow-for-Missed-Conversations)
+- [Create a Flow in Multiple Languages](https://help.tidio.com/hc/en-us/articles/5472483860892-Create-a-Flow-in-Multiple-Languages)
+- [Visitor Says (flow trigger)](https://help.tidio.com/hc/en-us/articles/5472627819932-Visitor-Says-flow-trigger)
+- [Add links to flows](https://help.tidio.com/hc/en-us/articles/5472801532956-Add-links-to-flows)
+- [Create a Custom Filter to Send a Message Just Once](https://help.tidio.com/hc/en-us/articles/5472982118940-Create-a-Custom-Filter-to-Send-a-Message-Just-Once)
+- [Collect Customer Feedback](https://help.tidio.com/hc/en-us/articles/5473041023772-Collect-Customer-Feedback)
+- [Create a Loop in your Flow](https://help.tidio.com/hc/en-us/articles/5473100258844-Create-a-Loop-in-your-Flow)
+- [Trigger a flow by clicking on the chat icon](https://help.tidio.com/hc/en-us/articles/5473151360284-Trigger-a-flow-by-clicking-on-the-chat-icon)
+- [Tracking an Abandoned Cart using Tidio](https://help.tidio.com/hc/en-us/articles/5474427295260-Tracking-an-Abandoned-Cart-using-Tidio)
+- [Flow Performance Analytics](https://help.tidio.com/hc/en-us/articles/5474508902556-Flow-Performance-Analytics)
+- [Flows in Live Conversations](https://help.tidio.com/hc/en-us/articles/5474612262428-Flows-in-Live-Conversations)
+- [Flow Portals - Start one Flow from another](https://help.tidio.com/hc/en-us/articles/5474670657308-Flow-Portals-Start-one-Flow-from-another)
+- [The Handoff Metric](https://help.tidio.com/hc/en-us/articles/5474857295900-The-Handoff-Metric)
+- [Instagram Flows](https://help.tidio.com/hc/en-us/articles/5475859980572-Instagram-Flows)
+- [WIX Flows](https://help.tidio.com/hc/en-us/articles/5475904265884-WIX-Flows)
+- [Flow Metrics](https://help.tidio.com/hc/en-us/articles/5475972955548-Flow-Metrics)
+- [The Campaigns Editor – General Settings](https://help.tidio.com/hc/en-us/articles/5484511625244-The-Campaigns-Editor-General-Settings)
+- [Get the Most Out of the Campaigns Editor](https://help.tidio.com/hc/en-us/articles/5485155192476-Get-the-Most-Out-of-the-Campaigns-Editor)
+- [Spam Checking](https://help.tidio.com/hc/en-us/articles/5485222146972-Spam-Checking)
+- [Anti Spam Requirements](https://help.tidio.com/hc/en-us/articles/5485363011228-Anti-Spam-Requirements)
+- [Import Contacts From Other Mailing Providers to Tidio](https://help.tidio.com/hc/en-us/articles/5485364685340-Import-Contacts-From-Other-Mailing-Providers-to-Tidio)
+- [Schedule Your Campaign](https://help.tidio.com/hc/en-us/articles/5485404677532-Schedule-Your-Campaign)
+- [Email Aliases](https://help.tidio.com/hc/en-us/articles/5485414407580-Email-Aliases)
+- [Integration with Klaviyo](https://help.tidio.com/hc/en-us/articles/6104656116252-Integration-with-Klaviyo)
+- [The Inbox - A powerful interface for managing your Conversations](https://help.tidio.com/hc/en-us/articles/6105231808796-The-Inbox-A-powerful-interface-for-managing-your-Conversations)
+- [Send Woocommerce Products to Customers directly from Tidio](https://help.tidio.com/hc/en-us/articles/6229503322396-Send-Woocommerce-Products-to-Customers-directly-from-Tidio)
+- [Which upgrades do I need?](https://help.tidio.com/hc/en-us/articles/6266099959708-Which-upgrades-do-I-need)
+- [Chat Assignment options](https://help.tidio.com/hc/en-us/articles/6495780949020-Chat-Assignment-options)
+- [Solve chats automatically](https://help.tidio.com/hc/en-us/articles/6496775757468-Solve-chats-automatically)
+- [Coupon Code (flow action)](https://help.tidio.com/hc/en-us/articles/6667091477276-Coupon-Code-flow-action)
+- [Manage Shopify Orders](https://help.tidio.com/hc/en-us/articles/6957214434716-Manage-Shopify-Orders)
+- [Integration with Judge.me](https://help.tidio.com/hc/en-us/articles/7045150575132-Integration-with-Judge-me)
+- [Two-Factor Authentication (2FA)](https://help.tidio.com/hc/en-us/articles/7260376507804-Two-Factor-Authentication-2FA)
+- [Accessibility](https://help.tidio.com/hc/en-us/articles/7607441161372-Accessibility)
+- [Reply Assistant (AI)](https://help.tidio.com/hc/en-us/articles/7682296315036-Reply-Assistant-AI)
+- [Shopify FAQ](https://help.tidio.com/hc/en-us/articles/7868831783708-Shopify-FAQ)
+- [Integration with Omnisend](https://help.tidio.com/hc/en-us/articles/7941222234140-Integration-with-Omnisend)
+- [Integration with ActiveCampaign](https://help.tidio.com/hc/en-us/articles/7941294728092-Integration-with-ActiveCampaign)
+- [Flows dedicated for Shopify](https://help.tidio.com/hc/en-us/articles/8020008882716-Flows-dedicated-for-Shopify)
+- [Integration with Brevo (previously SendInBlue)](https://help.tidio.com/hc/en-us/articles/8162702623388-Integration-with-Brevo-previously-SendInBlue)
+- [Integration with MailerLite](https://help.tidio.com/hc/en-us/articles/8162897778204-Integration-with-MailerLite)
+- [Integration with Zoho CRM](https://help.tidio.com/hc/en-us/articles/8582118848924-Integration-with-Zoho-CRM)
+- [How to create custom conversions in GA4 from Tidio widget events](https://help.tidio.com/hc/en-us/articles/8854161611548-How-to-create-custom-conversions-in-GA4-from-Tidio-widget-events)
+- [Switching from old Google Analytics to a new GA4 integration: a step-by-step guide](https://help.tidio.com/hc/en-us/articles/8912955393052-Switching-from-old-Google-Analytics-to-a-new-GA4-integration-a-step-by-step-guide)
+- [Lyro - the conversational AI agent](https://help.tidio.com/hc/en-us/articles/9003475527196-Lyro-the-conversational-AI-agent)
+- [Analyze user interaction with Tidio widget in GA4](https://help.tidio.com/hc/en-us/articles/9049242374812-Analyze-user-interaction-with-Tidio-widget-in-GA4)
+- [Integration with Google Tag Manager](https://help.tidio.com/hc/en-us/articles/9049293832220-Integration-with-Google-Tag-Manager)
+- [Collect valuable data and files with the Send a Form node](https://help.tidio.com/hc/en-us/articles/9080857306524-Collect-valuable-data-and-files-with-the-Send-a-Form-node)
+- [Integration with HubSpot](https://help.tidio.com/hc/en-us/articles/9230097916700-Integration-with-HubSpot)
+- [Integration with WhatsApp](https://help.tidio.com/hc/en-us/articles/9392748807580-Integration-with-WhatsApp)
+- [Integration with Salesforce](https://help.tidio.com/hc/en-us/articles/9530261886876-Integration-with-Salesforce)
+- [Tidio AI: Terms and Fair Use Policy](https://help.tidio.com/hc/en-us/articles/9534931355164-Tidio-AI-Terms-and-Fair-Use-Policy)
+- [Use your own Domain for Helpdesk (tickets)](https://help.tidio.com/hc/en-us/articles/9846597217052-Use-your-own-Domain-for-Helpdesk-tickets)
+- [Use Webhooks in Tidio (with OpenAPI)](https://help.tidio.com/hc/en-us/articles/9862368596892-Use-Webhooks-in-Tidio-with-OpenAPI)
+- [Help Center Articles](https://help.tidio.com/hc/en-us/categories/5377982805404-Help-Center-Articles)
+- [Lyro - AI Agent](https://help.tidio.com/hc/en-us/sections/12154776323612-Lyro-AI-Agent)
+- [Helpdesk](https://help.tidio.com/hc/en-us/sections/12623544378012-Helpdesk)
+- [Get Started](https://help.tidio.com/hc/en-us/sections/16681312167708-Get-Started)
+- [Install Tidio](https://help.tidio.com/hc/en-us/sections/5377985735708-Install-Tidio)
+- [Tidio Features](https://help.tidio.com/hc/en-us/sections/5377997338268-Tidio-Features)
+- [Integrations](https://help.tidio.com/hc/en-us/sections/5378011044252-Integrations)
+- [Billing & Subscription](https://help.tidio.com/hc/en-us/sections/5378029354012-Billing-Subscription)
+- [Manage Your Project](https://help.tidio.com/hc/en-us/sections/5378039424028-Manage-Your-Project)
+- [Release Notes](https://help.tidio.com/hc/en-us/sections/5378042828572-Release-Notes)
+- [Mobile & Desktop App](https://help.tidio.com/hc/en-us/sections/5378054692252-Mobile-Desktop-App)
+- [Notifications](https://help.tidio.com/hc/en-us/sections/5422650146588-Notifications)
+- [Flows](https://help.tidio.com/hc/en-us/sections/5452396719260-Flows)
+- [Campaigns](https://help.tidio.com/hc/en-us/sections/5484474329884-Campaigns)
+- [Widget Customization](https://help.tidio.com/hc/en-us/sections/5744791598876-Widget-Customization)
+- [Contacts & Leads](https://help.tidio.com/hc/en-us/sections/5744833749020-Contacts-Leads)
+- [Security & Legal Matters](https://help.tidio.com/hc/en-us/sections/5744866633756-Security-Legal-Matters)
+- [Tidio Academy](https://academy.tidio.com/): Courses on Tidio and customer support.
+
+
+## Partnerships
+- [Affiliate Program](https://www.tidio.com/affiliate/)
+- [Referral Program](https://www.tidio.com/partner-referral/)
+- [Partner Program](https://www.tidio.com/partners/)
+
+
+## Legal
+- [Privacy Policy](https://www.tidio.com/privacy-policy/)
+- [Security Policy](https://www.tidio.com/security-policy/)
+- [Security Practices](https://www.tidio.com/security/)
+- [Terms of Service](https://www.tidio.com/terms/)
+- [Trust Center](https://trust.tidio.com/)
+
+
+## Optional
+### Tidio in Marketplaces
+- [Tidio iOS App](https://apps.apple.com/app/id916822567)
+- [Tidio Android App](https://play.google.com/store/apps/details?id=com.tidiochat.app)
+- [Tidio on Shopify](https://apps.shopify.com/tidio-chat)
+- [Tidio on WordPress.com](https://wordpress.com/plugins/tidio-live-chat)
+- [Tidio on WordPress.org](https://wordpress.org/plugins/tidio-live-chat/)
+- [Tidio on BigCommerce](https://www.bigcommerce.com/apps/tidio-chat/)
+
+
+### Tidio Socials
+- [Tidio on Facebook](https://www.facebook.com/TidioCX)
+- [Tidio on Instagram](https://www.instagram.com/tidiocx/)
+- [Tidio on LinkedIn](https://www.linkedin.com/company/tidio-ltd/)
+- [Tidio on YouTube](https://www.youtube.com/@Tidio)
+- [Tidio on X](https://x.com/tidiochat)
+
+
+### Tidio Company Profiles
+- [Tidio on Product Hunt](https://www.producthunt.com/products/tidio-2)
+- [Tidio on Crunchbase](https://www.crunchbase.com/organization/tidio)
+- [Tidio on Zoominfo](https://www.zoominfo.com/c/tidio-llc/357901742)
+- [Tidio on Glassdoor](https://www.glassdoor.com/Overview/Working-at-Tidio-EI_IE2962200.11,16.htm)
+- [Tidio on Indeed](https://www.indeed.com/cmp/Tidio)
+- [Tidio on Google](https://www.google.com/search?kgmid=/g/11hds3thy3)
+- [Tidio on Wikidata](https://www.wikidata.org/wiki/Q133079799)
+- [Lyro on Wikidata](https://www.wikidata.org/wiki/Q133573942)
+
+
+### Tidio Reviews
+- [Tidio on Appvizer](https://www.appvizer.com/it/ai-chatbot/tidio)
+- [Tidio on Capterra](https://www.capterra.com/p/144040/Tidio-Chat/reviews/)
+- [Tidio on G2](https://www.g2.com/products/tidio/reviews)
+- [Tidio on Gartner](https://www.gartner.com/reviews/vendor/tidio)
+- [Tidio on GetApp](https://www.getapp.com/customer-service-support-software/a/tidio-chat/reviews/)
+- [Tidio on Info-Tech](https://www.infotech.com/software-reviews/products/tidio)
+- [Tidio on Slashdot](https://slashdot.org/software/p/Tidio/)
+- [Tidio on Software Advice](https://www.softwareadvice.com/live-chat/tidio-chat-profile/reviews/)
+- [Tidio on SoftwareReviews](https://www.softwarereviews.com/products/tidio)
+- [Tidio on SoftwareSuggest](https://www.softwaresuggest.com/tidio)
+- [Tidio on SourceForge](https://sourceforge.net/software/product/Tidio/)
+- [Tidio on Trustpilot](https://www.trustpilot.com/review/www.tidio.com)
+- [Tidio on TrustRadius](https://www.trustradius.com/products/tidio/reviews)
+
+
+### Tidio in the News
+- [How Lyro Was Developed](https://careers.tidio.com/blog-post/how-we-created-lyro-in-only-3-months)
+- [What LLM Does Lyro Use](https://www.anthropic.com/customers/tidio)
+- [Tidio Launches Lyro: The First Conversational AI Chatbot for SMBs](https://www.analyticsinsight.net/chatbots/tidio-launches-lyro-the-first-conversational-ai-chatbot-for-smbs)
+- [Tidio raises $25M to automate customer service interactions](https://techcrunch.com/2022/05/12/tidio-raises-25m-to-automate-customer-service-interactions/)
+
+
+## Resources for Developers
+
+
+- [Tidio API](https://developers.tidio.com/)
+- [API Call Node Security](https://developers.tidio.com/docs/api-call-node-security)
+- [Authorization](https://developers.tidio.com/docs/openapi-authorization)
+- [Debugging](https://developers.tidio.com/docs/openapi-debugging)
+- [Enable Tidio OpenAPI](https://developers.tidio.com/docs/openapi-enable)
+- [Errors](https://developers.tidio.com/docs/openapi-errors)
+- [Pagination](https://developers.tidio.com/docs/openapi-pagination)
+- [Rate Limiting](https://developers.tidio.com/docs/openapi-rate-limiting)
+- [Versioning](https://developers.tidio.com/docs/openapi-versioning)
+- [Delivering](https://developers.tidio.com/docs/webhooks-delivering)
+- [Getting started](https://developers.tidio.com/docs/webhooks-introduction)
+- [Signature verification](https://developers.tidio.com/docs/webhooks-signature-verification)
+- [Webhooks statistics and history](https://developers.tidio.com/docs/webhooks-statistics-and-history)
+- [Structure](https://developers.tidio.com/docs/webhooks-structure)
+- [Tracking an Abandoned Cart](https://developers.tidio.com/docs/widget-abandoned-cart)
+- [Automation Events](https://developers.tidio.com/docs/widget-automation-events)
+- [Code Snippets](https://developers.tidio.com/docs/widget-code-snipets)
+- [Contact Properties](https://developers.tidio.com/docs/widget-contact-properties)
+- [Introduction](https://developers.tidio.com/docs/widget-introduction)
+- [Listeners / Events](https://developers.tidio.com/docs/widget-listeners-events)
+- [Other Methods](https://developers.tidio.com/docs/widget-other-methods)
+- [Content Security Policy](https://developers.tidio.com/docs/widget-security-policy)
+- [Visitor Identification](https://developers.tidio.com/docs/widget-visitor-identification)
+- [Support](https://developers.tidio.com/page/support)
+- [Delete contact](https://developers.tidio.com/reference/delete_contacts-contactid)
+- [Delete ticket](https://developers.tidio.com/reference/delete_tickets-ticketid)
+- [Webhooks](https://developers.tidio.com/reference/events)
+- [Get contact properties](https://developers.tidio.com/reference/get_contact-properties)
+- [Get contacts](https://developers.tidio.com/reference/get_contacts)
+- [Get single contact](https://developers.tidio.com/reference/get_contacts-contactid)
+- [Get contact messages](https://developers.tidio.com/reference/get_contacts-contactid-messages)
+- [Get viewed pages history](https://developers.tidio.com/reference/get_contacts-contactid-viewed-pages)
+- [Get departments](https://developers.tidio.com/reference/get_departments)
+- [Get operators](https://developers.tidio.com/reference/get_operators)
+- [Get tickets](https://developers.tidio.com/reference/get_tickets)
+- [Get ticket details](https://developers.tidio.com/reference/get_tickets-ticketid)
+- [Update multiple contacts](https://developers.tidio.com/reference/patch_contacts-batch)
+- [Update contact properties](https://developers.tidio.com/reference/patch_contacts-contactid)
+- [Update ticket](https://developers.tidio.com/reference/patch_tickets-ticketid)
+- [Create contact](https://developers.tidio.com/reference/post_contacts)
+- [Create multiple contacts](https://developers.tidio.com/reference/post_contacts-batch)
+- [Create ticket (as Contact)](https://developers.tidio.com/reference/post_tickets-as-contact)
+- [Reply to a ticket](https://developers.tidio.com/reference/post_tickets-ticketid-reply)

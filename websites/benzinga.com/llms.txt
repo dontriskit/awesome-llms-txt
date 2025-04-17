@@ -1,0 +1,62 @@
+# Benzinga
+
+## Docs
+
+- [GET Analyst Insights](https://docs.benzinga.com/benzinga-apis/analyst-insights/get-analyst-insights.md): Get the qualitative summaries of Analyst Research Reports
+- [Historical Bar Data API Reference](https://docs.benzinga.com/benzinga-apis/bars/bars-v2.md): Benzinga Historical Bar Rest API
+- [GET bars](https://docs.benzinga.com/benzinga-apis/bars/get-bars.md): Get the delayed quotes
+- [Bull vs. Bear](https://docs.benzinga.com/benzinga-apis/bull-bear/bull-bear-ref.md): Empower users to “see both sides of the story” before investing. We simplify investment research for all, whether you’re a seasoned investor or just starting out, this product will simplify your investment decisions by distilling complex analyst reports into actionable insights. This API provides concise summaries of analyst reports, presenting both bullish and bearish arguments for a stock. Say goodbye to jargon-filled reports and hello to clear, insightful information. We analyze the details so you don’t have to. The “Bulls Say” summary highlights positive aspects, while the “Bears Say” summary points out potential risks.
+- [GET bull / bear](https://docs.benzinga.com/benzinga-apis/bull-bear/get-bull-bear.md): Get the bullish and bearish statements
+- [Calendar API Reference](https://docs.benzinga.com/benzinga-apis/calendar/calendar-v2.md): This REST API returns structured data for conference calls, dividends, earnings (and future earnings dates), economics, pharmaceutical announcements, guidance, IPOs, secondary offerings, ratings, M&A activity, and splits.
+- [GET Analysts](https://docs.benzinga.com/benzinga-apis/calendar/get-analysts.md): Returns the full list of analyst that are providing ratings
+- [GET Conference Calls](https://docs.benzinga.com/benzinga-apis/calendar/get-conferenceCalls.md): Returns Conference call data
+- [GET Consensus Ratings](https://docs.benzinga.com/benzinga-apis/calendar/get-consensus-ratings.md): Returns consensus ratings for a ticket
+- [GET Dividends](https://docs.benzinga.com/benzinga-apis/calendar/get-dividends.md): Dividends Events
+- [GET Dividends v2.2](https://docs.benzinga.com/benzinga-apis/calendar/get-dividends-v2-2.md): Dividends Events
+- [GET Earnings](https://docs.benzinga.com/benzinga-apis/calendar/get-earnings.md): Returns the earnings data
+- [GET Economics](https://docs.benzinga.com/benzinga-apis/calendar/get-economics.md): Returns the economic calendar data
+- [GET FDA](https://docs.benzinga.com/benzinga-apis/calendar/get-fda.md): FDA approvals, clinical trials, and PDUFA dates
+- [GET Firms](https://docs.benzinga.com/benzinga-apis/calendar/get-firms.md): Returns the available firms providing analyst ratings
+- [GET Guidance](https://docs.benzinga.com/benzinga-apis/calendar/get-guidance.md): Returns guidance data
+- [GET IPOs](https://docs.benzinga.com/benzinga-apis/calendar/get-ipos.md): Returns ipo data
+- [GET Mergers and Acquisitions](https://docs.benzinga.com/benzinga-apis/calendar/get-ma.md): Returns the mergers and acquisitions data
+- [GET Offerings](https://docs.benzinga.com/benzinga-apis/calendar/get-offerings.md): Returns Secondary Offering data
+- [GET Ratings](https://docs.benzinga.com/benzinga-apis/calendar/get-ratings.md): Returns analyst ratings data
+- [GET Removed](https://docs.benzinga.com/benzinga-apis/calendar/get-removed.md): Returns the removed calendar data
+- [GET Splits](https://docs.benzinga.com/benzinga-apis/calendar/get-splits.md): Retunrs the splits calendar data
+- [GET Conference Call Transcripts](https://docs.benzinga.com/benzinga-apis/conference-call-transcripts/get-conference-call-transcripts.md): Get the transcripts from conference calls and their summaries.
+- [Corporate Logos v2.0 API Reference](https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/corporate-logos-ref.md): The Benzinga Corporate Logo API is designed to be flexible with client sizing requirements. Custom filters can be applied to resize the logos and each logo returns a variety of identifiers like ISIN and CUSIP.
+- [GET Search](https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/get-search.md): Search logos for market securities/companies and funds
+- [GET Sync](https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/get-sync.md): Bulk sync logos.
+- [Analyst Insights Stream](https://docs.benzinga.com/benzinga-apis/data-websocket/get-analyst-insights-stream.md): This WebSocket endpoint allows you to subscribe to real-time analyst insights for specific ticker symbols.
+- [Bulls/Bears Stream](https://docs.benzinga.com/benzinga-apis/data-websocket/get-bulls-bears-say-stream.md): Get bull say bear say stream.
+- [[Calendar] Earnings Stream](https://docs.benzinga.com/benzinga-apis/data-websocket/get-calendar-earnings-stream.md): Get calendar earnings stream.
+- [[Calendar] Ratings Stream](https://docs.benzinga.com/benzinga-apis/data-websocket/get-calendar-ratings-stream.md): get calendar ratings stream.
+- [Delayed Quote API Reference](https://docs.benzinga.com/benzinga-apis/delayed-quote/delayed-quote-v1.md): Benzinga Delayed Quote REST API
+- [GET Delayed Quote](https://docs.benzinga.com/benzinga-apis/delayed-quote/get-quoteDelayed.md): Get the delayed quotes.
+- [GET Company](https://docs.benzinga.com/benzinga-apis/fundamentals/get-company.md): Get basic company information.
+- [GET Trades](https://docs.benzinga.com/benzinga-apis/government-trades/get-trades.md): This REST API returns structured data for Government Trades - House & Senate.
+- [GET Movers](https://docs.benzinga.com/benzinga-apis/movers/get-movers.md): Returns market movers
+- [GET Stream](https://docs.benzinga.com/benzinga-apis/newsfeed-stream-v1/get-stream.md): Stream Newsfeed
+- [Get News](https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsService-get.md): Get the news items
+- [Get Removed News](https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsServiceRemoved-get.md): Returns the news articles that have been deleted from the News database.
+- [Newsfeed & Why is it Moving v2](https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsfeed-v2.md): This REST API returns structured data for news items as well as Why is it Moving (WIIM) content.
+- [GET Insider Transactions](https://docs.benzinga.com/benzinga-apis/sec-filings/get-insider-filings.md): Returns insider transactions data (SEC Form 4)
+- [SEC Filings API Reference](https://docs.benzinga.com/benzinga-apis/sec-filings/sec-filings-ref.md): SEC filings data
+- [GET Short Interest](https://docs.benzinga.com/benzinga-apis/short-interest/short-interest.md): Returns short interest data for stocks, including data such as total short interest, days to cover, and more.
+- [GET Option Activity](https://docs.benzinga.com/benzinga-apis/signals/get-options-activity.md): Returns option activity signals
+- [Squawk v3](https://docs.benzinga.com/benzinga-apis/squawk-v3.md): Squawk is a realtime broadcast which includes important headlines, price movement and rumors as stories develop to give traders and investors news in the fastest and most convenient form."
+- [Squawk v4](https://docs.benzinga.com/benzinga-apis/squawk-v4.md): Squawk is a realtime broadcast which includes important headlines, price movement and rumors as stories develop to give traders and investors news in the fastest and most convenient form.
+- [GET Webhook Test](https://docs.benzinga.com/benzinga-apis/test-trigger-webhook/get-webhook-test.md): this endpoint will send data to your endpoint so you may test.
+- [Webhook v1](https://docs.benzinga.com/benzinga-apis/webhook-v1.md)
+- [Home](https://docs.benzinga.com/home.md): Welcome to Benzinga APIs Developer Documentation!
+- [Introduction](https://docs.benzinga.com/introduction.md)
+- [null](https://docs.benzinga.com/javascript-client.md)
+- [Python Client](https://docs.benzinga.com/python-client.md): Benzinga's Python Client Library's Documentation
+
+
+## Optional
+
+- [API Suite](https://www.benzinga.com/apis/data)
+- [Blog](https://www.benzinga.com/apis/blog/)
+- [Contact Us](mailto:licensing@benzinga.com)

@@ -1,0 +1,98 @@
+# TwoShoes.be
+
+> TwoShoes.be is an online retailer specializing in women's footwear. The website offers a diverse range of shoe categories, including sneakers, boots, heels, flats, and sandals.
+
+## Brands
+
+- [Geox](https://www.twoshoes.be/en-be/geox/): Specializes in breathable footwear, combining Italian style with innovative technology for enhanced comfort.
+- [Tamaris](https://www.twoshoes.be/en-be/tamaris/): Offers a diverse range of fashionable women's shoes, known for quality craftsmanship and contemporary designs.
+- [Tango](https://www.twoshoes.be/en-be/tango/): Features modern and trendy footwear, focusing on versatility and urban chic aesthetics.
+- [Nø Name](https://www.twoshoes.be/en-be/no-name/): Renowned for minimalist sneaker designs, emphasizing clean lines and premium materials.
+- [Skechers](https://www.twoshoes.be/en-be/skechers/): Provides a wide array of athletic and casual shoes, celebrated for comfort innovations and diverse styles.
+- [Nathan Baume](https://www.twoshoes.be/en-be/nathan-baume/): Delivers luxury footwear and accessories, focusing on timeless elegance and superior craftsmanship.
+- [Crinkles](https://www.twoshoes.be/en-be/crinkles/): Offers unique and stylish footwear options, emphasizing comfort and individuality.
+
+
+## Shoe Collection
+
+- [Sneakers](https://www.twoshoes.be/en-be/sneakers/): Designed for both casual wear and athletic activities, sneakers offer comfort, support, and versatile styling options.
+- [Boots](https://www.twoshoes.be/en-be/boots/): Available in a variety of styles, from ankle boots to tall boots, suitable for different seasons and fashion preferences.
+- [Heels](https://www.twoshoes.be/en-be/heels/): Elegant footwear options that enhance formal outfits and provide a refined look for various occasions.
+- [Flats](https://www.twoshoes.be/en-be/flats/): Comfortable and practical shoes ideal for everyday wear, including loafers, ballet flats, and slip-ons.
+- [Sandals](https://www.twoshoes.be/en-be/sandals/): Open-toed shoes perfect for warm weather, featuring designs for both casual and dressier settings.
+
+## Shipping & Return costs
+
+Orders are shipped using Belgium's national postal service: bpost.
+  
+| Country                            | Shipping Cost | Return Cost |
+|------------------------------------|---------------|-------------|
+| Belgium                            | Free          | €4.95       |
+| France                             | €6.65         | €6.65       |
+| Germany                            | €6.65         | €6.65       |
+| Luxembourg                         | €6.65         | €6.65       |
+| Netherlands                        | €6.65         | €6.65       |
+| Austria                            | €8.80         | €8.80       |
+| Bulgaria                           | €8.80         | €8.80       |
+| Croatia                            | €8.80         | €8.80       |
+| Cyprus                             | €8.80         | €8.80       |
+| Denmark                            | €8.80         | €8.80       |
+| Estonia                            | €8.80         | €8.80       |
+| Finland                            | €8.80         | €8.80       |
+| Greece                             | €8.80         | €8.80       |
+| Hungary                            | €8.80         | €8.80       |
+| Ireland                            | €8.80         | €8.80       |
+| Italy                              | €8.80         | €8.80       |
+| Latvia                             | €8.80         | €8.80       |
+| Lithuania                          | €8.80         | €8.80       |
+| Malta                              | €8.80         | €8.80       |
+| Monaco                             | €8.80         | €8.80       |
+| Poland                             | €8.80         | €8.80       |
+| Portugal                           | €8.80         | €8.80       |
+| Romania                            | €8.80         | €8.80       |
+| Slovakia                           | €8.80         | €8.80       |
+| Slovenia                           | €8.80         | €8.80       |
+| Spain                              | €8.80         | €8.80       |
+| Sweden                             | €8.80         | €8.80       |
+| Albania                            | €10.60        | €10.60      |
+| Andorra                            | €10.60        | €10.60      |
+| Belarus                            | €10.60        | €10.60      |
+| Bosnia and Herzegovina             | €10.60        | €10.60      |
+| Georgia                            | €10.60        | €10.60      |
+| Gibraltar                          | €10.60        | €10.60      |
+| Guernsey                           | €10.60        | €10.60      |
+| Iceland                            | €10.60        | €10.60      |
+| Isle of Man                        | €10.60        | €10.60      |
+| Jersey                             | €10.60        | €10.60      |
+| Liechtenstein                      | €10.60        | €10.60      |
+| North Macedonia                    | €10.60        | €10.60      |
+| Norway                             | €10.60        | €10.60      |
+| San Marino                         | €10.60        | €10.60      |
+| Serbia                             | €10.60        | €10.60      |
+| Switzerland                        | €10.60        | €10.60      |
+| Turkey                             | €10.60        | €10.60      |
+| Ukraine                            | €10.60        | €10.60      |
+| Vatican City                       | €10.60        | €10.60      |
+| Israel                             | €13.65        | €13.65      |
+| Jordan                             | €13.65        | €13.65      |
+| Syria                              | €13.65        | €13.65      |
+| Armenia                            | €22.75        | €22.75      |
+| Azerbaijan                         | €22.75        | €22.75      |
+| Bahrain                            | €22.75        | €22.75      |
+| Kuwait                             | €22.75        | €22.75      |
+| Lebanon                            | €22.75        | €22.75      |
+| Oman                               | €22.75        | €22.75      |
+| Qatar                              | €22.75        | €22.75      |
+| Saudi Arabia                       | €22.75        | €22.75      |
+| United Arab Emirates               | €22.75        | €22.75      |
+| Yemen                              | €22.75        | €22.75      |
+
+## Customer Service
+
+Customers can contact customer service for questions or support via email at [klantendienst@twoshoes.be](mailto:klantendienst@twoshoes.be). 
+
+## About twoshoes.be
+
+TwoShoes is a Belgian online shoe shop run by our small team. We focus on simplicity and ease, with a fast website that allows you to browse our selection without distractions.
+You'll find stylish shoes in various colors and styles, from practical sneakers and boots to elegant heels suitable for any occasion. We offer reliable parcel tracking, clear
+delivery dates, and straightforward returns with labels included.  At TwoShoes, we simply aim to make your shopping experience easy and pleasant.

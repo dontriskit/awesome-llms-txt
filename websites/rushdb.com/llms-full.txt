@@ -1,0 +1,6479 @@
+# Data Types
+
+RushDB supports a wide range of data types to accommodate diverse data needs and provide a flexible environment for your applications. Below is a comprehensive list of the supported data types along with their descriptions:
+
+### `string`
+This data type is used for any textual information and can hold text of unlimited length. 
+
+### `number`
+This data type accommodates both floating-point numbers and integers. For instance, it can handle values like 
+`-120.209817` (a float) or `42` (an integer).
+
+### `datetime`
+This data type adheres to the ISO 8601 format, including timezones. For example: `2012-12-21T18:29:37Z`.
+
+### `boolean`
+This data type can only have two possible values: `true` or `false`.
+
+### `null`
+This data type has only one possible value: `null`.
+
+
+---
+## Arrays
+
+In essence, RushDB supports all the data types that JSON does. However, when it comes to arrays, RushDB can indeed 
+hold them as **Property** values, but it's important to note that it can only store <u>consistent values</u> within those 
+arrays. To learn more, check out the [Properties](/advanced/properties) section.
+
+Here some valid examples:
+- `["apple", "banana", "carrot"]` - good
+- `[null, null, null, null, null]` - wierd, but works fine 🤔
+- `[4, 8, 15, 16, 23, 42]` - works as well
+- `["2023-09-17T02:47:54+04:00", "1990-08-18T04:35:00+05:00"]` - also good
+- `[true, false, true, false, true]` - love is an answer (🌼)
+
+
+
+---
+
+
+# Enhanced TypeScript
+:::note
+When working with RushDB SDK, achieving perfect TypeScript contracts ensures a seamless development experience. TypeScript's strong typing system allows for precise autocomplete suggestions and error checking, particularly when dealing with complex queries and nested models. This section will guide you on how to enhance TypeScript support by defining comprehensive type definitions for your models.
+:::
+
+## Defining Comprehensive TypeScript Types
+
+To fully leverage TypeScript's capabilities, you can define types that include all schemas you've registered with `Model`. This will allow you to perform complex queries with nested model fields, ensuring type safety and better autocompletion.
+
+### Step 1: Create Models with Model
+
+First, define your models using `Model`:
+```typescript
+import { Model } from '@rushdb/javascript-sdk'
+
+const Author = new Model('author', {
+  name: { type: 'string' },
+  email: { type: 'string', uniq: true }
+});
+
+const Post = new Model('post', {
+  created: { type: 'datetime', default: () => new Date().toISOString() },
+  title: { type: 'string' },
+  content: { type: 'string' },
+  rating: { type: 'number' }
+});
+
+const Blog = new Model('blog', {
+  title: { type: 'string' },
+  description: { type: 'string' }
+});
+```
+
+### Step 2: Create an Exportable Type for All Schemas
+
+Next, create an exportable type that includes all the schemas defined in your application:
+```typescript
+export type MyModels = {
+  author: typeof Author.schema
+  post: typeof Post.schema
+  blog: typeof Blog.schema
+}
+```
+
+### Step 3: Extend the Models Interface
+
+Add this type declaration to your project. This ensures that RushDB SDK is aware of your models:
+```typescript
+// index.d.ts or other d.ts file added to include in tsconfig.json
+
+import { MyModels } from './types';
+
+declare module '@rushdb/javascript-sdk' {
+  export interface Models extends MyModels {}
+}
+```
+
+### Example Usage
+
+By following these steps, you can now write complex queries with confidence, knowing that TypeScript will help you avoid errors and provide accurate autocomplete suggestions. Here's an example demonstrating how you can leverage this setup:
+
+#### Finding Posts Rated by a Specific Author with a Rating Above 5
+```typescript
+const query = await db.records.find('post', {
+  where: {
+    author: {
+      name: { $contains: 'John' }, // Checking if the author's name contains 'John'
+      post: {
+        rating: { $gt: 5 } // Posts with rating greater than 5
+      }
+    }
+  }
+});
+```
+In this example, the `db.records.find` method allows you to use nested fields in the `where` condition, thanks to the enhanced TypeScript definitions. This ensures that you can easily and accurately query your data, leveraging the full power of TypeScript.
+
+### Conclusion
+
+By defining comprehensive type definitions for your models and extending the `Models` interface, you can significantly enhance your TypeScript support when working with RushDB SDK. This approach ensures type safety, better autocompletion, and a more efficient development experience.
+
+
+---
+
+# Properties
+
+
+The fundamental unit of meaningful data in RushDB is known as a **Property**. Despite its apparent simplicity and 
+modest size, the entire RushDB core is built upon this architectural cornerstone.
+
+**Property** serves as the critical link that interconnects diverse data within [Records](/basic-concepts/records) 
+by matching properties and, importantly, by aligning [data types](/advanced/data-types) to create 
+connections using exact values.
+
+
+## How it works
+
+You can liken a **Property** to a real-world descriptor for a specific object.
+Here is a simplified diagram illustrating its appearance in a graph:
+
+```mermaid
+graph LR
+    P0((Property:color)) --> b[Matte black] --> R0((Record:Jacket))
+    
+    P0 --> d[Pale green] --> R2((Record:House))
+    P1 --> j[Villa Vista] --> R2
+    P1((Property:name)) --> e[Porsche 911] --> R1
+    P0 --> c[Dark grey] --> R1((Record:SportCar))
+    P2((Property:maxSpeed)) --> k[295] --> R1
+```
+
+And this is how those **Records** can be represented in code:
+
+```typescript
+// Record:Jacket
+const jacket = {
+    color: "Matte black" // Property `color`     [string]
+}   
+
+// Record:SportCar
+const sportCar = {
+    name: "Porsche 911", // Property `name`      [string]
+    color: "Dark grey",  // Property `color`     [string]
+    maxSpeed: 295        // Property `maxSpeed`  [number]
+}
+
+// Record:House
+const house = {
+    name: "Villa Vista", // Property `name`      [string]
+    color: "Pale green"  // Property `color`     [string]
+}
+```
+
+Simple as that :) 
+
+## Considerations
+
+Real-world data can be considerably more intricate and may encompass all conceivable 
+[data types](/advanced/data-types) within a single **Record**. 
+However, rest assured that RushDB adeptly manages this complexity without hesitation. Nevertheless, there are a few 
+important considerations you should be aware of:
+
+1. **Property** is designed to accommodate only consistent values. This means that RushDB will strive to retain the 
+original value type. However, if there are any inconsistent or non-convertible values in the payload, RushDB will 
+automatically convert them to a _string_ type.
+
+
+Payload contains inconsistent values but can be converted to desired _number_ type:
+```js
+
+{
+    name: "Combination",
+    type: "number",    
+    value: [4, 8, 15, 16, "23", "42.0"]
+} 
+// ---> converts to
+{
+    name: "Combination",
+    type: "number",
+    value: [4, 8, 15, 16, 23, 42.0]
+}
+```
+
+Payload contains inconsistent values but cannot be converted to desired _number_ type:
+```js
+{
+    name: "Secret",
+    type:"number",
+    value: [1, 2, 3, "jelly bear"]
+}
+// ---> converts to
+{
+    name: "Secret",
+    type: "string",
+    value: ["1", "2", "3", "jelly bear"]
+}
+```
+
+--- 
+
+2. When two (or more) properties with the <u>same name</u> but <u>different types</u> come into play, RushDB will make 
+maintain both Properties. For instance:
+
+```js
+[
+    {
+        type: "Raincoat",
+        size: "M"
+    }, 
+    { 
+        type: "Cardigan",
+        size: 38
+    }
+]
+```
+
+Will be saved into:
+```js
+[
+    {
+        type: "Raincoat",
+        size: "M"
+    },
+    {
+        type: "Cardigan",
+        size: 38
+    }
+]
+```
+
+
+---
+
+
+# Querying Data
+:::note
+In previous sections, you have encountered the `where` condition and various logical operators like `$and` and `$xor`. This section provides a comprehensive guide on querying data using the `SearchQuery` type, covering all available logical and comparison operators.
+:::
+
+## Table of Contents
+
+- [Logical Operators](#logical-operators)
+    - [$and](#and)
+    - [$or](#or)
+    - [$not](#not)
+    - [$nor](#nor)
+    - [$xor](#xor)
+- [Comparison Operators](#comparison-operators)
+    - [Boolean Operators](#boolean-operators)
+        - [$ne](#ne)
+    - [Datetime Operators](#datetime-operators)
+        - [$gt](#gt)
+        - [$gte](#gte)
+        - [$lt](#lt)
+        - [$lte](#lte)
+        - [$in](#in)
+        - [$nin](#nin)
+    - [Number Operators](#number-operators)
+        - [$gt](#gt-1)
+        - [$gte](#gte-1)
+        - [$lt](#lt-1)
+        - [$lte](#lte-1)
+        - [$in](#in-1)
+        - [$nin](#nin-1)
+    - [String Operators](#string-operators)
+        - [$contains](#contains)
+        - [$endsWith](#endswith)
+        - [$startsWith](#startswith)
+        - [$in](#in-2)
+        - [$nin](#nin-2)
+- [Complex examples](#complex-examples)
+
+## Logical Operators
+
+Logical operators allow you to build complex queries by combining multiple conditions.
+
+### $and
+
+The `$and` operator combines multiple conditions and returns results that match all the conditions.
+
+Alternatively, you can omit `$and` and directly list the conditions if there are no other logical operators at the same level.
+
+##### Examples:
+```typescript
+// Basic example with $and
+const queryWithAnd = await db.records.find('author', {
+  where: {
+    $and: [
+      { name: { $startsWith: 'Jane' } },
+      { email: { $contains: '@example.com' } }
+    ]
+  }
+});
+```
+
+```typescript
+// Basic example without $and
+const queryWithAnd = await db.records.find('author', {
+  where: {
+    name: { $startsWith: 'Jane' },
+    email: { $contains: '@example.com' }
+  }
+});
+```
+
+### $or
+
+The `$or` operator combines multiple conditions and returns results that match any of the conditions. This is useful for querying records that meet at least one of several criteria.
+
+##### Examples:
+```typescript
+// Complex example with $or
+const queryWithOr = await db.records.find('post', {
+  where: {
+    $or: [
+      { rating: { $gte: 4 } },
+      { title: { $contains: 'Guide' } }
+    ]
+  }
+});
+```
+
+```typescript
+// Complex example with $and and $or for numbers
+const queryComplexNumber = await db.records.find('post', {
+  where: {
+    $and: [
+      { rating: { $gte: 3, $lte: 5 } },
+      { views: { $gt: 1000 } }
+    ],
+    $or: [
+      { comments: { $lt: 50 } },
+      { shares: { $gte: 100 } }
+    ]
+  }
+});
+```
+
+### $not
+
+The `$not` operator inverts the condition it applies to, returning results that do not match the specified condition.
+
+##### Examples:
+```typescript
+// Example using $not
+const queryWithNot = await db.records.find('author', {
+  where: {
+    $not: [
+      { email: { $contains: '@example.com' } }
+    ]
+  }
+});
+```
+
+### $nor
+
+The `$nor` operator is used to combine multiple conditions and returns results that do not match any of the conditions.
+
+##### Examples:
+```typescript
+// Example using $nor
+const queryWithNor = await db.records.find('author', {
+  where: {
+    $nor: [
+      { name: { $startsWith: 'Jane' } },
+      { email: { $contains: '@example.com' } }
+    ]
+  }
+});
+```
+
+### $xor
+
+The `$xor` operator (exclusive OR) combines multiple conditions and returns results that match one and only one of the conditions.
+
+##### Examples:
+```typescript
+// Example using $xor
+const queryWithXor = await db.records.find('author', {
+  where: {
+    $xor: [
+      { name: { $startsWith: 'Jane' } },
+      { email: { $contains: '@example.com' } }
+    ]
+  }
+});
+```
+
+## Comparison Operators
+
+Comparison operators are used to filter records based on specific field values.
+
+### Boolean Operators
+
+#### $ne
+
+The `$ne` operator checks if a field is not equal to a specified value. This operator is implicitly used when specifying field values directly.
+
+##### Examples:
+```typescript
+const queryNotFalse = await db.records.find('author', {
+  where: {
+    email: { $startsWith: '' },
+    married: { $ne: false }
+  }
+});
+```
+
+### Datetime Operators
+
+#### $gt
+
+The `$gt` (greater than) operator checks if a field's value is greater than the specified datetime value.
+
+##### Examples:
+```typescript
+const queryGreaterDatetime = await db.records.find('post', {
+  where: {
+    created: { $gt: { $year: 2023, $month: 1, $day: 1 } }
+  }
+});
+// Finds posts created after January 1, 2023
+```
+
+#### $gte
+
+The `$gte` (greater than or equal to) operator checks if a field's value is greater than or equal to the specified datetime value.
+
+##### Examples:
+```typescript
+const queryGreaterOrEqualDatetime = await db.records.find('post', {
+  where: {
+    created: { $gte: '2023-01-01T00:00:00Z' }
+  }
+});
+// Finds posts created on or after January 1, 2023, 00:00:00 UTC
+```
+
+#### $lt
+
+The `$lt` (less than) operator checks if a field's value is less than the specified value.
+
+##### Examples:
+```typescript
+const queryLesserDatetime = await db.records.find('post', {
+  where: {
+    created: { $lt: { $year: 2024, $month: 1, $day: 1 } }
+  }
+});
+// Finds posts created before January 1, 2024
+```
+
+#### $lte
+
+The `$lte` (less than or equal to) operator checks if a field's value is less than or equal to the specified value.
+
+##### Examples:
+```typescript
+// Complex example with $gte and $lte for datetime
+const queryWithDatetime = await db.records.find('post', {
+  where: {
+    created: { $gte: '2023-01-01T00:00:00Z', $lte: '2023-12-31T23:59:59Z' }
+  }
+});
+```
+```typescript
+// Example using $lte for datetime as object
+const queryWithLteDatetimeObject = await db.records.find('post', {
+  where: {
+    created: { $lte: { $year: 2024, $month: 1, $day: 1 } }
+  }
+});
+```
+
+#### $ne
+
+The `$ne` operator is used to find records where the datetime field does not match the specified value.
+
+##### Examples:
+```typescript
+const queryNotDatetime = await db.records.find('post', {
+  where: {
+    created: { $ne: '2023-01-01T00:00:00Z' }
+  }
+});
+// Finds posts not created on January 1, 2023, 00:00:00 UTC
+```
+
+#### $nin
+
+The `$nin` operator is used to find records where the datetime field does not match any value in the specified array.
+
+##### Examples:
+```typescript
+const queryNotInDatetime = await db.records.find('post', {
+  where: {
+    created: { $nin: [
+      { $year: 2023, $month: 1, $day: 1 },
+      { $year: 2023, $month: 2, $day: 1 }
+    ]}
+  }
+});
+// Finds posts not created on January 1, 2023 or February 1, 2023
+```
+
+#### $in
+
+The `$in` operator is used to find records where the datetime field matches any value in the specified array.
+
+##### Examples:
+```typescript
+const queryInDatetime = await db.records.find('post', {
+  where: {
+    created: { $in: [
+      '2023-01-01T00:00:00Z',
+      '2023-02-01T00:00:00Z'
+    ]}
+  }
+});
+// Finds posts created on January 1, 2023 or February 1, 2023
+```
+
+### Number Operators
+
+#### $gt
+
+The `$gt` (greater than) operator checks if a field's value is greater than the specified value.
+
+##### Examples:
+```typescript
+// Example using $gt
+const queryWithGt = await db.records.find('post', {
+  where: {
+    rating: { $gt: 4 }
+  }
+});
+```
+
+#### $gte
+
+The `$gte` (greater than or equal to) operator checks if a field's value is greater than or equal to the specified value.
+
+##### Examples:
+```typescript
+// Example using $gte
+const queryWithGte = await db.records.find('post', {
+  where: {
+    rating: { $gte: 4 }
+  }
+});
+```
+
+#### $lt
+
+The `$lt` (less than) operator checks if a field's value is less than the specified value.
+
+##### Examples:
+```typescript
+// Example using $lt
+const queryWithLt = await db.records.find('post', {
+  where: {
+    rating: { $lt: 4 }
+  }
+});
+```
+
+#### $lte
+
+The `$lte` (less than or equal to) operator checks if a field's value is less than the specified value.
+
+##### Examples:
+```typescript
+// Example using $lte
+const queryWithLte = await db.records.find('post', {
+  where: {
+    rating: { $lte: 4 }
+  }
+});
+
+```
+
+#### $in
+
+The `$in` operator checks if a field's value is within a specified array of values.
+
+##### Examples:
+```typescript
+// Example using $in (numbers)
+const queryWithInNumbers = await db.records.find('author', {
+  where: {
+    age: { $in: [25, 30, 35] }
+  }
+});
+```
+
+#### $nin
+
+The `$nin` operator checks if a field's value is not within a specified array of values.
+
+##### Examples:
+```typescript
+// Example using $nin (numbers)
+const queryWithNotInNumbers = await db.records.find('author', {
+  where: {
+    age: { $nin: [25, 30, 35] }
+  }
+});
+```
+
+### String Operators
+
+#### $contains
+
+The `$contains` operator checks if a string field contains the specified substring.
+
+##### Examples:
+```typescript
+// Example using $contains
+const queryWithContains = await db.records.find('post', {
+  where: {
+    content: { $contains: 'Graph' }
+  }
+});
+```
+
+#### $endsWith
+
+The `$endsWith` operator checks if a string field ends with the specified substring.
+
+##### Examples:
+```typescript
+// Example using $endsWith
+const queryWithEndsWith = await db.records.find('post', {
+  where: {
+    title: { $endsWith: 'Databases' }
+  }
+});
+```
+
+#### $startsWith
+
+The `$startsWith` operator checks if a string field starts with the specified substring.
+
+##### Examples:
+```typescript
+// Example using $startsWith
+const queryWithStartsWith = await db.records.find('post', {
+  where: {
+    title: { $startsWith: 'Understanding' }
+  }
+});
+```
+
+```typescript
+// Complex example with multiple string operators
+const queryWithStringOperators = await db.records.find('post', {
+  where: {
+    $or: [
+      { title: { $startsWith: 'Understanding' } },
+      { title: { $contains: 'Graph' } },
+      { title: { $endsWith: 'Databases' } }
+    ]
+  }
+});
+```
+
+#### $in
+
+The `$in` operator checks if a field's value is within a specified array of values.
+
+##### Examples:
+```typescript
+// Example using $in (strings)
+const queryWithInStrings = await db.records.find('author', {
+  where: {
+    name: { $in: ['Jane Doe', 'John Smith'] }
+  }
+});
+```
+
+#### $nin
+
+The `$nin` operator checks if a field's value is not within a specified array of values.
+
+##### Examples:
+```typescript
+// Example using $nin (strings)
+const queryWithNotInStrings = await db.records.find('author', {
+  where: {
+    name: { $nin: ['Jane Doe', 'John Smith'] }
+  }
+});
+```
+
+## Complex examples
+```typescript
+// Complex example with nested queries
+const queryWithNested = await db.records.find('author', {
+  where: {
+    name: { $startsWith: 'Jane' },
+    blog: {
+      $and: [
+        { title: { $contains: 'Tech' } },
+        { post: { rating: { $gte: 4 } } }
+      ]
+    }
+  }
+});
+```
+```typescript
+// Example with nested relation and logical operators
+const nestedQuery = await db.records.find('author', {
+  where: {
+    name: { $startsWith: 'Post author' },
+    blog: {
+      $and: [
+        { title: { $contains: 'Tech' } },
+        { post: { $or: [{ rating: { $gte: 4 } }, { rating: { $lte: 2 } }] } }
+      ]
+    }
+  }
+});
+```
+```typescript
+// Complex example with $ne and $nin
+const queryWithEqAndNotIn = await db.records.find('author', {
+  where: {
+    married: { $ne: false },
+    age: { $nin: [20, 25, 30] }
+  }
+});
+```
+```typescript
+// Complex example with $gt for number and datetime
+const queryWithGtComplex = await db.records.find('post', {
+  where: {
+    rating: { $gt: 3 },
+    created: { $gt: { $year: 2023, $month: 1, $day: 1 } }
+  }
+});
+```
+```typescript
+// Basic example with $gte
+const queryWithGteDatetime = await db.records.find('post', {
+  where: {
+    created: { $gte: { $year: 2023, $month: 1, $day: 1 } }
+  }
+});
+```
+```typescript
+// Complex example with $nin for string and number
+const queryWithNotInStringNumber = await db.records.find('author', {
+  where: {
+    name: { $nin: ['Jane Doe', 'John Doe'] },
+    age: { $nin: [30, 40, 50] }
+  }
+});
+```
+```typescript
+// Complex example with $in for string and number
+const queryWithInStringNumber = await db.records.find('author', {
+  where: {
+    name: { $in: ['Jane Doe', 'John Doe'] },
+    age: { $in: [30, 40, 50] }
+  }
+});
+```
+```typescript
+// Complex example with $ne and $nin
+const queryWithEqAndNotIn = await db.records.find('author', {
+    where: {
+        married: { $ne: false },
+        age: { $nin: [20, 25, 30] }
+    }
+});
+```
+```typescript
+// Complex example with multiple string operators
+const queryWithStringOperators = await db.records.find('post', {
+  where: {
+    $or: [
+      { title: { $startsWith: 'Understanding' } },
+      { title: { $contains: 'Graph' } },
+      { title: { $endsWith: 'Databases' } }
+    ]
+  }
+});
+```
+
+```typescript
+// Complex example with nested queries
+const queryWithNested = await db.records.find('author', {
+  where: {
+    name: { $startsWith: 'Jane' },
+    blog: {
+      $and: [
+        { title: { $contains: 'Tech' } },
+        { post: { rating: { $gte: 4 } } }
+      ]
+    }
+  }
+});
+
+```
+
+## Notes
+
+- You can use both `Model` and `RushDB` class instances to perform queries.
+- Using logical operators allows building complex and precise queries.
+- The examples provided showcase how to leverage these operators for querying data effectively.
+
+
+---
+
+# Records
+
+:::tip
+If you're seeking documentation for the Records API, you can find it by following the link to [Records API](/basic-concepts/records).
+:::
+
+In RushDB, you have the capability to store meaningful data within **Records**. These **Records** consist of individual data 
+pieces, each containing keys and their corresponding values (**Properties**).
+
+
+## How it works
+
+Consider a **Record** as a row in a database, with each **Property** being like a column. Though the inner implementation may involve 
+complex graph structures, at its core, a **Record** is just an object that holds simple keys and values. You can think of 
+it as a "dictionary", "map", "hash table", or "associative array" depending on your programming language or context.
+
+For example:
+```typescript
+// Record:User
+const user = {
+    id: "si310jfpiej20i9h",
+    name: "John Galt",
+    emailConfirmed: true,
+    registeredAt: "2022-07-19T08:30:28.000Z",
+    rating: 4.98,
+    currency: "USD",
+    email: "john.galt@example.com"
+}
+```
+It's just an object that holds some keys and values.
+
+
+Or this one:
+```typescript
+// Record:Coffee
+const coffee = {
+    origin: "Guatemala", 
+    process: "washed", 
+    cupping: 86, 
+    inStock: true,
+    roasted: "2023-07-20T14:50:00Z",
+    notes: ["Nuts", "Caramel", "Lime"]
+}
+```
+According to [Data Types](/advanced/data-types) this **Record** contains an array of values and other available value types.
+
+
+## Complex data
+In the realm of real-world data and a human-centric mindset, there may arise a need to store nested data within **Records**.
+In the context of RushDB, this becomes a critical requirement in order to maintain simplicity and eliminate the layers 
+of abstraction that exist between the raw data and our conceptual understanding of it.
+
+
+This is precisely why we have
+engineered RushDB to have the capability to contain **Records** within other **Records**. While each individual **Record**
+remains distinct and accessible on its own, you retain the flexibility to structure your data in a manner that aligns
+with your thought process. Read further in the [Relationships](/advanced/relationships) section.
+
+
+
+---
+
+# Relationships
+
+In the realm of real-world data and a human-centric mindset, there may arise a need to store nested data within **Records**.
+In the context of RushDB, this becomes a critical requirement in order to maintain simplicity and eliminate the layers
+of abstraction that exist between the raw data and our conceptual understanding of it.
+
+
+This is precisely why we have
+engineered RushDB to have the capability to contain **Records** within other **Records**. While each individual **Record**
+remains distinct and accessible on its own, you retain the flexibility to structure your data in a manner that aligns
+with your thought process. 
+
+## How it works
+
+Here is basic example of nested data in the way the human beings are thinking of it:
+
+```js
+const data = {
+  Person: {
+    Name: "John Galt", 
+    Age: 30,
+    Contact: {
+      Email: "john.galt@example.com",
+      Phone: "123-456-7890"
+    },
+    Address: {
+      Street: "123 Main Street",
+      City: "Anytown",
+      State: "CA",
+      ZipCode: "12345"
+    }
+  }
+}
+```
+
+As you may be aware, there's no need to manually define a schema for your data in RushDB because it handles this 
+process automatically. In this example, RushDB will transform the data into 3 **Records** and 8 **Properties**, each
+with its appropriate data type. Moreover, RushDB will assign **Labels** based on the inherent data structure automatically.
+
+```mermaid
+graph TB
+    R0((Record:Person)) -- "RUSHDB_DEFUALT_RELATION" --> R1((Record:Contact))
+    R0 -- "CONTAINS" --> R2((Record:Address))
+```
+This structure is flexible and can be modified easily if necessary. You have the freedom to rearrange **Records** within the
+structure as needed. Additionally, RushDB doesn't limit **Relations** to just child and parent connections.
+To learn more about different types of **Record** **Relations**, visit the [Relations documentation](/basic-concepts/relations).
+
+
+---
+
+# Aggregations
+
+In addition to the classic search by specified criteria, RushDB provides data aggregation capabilities. You can return complex nested structures when searching for data, and add new fields to the search result on the fly.
+
+## Data Aggregation Tasks and Capabilities
+
+The main goals we pursued in RushDB when designing aggregations were to eliminate additional queries from your code for nested structures, as well as additional "on-the-fly" data modifications after they are retrieved.  
+Typically, you don’t want to keep in your data model those [Properties](/basic-concepts/properties) that are filled and recalculated depending on related [Records](/basic-concepts/records) — you’d prefer to compute such data at query time.
+
+Currently, the design of aggregations includes the following capabilities:
+- Including nested structures in the response based on search criteria, with support for sorting, and pagination for nested structures (`collect` function).
+- Performing mathematical operations on numeric properties and record counts (or their properties): `min`, `max`, `avg`, `sum`, and `count`.
+
+In the future, we will expand aggregation capabilities — first and foremost, we will add support for dynamically added fields in search criteria.
+
+Below you can see a detailed example of using different aggregations within a single code block:
+
+```typescript
+{
+    where: {
+        name: {
+            $contains: 'John'
+        },
+        comments: {
+            $alias: '$comment',
+            likes: {
+                $alias: '$like',
+                likesCount: {
+                    $gte: 2
+                }
+            }
+        }
+    },
+    orderBy: {},
+    skip: 0,
+    limit: 100,
+    labels: ['author'],
+    aggregate: {
+        authorName: '$record.name',
+        commentsCount: { fn: 'count', uniq: true, alias: '$comment' },
+        totalLikes: { fn: 'sum', field: 'likesCount', alias: '$like' },
+        avgAuthorLikes: {
+            fn: 'avg',
+            field: 'likesCount',
+            alias: '$like',
+            precision: 0
+        },
+        minLikesPerComment: { fn: 'min', field: 'likesCount', alias: '$like' },
+        maxLikesPerComment: { fn: 'max', field: 'likesCount', alias: '$like' },
+        aggregate: {
+            comments: {
+                fn: 'collect',
+                uniq: true,
+                alias: '$comment',
+                orderBy: { likesCount: 'asc' },
+                limit: 5,
+                skip: 0,
+                aggregate: {
+                    likes: {
+                        fn: 'collect',
+                        uniq: true,
+                        alias: '$like'
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+In this case, you will get all authors who have more than two likes on their comments.
+You will also get data slices: the minimum number of likes on a comment and the maximum number of likes on a comment, the average number of likes, their total number, and the total number of comments.
+
+Additionally, you can set the number of returned comments in the response and, in this case, sort them by the most liked comments.
+
+## Data Aggregation Parameters
+
+### `fn`
+Specifies the type of function to use — `collect`, `sum`, `count`, `max`, `min` or `avg`.
+### `uniq`
+Specifies whether to consider duplicates when retrieving data.
+### `limit`, `skip`
+Pagination parameter settings.
+### `orderBy`
+Sorting settings based on the properties of the [Records](/basic-concepts/records). Several properties are available for sorting.
+### `field`
+Indicates which [Properties](/basic-concepts/properties) of the [Records](/basic-concepts/records) should be used for mathematical operations.
+It is not required for the `collect` and `count` functions since they can work with the [Records](/basic-concepts/records) themselves.
+### `precision`
+Available for the `avg` function.
+### `alias`
+A very important property that must be specified inside each aggregation function. It allows you to specify an `alias` within the `where` condition. It is also necessary for our API to identify references to specific [Records](/basic-concepts/records).
+### `$record`
+A key property that must be specified if you want to return any properties of the original (top-level) record of the search query.
+
+
+---
+
+
+import { Method } from '@site/src/components/ui/method';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@site/src/components/ui/tabs';
+
+# Properties
+
+In RushDB, you can store meaningful data using **Properties**. Properties are fundamental data units, representing individual pieces of information as key-value pairs.
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="col-span-5">
+    ### TypeScript Definition
+
+    ```typescript
+    type PropertyType = "number" | "string" | "boolean" | "datetime" | "null";
+
+    export type Property = {
+      id: string;
+      metadata?: string;
+      name: string;
+      type: PropertyType;
+      // If retrieving a property within a record
+      value: PropertyType;
+      // If retrieving property values via Properties API
+      max?: number;
+      min?: number;
+      values: PropertyValue[];
+    };
+    ```
+    Each property type has specific values that correspond to its type. The `datetime` type can have a value of either a string or an object:
+    ```typescript
+    export type DatetimeObject = {
+      $year: number;
+      $month?: number;
+      $day?: number;
+      $hour?: number;
+      $minute?: number;
+      $second?: number;
+      $millisecond?: number;
+      $microsecond?: number;
+      $nanosecond?: number;
+    };
+    ```
+  </div>
+</div>
+
+## How It Works
+
+Imagine a property as a column in a database that represents a specific attribute or piece of information.
+While the overall data structure may include complex graph structures or [records](/basic-concepts/records),
+at the core of each property is a simple key-value pair. You can think of a property as an element in a "dictionary," "map,"
+"hash table," or "associative array," depending on your programming language or context.
+
+Properties are combined into [records](/basic-concepts/records), which can be viewed as rows in a database containing
+multiple properties. This allows you to structure data in a flexible and intuitive way, where each property adds specific information to a [record](/basic-concepts/records).
+
+---
+
+## Create Property
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="col-span-3">
+    Properties cannot be created directly, as they serve as descriptors of records. The creation of new properties and their automatic deletion occur directly within the [Records API](/basic-concepts/records).
+  </div>
+</div>
+
+---
+
+## Get Property
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    Retrieve the values of a single property across all [records](/basic-concepts/records):
+    ```typescript
+    GET /api/v1/properties/:propertyId/values
+    ```
+    :::info
+    **Note:** Replace `:propertyId` with the actual ID of the property you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    To retrieve a property in RushDB, you can use the `.values` method or make a GET request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        // You can achieve the same result with the `.findById` method.
+        const property = await db.properties.values(
+          "0192397b-8579-7ce2-a899-01c59bad63f8"
+        );
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```bash
+        GET /api/v1/properties/0192397b-8579-7ce2-a899-01c59bad63f8/values
+        ```
+
+        You can achieve the same result with the `.findById` method.
+        ```bash
+        GET /api/v1/properties/0192397b-8579-7ce2-a899-01c59bad63f8
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    {
+      "metadata": "",
+      "values": [
+        "Alice Johnson",
+        "Best Shoe Store",
+        "John Doe"
+      ],
+      "name": "name",
+      "id": "0192397b-8579-7ce2-a899-01c59bad63f8",
+      "type": "string",
+      "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+    }
+    ```
+  </div>
+</div>
+
+## Get [Record](/basic-concepts/records) Related Properties
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    You can easily fetch properties related to a specific [record](/basic-concepts/records):
+    ```typescript
+    GET /api/v1/records/:entityId/properties
+    ```
+    :::info
+    **Note:** Replace `:entityId` with the actual ID of the record whose properties you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    To retrieve the properties related to a [record](/basic-concepts/records) in RushDB, use the `.properties` method or make a GET request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        // Retrieve properties related to the specified record.
+        const properties = await db.records.properties(
+          "019239e7-d3b5-7840-9338-d536b98b4b2d"
+        );
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```bash
+        GET /api/v1/records/019239e7-d3b5-7840-9338-d536b98b4b2d/properties
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    [
+      {
+        "metadata": "",
+        "name": "email",
+        "id": "019239e7-d3b5-7840-9338-d53591c0e285",
+        "type": "string",
+        "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+      },
+      {
+        "metadata": "",
+        "name": "username",
+        "id": "019239e7-d3b5-7840-9338-d534d70b9ea6",
+        "type": "string",
+        "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+      },
+      {
+        "metadata": "",
+        "name": "name",
+        "id": "0192397b-8579-7ce2-a899-01c59bad63f8",
+        "type": "string",
+        "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+      }
+    ]
+    ```
+  </div>
+</div>
+
+---
+
+## Search
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    Search from root:
+    ```typescript
+    POST /api/v1/properties
+    ```
+  </div>
+  <div className="col-span-3">
+    To build more complex and unique structures (for example, dynamic filters), you may require a more flexible
+    way to obtain properties. You can retrieve all relevant properties that satisfy the current search parameters using the `.find` method.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.properties.find({
+          labels: ['SHOP'],
+          where: {
+              name: { $contains: "Best Shoe" },
+              PRODUCT: {
+                $relation: { direction: 'out', type: 'sells' },
+                title: { $contains: "Dr. Martens" },
+                SELLER: {
+                  $relation: { direction: 'in', type: 'sold' },
+                  name: "John Doe",
+                },
+                CLIENT: {
+                  $relation: { direction: 'in', type: 'purchased' },
+                },
+            },
+        },
+      });
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "where": {
+            "name": {
+              "$contains": "Best Shoe"
+            },
+            "PRODUCT": {
+              "$relation": {
+                "direction": "out",
+                "type": "sells"
+              },
+              "title": {
+                "$contains": "Dr. Martens"
+              },
+              "SELLER": {
+                "$relation": {
+                  "direction": "in",
+                  "type": "sold"
+                },
+                "name": "John Doe"
+              },
+              "CLIENT": {
+                "$relation": {
+                  "direction": "in",
+                  "type": "purchased"
+                }
+              }
+            }
+          }
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+    ```javascript
+    [
+      {
+        "metadata": "",
+        "name": "name",
+        "id": "0192397b-8579-7ce2-a899-01c59bad63f8",
+        "type": "string",
+        "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+      },
+      {
+        "metadata": "",
+        "name": "location",
+        "id": "019239e7-01dc-70af-907a-7059c3b9e33a",
+        "type": "string",
+        "projectId": "0191d2a4-6d9d-7967-82b5-6155899aeb91"
+      }
+    ]
+    // All available properties of those stores where John sold Dr. Martens
+    ```
+  </div>
+</div>
+
+---
+
+## Update Property Values for Selected [Records](/basic-concepts/records)
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    ```typescript
+    PATCH /api/v1/properties/:propertyId/values
+    ```
+    :::info
+    **Note:** Replace `:propertyId` with the actual ID of the property whose values you want to update.
+    :::
+  </div>
+  <div className="col-span-3">
+    Sometimes you may need to bulk edit values with new ones. You can send single or multiple values along with the IDs of target [records](/basic-concepts/records). New values will replace the old ones.
+
+    :::danger
+    **Warning:** If no `newValue` is provided, the property will be deleted. Also, `newValue` must be of the same type as the property.
+
+    If no `entityIds` are provided, all values in all records will be overwritten with the new values.
+    :::
+
+    ### Request
+
+    <Tabs defaultValue="api" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        :::info
+        This part of the documentation is actively in development.
+        :::
+      </TabsContent>
+      <TabsContent value="api">
+        ```typescript
+        PATCH /api/v1/properties/019239e7-d33a-7b31-933d-680df398a4d1/values
+
+        {
+          "entityIds": ["019239e7-d3b5-7840-9338-d536b98b4b2d", "019239e7-d2b8-7131-89d0-914ea5ff8ef9"],
+          "newValue": ["Dr Martens 1460", "Dr Martens 1460 Jadon Black Chunky Heel"]
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    {
+      "success": true
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Update Property Attributes
+
+:::info
+This part of the documentation is actively in development.
+:::
+
+---
+
+## Delete Property
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    ```typescript
+    DELETE /api/v1/properties/:propertyId
+    ```
+    :::info
+    **Note:** Replace `:propertyId` with the actual ID of the property you want to delete.
+    :::
+  </div>
+  <div className="col-span-3">
+    To completely remove a property and all its values, simply call the `.delete` method with the property ID.
+
+    ### Request
+
+    <Tabs defaultValue="api" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.properties.delete("019239e7-d33a-7b31-933d-680df398a4d1");
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```typescript
+        DELETE /api/v1/properties/019239e7-d33a-7b31-933d-680df398a4d1
+        ```
+
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```json
+    {
+      "success": true
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Endpoints Overview
+
+The Properties API provides several endpoints to work with. Here's an overview of all available endpoints in this section:
+
+| Method                                          | Endpoint                                              | Description                                                            |
+| ------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------- |
+| <Method method="GET" color="#4287f5"/>          | `/api/v1/properties/:propertyId/values`                | Get a single property with available values                            |
+| <Method method="GET" color="#4287f5"/>          | `/api/v1/records/:entityId/properties`                 | Get available properties for a [record](/basic-concepts/records)       |
+| <Method method="POST" color="#2e8555"/>         | `/api/v1/properties`                                   | Get a list of properties by search parameters                          |
+| <Method method="PATCH" color="#f5a742"/>        | `/api/v1/properties/:propertyId/values`                | Edit property values for selected [records](/basic-concepts/records)   |
+| <Method method="DELETE" color="#f54242"/>       | `/api/v1/properties/:propertyId`                       | Delete a property                                                      |
+
+
+---
+
+
+import { Method } from '@site/src/components/ui/method';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@site/src/components/ui/tabs';
+
+# Records
+
+In RushDB, you have the capability to store meaningful data within **Records**. These **Records** consist of individual data
+pieces, each containing keys and their corresponding values - **Properties**.
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="col-span-3">
+    ### Typescript Definition
+
+    ```typescript
+    type MaybeArray<T> = T | T[]
+    type PropertyType = "number" | "string" | "boolean" | "datetime" | "null"
+
+    type DBRecord = {
+      // autogenerated UUIDv7
+      __id: string
+
+      // Record label (Order, User, Route, ...)
+      __label: string
+
+      // autogenerated map of Record's properties types
+      __proptypes: Record<string, PropertyType>
+
+      // Record's own properties
+      [key?: string]: MaybeArray<number | string | null | boolean>
+    }
+    ```
+  </div>
+  <div  className="xl:order-last col-span-2">
+    ### Data Example
+    ```javascript
+    {
+      "__id": "0191b44a-c815-7d40-bf48-b2d1727670d7",
+      "__label": "ORDER",
+      "__proptypes": {
+        "items": "number",
+        "sum": "number",
+        "promocode": "string",
+        "confirmed": "boolean",
+        "createdAt": "datetime"
+      },
+      "items": 5,
+      "sum": 232,
+      "promocode": "3heg09j",
+      "confirmed": true,
+      "createdAt": "2024-09-02T19:22:21+0000"
+    }
+    ```
+  </div>
+</div>
+
+## How it works
+
+Consider a **Record** as a row in a database, with each **Property** being like a column. Though the inner implementation may involve
+complex graph structures, at its core, a **Record** is just an object that holds simple keys and values. You can think of
+it as a "dictionary", "map", "hash table", or "associative array" depending on your programming language or context.
+
+
+---
+
+## Create Record
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoints
+    Create single [Record](/advanced/records)
+    ```ts
+    POST /api/v1/records
+    ```
+  </div>
+  <div className="col-span-3">
+    To create Record in RushDB simply pass one-level object to `.create` method or through the REST API in `body`.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.create("ORDER", {
+          items: 5,
+          sum: 232,
+          promocode: "3heg09j",
+          confirmed: true,
+          createdAt: "2024-09-02T19:22:21+0000"
+        })
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "label": "ORDER",
+          "payload": {
+            "items": 5,
+            "sum": 232,
+            "promocode": "3heg09j",
+            "confirmed": true,
+            "createdAt": "2024-09-02T19:22:21+0000"
+          }
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    // DBRecord
+    {
+      "__id": "0191b44a-c815-7d40-bf48-b2d1727670d7",
+      "__label": "ORDER",
+      "__proptypes": {
+        "items": "number",
+        "sum": "number",
+        "promocode": "string",
+        "confirmed": "boolean",
+        "createdAt": "datetime"
+      },
+      "items": 5,
+      "sum": 232,
+      "promocode": "3heg09j",
+      "confirmed": true,
+      "createdAt": "2024-09-02T19:22:21+0000"
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Bulk Create Records
+
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoints
+    Create Records from JSON-like data:
+    ```ts
+    POST /api/v1/import/json
+    ```
+    Create Records from CSV-like data:
+    ```ts
+    POST /api/v1/import/csv
+    ```
+
+    :::info
+    Please note that the maximum payload size for a single request is 24MB.
+    :::
+
+  </div>
+  <div className="col-span-3">
+    This API allows you to push data and get it automatically normalized, and labels are generated based on the structure of the payload. The API also suggests data types for each field within the payload. RushDB supports `JSON`, `JSONB` and `CSV` formats, with upcoming support for `YAML`, `NDJSON`, `XML`, and `GEXF`.
+
+    This API facilitates the creation of records and their [relationships](/basic-concepts/relations) using a Breadth-First Search (BFS) algorithm, ensuring accurate and efficient connections between data points.
+
+    ### Request
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.createMany("PRODUCT", [
+          {
+            title: "T-Shirt",
+            price: 50
+          },
+          {
+            title: "Sneakers",
+            price: 135,
+            SIZE: [
+              {
+                uk: 8.5,
+                qty: 5
+              }
+            ]
+          }
+        ])
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "label": "PRODUCT",
+          "payload": [
+            {
+              "title": 'T-Shirt',
+              "price": 50,
+            },
+            {
+              "title": 'Sneakers',
+              "price": 135,
+              // Nested Records `SIZE`
+              "SIZE": [
+                {
+                  "uk": 8.5,
+                  "qty": 5
+                }
+              ]
+            }
+          ]
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    // DBRecord[]
+    [
+      {
+        "__id": "0191b44a-c815-7d40-bf48-b2d1727670d5",
+        "__label": "PRODUCT",
+        "__proptypes": {
+          "title": "string",
+          "price": "number"
+        },
+        "title": 'T-Shirt',
+        "price": 50
+      },
+      {
+        "__id": "0191b44a-c815-7d40-bf48-b2d1727670d4",
+        "__label": "PRODUCT",
+        "__proptypes": {
+          "title": "string",
+          "price": "number"
+        },
+        "title": 'Sneakers',
+        "price": 135
+      },
+      {
+        "__id": "0191b44a-c815-7d40-bf48-b2d1727670d3",
+        "__label": "SIZE",
+        "__proptypes": {
+          "uk": "number",
+          "qty": "number"
+        },
+        "uk": 8.5,
+        "qty": 5
+      }
+    ]
+    ```
+
+  </div>
+</div>
+
+
+---
+
+## Search
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoints
+    Search from root:
+    ```ts
+    POST /api/v1/records/search
+    ```
+    Search from specific Record:
+    ```ts
+    POST /api/v1/records/:id/search
+    ```
+    :::info
+    Note: When searching from a specific Record, replace `:id` with the actual ID of the Record you want to start the search from.
+    :::
+  </div>
+  <div className="col-span-3">
+    To search for Records in RushDB, use the `.find` method or make a POST request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.find("PRODUCT", {
+          where: {
+            title: { $contains: "Sneakers" },
+            SIZE: {
+              uk: { $gte: 8, $lte: 9 },
+              qty: { $gt: 0 }
+            }
+          }
+        })
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "labels": ["PRODUCT"],
+          "where": {
+            "title": { "$contains": "Sneakers" },
+            "SIZE": {
+              "uk": { "$gte": 8, "$lte": 9 },
+              "qty": { "$gt": 0 }
+            }
+          },
+          "limit": 1000,
+          "offset": 0
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+    ```javascript
+    // DBRecord[]
+    [
+      {
+        "__id": "0191b44a-c815-7d40-bf48-b2d1727670d4",
+        "__label": "PRODUCT",
+        "__proptypes": {
+          "title": "string",
+          "price": "number"
+        },
+        "title": 'Sneakers',
+        "price": 135
+      },
+      // ...
+    ]
+    ```
+  </div>
+</div>
+
+---
+
+## Search with Data Aggregation
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoints
+    Search from root:
+    ```ts
+    POST /api/v1/records/search
+    ```
+    Search from specific Record:
+    ```ts
+    POST /api/v1/records/:id/search
+    ```
+    :::info
+    Note: When searching from a specific Record, replace `:id` with the actual ID of the Record you want to start the search from.
+    :::
+  </div>
+  <div className="col-span-3">
+    You can also return records related to a given Record (those that have a [Relation](/basic-concepts/relations) with that Record) during the search.
+    Sometimes, you may also need to perform mathematical operations on your data during the search, adding new dynamic fields to the response.
+
+    Below, you can see an example that will return all available shoe sizes and also add the minimum and maximum UK size.
+
+    Read more about [Search with Data Aggregation](/advanced/search-aggregation)
+    ### Request
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.find("PRODUCT", {
+          where: {
+            title: { $contains: "Sneakers" },
+            SIZE: {
+              // Linking the aggregate field with the where condition
+              $alias: "$size",
+              uk: { $lte: 10 },
+              qty: { $gt: 0 }
+            }
+          },
+          aggregate: {
+            // Add the necessary PRODUCT fields that need to be returned in the Response.
+            title: "$record.title",
+            price: "$record.price",
+            // Return all sizes related to PRODUCT
+            SIZE: {
+            fn: 'collect',
+            uniq: true,
+            alias: '$size',
+          },
+          // Add a field with the minimum and maximum sizes for the found SIZE
+          minSize: { fn: 'min', field: 'uk', alias: '$size' },
+          maxSize: { fn: 'max', field: 'uk', alias: '$size' },
+        },
+      })
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "labels": ["PRODUCT"],
+          "where": {
+            "title": { "$contains": "Sneakers" },
+            "SIZE": {
+              // Linking the aggregate field with the where condition
+              "$alias": "$size",
+              "uk": { "$lte": 10 },
+              "qty": { "$gt": 0 }
+            }
+          },
+          "aggregate": {
+            // Add the necessary PRODUCT fields that need to be returned in the Response.
+            "title": "$record.title",
+            "price": "$record.price",
+            // Return all sizes related to PRODUCT
+            "SIZE": {
+              "fn": 'collect',
+              "uniq": true,
+              "alias": '$size',
+            },
+            // Add fields with the minimum and maximum sizes for the found SIZE
+            "minSize": { "fn": 'min', "field": 'uk', "alias": '$size' },
+            "maxSize": { "fn": 'max', "field": 'uk', "alias": '$size' },
+          }
+          "limit": 1000,
+          "offset": 0
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+    ```javascript
+    // DBRecord[]
+    [
+    {
+      "__id": "0191b44a-c815-7d40-bf48-b2d1727670d4",
+      "__label": "PRODUCT",
+      "__proptypes": {
+        "title": "string",
+        "price": "number"
+      },
+      "title": 'Sneakers'
+      "price": 135,
+      "maxSize": 8,
+      "minSize": 3,
+      "SIZE": [
+        {
+          "__id": "0193dabd-c783-76f2-bb8f-c18ac915c91b",
+          "__label": "SIZE",
+          "uk": 7,
+          "qty" 2,
+          // Remaining SIZE properties
+          "__proptypes": {
+            "uk": "number",
+            "qty": "number"
+          },
+        }
+      // Other SIZE records
+      ]
+    },
+    // ...
+    ]
+    ```
+  </div>
+</div>
+
+---
+
+## Get Record
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    Get single [Record](/advanced/records)
+    ```ts
+    GET /api/v1/records/:id
+    ```
+    :::info
+    Note: Replace `:id` with the actual ID of the Record you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    To retrieve a Record in RushDB, use the `.findById` method or make a GET request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        const record = await db.records.findById(
+        "0191b44a-c815-7d40-bf48-b2d1727670d7"
+        )
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```bash
+        GET /api/v1/records/0191b44a-c815-7d40-bf48-b2d1727670d7
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    // DBRecord
+    {
+      "__id": "0191b44a-c815-7d40-bf48-b2d1727670d4",
+      "__label": "PRODUCT",
+      "__proptypes": {
+        "title": "string",
+        "price": "number"
+      },
+      "title": 'Sneakers',
+      "price": 135
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Update Record
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    Update single [Record](/advanced/records)
+    ```ts
+    PUT /api/v1/records/:id
+    ```
+    :::info
+    Note: Replace `:id` with the actual ID of the Record you want to update.
+    :::
+  </div>
+  <div className="col-span-3">
+    To update a Record in RushDB, use the `.update` method or make a PUT request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.update("0191b44a-c815-7d40-bf48-b2d1727670d7", {
+          sum: 250,
+          confirmed: false
+        })
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```javascript
+        {
+          "properties": {
+            "sum": {
+              "type": "number",
+              "value": 250
+            },
+            "confirmed": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    // Updated DBRecord
+    {
+      "__id": "0191b44a-c815-7d40-bf48-b2d1727670d7",
+      "__label": "ORDER",
+      "__proptypes": {
+        "items": "number",
+        "sum": "number",
+        "promocode": "string",
+        "confirmed": "boolean",
+        "createdAt": "datetime"
+      },
+      "items": 5,
+      "sum": 250,
+      "promocode": "3heg09j",
+      "confirmed": false,
+      "createdAt": "2024-09-02T19:22:21+0000"
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Delete Records
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div  className="xl:order-last col-span-2">
+    ### Endpoint
+    Delete single [Record](/advanced/records)
+    ```ts
+    DELETE /api/v1/records/:id
+    ```
+    :::info
+    Note: Replace `:id` with the actual ID of the Record you want to delete.
+    :::
+  </div>
+  <div className="col-span-3">
+    To delete a Record in RushDB, use the `.delete` method or make a DELETE request to the REST API endpoint.
+
+    ### Request
+
+    <Tabs defaultValue="sdk" >
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ```typescript
+        await db.records.delete("0191b44a-c815-7d40-bf48-b2d1727670d7")
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ```bash
+        DELETE /api/v1/records/0191b44a-c815-7d40-bf48-b2d1727670d7
+        ```
+      </TabsContent>
+    </Tabs>
+
+    ### Response
+
+    ```javascript
+    // Successful deletion
+    {
+      "success": true,
+      "message": "Record successfully deleted"
+    }
+    ```
+  </div>
+</div>
+
+---
+
+## Endpoints Overview
+The Records API provides several endpoints for managing and interacting with Records. Here's an overview of all available endpoints in this section:
+| Method | Endpoint                           | Description                                                   |
+|--------|-----------------------------------|---------------------------------------------------------------|
+| <Method method="POST" color="#2e8555" />   | `/api/v1/records`                  | Create a single Record                                        |
+| <Method method="POST" color="#2e8555" />   | `/api/v1/records/:id`              | Create a single Record as a child of a specific Record        |
+| <Method method="GET" color="#4287f5" />    | `/api/v1/records/:id`              | Retrieve a single Record                                      |
+| <Method method="POST" color="#2e8555" />   | `/api/v1/records/search`           | Search for Records from the root (all data in the project)    |
+| <Method method="POST" color="#2e8555" />   | `/api/v1/records/:id/search`       | Search for Records from a specific Record to its nested children |
+| <Method method="PUT" color="#f5a742" />    | `/api/v1/records/:id`              | Update a single Record                                        |
+| <Method method="PUT" color="#f5a742" />    | `/api/v1/records/delete`           | Delete Records by criteria                                  |
+| <Method method="DELETE" color="#f54242" /> | `/api/v1/records/:id`              | Delete a single Record                                        |
+| <Method method="POST" color="#2e8555" />   | `/api/v1/records/:id/properties`   | Get detailed list of Record's Properties                    |
+
+Each endpoint is designed to perform specific operations on Records, allowing you to create, read, update, delete, and search for Records within your project. The following sections provide more detailed information about each operation.
+
+
+---
+
+
+import { Method } from '@site/src/components/ui/method';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@site/src/components/ui/tabs';
+
+# Relations
+
+Relations in RushDB allow you to create links between [records](/basic-concepts/records), simplifying the modeling of complex data interactions and enhancing relationships between different Records in your application.
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="col-span-5">
+    ### Typescript Definition
+
+    ```typescript
+    export type RelationTarget = DBRecordsArrayInstance<any> | MaybeArray<DBRecord<any>> | MaybeArray<DBRecordInstance<any>> | MaybeArray<string>;
+
+    export type RelationOptions = {
+      direction?: 'in' | 'out';
+      type?: string;
+    };
+
+    export type RelationDetachOptions = Omit<RelationDetachOptions, 'type'> & {
+      typeOrTypes?: string | string[];
+    };
+    ```
+
+  </div>
+</div>
+
+## How it works
+Relations are one of the key concepts in RushDB. When building applications, it’s common that [Records](/basic-concepts/records) do not exist in isolation. They are usually interconnected, interacting with each other in meaningful ways.
+RushDB provides a powerful tool for describing these interactions by allowing you to define the direction of relations between Records and give them meaningful labels. This enables complex data structures where Records can reference each other in ways that model real-world interactions.
+Using relations in RushDB allows you to establish powerful queries that take these relationships into account, providing a robust and scalable way to search and retrieve interconnected data across your application.
+
+---
+
+## Create Relation
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Create a Relation
+    ```ts
+    POST /api/v1/records/:entityId/relations
+    ```
+
+    :::info
+    Note: Replace `:entityId` with the actual ID of the Record whose relations you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    Creates a new relation between [Records](/basic-concepts/records) by linking them. You can provide extra options for
+    relation: set direction and create name for them.
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        const product = await db.records.create("Product", {
+          title: "Nike Air Max 270",
+          price: 150,
+          description: "Nike's stylish and comfortable sneakers with Max Air cushioning for all-day wear.",
+          category: "Footwear",
+          stock: 50,
+        });
+
+        const owner = await db.records.create("Client", {
+          name: "Jane Smith",
+          username: "janesmith99",
+          email: "janesmith@example.com",
+        });
+
+        await db.records.attach(owner.data.__id, product, {
+          direction: "out",
+          type: "owner",
+        });
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Relations to Record 019214e7-6421-790f-b164-24bd73d239f0 have been successfully created"
+        },
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Request
+        ```javascript
+        {
+          "targetIds": "019214ab-ed65-7ce8-9c54-51cdb9b7f662",
+          "direction": "out",
+          "type": "owner"
+        }
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Relations to Record 019214e7-6421-790f-b164-24bd73d239f0 have been successfully created"
+        },
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Get Relation
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoint
+    Get list of all parents of [Record's](/basic-concepts/records) Relations
+    ```ts
+    GET /api/v1/records/:entityId/relations
+    ```
+    :::info
+    Note: Replace `:entityId` with the actual ID of the Record whose relations you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    To retrieve the Relations of a [Record's](/basic-concepts/records) in RushDB, use the `.relations` method or make a GET request to the REST API endpoint.
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        const relations = await db.records.relations("019214ab-ed65-7ce8-9c54-51cdb9b7f662");
+        ```
+
+        ### Response
+        ```javascript
+        [
+          {
+            "type": "RUSHDB_DEFAULT_RELATION",
+            "relations": [
+              {
+                "count": 2,
+                "label": "post"
+              }
+            ]
+          }
+        ]
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Response
+        ```javascript
+        [
+          {
+            "type": "RUSHDB_DEFAULT_RELATION",
+            "relations": [
+              {
+                "count": 2,
+                "label": "post"
+              }
+            ]
+          }
+        ]
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Delete Relation
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Remove relation or relations between [Records](/basic-concepts/records)
+    ```ts
+    PUT /api/v1/records/:entityId/relations
+    ```
+
+    :::info
+    Note: Replace `:entityId` with the actual ID of the Record whose relations you want to retrieve.
+    :::
+  </div>
+  <div className="col-span-3">
+    Removes an existing relation between [Records](/basic-concepts/records)
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        await db.records.detach("019214e7-6421-790f-b164-24bd73d239f0", ["019214e7-64c6-7a89-8d27-1441b54c4967", "019214e7-647b-7e37-8aaa-b3f1444a2de8"], {
+          direction: "out",
+          typeOrTypes: "owner"
+        });
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Relations to Record 019214e7-6421-790f-b164-24bd73d239f0 have been successfully deleted"
+        }
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Request
+        ```javascript
+        {
+          "targetIds": ["019214e7-64c6-7a89-8d27-1441b54c4967", "019214e7-647b-7e37-8aaa-b3f1444a2de8"],
+          "direction": "out",
+          "typeOrTypes": "owner"
+        }
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Relations to Record 019214e7-6421-790f-b164-24bd73d239f0 have been successfully deleted"
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Endpoints Overview
+The Relations API provides several endpoints to work with relations. Here's an overview of all available endpoints in this section:
+| Method | Endpoint | Description |
+| -------- | ----------------------------------- | --------------------------------------------------------------- |
+| <Method method="POST" color="#2e8555"/> | `/api/v1/records/:entityId/relations` | Create a new Relation |
+| <Method method="GET" color="#4287f5"/> | `/api/v1/records/:entityId/relations` | Retrieve information about [Record](/basic-concepts/records) Relations |
+| <Method method="PUT" color="#f5a742"/> | `/api/v1/records/:entityId/relations` | Remove Relation or Relations |
+
+
+---
+
+
+import { Method } from '@site/src/components/ui/method';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@site/src/components/ui/tabs';
+
+# Transactions
+
+Transactions in RushDB allow you to execute multiple operations in a way that either all succeed or none are applied, ensuring data integrity.
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="col-span-3">
+    ### Typescript Definition
+
+    ```typescript
+    declare class Transaction extends RestApiProxy {
+      // id of transaction
+      readonly id: string;
+      constructor(id: string);
+
+      // message about transaction status when creating or rolling back transaction
+      rollback(): Promise<{
+        message: string;
+      }>;
+      commit(): Promise<{
+        message: string;
+      }>;
+  }
+    ```
+
+  </div>
+  <div className="col-span-2">
+    ### Data Example
+
+    ```json
+    {
+      "id": "0191f150-752c-7dd9-8884-078ed5dae03a"
+    }
+    ```
+  </div>
+</div>
+
+## How it works
+It's easiest to explain how transactions work without diving into code. Think of a transaction like a delivery truck. You can load many packages (operations) onto the truck and send them to their destination all at once. If the customer cancels the order, you simply unload the truck and cancel the delivery. Without transactions, you'd have to send each package individually, and if something went wrong, you'd have to retrieve each one from its destination, which can be a lot of extra work. Transactions ensure that all your packages either reach their destination together or not at all, maintaining the integrity of the process.
+
+While this analogy helps to understand transactions conceptually, it's essential to see how they function within the code flow. Below is a comprehensive example of how to use transactions in chaining operations, where various logical pieces of code are created in parallel. In such cases, the developer decides when to consider the result of the operation successful and when to roll back everything that was written within the current transaction.
+```typescript
+// Begin a transaction before processing complex operations with chained actions
+const tx = await db.tx.begin();
+
+try {
+    const product = await db.records.create("Product", {
+        title: "Nike Air Max 270",
+        price: 150,
+        description: "Nike's stylish and comfortable sneakers with Max Air cushioning for all-day wear.",
+        category: "Footwear",
+        stock: 50,
+    }, tx);
+
+    const owner = await db.records.create("Client", {
+        name: "Jane Smith",
+        username: "janesmith99",
+        email: "janesmith@example.com",
+    }, tx);
+
+    await db.records.attach(owner.data.__id, product, {
+        direction: "out",
+        type: "owner",
+    }, tx);
+
+    // Commit the transaction if all operations succeed
+    await tx.commit();
+} catch (e) {
+    // If any records or relationships creation failed, roll back the entire operation
+    await tx.rollback();
+}
+
+```
+
+---
+
+## Create Transaction
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Create a [Transaction](/basic-concepts/transactions)
+    ```ts
+    POST /api/v1/transactions
+    ```
+  </div>
+  <div className="col-span-3">
+    To create a new transaction in RushDB, simply call the `.begin` method on the `tx` object.
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        const tx = await db.tx.begin();
+        ```
+
+        Example with TTL:
+
+        ```typescript
+        const tx = await db.tx.begin({
+          ttl: 500
+        });
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "id": "0191f150-752c-7dd9-8884-078ed5dae03a"
+        }
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Request
+        ```javascript
+        {
+          "ttl": 500
+        }
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "id": "0191f150-752c-7dd9-8884-078ed5dae03a"
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Get Transaction
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Get a specific [Transaction](/basic-concepts/transactions)
+    ```ts
+    GET /api/v1/transactions/:txId
+    ```
+
+    :::info
+    Note: Replace `:txId` with the actual ID of the Transaction.
+    :::
+  </div>
+  <div className="col-span-3">
+    To retrieve a specific transaction in RushDB, simply call the `.get` method on the `tx` object.
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        const tx = await db.tx.get(id);
+        ```
+
+        Example with TTL:
+
+        ### Response
+        ```javascript
+        {
+          "id": "0191f150-752c-7dd9-8884-078ed5dae03a"
+        }
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Response
+        ```javascript
+        {
+          "id": "0191f150-752c-7dd9-8884-078ed5dae03a"
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Commit Transaction
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Commit a [Transaction](/basic-concepts/transactions)
+    ```ts
+    POST /api/v1/transactions/:txId
+    ```
+
+    :::info
+    Note: Replace `:txId` with the actual ID of the Transaction.
+    :::
+  </div>
+  <div className="col-span-3">
+    To commit a transaction, indicating that all operations within the transaction should be applied:
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        await tx.commit();
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Transaction (0191f150-752c-7dd9-8884-078ed5dae03a) has been successfully committed."
+        }
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Response
+        ```javascript
+        {
+          "message": "Transaction (0191f150-752c-7dd9-8884-078ed5dae03a) has been successfully committed."
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Rollback Transaction
+
+<div className="grid xl:grid-cols-5 grid-cols-1 gap-8">
+  <div className="xl:order-last col-span-2">
+    ### Endpoints
+    Rollback a [Transaction](/basic-concepts/transactions)
+    ```ts
+    POST /api/v1/transactions/:txId/rollback
+    ```
+
+    :::info
+    Note: Replace `:txId` with the actual ID of the Transaction.
+    :::
+  </div>
+  <div className="col-span-3">
+    To roll back a transaction, undoing all operations performed within it:
+
+    <Tabs defaultValue="sdk">
+      <TabsList className="grid w-full grid-cols-2">
+        <TabsTrigger value="sdk">SDK</TabsTrigger>
+        <TabsTrigger value="api">API</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sdk">
+        ### Request
+        ```typescript
+        await tx.rollback();
+        ```
+
+        ### Response
+        ```javascript
+        {
+          "message": "Transaction (0191f150-752c-7dd9-8884-078ed5dae03a) has been rolled back."
+        }
+        ```
+      </TabsContent>
+      <TabsContent value="api">
+        ### Response
+        ```javascript
+        {
+          "message": "Transaction (0191f150-752c-7dd9-8884-078ed5dae03a) has been rolled back."
+        }
+        ```
+      </TabsContent>
+    </Tabs>
+  </div>
+</div>
+
+---
+
+## Endpoints Overview
+The Transaction API provides several endpoints to work with transactions. Here's an overview of all available endpoints in this section:
+| Method | Endpoint | Description |
+| -------- | ----------------------------------- | --------------------------------------------------------------- |
+| <Method method="POST" color="#2e8555"/> | `/api/v1/transactions` | Create a new transaction |
+| <Method method="GET" color="#4287f5"/> | `/api/v1/transactions/:txId` | Retrieve a single Transaction |
+| <Method method="POST" color="#2e8555"/> | `/api/v1/transactions/:txId/commit` | Commit the specified transaction |
+| <Method method="POST" color="#2e8555"/> | `/api/v1/transactions/:txId/rollback` | Rollback the specified transaction |
+
+
+---
+
+# Introduction
+
+<div align="center">
+![RushDB Logo](https://raw.githubusercontent.com/rush-db/rushdb/main/rushdb-logo.svg)
+
+[![NPM Version](https://img.shields.io/npm/v/%40rushdb%2Fjavascript-sdk)](https://www.npmjs.com/package/@rushdb/javascript-sdk)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license "Go to license section")
+
+![NPM Downloads](https://img.shields.io/npm/dw/%40rushdb%2Fjavascript-sdk)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40rushdb%2Fjavascript-sdk)
+
+[![Made with Node](https://img.shields.io/badge/dynamic/json?label=node&query=%24.engines%5B%22node%22%5D&url=https%3A%2F%2Fraw.githubusercontent.com%2Frush-db%2Frushdb%2Fmain%2Fpackage.json)](https://nodejs.org "Go to Node.js homepage")
+[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/rush-db/rushdb/dev/typescript?logo=typescript&logoColor=white)](https://www.npmjs.com/package/typescript "Go to TypeScript on NPM")
+
+[Homepage](https://rushdb.com) — [Blog](https://rushdb.com/blog) — [Dashboard](https://app.rushdb.com)
+</div>
+
+
+:::info
+All examples are provided in two formats: raw `JSON` body and `SDK`-like code snippets.
+
+When using the REST API, please ensure that the `Content-Type: application/json` and authorization `token` headers are set.
+:::
+
+## 🚀 Need Help? Ask RushDB Custom GPT!
+
+For instant guidance on using **RushDB's SDKs (Python, TypeScript/JavaScript) and REST API**, check out our **RushDB Custom GPT**. It provides:
+
+✅ **Code examples** in Python, TS/JS, and REST API
+✅ **Best practices** for querying and filtering
+✅ **Real-time support** based on official docs
+
+💡 **Try it now:** [RushDB Docs Chat](https://chatgpt.com/g/g-67d3a9c3088081918201be103b22b83f-rushdb-docs-chat)
+
+## Features
+
+---
+- **Automatic Type Inference**: Enjoy seamless type safety with automatic TypeScript inference.
+- **Isomorphic Architecture**: Fully compatible with both server and browser environments.
+- **Zero Dependencies**: Lightweight and efficient with no external dependencies.
+- **No Configuration Needed**: Plug-and-play design requires no setup or configuration.
+
+
+## Installation
+
+---
+NPM:
+```bash
+npm install @rushdb/javascript-sdk
+```
+
+YARN:
+```bash
+yarn add @rushdb/javascript-sdk
+```
+
+PNPM:
+```bash
+pnmp add @rushdb/javascript-sdk
+```
+
+
+## Usage
+
+1. Get API Token at [app.rushdb.com](https://app.rushdb.com/)
+2. Install `@rushdb/javascript-sdk`
+3. Start building:
+
+```typescript
+import RushDB from '@rushdb/javascript-sdk';
+
+const db = new RushDB("API_TOKEN")
+
+// Push any data to RushDB the way you perceive it
+await db.records.createMany("PRODUCT", [
+  {
+    title: "T-Shirt",
+    price: 50
+  },
+  {
+    title: "Sneakers",
+    price: 135,
+    SIZE: [
+      {
+        uk: 8.5,
+        qty: 5
+      }
+    ]
+  }
+])
+
+// Find it with granular precision and without any query language
+await db.records.find("PRODUCT", {
+    where: {
+        title: { $contains: "Sneakers" },
+        SIZE: {
+            uk: { $gte: 8, $lte: 9 },
+            qty: { $gt: 0 }
+        }
+    }
+})
+```
+
+---
+### Example with data modeling
+
+```typescript
+import RushDB, { Model } from '@rushdb/javascript-sdk'
+
+const db = new RushDB('API_TOKEN')
+
+const UserRepo = new Model(
+  'USER',
+   {
+      name: { type: 'string' },
+      rating: { type: 'number' },
+   },
+  db
+)
+
+await UserRepo.create({
+   name: "John Galt",
+   rating: 100
+})
+
+await UserRepo.find({
+   where: {
+     rating: { $gte: 50 }
+   }
+})
+```
+
+
+
+## How this achieved?
+RushDB achieves its flexibility through a unique hybrid approach to data storage by harnessing the capabilities of
+Neo4j's graph database, extending beyond its original features. This approach combines the
+strengths of a strongly typed graph on one hand while offering the flexibility of saving data within the built-in
+mechanisms of dynamically extending graph structures on the other.
+
+Internal algorithms, including customized BFS (Breadth-First Search) and batching techniques, are intentionally crafted
+for efficiency and speed. Their primary goal is to provide an outstanding user and developer experience, ensuring smooth
+and high-speed operations throughout the platform.
+
+In this documentation, you will find comprehensive information on how to use RushDB to its fullest potential,
+from getting started to advanced features.
+
+
+---
+
+
+# PropertiesAPI
+
+The `PropertiesAPI` class provides methods for managing and querying properties in RushDB.
+
+## Class Definition
+
+```python
+class PropertiesAPI(BaseAPI):
+```
+
+## Methods
+
+### find()
+
+Retrieves a list of properties based on optional search criteria.
+
+**Signature:**
+```python
+def find(
+    self,
+    query: Optional[SearchQuery] = None,
+    transaction: Optional[Transaction] = None
+) -> List[Property]
+```
+
+**Arguments:**
+- `query` (Optional[SearchQuery]): Search query parameters for filtering properties
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `List[Property]`: List of properties matching the search criteria
+
+**Example:**
+```python
+# Find all properties
+properties = client.properties.find()
+
+# Find properties with specific criteria
+query = {
+    "where": {
+        "name": {"$startsWith": "user_"},  # Properties starting with 'user_'
+        "type": "string"  # Only string type properties
+    },
+    "limit": 10  # Limit to 10 results
+}
+filtered_properties = client.properties.find(query)
+```
+
+### find_by_id()
+
+Retrieves a specific property by its ID.
+
+**Signature:**
+```python
+def find_by_id(
+    self,
+    property_id: str,
+    transaction: Optional[Transaction] = None
+) -> Property
+```
+
+**Arguments:**
+- `property_id` (str): Unique identifier of the property
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Property`: Property details
+
+**Example:**
+```python
+# Retrieve a specific property by ID
+property_details = client.properties.find_by_id("prop_123456")
+```
+
+### delete()
+
+Deletes a property by its ID.
+
+**Signature:**
+```python
+def delete(
+    self,
+    property_id: str,
+    transaction: Optional[Transaction] = None
+) -> None
+```
+
+**Arguments:**
+- `property_id` (str): Unique identifier of the property to delete
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `None`
+
+**Example:**
+```python
+# Delete a property
+client.properties.delete("prop_123456")
+```
+
+### values()
+
+Retrieves values for a specific property with optional sorting and pagination.
+
+**Signature:**
+```python
+def values(
+    self,
+    property_id: str,
+    sort: Optional[Literal["asc", "desc"]] = None,
+    skip: Optional[int] = None,
+    limit: Optional[int] = None,
+    transaction: Optional[Transaction] = None
+) -> PropertyValuesData
+```
+
+**Arguments:**
+- `property_id` (str): Unique identifier of the property
+- `sort` (Optional[Literal["asc", "desc"]]): Sort order of values
+- `skip` (Optional[int]): Number of values to skip (for pagination)
+- `limit` (Optional[int]): Maximum number of values to return
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `PropertyValuesData`: Property values data, including optional min/max and list of values
+
+**Example:**
+```python
+# Get property values
+values_data = client.properties.values(
+    property_id="prop_age",
+    sort="desc",  # Sort values in descending order
+    skip=0,       # Start from the first value
+    limit=100     # Return up to 100 values
+)
+
+# Access values
+print(values_data.get('values', []))  # List of property values
+print(values_data.get('min'))         # Minimum value (for numeric properties)
+print(values_data.get('max'))         # Maximum value (for numeric properties)
+```
+
+## Comprehensive Usage Example
+
+```python
+# Find all properties
+all_properties = client.properties.find()
+for prop in all_properties:
+    print(f"Property ID: {prop['id']}")
+    print(f"Name: {prop['name']}")
+    print(f"Type: {prop['type']}")
+    print(f"Metadata: {prop.get('metadata', 'No metadata')}")
+    print("---")
+
+# Detailed property search
+query = {
+    "where": {
+        "type": "number",             # Only numeric properties
+        "name": {"$contains": "score"}  # Properties with 'score' in name
+    },
+    "limit": 5  # Limit to 5 results
+}
+numeric_score_properties = client.properties.find(query)
+
+# Get values for a specific property
+if numeric_score_properties:
+    first_prop = numeric_score_properties[0]
+    prop_values = client.properties.values(
+        property_id=first_prop['id'],
+        sort="desc",
+        limit=50
+    )
+    print(f"Values for {first_prop['name']}:")
+    print(f"Min: {prop_values.get('min')}")
+    print(f"Max: {prop_values.get('max')}")
+    
+    # Detailed property examination
+    detailed_prop = client.properties.find_by_id(first_prop['id'])
+    print("Detailed Property Info:", detailed_prop)
+```
+
+## Property Types and Structures
+
+RushDB supports the following property types:
+- `"boolean"`: True/False values
+- `"datetime"`: Date and time values
+- `"null"`: Null/empty values
+- `"number"`: Numeric values
+- `"string"`: Text values
+
+### Property Structure Example
+```python
+property = {
+    "id": "prop_unique_id",
+    "name": "user_score",
+    "type": "number",
+    "metadata": Optional[str]  # Optional additional information
+}
+
+property_with_value = {
+    "id": "prop_unique_id",
+    "name": "user_score",
+    "type": "number",
+    "value": 95.5  # Actual property value
+}
+```
+
+## Transactions
+
+Properties API methods support optional transactions for atomic operations:
+
+```python
+# Using a transaction
+with client.transactions.begin() as transaction:
+    # Perform multiple property-related operations
+    property_to_delete = client.properties.find(
+        {"where": {"name": "temp_property"}},
+        transaction=transaction
+    )[0]
+    
+    client.properties.delete(
+        property_id=property_to_delete['id'],
+        transaction=transaction
+    )
+    # Transaction will automatically commit if no errors occur
+```
+
+## Error Handling
+
+When working with the PropertiesAPI, be prepared to handle potential errors:
+
+```python
+try:
+    # Attempt to find or delete a property
+    property_details = client.properties.find_by_id("non_existent_prop")
+except RushDBError as e:
+    print(f"Error: {e}")
+    print(f"Error Details: {e.details}")
+```
+
+
+---
+
+
+# Record
+
+The `Record` class represents a record in RushDB and provides methods for manipulating individual records, including updates, relationships, and deletions.
+
+## Class Definition
+
+```python
+class Record:
+    def __init__(self, client: "RushDB", data: Union[Dict[str, Any], None] = None)
+```
+
+## Properties
+
+### id
+
+Gets the record's unique identifier.
+
+**Type:** `str`
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John"})
+print(record.id)  # e.g., "1234abcd-5678-..."
+```
+
+### proptypes
+
+Gets the record's property types.
+
+**Type:** `str`
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John", "age": 25})
+print(record.proptypes)  # Returns property type definitions
+```
+
+### label
+
+Gets the record's label.
+
+**Type:** `str`
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John"})
+print(record.label)  # "USER"
+```
+
+### timestamp
+
+Gets the record's creation timestamp from its ID.
+
+**Type:** `int`
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John"})
+print(record.timestamp)  # Unix timestamp in milliseconds
+```
+
+### date
+
+Gets the record's creation date.
+
+**Type:** `datetime`
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John"})
+print(record.date)  # datetime object
+```
+
+## Methods
+
+### set()
+
+Updates all data for the record.
+
+**Signature:**
+```python
+def set(
+    self,
+    data: Dict[str, Any],
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `data` (Dict[str, Any]): New record data
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+record = client.records.create("USER", {"name": "John"})
+response = record.set({
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30
+})
+```
+
+### update()
+
+Updates specific fields of the record.
+
+**Signature:**
+```python
+def update(
+    self,
+    data: Dict[str, Any],
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `data` (Dict[str, Any]): Partial record data to update
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+record = client.records.create("USER", {
+    "name": "John",
+    "email": "john@example.com"
+})
+response = record.update({
+    "email": "john.doe@example.com"
+})
+```
+
+### attach()
+
+Creates relationships with other records.
+
+**Signature:**
+```python
+def attach(
+    self,
+    target: Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], "Record", List["Record"]],
+    options: Optional[RelationshipOptions] = None,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `target` (Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]]): Target record(s)
+- `options` (Optional[RelationshipOptions]): Relationship options
+  - `direction` (Optional[Literal["in", "out"]]): Relationship direction
+  - `type` (Optional[str]): Relationship type
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Create two records
+user = client.records.create("USER", {"name": "John"})
+group = client.records.create("GROUP", {"name": "Admins"})
+
+# Attach user to group
+response = user.attach(
+    target=group,
+    options=RelationshipOptions(
+        type="BELONGS_TO",
+        direction="out"
+    )
+)
+```
+
+### detach()
+
+Removes relationships with other records.
+
+**Signature:**
+```python
+def detach(
+    self,
+    target: Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], "Record", List["Record"]],
+    options: Optional[RelationshipDetachOptions] = None,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `target` (Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]]): Target record(s)
+- `options` (Optional[RelationshipDetachOptions]): Detach options
+  - `direction` (Optional[Literal["in", "out"]]): Relationship direction
+  - `typeOrTypes` (Optional[Union[str, List[str]]]): Relationship type(s)
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Detach user from group
+response = user.detach(
+    target=group,
+    options=RelationshipDetachOptions(
+        typeOrTypes="BELONGS_TO",
+        direction="out"
+    )
+)
+```
+
+### delete()
+
+Deletes the record.
+
+**Signature:**
+```python
+def delete(
+    self,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+user = client.records.create("USER", {"name": "John"})
+response = user.delete()
+```
+
+## Complete Usage Example
+
+Here's a comprehensive example demonstrating various Record operations:
+
+```python
+# Create a new record
+user = client.records.create("USER", {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30
+})
+
+# Access properties
+print(f"Record ID: {user.id}")
+print(f"Label: {user.label}")
+print(f"Created at: {user.date}")
+
+# Update record data
+user.update({
+    "age": 31,
+    "title": "Senior Developer"
+})
+
+# Create related records
+department = client.records.create("DEPARTMENT", {
+    "name": "Engineering"
+})
+
+project = client.records.create("PROJECT", {
+    "name": "Secret Project"
+})
+
+# Create relationships
+user.attach(
+    target=department,
+    options=RelationshipOptions(
+        type="BELONGS_TO",
+        direction="out"
+    )
+)
+
+user.attach(
+    target=project,
+    options=RelationshipOptions(
+        type="WORKS_ON",
+        direction="out"
+    )
+)
+
+# Remove relationship
+user.detach(
+    target=project,
+    options=RelationshipDetachOptions(
+        typeOrTypes="WORKS_ON",
+        direction="out"
+    )
+)
+
+# Delete record
+user.delete()
+```
+
+## Working with Transactions
+
+Records can be manipulated within transactions for atomic operations:
+
+```python
+# Start a transaction
+with client.transactions.begin() as transaction:
+    # Create user
+    user = client.records.create(
+        "USER",
+        {"name": "John Doe"},
+        transaction=transaction
+    )
+    
+    # Update user
+    user.update(
+        {"status": "active"},
+        transaction=transaction
+    )
+    
+    # Create and attach department
+    dept = client.records.create(
+        "DEPARTMENT",
+        {"name": "Engineering"},
+        transaction=transaction
+    )
+    
+    user.attach(
+        target=dept,
+        options=RelationshipOptions(type="BELONGS_TO"),
+        transaction=transaction
+    )
+    
+    # Transaction will automatically commit if no errors occur
+    # If an error occurs, it will automatically rollback
+```
+
+
+---
+
+
+# RecordsAPI
+
+The `RecordsAPI` class provides methods for managing records in RushDB. It handles record creation, updates, deletion, searching, and relationship management.
+
+## Class Definition
+
+```python
+class RecordsAPI(BaseAPI):
+```
+
+## Methods
+
+### create()
+
+Creates a new record in RushDB.
+
+**Signature:**
+```python
+def create(
+    self,
+    label: str,
+    data: Dict[str, Any],
+    options: Optional[Dict[str, bool]] = None,
+    transaction: Optional[Transaction] = None
+) -> Record
+```
+
+**Arguments:**
+- `label` (str): Label for the record
+- `data` (Dict[str, Any]): Record data
+- `options` (Optional[Dict[str, bool]]): Optional parsing and response options
+  - `returnResult` (bool): Whether to return the created record
+  - `suggestTypes` (bool): Whether to suggest property types
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Record`: Created record object
+
+**Example:**
+```python
+# Create a new company record
+data = {
+    "name": "Google LLC",
+    "address": "1600 Amphitheatre Parkway",
+    "foundedAt": "1998-09-04T00:00:00.000Z",
+    "rating": 4.9
+}
+
+record = client.records.create(
+    label="COMPANY",
+    data=data,
+    options={"returnResult": True, "suggestTypes": True}
+)
+```
+
+### create_many()
+
+Creates multiple records in a single operation.
+
+**Signature:**
+```python
+def create_many(
+    self,
+    label: str,
+    data: Union[Dict[str, Any], List[Dict[str, Any]]],
+    options: Optional[Dict[str, bool]] = None,
+    transaction: Optional[Transaction] = None
+) -> List[Record]
+```
+
+**Arguments:**
+- `label` (str): Label for all records
+- `data` (Union[Dict[str, Any], List[Dict[str, Any]]]): List or Dict of record data
+- `options` (Optional[Dict[str, bool]]): Optional parsing and response options
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `List[Record]`: List of created record objects
+
+**Example:**
+```python
+# Create multiple company records
+data = [
+    {
+        "name": "Apple Inc",
+        "address": "One Apple Park Way",
+        "foundedAt": "1976-04-01T00:00:00.000Z",
+        "rating": 4.8
+    },
+    {
+        "name": "Microsoft Corporation",
+        "address": "One Microsoft Way",
+        "foundedAt": "1975-04-04T00:00:00.000Z",
+        "rating": 4.7
+    }
+]
+
+records = client.records.create_many(
+    label="COMPANY",
+    data=data,
+    options={"returnResult": True, "suggestTypes": True}
+)
+```
+
+### set()
+
+Updates a record by ID, replacing all data.
+
+**Signature:**
+```python
+def set(
+    self,
+    record_id: str,
+    data: Dict[str, Any],
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `record_id` (str): ID of the record to update
+- `data` (Dict[str, Any]): New record data
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Update entire record data
+new_data = {
+    "name": "Updated Company Name",
+    "rating": 5.0
+}
+
+response = client.records.set(
+    record_id="record-123",
+    data=new_data
+)
+```
+
+### update()
+
+Updates specific fields of a record by ID.
+
+**Signature:**
+```python
+def update(
+    self,
+    record_id: str,
+    data: Dict[str, Any],
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `record_id` (str): ID of the record to update
+- `data` (Dict[str, Any]): Partial record data to update
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Update specific fields
+updates = {
+    "rating": 4.8,
+    "status": "active"
+}
+
+response = client.records.update(
+    record_id="record-123",
+    data=updates
+)
+```
+
+### find()
+
+Searches for records matching specified criteria.
+
+**Signature:**
+```python
+def find(
+    self,
+    query: Optional[SearchQuery] = None,
+    record_id: Optional[str] = None,
+    transaction: Optional[Transaction] = None
+) -> List[Record]
+```
+
+**Arguments:**
+- `query` (Optional[SearchQuery]): Search query parameters
+- `record_id` (Optional[str]): Optional record ID to search from
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `List[Record]`: List of matching records
+
+**Example:**
+```python
+# Search for records with complex criteria
+query = {
+    "where": {
+        "$and": [
+            {"age": {"$gte": 18}},
+            {"status": "active"},
+            {"department": "Engineering"}
+        ]
+    },
+    "orderBy": {"created_at": "desc"},
+    "limit": 10
+}
+
+records = client.records.find(query=query)
+```
+
+### delete()
+
+Deletes records matching a query.
+
+**Signature:**
+```python
+def delete(
+    self,
+    query: SearchQuery,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `query` (SearchQuery): Query to match records for deletion
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Delete records matching criteria
+query = {
+    "where": {
+        "status": "inactive",
+        "lastActive": {"$lt": "2023-01-01"}
+    }
+}
+
+response = client.records.delete(query)
+```
+
+### delete_by_id()
+
+Deletes one or more records by ID.
+
+**Signature:**
+```python
+def delete_by_id(
+    self,
+    id_or_ids: Union[str, List[str]],
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `id_or_ids` (Union[str, List[str]]): Single ID or list of IDs to delete
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Delete single record
+response = client.records.delete_by_id("record-123")
+
+# Delete multiple records
+response = client.records.delete_by_id([
+    "record-123",
+    "record-456",
+    "record-789"
+])
+```
+
+### attach()
+
+Creates relationships between records.
+
+**Signature:**
+```python
+def attach(
+    self,
+    source: Union[str, Dict[str, Any]],
+    target: Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]],
+    options: Optional[RelationshipOptions] = None,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `source` (Union[str, Dict[str, Any]]): Source record ID or data
+- `target` (Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]]): Target record(s)
+- `options` (Optional[RelationshipOptions]): Relationship options
+  - `direction` (Optional[Literal["in", "out"]]): Relationship direction
+  - `type` (Optional[str]): Relationship type
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Create relationship between records
+options = RelationshipOptions(
+    type="HAS_EMPLOYEE",
+    direction="out"
+)
+
+response = client.records.attach(
+    source="company-123",
+    target=["employee-456", "employee-789"],
+    options=options
+)
+```
+
+### detach()
+
+Removes relationships between records.
+
+**Signature:**
+```python
+def detach(
+    self,
+    source: Union[str, Dict[str, Any]],
+    target: Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]],
+    options: Optional[RelationshipDetachOptions] = None,
+    transaction: Optional[Transaction] = None
+) -> Dict[str, str]
+```
+
+**Arguments:**
+- `source` (Union[str, Dict[str, Any]]): Source record ID or data
+- `target` (Union[str, List[str], Dict[str, Any], List[Dict[str, Any]], Record, List[Record]]): Target record(s)
+- `options` (Optional[RelationshipDetachOptions]): Detach options
+  - `direction` (Optional[Literal["in", "out"]]): Relationship direction
+  - `typeOrTypes` (Optional[Union[str, List[str]]]): Relationship type(s)
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `Dict[str, str]`: Response data
+
+**Example:**
+```python
+# Remove relationships between records
+options = RelationshipDetachOptions(
+    typeOrTypes=["HAS_EMPLOYEE", "MANAGES"],
+    direction="out"
+)
+
+response = client.records.detach(
+    source="company-123",
+    target="employee-456",
+    options=options
+)
+```
+
+### import_csv()
+
+Imports records from CSV data.
+
+**Signature:**
+```python
+def import_csv(
+    self,
+    label: str,
+    csv_data: Union[str, bytes],
+    options: Optional[Dict[str, bool]] = None,
+    transaction: Optional[Transaction] = None
+) -> List[Dict[str, Any]]
+```
+
+**Arguments:**
+- `label` (str): Label for imported records
+- `csv_data` (Union[str, bytes]): CSV data to import
+- `options` (Optional[Dict[str, bool]]): Import options
+- `transaction` (Optional[Transaction]): Optional transaction object
+
+**Returns:**
+- `List[Dict[str, Any]]`: Imported records data
+
+**Example:**
+```python
+# Import records from CSV
+csv_data = """name,age,department,role
+John Doe,30,Engineering,Senior Engineer
+Jane Smith,28,Product,Product Manager
+Bob Wilson,35,Engineering,Tech Lead"""
+
+records = client.records.import_csv(
+    label="EMPLOYEE",
+    csv_data=csv_data,
+    options={"returnResult": True, "suggestTypes": True}
+)
+```
+
+
+---
+
+
+# Get API Token
+In this section, we'll walk through the process of registering for RushDB and generating an API token necessary for using the RushDB SDK. This token is essential for authenticating your application's requests to the RushDB backend.
+
+## Step 1: Sign Up for RushDB
+
+First, you need to create a RushDB account. Go to the [RushDB sign-up page](https://app.rushdb.com/signup) and register using your email address or via third-party authentication providers.
+
+## Step 2: Create a Project
+
+Once signed in, you'll be directed to the dashboard. To start working with RushDB, you need to create a project where your records will be stored and managed.
+
+- Click on the **Create Project** button to set up a new project. You might need to provide some basic information about your project, such as its name.
+
+![Create Project Button](../../static/img/quick-start/create-project-screen.png "Highlighting the 'Create Project' Button")
+
+## Step 3: Copy an API Token
+
+After you create your project, you’ll be taken to its Help page, where an API key will already be available. If needed, you can create additional API tokens on the **API Keys** tab.
+
+![Copy API Token](../../static/img/quick-start/create-token-screen.png "Copy API Token")
+
+- In the Authorization section, click the automatically generated API token to copy it. This token will be used to authenticate your SDK instances and allow them to interact with your RushDB project.
+
+**Important:** Keep your API token secure and do not share it publicly. This token provides access to your RushDB project and the data within it.
+
+With your API token generated, you're now ready to initialize the RushDB SDK in your application and begin creating and managing Records programmatically. Proceed to the next section to learn about integrating the SDK into your project.
+
+
+---
+
+
+# Create & Fetch Records
+In this section, we'll learn how to use the RushDB SDK to create and retrieve simple data records. This guide assumes you have already initialized the SDK and obtained an API token as described in the previous sections. Here, we'll focus on utilizing the SDK to interact with your data, demonstrating how to define a data model, create a record, and then fetch it back.
+
+## Prerequisites
+
+Ensure that you have initialized the RushDB SDK in your project as follows:
+
+### TypeScript / Javascript
+```typescript
+import RushDB from '@rushdb/javascript-sdk';
+
+const db = new RushDB('API_TOKEN');
+```
+
+### Python
+
+```bash
+from rushdb import RushDB
+
+db = RushDB("API_TOKEN")
+```
+
+Replace `API_TOKEN` with your actual API token.
+
+## Creating Records
+
+The `create` method allows you to create a single record without registering a model.
+
+### TypeScript / Javascript
+```typescript
+const newAuthor = await db.records.create('author', {
+    name: 'Alice Smith',
+    email: 'alice.smith@example.com',
+    jobTitle: 'writer',
+    age: 28,
+    married: true,
+    dateOfBirth: '1993-05-15T00:00:00Z'
+});
+```
+
+### Python
+
+```python
+newAuthor = db.records.create(
+    "author", 
+    {
+        "name": "Alice Smith",
+        "email": "alice.smith@example.com",
+        "jobTitle": "writer",
+        "age": 28,
+        "married": True,
+        "dateOfBirth": "1993-05-15T00:00:00Z"
+    }
+)
+```
+
+
+## Reading Records
+
+The `find`  method let you read records from the database without predefining models.
+
+### TypeScript / Javascript
+
+```typescript
+const authors = await db.records.find('author', {
+  where: {
+    jobTitle: { $contains: 'writer' },
+    age: { $gte: 25 }
+  }
+});
+```
+
+### Python
+
+```python
+authors = db.records.find({
+    "labels": ["author"]
+    "where": {
+        "jobTitle": { "$contains": "writer" },
+        "age": { "$gte": 25 }
+    }
+})
+```
+
+
+This simple flow demonstrates how to create and retrieve records using the RushDB SDK. By defining models and utilizing the SDK's methods, you can easily manage your application's data. Feel free to adapt these examples to fit the specific needs of your project.
+
+
+---
+
+# Installation
+Getting started with RushDB SDK is straightforward. This section will guide you through installing the SDK and setting up your first SDK instance.
+
+## Step 1: Install the Package
+
+To begin, you need to add the RushDB SDK to your project.
+
+### TypeScript / JavaScript
+
+Using npm:
+
+```bash
+npm install @rushdb/javascript-sdk
+```
+
+Using yarn: 
+```bash
+yarn add @rushdb/javascript-sdk
+```
+
+Using pnpm:
+```bash
+pnpm add @rushdb/javascript-sdk
+```
+
+The RushDB SDK is lightweight, coming in at just 6.9KB gzipped. Learn more about the package size [here](https://pkg-size.dev/@rushdb%2Fjavascript-sdk).
+
+### Python
+
+```bash
+pip install rushdb
+```
+
+## Step 2: Initialize the SDK
+Once the package is installed, you can create an instance of the RushDB SDK in your project.
+
+### TypeScript / JavaScript
+
+```typescript
+import RushDB from '@rushdb/javascript-sdk';
+
+const db = new RushDB('API_TOKEN');
+```
+
+### Python
+
+```bash
+from rushdb import RushDB
+
+db = RushDB("API_TOKEN")
+```
+
+Replace `API_TOKEN` with your actual API token, which you can obtain from the [RushDB Dashboard](https://app.rushdb.com/).
+
+## Next steps
+To make full use of the SDK, you'll need a valid API token. In the [next section](/quick-start/configuring-dashboard), Configuring RushDB Dashboard, we'll guide you through the process of registering on the dashboard, creating a project, and generating your API token.
+
+
+---
+
+
+# RushDB Platform Setup
+
+You can quickly launch the **RushDB Platform** using the following Docker command:
+
+```bash
+docker run -p 3000:3000 \
+--name rushdb \
+-e NEO4J_URL='neo4j+s://1234567.databases.neo4j.io' \
+-e NEO4J_USERNAME='neo4j' \
+-e NEO4J_PASSWORD='password' \
+rushdb/platform
+```
+
+Or by using Docker Compose:
+
+```yaml
+version: '3.8'
+services:
+  rushdb:
+    image: rushdb/platform
+    container_name: rushdb
+    ports:
+      - "3000:3000"
+    environment:
+      - NEO4J_URL=neo4j+s://1234567.databases.neo4j.io
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=password
+```
+
+### Development Setup with local Neo4j
+
+```yaml
+version: '3.8'
+services:
+  rushdb:
+    image: rushdb/platform
+    container_name: rushdb
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      - NEO4J_URL=bolt://neo4j
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=password
+  neo4j:
+    image: neo4j:5.25.1
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider localhost:7474 || exit 1" ]
+      interval: 5s
+      retries: 30
+      start_period: 10s
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_PLUGINS=["apoc"]
+```
+
+#### Environment Variables
+
+Before running the container, ensure you provide the following required environment variables:
+
+- **`NEO4J_URL`**: The connection string for your Neo4j database (e.g., `neo4j+s://<your-instance-id>.databases.neo4j.io`).
+- **`NEO4J_USERNAME`**: The username for accessing the Neo4j database (default is `neo4j`).
+- **`NEO4J_PASSWORD`**: The password for your Neo4j database instance.
+
+### Additional Environment Variables
+
+#### 1. `RUSHDB_PORT`
+- **Description**: The port on which the application server will listen for incoming requests.
+- **Default**: `3000`
+
+#### 2. `RUSHDB_AES_256_ENCRYPTION_KEY`
+- **Description**: The encryption key for securing API tokens using AES-256 encryption.
+- **Requirement**: Must be exactly 32 characters long to meet the 256-bit key length requirement.
+- **Important**: Change this to a secure value in production.
+- **Default**: `32SymbolStringForTokenEncryption`
+
+#### 3. `RUSHDB_LOGIN`
+- **Description**: The login username for the RushDB admin account.
+- **Important**: Change this to a secure value in production.
+- **Default**: `admin`
+
+#### 4. `RUSHDB_PASSWORD`
+- **Description**: The password for the RushDB admin account.
+- **Important**: Change this to a secure value in production.
+- **Default**: `password`
+
+---
+
+### **CLI Commands**
+
+The RushDB CLI allows you to manage users in self-hosted installations. Below are the available commands:
+
+#### **Create a New User**
+
+Command:
+```bash
+rushdb create-user <login> <password>
+```
+
+Example:
+```bash
+rushdb create-user admin@example.com securepassword123
+```
+
+This command creates a new user with the specified login and password. It is only allowed in self-hosted setups.
+
+#### **Update User Password**
+
+Command:
+```bash
+rushdb update-password <login> <newPassword>
+```
+
+Example:
+```bash
+rushdb update-password admin@example.com newsecurepassword456
+```
+
+This command updates the password for an existing user identified by the provided login. Like `create-user`, this command is restricted to self-hosted environments.
+
+
+
+---
+
+
+# CRUD Operations without Model Registration
+:::note
+While registering models with `Model` provides strong TypeScript support and a clear structure, you can also perform CRUD operations directly using the `RestAPI` methods in the `RushDB` class. This approach allows you to interact with your data without predefining models, offering flexibility for quick operations or dynamic use cases.
+:::
+
+## Creating Records without Model Registration
+
+The `create` method allows you to create a single record without registering a model.
+
+### Example
+
+Creating an author record directly:
+```typescript
+const newAuthor = await db.records.create('author', {
+  name: 'Alice Smith',
+  email: 'alice.smith@example.com',
+  jobTitle: 'writer',
+  age: 28,
+  married: true,
+  dateOfBirth: '1993-05-15T00:00:00Z'
+});
+```
+
+## Reading Records without Model Registration
+
+The `find`, `findOne`, and `findById` methods let you read records from the database without predefining models.
+
+### Example
+
+Finding records with specific criteria:
+```typescript
+const authors = await db.records.find('author', {
+    where: {
+        jobTitle: { $contains: 'writer' },
+        age: { $gte: 25 }
+    }
+});
+```
+
+### Example
+
+Finding a single record:
+```typescript
+const author = await db.records.findOne('author', {
+    where: {
+        email: { $contains: 'alice.smith@example.com' }
+    }
+});
+```
+
+## Updating Records without Model Registration
+
+You can update records using the `update` method, which allows for modifications without registered models.
+
+### Example
+
+Updating a record directly:
+```typescript
+const author = await db.records.findOne('author', {
+    where: {
+        email: { $contains: 'alice.smith@example.com' }
+    }
+});
+
+await db.records.update(author.data.__id, {
+  jobTitle: 'senior writer'
+});
+
+```
+
+## Deleting Records without Model Registration
+
+The `delete` and `deleteById` methods enable you to remove records from the database without using registered models.
+
+### Example
+
+Deleting records with specific criteria:
+```typescript
+await db.records.delete('author', {
+  where: {
+    jobTitle: { $contains: 'writer' }
+  }
+});
+```
+
+### Example
+
+Deleting records by ID:
+```typescript
+await db.records.deleteById('author', ['author_id_1', 'author_id_2']);
+```
+
+## Conclusion
+
+Using the `RestAPI` methods in the `RushDB` class provides a flexible way to perform CRUD operations without registering models. This approach is particularly useful for dynamic or ad-hoc operations, offering a straightforward way to interact with your data.
+
+
+---
+
+
+# Importing Data Without Registering Models
+
+When working with RushDB SDK, creating models like Author, Post, and Blog repositories allows us to define clear TypeScript contracts, ensuring type safety and better development experience. However, in many scenarios, you might need to quickly import data from external sources, such as JSON files, without going through the process of registering models.
+
+Using the `createMany` method, you can efficiently import large datasets into RushDB by directly specifying the labels and payloads. This approach is ideal for batch imports, data migrations, and integrating external data sources.
+
+## Example: Importing Data from JSON
+In this example, we will demonstrate how to import user, post, and blog data from a JSON file into RushDB SDK using the `createMany` method:
+
+```typescript
+import RushDB from '@rushdb/javascript-sdk';
+import fs from 'fs';
+
+// Initialize the SDK
+const db = new RushDB('API_TOKEN');
+
+// Load data from a JSON file
+const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+
+// Example JSON structure
+/*
+{
+  "users": [
+    { "name": "Alice Johnson", "email": "alice@example.com", "age": 30 },
+    { "name": "Bob Smith", "email": "bob@example.com", "age": 25 }
+  ],
+  "posts": [
+    { "title": "Introduction to RushDB SDK", "content": "This is a post about RushDB SDK...", "authorEmail": "alice@example.com" },
+    { "title": "Advanced RushDB SDK Usage", "content": "This post covers advanced usage of RushDB SDK...", "authorEmail": "bob@example.com" }
+  ],
+  "blogs": [
+    { "title": "Alice's Tech Blog", "description": "A blog about tech by Alice.", "ownerEmail": "alice@example.com" },
+    { "title": "Bob's Coding Adventures", "description": "Bob shares his coding journey.", "ownerEmail": "bob@example.com" }
+  ]
+}
+*/
+
+// Function to import data
+async function importData() {
+  try {
+    // Import users
+    const importedUsers = await db.records.createMany('user', data.users);
+    console.log('Imported Users:', importedUsers.data);
+
+    // Import posts
+    const importedPosts = await db.records.createMany('post', data.posts);
+    console.log('Imported Posts:', importedPosts.data);
+
+    // Import blogs
+    const importedBlogs = await db.records.createMany('blog', data.blogs);
+    console.log('Imported Blogs:', importedBlogs.data);
+  } catch (error) {
+    console.error('Error importing data:', error);
+  }
+}
+
+// Run the import function
+importData();
+```
+
+
+---
+
+
+# Managing Labels and Properties
+
+:::note
+In RushDB, labels and properties are crucial for defining and organizing your data models. Labels act as categories or tags for your records, while properties define the structure and data types of the records themselves. This section covers how to manage labels and properties using the RushDB SDK.
+:::
+
+## Understanding Labels and Properties
+
+### Labels
+
+Labels are used to categorize Records in RushDB. Each model or record type is associated with a label, which helps in organizing and querying the data.
+
+### Properties
+
+Properties are the individual fields within a record. Each property has a type, such as string, number, or datetime, and can have additional attributes like `required`, `unique`, and `default`.
+
+## Managing Labels
+
+You can manage labels using the `labels` property in the `RestAPI` class. This allows you to find labels associated with your records.
+
+### Finding Labels
+
+The `find` method under `labels` allows you to search for labels based on specific criteria.
+
+#### Example
+
+Finding labels with specific criteria:
+
+```typescript
+const labelSearchCriteria = {
+  where: {
+    $or: [
+        {
+            name: {
+                $startswith: 'author'
+            }
+        },
+        {
+            title: { 
+                $contains: 'Guide' 
+            } 
+        }
+    ]
+  }
+};
+
+const labels = await db.labels.find(labelSearchCriteria);
+// Expected output:
+// {
+//   success: true,
+//   data: {
+//     author: 12,
+//     post: 14
+//   }
+// }
+```
+
+## Managing Properties
+
+Properties of records can be managed using the `properties` property in the `RestAPI` class. This includes actions like finding properties and their values, deleting properties, and updating property values.
+
+### Finding Properties
+
+The `find` method under `properties` allows you to retrieve properties of records based on specified criteria.
+
+#### Example
+
+Finding properties of a record:
+```typescript
+const propertySearchCriteria = {
+  where: {
+    model: 'author'
+  }
+};
+
+const properties = await db.properties.find(propertySearchCriteria);
+// Expected output:
+// {
+//   success: true,
+//   data: [
+//     {
+//       id: 'property_id_1',
+//       name: 'name',
+//       type: 'string',
+//     },
+//     {
+//       id: 'property_id_2',
+//       name: 'email',
+//       type: 'string',
+//     }
+//   ]
+// }
+```
+
+### Finding Property Values
+
+The `values` method retrieves the values of properties for a specific record.
+
+#### Example
+
+Retrieving property values for a property:
+```typescript
+const propertyValues = await db.properties.values('property_id');
+// Expected output:
+// {
+//   success: true,
+//   data: {
+//     id: 'property_id',
+//     name: 'age',
+//     type: 'number',
+//     values: [25, 30, 35, 40],
+//     max: 40,
+//     min: 25
+//   }
+// }
+```
+
+### Deleting Properties
+
+The `delete` method removes properties from a record.
+
+#### Example
+
+Deleting a property from a record:
+```typescript
+await db.properties.delete('property_id');
+```
+
+## Conclusion
+
+Managing labels and properties effectively allows for better organization and retrieval of your data in RushDB. This section covered the fundamental operations for handling labels and properties, providing you with the tools to maintain a well-structured and searchable data environment.
+
+
+---
+
+
+# Creating Records
+:::note
+Creating records is a fundamental operation when working with any data-driven application. The `Model` class provides methods to create single or multiple records in the database. 
+:::
+
+## Table of Contents
+
+- [Creating a Single Record](#create)
+- [Creating Multiple Records](#createmany)
+
+We will use the `Author` model defined earlier to demonstrate these operations.
+```typescript
+const Author = new Model('author', {
+  name: { type: 'string' },
+  email: { type: 'string', uniq: true }
+});
+```
+
+### `create`
+
+The `create` method is used to create a single record.
+
+
+**Signature:**
+```typescript
+create(
+  record: InferSchemaTypesWrite<S>,
+  transaction?: Transaction | string
+): Promise<DBRecordInstance<InferSchemaTypesWrite<S>>>;
+```
+
+**Parameters:**
+
+- `record`: An object that adheres to the schema defined for the model.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordInstance` containing the created record.
+
+**Examples:**
+
+*Basic Example:*
+```typescript
+const newAuthor = {
+  name: 'John Doe',
+  email: 'john.doe@example.com'
+};
+
+const createdAuthor = await Author.create(newAuthor);
+console.log(createdAuthor);
+
+/*
+{
+  data: {
+    __id: 'generated_id',
+    __label: 'author',
+    name: 'John Doe',
+    email: 'john.doe@example.com'
+  }
+}
+*/
+```
+
+*Complex Example:*
+```typescript
+const newAuthor = {
+  name: 'Jane Smith',
+  email: 'jane.smith@example.com'
+};
+
+const transaction = await db.tx.begin();
+try {
+  const createdAuthor = await Author.create(newAuthor, transaction);
+  await transaction.commit();
+  console.log(createdAuthor);
+
+  /*
+  {
+    data: {
+      __id: 'generated_id',
+      __label: 'author',
+      name: 'Jane Smith',
+      email: 'jane.smith@example.com'
+    }
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+
+```
+
+### `createMany`
+
+The `createMany` method is used to create multiple records in a single operation.
+
+**Signature:**
+```typescript
+createMany(
+  records: InferSchemaTypesWrite<S>[],
+  transaction?: Transaction | string
+): Promise<DBRecordsArrayInstance<S>>;
+```
+
+**Parameters:**
+
+- `records`: An array of objects, each adhering to the schema defined for the model.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordsArrayInstance` containing the created records.
+
+**Examples:**
+
+*Basic Example:*
+```typescript
+const authors = [
+  { name: 'Alice Johnson', email: 'alice.johnson@example.com' },
+  { name: 'Bob Brown', email: 'bob.brown@example.com' }
+];
+
+const createdAuthors = await Author.createMany(authors);
+console.log(createdAuthors);
+/*
+{
+  data: [
+    {
+      __id: 'generated_id_1',
+      __label: 'author',
+      name: 'Alice Johnson',
+      email: 'alice.johnson@example.com'
+    },
+    {
+      __id: 'generated_id_2',
+      __label: 'author',
+      name: 'Bob Brown',
+      email: 'bob.brown@example.com'
+    }
+  ],
+  total: 2
+}
+*/
+```
+
+*Complex Example:*
+```typescript
+const authors = [
+  { name: 'Charlie Green', email: 'charlie.green@example.com' },
+  { name: 'David Blue', email: 'david.blue@example.com' }
+];
+
+const transaction = await db.tx.begin();
+try {
+  const createdAuthors = await Author.createMany(authors, transaction);
+  await transaction.commit();
+  console.log(createdAuthors);
+  /*
+  {
+    data: [
+      {
+        __id: 'generated_id_1',
+        __label: 'author',
+        name: 'Charlie Green',
+        email: 'charlie.green@example.com'
+      },
+      {
+        __id: 'generated_id_2',
+        __label: 'author',
+        name: 'David Blue',
+        email: 'david.blue@example.com'
+      }
+    ],
+    total: 2
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+
+```
+
+
+
+---
+
+
+# Deleting Records
+:::note
+Deleting records is a fundamental operation to manage the lifecycle of data within your application. The `Model` class provides methods to delete multiple records. We will use the `Author` and `Post` models defined earlier to demonstrate these operations.
+:::
+
+## Table of Contents
+
+- [Deleting Records](#delete)
+- [Handling Related Records](#handling-related-records)
+
+### `delete`
+
+The `delete` method is used to remove multiple records based on specified criteria.
+
+**Signature:**
+```typescript
+delete(
+  params?: Omit<SearchQuery<S>, 'labels'>,
+  transaction?: Transaction | string
+): Promise<ApiResponse<{ message: string }>>;
+```
+**Parameters:**
+
+- `params` (optional): An object specifying query parameters such as filters.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `ApiResponse` containing the result of the delete operation.
+
+**Examples:**
+
+*Basic Example with Author:*
+```typescript
+const deleteResponse = await Author.delete({ where: { name: 'John Doe' } });
+console.log(deleteResponse);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+*/
+```
+
+*Complex Example with Author:*
+```typescript
+const transaction = await db.tx.begin();
+try {
+  const deleteResponse = await Author.delete({ where: { name: { $contains: 'Jane' } } }, transaction);
+  await transaction.commit();
+  console.log(deleteResponse);
+  /*
+  {
+    success: true,
+    message: 'Records deleted successfully.'
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+*Basic Example with Post:*
+```typescript
+const deleteResponse = await Post.delete({ where: { title: 'Old Blog Post' } });
+console.log(deleteResponse);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+*/
+```
+
+*Complex Example with Post:*
+```typescript
+const transaction = await db.tx.begin();
+try {
+  const deleteResponse = await Post.delete({ where: { rating: { $lt: 3 } } }, transaction);
+  await transaction.commit();
+  console.log(deleteResponse);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+*/
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+*Deleting Posts with `$or` Operator:*
+```typescript
+const deleteResponse = await Post.delete({
+    where: {
+        $or: [
+            { __id: 'post_id_1' },
+            { __id: 'post_id_2' }
+        ]
+    }
+});
+console.log(deleteResponse);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+*/
+```
+
+*Complex Deletion with Multiple Operators:*
+```typescript
+const deleteResponse = await Post.delete({
+  where: {
+    $or: [
+      { title: { $contains: 'Blog' } },
+      { rating: { $gte: 4.5 } },
+      { created: { $lt: '2023-01-01T00:00:00Z' } }
+    ]
+  }
+});
+console.log(deleteResponse);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+*/
+```
+
+### Handling Related Records
+
+When you delete a record that is attached to another record, the relationship is automatically removed. This ensures data integrity and consistency.
+
+**Complex Example with Transactions:**
+
+In this example, we'll delete an `Author` and ensure that any `Post` attached to this `Author` is also handled appropriately.
+
+**Steps:**
+
+1. Begin a transaction.
+2. Delete the `Author`.
+3. Verify that the related `Post` is updated accordingly.
+4. Commit the transaction if the delete operation succeeds.
+5. Rollback the transaction if any operation fails.
+```typescript
+const transaction = await db.tx.begin();
+try {
+  // Step 1: Delete the author
+  const deleteAuthorResponse = await Author.delete({ where: { __id: 'author_id' } }, transaction);
+  
+  // Step 2: Ensure related Post records are updated
+  const relatedPosts = await Post.find({ where: { authorId: 'author_id' } }, transaction);
+  for (const post of relatedPosts.data) {
+    await Post.delete({ where: { __id: post.__id } }, transaction);
+  }
+
+  await transaction.commit();
+  console.log(deleteAuthorResponse);
+  console.log(relatedPosts);
+/*
+{
+  success: true,
+  message: 'Records deleted successfully.'
+}
+{
+  data: [],
+  total: 0
+}
+*/
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+This complex example demonstrates how to manage related records within a transaction during delete operations.
+
+### Conclusion
+
+This section covered how to delete records using the `Model` class. By understanding these methods and their parameters, you can effectively manage your application's data lifecycle with the RushDB SDK. The next sections will delve into other advanced operations and best practices.
+
+
+---
+
+
+# Reading Records
+:::note
+Reading records involves fetching data from the database. The `Model` class provides several methods to retrieve records based on different criteria..
+:::
+
+## Table of Contents
+
+- [Basic Querying](#find)
+- [Complex Query Executions](#complex-example-with-related-models)
+
+
+### `find`
+
+The `find` method is used to retrieve multiple records based on specified criteria.
+
+**Signature:**
+
+```typescript
+find(
+  params?: SearchQuery<S> & { labels?: never },
+  transaction?: Transaction | string
+): Promise<DBRecordsArrayInstance<S>>;
+
+```
+
+**Parameters:**
+
+- `params` (optional): An object specifying query parameters such as filters, sorting, and pagination.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordsArrayInstance` containing the retrieved records.
+
+**Examples:**
+
+*Basic Example:*
+```typescript
+const authors = await Author.find();
+console.log(authors);
+/*
+{
+  data: [
+    {
+      __id: 'author_id_1',
+      __label: 'author',
+      name: 'John Doe',
+      email: 'john.doe@example.com'
+    },
+    {
+      __id: 'author_id_2',
+      __label: 'author',
+      name: 'Jane Smith',
+      email: 'jane.smith@example.com'
+    }
+  ],
+  total: 2
+}
+*/
+
+```
+
+*Complex Example:*
+```typescript
+const authors = await Author.find({
+  where: { name: { $contains: 'John' } },
+  orderBy: { createdAt: 'desc' },
+  limit: 10,
+  skip: 5
+});
+console.log(authors);
+/*
+{
+  data: [
+    {
+      __id: 'author_id_3',
+      __label: 'author',
+      name: 'John Brown',
+      email: 'john.brown@example.com'
+    },
+    {
+      __id: 'author_id_4',
+      __label: 'author',
+      name: 'John Green',
+      email: 'john.green@example.com'
+    }
+  ],
+  total: 2
+}
+*/
+
+```
+
+### `findOne`
+
+The `findOne` method is used to retrieve a single record based on specified criteria.
+
+**Signature:**
+```typescript
+findOne(
+  params?: SearchQuery<S> & { labels?: never },
+  transaction?: Transaction | string
+): Promise<DBRecordInstance<S>>;
+
+```
+
+**Parameters:**
+
+- `params` (optional): An object specifying query parameters.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordInstance` containing the retrieved record.
+
+**Examples:**
+
+*Basic Example:*
+```typescript
+const author = await Author.findOne({ where: { email: 'john.doe@example.com' } });
+console.log(author);
+/*
+{
+  data: {
+    __id: 'author_id',
+    __label: 'author',
+    name: 'John Doe',
+    email: 'john.doe@example.com'
+  }
+}
+*/
+
+```
+
+*Complex Example:*
+```typescript
+const author = await Author.findOne({
+  where: {
+    $and: [{ name: { $startsWith: 'Jane' } }, { email: { $contains: '@example.com' } }]
+  },
+  transaction
+});
+console.log(author);
+/*
+{
+  data: {
+    __id: 'author_id',
+    __label: 'author',
+    name: 'Jane Doe',
+    email: 'jane.doe@example.com'
+  }
+}
+*/
+
+```
+
+### `findById`
+
+The `findById` method is used to retrieve a single record by its ID.
+
+**Signature:**
+```typescript
+findById(
+  id: string,
+  transaction?: Transaction | string
+): Promise<DBRecordInstance<S>>;
+
+```
+
+**Parameters:**
+
+- `id`: The ID of the record to retrieve.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordInstance` containing the retrieved record.
+
+**Examples:**
+
+*Basic Example:*
+```typescript
+const author = await Author.findById('author_id');
+console.log(author);
+/*
+{
+  data: {
+    __id: 'author_id',
+    __label: 'author',
+    name: 'John Doe',
+    email: 'john.doe@example.com'
+  }
+}
+*/
+
+```
+
+*Complex Example:*
+```typescript
+const transaction = await db.tx.begin();
+const author = await Author.findById('author_id', transaction);
+await transaction.commit();
+console.log(author);
+/*
+{
+  data: {
+    __id: 'author_id',
+    __label: 'author',
+    name: 'John Doe',
+    email: 'john.doe@example.com'
+  }
+}
+*/
+
+```
+
+### Complex Example with Related Models
+
+Let's add a `Post` model and perform a series of operations involving both `Author` and `Post`.
+```typescript
+const Post = new Model('post', {
+  created: { type: 'datetime', default: () => new Date().toISOString() },
+  title: { type: 'string' },
+  content: { type: 'string' },
+  rating: { type: 'number' }
+});
+
+// Register the Post model
+export const PostRepo = db.registerModel(Post);
+
+```
+
+**Steps:**
+
+1. Find an author by ID.
+2. Create a new `Post` and attach it to the `Author`.
+3. Find the created `Post` using a complex `where` condition.
+
+```typescript
+const transaction = await db.tx.begin();
+try {
+  // Step 1: Find an author by ID
+  const author = await Author.findById('author_id', transaction);
+
+  // Step 2: Create a new Post and attach it to the Author
+  const newPost = {
+    title: 'New Blog Post',
+    content: 'This is a new blog post content.',
+    rating: 4.5
+  };
+
+  const createdPost = await PostRepo.create(newPost, transaction);
+
+  await Author.attach(author.data.__id, {
+    model: 'post',
+    recordId: createdPost.data.__id
+  }, transaction);
+
+  // Step 3: Find the created Post using a complex where condition
+  const posts = await PostRepo.find({
+    where: {
+      $and: [
+        { created: { $gte: '2023-01-01T00:00:00Z' } },
+        { rating: { $gte: 4 } }
+      ]
+    },
+    orderBy: { created: 'desc' }
+  }, transaction);
+
+  await transaction.commit();
+  console.log(posts);
+  /*
+  {
+    data: [
+      {
+        __id: 'post_id',
+        __label: 'post',
+        created: '2023-01-02T00:00:00Z',
+        title: 'New Blog Post',
+        content: 'This is a new blog post content.',
+        rating: 4.5
+      }
+    ],
+    total: 1
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+This complex example demonstrates how to work with related models, perform transactions, and use advanced querying features.
+
+## Conclusion
+
+This section provided an in-depth look at the reading operations available through the `Model` class. By understanding these methods and their parameters, you can effectively retrieve your application's data with the RushDB SDK. Subsequent sections will delve into more advanced topics such as relationships between models and custom validations.
+
+
+---
+
+
+# Defining Models with RushDB SDK
+:::note
+In this section, we focus on how to define models using the RushDB SDK. Defining models accurately is crucial as it not only aids in validating the fields according to the schema but also enhances the developer experience with features like autocomplete and field name suggestions.
+:::
+
+## Table of Contents
+
+- [Understanding Schema](#understanding-schema)
+- [Creating a Model](#creating-a-model-with-model)
+- [Registering and Managing Models](#registering-and-managing-models)
+
+## Understanding Schema
+
+The `Schema` is at the core of model definitions in RushDB. It specifies the structure and constraints of the data fields within your model. Here's a breakdown of the properties you can define within a `Schema`:
+
+```typescript
+type Schema = Record<string, {
+    default?: SchemaDefaultValue;
+    multiple?: boolean;
+    required?: boolean;
+    type: PropertyType;
+    uniq?: boolean;
+}>;
+```
+
+**Schema Properties Explained:** 
+
+- `default`: This is the initial value of the field if no value is provided during record creation. It can be a static value or a function that returns a value asynchronously, allowing for dynamic default values.
+- `multiple`: Indicates whether the field can hold multiple values (array) or just a single value.
+- `required`: Specifies whether a field is mandatory. If set to true, you cannot create a record without providing a value for this field.
+- `type`: Defines the data type of the field. The type determines the available search operators and how data is validated and stored. Possible types include:
+    - `boolean`
+    - `datetime` (can be either a detailed object or an ISO string)
+    - `null`
+    - `number`
+    - `string`
+- `uniq`: If set to true, the field must have a unique value across all records in the database, useful for fields like email addresses or custom identifiers.
+
+### Creating a Model with Model
+
+With an understanding of `Schema`, you can define a model in the RushDB system. Here’s how to define a simple `Author` model:
+```typescript
+const Author = new Model('author', {
+  name: { type: 'string' },
+  email: { type: 'string', uniq: true }
+});
+
+```
+
+**Model Constructor Parameters:**
+
+- `modelName`: A unique string identifier for the model. It's used to reference the model within the SDK and to associate records with their corresponding model type in the database.
+- `schema`: The schema definition based on `Schema`, which dictates the structure and rules of the data stored.
+- `relationships` (optional): Defines how this model relates to other models, which is essential for establishing connections between different data types:
+```typescript
+type Relations = Record<string, {
+    model: string;
+}>;
+```
+
+### Registering and Managing Models
+
+Once you define a model, you must register it with the RushDB SDK to make it operational:
+
+```typescript
+const AuthorRepo = db.registerModel(Author);
+```
+**Working with Models in RushDB class:**
+
+- `registerModel`: Registers the model with the RushDB SDK, making it ready for data operations:
+- `getModel` and `getModels`: Retrieve registered models from the SDK, useful for accessing model details programmatically:
+```
+  public getModel(label: string): Model
+  public getModels(): Map<string, Model>
+```
+
+### Conclusion
+
+Defining models with `Model` and `Schema` sets a robust foundation for your application's data architecture. It enables strong type-checking, validation, and inter-model relationships, enhancing the robustness and scalability of your applications. In subsequent sections, we will explore how to interact with these models to create, retrieve, update, and delete records.
+
+
+---
+
+# Introduction to RushDB SDK
+:::note
+Welcome to the comprehensive guide on working with the RushDB SDK. This section provides an overview of initializing the RushDB SDK, a crucial first step for integrating RushDB into your applications. Understanding the initialization process is key to effectively manage and interact with your data through RushDB.
+:::
+
+## Table of Contents
+
+- [Installation](#initializing-rushdb-sdk)
+- [SDK Class Constructor](#constructor-parameters)
+
+## Initializing RushDB SDK
+
+The RushDB SDK is designed to be straightforward and easy to set up. You start by importing the SDK and then creating an instance with your API token and optional configuration settings. Here's the basic way to initialize the SDK:
+
+```javascript
+import RushDB from '@rushdb/javascript-sdk';
+
+const db = new RushDB('API_TOKEN', {
+  url: 'http://localhost:3000'
+});
+```
+
+## Constructor Parameters
+The RushDB constructor accepts two parameters:
+
+- `token` (`string`): This is the API token issued from the RushDB Dashboard. It is essential for authenticating your application's requests to the RushDB API.
+- `config` (`UserProvidedConfig`): This parameter allows for advanced configuration of the SDK to specify how it connects to the backend.
+
+### Understanding `UserProvidedConfig` (currently not available)
+This feature is currently unavailable and will be available soon. The UserProvidedConfig provides detailed control over how the SDK interacts with your backend. It consists of the following structure:
+
+```typescript
+
+type ApiConnectionConfig = {
+  host: string;
+  port: number;
+  protocol: string;
+  } | {
+  url: string;
+};
+
+export type Logger = (payload: any) => void
+
+type CommonUserProvidedConfig = {
+  httpClient?: HttpClientInterface
+  timeout?: number
+  logger?: Logger
+} & ApiConnectionConfig
+
+export type UserProvidedConfig = CommonUserProvidedConfig;
+```
+
+### Config Options
+
+- `url` (`string`): The simplest form of configuration, just providing the URL where the RushDB backend is hosted.
+
+- `host, port, protocol`: An alternative to `url`, providing a more granular way to define the connection parameters:
+    - `host`: The domain name or IP address of the server.
+    - `port`: The port number on which the server is listening.
+    - `protocol`: The protocol used for the connection (e.g., `http`, `https`).
+
+- `httpClient` (`HttpClientInterface`): Optional. Specifies a custom HTTP client interface for making network requests. Useful for environments where default HTTP clients do not meet specific needs.
+
+- `timeout` (`number`): Optional. Defines a timeout period for each request in milliseconds.
+
+### When to Use Advanced Configuration
+
+While the simple URL configuration suffices for most applications, advanced configuration options come into play in specific scenarios:
+
+- **Custom environments**: If your application operates within a specific network environment or requires particular security protocols not covered by the default HTTP client.
+
+- **Complex infrastructure setups**: When your RushDB backend is distributed across different domains or ports, especially in microservices architectures.
+
+- **Special performance requirements**: If your application demands fine-tuned network behavior, such as custom timeout settings or specialized error handling.
+
+By configuring these parameters, you can tailor the RushDB SDK to fit the precise needs of your application's infrastructure and operational requirements.
+
+In the next sections, we'll delve into defining data models and performing CRUD operations using the RushDB SDK, laying the groundwork for building robust data-driven applications.
+
+
+---
+
+
+# ApiResponse | CollectSDKResult
+
+## ApiResponse
+The `ApiResponse` type defines the structure of the response returned by the RushDB SDK's API methods. It encapsulates the data returned by the API, as well as metadata about the success of the request and any additional information.
+
+### Type Definition
+```typescript
+export type ApiResponse<T, E = Record<string, any>> = {
+  data: T;
+  success: boolean;
+  total?: number;
+} & E;
+```
+
+### Properties
+
+#### data
+
+- **Type:** `T`
+- **Required:** Yes
+- **Description:** The actual data returned by the API.
+
+#### success
+
+- **Type:** `boolean`
+- **Required:** Yes
+- **Description:** Indicates whether the API request was successful.
+
+#### total
+
+- **Type:** `number`
+- **Required:** No
+- **Description:** The total number of items, useful for paginated responses.
+
+### Example Usage
+```typescript
+// Define a response type for a list of users
+type UserApiResponse = ApiResponse<User[]>;
+
+// Example API response
+const response: UserApiResponse = {
+  data: [
+    { id: '1', name: 'John Doe', email: 'john.doe@example.com' },
+    { id: '2', name: 'Jane Doe', email: 'jane.doe@example.com' }
+  ],
+  success: true,
+  total: 2
+};
+
+// Accessing the data
+console.log(response.data); // [{ __id: '1', name: 'John Doe', email: 'john.doe@example.com' }, { __id: '2', name: 'Jane Doe', email: 'jane.doe@example.com' }]
+console.log(response.success); // true
+console.log(response.total); // 2
+```
+
+## CollectSDKResult
+
+The `CollectSDKResult` type is a utility type that flattens the structure of the result returned by the SDK methods. It ensures the correct type inference for complex nested structures.
+
+### Type Definition
+```typescript
+export type CollectSDKResult<T extends (...args: any[]) => Promise<any>> = FlattenTypes<
+  Awaited<ReturnType<T>>
+>;
+```
+
+### Properties
+
+The `CollectSDKResult` type does not have explicit properties since it is used to infer types from the SDK methods.
+
+### Example Usage
+```typescript
+// Define a model with specific schema
+const Author = new Model('author', {
+  name: { type: 'string' },
+  email: { type: 'string', uniq: true }
+});
+
+// Define a function to create an author and return a promise
+const createAuthor = async () => {
+  return await Author.create({ name: 'John Doe', email: 'john.doe@example.com' });
+};
+
+// Use CollectSDKResult to infer the return type of the function
+type CreateAuthorResult = CollectSDKResult<typeof createAuthor>;
+
+// Example usage of inferred type
+const result: CreateAuthorResult = await createAuthor();
+
+console.log(result); // { __id: '1', name: 'John Doe', email: 'john.doe@example.com' }
+```
+
+---
+
+
+# InferType
+
+The `InferType` type is used to infer the types of schema fields for a given `Model`. This utility type helps in deriving the correct types for fields defined in the schema, ensuring type safety and proper validation.
+
+### Type Definition
+```typescript
+type InferType<T extends Model<any> = Model<any>> = FlattenTypes<
+  InferTypesFromSchema<T['schema']>
+>;
+```
+
+### Properties
+
+The `InferType` does not have explicit properties since it is used to infer types from a schema.
+
+### Example Usage
+```typescript
+// Define a model with specific schema
+const Author = new Model('author', {
+  name: { type: 'string' },
+  email: { type: 'string', uniq: true }
+});
+
+// Use InferType to infer the type of the model's schema
+type AuthorType = InferType<typeof Author>;
+
+// Example usage of inferred type
+const newAuthor: AuthorType = {
+  name: 'John Doe',
+  email: 'john.doe@example.com'
+};
+```
+
+---
+
+# Model
+
+The `Model` class in the RushDB SDK represents a data model and provides methods for performing CRUD operations, managing relationships, and validating records based on a defined schema. It is a central component for interacting with records in RushDB.
+
+## Type Definition
+```typescript
+class Model<S extends Schema = any> extends RestApiProxy {
+  public readonly label: string;
+  public readonly schema: S;
+
+  /** @description
+   * Type helper for a draft version of the schema.
+   */
+  readonly draft!: InferType<Model<S>>;
+
+  /** @description
+   * Type helper for a fully-defined record with database representation.
+   */
+  readonly record!: DBRecord<S>;
+
+  /** @description
+   * Type helper for a single record instance.
+   */
+  readonly recordInstance!: DBRecordInstance<S>;
+
+  /** @description
+   * Type helper for an array of record instances.
+   */
+  readonly recordsArrayInstance!: DBRecordsArrayInstance<S>;
+
+  constructor(modelName: string, schema: S, RushDBInstance?: RushDBInstance) {
+    super();
+    this.label = modelName;
+    this.schema = schema;
+
+    RushDBInstance?.registerModel(this);
+  }
+}
+```
+
+## Constructor Parameters
+
+### `modelName`
+- **Type:** `string`
+- **Required:** Yes
+
+A unique string identifier for the model. It is used to reference the model within the SDK and associate records with their corresponding model type in the database.
+
+### `schema`
+- **Type:** `Schema`
+- **Required:** Yes
+
+Defines the structure and rules of the data stored in the model. The schema ensures that records adhere to predefined constraints.
+
+### `RushDBInstance`
+- **Type:** `RushDBInstance`
+- **Optional:** Yes
+
+An optional instance of `RushDBInstance`. If provided, the model will be automatically registered within the RushDB instance, enabling centralized model management.
+
+## Methods
+
+### `find`
+Finds multiple records based on specified query parameters.
+```typescript
+find(params?: SearchQuery<S> & { labels?: never }, transaction?: Transaction | string): Promise<DBRecordsArrayInstance<S>>;
+```
+
+### `findOne`
+Finds a single record based on specified query parameters.
+```typescript
+findOne(params?: SearchQuery<S> & { labels?: never }, transaction?: Transaction | string): Promise<DBRecordInstance<S>>;
+```
+
+### `findById`
+Finds a single record by its ID.
+```typescript
+findById(id: string, transaction?: Transaction | string): Promise<DBRecordInstance<S>>;
+```
+
+### `findUniq`
+Finds a unique record based on specified query parameters.
+```typescript
+findUniq(params?: SearchQuery<S> & { labels?: never }, transaction?: Transaction | string): Promise<DBRecordInstance<S>>;
+```
+
+### `create`
+Creates a single record.
+```typescript
+create(record: InferSchemaTypesWrite<S>, transaction?: Transaction | string): Promise<DBRecordInstance<InferSchemaTypesWrite<S>>>;
+```
+
+### `set`
+Sets the fields of a record by its ID.
+```typescript
+set(id: string, record: InferSchemaTypesWrite<S>, transaction?: Transaction | string): Promise<DBRecordInstance<S>>;
+```
+
+### `update`
+Updates specific fields of a record by its ID.
+```typescript
+update(id: string, record: Partial<InferSchemaTypesWrite<S>>, transaction?: Transaction | string): Promise<DBRecordInstance<S>>;
+```
+
+### `attach`
+Attaches a target record to the source record.
+```typescript
+attach(sourceId: string, target: RelationTarget, transaction?: Transaction | string): Promise<ApiResponse<{ message: string }>>;
+```
+
+### `detach`
+Detaches a target record from the source record.
+```typescript
+detach(sourceId: string, target: RelationTarget, transaction?: Transaction | string): Promise<ApiResponse<{ message: string }>>;
+```
+
+### `createMany`
+Creates multiple records in a single operation.
+```typescript
+createMany(records: InferSchemaTypesWrite<S>[], transaction?: Transaction | string): Promise<DBRecordsArrayInstance<S>>;
+```
+
+### `delete`
+Deletes multiple records based on specified query parameters.
+```typescript
+delete<T extends InferSchemaTypesWrite<S> = InferSchemaTypesWrite<S>>(params?: Omit<SearchQuery<T>, 'labels'>, transaction?: Transaction | string): Promise<ApiResponse<{ message: string }>>;
+```
+
+### `deleteById`
+Deletes a single record or multiple records by their ID(s).
+```typescript
+deleteById(idOrIds: MaybeArray<string>, transaction?: Transaction | string): Promise<ApiResponse<{ message: string }>>;
+```
+
+## Example Usage
+
+Creating and Updating Records
+```typescript
+import RushDB, { Model } from '@rushdb/javascript-sdk'
+
+const db = new RushDB('API_TOKEN')
+
+const Author = new Model(
+  'AUTHOR', 
+  {
+    name: { type: 'string' },
+    email: { type: 'string', uniq: true }
+  },
+  db
+);
+
+// Create a new author
+const newAuthor = await Author.create({ name: 'John Doe', email: 'john.doe@example.com' });
+console.log(newAuthor.data);
+
+// Update the author's email
+await Author.update(newAuthor.id, { email: 'john.doe@newmail.com' })
+```
+
+Attaching and Detaching Related Records
+```typescript
+const Blog = new Model(
+  'blog', 
+  {
+    title: { type: 'string' },
+    description: { type: 'string' }
+  },
+  db
+);
+
+// Create new Blog
+const newBlog = await Blog.create({ title: 'DS/ML Times', description: '...' });
+
+// Attach a blog to an author
+await Author.attach(newAuthor.id, newBlog);
+
+// Detach the blog from the author
+await Author.detach(newAuthor.id, newBlog);
+```
+
+Deleting Records
+```typescript
+// Delete an author by ID
+await Author.deleteById(newAuthor.id);
+```
+
+## Additional Notes
+
+- **Transaction Handling:** Many methods (e.g., `create`, `set`, `update`, `delete`) support transactions, allowing you to commit or roll back operations as needed.
+- **Schema Validation:** The schema is automatically validated when creating or updating records to ensure compliance with predefined rules.
+- **Error Handling:** Errors like `UniquenessError` are thrown when attempting to create or update records with duplicate values for unique fields.
+
+This documentation is generated based on the actual implementation in `model.ts`, ensuring accuracy and completeness.
+
+
+---
+
+
+# Schema
+
+The `Schema` type is used to define the schema for a model in the RushDB SDK. It describes the structure and validation rules for the data fields of a model.
+
+### Type Definition
+```typescript
+type Schema = Record<
+  string,
+  {
+    default?: SchemaDefaultValue;
+    multiple?: boolean;
+    required?: boolean;
+    type: PropertyType;
+    uniq?: boolean;
+  }
+>;
+```
+
+### Properties
+
+#### default
+
+- **Type:** `MaybePromise<PropertyValue>`
+- **Optional:** Yes
+
+The initial value of the field if no value is provided during record creation. It can be a static value or a function that returns a value asynchronously, allowing for dynamic default values.
+
+#### multiple
+
+- **Type:** `boolean`
+- **Optional:** Yes
+
+Indicates whether the field can hold multiple values (array) or just a single value.
+
+#### required
+
+- **Type:** `boolean`
+- **Optional:** Yes
+
+Specifies whether a field is mandatory. If set to `true`, you cannot create a record without providing a value for this field.
+
+#### type
+
+- **Type:** `'boolean' | 'datetime' | 'null' | 'number' | 'string'`
+- **Optional:** No
+
+Defines the data type of the field. The type determines the available search operators and how data is validated and stored.
+
+#### uniq
+
+- **Type:** `boolean`
+- **Optional:** Yes
+
+If set to `true`, the field must have a unique value across all records in the database, useful for fields like email addresses or custom identifiers.
+
+### Example Usage
+
+Here is an example of how to define a schema using `Schema`:
+```typescript
+const AuthorSchema: Schema = {
+  name: { type: 'string', required: true },
+  email: { type: 'string', uniq: true },
+  age: { type: 'number', default: 30 },
+  isActive: { type: 'boolean', default: true }
+};
+```
+
+In this example:
+- `name` is a required string field.
+- `email` is a unique string field.
+- `age` is a number field with a default value of 30.
+- `isActive` is a boolean field with a default value of true.
+
+
+---
+
+
+# BooleanValue
+
+The `BooleanValue` type is used to define conditions for boolean fields in a query.
+
+### Type Definition
+```typescript
+type BooleanValue = RequireAtLeastOne<Record<'$ne', boolean>> | boolean;
+```
+
+### Properties
+
+#### $ne
+
+- **Type:** `boolean`
+- **Optional:** Yes
+
+Negates the condition.
+
+### Example Usage
+
+Here is an example of how to define conditions for a boolean field:
+```typescript
+const booleanCondition: BooleanValue = {
+  $ne: true
+};
+```
+
+In this example:
+- The query filters records where the `isActive` field is `true`.
+
+
+---
+
+
+# DatetimeValue
+
+The `DatetimeValue` type is used to define conditions for datetime fields in a query.
+
+### Type Definition
+```typescript
+type DatetimeValue =
+  | DatetimeObject
+  | RequireAtLeastOne<
+      Record<'$gt' | '$gte' | '$lt' | '$lte' | '$ne', DatetimeObject | string> &
+        Record<'$in' | '$nin', Array<DatetimeObject | string>>
+    >
+  | string;
+```
+
+### Properties
+
+#### $gt, $gte, $lt, $lte, $ne
+
+- **Type:** `string | DatetimeObject`
+- **Optional:** Yes
+
+Defines greater than, greater than or equal to, less than, less than or equal to, and not conditions for datetime fields.
+
+#### $in, $nin
+
+- **Type:** `Array<string | DatetimeObject>`
+- **Optional:** Yes
+
+Defines inclusion and exclusion conditions for datetime fields.
+
+### Example Usage
+
+Here is an example of how to define conditions for a datetime field:
+```typescript
+const datetimeCondition: DatetimeValue = {
+  $gt: '2022-01-01T00:00:00Z'
+};
+```
+
+In this example:
+- The query filters records where the `created` field is greater than a specific date.
+
+## DatetimeObject
+The `DatetimeObject` type is used to define a detailed datetime object for specifying precise datetime values.
+
+### Type Definition
+```typescript
+type DatetimeObject = {
+    $day?: number;
+    $hour?: number;
+    $microsecond?: number;
+    $millisecond?: number;
+    $minute?: number;
+    $month?: number;
+    $nanosecond?: number;
+    $second?: number;
+    $year: number;
+};
+```
+
+
+### Properties
+
+#### $day
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the day of the month.
+
+#### $hour
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the hour of the day.
+
+#### $microsecond
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the microsecond.
+
+#### $millisecond
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the millisecond.
+
+#### $minute
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the minute.
+
+#### $month
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the month.
+
+#### $nanosecond
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the nanosecond.
+
+#### $second
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the second.
+
+#### $year
+
+- **Type:** `number`
+- **Required:** Yes
+
+Specifies the year.
+
+### Example Usage
+
+Here is an example of how to define a detailed datetime object:
+```typescript
+const datetimeObject: DatetimeObject = {
+  $day: 15,
+  $month: 8,
+  $year: 2023,
+  $hour: 14,
+  $minute: 30,
+  $second: 45
+};
+```
+In this example:
+- The datetime object specifies a precise datetime value of August 15, 2023, at 14:30:45.
+
+
+---
+
+
+# NullValue
+
+The `NullValue` type is used to define conditions for null fields in a query.
+
+### Type Definition
+```typescript
+type NullValue = RequireAtLeastOne<Record<'$ne', null>> | null;
+```
+
+### Properties
+
+#### $ne
+
+- **Type:** `null`
+- **Optional:** Yes
+
+Negates the condition.
+
+### Example Usage
+
+Here is an example of how to define conditions for a null field:
+```typescript
+const nullCondition: NullValue = {
+  $ne: null
+};
+```
+
+In this example:
+- The query filters records where the `deletedAt` field is `null`.
+
+
+---
+
+
+# NumberValue
+
+The `NumberValue` type is used to define conditions for number fields in a query.
+
+### Type Definition
+```typescript
+type NumberValue =
+  | RequireAtLeastOne<
+      Record<'$gt' | '$gte' | '$lt' | '$lte' | '$ne', number> & Record<'$in' | '$nin', Array<number>>
+    >
+  | number;
+```
+
+### Properties
+
+#### $gt, $gte, $lt, $lte, $ne
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Defines greater than, greater than or equal to, less than, less than or equal to, and not conditions for number fields.
+
+#### $in, $nin
+
+- **Type:** `number[]`
+- **Optional:** Yes
+
+Defines inclusion and exclusion conditions for number fields.
+
+### Example Usage
+
+Here is an example of how to define conditions for a number field:
+```typescript
+const numberCondition: NumberValue = {
+  $gt: 25
+};
+```
+
+In this example:
+- The query filters records where the `age` field is greater than 25.
+
+
+---
+
+
+# SearchQueryLogicalGrouping
+
+The `SearchQueryLogicalGrouping` type is used to define logical groupings for combining multiple conditions in a query.
+
+### Type Definition
+```typescript
+type SearchQueryLogicalGrouping<T extends FlatObject | Schema = Schema> =
+  Record<'$and' | '$or' | "$not" | "$nor" |'$xor', Enumerable<SearchQueryCondition<T>>>;
+```
+
+### Properties
+
+#### $and
+
+- **Type:** `SearchQueryCondition[]`
+- **Optional:** Yes
+
+Combines multiple conditions using a logical AND.
+
+#### $or
+
+- **Type:** `SearchQueryCondition[]`
+- **Optional:** Yes
+
+Combines multiple conditions using a logical OR.
+
+#### $not
+
+- **Type:** `SearchQueryCondition[]`
+- **Optional:** Yes
+
+Negates the combined conditions.
+
+#### $xor
+
+- **Type:** `SearchQueryCondition[]`
+- **Optional:** Yes
+
+Combines multiple conditions using a logical XOR.
+
+#### $not
+
+- **Type**: `SearchQueryCondition[]`
+- **Optional**: Yes
+- 
+Combines multiple conditions using a logical NOR, meaning the results must not match any of the provided conditions.
+
+### Example Usage
+
+Here is an example of how to use logical groupings in a query:
+```typescript
+const queryWhere: SearchQueryWhere<typeof AuthorSchema> = {
+  $or: [
+    { age: { $gt: 25 } },
+    { name: { $startsWith: 'A' } }
+  ]
+};
+```
+
+In this example:
+- The query filters records where the `age` field is greater than 25 or the `name` field starts with 'A'.
+
+
+---
+
+
+# SearchQueryWhere
+
+The `SearchQueryWhere` type is used to define the filtering conditions for a query. It supports logical grouping and field-specific conditions.
+
+### Type Definition
+```typescript
+type SearchQueryWhereClause<T extends FlatObject | Schema = Schema> = {
+    where?: SearchQueryWhere<T>;
+};
+
+type SearchQueryWhere<T extends FlatObject | Schema = Schema> =
+    | SearchQueryCondition<T>
+    | RequireAtLeastOne<SearchQueryLogicalGrouping<T>>;
+
+type SearchQueryCondition<T extends FlatObject | Schema = Schema> = {
+    [K in keyof T]?: T extends Schema ? CollectWhereValueByType[T[K]['type']]
+        : T[K] extends number ? NumberValue
+            : T[K] extends boolean ? BooleanValue
+                : T[K] extends string ? DatetimeValue | StringValue
+                    : T[K] extends null ? NullValue
+                        : CollectWhereValue
+};
+
+type CollectWhereValueByType = {
+    boolean: BooleanValue;
+    datetime: DatetimeValue;
+    null: NullValue;
+    number: NumberValue;
+    string: StringValue;
+};
+
+
+type CollectWhereValue = BooleanValue | DatetimeValue | NullValue | NumberValue | StringValue;
+```
+
+### Properties
+
+#### Logical Grouping
+
+- **Type:** `SearchQueryLogicalGrouping`
+- **Optional:** Yes
+
+Defines logical groupings (`$and`, `$or`, `$not`, `$nor`, `$xor`) for combining multiple conditions.
+
+#### Field Conditions
+
+- **Type:** `SearchQueryCondition`
+- **Optional:** Yes
+
+Defines the conditions for individual fields based on their types.
+
+### Example Usage
+
+Here is an example of how to define filtering conditions using `SearchQueryWhere`:
+```typescript
+const queryWhere: SearchQueryWhere<typeof AuthorSchema> = {
+  $and: [
+    { age: { $gt: 25 } },
+    { name: { $startsWith: 'A' } }
+  ]
+};
+```
+
+In this example:
+- The query filters records where the `age` field is greater than 25 and the `name` field starts with 'A'.
+
+
+---
+
+
+# SearchQuery
+
+The `SearchQuery` type is used to define the criteria for querying records in the RushDB SDK. It allows you to specify filters, sorting, pagination, and related records to be retrieved.
+
+### Type Definition
+```typescript
+type SearchQuery<T extends FlatObject | Schema = Schema> =
+  SearchQueryCommonParams<T> & SearchQueryWhereClause<T> & { includes?: never };
+
+type SearchQueryCommonParams<T extends FlatObject | Schema = Schema> = {
+  labels?: string[];
+  limit?: number;
+  orderBy?: SearchQueryOrderBy<T>;
+  skip?: number;
+};
+
+type SearchQueryOrderBy<T extends FlatObject | Schema = Schema> =
+  | 'asc'
+  | 'desc'
+  | SearchQueryOrderByMap<T>;
+
+type SearchQueryOrderByMap<T extends FlatObject | Schema = Schema> =
+  Partial<Record<keyof T, 'asc' | 'desc'>>;
+```
+
+### Properties
+
+#### labels
+
+- **Type:** `string[]`
+- **Optional:** Yes
+
+An array of labels to filter the records by their assigned labels.
+
+#### limit
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Limits the number of records returned by the query.
+
+#### orderBy
+
+- **Type:** `SearchQueryOrderBy`
+- **Optional:** Yes
+
+Defines the order in which the records should be returned. It can be a string (`'asc' | 'desc'`) or an object mapping fields to their respective sort order.
+
+#### skip
+
+- **Type:** `number`
+- **Optional:** Yes
+
+Specifies the number of records to skip before starting to return results.
+
+#### where
+
+- **Type:** `SearchQueryWhere`
+- **Optional:** Yes
+
+Defines the filtering conditions for the query. It is an object mapping field names to their respective conditions.
+
+### Example Usage
+
+Here is an example of how to define a query using `SearchQuery`:
+```typescript
+const query: SearchQuery<typeof AuthorSchema> = {
+  limit: 10,
+  orderBy: { createdAt: 'desc' },
+  skip: 5,
+  where: {
+    $and: [
+      { age: { $gt: 25 } },
+      { name: { $startsWith: 'A' } }
+    ]
+  }
+};
+```
+
+In this example:
+- The query limits the results to 10 records.
+- It orders the results by the `createdAt` field in descending order.
+- It skips the first 5 records.
+- It filters the records where the `age` field is greater than 25 and the `name` field starts with 'A'.
+
+
+---
+
+
+# StringValue
+
+The `StringValue` type is used to define conditions for string fields in a query.
+
+### Type Definition
+```typescript
+type StringValue =
+  | RequireAtLeastOne<
+      Record<'$contains' | '$endsWith' | '$ne' | '$startsWith', string> &
+        Record<'$in' | '$nin', Array<string>>
+    >
+  | string;
+```
+
+### Properties
+
+#### $contains, $endsWith, $ne, $startsWith
+
+- **Type:** `string`
+- **Optional:** Yes
+
+Defines contains, ends with, not, and starts with conditions for string fields.
+
+#### $in, $nin
+
+- **Type:** `string[]`
+- **Optional:** Yes
+
+Defines inclusion and exclusion conditions for string fields.
+
+### Example Usage
+
+Here is an example of how to define conditions for a string field:
+```typescript
+const stringCondition: StringValue = {
+  $startsWith: 'A'
+};
+```
+
+In this example:
+- The query filters records where the `name` field starts with 'A'.
+
+
+---
+
+
+# Updating Records
+:::note
+Updating records is a crucial operation for maintaining and modifying data within your application. The `Model` class provides methods to update single or multiple records. We will use the `Author` and `Post` models defined earlier to demonstrate these operations.
+:::
+
+## Table of Contents
+
+- [Updating a Single Record](#update)
+- [Updating Multiple Records](#updating-multiple-records)
+- [Updating Records in a Transaction](#complex-example-with-transactions)
+
+### `update`
+
+The `update` method is used to update a single record by its ID.
+
+**Signature:**
+```typescript
+update(
+  id: string,
+  record: InferSchemaTypesWrite<S>,
+  transaction?: Transaction | string
+): Promise<DBRecordInstance<S>>;
+```
+
+**Parameters:**
+
+- `id`: The ID of the record to update.
+- `record`: An object containing the updated data that adheres to the schema defined for the model.
+- `transaction` (optional): A transaction object or string to include the operation within a transaction.
+- `options` (optional): An object to specify additional options, such as whether to validate the record before updating it.
+
+**Returns:**
+
+- A promise that resolves to a `DBRecordInstance` containing the updated record.
+
+**Examples:**
+
+*Basic Example with Author:*
+```typescript
+const updatedAuthor = await Author.update('author_id', {
+  name: 'John Doe Updated'
+});
+console.log(updatedAuthor);
+/*
+{
+  data: {
+    __id: 'author_id',
+    __label: 'author',
+    name: 'John Doe Updated',
+    email: 'john.doe@example.com'
+  }
+}
+*/
+```
+
+*Complex Example with Author:*
+```typescript
+const transaction = await db.tx.begin();
+try {
+  const updatedAuthor = await Author.update('author_id', {
+    name: 'Jane Doe Updated'
+  }, transaction);
+  await transaction.commit();
+  console.log(updatedAuthor);
+  /*
+  {
+    data: {
+      __id: 'author_id',
+      __label: 'author',
+      name: 'Jane Doe Updated',
+      email: 'jane.doe@example.com'
+    }
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+*Basic Example with Post:*
+```typescript
+const updatedPost = await PostRepo.update('post_id', {
+  title: 'Updated Blog Post Title'
+});
+console.log(updatedPost);
+/*
+{
+  data: {
+    __id: 'post_id',
+    __label: 'post',
+    created: '2023-01-02T00:00:00Z',
+    title: 'Updated Blog Post Title',
+    content: 'This is a new blog post content.',
+    rating: 4.5
+  }
+}
+*/
+```
+
+*Complex Example with Post:*
+```typescript
+const transaction = await db.tx.begin();
+try {
+  const updatedPost = await PostRepo.update('post_id', {
+    title: 'Updated Title in Transaction',
+    rating: 5
+  }, transaction);
+  await transaction.commit();
+  console.log(updatedPost);
+  /*
+  {
+    data: {
+      __id: 'post_id',
+      __label: 'post',
+      created: '2023-01-02T00:00:00Z',
+      title: 'Updated Title in Transaction',
+      content: 'This is a new blog post content.',
+      rating: 5
+    }
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+### Updating Multiple Records
+
+To update multiple records, you can use a combination of `find` and `update`. This involves retrieving the records you want to update, modifying them, and then saving the changes.
+
+**Examples:**
+
+*Basic Example with Author:*
+```typescript
+const authorsToUpdate = await Author.find({ where: { name: 'John Doe' } });
+for (const author of authorsToUpdate.data) {
+  await Author.update(author.__id, { name: 'John Doe Updated' });
+}
+console.log(authorsToUpdate);
+/*
+{
+  data: [
+    {
+      __id: 'author_id_1',
+      __label: 'author',
+      name: 'John Doe Updated',
+      email: 'john.doe@example.com'
+    },
+    {
+      __id: 'author_id_2',
+      __label: 'author',
+      name: 'John Doe Updated',
+      email: 'john.doe@example.com'
+    }
+  ]
+}
+*/
+```
+
+*Complex Example with Post:*
+```typescript
+const postsToUpdate = await PostRepo.find({ where: { rating: { $lt: 5 } } });
+const transaction = await db.tx.begin();
+try {
+  for (const post of postsToUpdate.data) {
+    await PostRepo.update(post.__id, { rating: 5 }, transaction);
+  }
+  await transaction.commit();
+  console.log(postsToUpdate);
+  /*
+  {
+    data: [
+      {
+        __id: 'post_id_1',
+        __label: 'post',
+        created: '2023-01-02T00:00:00Z',
+        title: 'Blog Post Title 1',
+        content: 'This is a blog post content.',
+        rating: 5
+      },
+      {
+        __id: 'post_id_2',
+        __label: 'post',
+        created: '2023-01-03T00:00:00Z',
+        title: 'Blog Post Title 2',
+        content: 'This is another blog post content.',
+        rating: 5
+      }
+    ],
+    total: 2
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+### Complex Example with Transactions
+
+In this example, we'll update an `Author` and a `Post` within the same transaction. This ensures that either both updates succeed, or both are rolled back in case of an error.
+
+**Steps:**
+
+1. Begin a transaction.
+2. Update the `Author`.
+3. Update the `Post`.
+4. Commit the transaction if both updates succeed.
+5. Rollback the transaction if any update fails.
+
+```typescript
+const transaction = await db.tx.begin();
+try {
+  // Update the author
+  const updatedAuthor = await Author.update('author_id', {
+    name: 'Updated Author Name'
+  }, transaction);
+
+  // Update the post
+  const updatedPost = await PostRepo.update('post_id', {
+    title: 'Updated Post Title',
+    content: 'Updated content for the post.',
+    rating: 4.8
+  }, transaction);
+
+  await transaction.commit();
+  console.log(updatedAuthor);
+  console.log(updatedPost);
+  /*
+  {
+    data: {
+      __id: 'author_id',
+      __label: 'author',
+      name: 'Updated Author Name',
+      email: 'john.doe@example.com'
+    }
+  }
+  {
+    data: {
+      __id: 'post_id',
+      __label: 'post',
+      created: '2023-01-02T00:00:00Z',
+      title: 'Updated Post Title',
+      content: 'Updated content for the post.',
+      rating: 4.8
+    }
+  }
+  */
+} catch (error) {
+  await transaction.rollback();
+  throw error;
+}
+```
+
+This complex example demonstrates how to perform multiple updates atomically within a transaction.
+
+### Conclusion
+
+This section covered how to update records using the `Model` class. By understanding these methods and their parameters, you can effectively modify your application's data with the RushDB SDK. The next sections will explore deleting records and other advanced operations.

@@ -1,0 +1,4195 @@
+# Chart
+Source: https://docs.quillsql.com/components/chart
+
+The Chart view of a Quill Report
+
+```tsx App.tsx
+import { QuillProvider, Chart } from "@quillsql/react";
+
+const MyChart = () => (
+  <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+    <Chart reportId="664283fb4db8ad000bfe54d7" />
+  </QuillProvider>
+);
+```
+
+A simple component that displays the given data in one of many chart types.
+
+<Info>Make sure `QuillProvider` is a parent of the `Chart` component.</Info>
+
+### Automatically fetch data by id
+
+If you know the id of the chart you would like to display, you can pass in the reportId to the Chart component and it will load and display the data for that chart.
+
+```jsx
+import { QuillProvider, Chart } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <Chart reportId="664283fb4db8ad000bfe54d7" />
+    </QuillProvider>
+  );
+}
+```
+
+### Pass data directly into the chart
+
+Alternatively, if you have the actual data you would like to display (eg. you fetched the data using our `useQuill` hook) you can also pass in a `QuillReport` directly to the Chart component and it will display that data without async fetching.
+
+```jsx
+import { QuillProvider, Chart } from "@quillsql/react";
+
+function App() {
+  const report = useQuill("664283fb4db8ad000bfe54d7");
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <Chart config={report} />
+    </QuillProvider>
+  );
+}
+```
+
+## Props
+
+<ParamField path="reportId" type="string">
+  The chart id. The most usage is through a detail page built to navigate from
+  the dashboard - using the onClick callback to get the reportId, and
+  navigating to a route (say, reports/:id) where the url param is passed in as
+  the reportId. For a standalone table, you can find the reportId in the Quill
+  Portal and pass it in directly.
+
+  When config is passed, the chart will not refetch the given report and will
+  instead simply render the report it was given.
+
+  <Info>A `config` must be passed if `reportId` is not present.</Info>
+</ParamField>
+
+<ParamField path="config" type="QuillReport">
+  A report to render, if any.
+
+  When a reportId is passed, the chart will first fetch the data necessary to
+  render this chart, and then it will render the report that it receives from
+  the server.
+
+  See the API Reference for a `QuillReport` [here](/components/dashboard#quill-report).
+
+  <Info>A `reportId` must be passed if `config` is not present.</Info>
+</ParamField>
+
+<ParamField path="colors" type="string[]">
+  A list of color strings used to color the chart.
+
+  For example, a pie chart would use the colors for each section and a bar
+  chart would use the colors for each bar.
+</ParamField>
+
+<ParamField path="isAnimationActive" type="boolean">
+  Whether to show animations on render complete.
+</ParamField>
+
+<ParamField path="hideXAxis" type="boolean">
+  Whether to hide the x axis.
+</ParamField>
+
+<ParamField path="hideYAxis" type="boolean">
+  Whether to hide the y axis.
+</ParamField>
+
+<ParamField path="hideCartesianGrid" type="boolean">
+  Whether to hide the cartesian grid lines.
+</ParamField>
+
+<ParamField path="hideDateRangeFilter" type="boolean">
+  Whether the date range filter should be hidden.
+</ParamField>
+
+<ParamField path="hideHorizontalCartesianGrid" type="boolean" default={false}>
+  Whether to hide the horizontal cartesian grid lines.
+</ParamField>
+
+<ParamField path="hideVerticalCartesianGrid" type="boolean" default={true}>
+  Whether to hide the vertical cartesian grid lines.
+</ParamField>
+
+<ParamField path="hideSubsequentXAxisTicks" type="boolean" default={false}>
+  Whether to hide the all but the first of the X-Axis ticks.
+</ParamField>
+
+<ParamField path="cartesianGridLineStyle" type="'solid' | 'dashed'" default={"solid"}>
+  Whether the cartesian grid lines show as dashed or solid.
+</ParamField>
+
+<ParamField path="cartesianGridLineColor" type="string">
+  The color of cartesian grid lines.
+</ParamField>
+
+<ParamField path="comparisonLineStyle" type="'solid' | 'dashed'" default={"solid"}>
+  Whether the comparison range shows as dashed for date comparison line charts
+  (as opposed to the default solid line).
+</ParamField>
+
+<ParamField path="mapColorsToFields" type="(report: QuillReport, theme: QuillTheme) => ColorMapType">
+  An optional function that takes a report and theme and returns a map of keys
+  used in that report to the colors they should use.
+
+  The color values support RGB hexcodes and CSS color literals.
+
+  ```js
+  function mapColorsToFields(report, theme): ColorMapType {
+  	return {
+  		amount: {
+  			primary: 'red',
+  			comparison: 'gray',
+  			primaryGradientStart: 'red',
+  			primaryGradientStop: 'lightred',
+  			comparisonGradientStart: '#EFEFEF',
+  			comparisonGradientStop: '#EFEFEF00',
+  		},
+  		total: {
+  			primary: 'red'
+  		},
+  	};
+  }
+  ```
+
+  ### ColorMapType
+
+  <Expandable title="ColorMapType">
+    ```ts
+    export type ColorMapType = {
+    	[field: string]: {
+    		primary: string;
+    		comparison?: string;
+    		primaryGradientStart?: string;
+    		primaryGradientStop?: string;
+    		comparisonGradientStart?: string;
+    		comparisonGradientStop?: string;
+    	};
+    }
+    ```
+  </Expandable>
+</ParamField>
+
+<ParamField path="className" type="string">
+  Styles the top-level container of the Chart.
+
+  This can be useful for TailwindCSS-style classname strings.
+</ParamField>
+
+<ParamField path="containerStyle" type="React.CSSProperties">
+  The CSS styles that wrap the chart.
+</ParamField>
+
+
+# Dashboard
+Source: https://docs.quillsql.com/components/dashboard
+
+A list of Quill Reports grouped into Metrics, Charts, and Tables.
+
+```tsx App.tsx
+import { QuillProvider, Dashboard } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <Dashboard name="Transactions" />
+    </QuillProvider>
+  );
+}
+```
+
+Dynamically displays a filterable grid of charts, metrics, and tables with live
+data from your database. Once implemented, Quill lets you perform zero-downtime,
+zero-code updates to your dashboard on an org-level as well as company-wide.
+
+<Info>Make sure `QuillProvider` is a parent of the `Dashboard` component.</Info>
+
+<Tip>
+  Don't have a dashboard name yet? Learn how to [create a
+  dashboard](https://docs.quillsql.com/portal/chart) in the Quill portal to get
+  started.
+</Tip>
+
+## Examples
+
+<Tabs>
+  <Tab title="Ant Design">
+    [![Edit \[Ant Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/ant-design-quill-react-components-9qcs8k?embed=1)
+
+    ```tsx
+    import { Dashboard } from "@quillsql/react";
+    import { AntDateRangePickerComponent } from "./ui/ant/DateRangePickerComponent";
+    import { AntTableComponent } from "./ui/ant/TableComponent";
+    import { AntSelectComponent } from "./ui/ant/SelectComponent";
+    import { AntChartComponent } from "./ui/ant/ChartComponent";
+    import { AntMetricComponent } from "./ui/ant/MetricComponent";
+
+    export function AntDashboard() {
+      return (
+        <Dashboard
+          name="Transactions"
+          containerStyle={dashboardStyles}
+          DateRangePickerComponent={AntDateRangePickerComponent}
+          SelectComponent={AntSelectComponent}
+          TableComponent={AntTableComponent}
+          MetricComponent={AntMetricComponent}
+          ChartComponent={AntChartComponent}
+          FilterContainerComponent={AntFilterContainerComponent}
+        />
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab title="Material Design">
+    [![Edit \[Material Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/material-design-quill-react-components-d862dk?embed=1)
+
+    ```tsx
+    import { Dashboard } from "@quillsql/react";
+    import { MaterialDateRangePickerComponent } from "./ui/material/DateRangePickerComponent";
+    import { MaterialTableComponent } from "./ui/material/TableComponent";
+    import { MaterialSelectComponent } from "./ui/material/SelectComponent";
+    import { MaterialChartComponent } from "./ui/material/ChartComponent";
+    import { MaterialMetricComponent } from "./ui/material/MetricComponent";
+    import { MaterialFilterContainerComponent } from "./ui/material/Layout";
+
+    export function MaterialDashboard() {
+      return (
+        <Dashboard
+          name="Transactions"
+          containerStyle={dashboardStyles}
+          DateRangePickerComponent={MaterialDateRangePickerComponent}
+          SelectComponent={MaterialSelectComponent}
+          TableComponent={MaterialTableComponent}
+          MetricComponent={MaterialMetricComponent}
+          ChartComponent={MaterialChartComponent}
+          FilterContainerComponent={MaterialFilterContainerComponent}
+        />
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<ParamField path="name" type="string" required>
+  The name of the dashboard you created in the Quill Portal.
+</ParamField>
+
+<ParamField path="MetricComponent" type="(props: QuillReportProps) => JSX.Element">
+  A component that wraps a report for 'metric' chart types.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="QuillReportProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="report" type="QuillReport" required>
+          The current report.
+
+          <Info>
+            See the API Reference for a `QuillReport`
+            [here](/components/dashboard#quill-report).
+          </Info>
+        </ResponseField>
+
+        <ResponseField name="onClick" type="(report: QuillReport) => void">
+          A callback that should be fired when the user clicks on this report.
+        </ResponseField>
+
+        <ResponseField name="isLoading" type="boolean">
+          Whether this report is loading.
+        </ResponseField>
+
+        <ResponseField name="error" type="string">
+          An error message that resulted from the loading of this report, if
+          any.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartComponent" type="(props: QuillReportProps) => JSX.Element">
+  A component that wraps a report for non-metric, non-table chart types.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="QuillReportProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="report" type="QuillReport" required>
+          The current report.
+
+          <Info>See the API Reference for a `QuillReport` [here](/components/dashboard#quill-report).</Info>
+        </ResponseField>
+
+        <ResponseField name="onClick" type="(report: QuillReport) => void">
+          A callback that should be fired when the user clicks on this report.
+        </ResponseField>
+
+        <ResponseField name="isLoading" type="boolean">
+          Whether this report is loading.
+        </ResponseField>
+
+        <ResponseField name="error" type="string">
+          An error message that resulted from the loading of this report, if any.
+        </ResponseField>
+
+        <ResponseField name="children" type="ReactNode">
+          The child of a chart component is a chart graph by default.
+
+          You can override this behavior by not passing children in your implemented
+          version and instead rendering your own Chart.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TableComponent" type="(props: QuillReportProps) => JSX.Element">
+  A component that wraps a report for 'table' chart types.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="QuillReportProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="report" type="QuillReport" required>
+          The current report.
+          <Info> See the API Reference for a `QuillReport` [here](/components/dashboard#quill-report).</Info>
+        </ResponseField>
+
+        <ResponseField name="onClick" type="(report: QuillReport) => void">
+          A callback that should be fired when the user clicks on this
+          report.
+        </ResponseField>
+
+        <ResponseField name="isLoading" type="boolean">
+          Whether this report is loading.
+        </ResponseField>
+
+        <ResponseField name="error" type="string">
+          An error message that resulted from the loading of this report, if any.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SelectComponent" type="(props: SelectComponentProps) => JSX.Element">
+  A select component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/select.png" />
+
+    ```jsx Example
+    export function SelectComponent({ value, label, width, onChange, options }) {
+    	return (
+    		<label>
+    			{label}
+    			<select value={value} onChange={onChange} style={{ width }}>
+    				{options.map(({ value, label }) => <option value={value}>{label}</option>)}
+    			</select>
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="SelectComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="value" type="string" required>
+          The value of the select element.
+        </ResponseField>
+
+        <ResponseField name="width" type="number" required>
+          The width of the select element in pixels.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          The label above the select element.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLSelectElement>) => void" required>
+          An event callback that is fired when the select value changes.
+        </ResponseField>
+
+        <ResponseField name="options" type="{ value: string; label: string; }[]" required>
+          An array of value, label pairs which represent the select options.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DateRangePickerComponent" type="(props: DateRangePickerComponentProps) => JSX.Element">
+  A date range picker component.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="DateRangePickerComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="preset" type="string" required>
+          The date preset.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          The label above the date range picker.
+        </ResponseField>
+
+        <ResponseField name="dateRange" type="{ startDate: Date; endDate: Date }" required>
+          The current date range.
+        </ResponseField>
+
+        <ResponseField name="presetOptions" type="{ label: string; value: string }[]" required>
+          A set of options to select presets from.
+        </ResponseField>
+
+        <ResponseField name="onChangeDateRange" type="({ startDate, endDate }: { startDate: Date; endDate: Date; }) => void" required>
+          A callback that is fired when the selected date range changes.
+        </ResponseField>
+
+        <ResponseField name="onChangePreset" type="(event: ChangeEvent<HTMLSelectElement>) => void" required>
+          An event callback that is fired when the preset value changes.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DashboardSectionComponent" type="(props: DashboardSectionComponentProps) => JSX.Element">
+  A component that wraps each dashboard section.
+
+  Each dashboard is grouped into three sections: metrics, charts, and tables
+  (in that order). Some sections may be empty, in which case they are omitted.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="DashboardSectionComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="section" type="'metrics' | 'charts' | 'tables'" required>
+          The name of the section.
+        </ResponseField>
+
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the dashboard section.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DashboardSectionContainerComponent" type="(props: DashboardSectionContainerComponentProps) => JSX.Element">
+  A component that wraps all dashboard sections.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="DashboardSectionContainerComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the dashboard section.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="FilterContainerComponent" type="(props: FilterContainerComponentProps) => JSX.Element">
+  A component that wraps the row of dashboard filters.
+
+  <Expandable defaultOpen={false} title="props">
+    <ParamField path="FilterContainerComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the filter container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="EmptyDashboardComponent" type="() => JSX.Element">
+  A fallback component displayed when an active dashboard has no reports.
+</ParamField>
+
+<ParamField path="onClickReport" type="(report: QuillReport) => void">
+  Callback function that fires when a report is clicked. A common use
+  case is navigating to a new page based on the report's id. A dashboard is
+  composed of a list of reports that could be metrics, charts, or tables.
+
+  <Info>See the API Reference for a `QuillReport` [here](/components/dashboard#quill-report).</Info>
+</ParamField>
+
+<ParamField path="onChangeLoading" type="(isLoading: boolean) => void">
+  A callback that is fired when the loading status of the dashboard changes.
+</ParamField>
+
+<ParamField path="hideFilters" type="boolean" default={false}>
+  Whether to hide dashboard filters.
+</ParamField>
+
+<ParamField path="hideDateRangeFilter" type="boolean" default={false}>
+  Whether the date range filters on the dashboard are hidden.
+</ParamField>
+
+<ParamField path="hideXAxis" type="boolean" default={false}>
+  Whether to hide the xAxis for all charts on this dashboard.
+</ParamField>
+
+<ParamField path="hideYAxis" type="boolean" default={false}>
+  Whether to hide the yAxis for all charts on this dashboard.
+</ParamField>
+
+<ParamField path="hideCartesianGrid" type="boolean" default={false}>
+  Whether to hide the cartesian grid for all charts on this dashboard.
+</ParamField>
+
+<ParamField path="comparisonLineStyle" type="'solid' | 'dashed'" default="solid">
+  The line style for comparison ranges on all line charts on this dashboard.
+</ParamField>
+
+<ParamField path="className" type="string">
+  Applies the following classes to the ReportBuilder.
+
+  This container is the parent of all the filtering buttons as well as any
+  dashboard sections. This can be useful for TailwindCSS-style classname
+  strings.
+</ParamField>
+
+<ParamField path="containerStyle" type="React.CSSProperties">
+  The CSS styles that wrap the dashboard container.
+
+  This container is the parent of all the filtering buttons as well as any
+  dashboard sections.
+</ParamField>
+
+<ParamField path="chartContainerStyle" type="React.CSSProperties">
+  The styles for the chart container.
+</ParamField>
+
+## QuillReport
+
+<ResponseField name="id" type="string" required>
+  The report's unique id.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  The name of the report.
+</ResponseField>
+
+<ResponseField name="dashboardName" type="string" required>
+  The name of the dashboard this report belongs to.
+</ResponseField>
+
+<ResponseField name="rows" type="{ [key: string]: any }[]">
+  The rows of data returned from this report's query.
+</ResponseField>
+
+<ResponseField name="columns" type="any[]">
+  The columns data returned from this report's query.
+</ResponseField>
+
+<ResponseField name="chartType" type="'line' | 'pie' | 'table' | 'bar' | 'column' | 'metric'">
+  The type of this chart.
+</ResponseField>
+
+<ResponseField name="dateField" type="{ table: string; field: string } | null">
+  The table and field this chart uses for date filtering.
+</ResponseField>
+
+<ResponseField name="pivot" type="Pivot | null">
+  The pivot used in this query, if any.
+
+  <Expandable title="Pivot">
+    <ResponseField name="title" type="string" required>
+      The pivot title.
+    </ResponseField>
+
+    <ResponseField name="aggregationType" type="'sum' | 'average' | 'count' | 'min' | 'max'" required>
+      The aggregation type for the values in this pivot.
+    </ResponseField>
+
+    <ResponseField name="rowField" type="string" required>
+      The row field.
+    </ResponseField>
+
+    <ResponseField name="rowFieldType" type="string" required>
+      The type of the row field.
+    </ResponseField>
+
+    <ResponseField name="columnField" type="string">
+      The column field, if any.
+    </ResponseField>
+
+    <ResponseField name="columnFieldType" type="string">
+      The type of the column field, if any.
+    </ResponseField>
+
+    <ResponseField name="valueField" type="string" required>
+      The value field, if any.
+    </ResponseField>
+
+    <ResponseField name="valueFieldType" type="string" required>
+      The type of the value field, if any.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="primaryAggregation" type="string">
+  The formatted primary range aggregation value, if any.
+</ResponseField>
+
+<ResponseField name="comparisonAggregation" type="string">
+  The formatted comparison range aggregation value, if any.
+</ResponseField>
+
+<ResponseField name="aggregationPercentChange" type="number">
+  The percent change in the aggragations, if any.
+</ResponseField>
+
+<ResponseField name="xAxisLabel" type="string" required>
+  The label of the xAxis.
+</ResponseField>
+
+<ResponseField name="xAxisField" type="string" required>
+  The field to use for the report's xAxis.
+</ResponseField>
+
+<ResponseField name="xAxisFormat" type="string" required>
+  The format for the report's xAxis.
+</ResponseField>
+
+<ResponseField name="yAxisFields" type="{ field: string; label: string; format: string; }[]" required>
+  A list of metadata bout the yAxes of this report.
+</ResponseField>
+
+<ResponseField name="order" type="number" required>
+  The relative ordering of this report in relation to its siblings. Ordering
+  starts at 1 and counts up.
+
+  <Info>
+    Reports in the same section are first grouped by `chartType` and then
+    each group is sorted by `order`.
+  </Info>
+
+  Currently, the first group is `metric` and the last group is `table` with
+  the rest of the reports in between.
+</ResponseField>
+
+<ResponseField name="compareRows" type="{ [key: string]: any }[]">
+  The rows of data returned from this report's query over the comparison date
+  range as opposed to the primary date range.
+</ResponseField>
+
+<ResponseField name="filtersApplied" type="{ [key: string]: any }">
+  A map of filters that have been applied to this query.
+</ResponseField>
+
+
+# useFormat
+Source: https://docs.quillsql.com/components/format
+
+A simple way to format data from Quill
+
+```tsx App.tsx
+import { format } from "@quillsql/react";
+
+function formatExample() {
+	format(123.45, "dollar_cents"); // "$123.45"
+	format(123, "dollar_cents"); // "$123.00"
+}
+```
+
+<ParamField path="value" type="string" required>
+  The value of the thing being formatted.
+</ParamField>
+
+<ParamField
+  path="format"
+  type="'percent' |
+  'dollar_amount' | 
+  'dollar_cents' | 
+  'whole_number' | 
+  'one_decimal_place' | 
+  'two_decimal_places' | 
+  'string' | 
+  'yyyy' | 
+  'MMM_yyyy' | 
+  'MMM_dd_yyyy' | 
+  'MMM_dd' | 
+  'hh_ap_pm' | 
+  'MMM_dd-MMM_dd' | 
+  'MMM_dd_hh:mm_ap_pm' | 
+  'wo, yyyy'"
+  required
+>
+  The Quill format type of how you want to format the value.
+</ParamField>
+
+
+# Quickstart
+Source: https://docs.quillsql.com/components/quickstart
+
+Add Quill to your app in less than a minute
+
+### 1. Install dependencies
+
+Install `@quillsql/react` using your favorite package manager:
+
+<CodeGroup>
+  ```bash npm
+  npm install @quillsql/react
+  ```
+
+  ```bash yarn
+  yarn add @quillsql/react
+  ```
+
+  ```bash pnpm
+  pnpm add @quillsql/react
+  ```
+
+  ```bash bun
+  bun add @quillsql/react
+  ```
+</CodeGroup>
+
+### 2. Add QuillProvider
+
+You connect Quill to React with the `QuillProvider` component. Similar to React's `Context.Provider`, `QuillProvider` wraps your React app and places Quill Client on the context, enabling you to access it from anywhere in your component tree.
+
+In App.js, let's wrap our React app with an `QuillProvider`. We suggest putting the `QuillProvider` somewhere high in your app, above any component that might need to access Quill data.
+
+```js App.js
+import { QuillProvider } from "@quillsql/react";
+import MyApp from "./MyApp";
+
+function App() {
+  // Replace organizationId and publicKey with your values
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <MyApp />
+    </QuillProvider>
+  );
+}
+```
+
+### 3. Add your first component
+
+After your QuillProvider is hooked up, you can add Quill Components to your app. Let's start with the dashboard we created in the [portal tutorial](/portal).
+
+<Tip>
+  You can find the dashboard **name** in the portal at [https://app.quill.co](https://app.quill.co).
+</Tip>
+
+<Info>
+  Underlying queries and charts can be updated via the Quill Portal, and the
+  dashboard will render the newest version.
+</Info>
+
+```js App.js
+import { QuillProvider, Dashboard } from "@quillsql/react";
+
+function MyDashboardPage() {
+  return <Dashboard name="Transactions" />;
+}
+```
+
+
+# QuillProvider
+Source: https://docs.quillsql.com/components/quill-provider
+
+A context provider that wraps all quill components
+
+```tsx App.tsx
+import { QuillProvider } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider
+      publicKey={process.env.QUILL_API_KEY}
+      tenants={[user.organizationId]}
+    >
+      {children}
+    </QuillProvider>
+  );
+}
+```
+
+The quill provider allows all the quill components in your app to share
+information which lets your dashboards render fast and update dynamically.
+
+Similar to React's `Context.Provider`, `QuillProvider` wraps your React app
+and places Quill Client on the context, enabling you to access it from
+anywhere in your component tree. We suggest putting the QuillProvider
+somewhere high in your app, above any component that might need to access
+your quill data.
+
+### With OrgId
+
+If you're using the Quill Cloud, you can pass in your public key and the current
+organizationId (if any) and the Quill Provider will automatically connect to the
+hosted Quill Cloud.
+
+```jsx With OrgId
+<QuillProvider
+  publicKey={process.env.QUILL_API_KEY}
+  tenants={[user.organizationId]}
+>
+  {children}
+</QuillProvider>
+```
+
+### With QueryEndpoint
+
+If you're self-hosting Quill, you can point the Quill Provider to the location
+of the server running the Quill SDK. You may also pass a map of query headers
+that will be forwarded to your server with every request Quill sends. This can
+be useful if the `/quill` endpoint is behind a preexisting auth middleware.
+
+```jsx With QueryEndpoint
+<QuillProvider
+  publicKey={process.env.QUILL_API_KEY}
+  queryEndpoint="https://yourdomain.com/quill"
+  queryHeaders={{}}
+>
+  {children}
+</QuillProvider>
+```
+
+## Props
+
+<ParamField path="publicKey" type="string" required>
+  The public Quill API key. This can be found in the Quill portal in the
+  "Settings" tab.
+</ParamField>
+
+<ParamField path="environment" type="string">
+  The environment this app is running in (eg. "production").
+</ParamField>
+
+<ParamField path="tenants" type="array">
+  The tenant ids of the user. Required if not passing a queryEndpoint. If this
+  value is not passed in on the frontend, it should be passed in on the backend
+  if you are using a self-hosted server.
+</ParamField>
+
+<ParamField path="queryEndpoint" type="string">
+  The url of your self-hosted server running the quill server SDK, if any.
+</ParamField>
+
+<ParamField path="queryHeaders" type="object">
+  Additional query headers passed along with all requests to the custom query
+  endpoint, if any.
+</ParamField>
+
+<ParamField path="withCredentials" type="boolean">
+  Whether to include credentials with requests to the query endpoint.
+</ParamField>
+
+<ParamField path="theme" type="QuillTheme">
+  A custom theme used throughout your dashboard.
+</ParamField>
+
+<ParamField path="children" type="ReactNode">
+  The children of the provider. This is usually the rest of your app.
+</ParamField>
+
+
+# ReportBuilder
+Source: https://docs.quillsql.com/components/report-builder
+
+A UI component for creating and editing Quill Reports
+
+```tsx App.tsx
+import { QuillProvider, ReportBuilder } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <ReportBuilder initialTableName="transactions" />
+    </QuillProvider>
+  );
+}
+```
+
+Allows non-technical users to build SQL queries using either UI or AI and
+then edit them on the fly. Once users have constructed a query they like,
+they can click a button and add that report to their dashboard or export it
+as a CSV.
+
+<Info>
+  Make sure `QuillProvider` is a parent of the `ReportBuilder` component.
+</Info>
+
+## Examples
+
+<Tabs>
+  <Tab title="Ant Design">
+    [![Edit \[Ant Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/ant-design-quill-react-components-9qcs8k?embed=1)
+
+    ```tsx Ant Design
+    import { ReportBuilder } from "@quillsql/react";
+
+    import {
+      AntButton,
+      AntDeleteButton,
+      AntSecondaryButton,
+    } from "./ui/ant/Button";
+    import { AntCard } from "./ui/ant/Card";
+    import { AntCheckbox } from "./ui/ant/Checkbox";
+    import {
+      AntSelectColumn,
+      AntDraggableColumn,
+      AntColumnSearchEmptyState,
+    } from "./ui/ant/Column";
+    import { AntTextInput } from "./ui/ant/Input";
+    import {
+      AntChartBuilderFormContainer,
+      AntChartBuilderInputColumnContainer,
+      AntChartBuilderInputRowContainer,
+      AntContainer,
+      AntErrorMessageComponent,
+      AntLoadingComponent,
+      AntPivotColumnContainer,
+      AntPivotRowContainer,
+      AntSidebar,
+    } from "./ui/ant/Layout";
+    import { AntModal } from "./ui/ant/Modal";
+    import {
+      AntPopover,
+      AntFilterPopover,
+      AntSortPopover,
+      AntLimitPopover,
+    } from "./ui/ant/Popover";
+    import { AntSelect } from "./ui/ant/Select";
+    import { AntTable } from "./ui/ant/Table";
+    import { AntTabs } from "./ui/ant/Tabs";
+    import {
+      AntSidebarHeading,
+      AntLabel,
+      AntHeader,
+      AntText,
+      AntSubHeader,
+    } from "./ui/ant/Typography";
+
+    export function AntReportBuilder() {
+      return (
+        <ReportBuilder
+          destinationDashboard="Transactions"
+          TableComponent={AntTable}
+          SidebarComponent={AntSidebar}
+          ContainerComponent={AntContainer}
+          PopoverComponent={AntPopover}
+          CardComponent={AntCard}
+          ButtonComponent={AntButton}
+          ModalComponent={AntModal}
+          SecondaryButtonComponent={AntSecondaryButton}
+          TextInputComponent={AntTextInput}
+          SelectComponent={AntSelect}
+          TabsComponent={AntTabs}
+          CheckboxComponent={AntCheckbox}
+          SelectColumnComponent={AntSelectColumn}
+          DraggableColumnComponent={AntDraggableColumn}
+          SidebarHeadingComponent={AntSidebarHeading}
+          FilterPopoverComponent={AntFilterPopover}
+          SortPopoverComponent={AntSortPopover}
+          LimitPopoverComponent={AntLimitPopover}
+          LabelComponent={AntLabel}
+          HeaderComponent={AntHeader}
+          SubHeaderComponent={AntSubHeader}
+          TextComponent={AntText}
+          DeleteButtonComponent={AntDeleteButton}
+          ErrorMessageComponent={AntErrorMessageComponent}
+          ChartBuilderInputRowContainer={AntChartBuilderInputRowContainer}
+          ChartBuilderInputColumnContainer={AntChartBuilderInputColumnContainer}
+          PivotRowContainer={AntPivotRowContainer}
+          PivotColumnContainer={AntPivotColumnContainer}
+          LoadingComponent={AntLoadingComponent}
+          ColumnSearchEmptyState={AntColumnSearchEmptyState}
+          ChartBuilderFormContainer={AntChartBuilderFormContainer}
+        />
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab title="Material Design">
+    [![Edit \[Material Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/material-design-quill-react-components-d862dk?embed=1)
+
+    ```tsx Material Design
+    import { ReportBuilder } from "@quillsql/react";
+
+    import {
+      MaterialButton,
+      MaterialDeleteButton,
+      MaterialSecondaryButton,
+    } from "./ui/material/Button";
+    import { MaterialCard } from "./ui/material/Card";
+    import { MaterialCheckbox } from "./ui/material/Checkbox";
+    import {
+      MaterialSelectColumn,
+      MaterialDraggableColumn,
+      MaterialColumnSearchEmptyState,
+    } from "./ui/material/Column";
+    import { MaterialTextInput } from "./ui/material/Input";
+    import {
+      MaterialChartBuilderFormContainer,
+      MaterialChartBuilderInputColumnContainer,
+      MaterialChartBuilderInputRowContainer,
+      MaterialContainer,
+      MaterialErrorMessageComponent,
+      MaterialPivotColumnContainer,
+      MaterialPivotRowContainer,
+      MaterialSidebar,
+    } from "./ui/material/Layout";
+    import { MaterialModal } from "./ui/material/Modal";
+    import {
+      MaterialPopover,
+      MaterialFilterPopover,
+      MaterialSortPopover,
+      MaterialLimitPopover,
+    } from "./ui/material/Popover";
+    import { MaterialSelect } from "./ui/material/Select";
+    import { MaterialTable } from "./ui/material/Table";
+    import { MaterialTabs } from "./ui/material/Tabs";
+    import {
+      MaterialSidebarHeading,
+      MaterialLabel,
+      MaterialHeader,
+      MaterialText,
+      MaterialSubHeader,
+    } from "./ui/material/Typography";
+
+    export function MaterialReportBuilder() {
+      return (
+        <ReportBuilder
+          destinationDashboard="Transactions"
+          TableComponent={MaterialTable}
+          SidebarComponent={MaterialSidebar}
+          ContainerComponent={MaterialContainer}
+          PopoverComponent={MaterialPopover}
+          CardComponent={MaterialCard}
+          ButtonComponent={MaterialButton}
+          ModalComponent={MaterialModal}
+          SecondaryButtonComponent={MaterialSecondaryButton}
+          TextInputComponent={MaterialTextInput}
+          SelectComponent={MaterialSelect}
+          TabsComponent={MaterialTabs}
+          CheckboxComponent={MaterialCheckbox}
+          SelectColumnComponent={MaterialSelectColumn}
+          DraggableColumnComponent={MaterialDraggableColumn}
+          SidebarHeadingComponent={MaterialSidebarHeading}
+          FilterPopoverComponent={MaterialFilterPopover}
+          SortPopoverComponent={MaterialSortPopover}
+          LimitPopoverComponent={MaterialLimitPopover}
+          LabelComponent={MaterialLabel}
+          HeaderComponent={MaterialHeader}
+          SubHeaderComponent={MaterialSubHeader}
+          TextComponent={MaterialText}
+          DeleteButtonComponent={MaterialDeleteButton}
+          ErrorMessageComponent={MaterialErrorMessageComponent}
+          ChartBuilderInputRowContainer={MaterialChartBuilderInputRowContainer}
+          ChartBuilderInputColumnContainer={
+            MaterialChartBuilderInputColumnContainer
+          }
+          PivotRowContainer={MaterialPivotRowContainer}
+          PivotColumnContainer={MaterialPivotColumnContainer}
+          ColumnSearchEmptyState={MaterialColumnSearchEmptyState}
+          ChartBuilderFormContainer={MaterialChartBuilderFormContainer}
+        />
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Prefetch data from a particular table
+
+You can pass an `initialTableName` to have the report builder automatically load
+data from a particular table in your schema.
+
+```tsx App.tsx
+import { QuillProvider, ReportBuilder } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <ReportBuilder initialTableName="transactions" />
+    </QuillProvider>
+  );
+}
+```
+
+### Edit an existing report
+
+You can pass a `reportId` to have the report builder load the metadata for a
+pre-existing report. This might be useful if you want to allow your end
+users to edit the reports they created.
+
+```tsx App.tsx
+import { QuillProvider, ReportBuilder } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <ReportBuilder reportId="664283fb4db8ad000bfe54d7" />
+    </QuillProvider>
+  );
+}
+```
+
+### Query all views in your Quill schema
+
+By default, the Quill Report Builder will query all tables in your schema and
+new reports will be created upon completion.
+
+```tsx App.tsx
+import { QuillProvider, ReportBuilder } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider tenants={[2]} publicKey="6579031b3e41c378aa8180ec">
+      <ReportBuilder />
+    </QuillProvider>
+  );
+}
+```
+
+## Props
+
+<ParamField path="initialTableName" type="string">
+  The default table name to show when first loading the ReportBuilder.
+
+  <Tip>See the [prefetch data example](/components/report-builder#prefetch-data-from-a-particular-table) to see an example of how this is used.</Tip>
+</ParamField>
+
+<ParamField path="destinationDashboard" type="string">
+  The dashboard to add reports to once they have been created.
+
+  <Tip>Checkout our [UI examples](/components/examples) to see how this is used.</Tip>
+</ParamField>
+
+<ParamField path="organizationName" type="string">
+  The organization that will own the report created through this flow.
+
+  <Info>When using ReportBuilder in your product, you can use this prop to allow your users to create reports for only their organization.</Info>
+</ParamField>
+
+<ParamField path="ButtonComponent" type="(props: ButtonComponentProps) => JSX.Element">
+  A primary button component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/button.png" />
+
+    ```jsx Example
+    export function ButtonComponent({ onClick, label, disabled, icon }) {
+    	return (
+    		<button onClick={onClick} disabled={disabled}>
+    			{icon}
+    			{label}
+    		</button>
+    	);
+    }
+    ```
+
+    <ParamField path="ButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+
+        <ResponseField name="label" type="string" required>
+          The text content of the button.
+        </ResponseField>
+
+        <ResponseField name="disabled" type="boolean">
+          Whether the button is disabled.
+        </ResponseField>
+
+        <ResponseField name="icon" type="ReactNode">
+          An icon to put in front of the label.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SecondaryButtonComponent" type="(props: ButtonComponentProps) => JSX.Element">
+  A secondary button component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/secondary_button.png" />
+
+    ```jsx Example
+    export function SecondaryButtonComponent({ onClick, label, disabled, icon }) {
+    	return (
+    		<button onClick={onClick} disabled={disabled}>
+    			{icon}
+    			{label}
+    		</button>
+    	);
+    }
+    ```
+
+    <ParamField path="ButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+
+        <ResponseField name="label" type="string" required>
+          The text content of the button.
+        </ResponseField>
+
+        <ResponseField name="disabled" type="boolean">
+          Whether the button is disabled.
+        </ResponseField>
+
+        <ResponseField name="icon" type="ReactNode">
+          An icon to put in front of the label.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DeleteButtonComponent" type="(props: DeleteButtonComponentProps) => JSX.Element">
+  A small delete button used to click out of things. Usually an "X" icon.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/delete_button.png" />
+
+    ```jsx Example
+    import { deleteSVG } from "./ui/icons";
+    export function DeleteButtonComponent({ onClick }) {
+    	return <button onClick={onClick}>{deleteSVG}</button>;
+    }
+    ```
+
+    <ParamField path="DeleteButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TextInputComponent" type="(props: TextInputComponentProps) => JSX.Element">
+  A input element for getting text from the user.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/text_input.png" />
+
+    ```jsx Example
+    export function TextInputComponent({ id, width, value, label, placeholder, onChange }) {
+    	return (
+    		<label>
+    			{label}
+    			<input
+    				id={id}
+    				style={{ width }}
+    				value={value}
+    				placeholder={placeholder}
+    				onChange={onChange}
+    			/>
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="TextInputComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="id" type="string" required>
+          The id of the input element.
+        </ResponseField>
+
+        <ResponseField name="width" type="number" required>
+          The width of the input element in pixels.
+        </ResponseField>
+
+        <ResponseField name="value" type="string" required>
+          The width of the input element in pixels.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          The label of the text input component.
+        </ResponseField>
+
+        <ResponseField name="placeholder" type="string">
+          The placeholder for the input element.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLInputElement>) => void" required>
+          An event callback that is fired when the input value changes.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ModalComponent" type="(props: ModalComponentProps) => JSX.Element">
+  A modal component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/modal.png" />
+
+    ```jsx Example
+    import { Modal } from "./ui/modal";
+    export function ModalComponent({ isOpen, setIsOpen, title, children, width, height }) {
+    	return (
+    		<Modal
+    			isOpen={isOpen}
+    			setIsOpen={setIsOpen}
+    			title={title}
+    			style={{ width, height }}
+    		>
+    			{children}
+    		</Modal>
+    	);
+    }
+    ```
+
+    <ParamField path="ModalComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="title" type="string">
+          The title of the modal, if any.
+        </ResponseField>
+
+        <ResponseField name="children" type="ReactNode" required>
+          The body of the modal.
+        </ResponseField>
+
+        <ResponseField name="width" type="number">
+          The width of the modal, in pixels.
+        </ResponseField>
+
+        <ResponseField name="height" type="number">
+          The height of the modal, in pixels.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderModalComponent" type="(props: ModalComponentProps) => JSX.Element">
+  A modal component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/chart_builder_modal.png" />
+
+    ```jsx Example
+    import { Modal } from "./ui/modal";
+    export function ChartBuilderModalComponent({ isOpen, setIsOpen, title, children, width, height }) {
+    	return (
+    		<Modal
+    			isOpen={isOpen}
+    			setIsOpen={setIsOpen}
+    			title={title}
+    			style={{ width, height }}
+    		>
+    			{children}
+    		</Modal>
+    	);
+    }
+    ```
+
+    <ParamField path="ModalComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="title" type="string">
+          The title of the modal, if any.
+        </ResponseField>
+
+        <ResponseField name="children" type="ReactNode" required>
+          The body of the modal.
+        </ResponseField>
+
+        <ResponseField name="width" type="number">
+          The width of the modal, in pixels.
+        </ResponseField>
+
+        <ResponseField name="height" type="number">
+          The height of the modal, in pixels.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SelectComponent" type="(props: SelectComponentProps) => JSX.Element">
+  A select component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/select.png" />
+
+    ```jsx Example
+    export function SelectComponent({ value, label, width, onChange, options }) {
+    	return (
+    		<label>
+    			{label}
+    			<select value={value} onChange={onChange} style={{ width }}>
+    				{options.map(({ value, label }) => <option value={value}>{label}</option>)}
+    			</select>
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="SelectComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="value" type="string" required>
+          The value of the select element.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          The label above the select element.
+        </ResponseField>
+
+        <ResponseField name="width" type="number" required>
+          The width of the select element, in pixels.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLSelectElement>) => void" required>
+          An event callback that is fired when the select value changes.
+        </ResponseField>
+
+        <ResponseField name="options" type="{ value: string; label: string; }[]" required>
+          An array of value, label pairs which represent the select options.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TableComponent" type="(props: TableComponentProps) => JSX.Element">
+  A table component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/table.png" />
+
+    ```jsx Example
+    import { Table } from "./ui/table";
+    import { LoadingSkeleton } from "./ui/loading";
+
+    export function TableComponent({ rows, columns, isLoading }) {
+    	if (isLoading) return <LoadingSkeleton />
+    	return <Table rows={rows} columns={columns} />;
+    }
+    ```
+
+    <ParamField path="TableComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="rows" type="{ [key: string]: any }[]" required>
+          The rows of the table are an array of objects.
+        </ResponseField>
+
+        <ResponseField name="columns" type="{ label: string; field: string; }[]" required>
+          The columns of the table are an array of label, field pairs.
+        </ResponseField>
+
+        <ResponseField name="isLoading" type="boolean">
+          Whether the table is loading.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PopoverComponent" type="(props: PopoverComponentProps) => JSX.Element">
+  A popover component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/pivot_popover.png" />
+
+    ```jsx Example
+    import { Popover } from "./ui/popover";
+
+    export function PopoverComponent({ isOpen, setIsOpen, popoverTitle, popoverChildren }) {
+    	return (
+    		<Popover isOpen={isOpen} setIsOpen={setIsOpen} title={popoverTitle}>
+    			{popoverChildren}
+    		</Popover>
+    	);
+    }
+    ```
+
+    <ParamField path="PopoverComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="triggerLabel" type="string">
+          The label of the popover trigger, if any.
+        </ResponseField>
+
+        <ResponseField name="popoverTitle" type="string">
+          The title of the popover, if any.
+        </ResponseField>
+
+        <ResponseField name="popoverChildren" type="ReactNode" required>
+          The body of the popover.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField
+  path="FilterPopoverComponent"
+  type="(props: FilterPopoverComponentProps) =>
+JSX.Element"
+>
+  A popover component for filters created in the report builder.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/filter_popover.png" />
+
+    ```jsx Example
+    import { Popover } from "./ui/popover";
+
+    export function FilterPopoverComponent({ isOpen, setIsOpen, popoverTitle, popoverChildren }) {
+    	return (
+    		<Popover isOpen={isOpen} setIsOpen={setIsOpen} title={popoverTitle}>
+    			{popoverChildren}
+    		</Popover>
+    	);
+    }
+    ```
+
+    <ParamField path="FilterPopoverComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="popoverTitle" type="string">
+          The title of the popover, if any.
+        </ResponseField>
+
+        <ResponseField name="popoverChildren" type="ReactNode" required>
+          The body of the popover.
+        </ResponseField>
+
+        <ResponseField name="filterLabel" type="string" required>
+          The text contents of the filter item.
+        </ResponseField>
+
+        <ResponseField name="onClickDelete" type="(event: MouseEvent<HTMLElement>) => void" required>
+          An event callback fired when the user clicks the delete button on the
+          filter.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SortPopoverComponent" type="(props: SortPopoverComponentProps) => JSX.Element">
+  A popover component for sort items created in the report builder.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/sort_popover.png" />
+
+    ```jsx Example
+    import { Popover } from "./ui/popover";
+
+    export function SortPopoverComponent({ isOpen, setIsOpen, popoverTitle, popoverChildren }) {
+    	return (
+    		<Popover isOpen={isOpen} setIsOpen={setIsOpen} title={popoverTitle}>
+    			{popoverChildren}
+    		</Popover>
+    	);
+    }
+    ```
+
+    <ParamField path="SortPopoverComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="popoverTitle" type="string">
+          The title of the popover, if any.
+        </ResponseField>
+
+        <ResponseField name="popoverChildren" type="ReactNode" required>
+          The body of the popover.
+        </ResponseField>
+
+        <ResponseField name="sortLabel" type="string" required>
+          The text contents of the sort item.
+        </ResponseField>
+
+        <ResponseField name="onClickDelete" type="(event: MouseEvent<HTMLElement>) => void" required>
+          An event callback fired when the user clicks the delete button on the
+          sort item.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="LimitPopoverComponent" type="(props: LimitPopoverComponentProps) => JSX.Element">
+  A popover component for limits created in the report builder.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/limit_popover.png" />
+
+    ```jsx Example
+    import { Popover } from "./ui/popover";
+
+    export function LimitPopoverComponent({ isOpen, setIsOpen, popoverTitle, popoverChildren }) {
+    	return (
+    		<Popover isOpen={isOpen} setIsOpen={setIsOpen} title={popoverTitle}>
+    			{popoverChildren}
+    		</Popover>
+    	);
+    }
+    ```
+
+    <ParamField path="LimitPopoverComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the popover is open.
+        </ResponseField>
+
+        <ResponseField name="popoverTitle" type="string">
+          The title of the popover, if any.
+        </ResponseField>
+
+        <ResponseField name="popoverChildren" type="ReactNode" required>
+          The body of the popover.
+        </ResponseField>
+
+        <ResponseField name="limitLabel" type="string" required>
+          The text contents of the limit.
+        </ResponseField>
+
+        <ResponseField name="onClickDelete" type="(event: MouseEvent<HTMLElement>) => void" required>
+          An event callback fired when the user clicks the delete button on the
+          limit.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TabsComponent" type="(props: TabsComponentProps) => JSX.Element">
+  A small navigation menu used to switch between two or more states.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/tabs.png" />
+
+    ```jsx Example
+    import { Tabs, Tab } from "./ui/tabs";
+    export function TabsComponent({ value, onChange, options }) {
+    	return (
+    		<Tabs value={value} onChange={onChange}>
+    			{options.map(({ value, label }) => <Tab value={value}>{label}</Tab>)}
+    		</Tabs>
+    	);
+    }
+    ```
+
+    <ParamField path="TabsComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="value" type="string" required>
+          The value of the currently selected tab.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLSelectElement>) => void" required>
+          An event callback fired when the selected tab changes.
+        </ResponseField>
+
+        <ResponseField name="options" type="{ label: string; value: string; }[]" required>
+          An array of value, label pairs which represent the tabs to display.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="CheckboxComponent" type="(props: CheckboxComponentProps) => JSX.Element">
+  A checkbox component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/checkbox.png" />
+
+    ```jsx Example
+    export function CheckboxComponent({ isChecked, label, onChange }) {
+    	return (
+    		<label>
+    			<input type="checkbox" checked={isChecked} onChange={onChange} />
+    			{label}
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="CheckboxComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="isChecked" type="boolean" required>
+          Whether the checkbox is checked.
+        </ResponseField>
+
+        <ResponseField name="label" type="string" required>
+          A label for the checkbox component.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: React.ChangeEvent<HTMLInputElement>) => void" required>
+          An event callback fired when the checkbox's value changes.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SidebarComponent" type="(props: SidebarComponentProps) => JSX.Element">
+  A container for the left sidebar.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/sidebar_component.png" />
+
+    ```jsx Example
+    export function SidebarComponent({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "column",
+    		gap: 24,
+    	}
+    	return <aside style={style}>{children}</aside>
+    }
+    ```
+
+    <ParamField path="SidebarComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the sidebar container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ContainerComponent" type="(props: ContainerComponentProps) => JSX.Element">
+  A container for the main content (everything right of the sidebar).
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/container.png" />
+
+    ```jsx Example
+    export function ContainerComponent({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "column",
+    		gap: 24,
+    	}
+    	return <main style={style}>{children}</main>
+    }
+    ```
+
+    <ParamField path="ContainerComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the main container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="LoadingComponent" type="() => JSX.Element">
+  A component to show while the query results are loading.
+</ParamField>
+
+<ParamField
+  path="SelectColumnComponent"
+  type="(props: SelectColumnComponentProps) =>
+JSX.Element"
+>
+  A component to show selected columns.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/select_column.png" />
+
+    ```jsx Example
+    export function SelectColumnComponent({ label, isSelected, setSelected, DragHandle }) {
+    	return (
+    		<div>
+    			<DragHandle/>
+    			<input type="checkbox" isChecked={isSelected} onClick={setSelected} />
+    			{label}
+    		</div>
+    	);
+    }
+    ```
+
+    <ParamField path="SelectColumnComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="string" required>
+          The label of the selected column.
+        </ResponseField>
+
+        <ResponseField name="isSelected" type="boolean" required>
+          Whether this column has been selected.
+        </ResponseField>
+
+        <ResponseField name="setSelected" type="() => void" required>
+          A callback that is fired when the user checks this columns' checkbox.
+        </ResponseField>
+
+        <ResponseField name="DragHandle" type="({ dragIcon }: { dragIcon: () => JSX.Element }) => JSX.Element">
+          The handle the user drags this column by.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DraggableColumnComponent" type="(props: DraggableColumnComponentProps) => JSX.Element">
+  A draggable component used to reorder columns.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/drag_column.png" />
+
+    ```jsx Example
+    import { DeleteSVG } from "./ui/icons";
+    export function DraggableColumnComponent({ label, onDelete, DragHandle }) {
+    	return (
+    		<div>
+    			<DragHandle/>
+    			{label}
+    			<button onClick={onDelete}>
+    				<DeleteSVG />
+    			</button>
+    		</div>
+    	);
+    }
+    ```
+
+    <ParamField path="DraggableColumnComponentProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="label" type="string" required>
+          The label of the draggable column.
+        </ResponseField>
+
+        <ResponseField name="onDelete" type="() => void" required>
+          A callback that is fired when this column is removed from the query.
+        </ResponseField>
+
+        <ResponseField name="DragHandle" type="({ dragIcon }: { dragIcon: () => JSX.Element }) => JSX.Element">
+          The handle the user drags this column by.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SidebarHeadingComponent" type="(props: SidebarHeadingComponentProps) => JSX.Element">
+  A heading element for the sidebar.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/sidebar_heading.png" />
+
+    ```jsx Example
+    export function SidebarHeadingComponent({ label }) {
+    	return <h2>{label}</h2>;
+    }
+    ```
+
+    <ParamField path="SidebarHeadingComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="string" required>
+          The text content of the sidebar heading.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="CardComponent" type="(props: CardComponentProps) => JSX.Element">
+  A card component used as a dismissable container of pivot information.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/card.png" />
+
+    ```jsx Example
+    import { Card } from "./ui/card";
+    export function CardComponent({ onClick, onDelete, children }) {
+    	const style = { position: 'absolute', top: 0, right: 0 };
+    	return (
+    		<Card onClick={onClick} style={{ position: 'relative' }}>
+    			{onDelete && <DeleteButton style={style} onClick={onDelete} />}
+    			{children}
+    		</Card>
+    	);
+    }
+    ```
+
+    <ParamField path="CardComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+
+        <ResponseField name="onClick" type="() => void">
+          A callback that is fired when the card is clicked.
+        </ResponseField>
+
+        <ResponseField name="onDelete" type="() => void">
+          A callback that is fired the card is deleted.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="LabelComponent" type="(props: LabelComponentProps) => JSX.Element">
+  A label component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/label.png" />
+
+    ```jsx Example
+    export function LabelComponent({ label }) {
+    	return <h4>{label}</h4>;
+    }
+    ```
+
+    <ParamField path="LabelComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="string" required>
+          The text content of the element.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="HeaderComponent" type="(props: HeaderComponentProps) => JSX.Element">
+  A header component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/header.png" />
+
+    ```jsx Example
+    export function HeaderComponent({ label }) {
+    	return <h2>{label}</h2>;
+    }
+    ```
+
+    <ParamField path="HeaderComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="string" required>
+          The text content of the element.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TextComponent" type="(props: TextComponentProps) => JSX.Element">
+  A simple text component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/text.png" />
+
+    ```jsx Example
+    export function TextComponent({ label }) {
+    	return <p>{label}</p>;
+    }
+    ```
+
+    <ParamField path="TextComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="string" required>
+          The text content of the element.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SubHeaderComponent" type="(props: { label: string }) => JSX.Element">
+  A sub-header component describes a group of inputs.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/subheader.png" />
+
+    ```jsx Example
+    export function SubHeaderComponent({ label }) {
+    	return <h3>{label}</h3>;
+    }
+    ```
+
+    <ParamField path="SubHeaderComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="() => void" required>
+          The label of the sub-header component.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderInputRowContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for each row of inputs for the ChartBuilder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/chart_builder_input_row_container.png" />
+
+    ```jsx Example
+    export function ChartBuilderInputRowContainer({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "row",
+    		gap: 12,
+    	}
+    	return <div style={style}>{children}</div>
+    }
+    ```
+
+    <ParamField path="ChartBuilderInputRowContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderInputColumnContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked rows of inputs for the ChartBuilder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/chart_builder_input_column_container.png" />
+
+    ```jsx Example
+    export function ChartBuilderInputColumnContainer({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "column",
+    		gap: 12,
+    	}
+    	return <div style={style}>{children}</div>
+    }
+    ```
+
+    <ParamField path="ChartBuilderInputColumnContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PivotRowContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for each row of inputs for the pivot form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/pivot_row_container.png" />
+
+    ```jsx Example
+    export function PivotRowContainer({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "row",
+    		gap: 12,
+    	}
+    	return <div style={style}>{children}</div>
+    }
+    ```
+
+    <ParamField path="PivotRowContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PivotColumnContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked rows of inputs for the pivot form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/pivot_column_container.png" />
+
+    ```jsx Example
+    export function PivotColumnContainer({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "column",
+    		gap: 12,
+    	}
+    	return <div style={style}>{children}</div>
+    }
+    ```
+
+    <ParamField path="PivotColumnContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderFormContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked sections of the chart builder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/chart_builder_form_container.png" />
+
+    ```jsx Example
+    export function ChartBuilderFormContainer({ children }) {
+    	const style = {
+    		display: "flex",
+    		flexDirection: "column",
+    		gap: 18,
+    	}
+    	return <div style={style}>{children}</div>
+    }
+    ```
+
+    <ParamField path="ChartBuilderFormContainerProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ErrorMessageComponent" type="(props: { children: ReactNode }) => JSX.Element">
+  A component that displays error messages.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/quill/images/error_message.png" />
+
+    ```jsx Example
+    export function ErrorMessageComponent({ errorMessage }) {
+    	return <div>{errorMessage}</div>
+    }
+    ```
+
+    <ParamField path="ErrorMessageComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="errorMessage" type="ReactNode" required>
+          The error message.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ColumnSearchEmptyState" type="() => JSX.Element">
+  A component to show when no columns match the user's query.
+</ParamField>
+
+<ParamField path="isAdminEnabled" type="boolean" default={false}>
+  Whether the ReportBuilder is in admin mode (default: `false`).
+</ParamField>
+
+<ParamField path="isAIEnabled" type="boolean" default={true}>
+  Whether the ReportBuilder's AI features are enabled (default: `true`).
+</ParamField>
+
+<ParamField path="pivotRecommendationsEnabled" type="boolean">
+  Whether the PivotModal's AI features are enabled.
+</ParamField>
+
+<ParamField path="showChartBuilderTableFormatOptions" type="boolean">
+  Whether to show the table format options on the ChartBuilder form.
+</ParamField>
+
+<ParamField path="className" type="CSSProperties">
+  Applies the following classes to the ReportBuilder.
+
+  This can be useful for TailwindCSS-style classname strings.
+</ParamField>
+
+<ParamField path="containerStyle" type="CSSProperties">
+  Custom styling properties for the ReportBuilder's top-level container.
+</ParamField>
+
+<ParamField path="reportId" type="string">
+  A report id that the Report Builder will query from and modify.
+
+  <Tip>See the [report id example](/components/report-builder#edit-an-existing-report) to see an example of how this is used.</Tip>
+</ParamField>
+
+<ParamField path="onSubmitCreateReport" type="(report: QuillReport) => void">
+  A callback function that will trigger when a new report is created.
+</ParamField>
+
+<ParamField path="onSubmitEditReport" type="(report: QuillReport) => void">
+  A callback function that will trigger when a existing report is edited.
+</ParamField>
+
+<ParamField path="hideCopySQL" type="boolean" default={true}>
+  Whether to hide the copy SQL button.
+</ParamField>
+
+<ParamField path="isChartBuilderHorizontalView" type="boolean" default={true}>
+  Whether the chart builder is in horizontal view mode.
+
+  Horizontal view mode is where the chart and table are displayed on the left
+  and the editing form is displayed on the right, rather than being stacked
+  vertically.
+</ParamField>
+
+
+# SQLEditor
+Source: https://docs.quillsql.com/components/sql-editor
+
+A UI component for creating and editing Quill Reports with SQL
+
+```tsx App.tsx
+import { QuillProvider, SQLEditor } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider organizationId="2" publicKey="6579031b3e41c378aa8180ec">
+      <SQLEditor />
+    </QuillProvider>
+  );
+}
+```
+
+Allows your users to build and write custom SQL queries and then add those
+queries into their dashboard as a metric, chart, or table.
+
+<Info>Make sure `QuillProvider` is a parent of the `SQLEditor` component.</Info>
+
+## Examples
+
+<Tabs>
+  <Tab title="Ant Design">
+    [![Edit \[Ant Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/ant-design-quill-react-components-9qcs8k?embed=1)
+
+    ```tsx
+    import { SQLEditor } from "@quillsql/react";
+
+    import { AntTable } from "./ui/ant/Table";
+    import { AntSelectComponent } from "./ui/ant/SelectComponent";
+    import { AntButton, AntSecondaryButton } from "./ui/ant/Button";
+    import { AntTextInput } from "./ui/ant/Input";
+
+    export function AntSQLEditor() {
+      return (
+        <SQLEditor
+          ButtonComponent={AntButton}
+          SecondaryButtonComponent={AntSecondaryButton}
+          TextInputComponent={AntTextInput}
+          SelectComponent={AntSelectComponent}
+          TableComponent={AntTable}
+        />
+      );
+    }
+    ```
+  </Tab>
+
+  <Tab title="Material Design">
+    [![Edit \[Material Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/material-design-quill-react-components-d862dk?embed=1)
+
+    ```tsx
+    import { SQLEditor } from "@quillsql/react";
+
+    import { MaterialTable } from "./ui/material/Table";
+    import { MaterialSelect } from "./ui/material/Select";
+    import { MaterialButton, MaterialSecondaryButton } from "./ui/material/Button";
+    import { MaterialTextInput } from "./ui/material/Input";
+
+    export function MaterialSQLEditor() {
+      return (
+        <SQLEditor
+          ButtonComponent={MaterialButton}
+          SecondaryButtonComponent={MaterialSecondaryButton}
+          TextInputComponent={MaterialTextInput}
+          SelectComponent={MaterialSelect}
+          TableComponent={MaterialTable}
+        />
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<ParamField path="ButtonComponent" type="(props: ButtonComponentProps) => JSX.Element">
+  A primary button component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/button.png" />
+
+    ```jsx Example
+    export function ButtonComponent({ onClick, label, disabled, icon }) {
+    	return (
+    		<button onClick={onClick} disabled={disabled}>
+    			{icon}
+    			{label}
+    		</button>
+    	);
+    }
+    ```
+
+    <ParamField path="ButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+
+        <ResponseField name="label" type="string" required>
+          The text content of the button.
+        </ResponseField>
+
+        <ResponseField name="disabled" type="boolean">
+          Whether the button is disabled.
+        </ResponseField>
+
+        <ResponseField name="icon" type="ReactNode">
+          An icon to put in front of the label.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SecondaryButtonComponent" type="(props: ButtonComponentProps) => JSX.Element">
+  A secondary button component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/secondary_button.png" />
+
+    ```jsx Example
+    export function SecondaryButtonComponent({ onClick, label, disabled, icon }) {
+    	return (
+    		<button onClick={onClick} disabled={disabled}>
+    			{icon}
+    			{label}
+    		</button>
+    	);
+    }
+    ```
+
+    <ParamField path="ButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+
+        <ResponseField name="label" type="string" required>
+          The text content of the button.
+        </ResponseField>
+
+        <ResponseField name="disabled" type="boolean">
+          Whether the button is disabled.
+        </ResponseField>
+
+        <ResponseField name="icon" type="ReactNode">
+          An icon to put in front of the label.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="DeleteButtonComponent" type="(props: DeleteButtonComponentProps) => JSX.Element">
+  A small delete button used to click out of things. Usually an "X" icon.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/delete_button.png" />
+
+    ```jsx Example
+    import { deleteSVG } from "./ui/icons";
+    export function DeleteButtonComponent({ onClick }) {
+    	return <button onClick={onClick}>{deleteSVG}</button>;
+    }
+    ```
+
+    <ParamField path="DeleteButtonComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="onClick" type="() => void" required>
+          A callback fired when the button is clicked.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TextInputComponent" type="(props: TextInputComponentProps) => JSX.Element">
+  A input element for getting text from the user.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/text_input.png" />
+
+    ```jsx Example
+    export function TextInputComponent({ id, width, value, label, placeholder, onChange }) {
+    	return (
+    		<label>
+    			{label}
+    			<input
+    				id={id}
+    				style={{ width }}
+    				value={value}
+    				placeholder={placeholder}
+    				onChange={onChange}
+    			/>
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="TextInputComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="id" type="string" required>
+          The id of the input element.
+        </ResponseField>
+
+        <ResponseField name="width" type="number" required>
+          The width of the input element in pixels.
+        </ResponseField>
+
+        <ResponseField name="value" type="string" required>
+          The width of the input element in pixels.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          A label for the text input.
+        </ResponseField>
+
+        <ResponseField name="placeholder" type="string">
+          The placeholder for the input element.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLInputElement>) => void" required>
+          An event callback that is fired when the input value changes.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SelectComponent" type="(props: SelectComponentProps) => JSX.Element">
+  A select element for letting the user select from a set of options.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/select.png" />
+
+    ```jsx Example
+    export function SelectComponent({ value, label, width, onChange, options }) {
+    	return (
+    		<label>
+    			{label}
+    			<select value={value} onChange={onChange} style={{ width }}>
+    				{options.map(({ value, label }) => <option value={value}>{label}</option>)}
+    			</select>
+    		</label>
+    	);
+    }
+    ```
+
+    <ParamField path="SelectComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="value" type="string" required>
+          The value of the select.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          A label for the select.
+        </ResponseField>
+
+        <ResponseField name="options" type="{ value: string; label: string; }[]" required>
+          The select options.
+        </ResponseField>
+
+        <ResponseField name="onChange" type="(event: ChangeEvent<HTMLInputElement>) => void" required>
+          An event callback that is fired when the selected element changes.
+        </ResponseField>
+
+        <ResponseField name="width" type="number" required>
+          The width of the select element in pixels.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TableComponent" type="(props: TableComponentProps) => JSX.Element">
+  A table component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/table.png" />
+
+    ```jsx Example
+    import { Table } from "./ui/table";
+    import { LoadingSkeleton } from "./ui/loading";
+
+    export function TableComponent({ rows, columns, isLoading }) {
+    	if (isLoading) return <LoadingSkeleton />
+    	return <Table rows={rows} columns={columns} />;
+    }
+    ```
+
+    <ParamField path="TableComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="rows" type="{ [key: string]: any }[]" required>
+          The rows of the table are an array of objects.
+        </ResponseField>
+
+        <ResponseField name="columns" type="{ label: string; field: string; }[]" required>
+          The columns of the table are an array of label, field pairs.
+        </ResponseField>
+
+        <ResponseField name="isLoading" type="boolean">
+          Whether the table is loading.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="LoadingComponent" type="() => JSX.Element">
+  A component to show while the query results are loading.
+</ParamField>
+
+<ParamField path="CardComponent" type="(props: CardComponentProps) => JSX.Element">
+  A card component used as a dismissable container of pivot information.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/card.png" />
+
+    ```jsx Example
+    import { Card } from "./ui/card";
+    export function CardComponent({ onClick, onDelete, children }) {
+    	const style = { position: 'absolute', top: 0, right: 0 };
+    	return (
+    		<Card onClick={onClick} style={{ position: 'relative' }}>
+    			{onDelete && <DeleteButton style={style} onClick={onDelete} />}
+    			{children}
+    		</Card>
+    	);
+    }
+    ```
+
+    <ParamField path="CardComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+
+        <ResponseField name="onClick" type="() => void">
+          A callback that is fired when the card is clicked.
+        </ResponseField>
+
+        <ResponseField name="onDelete" type="() => void">
+          A callback that is fired the card is deleted.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ModalComponent" type="(props: ModalComponentProps) => JSX.Element">
+  A modal component to use to open the add to dashboard dialog.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/modal.png" />
+
+    ```jsx Example
+    import { Modal } from "./ui/modal";
+    export function ModalComponent({ isOpen, setIsOpen, title, children, width, height }) {
+    	return (
+    		<Modal
+    			isOpen={isOpen}
+    			setIsOpen={setIsOpen}
+    			title={title}
+    			style={{ width, height }}
+    		>
+    			{children}
+    		</Modal>
+    	);
+    }
+    ```
+
+    <ParamField path="ModalComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="title" type="string">
+          The title of the modal, if any.
+        </ResponseField>
+
+        <ResponseField name="children" type="ReactNode" required>
+          The body of the modal.
+        </ResponseField>
+
+        <ResponseField name="width" type="number">
+          The width of the modal, in pixels.
+        </ResponseField>
+
+        <ResponseField name="height" type="number">
+          The height of the modal, in pixels.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PopoverComponent" type="(props: PopoverComponentProps) => JSX.Element">
+  A popover component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/pivot_popover.png" />
+
+    ```jsx Example
+    import { Popover } from "./ui/popover";
+
+    export function PopoverComponent({ isOpen, setIsOpen, popoverTitle, popoverChildren }) {
+    	return (
+    		<Popover isOpen={isOpen} setIsOpen={setIsOpen} title={popoverTitle}>
+    			{popoverChildren}
+    		</Popover>
+    	);
+    }
+    ```
+
+    <ParamField path="PopoverComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="isOpen" type="boolean" required>
+          Whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="setIsOpen" type="(isOpen: boolean) => void" required>
+          A callback to set whether the modal is open.
+        </ResponseField>
+
+        <ResponseField name="triggerLabel" type="string">
+          The label for the trigger of this popover.
+        </ResponseField>
+
+        <ResponseField name="popoverTitle" type="string">
+          The title of the popover.
+        </ResponseField>
+
+        <ResponseField name="popoverChildren" type="ReactNode">
+          The children of this popover.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="LabelComponent" type="(props: { label: string }) => JSX.Element">
+  A label component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/label.png" />
+
+    ```jsx Example
+    export function LabelComponent({ label }) {
+    	return <h4>{label}</h4>;
+    }
+    ```
+
+    <ParamField path="LabelComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="() => void" required>
+          The label of the label component.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="HeaderComponent" type="(props: { label: string }) => JSX.Element">
+  A header component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/header.png" />
+
+    ```jsx Example
+    export function HeaderComponent({ label }) {
+    	return <h2>{label}</h2>;
+    }
+    ```
+
+    <ParamField path="HeaderComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="() => void" required>
+          The label of the header component.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="SubHeaderComponent" type="(props: { label: string }) => JSX.Element">
+  A sub-header component describes a group of inputs.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/subheader.png" />
+
+    ```jsx Example
+    export function SubHeaderComponent({ label }) {
+    	return <h3>{label}</h3>;
+    }
+    ```
+
+    <ParamField path="SubHeaderComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="() => void" required>
+          The label of the sub-header component.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="TextComponent" type="(props: { label: string }) => JSX.Element">
+  A simple text component.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/text.png" />
+
+    ```jsx Example
+    export function TextComponent({ label }) {
+    	return <p>{label}</p>;
+    }
+    ```
+
+    <ParamField path="TextComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="label" type="() => void" required>
+          The label of the text component.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderInputRowContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for each row of inputs for the ChartBuilder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/chart_builder_input_row_container.png" />
+
+    <ParamField path="ChartBuilderInputRowContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderInputColumnContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked rows of inputs for the ChartBuilder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/chart_builder_input_column_container.png" />
+
+    <ParamField path="ChartBuilderInputColumnContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PivotRowContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for each row of inputs for the pivot form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/pivot_row_container.png" />
+
+    <ParamField path="PivotRowContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="PivotColumnContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked rows of inputs for the pivot form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/pivot_column_container.png" />
+
+    <ParamField path="PivotColumnContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ChartBuilderFormContainer" type="(props: { children: ReactNode }) => JSX.Element">
+  A container for vertically-stacked sections of the chart builder form.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/chart_builder_form_container.png" />
+
+    <ParamField path="ChartBuilderFormContainerProps" type="object">
+      <Expandable title="properties">
+        <ResponseField name="children" type="ReactNode" required>
+          The children of the container.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="ErrorMessageComponent" type="(props: { children: ReactNode }) => JSX.Element">
+  A component that displays error messages.
+
+  <Expandable defaultOpen={false} title="props">
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/error_message.png" />
+
+    ```jsx Example
+    export function ErrorMessageComponent({ errorMessage }) {
+    	return <div>{errorMessage}</div>
+    }
+    ```
+
+    <ParamField path="ErrorMessageComponentProps" type="object">
+      <Expandable title="properties" defaultOpen={true}>
+        <ResponseField name="errorMessage" type="ReactNode" required>
+          The error message.
+        </ResponseField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="onChangeQuery" type="(query: string) => void">
+  A callback that is fired when the query changes.
+</ParamField>
+
+<ParamField path="onChangeData" type="(query: string) => void">
+  A callback that is fired when the data changes.
+</ParamField>
+
+<ParamField path="onChangeFields" type="(query: string) => void">
+  A callback that is fired when the data fields change.
+</ParamField>
+
+<ParamField path="onChangeColumns" type="(query: string) => void">
+  A callback that is fired when the data columns change.
+</ParamField>
+
+<ParamField path="onAddToDashboardComplete" type="(report: QuillReport) => void">
+  A callback that is fired when a new report has been added to a dashboard.
+</ParamField>
+
+<ParamField path="isChartBuilderHorizontalView" type="boolean" default={true}>
+  Whether the ReportBuilder is in admin mode (default: `true`).
+</ParamField>
+
+<ParamField path="isChartBuilderEnabled" type="boolean" default={true}>
+  A callback that is fired when the data columns change.
+</ParamField>
+
+<ParamField path="isNewQueryEnabled" type="boolean" default={true}>
+  Whether the "new query" button is enabled.
+</ParamField>
+
+<ParamField path="showTableFormatOptions" type="boolean" default={true}>
+  Whether to show table format options.
+</ParamField>
+
+<ParamField path="showDateFieldOptions" type="boolean" default={true}>
+  Whether to show date field options.
+</ParamField>
+
+<ParamField path="showAccessControlOptions" type="boolean" default={true}>
+  Whether to show access control options.
+</ParamField>
+
+<ParamField path="report" type="QuillReport">
+  An existing report to edit.
+</ParamField>
+
+<ParamField path="defaultQuery" type="string">
+  The default query to use as a placeholder.
+</ParamField>
+
+<ParamField path="destinationDashboard" type="string">
+  The default dashboard to add reports to.
+</ParamField>
+
+<ParamField path="chartBuilderTitle" type="string">
+  The title of the ChartBuilder dialog.
+</ParamField>
+
+<ParamField path="chartBuilderButtonLabel" type="string">
+  The label of the button to add the current query to a dashboard.
+</ParamField>
+
+<ParamField path="addToDashboardButtonLabel" type="string" default="Add to dashboard">
+  The label of the button to open the ChartBuilder dialog.
+</ParamField>
+
+<ParamField path="organizationName" type="string">
+  The name of the current organization.
+</ParamField>
+
+<ParamField path="className" type="string">
+  Styles the top-level container of the SQLEditor.
+
+  This can be useful for TailwindCSS-style classname strings.
+</ParamField>
+
+<ParamField path="containerStyle" type="CSSProperties">
+  Custom styling properties for the ReportBuilder's top-level container.
+</ParamField>
+
+
+# Table
+Source: https://docs.quillsql.com/components/table
+
+The Tabular view of a Quill Report
+
+```tsx App.tsx
+import { QuillProvider, Table } from "@quillsql/react";
+
+const MyTable = () => (
+  <QuillProvider organizationId="2" publicKey="6579031b3e41c378aa8180ec">
+    <Table reportId="6644088e6e2470000cbdb109" />
+  </QuillProvider>
+);
+```
+
+A simple component that displays the given data as a table.
+
+<Info>Make sure `QuillProvider` is a parent of the `Table` component.</Info>
+
+## Examples
+
+<Tabs>
+  <Tab title="Ant Design">
+    [![Edit \[Ant Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/ant-design-quill-react-components-9qcs8k?embed=1)
+
+    ```tsx
+    import { Table, useQuill } from "@quillsql/react";
+    import { AntTable } from "./ui/ant/Table";
+
+    export function AntDesignTable() {
+      const report = useQuill("6644088e6e2470000cbdb109");
+      if (!report || !report.data) return null;
+      return <AntTable rows={report.data.rows} columns={report.data.columns} />;
+    }
+    ```
+  </Tab>
+
+  <Tab title="Material Design">
+    [![Edit \[Material Design\] Quill React Components](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/material-design-quill-react-components-d862dk?embed=1)
+
+    ```tsx
+    import { Table, useQuill } from "@quillsql/react";
+    import { MaterialTable } from "./ui/ant/Table";
+
+    export function MaterialDesignTable() {
+      const report = useQuill("6644088e6e2470000cbdb109");
+      if (!report || !report.data) return null;
+      return (
+        <div style={{ padding: 12 }}>
+          <MaterialTable rows={report.data.rows} columns={report.data.columns} />
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Automatically fetch data by id
+
+If you know the id of the table you would like to display, you can pass in the reportId to the Table component and it will load and display the data for that table.
+
+```jsx
+import { QuillProvider, Table } from "@quillsql/react";
+
+function App() {
+  return (
+    <QuillProvider organizationId="2" publicKey="6579031b3e41c378aa8180ec">
+      <Table reportId="664283fb4db8ad000bfe54d7" />
+    </QuillProvider>
+  );
+}
+```
+
+### Pass data directly into the table
+
+Alternatively, if you have the actual data you would like to display (eg. you fetched the data using our `useQuill` hook) you can also pass in that data directly to the Table component and it will display that data without doing any async fetching.
+
+<CodeGroup>
+  ```jsx Using raw data
+  import { QuillProvider, Table } from "@quillsql/react";
+
+  function App() {
+    return (
+      <QuillProvider organizationId="2" publicKey="6579031b3e41c378aa8180ec">
+        <Table
+          rows={[
+            { x: 1, y: 1, z: 0 },
+            { x: 2, y: 2, z: 0 },
+            { x: 3, y: 3, z: 0 },
+            { x: 4, y: 4, z: 0 },
+            { x: 5, y: 5, z: 0 },
+            { x: 6, y: 6, z: 0 },
+          ]}
+          columns={[
+            { label: "My X-Axis", field: "x" },
+            { label: "My Y-Axis", field: "y" },
+          ]}
+        />
+      </QuillProvider>
+    );
+  }
+  ```
+
+  ```jsx Using useQuill
+  import { QuillProvider, Table } from "@quillsql/react";
+  import { MY_TABLE_ID } from "./constants";
+
+  function App() {
+    const report = useQuill(MY_TABLE_ID);
+    return (
+      <QuillProvider organizationId="2" publicKey="6579031b3e41c378aa8180ec">
+        <Table rows={report.rows} columns={report.columns} />
+      </QuillProvider>
+    );
+  }
+  ```
+</CodeGroup>
+
+## Props
+
+<ParamField path="reportId" type="string">
+  The table's id. The most usage is through a detail page built to navigate from
+  the dashboard - using the onClick callback to get the report id, and
+  navigating to a route (say, reports/:id) where the url param is passed in as
+  the reportId. For a standalone table, you can find the reportId in the Quill
+  Portal and pass it in directly.
+
+  When a `reportId` is passed, the table will first fetch the data necessary
+  to render this table, and then it will render the rows and columns that it
+  receives from the server.
+
+  <Info>A `reportId` must be passed if `rows` and `columns` are not present.</Info>
+</ParamField>
+
+<ParamField path="rows" type="{ [key: string]: any }[]">
+  The rows of the table to show, if any.
+
+  When `rows` and `columns` are passed, the table will not refetch the given
+  report and will instead simply render the rows and columns it was given.
+
+  <Info>Both `rows` and `columns` must be passed if `reportId` is not present.</Info>
+</ParamField>
+
+<ParamField path="columns" type="{ label: string; field: string; }[]">
+  The columns of the table to show, if any.
+
+  When `rows` and `columns` are passed, the table will not refetch the given
+  report and will instead simply render the rows and columns it was given.
+
+  <Info>Both `rows` and `columns` must be passed if `reportId` is not present.</Info>
+</ParamField>
+
+<ParamField path="csvFilename" type="string">
+  The placeholder filename to use when downloading this table as a csv file.
+</ParamField>
+
+<ParamField path="hideDownloadCSVButton" type="boolean">
+  Whether to hide the download csv button.
+</ParamField>
+
+<ParamField path="isLoading" type="boolean">
+  Whether this table component is loading.
+</ParamField>
+
+<ParamField path="downloadCSV" type="() => void">
+  A callback that is fired when the user clicks download csv.
+</ParamField>
+
+<ParamField path="LoadingComponent" type="() => JSX.Element">
+  A loading component to show when the table is loading.
+</ParamField>
+
+<ParamField path="className" type="string">
+  Styles the top-level container of the Table.
+
+  This can be useful for TailwindCSS-style classname strings.
+</ParamField>
+
+<ParamField path="containerStyle" type="React.CSSProperties">
+  The CSS styles that wrap the table.
+</ParamField>
+
+
+# Custom Themes
+Source: https://docs.quillsql.com/components/themes
+
+Customize your dashboard by passing a custom theme
+
+<Tip>
+  For pixel-perfect control over theming and styling, all Quill components
+  accept custom components as props. See our [dashboard
+  docs](/components/dashboard.mdx) for an example.
+</Tip>
+
+```tsx App.tsx
+import { QuillProvider } from "@quillsql/react";
+
+// You can a custom theme to be applied to the default Quill
+// components, or you can pass your own components with
+// pixel-perfect styling.
+const MY_CUSTOM_THEME = {
+	fontFamily: "Inter; Helvetica",
+	backgroundColor: "#FFFFFF",
+	primaryTextColor: "#364153",
+	secondaryTextColor: "#6C727F",
+	chartLabelFontFamily: "Inter; Helvetica",
+	chartLabelColor: "#666666",
+	chartTickColor: "#CCCCCC",
+	chartColors: ["#4E80EE", "#E14F62", "#55B5A6", "#E9A23B"],
+	borderColor: "#E5E7EB",
+	primaryButtonColor: "#364153",
+	secondaryButtonColor: "#384151",
+	borderWidth: 1,
+	labelFontWeight: 500,
+	fontSize: 14,
+	loadingStateBackgroundColor: "#F9F9FA",
+	hoverBackgroundColor: "#F4F4F5",
+};
+
+function App() {
+	return (
+		<QuillProvider
+			publicKey={process.env.QUILL_API_KEY}
+			organizationId={user.organizationId}
+			theme={MY_CUSTOM_THEME}>
+			{children}
+		</QuillProvider>
+	);
+}
+```
+
+## QuillTheme
+
+<ResponseField name="fontFamily" type="string" required>
+  The font family you want Quill to use. This is usually the same font your app
+  uses. ex: "Inter"
+</ResponseField>
+
+<ResponseField name="fontSize" type="number" required>
+  The default font size you want Quill to use. This is usually the same as the
+  fontSize of your app (eg. 16 for "16px").
+</ResponseField>
+
+<ResponseField name="backgroundColor" type="string" required>
+  The background color you want Quill to use. This is usually the same
+  background color your app uses. ex: "#FFFFFF"
+</ResponseField>
+
+<ResponseField name="hoverBackgroundColor" type="string" required>
+  The background color you want Quill to use while hovering.
+</ResponseField>
+
+<ResponseField name="primaryTextColor" type="string" required>
+  The color you want Quill to use for primary text. This is usually the same
+  primary text color color your app uses. ex: "#000000"
+</ResponseField>
+
+<ResponseField name="secondaryTextColor" type="string" required>
+  The text color you want Quill to use for secondary text. This is usually the
+  same secondary font color your app uses. ex: "#888888"
+</ResponseField>
+
+<ResponseField name="chartLabelFontFamily" type="string" required>
+  The font family you want Quill to use for chart labels. This is usually the
+  same as your base font family. ex: "Inter"
+</ResponseField>
+
+<ResponseField name="chartLabelColor" type="string" required>
+  The text color you want Quill to use for chart labels. This is usually the
+  same as or similar to the secondary color your app uses. ex: "#666666"
+</ResponseField>
+
+<ResponseField name="chartTickColor" type="string" required>
+  The color you want Quill to use for chart ticks. This is usually the same as
+  or similar to the secondary color your app uses. ex: "#CCCCCC"
+</ResponseField>
+
+<ResponseField name="chartColors" type="string[]" required>
+  The chart colors you want Quill to use. This is usually the same as the
+  primary and secondary colors your app uses. You can pass in as many colors as
+  you want, and you can also override these by passing in an array for the
+  colors prop in the Chart component. ex: \['#6269E9', '#E14F62']
+</ResponseField>
+
+<ResponseField name="borderColor" type="string" required>
+  The border color you want Quill to use. This is usually the same as or
+  similar to the border color your app uses. ex: "#CCCCCC"
+</ResponseField>
+
+<ResponseField name="borderWidth" type="number" required>
+  The border width you want Quill to use. This is usually the same as or
+  similar to the border width your app uses. ex: 1 (ie. "1px")
+</ResponseField>
+
+<ResponseField name="primaryButtonColor" type="string">
+  The color of the primary buttons you want Quill to use. Typically, you can
+  just pass in a custom button with the styling you want instead of using this.
+</ResponseField>
+
+<ResponseField name="secondaryButtonColor" type="string">
+  The color of the secondary buttons you want Quill to use. Typically, you can
+  just pass in a custom button with the styling you want instead of using this.
+</ResponseField>
+
+<ResponseField name="buttonFontWeight" type="number">
+  The font weight you want Quill to use for buttons. Typically, you can just
+  pass in a custom button with the styling you want instead of using this. (eg.
+  600\)
+</ResponseField>
+
+<ResponseField name="labelFontWeight" type="number">
+  The font weight you want Quill to use for labels. Typically, you can just
+  pass in a custom label component with the styling you want instead of using
+  this. (eg. 400)
+</ResponseField>
+
+<ResponseField name="loadingStateBackgroundColor" type="string">
+  The background color you want Quill to use while in a loading state. This is
+  usually the same as the background color you app uses (eg. '#FFFFFF').
+</ResponseField>
+
+
+# useExport
+Source: https://docs.quillsql.com/components/use-export
+
+A simple way to export data from Quill
+
+```tsx App.tsx
+import { QuillProvider, useQuill } from "@quillsql/react";
+
+function CustomComponent() {
+	// pass in any report created in the Quill Portal
+	const { downloadCSV } = useExport(QUILL_ID);
+	return <button onClick={downloadCSV}>Save</button>;
+}
+
+function App() {
+	return (
+		<QuillProvider organizationId={organizationId} publicKey={process.env.QUILL_API_KEY}>
+			<CustomComponent />
+		</QuillProvider>
+	);
+}
+```
+
+<Info>
+  Make sure `QuillProvider` is a parent of the component using the `useExport`
+  hook.
+</Info>
+
+<ParamField path="reportId" type="string" required>
+  The id of the report you created in the Quill Portal.
+
+  <Tip>
+    Don't have an id yet? Learn how to [create a chart](https://docs.quillsql.com/portal/chart) in the Quill portal to get started.
+  </Tip>
+</ParamField>
+
+
+# useQuill
+Source: https://docs.quillsql.com/components/use-quill
+
+A pragmatic data API for your data
+
+```tsx App.tsx
+import { QuillProvider, useQuill } from "@quillsql/react";
+
+function CustomComponent() {
+  // pass in any report created in the Quill Portal
+  const report = useQuill(QUILL_ID);
+  return <pre>{JSON.stringify(report, null, 2)}</pre>;
+}
+
+function App() {
+  return (
+    <QuillProvider
+      organizationId={organizationId}
+      publicKey={process.env.QUILL_API_KEY}
+    >
+      <CustomComponent />
+    </QuillProvider>
+  );
+}
+```
+
+```json Sample Response
+{
+	data: {
+		name: "My Report",
+		rows: [...],
+		columns: [...],
+		chartType: "table",
+		fields: [...],
+		xAxisField: "created_at",
+		yAxisField: "amount",
+		xAxisLabel: "Created"
+		yAxisLabel: "Total Amount",
+		queryString: "SELECT * FROM transactions;",
+	},
+	loading: false,
+	error: null
+}
+```
+
+<Info>
+  Make sure `QuillProvider` is a parent of the component using the `useQuill`
+  hook.
+</Info>
+
+## Props
+
+<ParamField path="reportId" type="string" required>
+  The id of the report you created in the Quill Portal.
+
+  <Tip>
+    Don't have an id yet? Learn how to [create a chart](https://docs.quillsql.com/portal/chart) in the Quill portal to get started.
+  </Tip>
+</ParamField>
+
+
+# Create a chart
+Source: https://docs.quillsql.com/portal/chart
+
+Build your first chart with Quill in less than a minute
+
+<Note>
+  This guide assumes you have already created a dashboard. If you haven't done
+  that yet, check out our guide on how to create your first dashboard
+  [here](/portal/dashboard).
+</Note>
+
+There are two ways to create a chart with Quill, with SQL or without SQL.
+
+<CardGroup cols={2}>
+  <Card title="With SQL (SQLEditor)" icon="code" href="/portal/chart#with-sql-sqleditor">
+    Create a chart with the power of SQL
+  </Card>
+
+  <Card title="No Code (ReportBuilder)" icon="hammer" href="/portal/chart#no-code-reportbuilder">
+    Create a chart from a user interface
+  </Card>
+</CardGroup>
+
+## With SQL (SQLEditor)
+
+The SQL Editor is a powerful SQL-based code editor that you can use in your
+product to help your users create and edit their own reports.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/sql_editor.png" />
+</Frame>
+
+### 1. Enter a query or ask AI
+
+Use the code editor to enter a SQL query. Alternatively, you can also use the text box to ask AI to write a SQL query for you using your available schemas. When you're finished with your query, click `Run Query` to execute that query against your database.
+
+### 2. Edit your query
+
+Take a look at the response table to make sure the data was what you expected. If it isn't, you can either manually update the SQL query using the code editor or you can use the text box again to have the AI fix the query.
+
+If the query didn't work at all, you can also have the AI automatically fix the broken query by clicking `Fix with AI`:
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/fix_query.png" />
+</Frame>
+
+### 3. Edit the chart
+
+Once you are satisfied with your query and the query results, click `Add to dashboard` in the bottom right to turn the query into a report.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/edit_chart.png" />
+</Frame>
+
+Here, you can edit the name of the chart, the dashboard this chart should belong to, the chart type, and much more.
+
+<Tip>
+  For a more detailed guide for each of each option, see [Editing a
+  Chart](#editing-a-chart) below.
+</Tip>
+
+## No Code (ReportBuilder)
+
+The Report Builder is an easy-to-use, AI-enabled query creation tool that you
+can use in your product to allow nontechnical users to create and edit their own
+reports without knowing SQL.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/report_builder.png" />
+</Frame>
+
+### 1. Create a report or ask AI
+
+To create a report using the ReportBuilder, you can either ask AI to generate a report for you or use the interface on the left sidebar to select columns.
+
+### 2. Edit the report
+
+Once you have a report that is populated with data, you can edit the report using AI or the left sidebar.
+
+To apply a filter, simply select the column you wish to filter against and then how you would like to filter (the options change based on the type of the column).
+
+To apply one- or two-dimensional groupings or aggregations you can add a pivot which will orient your data based on the columns and aggregation type you select.
+
+You can sort the data in the report by one or more columns using the sort feature and you can limit the number of rows returned in the report using the limit feature.
+
+### 3. Edit the chart
+
+Once you are satisfied with your query and the query results, click `Add to dashboard` in the bottom right to turn the query into a report.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/edit_chart_2.png" />
+</Frame>
+
+Here, you can edit the name of the chart, the dashboard this chart should belong to, the chart type, and much more.
+
+<Tip>
+  For a more detailed guide for each of each option, see [Editing a
+  Chart](#editing-a-chart) below.
+</Tip>
+
+## Editing a Chart
+
+Once you have created a query, you can edit the resulting chart before adding it
+to your dashboard. You can edit the name of the chart, the dashboard this chart
+should belong to, the chart type, and much more. When used in an embedded flow
+where the dashboard is known ahead of time, developers can pre-select this
+dashboard and the option will be hidden in this form.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/edit_chart_3.png" />
+</Frame>
+
+### Pivots
+
+Editing queries with SQL gives you fine-grain control over your data, but you can also add a pivot to the result of the query to apply extra groupings or breakdowns to get exactly the information you want.
+
+### Chart Axis
+
+You can update the axis information for each chart by selecting which columns to use for each axis, what labels to give those columns (defaults to the name of the column), and the formatting type that should be applied to values for that axis.
+
+### Table Info
+
+In Quill, every chart is backed by a SQL query. The results of that query are represented as a table which can be useful for reporting or sharing with other teams. Similar to the chart axis you can change the columns, labels, and formatting applied to this table.
+
+### Date Field
+
+For dashboards with date filters, you can select which date field to use for this query. This column will be used when filtering all charts on that dashboard by a common date filter automatically.
+
+### Organization Access
+
+By default, this chart will only be visible for your current organization (in this case, "Acme") but you can make this chart visible to all organizations by toggling the organization access toggle. This option can also be disabled.
+
+## Next Steps
+
+With chart and a dashboard, you're ready to start using Quill. If you'd like, you can also add a new view to give Quill access to even more data for making charts!
+
+<Card title="Create a view" icon="square-1" href={"/portal/view"}>
+  Add a SQL view with Quill in less than a minute.
+</Card>
+
+
+# Create a dashboard
+Source: https://docs.quillsql.com/portal/dashboard
+
+Build your first dashboard with Quill in less than a minute
+
+<Note>
+  This guide assumes you have already connected your database with Quill. If
+  you haven't done that yet, check out our onboarding guide
+  [here](/portal/quickstart).
+</Note>
+
+When you first get started with the Quill platform, you will see an environment without any dashboards. Click on the "create new dashboard" button to get started.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/empty_dashboard.png" />
+</Frame>
+
+### 1. Create a dashboard
+
+Let's start by giving your new dashboard a name. The dashboard name should be unique, clear, and easy to remember.
+
+If you would like to automatically filter every chart in this dashboard by date, you can keep the date filter option selected. Additionally, if you would like to compare this date range against historical ranges (eg. compare "Last 90 days" against "Previous 90 days") you can select the `Date comparison` feature.
+
+Finally, if you would like to automatically filter every chart in this table by a string field on your schema (eg. filtering by user, merchant, etc.) you can add as many string filters as you would like.
+
+<Tip>Remember, you can always create more than one dashboard.</Tip>
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/new_dashboard.png" />
+</Frame>
+
+### 2. Save your dashboard
+
+When you're done, go ahead and hit save. You should see your dashboard in the top-left of the screen.
+
+<Tip>
+  Since Quill automatically partitions by organization, you can select an
+  organization in the top-right to filter any dashboard by (eg. "Acme") or you
+  can select "All Organizations" to show all data.
+</Tip>
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/create_chart.png" />
+</Frame>
+
+### 3. Manage your dashboards
+
+If you ever want to create a new dashboard, click on the dashboard dropdown and select "New Dashboard".
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/new_dashboard_2.png" />
+</Frame>
+
+You can also edit the settings for any existing dashboard by selecting that dashboard and clicking "Manage" in the dropdown.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/manage_dashboard.png" />
+</Frame>
+
+That will open the Manage Dashboard modal which allows you to edit the title of the dashboard, add and remove filters, edit the order of charts, and delete the dashboard.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/edit_dashboard.png" />
+</Frame>
+
+### Next Steps
+
+Now that you've created a dashboard, you're ready to create your first chart! Check out our guides on how to create your first chart below.
+
+<Card title="Create a chart" icon="square-1" href={"/portal/chart"}>
+  Build your first dashboard with Quill in less than a minute.
+</Card>
+
+
+# Quickstart
+Source: https://docs.quillsql.com/portal/quickstart
+
+Get up and running with Quill in less than a minute
+
+### 1. Create a read-only user
+
+<Tabs>
+  <Tab title="PostgreSQL">
+    To create a read-only user in PostgreSQL, do the following:
+
+    <Steps>
+      <Step title="Create a new user">
+        ```SQL PostgreSQL
+        -- Replace 'password' with a strong password.
+        CREATE USER quill_read_only WITH PASSWORD 'password';
+        ```
+      </Step>
+
+      <Step title="Grant CONNECT privileges">
+        ```SQL PostgreSQL
+        -- Allows the user to connect to the database.
+        GRANT CONNECT ON DATABASE your_database TO quill_read_only;
+        ```
+      </Step>
+
+      <Step title="Grant USAGE on the schema">
+        ```SQL PostgreSQL
+        -- Allows the user to access the objects within the schema.
+        GRANT USAGE ON SCHEMA your_schema TO quill_read_only;
+        ```
+      </Step>
+
+      <Step title="Grant SELECT privileges on the schema">
+        ```SQL PostgreSQL
+        -- Allows the user to read data from the tables.
+        GRANT SELECT ON ALL TABLES IN SCHEMA your_schema TO quill_read_only;
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      The connection string for the read-only user we just created will be something like: `postgresql://quill_read_only:password@db.example.com:5432/your_database`.
+    </Tip>
+
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_1_pg.png" />
+  </Tab>
+
+  <Tab title="Big Query">
+    To create a read-only user in Big Query, do the following:
+
+    <Steps>
+      <Step title="Create a service account for Quill">
+        In the Google Cloud Console, navigate to the IAM & Admin > Service Accounts page. Click `Create Service Account` and follow the prompts to create a new service account.
+      </Step>
+
+      <Step title="Grant permissions to the service account">
+        Grant the `bigquery.dataViewer` role to the service account for a dataset. You can do this by navigating to the dataset’s Permissions page and adding the service account with the `bigquery.dataViewer` role.
+      </Step>
+
+      <Step title="Create the access token">
+        Create a new JSON key for the service account by clicking the `Actions` dropdown next to the service account on the IAM & Admin > Service Accounts page, and then selecting `Create Key`. Select `JSON` as the key type and click `Create`. This will prompt you to save it one your local machine.
+
+        In the next step you’ll upload this JSON file into the Quill Portal.
+      </Step>
+    </Steps>
+
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_1_bq.png" />
+  </Tab>
+
+  <Tab title="Snowflake">
+    To create a read-only user in Snowflake, do the following:
+
+    <Steps>
+      <Step title="Create a new user">
+        ```SQL Snowflake SQL
+        -- Replace 'password' with a strong password.
+        CREATE USER quill_read_only PASSWORD 'password';
+        ```
+      </Step>
+
+      <Step title="Create a new read-only role">
+        ```SQL Snowflake SQL
+        -- Creates a role specifically for read-only access.
+        CREATE ROLE quill_read_only_role;
+        ```
+      </Step>
+
+      <Step title="Grant SELECT privileges to the role">
+        ```SQL Snowflake SQL
+        -- Allows the role to read data from the tables.
+        GRANT SELECT ON ALL TABLES IN SCHEMA my_schema TO quill_read_only_role;
+        ```
+      </Step>
+
+      <Step title="Assign the user to the role">
+        ```SQL Snowflake SQL
+        -- Gives user the permissions of the role
+        GRANT quill_read_only_role TO quill_read_only;
+        ```
+      </Step>
+    </Steps>
+
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_1_sf.png" />
+  </Tab>
+
+  <Tab title="MySQL">
+    To create a read-only user in MySQL, do the following:
+
+    <Steps>
+      <Step title="Create a new user">
+        ```SQL MySQL
+        -- Replace 'password' with a strong password.
+        CREATE USER 'quill_read_only'@'%' IDENTIFIED BY 'password';
+        ```
+      </Step>
+
+      <Step title="Grant USAGE on the schema">
+        ```SQL MySQL
+        -- Allows the user to read data from the tables.
+        GRANT SELECT ON your_database.* TO 'quill_read_only'@'%';
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      The connection string for the read-only user we just created will be something like: `mysql://quill_read_only:password@db.example.com:3306/your_database`.
+    </Tip>
+
+    <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_1_ms.png" />
+  </Tab>
+</Tabs>
+
+### 2. Connect your database
+
+Go to [https://app.quill.co/onboard](https://app.quill.co/onboard) and enter the read-only database connection string that we created in the last step.
+
+<Tip>
+  If you're using our fully-managed Quill instance, make sure to add the Quill
+  server to your database IP whitelist, if you have one. Requests from Quill
+  will always come from `34.133.137.225`.
+</Tip>
+
+<Info>
+  For more information about data and access control, you can read our
+  self-hosting guide [here](/selfhost/quickstart.mdx).
+</Info>
+
+### 3. Connect your schema
+
+The Quill platform provides powerful filtering and reporting tools to help you get the insights you want, faster. Since Quill provides organization-based filtering out-of-the-box, simply let us know which table to use and Quill will automatically partition your data by organization.
+
+<img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_2.png" />
+
+### 4. Add SQL Views
+
+Create a cleaned schema that makes it easier to write queries and reports. The views you create here will be used to create charts and tables later on. Don't worry, you can always create and edit these views later.
+
+<img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/onboard_3.png" />
+
+### Next Steps
+
+Once you have connected your database, you're ready to create your first dashboard! Check out our guides on how to create your first dashboard below.
+
+<Card title="Create a dashboard" icon="square-1" href={"/portal/dashboard"}>
+  Build your first dashboard with Quill in less than a minute.
+</Card>
+
+
+# Create a view
+Source: https://docs.quillsql.com/portal/view
+
+Add a SQL view with Quill in less than a minute
+
+<Note>
+  This guide assumes you have already connected your database with Quill. If
+  you haven't done that yet, check out our onboarding guide
+  [here](/portal/quickstart).
+</Note>
+
+When you first get started with the Quill platform, you only see the initial views you created in the onboarding flow.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/views.png" />
+</Frame>
+
+### 1. Create a view
+
+To add a new SQL view, you can click `Add view +` to open a SQL Editor that shows the visible tables that Quill can see in your schema.
+
+<Tip>
+  SQL views can help you organize and group different data together to make it
+  easier to build charts and tables on top of.
+</Tip>
+
+### 2. Edit the view and save
+
+Go ahead and write some SQL for a new view that you would like to create. Run the query by clicking `Run Query` and make sure the data looks correct.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/create_sql_view.png" />
+</Frame>
+
+Give your new view a descriptive, clear name and then hit `Create view` to add the view to Quill. You can now query data from that view in charts and dashboards.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/add_view.png" />
+</Frame>
+
+### 3. Manage your views
+
+If you ever want to edit or delete an existing view, click on the view in the SQL Views list to open the view manager.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/quill/images/edit_view.png" />
+</Frame>
+
+<Warning>
+  Be careful when editing and deleting views! Make sure the charts that
+  reference that view are up to date so they don't get out of sync.
+</Warning>
+
+### Next Steps
+
+Now that you have a view, you're ready to start using Quill! You can come back at any time and add more dashboards, charts, and views.
+
+<CardGroup cols={3}>
+  <Card title="Add a dashboard" icon="square-1" href={"/portal/dashboard"} />
+
+  <Card title="Add a chart" icon="square-2" href={"/portal/chart"} />
+
+  <Card title="Add a view" icon="square-3" href={"/portal/view"} />
+</CardGroup>
+
+
+# Data Cache
+Source: https://docs.quillsql.com/selfhost/cache
+
+Load dashboards fast by saving frequently used queries
+
+## 1. Install the Quill SDK
+
+If you haven't already, start by installing the Quill Server SDK on your machine:
+
+<CodeGroup>
+  ```bash Node.js
+  npm install @quillsql/node
+  ```
+
+  ```bash Python
+  pip3 install quillsql
+  ```
+
+  ```bash Go
+  go get https://github.com/quill-sql/quill-go
+  ```
+</CodeGroup>
+
+## 2. Create a cache config
+
+To get started with the Quill data cache, you can either bring your own cache or
+use our built-in cache in Quill Cloud. If you bring your own cache, you'll need
+the connection info such as username, password, host, and port.
+
+<Tip>
+  A typical redis connection string with all of the parts might look something
+  like this: `redis://quill_username:secret_password@example.com:12345`
+</Tip>
+
+<Tabs>
+  <Tab title="Quill Cloud">
+    Using Quill Cloud is the easiest way to get started with Quill. Reach out to
+    our team and ask about the Quill data cache to get started.
+
+    <Tip>
+      Make sure to add the Quill server to your database IP whitelist, if you
+      have one. Requests from Quill will always come from `34.133.137.225`
+    </Tip>
+
+    ```mermaid
+    flowchart LR
+      subgraph yourdomain.com
+        db[(Database)]
+      end
+
+      subgraph api.quill.co
+        direction LR
+        sdk(Quill SDK)
+        sdk <--> redis(Cache)
+      end
+
+      web(User) <--> |GET api.quill.co/quill|sdk
+      sdk <--> yourdomain.com
+    ```
+  </Tab>
+
+  <Tab title="Self-Hosted">
+    With Self-Hosted Quill, your data never leaves your servers. Our code runs
+    on your machines either in your cloud or on-premise.
+
+    <Info>
+      We operate the connected cache in a cache-aside manner which gives great
+      performance in read-heavy situations.
+    </Info>
+
+    ```mermaid
+    flowchart LR
+      subgraph yourdomain.com
+        direction LR
+        sdk(Quill SDK)
+        sdk <--> redis(Cache)
+        sdk <--> db[(Database)]
+      end
+
+      web(User) <--> |GET yourdomain.com/quill|sdk
+    ```
+  </Tab>
+</Tabs>
+
+## 3. Pass cache to Quill SDK
+
+<CodeGroup>
+  ```js Node
+  import { Quill } from "@quillsql/node";
+
+  const quill = new Quill({
+  	privateKey: process.env.QULL_PRIVATE_KEY,
+  	databaseConnectionString: process.env.POSTGRES_READ,
+  	databaseType: "postgresql",
+  	// Just pass a cache config to the Quill instance:
+  	cache: {
+  		username: process.env.REDIS_USERNAME,
+  		password: process.env.REDIS_PASSWORD,
+  		host: process.env.REDIS_HOST,
+  		port: process.env.REDIS_PORT,
+  		cacheType: "redis", // or 'rediss' if SSL encrypted
+  	},
+  });
+  ```
+
+  ```python Python
+  from quillsql import Quill
+
+  quill = Quill(
+    private_key=os.environ.get("QUILL_PRIVATE_KEY"),
+    database_connection_string=os.environ.get("POSTGRES_READ"),
+    # Just pass a cache config to the Quill instance:
+    cache={
+      "username": os.environ.get("REDIS_USERNAME"),
+      "password": os.environ.get("REDIS_PASSWORD"),
+      "host": os.environ.get("REDIS_HOST"),
+      "port": os.environ.get("REDIS_PORT"),
+      "cacheType": "redis", # or 'rediss' if SSL encrypted
+    }
+  )
+  ```
+</CodeGroup>
+
+Then you're done! When Quill detects a valid cache configuration it will start
+using the cache provided to speed up frequently used queries.
+
+
+# Quickstart
+Source: https://docs.quillsql.com/selfhost/quickstart
+
+Get up and running with Quill on your own server in 10 minutes
+
+## 1. Install the Quill SDK
+
+<CodeGroup>
+  ```bash Node.js
+  npm install @quillsql/node
+  ```
+
+  ```bash Python
+  pip3 install quillsql
+  ```
+
+  ```bash Go
+  go get https://github.com/quill-sql/quill-go
+  ```
+
+  ```bash PHP
+  composer require quill.co/quill-php
+  ```
+
+  ```bash Ruby
+  bundle install quill-sql
+  ```
+</CodeGroup>
+
+## 2. Create a new endpoint
+
+Instantiate `Quill` with your credentials and add the below `POST` endpoint.
+
+<Info>
+  This example assumes you have an organization id on the user returned by your
+  auth middleware. Queries will not work properly without the organization id.
+</Info>
+
+<CodeGroup>
+  ```js Node
+  import { Quill } from "@quillsql/node";
+
+  const quill = new Quill({
+    privateKey: process.env.QULL_PRIVATE_KEY,
+    databaseConnectionString: process.env.POSTGRES_READ,
+    databaseType: "postgresql",
+  });
+
+  // "authenticateJWT" is your own pre-existing auth middleware
+  app.post("/quill", authenticateJWT, async (req, res) => {
+    // assuming user fetched via auth middleware has an userId
+    const { userId } = req.user;
+    const { metadata } = req.body;
+    const result = await quill.query({
+      tenants: [{ tenantField: "user_id", tenantIds: [userId] }]
+      metadata,
+    });
+    res.send(result);
+  });
+  ```
+
+  ```python Python
+  from quillsql import Quill
+
+  quill = Quill(
+    private_key=os.environ.get("QUILL_PRIVATE_KEY"),
+    database_connection_string=os.environ.get("POSTGRES_READ")
+  )
+
+  # POST endpoint you create for Quill
+  @app.route('/quill', methods=['POST'])
+  # "token_required" is your own pre-existing auth middleware
+  @token_required
+  def quill_endpoint():
+    data = request.json
+    # assuming current user comes from existing auth
+    # org_id is the id on the organizations table that you
+    # use with Quill (ex: organizations, businesses, companies, stores etc)
+    return quill.query(current_user.org_id, data)
+  ```
+
+  ```go Go
+  import (
+      "github.com/quill-sql/quill-go"
+  )
+
+  client := quill.NewClient(quill.ClientParams{
+  	PrivateKey: os.Getenv("QUILL_PRIVATE_KEY"),
+  	DatabaseConnectionString: os.Getenv("POSTGRES_READ")
+  })
+
+  // Add an endpoint
+  http.HandleFunc("/quill", func(w http.ResponseWriter, r *http.Request) {
+      // fetch organizationID from your existing auth middleware
+      organizationID, _ := r.Context().Value(OrganizationIDContextKey).(string)
+
+      // Convert json body.metadata to RequestMetadata
+      body := &quill.RequestBody{}
+      err := json.NewDecoder(r.Body).Decode(body)
+      if err != nil {
+          http.Error(w, err.Error(), http.StatusBadRequest)
+          return
+      }
+
+      result, err := client.Query(organizationID, body.Metadata)
+      if err != nil {
+         http.Error(w, err.Error(), http.StatusBadRequest)
+         return
+      }
+      w.Header().Set("Content-Type", "application/json")
+      json.NewEncoder(w).Encode(result)
+  })
+  ```
+
+  ```php PHP
+  <?php
+   require __DIR__ . "/vendor/autoload.php";
+
+  $quill = new \Quill\Quill($privateKey, $databaseType, $databaseConnectionString);
+
+  if ($requestMethod === 'POST' && $endpoint === '/quill') {
+
+      // authUser is an example of how you might reference your existing authenticated user.
+  	// 'company_id' is an example of what your organizationId field might be
+      $orgId = $authUser['company_id'];
+
+      $input = file_get_contents('php://input');
+      $data = json_decode($input, true);
+
+      $params = [
+          'metadata' => $data['metadata'],
+          'orgId' => $orgId
+      ];
+
+      $response = $quill->query($params);
+
+      header('Content-Type: application/json');
+      $body = json_encode($response, JSON_PRETTY_PRINT);
+      echo $body;
+      exit;
+  }
+  ```
+
+  ```ruby Ruby
+  require "quill-sql"
+
+  quill = Quill.new(
+    private_key: ENV["PRIVATE_KEY"],
+    database_connection_string: ENV["DB_URL"],
+    database_type: "clickhouse"
+  )
+
+  post "/quill" do
+    # Assuming user fetched via auth middleware has a user_id
+    org_id = request.env["org_id"]
+    metadata = JSON.parse(request.body.read)["metadata"]
+    result = quill.query(
+      tenants: [{ tenantField: "org_id", tenantIds: [org_id] }],
+      metadata: metadata
+    )
+
+    result.to_json
+  end
+  ```
+</CodeGroup>
+
+## 3. Connect the frontend
+
+You connect Quill to React with the `QuillProvider` component. Similar to React's `Context.Provider`, `QuillProvider` wraps your React app and places Quill Client on the context, enabling you to access it from anywhere in your component tree.
+
+In App.js, let's wrap our React app with an `QuillProvider`. We suggest putting the `QuillProvider` somewhere high in your app, above any component that might need to access Quill data.
+
+```js App.js
+import { QuillProvider } from "@quillsql/react";
+import Routes from "./Routes";
+import UserContext from "./UserContext";
+
+function App() {
+  // Use your existing auth and user context
+  const [user] = useContext(UserContext);
+
+  return (
+    <QuillProvider
+      publicKey="YOUR_PUBLIC_KEY"
+      queryEndpoint="https://yourserver.com/quill" // your POST endpoint
+      queryHeaders={{
+        // We'll pass these headers on every request to your endpoint
+        Authorization: `Bearer ${user.jwt}`,
+      }}
+    >
+      <Routes />
+    </QuillProvider>
+  );
+}
+```
+
+<Tip>
+  See the `QuillProvider` [API docs](/components/quill-provider) for more
+  information.
+</Tip>
+
+

@@ -1,0 +1,416 @@
+# OpenAlternative - Open Source Alternatives to Popular Software
+A curated collection of the best open source alternatives to everyday SaaS products. Save money with reliable tools hand-picked for you.
+
+## Blog Highlights
+Links to our most popular blog posts.
+
+- [7 Open Source Tools for Better Website Analytics](https://openalternative.co/blog/7-open-source-tools-for-website-analytics)
+- [How Open Source Companies Make Money?](https://openalternative.co/blog/how-open-source-companies-make-money)
+- [Top 5 Open Source Projects for Developers](https://openalternative.co/blog/top-5-open-source-projects-for-developers)
+
+## Open source tools
+- [Notesnook](https://openalternative.co/notesnook): Open Source Alternative to Notion, Obsidian and Evernote
+- [Zed](https://openalternative.co/zed): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Cap](https://openalternative.co/cap): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Novu](https://openalternative.co/novu): Open Source Alternative to Customer.io and Knock
+- [Postiz](https://openalternative.co/postiz): Open Source Alternative to Typefully, Buffer and HootSuite
+- [Plane](https://openalternative.co/plane): Open Source Alternative to Monday, Height and ClickUp
+- [Affine](https://openalternative.co/affine): Open Source Alternative to Notion, Evernote and OneNote
+- [AppFlowy](https://openalternative.co/appflowy): Open Source Alternative to Notion, Obsidian and Evernote
+- [Pythagora](https://openalternative.co/pythagora): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Void](https://openalternative.co/void): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Rocket.Chat](https://openalternative.co/rocket-chat): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [Dify](https://openalternative.co/dify): Open Source Vertex AI Alternative
+- [Kestra](https://openalternative.co/kestra): Open Source Alternative to Make, Zapier and N8N
+- [Hoppscotch](https://openalternative.co/hoppscotch): Open Source Alternative to Postman and Testfully
+- [Papermark](https://openalternative.co/papermark): Open Source Alternative to DocSend and Docuware
+- [Joplin](https://openalternative.co/joplin): Open Source Alternative to Obsidian, Evernote and Roam Research
+- [N8N](https://openalternative.co/n8n): Open Source Alternative to Make, Zapier and IFTTT
+- [Docmost](https://openalternative.co/docmost): Open Source Alternative to Notion, Obsidian and Roam Research
+- [Comp AI](https://openalternative.co/comp): Open Source Alternative to Drata, Secureframe and Thoropass
+- [Logseq](https://openalternative.co/logseq): Open Source Alternative to Notion, Obsidian and Roam Research
+- [Supermemory](https://openalternative.co/supermemory): Open Source Alternative to Notion, Obsidian and Evernote
+- [Tabby](https://openalternative.co/tabby): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Maybe](https://openalternative.co/maybe): Open Source Alternative to Mint and YNAB
+- [PocketBase](https://openalternative.co/pocketbase): Open Source Alternative to Firebase, Supabase and AppWrite
+- [Continue](https://openalternative.co/continue): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [AnyType](https://openalternative.co/anytype): Open Source Alternative to Notion, Obsidian and Evernote
+- [Ladybird](https://openalternative.co/ladybird): Open Source Alternative to Arc, Firefox and Google Chrome
+- [Huly](https://openalternative.co/huly): Open Source Alternative to Monday, Height and Asana
+- [Outline](https://openalternative.co/outline): Open Source Alternative to Notion, Coda and Nuclino
+- [SiYuan](https://openalternative.co/siyuan): Open Source Alternative to Notion, Obsidian and Evernote
+- [Orgnise](https://openalternative.co/orgnise): Open Source Alternative to Notion, Obsidian and Roam Research
+- [Focalboard](https://openalternative.co/focalboard): Open Source Alternative to Monday, Height and ClickUp
+- [RustDesk](https://openalternative.co/rustdesk): Open Source Alternative to TeamViewer, AnyDesk and Splashtop
+- [Hoarder](https://openalternative.co/hoarder): Open Source Alternative to Pocket, Raindrop and Omnivore
+- [Probo](https://openalternative.co/probo): Open Source Alternative to Drata, Secureframe and Thoropass
+- [AnythingLLM](https://openalternative.co/anythingllm): Open Source Alternative to ChatGPT, Claude and Perplexity
+- [Uptime Kuma](https://openalternative.co/uptime-kuma): Open Source Alternative to BetterStack, Instatus and OhDear!
+- [Tolgee](https://openalternative.co/tolgee): Open Source Alternative to Weglot, Crowdin and Lokalise
+- [NocoDB](https://openalternative.co/nocodb): Open Source Alternative to Retool, Airplane and Airtable
+- [Odoo](https://openalternative.co/odoo): Open Source Alternative to HubSpot, Salesforce and ZohoCRM
+- [Ghost](https://openalternative.co/ghost): Open Source Alternative to WordPress, Squarespace and Sanity
+- [Polotno Studio](https://openalternative.co/polotno-studio): Open Source Canva Alternative
+- [Coolify](https://openalternative.co/coolify): Open Source Alternative to Heroku, DigitalOcean and Netlify
+- [Supabase](https://openalternative.co/supabase): Open Source Alternative to Firebase, PlanetScale and AppWrite
+- [OpenNotas](https://openalternative.co/opennotas): Open Source Alternative to Obsidian, Evernote and Roam Research
+- [ActivePieces](https://openalternative.co/activepieces): Open Source Alternative to Make, Zapier and IFTTT
+- [PearAI](https://openalternative.co/pearai): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Authentik](https://openalternative.co/authentik): Open Source Alternative to Okta, Auth0 and Clerk
+- [Flowise AI](https://openalternative.co/flowise-ai): Open Source Alternative to Make and Power Apps
+- [Firecrawl](https://openalternative.co/firecrawl): Open Source Jina AI Alternative
+- [Immich](https://openalternative.co/immich): Open Source Alternative to Dropbox and Google Photos
+- [Strapi](https://openalternative.co/strapi): Open Source Alternative to Contentful and Sanity
+- [Twenty](https://openalternative.co/twenty): Open Source Alternative to HubSpot, Salesforce and ZohoCRM
+- [Khoj](https://openalternative.co/khoj): Open Source Alternative to ChatGPT, Claude and Perplexity
+- [Teable](https://openalternative.co/teable): Open Source Alternative to Airtable, Google Sheets and Microsoft 365
+- [Open WebUI](https://openalternative.co/open-webui): Open Source Alternative to ChatGPT, Claude and Perplexity
+- [Vikunja](https://openalternative.co/vikunja): Open Source Alternative to Monday, Height and ClickUp
+- [Listmonk](https://openalternative.co/listmonk): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [Bolt.new](https://openalternative.co/bolt-new): Open Source Alternative to ChatGPT, Claude and Lovable
+- [Appwrite](https://openalternative.co/appwrite): Open Source Alternative to Firebase, Retool and Supabase
+- [Pika](https://openalternative.co/pika): Open Source Canva Alternative
+- [Operately](https://openalternative.co/operately): Open Source Alternative to Monday, Height and ClickUp
+- [Eververse](https://openalternative.co/eververse): Open Source Alternative to Monday, Height and Canny
+- [Scalar](https://openalternative.co/scalar): Open Source Alternative to Postman, Testfully and Mintlify
+- [OpenProject](https://openalternative.co/openproject): Open Source Alternative to Monday, Height and ClickUp
+- [ScreenVivid](https://openalternative.co/screenvivid): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Penpot](https://openalternative.co/penpot): Open Source Alternative to Miro, Figma and InVision
+- [OBS Studio](https://openalternative.co/obs-studio): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Mixpost](https://openalternative.co/mixpost): Open Source Alternative to Typefully, Buffer and HootSuite
+- [Kap](https://openalternative.co/kap): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Automatisch](https://openalternative.co/automatisch): Open Source Alternative to Make, Zapier and IFTTT
+- [Lago](https://openalternative.co/lago): Open Source Stripe Billing Alternative
+- [Scira](https://openalternative.co/scira): Open Source Perplexity Alternative
+- [Twake](https://openalternative.co/twake): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [NetData](https://openalternative.co/netdata): Open Source Alternative to DataDog and New Relic
+- [Bruno](https://openalternative.co/bruno): Open Source Alternative to Postman and Testfully
+- [Grafana](https://openalternative.co/grafana): Open Source Alternative to New Relic, Splunk and Tableau
+- [Atomic CRM](https://openalternative.co/atomic-crm): Open Source Alternative to HubSpot, Salesforce and ZohoCRM
+- [Screenity](https://openalternative.co/screenity): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Justnote](https://openalternative.co/justnote): Open Source Alternative to Notion, Obsidian and Evernote
+- [Leantime](https://openalternative.co/leantime): Open Source Alternative to Monday, Height and ClickUp
+- [Spacedrive](https://openalternative.co/spacedrive): Open Source Alternative to Dropbox and Google Drive
+- [Jan](https://openalternative.co/jan): Open Source ChatGPT Alternative
+- [OpenStatus](https://openalternative.co/openstatus): Open Source Alternative to BetterStack, DataDog and Instatus
+- [Kanri](https://openalternative.co/kanri): Open Source Alternative to Monday, Height and ClickUp
+- [Nextcloud](https://openalternative.co/nextcloud): Open Source Alternative to Slack, Microsoft Teams and Dropbox
+- [Dokploy](https://openalternative.co/dokploy): Open Source Alternative to Heroku, DigitalOcean and Netlify
+- [Dropbase](https://openalternative.co/dropbase): Open Source Alternative to Retool, Airplane and Airtable
+- [Tuta](https://openalternative.co/tuta): Open Source Alternative to Microsoft 365, Gmail and Google Workspace
+- [Abstra](https://openalternative.co/abstra): Open Source Alternative to Retool, Make and Zapier
+- [Snapify](https://openalternative.co/snapify): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Plunk](https://openalternative.co/plunk): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [Postal](https://openalternative.co/postal): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [ToolJet](https://openalternative.co/tooljet): Open Source Alternative to Retool, Airplane and Fastgen
+- [Standard Notes](https://openalternative.co/standard-notes): Open Source Alternative to Obsidian, Evernote and Roam Research
+- [Zen Browser](https://openalternative.co/zen-browser): Open Source Alternative to Arc, Firefox and Google Chrome
+- [Actual](https://openalternative.co/actual): Open Source Alternative to Mint and YNAB
+- [Inngest](https://openalternative.co/inngest): Open Source Alternative to Make, Zapier and Fastgen
+- [Cody](https://openalternative.co/cody): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Onlook](https://openalternative.co/onlook): Open Source Alternative to Webflow, Squarespace and Wix
+- [Apache Superset](https://openalternative.co/apache-superset): Open Source Alternative to Splunk, Tableau and Looker
+- [SuperTokens](https://openalternative.co/supertokens): Open Source Alternative to Okta, Auth0 and Clerk
+- [AppSmith](https://openalternative.co/appsmith): Open Source Alternative to Retool, Airplane and Make
+- [Umami](https://openalternative.co/umami): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [CasaOS](https://openalternative.co/casaos): Your personal cloud OS for simple, elegant home servers
+- [Cal.com](https://openalternative.co/cal-com): Open Source Alternative to Calendly, Calendesk and Doodle
+- [WebStudio](https://openalternative.co/webstudio): Open Source Alternative to Webflow, Squarespace and Wix
+- [Ory](https://openalternative.co/ory): Open Source Alternative to Firebase, Okta and Auth0
+- [Element](https://openalternative.co/element): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [Wire](https://openalternative.co/wire): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [Chatwoot](https://openalternative.co/chatwoot): Open Source Alternative to Zendesk, FreshDesk and Intercom
+- [Ever Teams](https://openalternative.co/ever-teams): Open Source Alternative to Monday, Height and ClickUp
+- [Unsend](https://openalternative.co/unsend): Open Source Alternative to Mailchimp, SendGrid and Customer.io
+- [XWiki](https://openalternative.co/xwiki): Open Source Alternative to Notion, Obsidian and Logseq
+- [undb](https://openalternative.co/undb): Open Source Alternative to Firebase, Retool and Supabase
+- [ERPNext](https://openalternative.co/erpnext): Open Source Alternative to HubSpot, Salesforce and ZohoCRM
+- [OpenBB](https://openalternative.co/openbb): Open Source Alternative to Tableau, Looker and Power BI
+- [Builder](https://openalternative.co/builder): Open Source Alternative to WordPress, Contentful and Webflow
+- [Formbricks](https://openalternative.co/formbricks): Open Source Alternative to Typeform, Google Forms and Jotform
+- [Keep](https://openalternative.co/keep): Open Source Alternative to BetterStack, Instatus and OhDear!
+- [NocoBase](https://openalternative.co/nocobase): Open Source Alternative to Retool, Airplane and Airtable
+- [Windmill](https://openalternative.co/windmill): Open Source Alternative to Retool, Airplane and Make
+- [Gumroad](https://openalternative.co/gumroad): Open Source Alternative to Sellfy and Lemon Squeezy
+- [FastGPT](https://openalternative.co/fastgpt): Open Source Zendesk Alternative
+- [Meilisearch](https://openalternative.co/meilisearch): Open Source Alternative to ElasticSearch, Algolia and Coveo
+- [Taiga](https://openalternative.co/taiga): Open Source Alternative to Monday, Height and ClickUp
+- [OpenPilot](https://openalternative.co/openpilot): Open Source Alternative to Cruise, Tesla Autopilot and Waymo
+- [Worklenz](https://openalternative.co/worklenz): Open Source Alternative to Notion, Monday and Height
+- [Plasmic](https://openalternative.co/plasmic): Open Source Alternative to Webflow, Squarespace and Wix
+- [Fider](https://openalternative.co/fider): Open Source Alternative to Canny, Upvoty and Cycle
+- [Aider](https://openalternative.co/aider): Open Source Alternative to Cursor, Windsurf and GitHub Copilot
+- [Mautic](https://openalternative.co/mautic): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [Letta](https://openalternative.co/letta): Open Source Alternative to ChatGPT, Langchain and Claude
+- [ShareX](https://openalternative.co/sharex): Open Source Alternative to CleanShot, Loom and Screen Studio
+- [Paperless-home](https://openalternative.co/paperless-home): Open Source Alternative to DocSend, Docuware and Google Workspace
+- [OpnForm](https://openalternative.co/opnform): Open Source Alternative to Typeform, Google Forms and Jotform
+- [Stack Auth](https://openalternative.co/stack-auth): Open Source Alternative to Okta, Auth0 and Clerk
+- [Logto](https://openalternative.co/logto): Open Source Alternative to Okta, Auth0 and Clerk
+- [Frappe Books](https://openalternative.co/frappe-books): Open Source Alternative to Mint, YNAB and Quickbooks
+- [Payload](https://openalternative.co/payload): Open Source Alternative to WordPress, Contentful and Sanity
+- [Typebot](https://openalternative.co/typebot): Open Source Alternative to Zendesk, FreshDesk and Typeform
+- [Ghostfolio](https://openalternative.co/ghostfolio): Open Source Alternative to Mint and YNAB
+- [Sentry](https://openalternative.co/sentry): Open Source Alternative to BetterStack, DataDog and BugHerd
+- [PostHog](https://openalternative.co/posthog): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [Documenso](https://openalternative.co/documenso): Open Source Alternative to PandaDoc and DocuSign
+- [Medusa](https://openalternative.co/medusa): Open Source Alternative to Shopify, Magento and BigCommerce
+- [LearnHouse](https://openalternative.co/learnhouse): Open Source Alternative to Skool, Coursera and Udemy
+- [Wealthfolio](https://openalternative.co/wealthfolio): Open Source Alternative to Mint, YNAB and Quickbooks
+- [Midday](https://openalternative.co/midday): Open Source Alternative to Mint, YNAB and Toggl
+- [ClassroomIO](https://openalternative.co/classroomio): Open Source Alternative to Skool, Coursera and Udemy
+- [Vrite](https://openalternative.co/vrite): Open Source Alternative to Mintlify and Gitbook
+- [Discourse](https://openalternative.co/discourse): Open Source Alternative to Discord, Skool and Circle
+- [CourseLit](https://openalternative.co/courselit): Open Source Alternative to Skool, Coursera and Udemy
+- [MailCoach](https://openalternative.co/mailcoach): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [Ever Gauzy](https://openalternative.co/ever-gauzy): Open Source Alternative to Asana, HubSpot and Salesforce
+- [HashiCorp Vault](https://openalternative.co/vault): Open Source Alternative to Keeper, 1Password and Doppler
+- [Soketi](https://openalternative.co/soketi): Open Source Firebase Alternative
+- [Convex](https://openalternative.co/convex): Open Source Alternative to Firebase, Supabase and MongoDB
+- [Grist](https://openalternative.co/grist): Open Source Alternative to Airtable, Glide and Softr
+- [Monetr](https://openalternative.co/monetr): Open Source Alternative to Mint, YNAB and Quickbooks
+- [Flexile](https://openalternative.co/flexile): Open Source Alternative to AngelList, Carta and Pulley
+- [Bookmark It](https://openalternative.co/bookmark-it): Open Source Alternative to Pocket, Raindrop and Omnivore
+- [InboxZero](https://openalternative.co/inboxzero): Open Source Gmail Alternative
+- [Automa](https://openalternative.co/automa): Open Source Alternative to Make, Zapier and N8N
+- [Polar](https://openalternative.co/polar): Open Source Alternative to Stripe Billing, Sellfy and Lemon Squeezy
+- [Btw](https://openalternative.co/btw): Open Source Alternative to Webflow, Squarespace and Wix
+- [Tegon](https://openalternative.co/tegon): Open Source Alternative to Jira, Linear and Teamwork
+- [Gatus](https://openalternative.co/gatus): Open Source Alternative to BetterStack, Instatus and OhDear!
+- [Workadventure](https://openalternative.co/workadventure): Open Source Alternative to Microsoft Teams, Zoom and Gather
+- [FerretDB](https://openalternative.co/ferretdb): Open Source Alternative to MongoDB and Fauna
+- [Ryot](https://openalternative.co/ryot): Open Source Alternative to Notion and Google Keep
+- [Budibase](https://openalternative.co/budibase): Open Source Alternative to Retool, Airplane and Glide
+- [HeyForm](https://openalternative.co/heyform): Open Source Alternative to Typeform, Google Forms and Jotform
+- [SolidTime](https://openalternative.co/solidtime): Open Source Alternative to Toggl and Clockify
+- [Quant-UX](https://openalternative.co/quant-ux): Open Source Alternative to Miro, Figma and InVision
+- [LibreChat](https://openalternative.co/librechat): Open Source Alternative to ChatGPT, Claude and Perplexity
+- [Freeter](https://openalternative.co/freeter): Open Source Alternative to ClickUp, Trello and Todoist
+- [Financial Freedom](https://openalternative.co/financial-freedom): Open Source Alternative to Mint and YNAB
+- [ClickHouse](https://openalternative.co/clickhouse): Open Source Alternative to Snowflake, BigQuery and RedShift
+- [Dittofeed](https://openalternative.co/dittofeed): Open Source Alternative to FreshDesk, Mailchimp and Brevo
+- [Erxes](https://openalternative.co/erxes): Open Source Alternative to Zendesk, FreshDesk and HubSpot
+- [Akaunting](https://openalternative.co/akaunting): Open Source Alternative to Quickbooks, Bench and Xero
+- [Dub](https://openalternative.co/dub): Open Source Alternative to Bitly, Rebrandly and TinyURL
+- [Baserow](https://openalternative.co/baserow): Open Source Alternative to Airtable, Glide and Softr
+- [Brace.to](https://openalternative.co/brace-to): Open Source Alternative to Pocket, Raindrop and Omnivore
+- [LLMChat](https://openalternative.co/llmchat): Open Source ChatGPT Alternative
+- [Silex](https://openalternative.co/silex): Open Source Alternative to Webflow, Wix and Framer
+- [Storj](https://openalternative.co/storj): Open Source Alternative to Dropbox, Google Drive and Amazon S3
+- [Refine](https://openalternative.co/refine): Open Source Alternative to Retool, Airplane and Appsheet
+- [OpenPanel](https://openalternative.co/openpanel): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [Mattermost](https://openalternative.co/mattermost): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [HTTPie](https://openalternative.co/httpie): Open Source Alternative to Postman and Testfully
+- [Suggest Feature](https://openalternative.co/suggest-feature): Open Source Alternative to Canny, Upvoty and Cycle
+- [PinTree](https://openalternative.co/pintree): Open Source Alternative to Pocket and Raindrop
+- [OpenReplay](https://openalternative.co/openreplay): Open Source Alternative to BetterStack, Mixpanel and New Relic
+- [Yaak](https://openalternative.co/yaak): Open Source Alternative to Postman and Testfully
+- [Evidence](https://openalternative.co/evidence): Open Source Alternative to Retool, Airplane and Tableau
+- [Ptah.sh](https://openalternative.co/ptah-sh): Open Source Alternative to Heroku, DigitalOcean and Netlify
+- [Formizee](https://openalternative.co/formizee): Open Source Alternative to Typeform, Google Forms and Jotform
+- [OneUptime](https://openalternative.co/oneuptime): Open Source Alternative to BetterStack, DataDog and Instatus
+- [Directus](https://openalternative.co/directus): Open Source Alternative to WordPress, Contentful and Sanity
+- [Chartbrew](https://openalternative.co/chartbrew): Open Source Alternative to Tableau, Looker and Power BI
+- [Metabase](https://openalternative.co/metabase): Open Source Alternative to Tableau, Looker and Power BI
+- [Astuto](https://openalternative.co/astuto): Open Source Alternative to Canny, Upvoty and Cycle
+- [Fullmoon](https://openalternative.co/fullmoon): Open Source Alternative to ChatGPT, Claude and Perplexity
+- [Infisical](https://openalternative.co/infisical): Open Source Alternative to Keeper and Doppler
+- [Milvus](https://openalternative.co/milvus): Open Source Alternative to Supabase, ElasticSearch and Pinecone
+- [Helicone](https://openalternative.co/helicone): Open Source Alternative to DataDog, New Relic and Splunk
+- [Trigger](https://openalternative.co/trigger): Open Source Alternative to Airplane, Make and Zapier
+- [Gitea](https://openalternative.co/gitea): Open Source Alternative to GitHub, BitBucket and Upsource
+- [Ntfy](https://openalternative.co/ntfy): Open Source LogSnag Alternative
+- [Leon](https://openalternative.co/leon): Open Source ChatGPT Alternative
+- [Rowy](https://openalternative.co/rowy): Open Source Alternative to Retool, Airtable and Glide
+- [ElasticSearch](https://openalternative.co/elasticsearch): Open Source Alternative to Algolia and Coveo
+- [Kelia](https://openalternative.co/kelia): Open Source Alternative to Mailchimp, SendGrid and Brevo
+- [CopilotKit](https://openalternative.co/copilotkit): Open Source Langchain Alternative
+- [Plausible](https://openalternative.co/plausible): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [NHost](https://openalternative.co/nhost): Open Source Alternative to Firebase and Supabase
+- [TechBlitz](https://openalternative.co/techblitz): Open Source Alternative to Coursera, Udemy and LeetCode
+- [Pushify](https://openalternative.co/pushify): Open Source Alternative to SendGrid, Customer.io and Twilio
+- [Cinny](https://openalternative.co/cinny): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [Glow](https://openalternative.co/glow): Open Source LinkTree Alternative
+- [LinkStack](https://openalternative.co/linkstack): Open Source LinkTree Alternative
+- [Insomnia](https://openalternative.co/insomnia): Open Source Alternative to Postman and Testfully
+- [Vvveb CMS](https://openalternative.co/vvveb-cms): Open Source Alternative to WordPress, Contentful and Webflow
+- [Encore](https://openalternative.co/encore): Open Source Alternative to Firebase, Supabase and AppWrite
+- [Hexabot](https://openalternative.co/hexabot): Open Source Alternative to Zendesk, Langchain and Intercom
+- [Firefiles](https://openalternative.co/firefiles): Open Source Alternative to Dropbox, Google Drive and Tresorit
+- [Turso](https://openalternative.co/turso): Open Source Alternative to Firebase, Supabase and MongoDB
+- [Hanko](https://openalternative.co/hanko): Open Source Alternative to Okta, Auth0 and Clerk
+- [QRev](https://openalternative.co/qrev): Open Source Alternative to Salesforce, ZohoCRM and Pipedrive
+- [Docuseal](https://openalternative.co/docuseal): Open Source Alternative to PandaDoc and DocuSign
+- [Filestash](https://openalternative.co/filestash): Open Source Alternative to Dropbox, Google Drive and Tresorit
+- [Aikido Intel](https://openalternative.co/aikido-intel): Real-time vulnerability and malware intelligence for open source
+- [Nango](https://openalternative.co/nango): Open Source Alternative to Make and Zapier
+- [Highlight](https://openalternative.co/highlight): Open Source Alternative to BetterStack, DataDog and New Relic
+- [Lotus](https://openalternative.co/lotus): Open Source Stripe Billing Alternative
+- [TiDB](https://openalternative.co/tidb): Open Source Alternative to MongoDB, PlanetScale and Fauna
+- [LogChimp](https://openalternative.co/logchimp): Open Source Alternative to Canny, Upvoty and Cycle
+- [Hook0](https://openalternative.co/hook0): Open Source Alternative to Zapier, IFTTT and Pipedream
+- [OpenPanel.co](https://openalternative.co/openpanel-co): Open Source Alternative to Plesk and cPanel
+- [Harness](https://openalternative.co/harness): Open Source Alternative to GitHub and Red Hat Ansible
+- [Frappe Helpdesk](https://openalternative.co/frappe-helpdesk): Open Source Alternative to Zendesk, FreshDesk and Hiver
+- [UnKey](https://openalternative.co/unkey): Open Source Alternative to Okta, Auth0 and Clerk
+- [BoxyHQ](https://openalternative.co/boxyhq): Open Source Alternative to Okta, Auth0 and Clerk
+- [Lightdash](https://openalternative.co/lightdash): Open Source Alternative to Tableau, Looker and Power BI
+- [Webiny](https://openalternative.co/webiny): Open Source Alternative to WordPress, Contentful and Webflow
+- [Splitpro](https://openalternative.co/splitpro): Open Source Splitwise Alternative
+- [Qdrant](https://openalternative.co/qdrant): Open Source Alternative to Supabase, ElasticSearch and Pinecone
+- [Hi.Events](https://openalternative.co/hi-events): Open Source Eventbrite Alternative
+- [Fathom Lite](https://openalternative.co/fathom): Open Source Alternative to Mixpanel, Google Analytics and Amplitude
+- [Hey](https://openalternative.co/hey): Decentralized social networking for the Web3 era
+- [Zammad](https://openalternative.co/zammad): Open Source Alternative to Zendesk, FreshDesk and Hiver
+- [ALTCHA](https://openalternative.co/altcha): Open Source reCAPTCHA Alternative
+- [Saleor](https://openalternative.co/saleor): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Rallly](https://openalternative.co/rallly): Open Source Alternative to Calendly, Calendesk and Doodle
+- [Freescout](https://openalternative.co/freescout): Open Source Alternative to Zendesk, FreshDesk and Hiver
+- [UnInbox](https://openalternative.co/uninbox): Open Source Alternative to Slack, Twist and Gmail
+- [Tiledesk](https://openalternative.co/tiledesk): Open Source Alternative to Zendesk, FreshDesk and Intercom
+- [Spliit](https://openalternative.co/spliit): Open Source Splitwise Alternative
+- [Spree Commerce](https://openalternative.co/spree-commerce): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Tailscale](https://openalternative.co/tailscale): Open Source NordVPN Alternative
+- [Laudspeaker](https://openalternative.co/laudspeaker): Open Source Alternative to FreshDesk, Mailchimp and Brevo
+- [Invoice Ninja](https://openalternative.co/invoice-ninja): Open Source Alternative to Quickbooks, Bench and Xero
+- [Kutt](https://openalternative.co/kutt): Open Source Alternative to Bitly, Rebrandly and TinyURL
+- [Zulip](https://openalternative.co/zulip): Open Source Alternative to Discord, Slack and Microsoft Teams
+- [Statusnook](https://openalternative.co/statusnook): Open Source Alternative to BetterStack, DataDog and Instatus
+- [HyperDX](https://openalternative.co/hyperdx): Open Source Alternative to DataDog, New Relic and Splunk
+- [Illa](https://openalternative.co/illa): Open Source Alternative to Retool, Airplane and Fastgen
+- [Langfuse](https://openalternative.co/langfuse): Open Source Langchain Alternative
+- [Wakapi](https://openalternative.co/wakapi): Open Source Alternative to Toggl and Clockify
+- [Flarum](https://openalternative.co/flarum): Open Source Alternative to Discord, Skool and Circle
+- [Formance](https://openalternative.co/formance): Open Source Alternative to Stripe Billing and Quickbooks
+- [Orama](https://openalternative.co/orama): Open Source Alternative to ElasticSearch, Algolia and Coveo
+- [Hydra](https://openalternative.co/hydra): Open Source Alternative to Firebase, Supabase and Snowflake
+- [Crater](https://openalternative.co/crater): Open Source Alternative to Stripe Billing, Quickbooks and Bench
+- [Ente](https://openalternative.co/ente): Open Source Alternative to Dropbox, Google Drive and Tresorit
+- [SlateDB](https://openalternative.co/slatedb): Open Source Alternative to Supabase, MongoDB and PlanetScale
+- [Instant](https://openalternative.co/instant): Open Source Alternative to Firebase and PlanetScale
+- [ClearFlask](https://openalternative.co/clearflask): Open Source Alternative to Canny, Upvoty and Cycle
+- [OpenSign](https://openalternative.co/opensign): Open Source Alternative to PandaDoc and DocuSign
+- [Router.so](https://openalternative.co/router-so): Open Source Alternative to Typeform, Google Forms and Jotform
+- [Phase](https://openalternative.co/phase): Open Source Alternative to Keeper, 1Password and Doppler
+- [KeePassXC](https://openalternative.co/keepassxc): Open Source Alternative to 1Password and LastPass
+- [Bigcapital](https://openalternative.co/bigcapital): Open Source Alternative to Quickbooks and Insightly
+- [Tracecat](https://openalternative.co/tracecat): Open Source Alternative to Jira and Splunk
+- [Zenblog](https://openalternative.co/zenblog): Open Source Alternative to WordPress, Substack and Beehiiv
+- [TipTap](https://openalternative.co/tiptap): Craft rich text experiences with ease
+- [Twill CMS](https://openalternative.co/twill-cms): Open Source Alternative to WordPress, Contentful and Sanity
+- [Brave](https://openalternative.co/brave): Open Source Alternative to Arc, Firefox and Google Chrome
+- [Redash](https://openalternative.co/redash): Open Source Alternative to Splunk, Tableau and Looker
+- [Chaskiq](https://openalternative.co/chaskiq): Open Source Alternative to Zendesk, FreshDesk and Intercom
+- [Signoz](https://openalternative.co/signoz): Open Source Alternative to DataDog, New Relic and Splunk
+- [Jitsu](https://openalternative.co/jitsu): Open Source Alternative to Segment, Supermetrics and Fivetran
+- [Airbyte](https://openalternative.co/airbyte): Open Source Alternative to Supermetrics, Fivetran and Matillion
+- [Apache Answer](https://openalternative.co/apache-answer): Open Source Discord Alternative
+- [Alokai](https://openalternative.co/alokai): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Passbolt](https://openalternative.co/passbolt): Open Source Alternative to Keeper, 1Password and LastPass
+- [Kimai](https://openalternative.co/kimai): Open Source Alternative to Toggl and Clockify
+- [Captable](https://openalternative.co/captable): Open Source Alternative to AngelList, Carta and Pulley
+- [Cube](https://openalternative.co/cube): Open Source Alternative to Looker, Snowflake and Segment
+- [Cerbos](https://openalternative.co/cerbos): Open Source Alternative to Okta, Auth0 and AWS Cognito
+- [Bitwarden](https://openalternative.co/bitwarden): Open Source Alternative to Keeper, 1Password and Doppler
+- [Trench](https://openalternative.co/trench): Open Source Alternative to Mixpanel, Kissmetrics and Segment
+- [OpenTofu](https://openalternative.co/opentofu): Open Source Alternative to Red Hat Ansible, Terraform and Puppet
+- [Mage](https://openalternative.co/mage): Open Source Alternative to Segment, Pipedream and Supermetrics
+- [Peergos](https://openalternative.co/peergos): Open Source Alternative to Dropbox, Tresorit and Boxcryptor
+- [Statamic](https://openalternative.co/statamic): Open Source Alternative to WordPress, Contentful and Sanity
+- [TinaCMS](https://openalternative.co/tinacms): Open Source Alternative to WordPress, Contentful and Sanity
+- [Sink](https://openalternative.co/sink): Open Source Alternative to Bitly, Rebrandly and TinyURL
+- [Uptrace](https://openalternative.co/uptrace): Open Source Alternative to BetterStack, DataDog and New Relic
+- [Litlyx](https://openalternative.co/litlyx): Open Source Alternative to Mixpanel, Google Analytics and Segment
+- [Neon Postgres](https://openalternative.co/neon-postgres): Open Source Alternative to PlanetScale and Amazon Neptune
+- [Shelf](https://openalternative.co/shelf): Effortless inventory management for modern businesses
+- [Chalk.ist](https://openalternative.co/chalkist): Transform your source code into stunning visuals
+- [LimeSurvey](https://openalternative.co/limesurvey): Open Source Alternative to Typeform, Google Forms and Jotform
+- [Bugsink](https://openalternative.co/bugsink): Open Source Alternative to DataDog, New Relic and BugHerd
+- [OpenMeter](https://openalternative.co/openmeter): Open Source Stripe Billing Alternative
+- [Matomo](https://openalternative.co/matomo): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [Sequin](https://openalternative.co/sequin): Open Source Amazon SQS Alternative
+- [Craft CMS](https://openalternative.co/craft-cms): Open Source Alternative to WordPress, Contentful and Webflow
+- [KeystoneJS](https://openalternative.co/keystonejs): Open Source Alternative to WordPress, Contentful and Sanity
+- [Fonoster](https://openalternative.co/fonoster): Open Source Twilio Alternative
+- [Shlink](https://openalternative.co/shlink): Open Source Alternative to Bitly, Rebrandly and TinyURL
+- [Prefect](https://openalternative.co/prefect): Open Source Alternative to Supermetrics, Fivetran and Matillion
+- [Ballerine](https://openalternative.co/ballerine): Open Source SumSub Alternative
+- [Lunary](https://openalternative.co/lunary): Open Source Langchain Alternative
+- [Firecamp](https://openalternative.co/firecamp): Open Source Alternative to Postman and Testfully
+- [Mockoon](https://openalternative.co/mockoon): Open Source Alternative to Postman and Testfully
+- [Terraterm](https://openalternative.co/terraterm): Open Source Alternative to Red Hat Ansible, Terraform and Puppet
+- [GitButler](https://openalternative.co/gitbutler): Open Source Alternative to GitHub and BitBucket
+- [FleetBase](https://openalternative.co/fleetbase): Open Source Shipsy Alternative
+- [Requestly](https://openalternative.co/requestly): Open Source Alternative to Postman and Testfully
+- [Neosync](https://openalternative.co/neosync): Open source data anonymization and synthetic data platform
+- [Reflex](https://openalternative.co/reflex): Web apps in pure Python, deployed with a single command
+- [CodeEdit](https://openalternative.co/codeedit): Open Source Alternative to Cursor, Windsurf and JetBrains
+- [Hummingbot](https://openalternative.co/hummingbot): Open Source 3Commas Alternative
+- [Countly](https://openalternative.co/countly): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [WR.DO](https://openalternative.co/wr-do): Open Source Alternative to Bitly, Rebrandly and TinyURL
+- [Swetrix](https://openalternative.co/swetrix): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [Drupal](https://openalternative.co/drupal): Open Source Alternative to WordPress, Contentful and Webflow
+- [aaPanel](https://openalternative.co/aapanel): Open Source Alternative to Plesk and cPanel
+- [CrateDB](https://openalternative.co/cratedb): Open Source Alternative to Snowflake, PlanetScale and BigQuery
+- [WunderGraph](https://openalternative.co/wundergraph): Open Source Alternative to Hasura, Apollo GraphQL and Stepzen
+- [OceanBase](https://openalternative.co/oceanbase): Open Source Alternative to MongoDB, PlanetScale and Amazon Neptune
+- [Expensify](https://openalternative.co/expensify): Simplify expense management for businesses of all sizes
+- [Changes.Page](https://openalternative.co/changes-page): Open Source Alternative to Canny, Upvoty and Cycle
+- [Weaviate](https://openalternative.co/weaviate): Open Source Alternative to Supabase and Pinecone
+- [Logstash](https://openalternative.co/logstash): Open Source Alternative to DataDog, Splunk and Tableau
+- [Typesense](https://openalternative.co/typesense): Open Source Alternative to ElasticSearch, Pinecone and Algolia
+- [Vendure](https://openalternative.co/vendure): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Timescale](https://openalternative.co/timescale): Open Source Alternative to MongoDB, Snowflake and Amazon Timestream
+- [Unleash](https://openalternative.co/unleash): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [Digger](https://openalternative.co/digger): Open Source Alternative to Red Hat Ansible, Terraform and Puppet
+- [Gitpod](https://openalternative.co/gitpod): Open Source Alternative to GitHub and BitBucket
+- [GrowthBook](https://openalternative.co/growthbook): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [Prisme Analytics](https://openalternative.co/prisme-analytics): Open Source Alternative to Mixpanel, Google Analytics and Fathom Analytics
+- [LiveKit](https://openalternative.co/livekit): Real-time communication infrastructure for developers
+- [Daytona](https://openalternative.co/daytona): Lightning-fast secure infrastructure for AI code execution
+- [Dragonfly](https://openalternative.co/dragonfly): Open Source Redis Alternative
+- [Komiser](https://openalternative.co/komiser): Open Source Alternative to BetterStack and New Relic
+- [WordPress](https://openalternative.co/wordpress): Open Source Alternative to Contentful, Squarespace and Framer
+- [OpenWebAnalytics](https://openalternative.co/openwebanalytics): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [Opengrep](https://openalternative.co/opengrep): Open-source code security engine for developers
+- [Procaptcha](https://openalternative.co/procaptcha): Open Source reCAPTCHA Alternative
+- [Ray.so](https://openalternative.co/ray-so): Create beautiful images of your code
+- [Botpress](https://openalternative.co/botpress): Open Source Alternative to Zendesk, Intercom and ChatBot
+- [Iffy](https://openalternative.co/iffy): AI-powered content moderation for safer online platforms
+- [Cachet](https://openalternative.co/cachet): Open Source Alternative to BetterStack, Instatus and OhDear!
+- [Coroot](https://openalternative.co/coroot): Open Source Alternative to New Relic and Splunk
+- [Pulumi](https://openalternative.co/pulumi): Open Source Alternative to Red Hat Ansible, Terraform and Puppet
+- [Argos](https://openalternative.co/argos): Open Source Alternative to Applitools, Chromatic and Percy
+- [GitLab](https://openalternative.co/gitlab): Open Source Alternative to GitHub, BitBucket and Upsource
+- [Hatchet](https://openalternative.co/hatchet): Effortless CI/CD for modern cloud applications
+- [Solidus](https://openalternative.co/solidus): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Impler](https://openalternative.co/impler): Seamless data import for your applications
+- [Sigle](https://openalternative.co/sigle): Open Source Alternative to Substack, Beehiiv and Medium
+- [Timeplus](https://openalternative.co/timeplus): Real-time stream processing made simple and affordable
+- [LostPixel](https://openalternative.co/lostpixel): Open Source Alternative to Applitools, Chromatic and Percy
+- [Aptabase](https://openalternative.co/aptabase): Open Source Alternative to Mixpanel, Google Analytics and Kissmetrics
+- [ProcessWire](https://openalternative.co/processwire): Open Source Alternative to WordPress and Sanity
+- [Databend](https://openalternative.co/databend): Open Source Alternative to Snowflake, BigQuery and RedShift
+- [Activeloop](https://openalternative.co/activeloop): Open Source Alternative to MongoDB, Snowflake and Pinecone
+- [Artie](https://openalternative.co/artie): Open Source Alternative to Segment, Supermetrics and Fivetran
+- [Trench](https://openalternative.co/trytrench): Open Source Alternative to Stripe Billing and Seon
+- [Quickwit](https://openalternative.co/quickwit): Open Source Alternative to ElasticSearch, Algolia and Coveo
+- [FeatBit](https://openalternative.co/featbit): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [AutoMQ](https://openalternative.co/automq): S3-based serverless Kafka reinvented for cost efficiency
+- [WooCommerce](https://openalternative.co/woocommerce): Open Source Alternative to Shopify, Magento and BigCommerce
+- [Dyrector](https://openalternative.co/dyrector): Open Source Docker Desktop Alternative
+- [Abby](https://openalternative.co/abby): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [Flagsmith](https://openalternative.co/flagsmith): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [Rivet](https://openalternative.co/rivet): Seamless game infrastructure for the modern era
+- [Featurevisor](https://openalternative.co/featurevisor): Open Source Alternative to LaunchDarkly, Bucket and Optimizely
+- [Crowd](https://openalternative.co/crowd): Open Source Alternative to Common Room, Commsor and Orbit
+- [Tailcall](https://openalternative.co/tailcall): Open Source Alternative to Hasura and Apollo GraphQL
+- [Werbot](https://openalternative.co/werbot): Secure, scalable server access management for DevOps
+- [Latitude](https://openalternative.co/latitude): End-to-end platform for collaborative LLM feature development
+- [Elementary Data](https://openalternative.co/elementary-data): Open Source New Relic Alternative
+- [Bacalhau](https://openalternative.co/bacalhau): Revolutionizing data processing with Compute Over Data
+- [Memgraph](https://openalternative.co/memgraph): Open Source Alternative to MongoDB, Amazon Neptune and TigerGraph
+- [Titan](https://openalternative.co/titan): Open Source Alternative to Snowflake, BigQuery and RedShift
+- [Streamdal](https://openalternative.co/streamdal): Code-native data privacy for real-time applications
+- [Revert](https://openalternative.co/revert): Seamless API integration for modern developers
+- [Hyperswitch](https://openalternative.co/hyperswitch): Open Source Alternative to Stripe Billing, Sellfy and Lemon Squeezy

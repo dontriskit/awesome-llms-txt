@@ -1,0 +1,37 @@
+# Creatopy Public API
+
+## Creatopy Public API
+
+- [Public API](https://docs.creatopy.com/creatopy-public-api/public-api)
+- [Quickstart](https://docs.creatopy.com/creatopy-public-api/public-api/quickstart)
+- [Authentication](https://docs.creatopy.com/creatopy-public-api/public-api/authentication)
+- [Overview](https://docs.creatopy.com/creatopy-public-api/rest-api/overview): How to integrate into Creatopy using our REST API.
+- [Auth](https://docs.creatopy.com/creatopy-public-api/rest-api/auth)
+- [Exports](https://docs.creatopy.com/creatopy-public-api/rest-api/exports)
+- [Creatives](https://docs.creatopy.com/creatopy-public-api/rest-api/exports/creatives)
+- [Templates (Designs)](https://docs.creatopy.com/creatopy-public-api/rest-api/templates-designs)
+- [Elements](https://docs.creatopy.com/creatopy-public-api/rest-api/templates-designs/elements)
+- [Template Sizes](https://docs.creatopy.com/creatopy-public-api/rest-api/templates-designs/template-sizes)
+- [Font variants](https://docs.creatopy.com/creatopy-public-api/rest-api/templates-designs/font-variants)
+- [ShareLink](https://docs.creatopy.com/creatopy-public-api/rest-api/sharelink)
+- [Projects](https://docs.creatopy.com/creatopy-public-api/rest-api/projects)
+- [Project Users](https://docs.creatopy.com/creatopy-public-api/rest-api/projects/users)
+- [Brand Kits](https://docs.creatopy.com/creatopy-public-api/rest-api/brand-kits)
+- [Brand kit assets](https://docs.creatopy.com/creatopy-public-api/rest-api/brand-kits/brand-kit-assets)
+- [Brand kit logos](https://docs.creatopy.com/creatopy-public-api/rest-api/brand-kits/brand-kit-logos)
+- [Brand kit media folders](https://docs.creatopy.com/creatopy-public-api/rest-api/brand-kits/brand-kit-media-folders)
+- [Brand templates](https://docs.creatopy.com/creatopy-public-api/rest-api/brand-kits/brand-templates)
+- [Ad Networks](https://docs.creatopy.com/creatopy-public-api/rest-api/ad-networks)
+- [Ad Serving](https://docs.creatopy.com/creatopy-public-api/rest-api/ad-serving): This page contains a documentation for each API related to Ad Serving
+- [Users](https://docs.creatopy.com/creatopy-public-api/rest-api/users)
+- [Team roles](https://docs.creatopy.com/creatopy-public-api/rest-api/users/team-roles)
+- [Webhooks](https://docs.creatopy.com/creatopy-public-api/rest-api/webhooks)
+- [Webhook action types](https://docs.creatopy.com/creatopy-public-api/rest-api/webhooks/webhook-action-types)
+- [Design Versions](https://docs.creatopy.com/creatopy-public-api/rest-api/design-versions)
+- [Folders](https://docs.creatopy.com/creatopy-public-api/rest-api/folders)
+- [Move design to folder](https://docs.creatopy.com/creatopy-public-api/rest-api/folders/move-design-to-folder): This endpoint is used to move a design to a specific folder.
+- [Error codes](https://docs.creatopy.com/creatopy-public-api/rest-api/error-codes)
+- [Designs](https://docs.creatopy.com/creatopy-public-api/rest-api/designs)
+- [Overview](https://docs.creatopy.com/creatopy-public-api/graphql-api/overview)
+- [Endpoints and queries](https://docs.creatopy.com/creatopy-public-api/graphql-api/endpoints-and-queries)
+- [Postman Collection](https://docs.creatopy.com/creatopy-public-api/graphql-api/postman-collection)

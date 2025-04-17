@@ -1,0 +1,3418 @@
+# SERP API
+Source: https://docs.joinmassive.com/advanced-features/serp-api
+
+Extract live results from popular search engines
+
+## Usage
+
+The search service has a RESTful interface that accepts `GET` requests at
+**https\://​beta.api.joinmassive.com/search**.
+
+Searches are performed in real time by default or can be queued for
+[later retrieval](#asynchronous-mode). Real-time searches take an average of a few seconds but may
+require multiple retries, in which case up to **120 seconds** is allocated per API request.
+
+### Authentication
+
+You can access the service by including
+[your secret API token](https://partners.joinmassive.com/profile) in an `Authorization` header:
+
+```http
+Authorization: Bearer [Insert API token here]
+```
+
+Here’s an example request that uses the [common Curl command](https://curl.se/):
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"          \
+          'https://beta.api.joinmassive.com/search?terms=foo'
+```
+
+### Search parameters
+
+Required and optional parameters can be added in a
+[standard query string](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL#parameters).
+The keys and values that Massive supports are as follows:
+
+| Key           | Required | Value                                                                                                                                                                                                                                                                                                                                                                         |
+| :------------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `terms`       | ✅        | The broad or exact word or phrase to query (e.g., `foo bar baz` or `"foo bar baz"`); the terms require [form or URL encoding](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding) (with any space character being replaced by a `+` character or `%20` sequence)                                                                                              |
+| `serps`       | ⬜        | The number of results pages to retrieve, from `1` to `10` inclusive; `1` is the default count                                                                                                                                                                                                                                                                                 |
+| `size`        | ⬜        | **\[Google only]** The number of results per page to retrieve, from `0` to `100` inclusive; page size is unset by default                                                                                                                                                                                                                                                     |
+| `offset`      | ⬜        | **\[Google only]** The number of initial results to skip, from `0` to `100` inclusive; results aren’t offset by default                                                                                                                                                                                                                                                       |
+| `engine`      | ⬜        | The search engine to use, `google`, `bing`, or `duckduckgo`; `google` is the default engine                                                                                                                                                                                                                                                                                   |
+| `device`      | ⬜        | **\[Google only]** The name as returned by the [devices endpoint](#device-emulation) of the device to emulate searching on (these names are case insensitive but must include form- or URL-encoded spaces and punctuation marks); searching is done on a desktop browser by default                                                                                           |
+| `country`     | ⬜        | The [two-letter ISO code](https://www.iso.org/obp/ui/#search) of the country to search from (these codes are case insensitive); a random country will be used by default                                                                                                                                                                                                      |
+| `subdivision` | ⬜        | The alphanumeric second part (proceeding the separator) of a [first-level subdivision code](https://www.iso.org/obp/ui/#search) in the (prerequisite) country to search from (these codes are case insensitive); a random subdivision will be used by default                                                                                                                 |
+| `city`        | ⬜        | The [commonly spelled name](https://www.geonames.org/) of the city in the (prerequisite) country to search from (these names are temporarily case sensitive and required to include form- or URL-encoded spaces and punctuation marks); a random city will be used by default                                                                                                 |
+| `uule`        | ⬜        | **\[Google only]** The [proprietary encoded string](https://moz.com/blog/geolocation-the-ultimate-tip-to-emulate-local-search) for emulating the location to search from; if possible, the actual location will be searched from not emulated; location emulation is unused by default                                                                                        |
+| `language`    | ⬜        | **\[Google only]** The commonly spelled name, [two-letter ISO code](https://www.loc.gov/standards/iso639-2/php/code_list.php), or [Google code](https://www.google.com/advanced_search) of the language to search in (these names and codes are case insensitive but required to include form- or URL-encoded spaces and punctuation marks); the language is unset by default |
+| `mode`        | ⬜        | The synchronous or asynchronous timing of when to retrieve results, `sync` or `async` (see [details below](#asynchronous-mode)); `sync` is the default mode                                                                                                                                                                                                                   |
+| `format`      | ⬜        | The format to output to, `html` or `json` (see [details below](#response-format)); `html` is the default format                                                                                                                                                                                                                                                               |
+| `expiration`  | ⬜        | The maximum age of cached results in days to accept, where `0` will disable caching; `1` is the default number of days                                                                                                                                                                                                                                                        |
+| `subaccount`  | ⬜        | Any unique identifier of up to 255 characters (regardless of character encoding); Massive will bill requests made from subaccounts separately                                                                                                                                                                                                                                 |
+
+### Device emulation
+
+The `device` parameter (which is currently limited to Google searches) lets you fetch
+device-specific results, rather than the default desktop results. For a list of supported smartphone
+and tablet devices, make a request with your API token and no parameters to
+**https\://​beta.api.joinmassive.com/search/devices**:
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"        \
+          'https://beta.api.joinmassive.com/search/devices'
+```
+
+The API will return JSON that contains an alphabetized array of device names:
+
+```json
+[
+  "BlackBerry Z30",
+  "BlackBerry Z30 landscape",
+  "Galaxy Note 3",
+  "[Remaining device names here]"
+]
+```
+
+### Asynchronous mode
+
+A search request that includes the `mode=async` key-value pair will be satisfied asynchronously:
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"                     \
+          'https://beta.api.joinmassive.com/search?terms=foo&mode=async'
+```
+
+In response, the API will provide a JSON job identifier:
+
+```json
+{ "id": "078fd246-f0f7-44a0-aabb-cadd7b12454f" }
+```
+
+The job results or status can be requested at any time thereafter by passing a token and the
+identifier to **https\://​beta.api.joinmassive.com/search/results**:
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"                                                \
+          'https://beta.api.joinmassive.com/search/results?id=078fd246-f0f7-44a0-aabb-cadd7b12454f'
+```
+
+The results, if ready, will be returned in the
+[same format as synchronous results](#response-format); otherwise, a JSON status message will be
+returned.
+
+A `retrieving` status indicates that the search is in progress:
+
+```json
+{ "status": "retrieving" }
+```
+
+A `failed` status indicates that the search was unsuccessful and the request should be retried:
+
+```json
+{ "status": "failed" }
+```
+
+### Response format
+
+You can receive search results in their original HTML or as structured JSON.
+
+#### HTML
+
+Google and Bing don’t feature infinite scrolling, so if you request more than one results page from
+those search engines, the HTML of each page will be separated from the next by an empty line
+(`\n\n`).
+
+#### JSON
+
+If you set the output to JSON, your results will be parsed into nested objects as in the following
+example:
+
+```json
+{
+               "query": "foo",
+  "approxResultsCount": 255000000,
+        "resultsCount": 43,
+             "results": [{
+                                "type": "organic",
+                                "page": 1,
+                             "section": "main",
+                             "feature": 1,
+                            "position": 1,
+                                 "url": "https://foofighters.com/",
+                               "title": "Foo Fighters",
+                                "site": "Foo Fighters",
+                          "visibleUrl": "https://foofighters.com",
+                                "date": null,
+                             "snippet": "Official website of Foo Fighters.",
+                              "rating": null,
+                               "votes": null,
+                           "sitelinks": [{
+                                          "position": 1,
+                                               "url": "https://foofighters.com/tour-dates/",
+                                             "title": "Tour Dates"
+                                        }, {
+                                          "position": 2,
+                                               "url": "https://shop.foofighters.com/",
+                                             "title": "Shop"
+                                        }, {
+                                          "position": 3,
+                                               "url": "https://foofighters.com/news/",
+                                             "title": "News"
+                                        }, {
+                                          "position": 4,
+                                               "url": "https://foofighters.com/news/a-message-from-the-hawkins-family/",
+                                             "title": "A Message from The Hawkins..."
+                                        }],
+                              "images": []
+                        }, {
+                              "type": "also-asked",
+                              "page": 1,
+                           "section": "main",
+                           "feature": 2,
+                          "position": 1,
+                          "question": "What does foo mean?",
+                            "answer": {
+                                            "heading": null,
+                                        "description": "Foo (pronounced FOO) is a term used by programmers as a placeholder for a value that can change, depending on conditions or on information passed to the program.",
+                                               "date": null,
+                                                "url": "https://www.techtarget.com/searchapparchitecture/definition/foo-in-software-programming#:~:text=Foo%20(pronounced%20FOO)%20is%20a,information%20passed%20to%20the%20program.",
+                                              "title": "What Is Foo in Software Programming? Definition from ...",
+                                               "site": "TechTarget",
+                                         "visibleUrl": "https://www.techtarget.com › searchapparchitecture › foo-..."
+                                      }
+                        }, {
+                              "type": "also-asked",
+                              "page": 1,
+                           "section": "main",
+                           "feature": 2,
+                          "position": 2,
+                          "question": "What is the English word Foo?",
+                            "answer": {
+                                            "heading": null,
+                                        "description": "noun (1) ˈfü(ˌ)fü plural -s. slang. : fool, ninny.",
+                                               "date": null,
+                                                "url": "https://www.merriam-webster.com/dictionary/foo-foo#:~:text=1%20of%202-,noun%20(1),%3A%20fool%2C%20ninny",
+                                              "title": "Foo-foo Definition & Meaning - Merriam-Webster",
+                                               "site": "Merriam-Webster",
+                                         "visibleUrl": "https://www.merriam-webster.com › dictionary › foo-foo"
+                                      }
+                        }, {
+                              "type": "also-asked",
+                              "page": 1,
+                           "section": "main",
+                           "feature": 2,
+                          "position": 3,
+                          "question": "Why do Hispanics say \"foo\"?",
+                            "answer": {
+                                            "heading": null,
+                                        "description": "Foo is the diminutive of “fool” (because that extra “L” makes it far too lengthy). It is a term of endearment and part of the common Southern California Latino vernacular. The use of “fool” is foreign to others. It can be taken as a challenge, especially if the wrong tone or cadence are used.",
+                                               "date": "Apr 11, 2022",
+                                                "url": "https://ouresquina.com/2022/a-head-nod-to-the-foos-friendly-or-not/#:~:text=Foo%20is%20the%20diminutive%20of,tone%20or%20cadence%20are%20used.",
+                                              "title": "A head nod to the Foos, friendly or not - Our Esquina",
+                                               "site": "Our Esquina",
+                                         "visibleUrl": "https://ouresquina.com › a-head-nod-to-the-foos-friendly-..."
+                                      }
+                        }, {
+                          "[Remaining “People also ask” results here]"
+                        }, {
+                                "type": "organic",
+                                "page": 1,
+                             "section": "main",
+                             "feature": 3,
+                            "position": 1,
+                                 "url": "https://en.wikipedia.org/wiki/Foo_Fighters",
+                               "title": "Foo Fighters",
+                                "site": "Wikipedia",
+                          "visibleUrl": "https://en.wikipedia.org › wiki › Foo_Fighters",
+                                "date": null,
+                             "snippet": "Foo Fighters is an American rock band formed in Seattle in 1994. Founded as a one-man project by former Nirvana drummer Dave Grohl, the lineup now consists ...",
+                              "rating": null,
+                               "votes": null,
+                           "sitelinks": [],
+                              "images": [{
+                                          "position": 1,
+                                            "source": "[Image data here]",
+                                               "alt": "foo from en.wikipedia.org"
+                                        }]
+                        }, {
+                                "type": "organic",
+                                "page": 1,
+                             "section": "main",
+                             "feature": 3,
+                            "position": 2,
+                                 "url": "https://www.merriam-webster.com/dictionary/foo",
+                               "title": "Foo Definition & Meaning",
+                                "site": "Merriam-Webster",
+                          "visibleUrl": "https://www.merriam-webster.com › dictionary › foo",
+                                "date": null,
+                             "snippet": "The meaning of FOO is Scottish variant of how.",
+                              "rating": null,
+                               "votes": null,
+                           "sitelinks": [],
+                              "images": [{
+                                          "position": 1,
+                                            "source": "[Image data here]",
+                                               "alt": "foo from www.merriam-webster.com"
+                                        }]
+                        }, {
+                               "type": "top-story",
+                               "page": 1,
+                            "section": "main",
+                            "feature": 4,
+                           "position": 1,
+                                "url": "https://nypost.com/2024/09/10/entertainment/foo-fighters-dave-grohl-reveals-he-cheated-welcomed-baby-outside-of-marriage/",
+                          "publisher": "New York Post",
+                           "headline": "Foo Fighters’ Dave Grohl reveals he cheated on his wife, welcomed baby ‘outside’ of his marriage",
+                               "date": "2 hours ago",
+                              "image": "[Image data here]",
+                        }, {
+                               "type": "top-story",
+                               "page": 1,
+                            "section": "main",
+                            "feature": 4,
+                           "position": 2,
+                                "url": "https://www.mirror.co.uk/3am/celebrity-news/breaking-dave-grohl-admits-cheating-33640293",
+                          "publisher": "The Mirror",
+                           "headline": "Foo Fighters' Dave Grohl admits cheating on wife as he reveals fathering secret baby",
+                               "date": "3 hours ago",
+                              "image": "[Image data here]",
+                        }, {
+                               "type": "top-story",
+                               "page": 1,
+                            "section": "main",
+                            "feature": 4,
+                           "position": 3,
+                                "url": "https://www.nbcnews.com/news/us-news/dave-grohl-announces-become-father-baby-born-marriage-rcna170498",
+                          "publisher": "NBC News",
+                           "headline": "Dave Grohl announces he's become the father of a baby born outside his marriage",
+                               "date": "1 hour ago",
+                              "image": "[Image data here]",
+                        }, {
+                          "[Remaining “Top stories” results here]"
+                        }, {
+                          "[Remaining organic results here]"
+                        }, {
+                              "type": "also-searched",
+                              "page": 1,
+                           "section": "bottom",
+                           "feature": 1,
+                          "position": 1,
+                               "url": "https://www.google.com/search?sca_esv=7f94d02cc2bb7a85&sca_upv=1&q=Dave+Grohl&stick=H4sIAAAAAAAAAOMwVGI0-MXIsIGF4RULFxeHfq6-gZGFafIrFm4uThDHMKUiLRkulWRYVQXnpJQVFsI5llm5FnCOWW6WCZxjbpyOUGZSlFyEMNvIoKgKzksxtDTOWMTK5ZJYlqrgXpSfkXOLTZKh-2mPcWB8SME7leaDUof2LHlq8nPd7DLvVYs4xAJS8wtyUhUSc4rzFYpTE4uSMxTS8osAI_QNztIAAAA&sa=X&ved=2ahUKEwi1vO_B_5yIAxV8ElkFHRySAR4Qs9oBKAB6BAhkEAk",
+                             "query": "Dave Grohl"
+                        }, {
+                              "type": "also-searched",
+                              "page": 1,
+                           "section": "bottom",
+                           "feature": 1,
+                          "position": 2,
+                               "url": "https://www.google.com/search?sca_esv=7f94d02cc2bb7a85&sca_upv=1&q=Taylor+Hawkins&stick=H4sIAAAAAAAAAOMwVGI0_MXIsIGF4RULFxeHfq6-gZGFafIrFm4uThDHMKUiLRkulWRYVQXnpJQVFsI5llm5FnCOWW6WCZxjbpyOUGZSlFyEMNvIoKgKzksxtDTOWMTKF5JYmZNfpOCRWJ6dmVd8i02Softpj3FgfEjBO5Xmg1KH9ix5avJz3ewy71WLOMQCUvMLclIVEnOK8xWKUxOLkjMU0vKLAL7S69nWAAAA&sa=X&ved=2ahUKEwi1vO_B_5yIAxV8ElkFHRySAR4Qs9oBKAB6BAhkEA4",
+                             "query": "Taylor Hawkins"
+                        }, {
+                              "type": "also-searched",
+                              "page": 1,
+                           "section": "bottom",
+                           "feature": 1,
+                          "position": 3,
+                               "url": "https://www.google.com/search?sca_esv=7f94d02cc2bb7a85&sca_upv=1&q=Nirvana+(band)&stick=H4sIAAAAAAAAAOMwVGI0-sXIsIGF4RULFxeHfq6-gZGFafIrFm4uThDHMKUiLRkulWRYVQXnpJQVFsI5llm5FnCOWW6WCZxjbpyOUGZSlFyEMNvIoKgKzksxtDTOWMTK55dZVJaYl6igkZSYl6J5i02Softpj3FgfEjBO5Xmg1KH9ix5avJz3ewy71WLOMQCUvMLclIVEnOK8xWKUxOLkjMU0vKLAJ7k8YDWAAAA&sa=X&ved=2ahUKEwi1vO_B_5yIAxV8ElkFHRySAR4Qs9oBKAB6BAhkEBM",
+                             "query": "Nirvana"
+                        }, {
+                          "[Remaining “People also search for” results here]"
+                        }]
+}
+```
+
+## Additional examples
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"                                      \
+          'https://beta.api.joinmassive.com/search?terms=foo+bar+baz&serps=2&engine=bing'
+```
+
+```bash
+$ curl -H "Authorization: Bearer $MASSIVE_API_TOKEN"                                                                          \
+          'https://beta.api.joinmassive.com/search?terms=%22foo+bar+baz%22&serps=10&engine=duckduckgo&country=us&format=json'
+```
+
+
+# Authentication
+Source: https://docs.joinmassive.com/isp-proxies/authentication
+
+We support HTTP, HTTPS, and SOCKS5
+
+<Info>
+  **Attention:** Make sure to carefully check that your credentials and port number are correct for your auth type.
+</Info>
+
+## HTTP
+
+How to authenticate using HTTP.
+
+|           |      |
+| --------- | ---- |
+| HTTP Port | 8000 |
+
+```bash
+curl --proxy http://isp.joinmassive.com:8000 -U '{PROXY_USERNAME}:{API_KEY}' https://cloudflare.com/cdn-cgi/trace
+
+```
+
+## HTTPS
+
+How to authenticate using HTTPS.
+
+|            |      |
+| ---------- | ---- |
+| HTTPS Port | 4080 |
+
+```bash
+curl --proxy https://isp.joinmassive.com:4080 -U '{PROXY_USERNAME}:{API_KEY}' https://cloudflare.com/cdn-cgi/trace
+
+```
+
+## SOCKS5
+
+How to authenticate using SOCKS5.
+
+|             |      |
+| ----------- | ---- |
+| SOCKS5 Port | 8000 |
+
+```bash
+curl -x socks5h://isp.joinmassive.com:8000 -U '{PROXY_USERNAME}:{API_KEY}' https://www.cloudflare.com/cdn-cgi/trace
+```
+
+
+# Error Types
+Source: https://docs.joinmassive.com/isp-proxies/error-types
+
+Massive may respond with one of several common or custom error messages:
+
+| Status code | Reason phrase                 | Additional comments                                                                                                                                                                           |
+| ----------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `400`       | Bad Request                   | Your request was malformed, most likely because of invalid routing parameters; see the response body for human-readable details                                                               |
+| `407`       | Proxy Authentication Required | Your login email address, Massive API token, or both were incorrect                                                                                                                           |
+| `452`       | Disallowed Content            | The protocol, port, or content that you requested conflicts with Massive’s content policy; see the Link header for the entire policy                                                          |
+| `500`       | Internal server error         | Something went wrong on the serverside                                                                                                                                                        |
+| `502`       | Bad gateway                   | Massive was unable to find an appropriate node                                                                                                                                                |
+| `503`       | Service Unavailable           | Massive was unable to satisfy the geotargeting specifications or other elements of your request; or Massive network experiences high demand; see the response body for human-readable details |
+
+
+# Geotargeting
+Source: https://docs.joinmassive.com/isp-proxies/geotargeting
+
+You can tune the request by providing geo parameters like an [ISO ZIP code, subdivision, and country code](https://www.iso.org/obp/ui/#search), and by [city](https://www.geonames.org/).
+
+We do not support geo-targeting for ISP proxies yet.
+
+
+# Introduction
+Source: https://docs.joinmassive.com/isp-proxies/introduction
+
+Massive ISP proxy networks use AT&T infrastructure to provide high-speed, rotating proxies across the US. With 10 Gbps speeds and automatic rotation capabilities, our proxies are perfect for your data collection needs.
+
+<img className="block dark:hidden" src="https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/hero-light.svg" alt="Hero Light" />
+
+<img className="hidden dark:block" src="https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/hero-dark.svg" alt="Hero Dark" />
+
+**Key Features:**
+
+* High-speed connectivity (10 Gbps)
+* Automatic IP rotation
+* Sticky session support
+* Multiple protocol support (HTTP, HTTPS, and SOCKS5)
+* US coverage
+
+## Getting started
+
+The first step to using Massive Network is making sure your credentials work with a simple curl request.
+
+
+# .NET (in C#)
+Source: https://docs.joinmassive.com/isp-proxies/samples/.net
+
+.NET integrations should connect to the [Massive Network’s HTTP port](/isp-proxies/authentication#HTTP) `4080` because [.NET doesn’t broadly support HTTPS proxies yet](https://github.com/dotnet/runtime/pull/87638):
+
+```csharp
+using System.Net;
+
+class Demo {
+  static async Task Main(string[] args) {
+    string username = Uri.EscapeDataString("{PROXY_USERNAME}");
+    string password = "{API_Key}";
+    string url      = "https://cloudflare.com/cdn-cgi/trace"; // Insert your target URL here
+    string proxy    = "http://isp.joinmassive.com:4080";
+
+    HttpClientHandler   handler  = new() {
+                                     Proxy                   = new WebProxy(proxy),
+                                     DefaultProxyCredentials = new NetworkCredential(
+                                                                 username, password
+                                                               )
+                                   };
+    HttpClient          client   = new(handler);
+    HttpResponseMessage response = await client.GetAsync(url);
+
+    Console.WriteLine(await response.Content.ReadAsStringAsync());
+  }
+}
+```
+
+
+# Puppeteer
+Source: https://docs.joinmassive.com/isp-proxies/samples/puppeteer
+
+Integrate the Massive Network into your Puppeteer workflows by setting the `--proxy-server` launch flag then calling a page object’s `authenticate` method:
+
+```javascript
+#!/usr/bin/env node
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+                    args: ['--proxy-server=https://isp.joinmassive.com:4080']
+                  });
+  const page    = (await browser.pages())[0];
+
+  await page.authenticate({
+    username: '{PROXY_USERNAME},
+    password: '{API_KEY}'
+  });
+  await page.goto('https://cloudflare.com/cdn-cgi/trace'); // Insert your target URL here
+  console.log(await page.content());
+  browser.close();
+})();
+```
+
+
+# (Vanilla) Python
+Source: https://docs.joinmassive.com/isp-proxies/samples/python
+
+To connect to the Massive Network from Python, include your encoded credentials in the proxy address (this usage doesn’t risk leaking your API token to a shared history file per the caveat for Curl):
+
+```javascript
+#!/usr/bin/env python3
+import requests
+import urllib
+
+username = '{PROXY_USERNAME}'
+password = '{API_KEY}'
+url      = 'https://cloudflare.com/cdn-cgi/trace' # Insert your target URL here
+host     = 'isp.joinmassive.com'
+port     = 4080
+proxy    = f'https://{username}:{password}@{host}:{port}'
+response = requests.get(url, proxies={'http': proxy, 'https': proxy})
+
+print(response.content)
+```
+
+
+# Ruby
+Source: https://docs.joinmassive.com/isp-proxies/samples/ruby
+
+Ruby’s standard HTTP library doesn’t seem to support HTTPS proxy connections, so connect to the [Massive Network’s HTTP port](/isp-proxies/authentication#http) with Ruby:
+
+```javascript
+#!/usr/bin/env node
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+                    args: ['--proxy-server=https://isp.joinmassive.com:4080']
+                  });
+  const page    = (await browser.pages())[0];
+
+  await page.authenticate({
+    username: '{PROXY_USERNAME},
+    password: '{API_KEY}'
+  });
+  await page.goto('https://cloudflare.com/cdn-cgi/trace'); // Insert your target URL here
+  console.log(await page.content());
+  browser.close();
+})();
+```
+
+
+# Scrapy (for Python)
+Source: https://docs.joinmassive.com/isp-proxies/samples/scrapy
+
+After installing Scrapy (`pip install scrapy`) and creating a project (`scrapy startproject [project name]`), you can connect to the Massive Network by saving code like that below to a file in the new `[project name]/[project name]/spiders` subdirectory then running `scrapy crawl demo` from the top-level `[project name]` directory (Scrapy doesn’t seem to support HTTPS proxy connections, but you can use the [network’s HTTP port](/isp-proxies/authentication#http)):
+
+```python
+import scrapy
+import urllib
+
+class Demo(scrapy.Spider):
+  name = 'demo'
+
+  def parse(self, response):
+    print(response.body)
+
+  def start_requests(self):
+    username = '{PROXY_USERNAME}'
+    password = '{API_KEY}'
+    url      = 'https://cloudflare.com/cdn-cgi/trace' # Insert your target URL here
+    host     = 'isp.joinmassive.com'
+    port     = 4080
+    proxy    = f'http://{username}:{password}@{host}:{port}'
+
+    yield scrapy.Request(url, callback=self.parse, meta={'proxy': proxy})
+```
+
+
+# Sticky sessions
+Source: https://docs.joinmassive.com/isp-proxies/sticky-sessions
+
+Our ISP proxies support sticky sessions, allowing persistent IP connections and session-based routing without expiration.
+
+## Using Sticky Sessions:
+
+| Key     | Value                                         | Duration      | Examples           |
+| ------- | --------------------------------------------- | ------------- | ------------------ |
+| session | Any unique identifier of up to 255 characters | No expiration | 0, abc, session123 |
+
+Add a session identifier to keep your requests on the same IP address:
+
+```bash
+curl --proxy http://isp.joinmassive.com:4080 -U '{PROXY_USERNAME}-session-37:{API_KEY}' ip-api.com
+```
+
+When using sticky sessions:
+
+1. The first request with a session ID linked to a specific IP address.
+
+2. All subsequent requests with the same session ID will use that same IP address.
+
+3. Sessions continue indefinitely unless the session identifier is changed.
+
+4. Requests that do not have a session ID will automatically be assigned a new IP address.
+
+
+# Usage restrictions
+Source: https://docs.joinmassive.com/isp-proxies/usage-restrictions
+
+Some limitations apply to HTTP and SOCKS5 endpoints for ISP proxies.
+
+## General Restrictions
+
+* **No UDP Support:** UDP communication is restricted by default. [Contact support](support@joinmassive.com) if you require access.
+* **Limited Ports:** Only standard ports (80, 443) are available.
+  * Allowed: `http://example.com/`, `https://example.com/`
+  * Not Allowed: `http://example.com:8080`
+* **Content Policy:** The ISP proxy network is designed for activities falling within the legal framework of all jurisdictions. Requests targeting high-risk, offensive, harmful, or illegal content may be blocked.
+
+Requests blocked due to protocol, port, or content restrictions return a `452 Disallowed Content` error.
+
+## Restricted Domains
+
+We restrict access to content that is generally used to evade the law or site TOS policies. If you are getting blocked from accessing certain content that you have a legitimate reason to access, then [contact support](https://joinmassive.atlassian.net/servicedesk/customer/portal/2/group/2/create/13) to complete our KYC process to gain access.
+
+## Port 25
+
+`Port 25` is not opened on our ISP proxy network. Submit a request if this feature is necessary.
+
+## Request access
+
+[Contact support](https://joinmassive.atlassian.net/servicedesk/customer/portal/2/group/2/create/13) if you have questions about our policies or want to complete KYC to gain access to content that is restricted by default.
+
+
+# Select Your Platform
+Source: https://docs.joinmassive.com/monetization-sdk/desktop
+
+The Massive SDK is available on Windows, macOS and Linux.
+
+<CardGroup cols={2}>
+  <Card title="Windows" icon="windows" href="/monetization-sdk/desktop-windows">
+    Integrate in Windows.
+  </Card>
+
+  <Card title="Mac (Objective-C)" icon="apple" href="/monetization-sdk/desktop-mac-objective-c">
+    Integrate in Mac (Objective-C).
+  </Card>
+
+  <Card title="Mac (Swift)" icon="apple" href="/monetization-sdk/desktop-mac-swift">
+    Integrate in Mac (Swift).
+  </Card>
+</CardGroup>
+
+
+# Mac (Objective-C)
+Source: https://docs.joinmassive.com/monetization-sdk/desktop-mac-objective-c
+
+Integrate Massive SDK into your Mac application with this guide.
+
+## Example code
+
+```objectivec
+#import <Massive/Massive.h>
+
+...
+
+MSVInitWithAPIToken(apiToken, ^(id<MSVNode> massive, NSError *error) {
+  if (massive) {
+    massive.userOptedIn = YES;
+
+    massive.menuBarUsageShown = YES;
+    if (massive.menuBarUsageShown) massive.menuBarUsageShown = NO;
+
+    NSViewController *massiveViewController = [massive createUsageViewController];
+    [view addSubview:massiveViewController.view];
+
+    [massive pauseUsageForTimePeriod:MSVHour];
+    if (massive.usagePaused) [massive unpauseUsage];
+
+    if (massive.userOptedIn) massive.userOptedIn = NO;
+  }
+});
+```
+
+## Getting started
+
+1. Download the [latest SDK package][5].
+
+2. Open the Xcode project you want to integrate the SDK into.
+
+3. If your project navigator isn’t shown, go to **View** > **Navigators** >
+   **Show Project Navigator**.
+
+4. Open the SDK package and drag the `Massive.framework` bundle into the
+   navigator.
+
+5. If the **Copy items if needed** box and box for your app target aren’t
+   checked, check them.
+
+6. Press the **Finish** button.
+
+7. In the implementation file for your app delegate, import the SDK:
+
+   ```objectivec
+   // Importing in Objective-C:
+   #import <Massive/Massive.h>
+   ```
+
+8. In your `applicationDidFinishLaunching` method, start and wait till the SDK
+   is ready by calling the `MSVInitWithAPIToken` function and defining a
+   `MSVInitCompletionHandler` block:
+
+   ```objectivec
+   // Starting in Objective-C:
+   - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+     ...
+
+     MSVInitWithAPIToken(apiToken, ^(id<MSVNode> massive, NSError *error) {
+       if (massive) {
+         ...
+       }
+     });
+
+     ...
+   }
+   ```
+
+9. When the user opts in, toggle the `userOptedIn` property on:
+
+   ```objectivec
+   // Opting in in Objective-C:
+   massive.userOptedIn = YES;
+   ```
+
+10. Next, show user tooling by toggling the `menuBarUsageShown` property on on
+    demand or calling the `getUsageViewController` method then adding the view
+    of the returned controller to your interface:
+
+    ```objectivec
+    // Showing system tooling in Objective-C:
+    massive.menuBarUsageShown = YES;
+
+    // Showing custom tooling in Objective-C:
+    NSViewController *massiveViewController = [massive createUsageViewController];
+    [view addSubview:massiveViewController.view];
+    ```
+
+See the [API reference][6] for detailed info and optional SDK functionality.
+
+## Sample apps
+
+See the `README.txt` file and `Massive Sample` folder in the [SDK package][7].
+
+## API reference
+
+### Protocol
+
+**`MSVNode`**
+
+Defines a node of the Massive distributed computer.
+
+***
+
+### Types
+
+**`typedef void (^MSVInitCompletionHandler)(id<MSVNode> node, NSError *error);`**
+
+A block called asynchronously after a Massive node has been started. The node,
+if started successfully, or startup error, if not, is passed to the block.
+
+***
+
+**`typedef enum MSVTimePeriod: NSInteger { ... } MSVTimePeriod;`**
+
+A capped or uncapped duration.
+
+**Cases**
+
+**`MSVIndefinite`** An indefinite time period.
+
+**`MSVHour`** An hour.
+
+**`MSVDay`** A day.
+
+**`MSVWeek`** A week.
+
+***
+
+### Functions
+
+**`void MSVInitWithAPIToken(NSString *apiToken, MSVInitCompletionHandler completion);`**
+
+Starts a Massive node, pending user opt-in, attributed to your API token.
+
+**Parameters**
+
+**`apiToken`** A unique developer identifier obtained from this website.
+
+**`completion`** A block called asynchronously after node startup.
+
+***
+
+### Properties
+
+**`@property BOOL userOptedIn;`**
+
+The state of user opt-in. `YES` allows computing resources to be
+opportunistically consumed; `NO` doesn’t. Resource consumption is disallowed by
+default; the user must agree to easy-to-understand terms of the exchange you’re
+offering before you toggle this property on.
+
+***
+
+**`@property(readonly) BOOL usagePaused;`**
+
+The enablement state of resource consumption. `YES` indicates usage is paused;
+`NO`, unpaused.
+
+***
+
+**`@property BOOL menuBarUsageShown;`**
+
+The visibility state of menu-bar tooling. `YES` adds charts representing
+resource consumption to the user’s menu bar; `NO` removes them. Resource charts
+aren’t made available by default; they must be added to the menu bar by toggling
+this property on or to your interface by calling the `createUsageViewController`
+method.
+
+***
+
+### Methods
+
+**`- (void)pauseUsageForTimePeriod:(MSVTimePeriod)timePeriod;`**
+
+Disables opportunistic resource consumption for the finite time period or till
+you call the `unpauseUsage` method. Resource consumption is enabled by default.
+
+**Parameters**
+
+**`timePeriod`** A capped or uncapped duration.
+
+***
+
+**`- (void)unpauseUsage;`**
+
+Re-enables resource consumption if disabled.
+
+***
+
+**`- (NSViewController *)createUsageViewController;`**
+
+Constructs a view controller with charts representing resource consumption that
+you can add to your app’s interface. Resource charts must be added to your
+interface by calling this method or to the menu bar by toggling the
+`menuBarUsageShown` property on.
+
+**Return value**
+
+The view controller with resource charts.
+
+[5]: https://downloads.joinmassive.com/sdk/macos/Massive%20SDK.dmg
+
+[6]: #api-reference
+
+[7]: #getting-started
+
+
+# Mac (Swift)
+Source: https://docs.joinmassive.com/monetization-sdk/desktop-mac-swift
+
+Integrate Massive SDK into your Mac application with this guide.
+
+## Example code
+
+```swift
+import Massive
+
+...
+
+MSVInit(apiToken: apiToken, completion: { (massive: MSVNode?, error: Error?) -> Void in
+  if massive != nil {
+    massive.userOptedIn = true
+
+    massive.menuBarUsageShown = true
+
+    if massive.menuBarUsageShown {
+      massive.menuBarUsageShown = false
+    }
+
+    let massiveViewController = massive.createUsageViewController()
+    view.addSubview(massiveViewController.view)
+
+    massive.pauseUsage(timePeriod: .hour)
+
+    if massive.usagePaused {
+      massive.unpauseUsage()
+    }
+
+    if massive.userOptedIn {
+      massive.userOptedIn = false
+    }
+  }
+} as! MSVInitCompletionHandler)
+```
+
+## Getting started
+
+1. Download the [latest SDK package][5].
+
+2. Open the Xcode project you want to integrate the SDK into.
+
+3. If your project navigator isn’t shown, go to **View** > **Navigators** >
+   **Show Project Navigator**.
+
+4. Open the SDK package and drag the `Massive.framework` bundle into the
+   navigator.
+
+5. If the **Copy items if needed** box and box for your app target aren’t
+   checked, check them.
+
+6. Press the **Finish** button.
+
+7. In the implementation file for your app delegate, import the SDK:
+
+   ```swift
+   // Importing in Swift:
+   import Massive
+   ```
+
+8. In your `applicationDidFinishLaunching` method, start and wait till the SDK
+   is ready by calling the `MSVInit` function and defining a
+   `MSVInitCompletionHandler` block:
+
+   ```swift
+   // Starting in Swift:
+   func applicationDidFinishLaunching(_ notification: Notification) {
+     ...
+
+     MSVInit(apiToken: apiToken, completion: { (massive: MSVNode?, error: Error?) -> Void in
+       if massive != nil {
+         ...
+       }
+     } as! MSVInitCompletionHandler)
+
+     ...
+   }
+   ```
+
+9. When the user opts in, toggle the `userOptedIn` property on:
+
+   ```swift
+   // Opting in in Swift:
+   massive.userOptedIn = true
+   ```
+
+10. Next, show user tooling by toggling the `menuBarUsageShown` property on on
+    demand or calling the `getUsageViewController` method then adding the view
+    of the returned controller to your interface:
+
+    ```swift
+    // Showing system tooling in Swift:
+    massive.menuBarUsageShown = true
+
+    // Showing custom tooling in Swift:
+    let massiveViewController = massive.createUsageViewController()
+    view.addSubview(massiveViewController.view)
+    ```
+
+See the [API reference][6] for detailed info and optional SDK functionality.
+
+## Sample apps
+
+See the `README.txt` file and `Massive Sample` folder in the [SDK package][7].
+
+## API reference
+
+### Protocol
+
+**`MSVNode`**
+
+Defines a node of the Massive distributed computer.
+
+***
+
+### Types
+
+**`typealias MSVInitCompletionHandler = (MSVNode?, Error?) -> Void`**
+
+A block called asynchronously after a Massive node has been started. The node,
+if started successfully, or startup error, if not, is passed to the block.
+
+***
+
+**`enum MSVTimePeriod: Int`**
+
+A capped or uncapped duration.
+
+**Cases**
+
+**`case indefinite`** An indefinite time period.
+
+**`case hour`** An hour.
+
+**`case day`** A day.
+
+**`case week`** A week.
+
+***
+
+### Functions
+
+**`func MSVInit(apiToken: String, completion: MSVInitCompletionHandler)`**
+
+Starts a Massive node, pending user opt-in, attributed to your API token.
+
+**Parameters**
+
+**`apiToken`** A unique developer identifier obtained from this website.
+
+**`completion`** A block called asynchronously after node startup.
+
+***
+
+### Properties
+
+**`var userOptedIn: Bool { get set }`**
+
+The state of user opt-in. `true` allows computing resources to be
+opportunistically consumed; `false` doesn’t. Resource consumption is disallowed
+by default; the user must agree to easy-to-understand terms of the exchange
+you’re offering before you toggle this property on.
+
+***
+
+**`var usagePaused: Bool { get }`**
+
+The enablement state of resource consumption. `true` indicates usage is paused;
+`false`, unpaused.
+
+***
+
+**`var menuBarUsageShown: Bool { get set }`**
+
+The visibility state of menu-bar tooling. `true` adds charts representing
+resource consumption to the user’s menu bar; `false` removes them. Resource
+charts aren’t made available by default; they must be added to the menu bar by
+toggling this property on or to your interface by calling the
+`createUsageViewController` method.
+
+***
+
+### Methods
+
+**`func pauseUsage(timePeriod: MSVTimePeriod)`**
+
+Disables opportunistic resource consumption for the finite time period or till
+you call the `unpauseUsage` method. Resource consumption is enabled by default.
+
+**Parameters**
+
+**`timePeriod`** A capped or uncapped duration.
+
+***
+
+**`func unpauseUsage()`**
+
+Re-enables resource consumption if disabled.
+
+***
+
+**`func createUsageViewController() -> NSViewController`**
+
+Constructs a view controller with charts representing resource consumption that
+you can add to your app’s interface. Resource charts must be added to your
+interface by calling this method or to the menu bar by toggling the
+`menuBarUsageShown` property on.
+
+**Return value**
+
+The view controller with resource charts.
+
+[5]: https://downloads.joinmassive.com/sdk/macos/Massive%20SDK.dmg
+
+[6]: #api-reference
+
+[7]: #getting-started
+
+
+# Windows (C/C++)
+Source: https://docs.joinmassive.com/monetization-sdk/desktop-windows
+
+Integrate Massive SDK into your Windows application with this guide.
+
+## Example code
+
+```c
+#include <Massive.h>
+
+...
+
+void initCallback(MassiveStatus status, void *context) {
+  if (status == MassiveStatus::OP_SUCCESS) {
+    if (MassiveStart() != MassiveStatus::OP_SUCCESS) {
+      MassiveShowTaskbarUsage();
+
+      bool isTaskbarUsageShown = false;
+      MassiveIsTaskbarUsageShown(&isTaskbarUsageShown);
+
+      if (isTaskbarUsageShown) MassiveHideTaskbarUsage();
+
+      bool isMassiveStarted = false;
+      MassiveIsStarted(&isMassiveStarted);
+
+      if (isMassiveStarted) MassiveStop();
+    }
+  }
+}
+
+MassiveOptions options = MassiveOptions::STOP_MASSIVE_ON_APP_QUIT;
+MassiveInitWithAPIToken(apiToken, options, initCallback, context);
+
+...
+
+MassiveCleanUp();
+```
+
+## Getting started
+
+1. Download the [latest SDK package][3].
+
+2. Extract the package to your folder of choice.
+
+3. Open your IDE and the project you want to integrate the SDK into.
+
+4. Add the extracted `include` folder to your include path.
+
+5. Add the `lib\win64` folder to your library path and, from that folder, the `MassiveClient.dll`
+   library as a dependency.
+
+6. Configure the `MassiveInstaller.exe` installer to be copied, at build time, from the `bin` to
+   output folders.
+
+7. In your implementation file, import the SDK:
+
+   ```c
+   // Importing in C/C++:
+   #include <Massive.h>
+   ```
+
+8. Start and wait till the SDK is ready by calling the `MassiveInitWithAPIToken` function and
+   defining a `MassiveInitCallback` continuation function:
+
+   ```c
+   // Starting in C/C++:
+   MassiveInitWithAPIToken(apiToken, options, initCallback, context);
+
+   void initCallback(MassiveStatus status, void *context) {
+     if (status == MassiveStatus::OP_SUCCESS) {
+       ...
+     }
+   }
+   ```
+
+9. When the user opts in, call the `MassiveStart` function:
+
+   ```c
+   // Opting in in C/C++:
+   MassiveStart();
+   ```
+
+10. Next, show user tooling by calling the `MassiveShowTaskbarUsage` function on demand:
+
+    ```c
+    // Showing system tooling in C/C++:
+    MassiveShowTaskbarUsage();
+    ```
+
+See the [API reference][6] for detailed info and optional SDK functionality.
+
+## Sample apps
+
+See the `README.txt` file and `samples` folder in the [SDK package][7]. The
+samples demonstrate how to integrate the SDK into your project and use its
+functionality.
+
+* `MassiveCliSample` is a simple console application that demonstrates how to
+  integrate the SDK into a C/C++ project.
+* `MassiveSample` is a simple Windows application that demonstrates how to
+  integrate the SDK into a C# project.
+
+## API reference
+
+### Types
+
+**`typedef enum MassiveStatus`**
+
+An enumeration of possible states of the Massive SDK.
+
+**Values**
+
+**`OP_SUCCESS`** The operation was successful.
+
+**`INVALID_ARGS`** The arguments passed to the function were invalid.
+
+**`UNINITIALIZED_SERVICE`** The Massive service was not initialized.
+
+**`INITIALIZING_SERVICE`** The Massive service is initializing.
+
+**`ALREADY_STARTED`** The node is already started.
+
+**`CORRUPTED_INSTALLATION`** The installation is corrupted.
+
+**`INTERNAL_ERROR`** An internal error occurred.
+
+***
+
+**`typedef enum MassiveOptions`**
+
+An enumeration of options for the Massive SDK initialization.
+
+**Values**
+
+**`NONE`** No options.
+
+**`STOP_MASSIVE_ON_APP_QUIT`** Stops the Massive service when the client app quits.
+
+***
+
+**`typedef void(__cdecl *MassiveInitCallback)(MassiveStatus status, void *context);`**
+
+A function called asynchronously after a node of the Massive network
+has been initialized. The startup state and local data from the caller are
+passed to the function.
+
+**Parameters**
+
+**`status`** The startup state of the node.
+
+**`context`** Any local data passed to the `MassiveInitWithAPIToken` function.
+
+***
+
+**`typedef void(__cdecl *MassiveCallback)(void *context);`**
+
+Type of generic callback that is used to handle async events from the SDK.
+
+**Parameters**
+
+**`context`** Any local data passed to the function which uses this callback.
+
+***
+
+### Functions
+
+**`void __cdecl MassiveInitWithAPIToken(const char *apiToken, const MassiveOptions options, MassiveInitCallback callback, void *context);`**
+
+Starts a Massive node, pending user opt-in, attributed to your API token.
+
+**Parameters**
+
+**`apiToken`** A unique developer identifier obtained from this website.
+
+**`options`** Options for the Massive SDK initialization.
+
+**`callback`** A function called asynchronously after node startup.
+
+**`context`** Any local data to pass to the `callback` function.
+
+***
+
+**`void __cdecl MassiveCleanUp();`**
+
+De-initializes and releases all resources acquired by Massive.
+
+***
+
+**`const char *__cdecl MassiveGetVersion();`**
+
+Returns the version of the Massive SDK.
+
+**Return value**
+
+The version of the Massive SDK in the format `major.minor.patch`.
+
+***
+
+**`MassiveStatus __cdecl MassiveStart();`**
+
+Allows computing resources to be opportunistically consumed. The user must agree
+to easy-to-understand terms of the exchange you’re offering before you call this
+function.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveStop();`**
+
+Disallows computing resources to be consumed.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveIsStarted(bool *isStarted);`**
+
+Queries the allowing state of the computing resources sharing.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveShowTaskbarUsage();`**
+
+Adds charts representing resource consumption to the user’s taskbar. Resource
+charts must be made available by calling this function.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveHideTaskbarUsage();`**
+
+Hides charts representing resource consumption from the user's taskbar.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveIsTaskbarUsageShown(bool *isShown);`**
+
+Queries the visibility state of taskbar tooling.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveStoppedViaTaskbarCallback(MassiveCallback callback, void *context);`**
+
+Sets a callback to be called when user opts out from Massive using Taskbar UI.
+
+**Parameters**
+
+**`callback`** A callback to notify about the event.
+
+**`context`** Any local data to pass to the `callback` function.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveStartedViaTaskbarCallback(MassiveCallback callback, void *context);`**
+
+Sets a callback to be called when user opts in to Massive using Taskbar UI.
+
+**Parameters**
+
+**`callback`** A callback to notify about the event.
+
+**`context`** Any local data to pass to the `callback` function.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveSetServiceUnavailableCallback(MassiveCallback callback, void *context);`**
+
+Sets a callback to be called when connection to the Massive is lost.
+
+**Parameters**
+
+**`callback`** A callback to notify about the event.
+
+**`context`** Any local data to pass to the `callback` function.
+
+**Return value**
+
+Execution status code.
+
+***
+
+**`MassiveStatus __cdecl MassiveSetServiceAvailableCallback(MassiveCallback callback, void *context);`**
+
+Sets a callback to be called when connection to the Massive is restored.
+
+**Parameters**
+
+**`callback`** A callback to notify about the event.
+
+**`context`** Any local data to pass to the `callback` function.
+
+**Return value**
+
+Execution status code.
+
+[3]: https://downloads.joinmassive.com/sdk/windows/MassiveSDK.zip
+
+[6]: #api-reference
+
+[7]: #getting-started
+
+
+# Introduction
+Source: https://docs.joinmassive.com/monetization-sdk/introduction
+
+The Massive SDK provides a new way to monetize app features and content without annoying ads or low-converting paywalls.
+
+# About Us
+
+Your users who opt in pay with an imperceptible amount of their computing power and bandwidth rather than with their personal attention and data.
+
+Massive combines these computing resources to form a supercomputer that monitors internet performance, gathers business intelligence, trains AI models, runs scientific simulations, and performs other distributed tasks. You can access your developer dashboard anytime to check the daily revenue you’ve generated.
+
+The SDK takes care of performing tasks imperceptibly by analyzing anonymous telemetry data. You’re responsible for making sure users are prompted with clear terms before opting in then can pause, opt out of, and access tooling to visualize resource consumption.
+
+# Getting started
+
+The first step to using Massive Network is making sure you have been approved to use our SDK. If you haven't done so already, [create an account](https://partners.joinmassive.com/create-account-sdk) and if you have signed up but do not have credentials email [support@joinmassive.com](support@joinmassive.com).
+
+
+# Select Your Platform
+Source: https://docs.joinmassive.com/monetization-sdk/mobile-and-smart-tv
+
+The Massive SDK is available on Android, FireOS, and iOS.
+
+<CardGroup cols={2}>
+  <Card title="Android" icon="android" href="/monetization-sdk/mobile-android">
+    Integrate in Android.
+  </Card>
+
+  <Card title="iOS" icon="apple" href="/monetization-sdk/mobile-ios">
+    Integrate in iOS.
+  </Card>
+
+  <Card title="Fire OS" icon="amazon" href="/monetization-sdk/tv-fire">
+    Integrate in Fire OS.
+  </Card>
+</CardGroup>
+
+
+# Android
+Source: https://docs.joinmassive.com/monetization-sdk/mobile-android
+
+Integrate Massive SDK into your Android application with this guide.
+
+## Technical Requirements
+
+|                   |                          |
+| ----------------- | ------------------------ |
+| Android SDK Level | `21 (Lollipop)` or later |
+| Kotlin version    | `1.9.0` or later         |
+| Java version      | `17` or later            |
+
+### Permissions Needed
+
+|                                                   |
+| ------------------------------------------------- |
+| `android.permission.INTERNET`                     |
+| `android.permission.ACCESS_NETWORK_STATE`         |
+| `android.permission.FOREGROUND_SERVICE`           |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` |
+| `android.permission.WAKE_LOCK`                    |
+
+## Integration Guide
+
+### Sample application
+
+|                                          |                                              |                                                                                              |
+| ---------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| <Icon icon="Android" iconType="solid" /> | Sample Application Kotlin (Android / FireOS) | [Download](https://downloads.joinmassive.com/sdk/android/1.4.0/Massive-SampleApp.zip)        |
+| <Icon icon="Android" iconType="solid" /> | Sample Application Flutter (Android)         | [Download](https://downloads.joinmassive.com/sdk/android/1.4.0/Massive-SampleAppFlutter.zip) |
+
+Massive SDK comes with a sample application showing project configuration, API integration, and consent screen.
+
+To run the app, follow next steps:
+
+1. Download the latest sample using the link above.
+2. Unarchive and open the project in Android Studio.
+3. Copy the API token from your [Profile](https://partners.joinmassive.com/profile).
+4. Set the token value to the variable `API_TOKEN` at the end of `MainActivity.kt`.
+5. Build and run a target `sampleapp`.
+
+### Dependency configuration
+
+Add the dependency to your project Gradle configuration:
+
+1. Add Massive maven repo `https://downloads.joinmassive.com/sdk/android/release` to the dependency `repositories` used by the project.
+   It can be defined in different places depending on your project.
+
+   Common places are:
+
+   global **settings.gradle.kts**
+
+   ```gradle
+   dependencyResolutionManagement {
+       repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+       repositories {
+           google()
+           mavenCentral()
+           maven {
+             url = uri("https://downloads.joinmassive.com/sdk/android/release")
+           }
+       }
+   }
+
+   ```
+
+   project **build.gradle**
+
+   ```gradle
+   allprojects {
+       repositories {
+           google()
+           mavenCentral()
+           maven {
+               url uri("https://downloads.joinmassive.com/sdk/android/release")
+           }
+       }
+   }
+
+   ```
+
+2. In the build configuration file for your **app module** (*build.gradle.kts* / *build.gradle*), add the Massive SDK as a dependency:
+
+   ```gradle
+   dependencies {
+       implementation("com.joinmassive:sdk:1.+")
+   }
+   ```
+
+   **Note:** Make sure to add and configure the `org.jetbrains.kotlin.android` plugin to your app module.
+
+   ```gradle
+   plugins {
+       id("org.jetbrains.kotlin.android")
+   }
+
+   android {
+       ...
+
+       kotlinOptions {
+           jvmTarget = "1.8"
+       }
+   }
+   ```
+
+   If you use a `toml` file for dependency configuration, add the following to the `toml`:
+
+   ```gradle
+   [versions]
+   massiveSdk = "massive_sdk_version_here"
+
+   [libraries]
+   massive-sdk = { group = "com.joinmassive", name = "sdk", version.ref = "massiveSdk"}
+   ```
+
+   Then, define SDK dependency in the `gradle` file as:
+
+   ```gradle
+   dependencies {
+       implementation(libs.massive.sdk)
+   }
+   ```
+
+### Integration to the app
+
+#### 1. Get the API token
+
+Massive SDK API token is available in your [Profile](https://partners.joinmassive.com/profile).
+
+#### 2. Initialize MassiveClient
+
+Interaction with Massive SDK starts with initializing the `MassiveClient` in your `Activity` or `Application` class. Ensure you do this at the start of the application lifecycle.
+
+```kotlin
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialize MassiveClient
+        MassiveClient.init(API_TOKEN, this)
+    }
+}
+
+```
+
+#### 3. Create client options
+
+Next, fill in the client options to specify the desired running mode: *Foreground* or *Background* service.
+
+*Foreground* service <ins>is preferable</ins> as it increases the earning potential. You can find more information about the difference in the [Technical details](#technical-details).
+
+```kotlin
+val massiveOptions = MassiveOptions(
+    serviceType = MassiveServiceType.Foreground,
+    notificationOptions = MassiveNotificationOptions(
+        notificationTitle = getString(R.string.notification_title),
+        notificationText = getString(R.string.notification_content),
+        iconDrawable = com.joinmassive.sdk.R.drawable.massive_sdk_icon
+    )
+)
+```
+
+#### 4. Request consent from the user
+
+Before starting the client, obtain user consent for the terms of resource exchange. Please see our [launch checklist](https://www.joinmassive.com/launch-checklist-android) for additional details.
+
+Here is the sample consent screen:
+
+![Android Consent Screen](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/android-consent-screen.png)
+
+Example consent text
+
+```
+To remove ads and get free content, please let Massive use a small amount of your device's free resources and IP
+address to download public web data from the internet.
+
+This supports the development of Application and helps us to improve our services.
+
+No personal information is collected except your IP address.
+
+Your participation is optional, and you may opt out anytime by accessing Settings (see Massive's FAQ for details).
+
+Pressing Accept indicates that you agree to Massive's license and privacy policy.
+
+```
+
+#### 5. Start usage after consent
+
+After receiving the user's consent, start usage using the `start()` method and created options:
+
+```kotlin
+// Check if there is user consent to use Massive and show the dialog if we need to request it.
+if (!consentHelper.isConsentGiven()) {
+    consentHelper.showConsentDialog(
+        onAccept = {
+            // Start Massive if the user has given consent.
+            MassiveClient.start(massiveOptions) { result ->
+                result.onSuccess {
+                    // Handle successful start.
+                }.onFailure { exception ->
+                    // Handle start failure.
+                }
+            }
+        },
+        onDecline = {}
+    )
+} else {
+    // If the user has already given consent, start Massive directly.
+    MassiveClient.start(massiveOptions) { result ->
+        result.onSuccess {
+            // Handle successful start.
+        }.onFailure { exception ->
+            // Handle start failure.
+        }
+    }
+}
+```
+
+## Changes in the new Massive SDK 1.0
+
+The new version of the Massive SDK introduces several significant changes aimed at improving usability, performance, and integration flexibility. Here is an overview of the key changes:
+
+1. Dependency configuration: The dependency configuration process has been streamlined. Instead of manually setting up a local Maven repository, you can now directly add the Massive Maven repository to your project’s Gradle configuration. This simplification reduces setup time and potential errors, ensuring a more efficient integration of the SDK.
+
+2. Changed package name: The name of the Massive SDK package has changed from `com.massive` to `com.joinmassive`.
+
+3. Changed client interface: The `MassiveClient` has shifted from using a singleton instance to utilizing static methods. This change simplifies interaction with the SDK, making it more straightforward to initialize and manage the client throughout the application lifecycle.
+
+4. Options handling: The process of providing options has been moved from the init stage to the `start` method. This allows for more dynamic configuration, enabling modification of the service options at the time of starting the client rather than during initialization. This separation ensures a quicker initialization process and more flexible configuration management.
+
+5. Changed behavior of `stop`: The behavior of the stop method has been enhanced. In the new version, calling `stop` not only stops the usage but also shuts down the service entirely. This ensures that all operations are cleanly terminated and the service is properly shut down, providing a more robust mechanism for managing the SDK’s lifecycle.
+
+6. Remote service: The Massive SDK service now runs as a separate process, enhancing the stability and performance of the main application.
+
+### Migration from version 0.x
+
+#### Dependency Configuration
+
+* **Old Version**: Requires manually setting up a local Maven repository.
+
+  ```bash
+  mkdir project/repo
+  unzip massive-sdk.zip -d project/repo
+  ```
+
+  ```gradle
+  repositories {
+      maven {
+          url = uri("/project/repo")
+      }
+  }
+  ```
+
+  ```gradle
+  dependencies {
+        implementation("com.massive:sdk:0.+")
+  }
+  ```
+
+* **New Version**: Directly add the Massive Maven repository to the dependency `repositories`.
+
+  ```gradle
+  repositories {
+    maven {
+      url = uri("https://downloads.joinmassive.com/sdk/android/release")
+    }
+  }
+  ```
+
+  ```gradle
+  dependencies {
+        implementation("com.joinmassive:sdk:1.+")
+  }
+  ```
+
+#### Initialization
+
+* **Old Version**:
+  ```kotlin
+  MassiveClient.getInstance(context) { client ->
+      client.initAsync(MASSIVE_DEMO_API_TOKEN, massiveOptions, object : InitCallback {
+          override fun onSuccess() {
+              // Handle successful initialization.
+          }
+          override fun onFailure(message: String) {
+              // Handle initialization failure.
+          }
+      })
+  }
+  ```
+
+* **New Version**:
+  ```kotlin
+  MassiveClient.init(API_TOKEN, context)
+  ```
+
+#### Start and stop methods
+
+* **Old Version**:
+  ```kotlin
+  client.start()
+  ...
+  client.stop()
+  ```
+
+* **New Version**:
+  ```kotlin
+  MassiveClient.start(massiveOptions) {
+      it.onSuccess { // Handle Started state. }
+      it.onFailure { // Handle error. }
+  }
+  ...
+  MassiveClient.stop() {
+      it.onSuccess { // Handle Stopped state. }
+      it.onFailure { // Handle error. }
+  }
+  ```
+
+#### State handling
+
+* **Old Version**:
+  ```kotlin
+  // Async state handler.
+  client.listener = object : MassiveClientListener {
+      override fun onStateChange(newState: State) {
+          // Handle changed state.
+      }
+  }
+  ...
+  // Current state.
+  client.state
+  ```
+
+* **New Version**:
+  ```kotlin
+  // Handle state after the action.
+  MassiveClient.start(massiveOptions) {
+      it.onSuccess { // Handle Started state or query the current state. }
+      it.onFailure { // Handle error. }
+  }
+
+  // Current state.
+  when (MassiveClinet.state()) {
+      MassiveClient.State.Starting -> {
+      }
+      MassiveClient.State.Started -> {
+      }
+      MassiveClient.State.Stopped -> {
+      }
+  }
+  ```
+
+## Technical details
+
+1. Android permissions
+   Massive SDK defines the following permissions in the manifest file:
+
+   * `android.permission.INTERNET`
+   * `android.permission.ACCESS_NETWORK_STATE`
+   * `android.permission.FOREGROUND_SERVICE`
+   * `android.permission.FOREGROUND_SERVICE_DATA_SYNC`
+   * `android.permission.WAKE_LOCK`
+
+   These permissions will be automatically added to your app during the build.
+
+2. Client initialization
+   Interaction with the SDK always begins with initialization using `MassiveClient.init`, which requires your API token. This initialization step is crucial and should be performed only once during the application’s lifecycle. Subsequent calls to `init` will have no effect. Attempting to re-initialize the SDK with a different API token will result in a `MassiveReinitException`, ensuring that the SDK maintains a single consistent state throughout the app’s runtime.
+
+   Since the SDK consists of client and service components, initialization can trigger synchronization of their states. To handle this scenario and achieve accurate state tracking, you can pass an additional callback to the `init` method. This callback will be called in the main thread after synchronization is complete.
+
+3. User consent before starting the usage
+
+   Before starting the usage for the first time (using the `start()` method), it is mandatory to obtain user consent for the terms of resource exchange. This aligns with user privacy and control principles. Ensure that your application includes a clear and understandable consent mechanism.
+
+   ```kotlin
+   if (isUserConsentGiven) {
+       MassiveClient.start(massiveOptions) {}
+   }
+   ```
+
+4. Starting and stopping the client
+
+   Initialization of the `MassiveClient` with the `init()` method does not automatically launch the service or start the usage.
+
+   **It prepares the SDK for use but does not begin its operation.**
+
+   To ensure that the Massive is running, the `start()` method must be called after initialization and on each application relaunch. The `start()` method is designed to be idempotent, meaning it is safe to call multiple times. If the service is already started, subsequent calls to start will have no effect, preventing redundant operations.
+
+   The `stop()` method is used to stop and kill the service, effectively halting all operations and ensuring that the service is properly terminated. After calling `stop()`, you can restart the client by calling the `start()` method again, and it is possible to provide different options for the restart. This flexibility allows you to change the configuration or operational mode of the SDK as needed.
+
+5. Client options and service types
+
+   Massive SDK can operate either as a *Background* or a *Foreground* service. The choice depends on your app's requirements and how you want to manage the SDK's resource usage.
+
+   * *Foreground Service*: Allow Massive to <ins>run more and less likely killed by the system</ins> but more visible with a customizable notification ensuring the user is aware of the service's operation.
+     **Running as a Foreground Service increases earning potential.**
+
+   * *Background Service:* Less intrusive, running silently without user interaction.
+
+6. Customizing Foreground Service Notification
+
+   When running as a foreground service, Massive SDK allows customization of the notification displayed to the user.
+
+   You can set the title, text, and icon of the notification:
+
+   ```kotlin
+   val options = MassiveOptions(
+       serviceType = MassiveServiceType.Foreground,
+
+       notificationOptions = MassiveNotificationOptions(
+           notificationTitle = "Your Title",
+           notificationText = "Your Text",
+           iconDrawable = R.drawable.your_icon
+       )
+   )
+   ```
+
+   Massive library contains a pre-defined drawable icon resource `com.joinmassive.sdk.R.drawable.massive_sdk_icon`, but you can also provide your own.
+
+7. Usage tracking
+
+   The Massive SDK includes functionality for tracking and retrieving current traffic usage statistics. This allows you to monitor the SDK's data usage, providing insights into its network activity.
+
+   The `usage` method in the `MassiveClient` class fetches and returns the current traffic usage in *bytes*. Please check the sample application for an example of how to use the method to retrieve and display the traffic usage statistics.
+
+8. SDK remote service
+
+   The latest version of the Massive SDK uses a remote service that is launched as a separate process. This service handles the core operations of the SDK independently of the main application process, providing better performance and stability.
+
+9. ProGuard rules
+
+   Massive SDK AAR embeds required Android ProGuard rules which are applied automatically if you are using the R8 compiler.
+
+   If you, however, don’t use R8 you have to apply the rules below:
+
+consumer-rules.pro
+
+```gradle
+# Keep the public SDK entities
+-keep class com.joinmassive.sdk.** { *; }
+-keep interface com.joinmassive.sdk.** { *; }
+-keep enum com.joinmassive.sdk.** { *; }
+
+-dontwarn org.jetbrains.annotations.**
+-keep class kotlin.Metadata { *; }
+
+# Keep OkHttp3 and Moshi classes
+-keep class com.squareup.okhttp3.** { *; }
+-keep interface com.squareup.okhttp3.** { *; }
+-keep class com.squareup.moshi.** { *; }
+-keep interface com.squareup.moshi.** { *; }
+
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,*Annotation*,EnclosingMethod
+```
+
+
+# iOS
+Source: https://docs.joinmassive.com/monetization-sdk/mobile-ios
+
+The Massive SDK provides a new way to monetize app features and content without annoying ads or low-converting paywalls.
+
+## Latest release
+
+|                                        |                           |         |                                                                                               |
+| -------------------------------------- | ------------------------- | ------- | --------------------------------------------------------------------------------------------- |
+| <Icon icon="apple" iconType="solid" /> | iOS SDK                   | `0.3.1` | [Download](https://downloads.joinmassive.com/sdk/ios/0.3.1/MassiveSDK-iOS-0.3.1.zip)          |
+| <Icon icon="apple" iconType="solid" /> | Sample iPhone Application | `0.3.1` | [Download](https://downloads.joinmassive.com/sdk/ios/0.3.1/MassiveSample-iPhoneAPP-0.3.1.zip) |
+
+## Technical Requirements
+
+|                        |                 |
+| ---------------------- | --------------- |
+| iOS Minimum Deployment | `16.0`          |
+| iOS Deployment Target  | `16.0` or later |
+| Swift version          | `5.10` or later |
+| Capabilities required  | None            |
+
+## Integration Guide
+
+### Dependency configuration in Xcode
+
+To integrate the Massive SDK into your iOS project, set up the SDK as a dependency in the target's settings.
+
+1. Go to the target's settings and select the `General` tab.
+
+2. Drag and drop the Massive SDK `xcframework` file into the `Frameworks, Libraries, and Embedded Content` section.
+
+3. Ensure that the `xcframework` is set to Embed & Sign.
+
+### Integration to the app
+
+Here's an example of how to integrate the Massive SDK into an iOS app. This sample demonstrates the essential steps such as initializing Massive, handling user consent, and starting or stopping the SDK.
+
+#### 1. Obtain the API token
+
+Massive SDK API token is available in your [Profile](https://partners.joinmassive.com/profile).
+
+#### 2. Initialize MassiveClient
+
+Initialize the client with the API token and handle the result in the callback:
+
+```swift
+MassiveClient.shared.initAsync(apiToken: {API_TOKEN}) { status in
+    switch status {
+    case .initialized:
+        // Handle successful initialization
+    case .error:
+        // Handle initialization error
+    default:
+        // Handle other states when massive is already initialized
+    }
+}
+```
+
+#### 3. Request user consent
+
+Before starting the SDK, obtain user consent for the terms of resource exchange.
+
+Here is a sample consent screen:
+
+![ios-consent-screen](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/ios-consent-screen.png)
+
+#### 4. Start usage
+
+After receiving user's consent, start usage using `start()` method:
+
+```swift
+// Check if the user gives consent to use Massive, and show the dialog if we need to request it.
+if (!isConsentGiven()) {
+    showConsentDialog()
+}
+
+if (MassiveClient.shared.start()) {
+    // Handle successful start
+}
+```
+
+#### 5. Query network usage
+
+Having the SDK initialized, you can query the network usage anytime independently of the SDK state.
+The usage is in bytes and can be converted to more suitable units for display.
+
+```swift
+let usage = MassiveClient.shared.getNetworkUsage()
+let usageInBytes = Double(usage)
+let usageInKB = usageInBytes / 1024
+let usageInMB = usageInKB / 1024
+let usageInGB = usageInMB / 1024
+
+// Display the usage
+```
+
+#### 6. Stop usage
+
+To stop the SDK, use the `stop()` method:
+
+```swift
+MassiveClient.shared.stop()
+```
+
+#### 7. Register a task to run in the background
+
+First, enable the **background processing** mode in the app capabilities and add the `com.massive.sdk.startBackground` task ID to the list of permitted task identifiers.
+
+Then, register a task to run in the background calling the `startBackground()` method in the provided closure. This must be done before the end of the app launch sequence.
+
+```swift
+let TASK_ID = "com.massive.sdk.startBackground"
+
+BGTaskScheduler.shared.register(forTaskWithIdentifier: TASK_ID, using: nil) { task in
+    MassiveClient.shared.startBackground(task: task as! BGProcessingTask)
+}
+```
+
+## Sample application
+
+Massive SDK comes with a sample application showing project configuration, API integration, and consent screen.
+
+The archive with the sample contains a *README* file with instructions to set up and run the application.
+
+### Technical details
+
+#### 1. Shared instance of the `MassiveClient`
+
+The MassiveClient class is designed as a singleton, ensuring that only one instance of the client is active throughout the application's lifecycle. This design simplifies the management of the client's state and its interactions with the Massive network.
+
+#### 2. One-time initialization
+
+The SDK should be initialized only once per application launch. Attempts to reinitialize the SDK after a successful initialization will simply return its current state.
+
+***The SDK must be reinitialized if the application is terminated and relaunched.***
+
+#### 3. User Consent Before Starting SDK Usage
+
+Before starting the SDK (using the `start()` method), it is mandatory to obtain user consent for the terms of resource exchange. This aligns with user privacy and control principles. Ensure that your application includes a clear and understandable consent mechanism.
+
+```swift
+if (isUserConsentGiven) {
+    MassiveClient.shared.start()
+} 
+```
+
+#### 4. State persistence
+
+The SDK state persists when the application goes into the background. This ensures that the SDK continues to operate correctly when the application is resumed.
+
+***The SDK state is not saved across different launches of the application.***
+
+#### 5. Separate initialization and usage start
+
+Initializing the SDK does not automatically start its operation. This separation allows you to initialize the SDK early in your app's lifecycle (e.g., during app startup) and start its operation only after obtaining user consent.
+
+#### 6. Background processing
+
+The SDK supports background processing to continue its operation when the application is in the background. The application is responsible for registering the background task, but the task scheduling is managed by the SDK.
+
+***The background execution occurs only when the device is charging to preserve battery life.***
+
+#### 7. Network usage data
+
+The SDK provides network usage data in bytes and can be queried at any time after the SDK is initialized. The usage reported by the SDK is cumulative and represents the total network usage since the SDK was initialized for the first time.
+
+***The data does not persist across application reinstalls.***
+
+
+# Quickstart
+Source: https://docs.joinmassive.com/monetization-sdk/quickstart
+
+The Massive SDK is available on Windows, Android, FireOS, iOS, and Linux.
+
+<CardGroup cols={2}>
+  <Card title="Massive SDK for desktop" icon="desktop" href="/monetization-sdk/desktop" />
+
+  <Card title="Massive SDK for mobile & smart TV" icon="mobile" href="/monetization-sdk/mobile-and-smart-tv" />
+</CardGroup>
+
+
+# Fire OS
+Source: https://docs.joinmassive.com/monetization-sdk/tv-fire
+
+Integrate Massive SDK into your Fire OS application with this guide.
+
+## Technical Requirements
+
+|                   |                          |
+| ----------------- | ------------------------ |
+| Android SDK Level | `21 (Lollipop)` or later |
+| Kotlin version    | `1.9.0` or later         |
+| Java version      | `17` or later            |
+
+### Permissions Needed
+
+|                                                   |
+| ------------------------------------------------- |
+| `android.permission.INTERNET`                     |
+| `android.permission.ACCESS_NETWORK_STATE`         |
+| `android.permission.FOREGROUND_SERVICE`           |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` |
+| `android.permission.WAKE_LOCK`                    |
+
+## Integration Guide
+
+### Sample application
+
+|                                          |                                        |                                                                                       |
+| ---------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------- |
+| <Icon icon="Android" iconType="solid" /> | Sample Application (Android / Fire OS) | [Download](https://downloads.joinmassive.com/sdk/android/1.3.1/Massive-SampleApp.zip) |
+
+Massive SDK comes with a sample application showing project configuration, API integration, and consent screen.
+
+To run the app, follow next steps:
+
+1. Download the latest sample using the link above.
+2. Unarchive and open the project in Android Studio.
+3. Copy the API token from your [Profile](https://partners.joinmassive.com/profile).
+4. Set the token value to the variable `API_TOKEN` at the end of `MainActivity.kt`.
+5. Build and run a target `sampleapp`.
+
+### Dependency configuration
+
+Add the dependency to your project Gradle configuration:
+
+1. Add Massive maven repo `https://downloads.joinmassive.com/sdk/android/release` to the dependency `repositories` used by the project.
+   It can be defined in different places depending on your project.
+
+   Common places are:
+
+   global **settings.gradle.kts**
+
+   ```gradle
+   dependencyResolutionManagement {
+       repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+       repositories {
+           google()
+           mavenCentral()
+           maven {
+             url = uri("https://downloads.joinmassive.com/sdk/android/release")
+           }
+       }
+   }
+
+   ```
+
+   project **build.gradle**
+
+   ```gradle
+   allprojects {
+       repositories {
+           google()
+           mavenCentral()
+           maven {
+               url uri("https://downloads.joinmassive.com/sdk/android/release")
+           }
+       }
+   }
+
+   ```
+
+2. In the build configuration file for your **app module** (*build.gradle.kts* / *build.gradle*), add the Massive SDK as a dependency:
+
+   ```gradle
+   dependencies {
+       implementation("com.joinmassive:sdk:1.+")
+   }
+   ```
+
+   If you use a `toml` file for dependency configuration, add the following to the `toml`:
+
+   ```gradle
+   [versions]
+   massiveSdk = "massive_sdk_version_here"
+
+   [libraries]
+   massive-sdk = { group = "com.joinmassive", name = "sdk", version.ref = "massiveSdk"}
+   ```
+
+   Then, define SDK dependency in the `gradle` file as:
+
+   ```gradle
+   dependencies {
+       implementation(libs.massive.sdk)
+   }
+   ```
+
+### Integration to the app
+
+#### 1. Get the API token
+
+Massive SDK API token is available in your [Profile](https://partners.joinmassive.com/profile).
+
+#### 2. Initialize MassiveClient
+
+Interaction with Massive SDK starts with initializing the `MassiveClient` in your `Activity` or `Application` class. Ensure you do this at the start of the application lifecycle.
+
+```kotlin
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialize MassiveClient
+        MassiveClient.init(API_TOKEN, this)
+    }
+}
+
+```
+
+#### 3. Create client options
+
+Next, fill in the client options to specify the desired running mode: *Foreground* or *Background* service.
+
+*Foreground* service <ins>is preferable</ins> as it increases the earning potential. You can find more information about the difference in the [Technical details](#technical-details).
+
+```kotlin
+val massiveOptions = MassiveOptions(
+    serviceType = MassiveServiceType.Foreground,
+    notificationOptions = MassiveNotificationOptions(
+        notificationTitle = getString(R.string.notification_title),
+        notificationText = getString(R.string.notification_content),
+        iconDrawable = com.joinmassive.sdk.R.drawable.massive_sdk_icon
+    )
+)
+```
+
+#### 4. Request consent from the user
+
+Before starting the client, obtain user consent for the terms of resource exchange. Please see our [launch checklist](https://www.joinmassive.com/launch-checklist-android) for additional details.
+
+Here is the sample consent screen:
+
+![Android Consent Screen](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/android-consent-screen.png)
+
+Example consent text
+
+```
+To remove ads and get free content, please let Massive use a small amount of your device's free resources and IP
+address to download public web data from the internet.
+
+This supports the development of Application and helps us to improve our services.
+
+No personal information is collected except your IP address.
+
+Your participation is optional, and you may opt out anytime by accessing Settings (see Massive's FAQ for details).
+
+Pressing Accept indicates that you agree to Massive's license and privacy policy.
+
+```
+
+#### 5. Start usage after consent
+
+After receiving the user's consent, start usage using the `start()` method and created options:
+
+```kotlin
+// Check if there is user consent to use Massive and show the dialog if we need to request it.
+if (!consentHelper.isConsentGiven()) {
+    consentHelper.showConsentDialog(
+        onAccept = {
+            // Start Massive if the user has given consent.
+            MassiveClient.start(massiveOptions) { result ->
+                result.onSuccess {
+                    // Handle successful start.
+                }.onFailure { exception ->
+                    // Handle start failure.
+                }
+            }
+        },
+        onDecline = {}
+    )
+} else {
+    // If the user has already given consent, start Massive directly.
+    MassiveClient.start(massiveOptions) { result ->
+        result.onSuccess {
+            // Handle successful start.
+        }.onFailure { exception ->
+            // Handle start failure.
+        }
+    }
+}
+```
+
+## Changes in the new Massive SDK 1.0
+
+The new version of the Massive SDK introduces several significant changes aimed at improving usability, performance, and integration flexibility. Here is an overview of the key changes:
+
+1. Dependency configuration: The dependency configuration process has been streamlined. Instead of manually setting up a local Maven repository, you can now directly add the Massive Maven repository to your project’s Gradle configuration. This simplification reduces setup time and potential errors, ensuring a more efficient integration of the SDK.
+
+2. Changed package name: The name of the Massive SDK package has changed from `com.massive` to `com.joinmassive`.
+
+3. Changed client interface: The `MassiveClient` has shifted from using a singleton instance to utilizing static methods. This change simplifies interaction with the SDK, making it more straightforward to initialize and manage the client throughout the application lifecycle.
+
+4. Options handling: The process of providing options has been moved from the init stage to the `start` method. This allows for more dynamic configuration, enabling modification of the service options at the time of starting the client rather than during initialization. This separation ensures a quicker initialization process and more flexible configuration management.
+
+5. Changed behavior of `stop`: The behavior of the stop method has been enhanced. In the new version, calling `stop` not only stops the usage but also shuts down the service entirely. This ensures that all operations are cleanly terminated and the service is properly shut down, providing a more robust mechanism for managing the SDK’s lifecycle.
+
+6. Remote service: The Massive SDK service now runs as a separate process, enhancing the stability and performance of the main application.
+
+### Migration from version 0.x
+
+#### Dependency Configuration
+
+* **Old Version**: Requires manually setting up a local Maven repository.
+
+  ```bash
+  mkdir project/repo
+  unzip massive-sdk.zip -d project/repo
+  ```
+
+  ```gradle
+  repositories {
+      maven {
+          url = uri("/project/repo")
+      }
+  }
+  ```
+
+  ```gradle
+  dependencies {
+        implementation("com.massive:sdk:0.+")
+  }
+  ```
+
+* **New Version**: Directly add the Massive Maven repository to the dependency `repositories`.
+
+  ```gradle
+  repositories {
+    maven {
+      url = uri("https://downloads.joinmassive.com/sdk/android/release")
+    }
+  }
+  ```
+
+  ```gradle
+  dependencies {
+        implementation("com.joinmassive:sdk:1.+")
+  }
+  ```
+
+#### Initialization
+
+* **Old Version**:
+  ```kotlin
+  MassiveClient.getInstance(context) { client ->
+      client.initAsync(MASSIVE_DEMO_API_TOKEN, massiveOptions, object : InitCallback {
+          override fun onSuccess() {
+              // Handle successful initialization.
+          }
+          override fun onFailure(message: String) {
+              // Handle initialization failure.
+          }
+      })
+  }
+  ```
+
+* **New Version**:
+  ```kotlin
+  MassiveClient.init(API_TOKEN, context)
+  ```
+
+#### Start and stop methods
+
+* **Old Version**:
+  ```kotlin
+  client.start()
+  ...
+  client.stop()
+  ```
+
+* **New Version**:
+  ```kotlin
+  MassiveClient.start(massiveOptions) {
+      it.onSuccess { // Handle Started state. }
+      it.onFailure { // Handle error. }
+  }
+  ...
+  MassiveClient.stop() {
+      it.onSuccess { // Handle Stopped state. }
+      it.onFailure { // Handle error. }
+  }
+  ```
+
+#### State handling
+
+* **Old Version**:
+  ```kotlin
+  // Async state handler.
+  client.listener = object : MassiveClientListener {
+      override fun onStateChange(newState: State) {
+          // Handle changed state.
+      }
+  }
+  ...
+  // Current state.
+  client.state
+  ```
+
+* **New Version**:
+  ```kotlin
+  // Handle state after the action.
+  MassiveClient.start(massiveOptions) {
+      it.onSuccess { // Handle Started state or query the current state. }
+      it.onFailure { // Handle error. }
+  }
+
+  // Current state.
+  when (MassiveClinet.state()) {
+      MassiveClient.State.Starting -> {
+      }
+      MassiveClient.State.Started -> {
+      }
+      MassiveClient.State.Stopped -> {
+      }
+  }
+  ```
+
+## Technical details
+
+1. Android permissions
+   Massive SDK defines the following permissions in the manifest file:
+
+   * `android.permission.INTERNET`
+   * `android.permission.ACCESS_NETWORK_STATE`
+   * `android.permission.FOREGROUND_SERVICE`
+   * `android.permission.FOREGROUND_SERVICE_DATA_SYNC`
+   * `android.permission.WAKE_LOCK`
+
+   These permissions will be automatically added to your app during the build.
+
+2. Client initialization
+   Interaction with the SDK always begins with initialization using `MassiveClient.init`, which requires your API token. This initialization step is crucial and should be performed only once during the application’s lifecycle. Subsequent calls to `init` will have no effect. Attempting to re-initialize the SDK with a different API token will result in a `MassiveReinitException`, ensuring that the SDK maintains a single consistent state throughout the app’s runtime.
+
+   Since the SDK consists of client and service components, initialization can trigger synchronization of their states. To handle this scenario and achieve accurate state tracking, you can pass an additional callback to the `init` method. This callback will be called in the main thread after synchronization is complete.
+
+3. User consent before starting the usage
+
+   Before starting the usage for the first time (using the `start()` method), it is mandatory to obtain user consent for the terms of resource exchange. This aligns with user privacy and control principles. Ensure that your application includes a clear and understandable consent mechanism.
+
+   ```kotlin
+   if (isUserConsentGiven) {
+       MassiveClient.start(massiveOptions) {}
+   }
+   ```
+
+4. Starting and stopping the client
+
+   Initialization of the `MassiveClient` with the `init()` method does not automatically launch the service or start the usage.
+
+   **It prepares the SDK for use but does not begin its operation.**
+
+   To ensure that the Massive is running, the `start()` method must be called after initialization and on each application relaunch. The `start()` method is designed to be idempotent, meaning it is safe to call multiple times. If the service is already started, subsequent calls to start will have no effect, preventing redundant operations.
+
+   The `stop()` method is used to stop and kill the service, effectively halting all operations and ensuring that the service is properly terminated. After calling `stop()`, you can restart the client by calling the `start()` method again, and it is possible to provide different options for the restart. This flexibility allows you to change the configuration or operational mode of the SDK as needed.
+
+5. Client options and service types
+
+   Massive SDK can operate either as a *Background* or a *Foreground* service. The choice depends on your app's requirements and how you want to manage the SDK's resource usage.
+
+   * *Foreground Service*: Allow Massive to <ins>run more and less likely killed by the system</ins> but more visible with a customizable notification ensuring the user is aware of the service's operation.
+     **Running as a Foreground Service increases earning potential.**
+
+   * *Background Service:* Less intrusive, running silently without user interaction.
+
+6. Customizing Foreground Service Notification
+
+   When running as a foreground service, Massive SDK allows customization of the notification displayed to the user.
+
+   You can set the title, text, and icon of the notification:
+
+   ```kotlin
+   val options = MassiveOptions(
+       serviceType = MassiveServiceType.Foreground,
+
+       notificationOptions = MassiveNotificationOptions(
+           notificationTitle = "Your Title",
+           notificationText = "Your Text",
+           iconDrawable = R.drawable.your_icon
+       )
+   )
+   ```
+
+   Massive library contains a pre-defined drawable icon resource `com.joinmassive.sdk.R.drawable.massive_sdk_icon`, but you can also provide your own.
+
+7. Usage tracking
+
+   The Massive SDK includes functionality for tracking and retrieving current traffic usage statistics. This allows you to monitor the SDK's data usage, providing insights into its network activity.
+
+   The `usage` method in the `MassiveClient` class fetches and returns the current traffic usage in *bytes*. Please check the sample application for an example of how to use the method to retrieve and display the traffic usage statistics.
+
+8. SDK remote service
+
+   The latest version of the Massive SDK uses a remote service that is launched as a separate process. This service handles the core operations of the SDK independently of the main application process, providing better performance and stability.
+
+9. ProGuard rules
+
+   Massive SDK AAR embeds required Android ProGuard rules which are applied automatically if you are using the R8 compiler.
+
+   If you, however, don’t use R8 you have to apply the rules below:
+
+consumer-rules.pro
+
+```gradle
+# Keep the public SDK entities
+-keep class com.joinmassive.sdk.** { *; }
+-keep interface com.joinmassive.sdk.** { *; }
+-keep enum com.joinmassive.sdk.** { *; }
+
+-dontwarn org.jetbrains.annotations.**
+-keep class kotlin.Metadata { *; }
+
+# Keep OkHttp3 and Moshi classes
+-keep class com.squareup.okhttp3.** { *; }
+-keep interface com.squareup.okhttp3.** { *; }
+-keep class com.squareup.moshi.** { *; }
+-keep interface com.squareup.moshi.** { *; }
+
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,*Annotation*,EnclosingMethod
+```
+
+
+# Get usage
+Source: https://docs.joinmassive.com/reporting-api-reference/get-usage
+
+get /v1/usage
+Get usage data for the given time range.
+
+If no time range is provided, returns usage for the past 7 days (including today).
+
+
+
+
+# Introduction
+Source: https://docs.joinmassive.com/reporting-api-reference/reporting-api
+
+This guide will help you get started with the Reporting API in just a few minutes.
+
+# Getting started
+
+We’ll use `curl` for our API call examples. You could also consider a dedicated tool for developing API requests (like [Postman](https://www.postman.com/)).
+
+# Authenticate
+
+<Info>
+  The API key for the Reporting API is automatically enabled with access to the Residential Proxy.
+</Info>
+
+```bash
+curl --location 'https://api-network.joinmassive.com/reporting/v1/usage' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: {PROXY_PASSWORD}'
+```
+
+
+# Allocate traffic for an account
+Source: https://docs.joinmassive.com/reseller-api-reference/allocate-traffic-for-an-account
+
+post /accounts/{id}/allocations
+
+
+
+# Create new account
+Source: https://docs.joinmassive.com/reseller-api-reference/create-new-account
+
+post /accounts
+
+
+
+# Disable account
+Source: https://docs.joinmassive.com/reseller-api-reference/disable-account
+
+post /accounts/{id}/disable
+
+
+
+# Enable account
+Source: https://docs.joinmassive.com/reseller-api-reference/enable-account
+
+post /accounts/{id}/enable
+
+
+
+# Get account
+Source: https://docs.joinmassive.com/reseller-api-reference/get-account
+
+get /accounts/{id}
+
+
+
+# Get account usage
+Source: https://docs.joinmassive.com/reseller-api-reference/get-account-usage
+
+get /accounts/{id}/usage
+
+
+
+# Get list of existing accounts
+Source: https://docs.joinmassive.com/reseller-api-reference/get-list-of-existing-accounts
+
+get /accounts
+
+
+
+# Get the allocation list
+Source: https://docs.joinmassive.com/reseller-api-reference/get-the-allocation-list
+
+get /accounts/{id}/allocations
+Get the list of allocations made via the put endpoint for the account.
+
+
+
+# Authentication
+Source: https://docs.joinmassive.com/reseller-api-reference/reseller-api-authentication
+
+The Proxy Resellers API uses API key authentication. You must include your API key in the header of every request to authenticate.
+
+<Info>
+  **Attention:** The API key for the Network API is not automatically enabled for this API. You must specifically request access to the Proxy Resellers API.
+</Info>
+
+# Obtaining an API Key
+
+To get an API key for the Proxy Resellers API:
+
+1. Contact [Massive support](emailto:support@joinmassive.com) and request access to the Proxy Resellers API
+2. Once approved, you will receive your API key
+
+# Using Your API Key
+
+Include your API key in the `x-api-key` header of all requests:
+
+```http
+x-api-key: {API_KEY}
+```
+
+**Example cURL request:**
+
+```bash
+curl --location 'https://api-network.joinmassive.com/resellers/accounts' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: {API_KEY}' \
+--data '{
+  "username": "johndoe@example.com",
+  "password": "secretpassword"
+}'
+```
+
+# Security Best Practices
+
+* Keep your API key secure and don't share it publicly
+* Use environment variables to store your API key in applications
+* Rotate your API key periodically for enhanced security
+
+If you believe your API key has been compromised, contact Massive support immediately for a replacement.
+
+
+# Introduction
+Source: https://docs.joinmassive.com/reseller-api-reference/reseller-api-introduction
+
+The Proxy Resellers API allows you to manage proxy reseller accounts. With this API, you can create, update, and manage accounts that are used to authenticate with the Massive Network API.
+
+# Key Features
+
+* Create and update accounts
+* Enable or disable accounts
+* Allocate traffic for accounts
+* Retrieve account usage information
+* Get lists of accounts and allocations
+
+# Getting Started
+
+To start using the Proxy Resellers API, you'll need:
+
+1. An API key (contact Massive support to enable it for this API)
+2. Basic understanding of RESTful APIs and HTTP methods
+
+Check out our [Quickstart Guide](#quickstart) to begin using the API in minutes.
+
+# API Endpoints
+
+The base URL for all API requests is:
+
+[https://api-network.joinmassive.com/resellers](https://api-network.joinmassive.com/resellers)
+
+For detailed information on available endpoints and operations, see our [API Reference](#api-reference).
+
+# Authentication
+
+All API requests must include your API key in the `x-api-key` header. Learn more in our [Authentication Guide](#authentication).
+
+# Need Help?
+
+If you have any questions or need assistance, please contact our support team at [support@joinmassive.com](mailto:support@joinmassive.com).
+
+
+# Quickstart
+Source: https://docs.joinmassive.com/reseller-api-reference/reseller-api-quickstart
+
+This guide will help you get started with the Proxy Resellers API in just a few minutes.
+
+# Prerequisites
+
+* Your API key for the Proxy Resellers API
+* cURL or any HTTP client (like Postman)
+
+# Step 1: Verify Your API Key
+
+First, let's check if your API key is working:
+
+```bash
+curl --location 'https://api-network.joinmassive.com/resellers/accounts' \
+--header 'x-api-key: {API_KEY}'
+```
+
+If successful, you should receive a list of existing accounts or an empty array.
+
+# Step 2: Create a New Account
+
+Let's create a new reseller account:
+
+```bash
+curl --location 'https://api-network.joinmassive.com/resellers/accounts' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: {API_KEY}' \
+--data '{
+  "username": "newreseller@example.com",
+  "password": "securepassword123",
+  "limit": 1000000
+}'
+```
+
+If successful, you'll receive a response with the new account's ID.
+
+# Step 3: Retrieve Account Details
+
+Now, let's fetch the details of the account we just created:
+
+```bash
+curl --location 'https://api-network.joinmassive.com/resellers/accounts/{account_id}' \
+--header 'x-api-key: {API_KEY}'
+```
+
+Replace {account_id} with the ID received in Step 2.
+
+# Next Steps
+
+You've now successfully created and retrieved an account using the Proxy Resellers API!
+To learn more about available operations, check out our API Reference section.
+
+
+# Update account
+Source: https://docs.joinmassive.com/reseller-api-reference/update-account
+
+put /accounts/{id}
+
+
+
+# Accounting
+Source: https://docs.joinmassive.com/residential/accounting
+
+If you prefer to segregate requests for your customer invoicing or internal accounting, subaccounts can be provided.
+
+| Key        | Value                                                                                                                                         | Examples                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| subaccount | Any unique identifier of up to 255 characters (regardless of character encoding); Massive will bill requests made from subaccounts separately | [user@mail.com](mailto:user@mail.com), user1 |
+
+Example:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-subaccount-customer@example.com:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# ASN identifier targeting
+Source: https://docs.joinmassive.com/residential/asn-type-targeting
+
+You can target a request by an ASN number, a unique identification number that identifies a network or group of networks under a single routing policy on the internet.
+
+| Key | Value                                                                    |
+| --- | ------------------------------------------------------------------------ |
+| asn | ASN numbers are used by various routing protocols. Value range: 0-65536. |
+
+Example using query parameters:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-asn-7018:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+This parameter can be used in combination with all other options. The following request targets by  ASN  in United States:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-asn-7018:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Authentication
+Source: https://docs.joinmassive.com/residential/authentication
+
+We support HTTPS, HTTP, and SOCKS5
+
+<Info>
+  **Attention:** Make sure to carefully check that your credentials and port number are correct for your auth type.
+</Info>
+
+## HTTPS
+
+How to authenticate using HTTPS.
+
+|            |       |
+| ---------- | ----- |
+| HTTPS Port | 65535 |
+
+```bash
+curl --proxy https://network.joinmassive.com:65535 -U '{PROXY_USERNAME}:{API_KEY}' https://cloudflare.com/cdn-cgi/trace
+```
+
+## HTTP
+
+How to authenticate using HTTP.
+
+|           |       |
+| --------- | ----- |
+| HTTP Port | 65534 |
+
+```bash
+curl --proxy http://network.joinmassive.com:65534 -U '{PROXY_USERNAME}:{API_KEY}' https://cloudflare.com/cdn-cgi/trace
+```
+
+## SOCKS5
+
+How to authenticate using SOCKS5.
+
+|             |       |
+| ----------- | ----- |
+| SOCKS5 Port | 65533 |
+
+```bash
+curl -x socks5h://network.joinmassive.com:65533 -U '{PROXY_USERNAME}:{API_KEY}' https://www.cloudflare.com/cdn-cgi/trace
+```
+
+## Firewalled Ports
+
+If port 65,535 is closed on your network, try port 1,080.
+
+|      |      |
+| ---- | ---- |
+| Port | 1080 |
+
+```bash
+curl -x https://network.joinmassive.com:1080 -U '{PROXY_USERNAME}:{API_KEY}' https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Device-type targeting
+Source: https://docs.joinmassive.com/residential/device-type-targeting
+
+You can target different device types to execute the request on.
+
+| Key  | Value                                                                    |
+| ---- | ------------------------------------------------------------------------ |
+| type | The type of device to target. Possible values: `mobile`, `common`, `tv`. |
+
+**Supported Devices**
+
+* `mobile` to execute request on mobile devices.
+
+* `common` to execute request on any non-mobile device.
+
+* `tv` to execute request on tv devices.
+
+Example using query parameters:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-type-mobile-country-US:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+This parameter can be used in combination with all other options. The following request targets a mobile IP in New York State and assigns it a persistent session:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-type-mobile-country-US-subdivision-NY-session-1:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Error Types
+Source: https://docs.joinmassive.com/residential/error-types
+
+Massive may respond with one of several common or custom error messages:
+
+| Status code | Reason phrase                 | Additional comments                                                                                                                                                                           |
+| ----------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `400`       | Bad Request                   | Your request was malformed, most likely because of invalid routing parameters; see the response body for human-readable details                                                               |
+| `407`       | Proxy Authentication Required | Your login email address, Massive API token, or both were incorrect                                                                                                                           |
+| `452`       | Disallowed Content            | The protocol, port, or content that you requested conflicts with Massive’s content policy; see the Link header for the entire policy                                                          |
+| `500`       | Internal server error         | Something went wrong on the serverside                                                                                                                                                        |
+| `502`       | Bad gateway                   | Massive was unable to find an appropriate node                                                                                                                                                |
+| `503`       | Service Unavailable           | Massive was unable to satisfy the geotargeting specifications or other elements of your request; or Massive network experiences high demand; see the response body for human-readable details |
+
+
+# Geotargeting
+Source: https://docs.joinmassive.com/residential/geotargeting
+
+You can tune the request by providing geo parameters like an [ISO ZIP code, subdivision, and country code](https://www.iso.org/obp/ui/#search), and by [city](https://www.geonames.org/).
+
+You can tune the request by providing geo parameters like an [ISO ZIP code, subdivision, and country code](https://www.iso.org/obp/ui/#search), and by [city](https://www.geonames.org/).
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-zipcode-10001:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+## Country, subdivision, city, zipcode
+
+| Key         | Value                                                                                                                                                                                                                                                                                                                                                                                                                                  | Examples         |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| country     | A two-letter country code (these codes are case insensitive)                                                                                                                                                                                                                                                                                                                                                                           | US, GB           |
+| subdivision | The alphanumeric second part (proceeding the separator) of a first-level subdivision code in the (prerequisite) country (case insensitive)                                                                                                                                                                                                                                                                                             | CA, LND          |
+| city        | A commonly spelled city name (temporarily case sensitive and inclusive of URL-encoded spaces and punctuation marks) in the (prerequisite) country. We always use the English (en) variant of the city name, which can be verified on [GeoNames](https://www.geonames.org/) (as referenced in [MaxMind’s documentation](https://support.maxmind.com/hc/en-us/articles/4414877149467-IP-Geolocation-Data#h_01FRRNFD5Z5EWNCAXM6SZZ5H2C)). | New York, London |
+| zipcode     | A postal code. Please take a look at the limitations below.                                                                                                                                                                                                                                                                                                                                                                            | 10001, OX2       |
+
+## Geotargeting rules
+
+* `country` key must always persist if any of the geo parameters is specified. Otherwise, HTTP 400 is returned.
+* If more than one geo key is specified, the server finds an appropriate node strictly matching all the parameters. The only exception is `zipcode`: if specified, `city` key is ignored.
+  * **Details**:
+    * If both subdivision and zipcode are provided, the city is ignored.
+    * If both zipcode and city are provided, the city is ignored.
+    * If subdivision and city are provided, both are strictly matched.
+
+*Please, take into account, that due to technical reasons, the more strict geotargeting narrows the range of appropriate nodes.*
+
+## Zipcode Notes
+
+For the following countries, we accept partial postal codes with the number of characters indicated below:
+
+* **United States**: 5
+* **Canada**: 3
+* **United Kingdom**: 2-4
+* **Brazil**: 5
+* **Ireland**: 3
+* **Japan**: 7 (specified for the first 6. The last digit defaults to 1)
+* **Netherlands**: 4
+* **Portugal**: 7 (accurate for the first 4. The last 3 often default to -001)
+* **Singapore**: 2
+
+Geotargeting by country and city is always more robust than by ZIP code.
+
+## Examples
+
+### Country
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+### Country and city
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-city-NY:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+### Country and subdivision
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-subdivision-NY:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+### Country and zipcode
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-zipcode-10001:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Introduction
+Source: https://docs.joinmassive.com/residential/introduction
+
+The Massive Network is a global edge network that’s used by partners to monitor internet performance, gather business intelligence, and detect fraud and malware.
+
+<img className="block dark:hidden" src="https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/hero-light.svg" alt="Hero Light" />
+
+<img className="hidden dark:block" src="https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/hero-dark.svg" alt="Hero Dark" />
+
+## About us
+
+The network includes more than 1,000,000 residential computers and devices in more than 195 countries around the world. 100% of these computers and devices have been explicitly opted in by users through the [Massive SDK](https://www.joinmassive.com/getpaid) for app developers, which is designed to maintain user-friendly limits on processing, storage, and bandwidth usage.
+
+## Getting started
+
+The first step to using Massive Network is making sure your credentials work with a simple curl request.
+
+<CardGroup cols={2}>
+  <Card title="Test Credentials" icon="key" href="/residential/quickstart">
+    Test your credentials in shell.
+  </Card>
+
+  <Card title="Authentication" icon="code" href="/residential/authentication">
+    Dive right in to all connect methods: HTTPS, HTTP, & SOCKS5.
+  </Card>
+</CardGroup>
+
+
+# Quickstart
+Source: https://docs.joinmassive.com/residential/quickstart
+
+Start crawling the web in under 5 minutes.
+
+## Test your credentials
+
+If you already have an account with Massive, get started by using the [proxy request generator](https://partners.joinmassive.com/quickstart) in our developer portal.
+
+![Proxy Request Generator](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/quickstart-guide.png)
+
+To generate your requests manually, continue following our documentation.
+
+## Configure your environment
+
+Make sure your credentials work and that you use the correct port configuration.
+
+|             |                  |
+| :---------: | :--------------: |
+|   Username  | `PROXY_USERNAME` |
+|   API Key   |     `API_KEY`    |
+|  HTTPS Port |       65535      |
+|  HTTP Port  |       65534      |
+| SOCKS5 Port |       65533      |
+
+## Check credentials
+
+Make sure your API key works with this simple shell script.
+
+<Info>
+  **Attention:** If you credentials do not appear below, they may not be provisioned. Sign up for an account or email [support@joinmassive.com](support@joinmassive.com).
+</Info>
+
+```bash
+curl --proxy https://network.joinmassive.com:65535 --proxy-user 'PROXY_USERNAME:API_KEY' https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Request routing
+Source: https://docs.joinmassive.com/residential/routing
+
+Our robust proxy services allows for geotargeting, sticky sessions, device type targeting, and advanced accounting and reporting.
+
+Massive accepts extended user IDs that let you add targeting specifications to requests. Append a standard URL query string with routing parameters to your proxy username. You can combine routing parameters in any order.
+
+## Standard syntax
+
+Our proxy protocol uses `-` syntax to append routing parameters, which will used throughout our documentation.
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-country-US-zipcode-10001:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+## Alternative syntax
+
+The alternative syntax `?` + `=` + `&` is also supported.
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}?country=US&zipcode=10001:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# .NET (in C#)
+Source: https://docs.joinmassive.com/residential/samples/.net
+
+.NET integrations should connect to the [Massive Network’s HTTP port](/authentication#HTTP) `65534` because [.NET doesn’t broadly support HTTPS proxies yet](https://github.com/dotnet/runtime/pull/87638):
+
+```csharp
+using System.Net;
+
+class Demo {
+  static async Task Main(string[] args) {
+    string username = Uri.EscapeDataString("{PROXY_USERNAME}");
+    string password = "{API_Key}";
+    string url      = "https://cloudflare.com/cdn-cgi/trace"; // Insert your target URL here
+    string proxy    = "http://network.joinmassive.com:65534";
+
+    HttpClientHandler   handler  = new() {
+                                     Proxy                   = new WebProxy(proxy),
+                                     DefaultProxyCredentials = new NetworkCredential(
+                                                                 username, password
+                                                               )
+                                   };
+    HttpClient          client   = new(handler);
+    HttpResponseMessage response = await client.GetAsync(url);
+
+    Console.WriteLine(await response.Content.ReadAsStringAsync());
+  }
+}
+```
+
+
+# FoxyProxy
+Source: https://docs.joinmassive.com/residential/samples/foxyproxy
+
+How to update proxy settings in your browser
+
+### Quick Fix: Proxy Settings Not Updating in Your Browser?
+
+When modifying proxy settings in browser-based proxy management tools such as **SwitchyOmega** or **FoxyProxy**, you may encounter an issue where your browser continues to use the old configuration, even after saving the new settings.
+
+This often happens when switching locations, adjusting sticky sessions, or updating other proxy options.
+
+Fortunately, this is a common issue and can be easily resolved with a simple fix.
+
+💡 Here’s what you need to do:
+
+1. Open **SwitchyOmega** or **FoxyProxy**.
+2. Update your proxy settings to your desired configuration.
+3. Save the changes to apply them.
+4. **Restart your browser** — this step is crucial as it clears the cached settings and ensures the browser uses the updated proxy.
+5. Double-check your new settings using any IP lookup site.
+
+This process applies to all browser-based proxy managers, not just specific tools. No complex fixes are required; a simple browser restart does the trick.
+
+
+# Puppeteer
+Source: https://docs.joinmassive.com/residential/samples/puppeteer
+
+Integrate the Massive Network into your Puppeteer workflows by setting the `--proxy-server` launch flag then calling a page object’s `authenticate` method:
+
+```javascript
+#!/usr/bin/env node
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+                    args: ['--proxy-server=https://network.joinmassive.com:65535']
+                  });
+  const page    = (await browser.pages())[0];
+
+  await page.authenticate({
+    username: '{PROXY_USERNAME},
+    password: '{API_KEY}'
+  });
+  await page.goto('https://cloudflare.com/cdn-cgi/trace'); // Insert your target URL here
+  console.log(await page.content());
+  browser.close();
+})();
+```
+
+
+# (Vanilla) Python
+Source: https://docs.joinmassive.com/residential/samples/python
+
+To connect to the Massive Network from Python, include your encoded credentials in the proxy address (this usage doesn’t risk leaking your API token to a shared history file per the caveat for Curl):
+
+```javascript
+#!/usr/bin/env python3
+import requests
+import urllib
+
+username = '{PROXY_USERNAME}'
+password = '{API_KEY}'
+url      = 'https://cloudflare.com/cdn-cgi/trace' # Insert your target URL here
+host     = 'network.joinmassive.com'
+port     = 65535
+proxy    = f'https://{username}:{password}@{host}:{port}'
+response = requests.get(url, proxies={'http': proxy, 'https': proxy})
+
+print(response.content)
+```
+
+
+# Ruby
+Source: https://docs.joinmassive.com/residential/samples/ruby
+
+Ruby’s standard HTTP library doesn’t seem to support HTTPS proxy connections, so connect to the [Massive Network’s HTTP port](/authentication#http) with Ruby:
+
+```javascript
+#!/usr/bin/env node
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+                    args: ['--proxy-server=https://network.joinmassive.com:65535']
+                  });
+  const page    = (await browser.pages())[0];
+
+  await page.authenticate({
+    username: '{PROXY_USERNAME},
+    password: '{API_KEY}'
+  });
+  await page.goto('https://cloudflare.com/cdn-cgi/trace'); // Insert your target URL here
+  console.log(await page.content());
+  browser.close();
+})();
+```
+
+
+# Scrapy (for Python)
+Source: https://docs.joinmassive.com/residential/samples/scrapy
+
+After installing Scrapy (`pip install scrapy`) and creating a project (`scrapy startproject [project name]`), you can connect to the Massive Network by saving code like that below to a file in the new `[project name]/[project name]/spiders` subdirectory then running `scrapy crawl demo` from the top-level `[project name]` directory (Scrapy doesn’t seem to support HTTPS proxy connections, but you can use the [network’s HTTP port](/authentication#http)):
+
+```python
+import scrapy
+import urllib
+
+class Demo(scrapy.Spider):
+  name = 'demo'
+
+  def parse(self, response):
+    print(response.body)
+
+  def start_requests(self):
+    username = '{PROXY_USERNAME}'
+    password = '{API_KEY}'
+    url      = 'https://cloudflare.com/cdn-cgi/trace' # Insert your target URL here
+    host     = 'network.joinmassive.com'
+    port     = 65534
+    proxy    = f'http://{username}:{password}@{host}:{port}'
+
+    yield scrapy.Request(url, callback=self.parse, meta={'proxy': proxy})
+```
+
+
+# SwitchyOmega
+Source: https://docs.joinmassive.com/residential/samples/switchyomega
+
+How to update proxy settings in your browser
+
+### Quick Fix: Proxy Settings Not Updating in Your Browser?
+
+When modifying proxy settings in browser-based proxy management tools such as **SwitchyOmega** or **FoxyProxy**, you may encounter an issue where your browser continues to use the old configuration, even after saving the new settings.
+
+This often happens when switching locations, adjusting sticky sessions, or updating other proxy options.
+
+Fortunately, this is a common issue and can be easily resolved with a simple fix.
+
+💡 Here’s what you need to do:
+
+1. Open **SwitchyOmega** or **FoxyProxy**.
+2. Update your proxy settings to your desired configuration.
+3. Save the changes to apply them.
+4. **Restart your browser** — this step is crucial as it clears the cached settings and ensures the browser uses the updated proxy.
+5. Double-check your new settings using any IP lookup site.
+
+This process applies to all browser-based proxy managers, not just specific tools. No complex fixes are required; a simple browser restart does the trick.
+
+
+# Sticky sessions
+Source: https://docs.joinmassive.com/residential/sticky-sessions
+
+We support session persistence (AKA sticky sessions) with a customizable TTL, defaulting to 15 minutes.
+
+## Using sticky sessions
+
+| Key        | Value                                                                                                                                                                          | TTL                                                    | Examples        |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ | --------------- |
+| session    | Any unique identifier of up to 255 characters (regardless of character encoding); Massive will make best efforts to route requests in the same session to the same egress node | Default: 15 minutes (customizable with \`sessionttl\`) | session42, 1234 |
+| sessionttl | Customizable session TTL in minutes, up to 60 minutes                                                                                                                          | Default: 15 minutes                                    | 30, 60          |
+
+You can inject a session identifier, like a unique representation of your app or active task, to specify that multiple requests should originate from a single egress node (if available):
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-session-37:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+* Session TTL defaults to 15 minutes but can be customized using the `sessionttl` parameter. For example, to set the TTL to 30 minutes:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-session-37-sessionttl-30:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+* When a session identifier is specified and found the server will perform a request via the same node unless:
+
+  * TTL is expired.
+
+  * The request limit per minute for the node is exceeded.
+
+  * The node has gone offline.
+
+* If the session identifier is not found or the conditions above are not met, a new session is created with the specified ID and attached to the new node.Additional parameters
+
+| Key         | Value            |
+| ----------- | ---------------- |
+| sessionmode | `strict`, `flex` |
+
+By default, when a sticky session fails, our algorithm attempts to find a new node to complete the request, attaching a new IP address to the sticky session. This behavior can be overwritten by specifying `sessionmode-flex`.
+
+Example of using undefined `sessionmode`, which defaults to `sessionmode-strict`:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-session-123:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+Example with `sessionmode-strict` explicitly defined:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-session-123-sessionmode-strict:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+Alternatively, a sticky session can persist through an error by using `sessionmode-flex`, though this may increase error rate.
+
+<Info>
+  **Attention:** The max number of errors is 15 until a new node is assigned to a sticky session.
+</Info>
+
+Example with `sessionmode-flex`:
+
+```bash
+curl -x https://network.joinmassive.com:65535 \
+     -U '{PROXY_USERNAME}-session-123-sessionmode-flex:{API_KEY}' \
+     https://cloudflare.com/cdn-cgi/trace
+```
+
+
+# Usage Alerts
+Source: https://docs.joinmassive.com/residential/usage-alerts
+
+How to set up usage alerts on the [partners](https://partners.joinmassive.com) page
+
+Usage alerts help you stay informed when your usage reaches a certain threshold.
+You can set up alerts to receive notifications via email, ensuring you never exceed
+your desired limits. Follow these simple steps to configure and manage your alerts.
+
+**Note**:
+
+* Alerts work only with **residential proxies**.
+* Alerts apply **within a single billing cycle**. For example, if you set an alert for 10GB, use 9GB, and your plan renews, using 1GB more in the new cycle will not trigger the previous alert.
+* Alerts are processed asynchronously, so they may trigger with a slight delay after requests to Massive Proxy are made
+* You can create up to **10 alerts per account**. If you need more, please contact our team.
+
+## Create a New Alert
+
+1. Go to the [Alerts](https://partners.joinmassive.com/residential/alerts) tab and click **Create New Alert**
+
+![Create Usage Alert](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-1.png)
+
+2. Fill in the alert details:
+
+![Initial Usage Alert Form](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-2.png)
+
+where
+
+* **Threshold**: Set the GB value that triggers an alert.
+* **Emails**: Add recipients for the alert (default is your registration email).
+* **Enable**: Toggle to activate the alert after creation (default to enabled).
+
+Example:
+
+![Filled Usage Alert Form](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-3.png)
+
+3. Click **Save** to activate the alert.
+
+## Manage Existing Alerts
+
+4. Use the **Actions** column to edit, disable, or remove alerts:
+
+![Manage Usage Alert](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-4.png)
+
+## Example Alert Email
+
+As a result, you should receive the following email in your inbox:
+
+![Email 1 Usage Alert](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-5.png)
+
+With the following content:
+
+![Email 2 Usage Alert](https://mintlify.s3.us-west-1.amazonaws.com/massive-c2ad7de9/images/usage-alerts-6.png)
+
+
+# Usage restrictions
+Source: https://docs.joinmassive.com/residential/usage-restrictions
+
+Some restrictions apply to the use of both the HTTP(S) and SOCKS5 endpoints.
+
+# General Restrictions
+
+* UDP communication isn’t allowed.
+* Ports other than the standard `80` and `443` are blocked; `http://example.com/` and `https://example.com/` are acceptable targets, for example, but `http://example.com:8080` would be rejected.
+* The Massive Network is intended to optimize delivery of content that could be reasonably considered “family friendly” to a (currently) worldwide userbase (in the future, regional distinctions are planned), so potentially dangerous or offensive content isn’t allowed.
+
+A request that’s blocked due to any of these protocol, port, or content restrictions will fail with a `452` Disallowed Content error message.
+
+# Restricted Domains
+
+* We restrict access to content that is generally used to evade the law or site TOS policies. If you are getting blocked from accessing certain content that you have a legitimate reason to access, then contact support to complete our KYC process to gain access.
+
+# Port 25
+
+* `Port 25` cannot be opened on our residential proxy network. If you want to use residential proxies to test email sending, you can request access for `Port 587` or `Port 465`.
+
+# Request access
+
+[Contact support](https://joinmassive.atlassian.net/servicedesk/customer/portal/2/group/2/create/13) if you have questions about our policies or want to complete KYC to gain access to content that is restricted by default.
+
+

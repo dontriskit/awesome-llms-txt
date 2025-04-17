@@ -1,0 +1,770 @@
+# Using VPS Control Panel
+
+This is an overview of our virtual server control panel.
+
+## Overview
+
+We offer virtual server management functions through our own, heavily modified control panel.
+
+## Launching Convoy
+
+To launch Convoy, navigate to your VPS product page on [https://clients.advinservers.com](https://clients.advinservers.com) and click on the big button that says Launch VPS Management Panel (SSO).
+![VPS Launch](https://advin-cdn.b-cdn.net/Knowledgebase/chrome_H9geoJRzggdnEU1JDukZzmT2Z88nji.png)
+
+## Server Reinstallation
+
+You can easily reinstall your server by going to the Reinstall tab.
+
+You can choose from a variety of operating system distributions available.
+![Windows Server](https://advin-cdn.b-cdn.net/Knowledgebase/chrome_FdzuWDdWU7nog50UyfwdJeaRWp0P55.png)
+
+## ISO Mounting
+
+Please open a ticket if you wish to use a custom ISO. Once added, you can mount an ISO image by navigating to Settings -> Hardware and selecting an ISO to mount. In this tab, you can also change the boot order to prioritize your ISO. Once done with the ISO, please remove the ISO in the Settings -> Hardware tab and then notify support.
+
+## Password
+
+In order to change your password, please navigate to Settings -> Security. You can change your password or add an SSH key here. Adding an SSH key may require a server restart, but resetting the password does not. SSH keys are not supported with Windows servers.
+
+## Power Actions
+
+You can force stop or start the server at any time. The force stop command is not recommended as it will result in an instant shutdown, potentially causing data integrity issues for your virtual server. Running the shutdown command within the VM is your best option.
+
+## Backups
+
+Backups are currently experimental. Restoring a backup will cause full loss of your existing data. Backups are made on a best-effort basis, meaning that we cannot guarantee the longevity or reliability of them. Typically, we take backups once a day and keep up to 5 days worth of backups. This is not a replacement for taking your own, individual backups. Backups can take multiple hours to restore since they are pulled from cold storage. It is recommended to take a backup of your VPS prior to restoration.
+
+## Remote Console
+
+You can choose to use our noVNC console, but this should only be used in emergency situations. You should ideally connect directly with SSH or RDP.
+
+## Firewall
+
+You can establish firewall rules to block or accept traffic. To disable the firewall, you may delete all of the rules.
+
+
+# Installing Windows on VPS
+
+This is an overview on installing Windows.
+
+## Overview
+
+We do not provide licensing and we can only provide very surface-level support for any Windows-based operating systems. By default, it is possible to activate a 180-day evaluation edition for the purposes of evaluating Windows Server. Once the 180-day evaluation is expired, your server will **automatically restart every 1 hour**.
+
+If you have a dedicated server or a product that is not a virtual server, please open a ticket for assistance as this guide may not help you, since dedicated servers are based on a completely different infrastructure.
+
+## Installing Windows Server
+
+First, please launch the VPS management panel by navigating to the product page and clicking the green button that says Launch VPS Management Panel (SSO) or similar.
+![VPS Launch](https://advin-cdn.b-cdn.net/Knowledgebase/chrome_H9geoJRzggdnEU1JDukZzmT2Z88nji.png)
+
+Once done, you can click on the "Reinstall" tab and install Windows Server. We support Windows Server 2012R2, Server 2019, and Server 2022.
+
+## Final Steps
+
+Please wait 3-5 minutes for the reinstallation to complete, and then another 3-5 minutes for the VPS to finally boot up. Windows has now completed the installation.
+
+
+# Datacenter Addresses
+
+This is an overview of our datacenter addresses.
+
+## Overview
+
+Here are some details about the specific locations our servers are in. ⚠️ **Please do not ship hardware to these addresses!** ⚠️ If you are looking to ship in hardware for a colocation plan or for some other reason, please open a ticket first, otherwise the parcel may be lost as they require reference numbers. We own all of our hardware across every location listed below
+
+### United States
+
+#### Miami, FL
+
+Datacenter: ColoHouse Miami
+
+Address: 36 NE 2nd St #400, Miami, FL 33132
+
+#### Los Angeles, CA
+
+Datacenter: CoreSite LA2
+
+Address: 900 N Alameda St Suite 200, Los Angeles, CA 90012
+
+#### Kansas City, MO
+
+Datacenter: 1530 Swift
+
+Address: 1530 Swift St, North Kansas City, MO 64116
+
+#### Secaucus, NJ
+
+Datacenter: Evocative EWR1
+
+Address: 1 Enterprise Ave N, Secaucus, NJ 07094
+
+### Europe
+
+#### Nuremberg, DE
+
+Datacenter: Hetzner NBG1
+
+Address: Sigmundstraße 135, 90431 Nürnberg, Germany
+
+### Asia Pacific
+
+#### Johor Bahru, MY
+
+Datacenter: Equinix JH1
+
+Address: 2 & 6, Jalan Teknologi Perintis 1/3, Taman Teknologi, Nusajaya, 79200 Iskandar Puteri, Johor Darul Ta'zim, Malaysia
+
+#### Osaka, JP
+
+Datacenter: Equinix OS1
+
+Address: 1-26-1 Shinmachi, Nishi-ku, Osaka, 550-0013
+
+
+# Hardware Information
+
+This is an overview of the hardware that we use on our hypervisors.
+
+## Overview
+
+We use various types of hardware across all of our hypervisors. The specific processor that you get will depend on what is specifically available or in stock. Some locations have varying hardware than others. Please note that we cannot guarantee which processor you will get in these plans. The processor your plan is hosted on may change in the future, especially as brand new more performant and/or power efficient hardware comes out.
+
+## Lineups
+
+### Virtual Servers
+
+#### KVM Premium VPS
+
+Across all of our KVM Premium VPS plans, we usually use DDR5 ECC memory. The memory speeds run up to 4800 MHz for this specific lineup, and we are always running Gen4 RAID10 Enterprise NVMe SSD. This lineup uses the latest generation of AMD EPYC processors, making for one of our best stability and performing VPS plans.
+
+**Available Processors**
+
+*   AMD EPYC Genoa 9554
+*   AMD EPYC Genoa 9654
+
+#### KVM Standard VPS
+
+Across all of our KVM Standard VPS plans, we usually use DDR4 (ECC). Generally, we either run RAID1 or RAID10 NVMe SSD's. The memory speeds can vary from 2400 MHz to 2933 MHz, though most of our modern AMD EPYC VPS hypervisors use 2666 MHz DDR4 memory. **Please note that we may not be able to move your VM or guarantee a specific CPU in this list**, these are just processors that you may potentially get in the CPU pool.
+
+**Available Processors**
+
+*   AMD EPYC Milan 7763
+*   AMD EPYC Milan 7B13
+*   AMD EPYC Milan 7J13
+*   AMD EPYC Rome 7502 (Japan Only)
+
+#### KVM 7950X VDS
+
+Across all of our KVM 7950X VDS plans, we usually either run RAID1 or RAID10 Gen4 Enterprise NVMe SSD's. The memory speed can vary depending on the host node that you get placed on.
+
+**Available Processors**
+
+*   AMD Ryzen 7950X
+*   AMD Ryzen 7950X3D
+
+#### KVM 9950X VDS
+
+Across all of our KVM 7950X VDS plans, we usually either run RAID1 Gen4 NVMe SSD's. The memory speed is always 3600 MHz, as we run 4 DIMM DDR5 configurations.
+
+**Available Processors**
+
+*   AMD Ryzen 9950X
+
+### Other
+
+#### Website Hosting
+
+We use a variety of processors, usually in a RAID1, RAID5, or RAID10 configuration with NVMe SSD's. The memory speed will depend on the exact host node that you get placed on.
+
+**Available Processors**
+
+*   AMD Ryzen 7900
+*   AMD EPYC Genoa 9654
+*   Intel Xeon Silver 4215R
+
+## Clock Speeds
+
+All of our virtual private servers run at their respective turbo boost clock speeds. We do not throttle the processors or limit the TDP's of the processors that we use. Please keep in mind that the CPU clock speed shown in your virtual machine is most likely inaccurate, as the real CPU turbo speeds are not reflected and virtual machines use the base clock as a placeholder. Most of the processors we use can boost well past 3 GHz+. In addition, we always ensure that there is adequate cooling for the processors that we use.
+
+
+# Network Information
+
+This is an overview of our network.
+
+## DDoS Mitigation
+
+At our locations in Los Angeles, Miami, Nuremberg, Secaucus, and Johor, we offer basic Layer 4 (L4) DDoS mitigation to help protect your services against common and low-volume attacks. This mitigation is designed to handle typical network-level threats; however, services frequently targeted by sophisticated or high-volume DDoS attacks may experience service suspension to maintain overall network stability. For advanced and robust protection, we strongly recommend using an external solution like Cloudflare or similar providers specializing in DDoS mitigation.
+
+Please note:
+
+*   Firewall Limitations: User-configurable firewall filters are not available, and custom rules cannot be applied on your behalf.
+*   No Capacity Guarantees: We do not advertise specific mitigation capacity or provide SLAs for DDoS mitigation. Our focus is on maintaining a stable and reliable network, and mitigation capabilities may vary depending on the attack vector and volume.
+*   Network Adaptability: Our network infrastructure is continually evolving to better meet customer needs, so this information is subject to change. We do not put a heavy emphasis on DDoS mitigation across our products as it is not our speciality.
+
+For virtual servers in locations not listed above, a nullroute will be applied in the event of a large-scale attack, as these locations lack built-in DDoS mitigation. This approach ensures the broader network remains unaffected.
+
+## Port Capacities
+
+All of our virtual servers come with a 10 Gbps port by default.
+
+## Internal Traffic
+
+If you have two virtual private servers in the same location, all traffic between them will be free of charge, and they will be able to communicate with each other over a 10G or 40G shared link. Only some locations support this functionality at the time being. Please contact us if you would like to activate this functionality, it is not configured by default.
+
+Internal traffic is currently supported in the following locations:
+
+*   Los Angeles, CA
+*   Nuremberg, DE
+*   Miami, FL
+*   Kansas City, MO
+
+Internal traffic usage will show in the bandwidth graphs, but the traffic will be considered as free and will not be counted towards the fair use bandwidth policy.
+
+## Looking Glass
+
+We have a looking glass containing all of our locations below.
+
+[https://lg.advinservers.com](https://lg.advinservers.com)
+
+## BGP Sessions
+
+We can allow a BGP session if you are paying a minimum of \$192/year with a service on yearly billing. We can allow monthly billing under certain circumstances depending on the location, please open a ticket for more information, but we usually require \$29/month minimum on monthly
+
+We currently have experimental support for BGP sessions in the following locations:
+
+*   Los Angeles, CA
+*   Nuremberg, DE
+*   Miami, FL
+*   Kansas City, MO
+*   Johor Bahru, MY
+
+Please contact us first before purchasing a service to see if it is possible with your requirements. It can take up to 1-2 weeks before we fully process the BGP session.
+
+## Bring Your Own IP (BYOIP)
+
+We allow BYOIP for services if you are paying above \$48/year with a service on yearly billing. We can allow monthly billing under certain circumstances depending on the location, please open a ticket for more information, but we usually require \$16/month minimum on monthly. The IPv4 or IPv6 subnet will be announced under our ASN, which is AS206216.
+
+We currently have experimental support for BYOIP in the following locations:
+
+*   Los Angeles, CA
+*   Nuremberg, DE
+*   Miami, FL
+*   Kansas City, MO
+*   Johor Bahru, MY
+
+Please contact us first before purchasing a service to see if it is possible with your requirements. It can take up to 1-2 weeks before we fully process the BYOIP request.
+
+## IPv6
+
+All products come with a /48 IPv6 subnet.
+
+
+# Introduction
+
+This knowledgebase contains a variety of information regarding our virtual private server, dedicated servers, colocation, and other products that we offer.
+
+## What is Advin Servers?
+
+We are a hosting provider based in the state of Delaware in the United States of America. We rent out and sell dedicated servers, virtual private servers, colocation, and other products to clients from all around the world. We currently have a prescence in over 12+ locations around the world.
+
+
+# Fair Use Resources
+
+This is an overview of our policies governing our fair use of resources.
+
+Last Updated: `October 22nd, 2024`
+
+## Overview
+
+All plans, no matter the type (VPS, VDS, dedicated, etc), is subject to a fair use policy regarding the shared resources that are available. We try our best to make this as relaxed as possible, but there are resources that are shared with other users that you must keep in mind when using your product.
+
+### CPU Usages
+
+On dedicated servers or virtual dedicated servers, CPU usages are no problem and you are permitted to use your CPU at 100% 24x7 as the cores are dedicated to you. This section primarily applies to virtual private servers and website hosting plans, which have shared CPU resources.
+
+We deem abuse to be usage that can cause a significant or noticeable impact on other machines, or usage that is excessive for your plan. Generally, we find that you should maintain under a 75% average CPU usage on virtual private servers in order to prevent any potential impact on other users. If we do find that your usage is excessive, we may deprioritize your CPU usage or potentially, in some rare circumstances, implement a 50% (or lower) temporary CPU usage limit. Most of our host nodes usually have plenty of CPU resources available, and hence it is rare that we have to implement caps or limitations, these are just general guidelines. It is fine to temporarily burst past 75% CPU usage, but sustained usage past that can be deemed as excessive and may be temporarily deprioritized and/or capped if a host node is running out of CPU compute resources.
+
+As for website hosting, we usually cap the LVE limit to 1 core, in which we would recommend maintaining a guideline of a maximum of 25% of that 1 core. Most legitimate websites don't come anywhere close to this limit. If we deem your usage to be excessive, we may adjust the LVE limits to reduce the maximum CPU consumption of your website.
+
+### Cryptocurrency or Blockchain Projects
+
+Excessive or sustained use of shared resources like CPU or disk is not allowed on virtual private servers. Even if you limit the CPU usage, our infrastructure is simply not built to handle a lot of VMs that are all sustaining CPU.
+
+If we do catch abnormal usage, your virtual private server may be suspended. Please contact us if you need a dedicated solution or have questions about running a specific cryptocurrency project, we can offer custom solutions that can cater to mining or we can let you know if it may result in a limit or suspension on our infrastructure.
+
+Some cryptocurrency projects like Quilibrium or Monero may result in service suspension or termination. This is because they have a significant impact on the shared CPU resources past just the load on the cores, causing massive performance problems for our other virtual private servers.
+
+No refunds will be issued if we have to suspend or limit your VPS due to a cryptocurrency project.
+
+There are some cryptocurrency-related projects that do not max out the virtual server resources or cause significant load on the hardware (e.g. Flux). If there's no abnormalities, then yes, you're allowed to run it. However, projects like Quilibirum and Monero damage the hardware and cause problems for our other clients. If it is not Flux, then please contact us in advance of running it and we can give approval.
+
+You are free to max out the CPU or run whichever cryptocurrency project you'd like on a dedicated server 24x7x365, there is no limitation there (as long as the disk wearout is not too high).
+
+### Bandwidth Usage
+
+On plans listed and/or advertised as having fair usage bandwidth, we expect you to keep your bandwidth levels reasonable. In a lot of our locations, we usually have spare bandwidth that we can allocate to our customers, hence why we can offer fair usage bandwidth in some of the locations where we have massive bandwidth allocations and/or commitments.
+
+You are free to use your bandwidth as you wish, but it is typically not normal to sustain past 200 Mbps 24x7, and thus it is recommended to keep your usages under that. It is hard to determine a fine line, but ideally it would be great if you could keep your usages under 50-60TB on fair use plans. If we do see that your usages are high, especially if your plan costs a low amount, we may reach out to your or limit your network traffic. In general, this is incredibly rare and 99% of our clients will never reach this point on a fair use plan. Reverse proxies or VPN's are also held to higher scrutiny and are not recommended to be ran on "fair use" bandwidth plans if the bandwidth usages are expected to be high. Going against this policy may result in limitations in the bandwidth.
+
+### I/O Usages
+
+On virtual servers, we have no strict guidelines for I/O usages. Generally, most of our host nodes utilize Gen3 or Gen4 NVMe SSD's, so I/O usages are generally not a problem as it is exceptionally rare that our host nodes reach the maximum I/O available. We do expect you to keep your usages reasonable.
+
+On both dedicated servers and virtual servers, we strictly forbid programs like Chia which cause unnecessary wear on the SSD's.
+
+# Changes to the Policy
+
+We may amend this policy from time to time. It is your responsibility to check for changes in our privacy policy and make sure that you are up to date. We may send an email notice when major changes occur.
+
+
+# Privacy Policy
+
+This is an overview of our privacy poliy
+
+Last Updated: `December 2nd, 2023`
+
+# Data Collected
+
+We collect information you provide directly to us. For example, we collect information when you create an account, subscribe, participate in any interactive features of our services, fill out a form, request customer support, or otherwise communicate with us. The types of information we may collect include your name, email address, postal address, and other contact or identifying information you choose to provide.
+
+We collect anonymous data from every visitor of the Website to monitor traffic and fix bugs. For example, we collect information like web requests, the data sent in response to such requests, the Internet Protocol address, the browser type, the browser language, and a timestamp for the request.
+
+We also use various technologies to collect information, and this may include sending cookies to your computer. Cookies are small data files stored on your hard drive or in your device memory that allows you to access certain functions of our website.
+
+# Use of the Data
+
+We only use your personal information to provide you services or to communicate with you about the Website or the services.
+
+We employ industry standard techniques to protect against unauthorized access to data about you that we store, including personal information.
+
+We do not share personally identifying information you have provided to us without your consent, unless:
+
+*   Doing so is appropriate to carry out your own request
+*   We believe it's needed to enforce our legal agreements or that is legally required
+*   We believe it's needed to detect, prevent, or address fraud, security, or technical issues
+*   We believe it's needed for a law enforcement request
+*   We believe it's needed to fight a chargeback
+
+# Sharing of Data
+
+We offer payment gateway options such as PayPal, Stripe, NowPayments, and Coinbase Commerce to provide payment options for your services. Your personal information, such as full name or email address, may be sent to these services in order to complete and validate your payment. You are responsible for reading and understanding those third party services' privacy policies before utilizing them to pay.
+
+We also use login buttons provided by services like Google. Your use of these third party services is entirely optional. We are not responsible for the privacy policies and/or practices of these third party services, and you are responsible for reading and understanding those third party services’ privacy policies.
+
+# Cookies
+
+We may use cookies on our site to remember your preferences.
+
+For more general information on cookies, please read ["What Are Cookies"](https://www.cookieconsent.com/what-are-cookies/).
+
+# Security
+
+We take reasonable steps to protect personally identifiable information from loss, misuse, and unauthorized access, disclosure, alteration, or destruction. But, we will not be held responsible.
+
+# About Children
+
+The Website is not intended for children under the age of 13. We do not knowingly collect personally identifiable information via the Website from visitors in this age group.
+
+# Chargebacks
+
+Upon receipt of a chargeback, we reserve the right to send information about you to our payment processor in order to fight the chargeback. Such information may include:
+
+*   Proof of Service/Product
+*   IP Address & Access Logs
+*   Account Information
+*   Ticket Transcripts
+*   Service Information
+*   Server Credentials
+
+# Legal Complaints
+
+Upon receipt of a legal complaint or request for information from a court order and/or a request from a law enforcement agency, we reserve the right to send any information that we have collected and/or logged in order to comply. This could include personally identifying information. We generally comply with law enforcement from the location your service is based in, and United States law enforcement.
+
+# Data Deletion
+
+Please open a ticket and we will remove as much information as we can about you within 30 business days. We may retain certain information in order to help protect against fraud depending on where you are based from. Please open a ticket for more information.
+
+# Changes to the Policy
+
+We may amend this policy from time to time. It is your responsibility to check for changes in our privacy policy and make sure that you are up to date. We may send an email notice when major changes occur.
+
+
+# Refund Policy
+
+This is an overview of our policies governing refunds or returns of goods or services
+
+Last Updated: `June 3rd, 2024`
+
+## Requirements
+
+In order to qualify for a return or refund under our 14 day refund policy, your service must be elgible **and** you must pay with an elgible payment method.
+
+### Qualifying Services
+
+Here is a complete list of the lineups that are elgible for refunds under our refund policy:
+
+| Lineups            | Location | Refund Policy         |
+| ------------------ | -------- | --------------------- |
+| KVM Standard VPS   | Any      | Qualifies for refunds |
+| KVM Premium VPS    | Any      | Qualifies for refunds |
+| KVM Flux Optimized | Any      | Qualifies for refunds |
+| KVM Ryzen VDS      | Any      | Qualifies for refunds |
+| KVM Intel Core VPS | Any      | Qualifies for refunds |
+| Website Hosting    | Any      | Qualifies for refunds |
+
+The following does not qualify for refunds or returns:
+
+| Lineups           | Location | Refund Policy    |
+| ----------------- | -------- | ---------------- |
+| KVM Micro VPS     | Any      | Does not qualify |
+| LXC Containers    | Any      | Does not qualify |
+| LIR Services      | Any      | Does not qualify |
+| Dedicated Servers | Any      | Does not qualify |
+
+If your service is not from the lineups in the above-mentioned list, please contact us over tickets before ordering to see if your service qualifies.
+
+### Qualifying Payment Methods
+
+Here is a complete list of payment methods that are elgible for refund under our refund policy:
+
+| Payment Method | Notes                                 | Refund Policy         |
+| -------------- | ------------------------------------- | --------------------- |
+| PayPal         | Legacy and Billing Agreements qualify | Qualifies for refunds |
+| Stripe         | Includes Alipay, Google Pay, etc.     | Qualifies for refunds |
+| Account Credit | Only refunded back to account credit  | Qualifies for refunds |
+
+The following does not qualify for refunds or returns:
+
+| Payment Method | Notes | Refund Policy    |
+| -------------- | ----- | ---------------- |
+| Cryptocurrency |       | Does not qualify |
+| Bank Transfer  |       | Does not qualify |
+
+If your payment method is not included in the above-mentioned list, please contact us over tickets before ordering to see if your payment method qualifies.
+
+### TOS Violations
+
+If we suspect that you have violated our Terms of Service or Acceptable Use Policies, we may not provide a refund. Additionally, we do not offer refunds for virtual machines suspected of being used for cryptocurrency projects, such as Quilibrium, or for cryptocurrency mining operations.
+
+## Refunds
+
+Within **14 days** (2 weeks) of placing an order, if you are unhappy with the products or services that you receive, we may be able to grant you with a refund as long as you paid with a qualifying payment method and have a qualifying service that is elgible for a refund (e.g. cryptocurrency payments or dedicated servers are non-refundable).
+
+In order to request a refund as per our refund policies, you must open a ticket within the **14 day** (2 week) time limit to our sales department. A cancellation request is not sufficient for requesting a refund, a ticket must be opened. Once the request is in the system, a refund will be initiated within **7** business days. After a refund is initiated, please note that it can take a few days for your bank to process the refund.
+
+Any payment fees associated with the transaction may be deducted from the refund, such as fees charged by our payment processors. We reserve the right to deny you with a refund depending on the circumstances (e.g. if we detect suspicious or fraudulent activity).
+
+Account credit deposits are **NOT** eligible for refunds under any circumstances.
+
+Please note that a maximum of **5** servers can be refunded per account. Past that, any refunds that are processed will have a **50%** processing fee deducted. We reserve the right to update this policy at any time, with or without notification.
+
+# Changes to the Policy
+
+We may amend this policy from time to time. It is your responsibility to check for changes in our privacy policy and make sure that you are up to date. We may send an email notice when major changes occur.
+
+
+# Service Level Agreement
+
+This is an overview of our policies governing our service level agreement
+
+Last Updated: `May 30th, 2024`
+
+## Qualifying Services
+
+Here is a complete list of the lineups that qualify for this SLA:
+
+| Lineups            | Location | SLA Qualification |
+| ------------------ | -------- | ----------------- |
+| KVM Standard VPS   | Any      | Qualifies for SLA |
+| KVM Premium VPS    | Any      | Qualifies for SLA |
+| KVM Flux Optimized | Any      | Qualifies for SLA |
+| KVM Ryzen VDS      | Any      | Qualifies for SLA |
+| KVM Intel Core VPS | Any      | Qualifies for SLA |
+| Dedicated Servers  | Any      | Qualifies for SLA |
+| Website Hosting    | Any      | Qualifies for SLA |
+
+The following does not qualify for SLA:
+
+| Lineups        | Location | SLA Qualification |
+| -------------- | -------- | ----------------- |
+| KVM Micro VPS  | Any      | Does not qualify  |
+| LXC Containers | Any      | Does not qualify  |
+| LIR Services   | Any      | Does not qualify  |
+
+If your service is not from the lineups in the above-mentioned list, please contact us over tickets to see if your service qualifies.
+
+## Qualifying Events
+
+SLA credits are generally issued when you open a ticket requesting for SLA to be claimable. A ticket must be opened within **72 hours** of a qualifying event in order to be eligible for SLA compensation.
+
+These qualifying events may include, but are not limited to:
+
+*   Network Outages
+*   Power Outages
+*   Datacenter Failures
+*   Host Node Issues
+
+We do not provide SLA for the following events:
+
+*   Network Packet Loss
+*   Network Throughput Issues
+*   Failures Caused by the Client
+*   Failures on Individual VPS's
+*   Performance Issues
+*   Scheduled Maintenance Period
+*   VPS Cancellation/Suspension
+
+## Our Guarantee
+
+We guarantee a 99% uptime SLA across all of our services. Here is a chart of the credits we will provide:
+
+| Downtime Period      | Service Credit              |
+| -------------------- | --------------------------- |
+| 1 Hour of Downtime   | Service Extended by 1 Day   |
+| 2 Hours of Downtime  | Service Extended by 2 Days  |
+| 3 Hours of Downtime  | Service Extended by 3 Days  |
+| 4 Hours of Downtime  | Service Extended by 4 Days  |
+| 5 Hours of Downtime  | Service Extended by 5 Days  |
+| 6 Hours of Downtime  | Service Extended by 6 Days  |
+| 7+ Hours of Downtime | Service Extended by 2 Weeks |
+
+There must be a minimum of **1 hour** of downtime in order for SLA credit to be issued.
+
+## Claiming SLA Credits
+
+Please note that in order to claim the SLA credits, you must meet the following requirements:
+
+*   Your account must be in good standing.
+*   You must not have created a chargeback.
+*   You must have created a ticket within 72 hours of the qualifying event.
+*   Your service must not be cancelled/suspended.
+*   SLA can only be claimed once per incident
+
+**Note:** Multiple outages in a row can be considered part of the same incident, as long as the root cause is the same. For example, if your host node were to go offline due to an issue with an SSD (as an example), momentarily comes back online, and then goes back offline due to the same problem, that would be considered as one incident/event and can only have SLA claimable once. In order to identify whether your outage is related to the same incident/problem, please refer to our status page at [https://status.advinservers.com](https://status.advinservers.com). If the incidents are NOT considered separately with different incident ID's, then SLA would not be claimable twice. We reserve the right to deny SLA compensation depending on the circumstances.
+
+# Changes to the Policy
+
+We may amend this policy from time to time. It is your responsibility to check for changes in our privacy policy and make sure that you are up to date. We may send an email notice when major changes occur.
+
+
+# Terms of Service
+
+This is an overview of our terms of service
+
+Last Updated: `October 22nd, 2024`
+
+## Terms and Conditions
+
+Welcome to Advin Servers!
+
+These terms and conditions outline the rules and regulations for the use of Advin Servers's Website, located at [https://advinservers.com](https://advinservers.com). Our terms and conditions can be updated at any time.
+
+By accessing this website, we assume you accept these terms and conditions. Do not continue to use Advin Servers if you do not agree to take all of the terms and conditions stated on this page.
+
+The following terminology applies to these Terms and Conditions, Privacy Statement, and Disclaimer Notice and all Agreements:
+
+*   "Client," "You," and "Your" refers to you, the person logging on this website and compliant to the Company’s terms and conditions.
+*   "The Company," "Ourselves," "We," "Our," and "Us," refers to our Company.
+*   "Party," "Parties," or "Us," refers to both the Client and ourselves. All terms refer to the offer, acceptance, and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Delaware. Any use of the above terminology or other words in the singular, plural, capitalization, and/or he/she or they, are taken as interchangeable and therefore as referring to the same.
+
+### Cookies
+
+We employ the use of cookies. By accessing Advin Servers, you agreed to use cookies in agreement with the Advin Servers's Privacy Policy.
+
+Most interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas.
+
+### Hyperlinking to our Content
+
+Anyone may hyperlink or link to our website.
+
+### iFrames
+
+Without prior approval and written permission, you may not create iframes of our website.
+
+### Your Privacy
+
+Please read our Privacy Policy.
+
+### Removal of links from our website
+
+If you find any link on our Website that is offensive for any reason, you are free to contact and inform us at any moment. We will consider requests to remove links but we are not obligated to do so or to respond to you directly.
+
+### Billing
+
+Invoices for your services are typically generated 1 week, or more, in advance. If there is a failure to pay the invoice, we typically suspend your service after 3 days of the due date (once repeated emails are sent), and your service may be terminated after 1 week. We may keep your service for longer depending on the product.
+
+If the product page states that the service is in the "Suspended" state, there is a high chance that the data is still there. If it shows that your service is in the "Terminated" state, then your data and/or service is most likely not available anymore.
+
+It is your duty to submit a cancellation request through the control panel before the service due date. Failure to do so may result in the payment method on file being charged and/or the invoice not being properly cancelled.
+
+Our refund policy is outlined in the Refund Policy.
+
+### Multiple Accounts
+
+Multiple accounts are allowed as long as it is not for the purposes of:
+
+*   Utilizing a one-per-account promotion code again
+*   Fradulent activity
+*   Evading account closure or bans
+
+If you are caught violating this policy, then we reserve the right to close the duplicate accounts without a refund.
+
+The information on your accounts must be consistent across all of them (i.e. full name, address, phone number). If this is not the case, we will reach out and request that you update it.
+
+### Geolocation
+
+Please note that the geolocation of our subnets may not be correct as geolocation services are maintained by third party databases and organizations. If you are using our servers to access region-locked content, please contact us beforehand so that we can confirm.
+
+### Storage
+
+To provide you with our services, we will have to store your service's files on our servers.
+
+Sometimes, backups of your servers may be stored depending on the product you purchased. We sometimes keep backups of your service in an off-site location depending on the product.
+
+You may request to have your files deleted at any time.
+
+### Fair Use
+
+Please read our Fair Use policy for more information.
+
+### Email Sending
+
+We block port 25 by default and email sending across our infrastructure. We would recommend using a third party service like Amazon SES if you are planning to send mail. The only exception is on web hosting plans, where we use third party solutions to send out mail and carefully monitor to ensure that no spam is sent out.
+
+If we believe that you are intentionally sending email spam, we reserve the right to charge a \$25 USD IP cleaning fee.
+
+### Service Transfers
+
+There is a \$5 USD transfer fee if you wish to transfer your service to another client account. This covers the administrative work of transferring services.
+
+### Abuse
+
+If we receive an abuse complaint, you are required to respond within 24 hours or your service will be suspended (or terminated after 7 days). If we see repeat abuse or intentional acts of abuse that may harm our infrastructure, we may take action immediately. We may charge a fee, such as a \$5 IP cleaning fee, if your service was caught email spamming or committing malicious acts intentionally. This covers the system administration work involved with delisting IP addresses from spam databases.
+
+Any illegal activity, and activity that either may impact our infrastructure and/or taint the reputation of our services and/or IP ranges is strictly prohibited on our network and on our services.
+
+Some types of activity we prohibit may include:
+
+*   Port Scanning
+*   Brute Forcing
+*   Sending DDoS or DoS attacks
+*   IP Spoofing
+*   Phishing Attacks
+*   Email Spamming
+*   Copyrighted Content
+*   Using "Cracked" Software
+
+TOR exit nodes are allowed in certain locations; please contact us first before running one as we need to verify a couple of parameters and make sure that you are in the correct locations and/or on the correct IPv4 ranges.
+
+Our fair use conditions for resources in our services are outlined in our Fair Use policy.
+
+We base illegal activity on United States law, and the law that your server is based in. If your service is based in Germany, you are required to follow both German law and United States law on your service. It is your duty to perform due dilegence and make sure that what you are doing on your services is perfectly legal.
+
+Copyrighted content is strictly forbidden on our services, and we will take action if we receive repeated copyright complaints. We do not ignore DMCA requests; most DMCA requests double as copyright infringement notifications.
+
+### Termination
+
+We reserve the right to terminate your service with or without a reason and with or without notice at any time.
+
+### Data Loss
+
+We are not responsible for any data loss across our services. Sometimes we take backups, but it is not a guarantee and it's the customer reponsibility to take their own backups.
+
+### Tebex
+
+We partner with Tebex Limited ([www.tebex.io](http://www.tebex.io)), who are the official merchant of digital content produced by us. If you wish to purchase licenses to use digital content we produce, you can do so through Tebex as our licensed reseller and merchant of record. In order to make any such purchase from Tebex, you must agree to their terms, available at [https://checkout.tebex.io/terms](https://checkout.tebex.io/terms). If you have any queries about a purchase made through Tebex, including but not limited to refund requests, technical issues or billing enquiries, you should contact Tebex support at [https://www.tebex.io/contact/checkout](https://www.tebex.io/contact/checkout) in the first instance.
+
+# Changes to the Policy
+
+We may amend this policy from time to time. It is your responsibility to check for changes in our privacy policy and make sure that you are up to date. We may send an email notice when major changes occur.
+
+
+# Hardware Issues
+
+Troubleshooting hardware issues.
+
+## Overview
+
+Hardware issues can sometimes (rarely) occur, where something is not working right and our monitoring systems may not have picked up on it. This could potentially be non-satisfactory CPU performance, disk performance, or other such issues with the server hardware itself. There are various ways you can diagnose this and provide information to our support team. As always, please open a ticket if you run into any problems.
+
+## CPU Performance
+
+If you are experiencing non-satisfactory CPU performance on a virtual server, there are a few things that you can check. You can try running the `top` command in your operating system and checking the value called `st`. This indicates CPU steal, which is the percentage of CPU that your VPS is waiting for from the hypervisor.
+
+Generally, we try to keep our hypervisors at 0% CPU steal values. However, in some rarer cases where VPS hypervisors have higher CPU contention, you may see up to 5-10% CPU steal. This is not abnormal, especially in a shared environment where there are other virtual servers that have to compete for CPU resources. Even if there is some CPU left at the hypervisor level, some CPU steal could still present itself when the host node is past 50% CPU usage and starting to use hyperthreading (vCPU), or could present itself due to other parameters.
+
+If you are seeing CPU steal values increase past 10%, it may be good to open a support ticket. You can also use monitors such as HetrixTools or Netdata to monitor the CPU steal values without having to constantly run `top`. Using these tools and providing our support with graphs can help us determine if the CPU steal is problematic and when it is specifically occuring.
+
+If you are not seeing any CPU steal and CPU performance is unsatisfactory, please open a ticket and we will see what we can do or if there is anything we can diagnose. It is also important to note that Geekbench tests may show lower performance if your VPS is starting to use hyperthreaded vCPU cores.
+
+Note: CPU steal values do not exist on bare metal hardware and/or dedicated servers. If you are experiencing unsatisfactory performance on a dedicated server, you could try running `lm-sensors` (install `lm-sensors` first) and checking the CPU temperatures.
+
+## Disk Performance
+
+Generally we use enterprise Gen3 or Gen4 NVMe SSD's across almost all of our VPS hypervisors, so disk performance issues are extraordinarily rare. We would recommend running `curl -sL yabs.sh | bash -s -- -i -g -n` and checking the fio results it outputs (Note: `yabs.sh` is a third-party tool, use at your own risk). As long as the 1m result is above 1 GB/s and 4k results are above 100 MB/s, it should be okay. Keep in mind that the disk speeds are usually shared, and sometimes Linux caches the disk into memory which causes fio results to be high for 4k/1m. Our virtual servers typically greatly exceed the 100 MB/s 4k and 1 GB/s 1m.
+
+```
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 219.67 MB/s  (54.9k) | 1.64 GB/s    (25.7k)
+Write      | 220.25 MB/s  (55.0k) | 1.65 GB/s    (25.8k)
+Total      | 439.93 MB/s (109.9k) | 3.30 GB/s    (51.5k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 4.30 GB/s     (8.4k) | 4.91 GB/s     (4.7k)
+Write      | 4.53 GB/s     (8.8k) | 5.24 GB/s     (5.1k)
+Total      | 8.84 GB/s    (17.2k) | 10.15 GB/s    (9.9k)
+```
+
+If you are seeing low disk performance (i.e. under 1 GB/s on 1m or 100 MB/s on 4k), please open a ticket so that we can investigate.
+
+
+# Network Problems
+
+Troubleshooting network speeds.
+
+## Overview
+
+Networks are complex! It is best to open a ticket if you are running into any problems with our network, but following these instructions and providing our support with this information can greatly help with diagnosing potential network problems and potentially rerouting your connection or fixing network througput problems.
+
+## Packet Loss
+
+### Packet Loss from Home PC
+
+If you suspect that you are experiencing packet loss from your home computer to your server, please follow these instructions. These instructions should be followed on your home PC.
+
+### Windows
+
+#### Installing MTR
+
+WinMTR is a tool that will allow you to easily measure the latency to your server and see where packet loss is happening along with how often it is occurring. WinMTR is free and open source, it can be downloaded at [https://sourceforge.net/projects/winmtr/](https://sourceforge.net/projects/winmtr/).
+
+Once done, please extract the zip file and launch the WinMTR.exe executable.
+
+#### Using MTR
+
+Once finished downloading and launching the executable, input your server IP address into the `Host:` field at the top of the window. Then click `Start`. Wait for a few minutes for the MTR, and once finished, click on `Copy Text to clipboard` and submit it in a support ticket. This will allow us to diagnose any network problems along your traceroute and see where packet loss could potentially be occurring.
+
+### Linux or MacOS
+
+#### Installing MTR
+
+On Linux or MacOS, use your package manager to install the `mtr` package. On Linux, it should be called `mtr` or `mtr-tiny`, and on MacOS it will be called `mtr` (Homebrew is required).
+
+#### Using MTR
+
+On either operating system, run `mtr <serverip>`, replacing `<serverip>` with your actual server IP. Wait a few minutes and then copy the output to your clipboard.
+
+## Low Network Throughput
+
+In order to debug low download and/or upload speeds from your VPS, please install the official Speedtest CLI application found at [https://www.speedtest.net/apps/cli](https://www.speedtest.net/apps/cli). Once done, just run `speedtest` and check the result. Make sure that it is testing to a speedtest server local to your server, sometimes speedtest will default to a different country and/or region than your server is in, which can lead to inaccurate results. Once the speedtest is finished, please review the results and send it to our support if it is not matching expectations.
+
+![Speedtest](https://www.speedtest.net/result/c/c53b9ef7-f701-49c2-b035-5a5a2cc8f1ce.png)
+
+Note: Sometimes we see some of our customers run the `yabs.sh` benchmark script and report low throughput to some of the iperf3 destinations that this benchmark script uses. This is because some of the iperf3 servers can be overloaded or deprioritize our connections, hence why `iperf3` results are typically not the most accurate. If you would like to test to multiple destinations, we would highly recommend using a script like `bench.monster` or `network-speed.xyz`. These are third party scripts that we have not audited or validated, so check the source code and use them at your own risk.
+
+

@@ -1,0 +1,26 @@
+# Birds
+
+## Birds
+
+- [Welcome](https://docs.birds.dog/readme)
+- [How to start](https://docs.birds.dog/how-to-start): Step by step to using Birds Mini App
+- [AI Bird game](https://docs.birds.dog/ai-bird-game)
+- [Egg incubation](https://docs.birds.dog/ai-bird-game/egg-incubation): Your goal is to help it hatch into a bird, and along the way you can receive a lot of lucrative rewards.
+- [Growing Bird](https://docs.birds.dog/ai-bird-game/growing-bird): Congrats! Your Bird's just HATCHED!
+- [Preying](https://docs.birds.dog/ai-bird-game/preying)
+- [Boosters](https://docs.birds.dog/ai-bird-game/boosters)
+- [Catching worms](https://docs.birds.dog/ai-bird-game/catching-worms)
+- [Storage](https://docs.birds.dog/ai-bird-game/storage): The place where you store your items (mostly Worms)
+- [Guild](https://docs.birds.dog/ai-bird-game/guild): Boost your BIRDS with the Guild feature
+- [NFT Marketplace](https://docs.birds.dog/nft-marketplace): The Marketplace is where you can buy or sell worms and other items that will be introduced on the app soon. BIRDS NFT Marketplace is based on Sui Kiosk.
+- [Items](https://docs.birds.dog/items): In-game items
+- [Gemstone](https://docs.birds.dog/items/gemstone)
+- [Magic fruit](https://docs.birds.dog/items/magic-fruit)
+- [Capy pet](https://docs.birds.dog/items/capy-pet)
+- [Earn $BIRDS](https://docs.birds.dog/earn-usdbirds): These are the ways you can earn more $BIRDS each day.
+- [Tasks](https://docs.birds.dog/earn-usdbirds/tasks): Complete the simple tasks and earn more $BIRDS.
+- [Daily bonus](https://docs.birds.dog/earn-usdbirds/daily-bonus): Log in daily to unlock even more BIRDS rewards and maximize your gains!
+- [Invite friends](https://docs.birds.dog/earn-usdbirds/invite-friends): Invite friends to earn 10% cashback.
+- [Egg breaking game](https://docs.birds.dog/earn-usdbirds/egg-breaking-game)
+- [Socials link](https://docs.birds.dog/socials-link)
+- [FAQ](https://docs.birds.dog/faq)

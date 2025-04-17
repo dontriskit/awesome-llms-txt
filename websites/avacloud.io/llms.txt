@@ -1,0 +1,179 @@
+# Avalanche API Documentation
+
+## Docs
+
+- [Authentication](https://developers.avacloud.io/avacloud-sdk/authentication.md)
+- [Custom HTTP Client](https://developers.avacloud.io/avacloud-sdk/custom-http.md)
+- [Error Handling](https://developers.avacloud.io/avacloud-sdk/error.md)
+- [Getting Started](https://developers.avacloud.io/avacloud-sdk/getting-started.md)
+- [Global Parameters](https://developers.avacloud.io/avacloud-sdk/global-parameters.md)
+- [Pagination](https://developers.avacloud.io/avacloud-sdk/pagination.md)
+- [Retries](https://developers.avacloud.io/avacloud-sdk/retries.md)
+- [Changelog](https://developers.avacloud.io/changelog/changelog.md)
+- [How to get all transactions of an address](https://developers.avacloud.io/data-api/address-transactions.md)
+- [Get logs for requests made by client](https://developers.avacloud.io/data-api/data-api-usage-metrics/get-logs-for-requests-made-by-client.md): Gets logs for requests made by client over a specified time interval for a specific organization.
+- [Get usage metrics for the Data API](https://developers.avacloud.io/data-api/data-api-usage-metrics/get-usage-metrics-for-the-data-api.md): Gets metrics for Data API usage over a specified time interval aggregated at the specified time-duration granularity.
+- [null](https://developers.avacloud.io/data-api/data-api-usage-metrics/get-usage-metrics-for-the-rpc.md): **[Deprecated]**  Gets metrics for public Subnet RPC usage over a specified time interval aggregated at the specified time-duration granularity.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/subnetRpcUsageMetrics endpoint instead**.
+- [Get usage metrics for the Subnet RPC](https://developers.avacloud.io/data-api/data-api-usage-metrics/get-usage-metrics-for-the-subnet-rpc.md): Gets metrics for public Subnet RPC usage over a specified time interval aggregated at the specified time-duration granularity.
+- [Data API vs RPC](https://developers.avacloud.io/data-api/data-api-vs-rpc.md)
+- [How to get all ERC20 transfers by wallet](https://developers.avacloud.io/data-api/erc20-transfers.md)
+- [Etna Upgrade](https://developers.avacloud.io/data-api/etna.md)
+- [Get native token balance](https://developers.avacloud.io/data-api/evm-balances/get-native-token-balance.md): Gets native token balance of a wallet address.
+
+Balance at a given block can be retrieved with the `blockNumber` parameter.
+- [List collectible (ERC-721/ERC-1155) balances](https://developers.avacloud.io/data-api/evm-balances/list-collectible-erc-721erc-1155-balances.md): Lists ERC-721 and ERC-1155 token balances of a wallet address.
+
+Balance for a specific contract can be retrieved with the `contractAddress` parameter.
+- [List ERC-1155 balances](https://developers.avacloud.io/data-api/evm-balances/list-erc-1155-balances.md): Lists ERC-1155 token balances of a wallet address.
+
+Balance at a given block can be retrieved with the `blockNumber` parameter.
+
+Balance for a specific contract can be retrieved with the `contractAddress` parameter.
+- [List ERC-20 balances](https://developers.avacloud.io/data-api/evm-balances/list-erc-20-balances.md): Lists ERC-20 token balances of a wallet address.
+
+Balance at a given block can be retrieved with the `blockNumber` parameter.
+
+Balance for specific contracts can be retrieved with the `contractAddresses` parameter.
+- [List ERC-721 balances](https://developers.avacloud.io/data-api/evm-balances/list-erc-721-balances.md): Lists ERC-721 token balances of a wallet address.
+
+Balance for a specific contract can be retrieved with the `contractAddress` parameter.
+- [Get block](https://developers.avacloud.io/data-api/evm-blocks/get-block.md): Gets the details of an individual block on the EVM-compatible chain.
+- [List latest blocks](https://developers.avacloud.io/data-api/evm-blocks/list-latest-blocks.md): Lists the latest indexed blocks on the EVM-compatible chain sorted in descending order by block timestamp.
+- [List latest blocks across all supported EVM chains](https://developers.avacloud.io/data-api/evm-blocks/list-latest-blocks-across-all-supported-evm-chains.md): Lists the most recent blocks from all supported  EVM-compatible chains. The results can be filtered by network.
+- [Get chain information](https://developers.avacloud.io/data-api/evm-chains/get-chain-information.md): Gets chain information for the EVM-compatible chain if supported by AvaCloud.
+- [null](https://developers.avacloud.io/data-api/evm-chains/get-chains-for-address.md): **[Deprecated]** Gets a list of all chains where the address was either a sender or receiver in a transaction or ERC transfer. The list is currently updated every 15 minutes.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/address/:address/chains endpoint instead** .
+- [List all chains associated with a given address](https://developers.avacloud.io/data-api/evm-chains/list-all-chains-associated-with-a-given-address.md): Lists the chains where the specified address has  participated in transactions or ERC token transfers,  either as a sender or receiver. The data is refreshed every 15  minutes.
+- [List chains](https://developers.avacloud.io/data-api/evm-chains/list-chains.md): Lists the AvaCloud supported EVM-compatible chains. Filterable by network.
+- [null](https://developers.avacloud.io/data-api/evm-chains/list-latest-blocks-for-all-supported-evm-chains.md): **[Deprecated]** Lists the latest blocks for all supported EVM chains. Filterable by network.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/blocks endpoint instead** .
+- [null](https://developers.avacloud.io/data-api/evm-chains/list-latest-transactions-for-all-supported-evm-chains.md): **[Deprecated]** Lists the latest transactions for all supported EVM chains. Filterable by status.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/transactions endpoint instead** .
+- [Get contract metadata](https://developers.avacloud.io/data-api/evm-contracts/get-contract-metadata.md): Gets metadata about the contract at the given address.
+- [Get deployment transaction](https://developers.avacloud.io/data-api/evm-transactions/get-deployment-transaction.md): If the address is a smart contract, returns the transaction in which it was deployed.
+- [Get transaction](https://developers.avacloud.io/data-api/evm-transactions/get-transaction.md): Gets the details of a single transaction.
+- [List deployed contracts](https://developers.avacloud.io/data-api/evm-transactions/list-deployed-contracts.md): Lists all contracts deployed by the given address.
+- [List ERC-1155 transfers](https://developers.avacloud.io/data-api/evm-transactions/list-erc-1155-transfers.md): Lists ERC-1155 transfers for an address. Filterable by block range.
+- [List ERC-20 transfers](https://developers.avacloud.io/data-api/evm-transactions/list-erc-20-transfers.md): Lists ERC-20 transfers for an address. Filterable by block range.
+- [List ERC-721 transfers](https://developers.avacloud.io/data-api/evm-transactions/list-erc-721-transfers.md): Lists ERC-721 transfers for an address. Filterable by block range.
+- [List ERC transfers](https://developers.avacloud.io/data-api/evm-transactions/list-erc-transfers.md): Lists ERC transfers for an ERC-20, ERC-721, or ERC-1155 contract address.
+- [List internal transactions](https://developers.avacloud.io/data-api/evm-transactions/list-internal-transactions.md): Returns a list of internal transactions for an address and chain. Filterable by block range.
+
+Note that the internal transactions list only contains `CALL` or `CALLCODE` transactions with a non-zero value and `CREATE`/`CREATE2` transactions. To get a complete list of internal transactions use the `debug_` prefixed RPC methods on an archive node.
+- [List latest transactions](https://developers.avacloud.io/data-api/evm-transactions/list-latest-transactions.md): Lists the latest transactions. Filterable by status.
+- [List native transactions](https://developers.avacloud.io/data-api/evm-transactions/list-native-transactions.md): Lists native transactions for an address. Filterable by block range.
+- [List the latest transactions across all supported EVM chains](https://developers.avacloud.io/data-api/evm-transactions/list-the-latest-transactions-across-all-supported-evm-chains.md): Lists the most recent transactions from all supported EVM-compatible  chains. The results can be filtered based on transaction status.
+- [List transactions](https://developers.avacloud.io/data-api/evm-transactions/list-transactions.md): Returns a list of transactions where the given wallet address had an on-chain interaction for the given chain. The ERC-20 transfers, ERC-721 transfers, ERC-1155, and internal transactions returned are only those where the input address had an interaction. Specifically, those lists only inlcude entries where the input address was the sender (`from` field) or the receiver (`to` field) for the sub-transaction. Therefore the transactions returned from this list may not be complete representations of the on-chain data. For a complete view of a transaction use the `/chains/:chainId/transactions/:txHash` endpoint.
+
+Filterable by block ranges.
+- [List transactions for a block](https://developers.avacloud.io/data-api/evm-transactions/list-transactions-for-a-block.md): Lists the transactions that occured in a given block.
+- [Getting Started](https://developers.avacloud.io/data-api/getting-started.md)
+- [Get the health of the service](https://developers.avacloud.io/data-api/health-check/get-the-health-of-the-service.md): Check the health of the service.
+- [Get an ICM message](https://developers.avacloud.io/data-api/interchain-messaging/get-an-icm-message.md): Gets an ICM message by message ID.
+- [List ICM messages](https://developers.avacloud.io/data-api/interchain-messaging/list-icm-messages.md): Lists ICM messages. Ordered by timestamp in descending order.
+- [List ICM messages by address](https://developers.avacloud.io/data-api/interchain-messaging/list-icm-messages-by-address.md): Lists ICM messages by address. Ordered by timestamp in descending order.
+- [How to get the native balance of an address](https://developers.avacloud.io/data-api/native-balance.md)
+- [Get token details](https://developers.avacloud.io/data-api/nfts/get-token-details.md): Gets token details for a specific token of an NFT contract.
+- [List tokens](https://developers.avacloud.io/data-api/nfts/list-tokens.md): Lists tokens for an NFT contract.
+- [Reindex NFT metadata](https://developers.avacloud.io/data-api/nfts/reindex-nft-metadata.md): Triggers reindexing of token metadata for an NFT token. Reindexing can only be called once per hour for each NFT token.
+- [Create transaction export operation](https://developers.avacloud.io/data-api/operations/create-transaction-export-operation.md): Trigger a transaction export operation with given parameters.
+
+The transaction export operation runs asynchronously in the background. The status of the job can be retrieved from the `/v1/operations/:operationId` endpoint using the `operationId` returned from this endpoint.
+- [Get operation](https://developers.avacloud.io/data-api/operations/get-operation.md): Gets operation details for the given operation id.
+- [Overview](https://developers.avacloud.io/data-api/overview.md)
+- [Get balances](https://developers.avacloud.io/data-api/primary-network-balances/get-balances.md): Gets primary network balances for one of the Primary Network chains for the supplied addresses.
+
+C-Chain balances returned are only the shared atomic memory balance. For EVM balance, use the `/v1/chains/:chainId/addresses/:addressId/balances:getNative` endpoint.
+- [Get block](https://developers.avacloud.io/data-api/primary-network-blocks/get-block.md): Gets a block by block height or block hash on one of the Primary Network chains.
+- [List blocks proposed by node](https://developers.avacloud.io/data-api/primary-network-blocks/list-blocks-proposed-by-node.md): Lists the latest blocks proposed by a given NodeID on one of the Primary Network chains.
+- [List latest blocks](https://developers.avacloud.io/data-api/primary-network-blocks/list-latest-blocks.md): Lists latest blocks on one of the Primary Network chains.
+- [List historical rewards](https://developers.avacloud.io/data-api/primary-network-rewards/list-historical-rewards.md): Lists historical rewards on the Primary Network for the supplied addresses.
+- [List pending rewards](https://developers.avacloud.io/data-api/primary-network-rewards/list-pending-rewards.md): Lists pending rewards on the Primary Network for the supplied addresses.
+- [Get transaction](https://developers.avacloud.io/data-api/primary-network-transactions/get-transaction.md): Gets the details of a single transaction on one of the Primary Network chains.
+- [List asset transactions](https://developers.avacloud.io/data-api/primary-network-transactions/list-asset-transactions.md): Lists asset transactions corresponding to the given asset id on the X-Chain.
+- [List latest transactions](https://developers.avacloud.io/data-api/primary-network-transactions/list-latest-transactions.md): Lists the latest transactions on one of the Primary Network chains.
+
+Transactions are filterable by addresses, txTypes, and timestamps. When querying for latest transactions without an address parameter, filtering by txTypes and timestamps is not supported. An address filter must be provided to utilize txTypes and timestamp filters.
+
+For P-Chain, you can fetch all L1 validators related transactions like ConvertSubnetToL1Tx, IncreaseL1ValidatorBalanceTx etc. using the unique L1 validation ID. These transactions are further filterable by txTypes and timestamps as well.
+
+Given that each transaction may return a large number of UTXO objects, bounded only by the maximum transaction size, the query may return less transactions than the provided page size. The result will contain less results than the page size if the number of utxos contained in the resulting transactions reach a performance threshold.
+- [List staking transactions](https://developers.avacloud.io/data-api/primary-network-transactions/list-staking-transactions.md): Lists active staking transactions on the P-Chain for the supplied addresses.
+- [List UTXOs](https://developers.avacloud.io/data-api/primary-network-utxos/list-utxos.md): Lists UTXOs on one of the Primary Network chains for the supplied addresses.
+- [Get vertex](https://developers.avacloud.io/data-api/primary-network-vertices/get-vertex.md): Gets a single vertex on the X-Chain.
+- [List vertices](https://developers.avacloud.io/data-api/primary-network-vertices/list-vertices.md): Lists latest vertices on the X-Chain.
+- [List vertices by height](https://developers.avacloud.io/data-api/primary-network-vertices/list-vertices-by-height.md): Lists vertices at the given vertex height on the X-Chain.
+- [Get asset details](https://developers.avacloud.io/data-api/primary-network/get-asset-details.md): Gets asset details corresponding to the given asset id on the X-Chain.
+- [Get chain interactions for addresses](https://developers.avacloud.io/data-api/primary-network/get-chain-interactions-for-addresses.md): Returns Primary Network chains that each address has touched in the form of an address mapped array. If an address has had any on-chain interaction for a chain, that chain's chain id will be returned.
+- [Get network details](https://developers.avacloud.io/data-api/primary-network/get-network-details.md): Gets network details such as validator and delegator stats.
+- [Get single validator details](https://developers.avacloud.io/data-api/primary-network/get-single-validator-details.md): List validator details for a single validator.  Filterable by validation status.
+- [Get Subnet details by ID](https://developers.avacloud.io/data-api/primary-network/get-subnet-details-by-id.md): Get details of the Subnet registered on the network.
+- [List blockchains](https://developers.avacloud.io/data-api/primary-network/list-blockchains.md): Lists all blockchains registered on the network.
+- [List delegators](https://developers.avacloud.io/data-api/primary-network/list-delegators.md): Lists details for delegators.
+- [List L1 validators](https://developers.avacloud.io/data-api/primary-network/list-l1-validators.md): Lists details for L1 validators. By default, returns details for all active L1 validators. Filterable by validator node ids, subnet id, and validation id.
+- [List subnets](https://developers.avacloud.io/data-api/primary-network/list-subnets.md): Lists all subnets registered on the network.
+- [List validators](https://developers.avacloud.io/data-api/primary-network/list-validators.md): Lists details for validators. By default, returns details for all validators. Filterable by validator node ids and minimum delegation capacity.
+- [Rate Limits](https://developers.avacloud.io/data-api/rate-limits.md)
+- [Aggregate Signatures](https://developers.avacloud.io/data-api/signature-aggregator/aggregate-signatures.md): Aggregates Signatures for a Warp message from Subnet validators.
+- [Snowflake Datashare](https://developers.avacloud.io/data-api/snowflake.md)
+- [null](https://developers.avacloud.io/data-api/teleporter/get-a-teleporter-message.md): **[Deprecated]** Gets a teleporter message by message ID.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/icm/messages/:messageId endpoint instead** .
+- [null](https://developers.avacloud.io/data-api/teleporter/list-teleporter-messages.md): **[Deprecated]** Lists teleporter messages. Ordered by timestamp in  descending order.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/icm/messages endpoint instead** .
+- [null](https://developers.avacloud.io/data-api/teleporter/list-teleporter-messages-address.md): **[Deprecated]** Lists teleporter messages by address. Ordered by  timestamp in descending order.
+
+⚠️ **This operation will be removed in a future release.  Please use /v1/icm/addresses/:address/messages endpoint instead** .
+- [Usage Guide](https://developers.avacloud.io/data-api/usage-guide.md)
+- [Avalanche API Documentation](https://developers.avacloud.io/introduction.md)
+- [Get metrics for EVM chains](https://developers.avacloud.io/metrics-api/chain-metrics/get-metrics-for-evm-chains.md): Gets metrics for an EVM chain over a specified time interval aggregated at the specified time-interval granularity.
+- [Get rolling window metrics for EVM chains](https://developers.avacloud.io/metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains.md): Gets the rolling window metrics for an EVM chain for the last hour, day, month, year, and all time.
+- [Get staking metrics for a given subnet](https://developers.avacloud.io/metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet.md): Gets staking metrics for a given subnet.
+- [Get teleporter metrics for EVM chains](https://developers.avacloud.io/metrics-api/chain-metrics/get-teleporter-metrics-for-evm-chains.md): Gets teleporter metrics for an EVM chain.
+- [Get a list of supported blockchains](https://developers.avacloud.io/metrics-api/evm-chains/get-a-list-of-supported-blockchains.md): Get a list of Metrics API supported blockchains.
+- [Get chain information for supported blockchain](https://developers.avacloud.io/metrics-api/evm-chains/get-chain-information-for-supported-blockchain.md): Get chain information for Metrics API supported blockchain.
+- [Getting Started](https://developers.avacloud.io/metrics-api/getting-started.md)
+- [Get the health of the service](https://developers.avacloud.io/metrics-api/health-check/get-the-health-of-the-service.md): Check the health of the service.
+- [Get addresses by balance over time](https://developers.avacloud.io/metrics-api/looking-glass/get-addresses-by-balance-over-time.md): Get list of addresses and their latest balances that have held more than a certain threshold of a given token during the specified time frame.
+- [Get addresses by BTCb bridged balance](https://developers.avacloud.io/metrics-api/looking-glass/get-addresses-by-btcb-bridged-balance.md): Get list of addresses and their net bridged amounts that have bridged more than a certain threshold.
+- [Get addresses running validators during a given time frame](https://developers.avacloud.io/metrics-api/looking-glass/get-addresses-running-validators-during-a-given-time-frame.md): Get list of addresses and AddValidatorTx timestamps set to receive awards for validation periods during the specified time frame.
+- [Overview](https://developers.avacloud.io/metrics-api/overview.md)
+- [Rate Limits](https://developers.avacloud.io/metrics-api/rate-limits.md)
+- [Usage Guide](https://developers.avacloud.io/metrics-api/usage-guide.md)
+- [Track ERC-20 Transfers](https://developers.avacloud.io/webhooks-api/erc20-transfers.md)
+- [Track ERC-721 Transfers](https://developers.avacloud.io/webhooks-api/erc721-transfers.md)
+- [Getting Started](https://developers.avacloud.io/webhooks-api/getting-started.md)
+- [Monitoring multiple addresses](https://developers.avacloud.io/webhooks-api/multiple.md)
+- [Overview](https://developers.avacloud.io/webhooks-api/overview.md)
+- [Platform Webhooks](https://developers.avacloud.io/webhooks-api/platform-webhooks.md)
+- [Address Activity](https://developers.avacloud.io/webhooks-api/platform-webhooks-address.md)
+- [Validator Activity](https://developers.avacloud.io/webhooks-api/platform-webhooks-validator.md)
+- [Send Push notification](https://developers.avacloud.io/webhooks-api/push-notifications.md)
+- [Rate Limits](https://developers.avacloud.io/webhooks-api/rate-limits.md)
+- [Retry mechanism](https://developers.avacloud.io/webhooks-api/retries.md)
+- [Webhook Signature](https://developers.avacloud.io/webhooks-api/signature.md)
+- [Supported EVM Chains](https://developers.avacloud.io/webhooks-api/supported-chains.md)
+- [Add addresses to webhook](https://developers.avacloud.io/webhooks-api/webhooks/add-addresses-to-webhook.md): Add addresses to webhook.
+- [Create a webhook](https://developers.avacloud.io/webhooks-api/webhooks/create-a-webhook.md): Create a new webhook.
+- [Deactivate a webhook](https://developers.avacloud.io/webhooks-api/webhooks/deactivate-a-webhook.md): Deactivates a webhook by ID.
+- [Generate or rotate a shared secret](https://developers.avacloud.io/webhooks-api/webhooks/generate-a-shared-secret.md): Generates a new shared secret or rotate an existing one.
+- [Get a shared secret](https://developers.avacloud.io/webhooks-api/webhooks/get-a-shared-secret.md): Get a previously generated shared secret.
+- [Get a webhook by ID](https://developers.avacloud.io/webhooks-api/webhooks/get-a-webhook-by-id.md): Retrieves a webhook by ID.
+- [List adresses by webhook](https://developers.avacloud.io/webhooks-api/webhooks/list-adresses-by-webhook.md): List adresses by webhook.
+- [List webhooks](https://developers.avacloud.io/webhooks-api/webhooks/list-webhooks.md): Lists webhooks for the user.
+- [Remove addresses from webhook](https://developers.avacloud.io/webhooks-api/webhooks/remove-addresses-from-webhook.md): Remove addresses from webhook.
+- [Update a webhook](https://developers.avacloud.io/webhooks-api/webhooks/update-a-webhook.md): Updates an existing webhook.
+- [WebSockets vs Webhooks](https://developers.avacloud.io/webhooks-api/wss-vs-webhooks.md)
+
+
+## Optional
+
+- [Community](https://discord.gg/avax)
+- [Avalanche Docs](https://docs.avax.network/)
+- [Avalanche Academy](https://academy.avax.network/)

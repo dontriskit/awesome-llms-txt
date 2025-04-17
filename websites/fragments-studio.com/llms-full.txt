@@ -1,0 +1,205 @@
+# Fragments Studio
+
+> Fragments Studio est une agence de développement sur mesure qui conçoit des solutions numériques personnalisées pour accompagner la croissance de votre activité. Notre approche holistique combine rapidité, transparence et performance.
+
+## Développons ce qui vous rendra unique
+
+Chez Fragments Studio, nous développons des solutions numériques sur mesure pour accompagner la croissance de votre activité. Notre équipe d'experts en développement, cloud infrastructure, gestion de projet, UI/UX et product management transforme vos besoins en solutions digitales performantes et évolutives, conçues pour votre réussite.
+
+## Notre équipe
+
+- **Pierre** - Expert Dev & Cloud Infrastructure: Spécialiste en développement et infrastructure cloud, Pierre conçoit des architectures robustes et évolutives.
+- **Karim** - Expert Dev & Project Management: Expert en développement et gestion de projet, Karim assure la coordination et la réussite des projets techniques.
+- **Jérémy** - Expert Dev & Visual Effect: Spécialiste en développement back-end et effets visuels, Jérémy apporte une dimension créative aux solutions techniques.
+- **Adrien** - Expert Produit & UI/UX: Expert en gestion de produit et design d'interface, Adrien garantit des expériences utilisateurs intuitives et efficaces.
+
+## Notre approche
+
+Vous rêvez d'une solution scalable et performante, déployée rapidement ? Chez Fragments Studio, nous faisons bien plus que cela. Nous vous offrons rapidité et qualité à travers un véritable accompagnement sur-mesure pour concevoir et déployer votre solution simplement.
+
+### Transparence totale
+Avec notre outil Cockpit, suivez chaque étape de votre projet en temps réel. Tout pour garantir une collaboration saine et transparente.
+
+### Communication fluide
+Un interlocuteur unique, toujours disponible et réactif, qui parle votre langage. Pas de jargon technique, mais des réponses claires à chaque question.
+
+### Accompagnement à 360°
+Vous n'avancez jamais seul : conseils stratégiques, UX/UI, techniques et anticipation des risques pour garantir votre succès.
+
+### Partenariat sur-mesure
+Chaque projet est pensé pour refléter votre vision, s'adapter à vos besoins spécifiques et devenir un fragment clé de votre réussite.
+
+## Nos clients
+
+- Unboared
+- Smart Renting
+- My Explora
+
+## Nos expertises
+
+### Product Management
+Nous transformons vos besoins en opportunités. Avec plus de 5 ans d'expérience en gestion de produit et des dizaines de projets accompagnés, nous ne nous contentons pas de concevoir : nous échangeons, optimisons et propulsons vos produits.
+
+### Développement
+Notre équipe de développeurs expérimentés maîtrise les technologies modernes pour créer des solutions robustes, évolutives et performantes.
+
+### UI/UX Design
+Nous concevons des interfaces intuitives et esthétiques qui offrent une expérience utilisateur exceptionnelle, en accord avec vos objectifs business.
+
+## Nos avantages
+
+### Rapidité
+Notre méthode holistique et notre expertise nous permettent d'avancer plus vite, sans compromis sur la qualité.
+
+### Transparence
+Grâce à notre suivi en temps réel et notre communication claire, vous gardez toujours le contrôle sur votre projet.
+
+### Performance
+Votre limite ne sera pas celles de vos outils. Des solutions optimisées, scalables et robustes, conçues pour évoluer avec vos ambitions.
+
+## Cockpit : notre outil de gestion de projet
+
+Suivez l'avancement de votre projet en totale transparence et échangez directement avec les équipes. Développé spécialement pour vous, Cockpit vous permet de bénéficier d'une transparence totale et d'être au centre des décisions durant tout le projet. Forts de nombreux défis relevés, nous avons conçu les fonctionnalités clés qui vous permettent de rester concentré sur l'essentiel.
+
+## Nos réalisations
+
+### Mobile : app opérationnelle de suivi qualité ménages
+Développement d'une application web mobile first avec tableau de suivi, conçue pour aider les sociétés de ménage à optimiser la qualité des services et permettre à leurs agents de maximiser l'efficacité de leurs missions.
+
+**Caractéristiques:**
+- Interface optimisée pour une utilisation mobile, avec une navigation fluide et intuitive
+- Interface « step by step » pour optimiser le suivi des procédures
+- Système de capture de données en temps réel (photos, commentaires, liste de contrôle) pour garantir la qualité des prestations
+- Rapports qualité automatisés (PDF)
+- Synchronisation des données en ligne et hors ligne
+- Tableau de bord de suivi de performance d'organisation des tournées ménage
+- Système de gestion administrateur : BackOffice
+
+**Technologies:** Opérationnel, Mobile, Synchro hors-ligne
+
+### PWA : Guide de visite immo
+Développement d'une web application mobile, permettant aux agents immobiliers de faire leurs visites hors connexion, tout en synchronisant les informations sur leur CRM.
+
+**Caractéristiques:**
+- Gestion et stockage de la data hors connexion
+- Synchronisation synchrone ou asynchrone de la data
+- Connexion et assignation des visites par utilisateur
+- Hiérarchisation de la récupération des informations
+- Système de communication utile aux équipes terrains
+- Interface optimisée mobile first
+
+**Technologies:** Proptech, Mobile, Synchro hors-ligne
+
+### ERP : Solution de gestion commerciale et opérationnelle intégrée
+Développement d'un ERP complet permettant de centraliser et automatiser tous les processus financiers, opérationnels, et de gestion pour les utilisateurs internes, externes à la société.
+
+**Caractéristiques:**
+- Automatisation de tous les flux et optimisation des processus métiers
+- Outils opérationnels : gestion des stocks, approvisionnement, logistique et planification des ressources
+- Outils financier : gestion des devis, facturation, semi-automatisation de versements bancaires et historique des transferts
+- Interfaces personnalisées et sécurisées pour les utilisateurs internes, clients externes, et prestataires
+- Système de gestion des accès et permissions multi-niveaux
+- Reporting et tableau de bord externalisé pour l'analyse en temps réel des ressources
+- Connexion API avec plusieurs solutions tierces pour une intégration fluide des systèmes existants
+
+**Technologies:** Proptech, Web, ERP
+
+## Nos offres
+
+### Le Lab - À partir de 1000€
+Un accompagnement **100% produit**. Transformez votre vision en un produit structuré et prêt à être développé.
+
+**Services inclus:**
+- Accompagnement stratégique
+- Définition des besoins
+- Cadrage fonctionnel & roadmap
+- Design & maquette users centric
+- Prototype Figma interactif
+- Cockpit : notre outil de suivi de projet
+
+### La Factory - À partir de 3000€
+Un accompagnement **100% technique** pour assurer la robustesse et la pérennité de votre produit.
+
+**Services inclus:**
+- Audit technique & conseil
+- Développement sur-mesure
+- Déploiement & hébergement cloud
+- Optimisation & performance
+- Maintenance & évolutions
+- Cockpit : notre outil de suivi de projet
+
+### Le Studio - À partir de 5000€
+Un accompagnement **tout-en-un**. Nous nous occupons de tout avec vous en combinant toutes nos expertises.
+
+**Services inclus:**
+- **Le Lab** : Accompagnement produit
+- **La Factory** : Accompagnement technique
+- Maintenance, suivi & évolutions/itérations
+- Un produit abouti, pensé et créé de A à Z
+- Un accompagnement sur-mesure
+- Cockpit : notre outil de suivi de projet
+
+## Notre blog
+
+### [No-Code vs Développement : lequel choisir vraiment ?](/blog/no-code-vs-developpement)
+**Catégorie:** Produit | **Temps de lecture:** 5 min | **Auteur:** Adrien | **Date:** Mar 25, 2025
+
+No-Code ou développement ? Deux approches, deux stratégies. Découvrez laquelle correspond vraiment à vos besoins et à l'ambition de votre projet.
+
+### [7 erreurs fréquentes en UI/UX design à éviter](/blog/top-erreurs-ui-ux)
+**Catégorie:** Design | **Temps de lecture:** 5 min | **Auteur:** Adrien | **Date:** Mar 27, 2025
+
+Découvrez les 7 erreurs les plus fréquentes en UI/UX design et nos conseils pour créer des interfaces plus claires, accessibles et performantes.
+
+### [Les tendances UX/UI à suivre en 2025 pour des interfaces qui marquent](/blog/top-tendances-ui-ux)
+**Catégorie:** Design | **Temps de lecture:** 6 min | **Auteur:** Adrien | **Date:** Dec 22, 2024
+
+En 2025, l'UX/UI design évoluera encore pour s'adapter aux nouvelles attentes des utilisateurs et aux changements technologiques.
+
+### [Les rôles d'un projet Tech : essentiels à une collaboration efficace](/blog/role-dans-un-projet-tech-la-cle-d-une-collaboration-efficace)
+**Catégorie:** Produit | **Temps de lecture:** 3 min | **Auteur:** Karim | **Date:** Dec 29, 2024
+
+En gestion de projet tech, des rôles clairs font la différence entre succès et stagnation. Découvrez pourquoi une structure collaborative est la clé.
+
+### [Notre Top 5 des outils pour gagner en productivité](/blog/top-5-outils-pour-gagner-en-productivite)
+**Catégorie:** Développement | **Temps de lecture:** 3 min | **Auteur:** Karim | **Date:** Jan 05, 2025
+
+Sélection des outils de productivité que nous utilisons quotidiennement au sein des équipes de Fragments Studio.
+
+### [L'UX/UI : l'investissement clé pour des produits digitaux performants](/blog/ux-ui-investissement-cle-pour-des-produits-digitaux-performants)
+**Catégorie:** Design | **Temps de lecture:** 3 min | **Auteur:** Adrien | **Date:** Jan 12, 2025
+
+88 % des internautes quittent un site en quelques secondes. En 2024, UX et UI ne sont plus des options : elles captivent et garantissent une expérience fluide.
+
+### [Team tech interne, externe : pourquoi ne pas choisir les deux ?](/blog/team-tech-interne-ou-externe-pourquoi-pas-les-deux)
+**Catégorie:** Produit | **Temps de lecture:** 3 min | **Auteur:** Karim | **Date:** Jan 19, 2025
+
+Créer une équipe tech efficace est complexe : recrutements, intégration, position dans l'entreprise, coûts... Autant d'obstacles à surmonter pour réussir.
+
+### [Votre projet tech peut-il réussir sans un accompagnement de qualité ?](/blog/reussir-projet-tech-sans-accompagnement)
+**Catégorie:** Produit | **Temps de lecture:** 5 min | **Auteur:** Adrien | **Date:** Jan 26, 2025
+
+Un accompagnement client personnalisé est clé pour réussir vos projets tech. Découvrez Cockpit, notre outil pour transformer votre expérience.
+
+### [Le développement Web Serverless : Avantages et inconvénients](/blog/developpement-web-serverless)
+**Catégorie:** Développement | **Temps de lecture:** 5 min | **Auteur:** Pierre | **Date:** Feb 02, 2025
+
+Découvrez les avantages, les inconvénients et les principales utilisations du développement web serverless en 2024.
+
+### [Les fondations d'une gestion de produit technique réussie](/blog/gestion-produit-technique-les-fondations)
+**Catégorie:** Produit | **Temps de lecture:** 10 min | **Auteur:** Adrien | **Date:** Feb 09, 2025
+
+Un projet technique bien mené repose sur une base solide : une planification minutieuse et une gestion de produit rigoureuse.
+
+## Ressources importantes
+- [Accueil](/)
+- [Vision](/vision)
+- [Offres](/offres)
+- [Cockpit](/cockpit)
+- [Blog](/blog)
+- [Contact](/contact)
+- [Mentions légales](/mentions-legales)
+
+## Contact
+Pour toute question concernant nos services ou ce fichier, contactez-nous via notre [formulaire de contact](/contact).
+Site web: https://fragments-studio.com 

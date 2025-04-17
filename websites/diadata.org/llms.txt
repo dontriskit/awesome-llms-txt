@@ -1,0 +1,33 @@
+# DIA Documentation
+
+## Lumina documentation
+
+- [DIA Oracles Overview](https://docs.diadata.org/dia-oracles-overview)
+- [How it works](https://docs.diadata.org/intro-to-lumina/how-it-works)
+- [Integrated chains](https://docs.diadata.org/intro-to-lumina/integrated-chains): Explore the chains where Lumina oracles are live and start integrating them.
+- [Token price feeds](https://docs.diadata.org/data-products-and-tools/token-price-feeds)
+- [Oracle Builder (Beta)](https://docs.diadata.org/oracle-builder-beta)
+- [Fetch price data](https://docs.diadata.org/how-to-guides/fetch-price-data)
+- [Push based oracles](https://docs.diadata.org/how-to-guides/fetch-price-data/push-based-oracles)
+- [Pull based oracles](https://docs.diadata.org/how-to-guides/fetch-price-data/pull-based-oracles)
+- [Contract Addresses](https://docs.diadata.org/how-to-guides/fetch-price-data/contract-addresses): You can find all of the examples of oracle contracts on each destination chain to query along with their Hyperlane configuration.
+- [Run a Feeder](https://docs.diadata.org/how-to-guides/run-a-feeder)
+- [Hardware specs](https://docs.diadata.org/how-to-guides/run-a-feeder/hardware-specs)
+- [Setting up the node](https://docs.diadata.org/how-to-guides/run-a-feeder/setting-up-the-node)
+- [Docker compose](https://docs.diadata.org/how-to-guides/run-a-feeder/setting-up-the-node/docker-compose)
+- [Docker run](https://docs.diadata.org/how-to-guides/run-a-feeder/setting-up-the-node/docker-run)
+- [Kubernetes](https://docs.diadata.org/how-to-guides/run-a-feeder/setting-up-the-node/kubernetes)
+- [Stake DIA](https://docs.diadata.org/how-to-guides/stake-dia)
+- [Request a custom oracle](https://docs.diadata.org/how-to-guides/request-a-custom-oracle)
+- [Architecture](https://docs.diadata.org/reference/architecture)
+- [Data sourcing](https://docs.diadata.org/reference/architecture/data-sourcing)
+- [Data computation](https://docs.diadata.org/reference/architecture/data-computation)
+- [Data delivery](https://docs.diadata.org/reference/architecture/data-delivery)
+- [Cross-chain Messaging](https://docs.diadata.org/reference/cross-chain-messaging)
+- [Audits](https://docs.diadata.org/resources/audits)
+- [Chain information](https://docs.diadata.org/resources/chain-information)
+- [Community & Support](https://docs.diadata.org/resources/community-and-support)
+- [T\&C](https://docs.diadata.org/resources/t-and-c)
+- [Licence Agreement](https://docs.diadata.org/resources/t-and-c/licence-agreement): For the usage of DIA's data and services
+- [Contributor Covenant Code of Conduct](https://docs.diadata.org/resources/t-and-c/code_of_conduct)
+- [Disclaimer](https://docs.diadata.org/resources/t-and-c/disclaimer): Important disclaimer information for visitors of DIA, outlining the boundaries and limitations of the content provided.

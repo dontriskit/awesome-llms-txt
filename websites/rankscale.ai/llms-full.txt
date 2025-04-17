@@ -1,0 +1,191 @@
+# Rankscale.ai - Optimize Your Website or SaaS or Brand or Service or Product or Client for AI Search Engines
+
+> Analyze and Optimize your AI Search Visibility with Results Tracking, Deep Insights and Actionable Recommendations - in Seconds.
+
+Here's what you can do with Rankscale:
+
+- Audit your website to see how AI understands it
+- Identify Gaps and Content Optimization Potential
+- Track your Presence in AI Search Results over Time
+- Analyze AI Result Citations & Brand Sentiments
+- Uncover, Survey, and Outpace Competitors
+- Rankscale works accross: ChatGPT, AI Overviews, Perplexity, Claude, Gemini, Deepseek
+
+[Rankscale Landing Page](https://rankscale.ai): Rankscale's landing page.
+
+## Free AI Search Visibility & Ranking Analysis
+- Try out Rankscales Engine for free - Perform a free AI-driven website audit and ranking analysis by entering your website URL. Let AI evaluate your website content and test your ranking position to reveal insights about competitors, citations, and brand sentiment. Sneak preview your visibility in AI search. No Registration Required.
+
+## What is Rankscale?
+- Rankscale is a pioneering GEO (Generative Engine Optimization) tool designed to analyze, track, and optimize brand presence on emerging AI-driven search engines.
+- [RankScale Brand Detail Interface - Comprehensive dashboard showing AI search visibility metrics and brand performance analytics](https://rankscale.ai/BrandDetail.png)
+
+## Rankscale Features
+
+### Website Audits
+
+Perform In-Depth AI Audits of Your Website
+Uncover how AI search engines perceive your content, pinpoint gaps, and discover optimal paths to greater visibility.
+
+- Content Scoring: Get detailed insights on relevance, authority, engagement, and technical structure that affect AI search visibility.
+- Gap Analysis & Recommendations: Pinpoint which areas need improvement — with content recommendations on critical sections.
+- Comprehensive Crawls: Select between single-page or multi-page crawling to fully reveal your site's AI readiness.
+- Customizable Bot Settings: Simulate AI bots accurately by toggling anti-bot measures for realistic audits
+
+### Performance Tracking
+
+Monitor and Understand Your AI Presence
+See where and how often your brand appears in AI search results.
+
+- Specify your own search terms: Design custom AI search prompts that fit to your brand and industry - or leverage AI to propose them for you.
+- Real-Time Updates: Analyze trends and changes to your brand's AI search rankings accross time, topics and regions.
+- Data Exports: Export single or multiple search term execution data snapshots for your own post-processing or sharing with clients.
+- Cross-Channel Insights: Get a unified view and compare results across different AI answer engines and industry topics.
+- Sentiment Context: Understand how AI search engines perceive your brand and industry topics.
+
+### Competitor Benchmarking
+
+Find and Track your Competitors
+Identify the key players in your AI search landscape, monitor their performance, and stay one step ahead.
+
+- Competitor Discovery: Automatically uncover direct and indirect competitors for relevant AI search terms and industry topics.
+- Side-by-Side Comparisons: Compare visibility, sentiment, rankings and other important metrics to gain a holistic view of your competitors.
+- Competitor Citations: See how often your competitors are cited and which sources are responsible for their visibility.
+- Benchmarking: Identify Competitor's strenghts and weaknesses accross industry topics and AI engines.
+
+### Citation Analysis
+
+Discover Which Sources drive AI Answers
+See which sources AI cites and which ones are most influential.
+
+- Source Tracking: Automatically identify the websites, articles, videos, and platforms that AI references when mentioning brands.
+- Frequency Analysis: See how often brands are cited and measure top citation appearances.
+- Influential Domains: Pinpoint which domains shape the public perception of a brand, topic or search term.
+- Actionable Follow-Ups: Use insights to correct misinformation, form strategic partnerships, or boost brand mentions.
+
+### Brand Dashboard
+
+Consolidate Key Brand Metrics in One Place
+If you are managing multiple brands, let Rankscale handle data aggregation so you can deliver clear insights to your clients.
+
+- Brand Management: Oversee all your brands from one hub — ideal for agencies and multi-site owners.
+- Automated Calculations: Leverage Rankscale's AI to process search-term execution data and deliver accurate, up-to-date metrics.
+- Topic & Search Term Management: Automatically Find and track which topics and search terms drive your brand's visibility.
+- Gain Context Fast: Move effortlessly from high-level overviews to granular insights in just a few clicks.
+
+## Major tech publications underlining the importance of AI search
+
+- [The 'Ask' Era: How Generative AI Is Reshaping The Future Of Search.](https://www.forbes.com/councils/forbestechcouncil/2024/06/11/the-ask-era-how-generative-ai-is-reshaping-the-future-of-search/): Forbes Technology Council 11 Jun 2024
+- [Google's Most Serious Rival Isn't Microsoft. It's a Startup.](https://www.bloomberg.com/opinion/articles/2025-01-07/google-s-most-serious-rival-isn-t-microsoft-but-startup-perplexity): Bloomberg Opinion 7 Jan 2025
+- [Adapt Or Disappear: Why CMOs Must Rethink Their Strategy For AI-Driven Search Now](https://www.forbes.com/councils/forbescommunicationscouncil/2024/12/19/adapt-or-disappear-why-cmos-must-rethink-their-strategy-for-ai-driven-search-now/): Forbes Communications Council 19 Dec 2024  
+- [AI means the end of internet search as we've known it.](https://www.technologyreview.com/2025/01/06/1108679/ai-generative-search-internet-breakthroughs/): MIT Technology Review 6 Jan 2025
+- [Is ChatGPT's new search engine OpenAI's Google 'killer'?](https://theweek.com/tech/chatgpt-search-engine-google-killer): The Week US 5 Nov 2024
+
+## Why use Traditional SEO Tools?
+
+Falling short in the age of AI search
+
+- Unclear visibility on AI search platforms
+- No focus on content structure for AI
+- Unaware of AI ranking factors
+- Falling behind competitors
+
+## Why Choose Rankscale?
+
+Get surfaced by ChatGPT, AI Overviews, Perplexity, Gemini, Claude, Deepseek
+
+- Track brand visibility on AI search engines
+- Optimize for AI-friendly structures & content
+- Clearly understand AI ranking factors
+- Outrank competitors in search results
+
+## Frequently Asked Questions
+
+### What is RankScale?
+
+RankScale is a web application designed to help website and brand owners analyze, track and optimize their visibility in AI-powered search engines like ChatGPT, Google Gemini, Deepseek,Claude, Google AI Overviews, and Perplexity. It provides AI-driven website analyses, actionable recommendations, performance tracking over time, competitor tracking, and citation analysis to enhance visibility in AI search results.
+
+### How do I get started with RankScale?
+
+Sign-up is required to access RankScale. You can apply to the early access program or book a demo.
+
+### I am an agency, can I use RankScale for my clients?
+
+Yes, RankScale is specifically designed for agencies and consulting firms serving multiple clients. You can sign up and use it to track and optimize the ai search visibility and ranking of multiple brand presences within one account.
+
+### How does RankScale differ from traditional SEO tools?
+
+Traditional SEO tools focus on optimizing for standard search engines and may not address the unique algorithms used by AI-powered search engines. RankScale specializes in Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO), tailored specifically for AI search engines that generate responses by synthesizing information from multiple sources.
+
+### Why do I need to optimize my website for AI search engines?
+
+AI search engines are becoming increasingly prevalent and use different criteria than traditional search engines. Optimizing for AI search ensures your content is accurately represented and ranks well, helping you reach a broader audience and stay ahead of competitors.
+
+### How does the Free AI Search Visibility & Ranking Analysis work?
+
+The Free AI Search Visibility & Ranking Analysis crawls through the given website, analyzes its content with AI, and generates example search prompts relevant to your target audience—then runs them through a real AI search engine. It checks whether your website appears, highlights your brand and ranking position, and identifies competitors and citations in the results.
+
+### Can I track my competitors with RankScale?
+
+Yes, RankScale allows you to monitor competitors automatically. You can track their AI search rankings and compare their performance metrics against your own over time.
+
+### Can I analyze the citation sources that are used to generate the AI search results?
+
+Yes, RankScale allows you to analyze the citation sources that are used to generate the AI search results. You can monitor their appearances in detail and analyze which brands are cited.
+
+### Is my website data secure with RankScale?
+
+Absolutely. We prioritize data security by implementing industry-standard encryption and security measures. Your data is confidential and used solely for analysis and providing recommendations."
+
+### What is Generative Engine Optimization (GEO)?
+
+GEO is about preparing your content to be recognized and synthesized by AI tools like ChatGPT or Perplexity. Unlike traditional SEO, which aims to rank pages on search engine results, GEO ensures that your content becomes part of the AI-generated answers during user interactions with these tools. It's about optimizing for how AI retrieves and integrates internet-based data into its responses, making it crucial for AI-driven searches.
+
+### How accurate are the analyses and recommendations provided by RankScale?
+
+RankScale utilizes advanced AI algorithms to provide accurate analyses based on the latest AI search engine criteria. We continuously update and fine-tune our system to match the latest research, ensuring that our recommendations remain relevant and effective.
+
+### Can RankScale help with content creation or rewriting?
+
+RankScale provides content improvement suggestions and side-by-side comparisons of your current content with optimized versions. While it doesn't create content from scratch, it offers guidance to enhance existing content for better AI search visibility.
+
+### Can I export or share the reports generated by RankScale?
+
+Yes, registered users can export their analysis reports as a PDF or send them via email. Pro and Enterprise users will have access to advanced reporting features, including white-label options for sharing with clients or team members. Further sharing options are set to be implemented in the future.
+
+### Can I customize the AI search prompts that are used in the performance tracking?
+
+Yes, you can input your own AI search prompts or let AI discover relevant prompts for you, tailoring the performance tracking to your specific target audience or keywords.
+
+### What kind of websites can benefit from RankScale?
+
+RankScale is beneficial for a wide range of websites, including blogs, SaaS businesses, service providers, e-commerce sites, digital content creators—essentially any brand looking to improve visibility in AI search engines.
+
+### What is the difference between RankScale and other AI search engine optimization tools?
+
+RankScale is unique in its focus on AI-driven search engines, providing tailored insights and recommendations for GEO and AEO. Unlike other tools, it offers comprehensive analysis, performance tracking, and citation analysis, helping you stay ahead of competitors and optimize for AI search results.
+
+## How to get started with Rankscale?
+
+Book a Demo or Request Early Access
+
+## Blog
+
+- [RankScale Blog](https://rankscale.ai/blog): AI SEO, visibility tracking, and brand monitoring insights.  Learn about AEO, GEO, and AI search optimization.
+
+## Blog Posts
+
+- [AI SEO: Mastering AEO & GEO](https://rankscale.ai/blog/explosive_facts_and_steps_to_master_ai_search_engine_optimization_in_2025): Master AI search engine optimization (AEO and GEO) in 2025: a guide.
+- [DeepSeek R1: Revolutionizing AI](https://rankscale.ai/blog/deepseek_r1_revolutionizing_ai_with_transparent_reasoning_and_integrated_web_search): DeepSeek R1: Revolutionizing AI with Transparent Reasoning and Integrated Web Search.
+- [How to add llms.txt for AI search optimization in record time](https://rankscale.ai/blog/how_to_add_llmstxt_for_ai_search_optimization_in_record_time): How to add llms.txt for AI search optimization in record time.
+## Terms
+
+- [Rankscale Terms of Use](https://rankscale.ai/terms): Rankscale AI website terms of use; governs beta access, user obligations, data protection, and legal disclaimers.
+
+## Privacy
+
+- [Rankscale Privacy Policy](https://rankscale.ai/privacy): Rankscale's privacy policy details data collection, usage, and user rights, covering waitlists, newsletters, website analytics, and third-party services like Google Analytics and Firebase.
+
+## Imprint
+
+- [Legal Imprint & Contact](https://rankscale.ai/imprint): Company details, contact info, and legal disclosures for Feathercode e.U.

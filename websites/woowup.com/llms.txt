@@ -1,0 +1,61 @@
+# WoowUp Developer Docs
+
+## WoowUp Developer Docs
+
+- [Getting Started (EN)](https://woowup-docs.gitbook.io/woowup-developer-docs/master): Welcome! Here you will find examples and a detailed endpoint list that will let you integrate WoowUp with the systems you use.
+- [Primeros Pasos (ES)](https://woowup-docs.gitbook.io/woowup-developer-docs/getting-started-es): Aquí encontrará ejemplos y una lista detallada de puntos finales que le permitirá integrar WoowUp con los sistemas que utiliza via API.
+- [Users](https://woowup-docs.gitbook.io/woowup-developer-docs/api/users)
+- [Purchases](https://woowup-docs.gitbook.io/woowup-developer-docs/api/purchases)
+- [Products](https://woowup-docs.gitbook.io/woowup-developer-docs/api/products)
+- [Benefits](https://woowup-docs.gitbook.io/woowup-developer-docs/api/benefits)
+- [Coupons](https://woowup-docs.gitbook.io/woowup-developer-docs/api/coupons)
+- [Events](https://woowup-docs.gitbook.io/woowup-developer-docs/api/events)
+- [Garantía Extendida](https://woowup-docs.gitbook.io/woowup-developer-docs/api/events/events-warranty-extension): Cómo registrar eventos que disparen campañas de ofrecimiento de extensión de garantías
+- [Custom Attributes](https://woowup-docs.gitbook.io/woowup-developer-docs/api/custom-attributes)
+- [Branches](https://woowup-docs.gitbook.io/woowup-developer-docs/api/branches)
+- [Blacklist](https://woowup-docs.gitbook.io/woowup-developer-docs/api/blacklist)
+- [Abandoned carts](https://woowup-docs.gitbook.io/woowup-developer-docs/api/abandoned-carts): Upload your abandoned carts to WoowUp
+- [Reset account](https://woowup-docs.gitbook.io/woowup-developer-docs/api/reset-account): How to delete every customer and every purchase from my WoowUp Account.
+- [Integration Stats](https://woowup-docs.gitbook.io/woowup-developer-docs/api/integration-stats): Retrieve and upload your data synchronization stats
+- [Categories](https://woowup-docs.gitbook.io/woowup-developer-docs/api/categories)
+- [Segment Export](https://woowup-docs.gitbook.io/woowup-developer-docs/api/segment-export)
+- [Configuración Navegación Web](https://woowup-docs.gitbook.io/woowup-developer-docs/web-tracking/web-tracking): Cómo conectar nuestro script de seguimiento web a su sitio de comercio electrónico para hacer un seguimiento de los productos que visitan sus clientes.
+- [Configuración Notificaciones Web Push en Magento / Web Custom](https://woowup-docs.gitbook.io/woowup-developer-docs/push-notifications/configuracion-notificaciones-web-push-en-magento-web-custom): Cómo conectar nuestro script de notificaciones push a tu sitio de comercio electrónico para habilitar el envío de notificaciones push web.
+- [Configuración Push en VTEX Legacy](https://woowup-docs.gitbook.io/woowup-developer-docs/push-notifications/configuracion-push-en-vtex-legacy): Cómo conectar nuestro script de notificaciones push a tu sitio VTEX Legacy para habilitar el envío de notificaciones push web.
+- [Configuración Push en VTEX IO](https://woowup-docs.gitbook.io/woowup-developer-docs/push-notifications/configuracion-push-en-vtex-io): Cómo conectar nuestro script de notificaciones push a tu sitio VTEX IO para habilitar el envío de notificaciones push web.
+- [¿Cómo saber si la configuración fue exitosa?](https://woowup-docs.gitbook.io/woowup-developer-docs/push-notifications/como-saber-si-la-configuracion-fue-exitosa): En este instructivo se detallan los pasos a seguir para verificar la correcta configuración de Notificaciones Push
+- [Formulario HTML / Script JS Newsletter](https://woowup-docs.gitbook.io/woowup-developer-docs/formularios-web/add-customers-from-newsletter)
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/vtex/vtex-connect-account): En esta guía paso a paso te explicaremos como conectar tu eCommerce Vtex con WoowUp
+- [Trigger Carrito Abandonado](https://woowup-docs.gitbook.io/woowup-developer-docs/vtex/vtex-abandoned-cart-trigger): Configuración del trigger que envía carritos abandonados de clientes en VTEX a Woowup.
+- [Trigger Newsletter](https://woowup-docs.gitbook.io/woowup-developer-docs/vtex/vtex-newsletter-trigger): Debes agregar la entidad en la que almacenes los registros de Newsletter, puede ser en la entidad Cliente o nuevas entidades que hayan creado.
+- [VTEX APP Instalación](https://woowup-docs.gitbook.io/woowup-developer-docs/vtex/vtex-app-instalacion): En esta guía se te detallará paso a paso como instalar la aplicación de Woowup en VTEX
+- [VTEX APP Configuración](https://woowup-docs.gitbook.io/woowup-developer-docs/vtex/vtex-app-configuracion): En esta guía se te detallará paso a paso como configurar la aplicación de Woowup en VTEX
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/magento-1/magento-connect-account)
+- [Extension Carrito Abandonado](https://woowup-docs.gitbook.io/woowup-developer-docs/magento-1/magento-abandoned-cart)
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/magento-2/conectar-cuenta): En esta guía paso a paso te explicaremos como conectar tu eCommerce Magento 2 con WoowUp
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/shopify/connect-account): Crea las credenciales necesarias y conecta tu cuenta de Shopify a Woowup.
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/woocommerce/conectar-cuenta): En esta guía paso a paso te explicaremos como conectar tu eCommerce Woocommerce con WoowUp
+- [Extensión Carrito Abandonado](https://woowup-docs.gitbook.io/woowup-developer-docs/woocommerce/extension-carrito-abandonado)
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/prestashop/conectar-cuenta)
+- [Conecta tu eCommerce E3](https://woowup-docs.gitbook.io/woowup-developer-docs/e3/conectar-cuenta): Para poder segmentar desde WoowUp tus clientes de E3, es necesario que configures una instancia muy importante. Sigue la guía paso a paso a continuación donde te explicaremos cómo conectar tu tienda e
+- [Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/tienda-nube/conectar-cuenta)
+- [SendGrid: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/email-senders/email-connect-sendgrid): Como integrar tu cuenta de SendGrid a Woowup.
+- [Perfit: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/email-senders/perfit-connect-account): Cómo integrar tu cuenta de emails transaccionales de Perfit a Woowup.
+- [Infobip: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/email-senders/infobip): Como integrar tu cuenta de Infobip a WoowUp
+- [Motor de template de emails](https://woowup-docs.gitbook.io/woowup-developer-docs/editor-de-campanas/motor-de-template-de-emails): Breve descripción de las funcionalidades del motor de templates de emails
+- [WoowUp Connectors](https://woowup-docs.gitbook.io/woowup-developer-docs/data-processing/woowup-connectors)
+- [Migración a Multi - ID](https://woowup-docs.gitbook.io/woowup-developer-docs/data-processing/migracion-a-multi-id): Como realizar los cambios necesarios en los datos enviados para adaptarse al sistema de multi identificación de clientes de Woowup
+- [SurveyKiwi: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/how-to-1/surveykiwi-connect-account)
+- [Untitled](https://woowup-docs.gitbook.io/woowup-developer-docs/how-to-1/surveykiwi-connect-account/untitled)
+- [Snappy: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/how-to-1/snappy-conectar-cuenta): Esta integración te permitirá recibir en tu cuenta de WoowUp, los nuevos suscriptores al newsletters registrados a través del asistente virtual de Snappy.
+- [Zendesk: Conectar Cuenta](https://woowup-docs.gitbook.io/woowup-developer-docs/how-to-1/zendesk-connect-account)
+- [Primeros pasos](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/primeros-pasos)
+- [Archivo de Tiendas](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-tiendas)
+- [Archivo de Categorías](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-categorias)
+- [Archivo de Productos](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-productos)
+- [Archivo de Clientes](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-clientes)
+- [Archivo de Ventas](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-ventas)
+- [Archivo de Medios de Pago](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-medios-de-pago)
+- [Archivo de Miembros de Familia](https://woowup-docs.gitbook.io/woowup-developer-docs/integracion-csv-sql/archivo-de-miembros-de-familia)
+- [Validación de Datos](https://woowup-docs.gitbook.io/woowup-developer-docs/validacion-de-datos): Este documento te guiará para que puedas validar los datos dentro de WoowUp
+- [¿Cómo completar el Blueprint?](https://woowup-docs.gitbook.io/woowup-developer-docs/como-completar-el-blueprint)

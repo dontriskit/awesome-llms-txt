@@ -1,0 +1,27 @@
+# Telescope
+
+> Enterprise API for stock portfolio construction with LLMs, conversational agents for investors and AI generated investment analysis.
+
+Telescope provides AI-powered financial technology solutions through several core products:
+- Ripple: AI-powered portfolio construction and investment discovery
+- Confer: Specialist financial co-pilot for stock analysis
+- Echo: Automated article generation from company announcements  
+- Signal: Technical analysis powered by AI
+
+## Products
+
+- [Ripple](https://telescope.co/products/ripple): AI-driven investment basket generation and portfolio construction tool
+- Confer: AI co-pilot for analyzing individual stocks using official filings and financial data
+- Echo: Converts company announcements into polished articles
+- Signal: AI-powered technical analysis and pattern recognition
+
+## Partnerships
+
+- [EasyEquities Integration](https://telescope.co/blog/telescope-ai-partners-with-easyequities-to-bring-ai-powered-investment-baskets-to-south-african-investors): Implementation of AI Baskets for 2M+ South African investors
+- [Sharesies Integration](https://telescope.co/blog/telescope-ai-partners-with-sharesies-to-bring-ai-search-to-australian-and-nz-investors): AI-powered investment discovery for 670,000+ investors in Australia and New Zealand
+
+## Optional
+
+- [AI Safety and Ethics Policy](https://telescope.co/blog/telescopes-ai-safety-and-ethics-policy): Guidelines on responsible AI use in finance
+- [Language Support](https://telescope.co/blog/telescope-ai-expands-language-support): Information about multilingual capabilities
+- [Company News](https://telescope.co/blog): Latest updates and announcements

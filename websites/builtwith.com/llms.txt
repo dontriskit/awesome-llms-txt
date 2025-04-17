@@ -1,0 +1,20 @@
+# BuiltWith
+
+> Find out what websites are built with.
+
+To lookup a website enter it into the system like https://builtwith.com/[website_address] an
+example would be https://builtwith.com/example.org.
+
+
+## Docs
+
+- [API](https://api.builtwith.com) Requires an API key that can be retrieved by [Signing up](https://builtwith.com/signup)
+- [Domain API](https://api.builtwith.com/domain-api) JSON and XML output providing detailed technology data about websites.
+- [Exportable Fields](https://builtwith.com/exportable-fields)
+- [FAQ](https://builtwith.com/faq)
+- [How to Upgrade](https://kb.builtwith.com/account-management/how-to-upgrade-your-account/)
+- [Create a Technology Report)(https://kb.builtwith.com/creating-reports/examples/create-a-technology-based-list-and-export-the-results/)
+
+- [About Us](https://builtwith.com/about)
+
+

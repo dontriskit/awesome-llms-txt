@@ -1,0 +1,1781 @@
+# 2023
+Source: https://docs.brandfetch.com/changelog/2023
+
+Follow along with updates across Brandfetch’s API.
+
+## Refreshed Developer Dashboard
+
+We've rolled out an updated developer dashboard. The new dashboard better communicates your API usage and makes it easier to monitor your API requests.
+
+Here’s what we've added:
+
+* **Overage Budget Limit Control**: You can now set your own overage budget limit. Don't want to spend more than you planned? Set it up right in the dashboard.
+* **API Usage**: Keep an eye on your API usage. Simple and clear to help you track what you're using.
+* **Usage History**: See your usage over the past months.
+
+## Overage billing budget hard limit controls
+
+In November we released overage billing for paid customers which let's customers make requests beyond their plan quotas. Via the developer dashboard, customers can now also set a spending hard limit to better control costs of overage fees. This makes it possible to go over quota, but not go being a certain dollar amount. The default monthly budget is set at \$100 USD.
+
+## Pseudo-Sandbox
+
+All requests for the brand `brandfetch.com` are now free and will not count towards your usage quota.
+
+For example, if you fetch the brandfetch.com brand via `GET` `https://api.brandfetch.com/v2/brands/brandfetch.com`, your request will not count towards your quota. You can make as many requests for the brandfetch.com brand as you need while you iterate on and test your integration.
+
+## "photographic" and "portrait" asset tags for logos and icons
+
+To give you more insight into the assets you work with, we've introduced a powerful new tagging feature. Now, assets such as Logos and Icons come with descriptive tags that provide a quick understanding of their characteristics.
+
+For instance, you might see the "photographic" tag associated with an asset, indicating that the image has realistic elements, which might differ from the standard vector logos typically used by brands. Similarly, the "portrait" tag suggests that the asset includes a portrait-like image, offering a personal touch often used by sole proprietors or small brands.
+
+These tags are designed to streamline your search and selection process, allowing you to quickly identify the type of asset you need and want to use with your customers. Check our our [API documentation](/reference/brand-api) for further details.
+
+## Overage Billing
+
+We are thrilled to announce a frequently requested update to our subscription payment plans that will provide you with greater flexibility over your usage.
+
+Starting this month, we're saying goodbye to the hard limits on API requests that could disrupt your business. No more interruptions. Instead, we understand that your demand may sometimes exceed your quota, and we want to support your growth every step of the way.
+
+Here’s what’s changing:
+
+* **No more hard stops**: Once you hit your usage quota, you won't face immediate cutoffs anymore. Our system will continue to seamlessly fulfill your API requests.
+* **Transparent overage fees**: Each additional request over your quota will now be billed at a \$0.1 per request. Upgrade your billing plan at any time to take advantage of bucket discounts.
+* **End-of-month overage billing**: Any overages will be billed at the end of the month, allowing you to manage your budget without any mid-month surprises.
+
+To disable or limit your overage fees, log into your [developer dashboard](https://developers.brandfetch.com) and set a spending limit. Set the limit to \$0 to completely disable overage.
+
+Overage billing is not available on the Free plan. To start using overage, please upgrade first to one of the paid plans.
+
+## longDescription property on brands
+
+Introducing `longDescription` – In-depth brand narratives
+
+We've heard your feedback! Alongside our flexible API request limits, we're excited to introduce an enhancement to our Brand API that will enrich the data you receive about each brand. While our description field provided a short blurb for brands, there was a growing need for more comprehensive descriptions—including for use with generative AI products to create content such as videos and other media.
+
+Here’s what’s new:
+
+* **`longDescription` property**: Dive deeper with `longDescription`, a new property in the Brand API's response that offers an extensive description about each brand.
+* **Richer brand stories**: These longer descriptions encapsulate the essence of a brand, giving you more context and content to engage with your audience. By weaving in the brand's history, industry standing, and product range, `longDescription` gives you the data to generate answers to question from your users and provides the context to derive further actions.
+* **Seamless integration**: The new property is available right now. You can start fetching more detailed brand narratives without any changes to your current setup. `longDescription` is already being returned in in your requests today.
+
+## The Brand Search API
+
+We are pleased to announce that we've released the Brand Search API 🎉
+
+The Brand Search API is a powerful tool designed to help users find a brand based on its name. Whether you're looking to build a brand autocomplete feature or simply want to search for a specific brand, this API has you covered.
+
+Feel free to check out [our documentation](/docs/brand-search-api) to learn more about it!
+
+## Usage & Quota Notification
+
+1. Every user of the Brand API will now be notified via email if their usage goes beyond 80% of the allocated limit.
+2. Users can view their quota by checking `x-api-key-quota`, and can also keep track of their usage for the current month by referring to `x-api-key-approximate-usage`.
+3. The API will return an HTTP status code 429 when the quota has been reached.
+
+## Dark & Light Logos
+
+You can now retrieve both the dark and light versions of the logo, the symbol and the icon (see example below). 🌗
+
+```JSON
+"logos": [
+    {
+        "type": "logo",
+        "theme": "light",
+        "formats": [
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/id9WE9j86h.svg",
+                "background": "transparent",
+                "format": "svg",
+                "size": 15555
+            }
+        ]
+    },
+    {
+        "type": "logo",
+        "theme": "dark",
+        "formats": [
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/idWbsK1VCy.png",
+                "background": "transparent",
+                "format": "png",
+                "height": 215,
+                "width": 800,
+                "size": 33937
+            },
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/idtCMfbWO0.svg",
+                "background": "transparent",
+                "format": "svg",
+                "height": null,
+                "width": null,
+                "size": 15567
+            }
+        ]
+    },
+    {
+        "type": "symbol",
+        "theme": null,
+        "formats": [
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/iddCQ52AR5.svg",
+                "background": "transparent",
+                "format": "svg",
+                "size": 2215
+            }
+        ]
+    },
+    {
+        "type": "icon",
+        "theme": "dark",
+        "formats": [
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/idls3LaPPQ.png",
+                "background": null,
+                "format": "png",
+                "height": 400,
+                "width": 400,
+                "size": 2565
+            }
+        ]
+    },
+    {
+        "type": "other",
+        "theme": null,
+        "formats": [
+            {
+                "src": "https://asset.brandfetch.io/idL0iThUh6/idXGq6SIu2.svg",
+                "background": "transparent",
+                "format": "svg",
+                "size": 2215
+            }
+        ]
+    }
+]
+```
+
+
+# 2024
+Source: https://docs.brandfetch.com/changelog/2024
+
+Follow along with updates across Brandfetch’s API.
+
+## Logo Link
+
+Logo Link is a simple CDN link that gives you access to any brand’s latest logos.
+
+<img src="https://cdn.brandfetch.io/brandfetch.com/h/80/w/80?c=1bfwsmEH20zzEfSNTed" alt="Logos by Brandfetch" />
+
+`https://cdn.brandfetch.io/brandfetch.com?c={your-client-id-here}`
+
+It’s customizable with powerful transformation capabilities and is meant to be directly embedded in your HTML tags so the logo always remains up-to-date.
+
+**Key features:**
+
+* **Rich taxonomy:** Access not just logo icons, but also brand symbols and main horizontal logos.
+* **Theme support:** Access dark or light logos so you can display them on any background.
+* **Customizable sizing:** Adjust the logo’s height and width to fit your needs.
+* **Smart fallbacks:** Even when a logo isn’t available, you’ll get fallbacks.
+* **Stay on-brand:** Logo Link automatically updates to the latest brand logo, so you’re always on-brand.
+
+Best of all? [It’s free with attribution](/docs/logo-link/guidelines).
+
+Get started by trying the [query builder](https://brandfetch.com/developers/logo-api) and reading the [documentation](/docs/logo-link/).
+
+## Brand Quality Score
+
+We now score brands on quality and make the score available via the Brands API. The quality score is a float between 0-1 which indicates the quality of the data for the given brand. The score is useful for when you don't want to show lower quality brands to your users.
+
+Each brand now has a new `qualityScore` attribute with it's respective score:
+
+```json
+{
+  "name": "Brandfetch",
+  "domain": "brandfetch.com",
+
+  "qualityScore": 0.7599741515319993,
+
+  ...
+
+}
+```
+
+The score is engineered to divide into thirds: Lower 3rd is poor quality, middle 3rd is OK quality, upper 3rd is high quality. Lower scores indicate that a brand is less likely to be a "real" brand. For example, where google.com will score high, my-random-blog.com will score between 0.3-0.4. The score factors in things like data-recency, whether the brand has been claimed, if it has been manually verified by our team, the brand's domain ranking on the web, as well as other factors.
+
+The score can be used to sort multiple brands in a list to determine which brand may be the best option to show to a user.
+
+The way we calculate this score may change over time such that a score for a given brand may change, but will remain aligned such that it divides quality into thirds: low, medium, high.
+
+## Brand Firmographics
+
+We've added a few firmographic attributes to brands on the Brands API. The new attributes: number of employees, year founded, industry categorization, company kind, and geographic information about the brand's company headquarters.
+
+```json
+{
+  "name": "Stripe",
+  "domain": "stripe.com",
+  "company": {
+    "employees": 1001,
+    "foundedYear": 2010,
+    "industries": [
+      {
+        "score": 1,
+        "id": "37",
+        "name": "Programming and Developer Software",
+        "emoji": "🖥",
+        "parent": {
+          "emoji": "🖥",
+          "id": "28",
+          "name": "Computers Electronics and Technology",
+          "slug": "computers-electronics-and-technology"
+        },
+        "slug": "programming-and-developer-software"
+      },
+      {
+        "score": 1,
+        "id": "28",
+        "name": "Computers Electronics and Technology",
+        "emoji": "🖥",
+        "parent": null,
+        "slug": "computers-electronics-and-technology"
+      }
+    ],
+    "kind": "PRIVATELY_HELD",
+    "location": {
+      "city": "South San Francisco",
+      "country": "United States",
+      "countryCode": "US",
+      "region": "Americas",
+      "state": "California",
+      "subregion": "Northern America"
+    },
+  },
+
+  ...
+}
+```
+
+More details on the available attributes can be found in the API documentation [here](/reference/brand-api).
+
+## Brand is NSFW?
+
+We've added a `isNsfw` convenience attribute to the root of the brand object on the Brands API response. When the value of `isNsfw` is `true`, we're indicating that we believe the brand to be, contain, or relate to adult content such as pornography (both photographic and animated) as well as adult-related like online sex shops.
+
+```json
+{
+  "name": "Example",
+  "domain": "adult-content.xxx",
+
+  "isNsfw": true,
+
+  ...
+
+}
+```
+
+## Brand industry classifications
+
+We now classify brands into one or more industry categories and make this data available through the Brands API. The industry is returned on brands' company attribute:
+
+```json
+{
+  "name":"Stripe",
+  "domain": "stripe.com",
+
+  "company": {
+    "industries": [
+      {
+        "score": 1,
+        "id": "37",
+        "name": "Programming and Developer Software",
+        "emoji": "🖥",
+        "parent": {
+          "emoji": "🖥",
+          "id": "28",
+          "name": "Computers Electronics and Technology",
+          "slug": "computers-electronics-and-technology"
+        },
+        "slug": "programming-and-developer-software"
+      },
+      {
+        "score": 1,
+        "id": "28",
+        "name": "Computers Electronics and Technology",
+        "emoji": "🖥",
+        "parent": null,
+        "slug": "computers-electronics-and-technology"
+      }
+    ],
+
+    ...
+
+  },
+
+  ...
+
+}
+```
+
+More details on the available attributes can be found in the [API Reference](/reference/brand-api).
+
+In the coming weeks we will release a free Taxonomy API for retrieving our industry taxonomy. In the meantime view the complete industry list [here](https://docs.google.com/spreadsheets/d/1N44nMfVtPCFM4ebTcmRlqbyxjFtDAGVuqd0mh0dcOU0/edit?usp=sharing).
+
+
+# 2025
+Source: https://docs.brandfetch.com/changelog/2025
+
+Follow along with updates across Brandfetch’s API.
+
+## **Query by ISIN & Stock Symbol: Now available in Brand API & Logo Link**
+
+We've expanded the capabilities of our Brand API and Logo Link endpoints. You can now query brand data directly using financial identifiers such as ISIN (e.g., `US6541061031`) or Stock Symbols (e.g., `NKE`).
+
+Previously, website URLs or Brand IDs were the primary ways to access brand information. With this update, simply input an ISIN or Stock Symbol to easily retrieve brand details and logos, further streamlining integrations for financial and investment platforms.
+
+Get started by reviewing the [documentation](/docs/brand-api/).
+
+## **Transaction API: Turn payment transactions into merchant data.**
+
+We've released a new endpoint called the Transaction API, enabling you to convert messy payment transactions into merchant data (e.g., logos, name, location, industry, etc.).
+
+The primary input for querying the Transaction API is a raw transaction descriptor (the line-item text on a bank or credit card statement). You provide this as the `transactionLabel` in the request body, along with a `countryCode` to narrow down the merchant’s locale. For example, a transaction label like `STARBUCKS 1523 OMAHA NE` with country code `US` can be resolved to `starbucks.com`.
+
+Get started by reading the [documentation](/docs/transaction-api/).
+
+## **404 Fallback for Logo Link**
+
+We have introduced a new fallback option to the Logo Link, enabling you to choose whether you want to receive a 404 response if no logo is found. This complements our existing fallback options: `transparent`, `lettermark`, and `brandfetch`.
+
+You can access the 404 fallback in the same way as the other fallback options by specifying `404` in the link:
+
+[`https://cdn.brandfetch.io/randomInvalidDomain.com/fallback/404/icon`](https://cdn.brandfetch.io/randomInvalidDomain.com/fallback/404/icon)
+
+​
+
+
+# Brand API
+Source: https://docs.brandfetch.com/docs/brand-api
+
+Data for B2B Personalization
+
+## 🔍 Overview
+
+Brand API provides programmatic access to any company's brand assets through a single API call. This includes their latest logos, color schemes, fonts, images, and other firmographic information. For more details, refer to our [API Reference](/reference/brand-api).
+
+Here are a few things to know about Brand API:
+
+* <b>Website as input</b>: The primary input key to query Brand API is a website
+  URL. If you don’t have URLs, use the [Brand Search
+  API](/docs/brand-search-api) to match brand names to the most likely URLs.
+  Additionally, you can query the Brand API directly using other identifiers such as ISIN (e.g., `US6541061031`) or Stock Symbol (e.g., `NKE`).
+* <b>Global coverage</b>: Brand API works in real-time. If a brand is not part
+  of our dataset, it will index the information live, providing data for brands
+  of every size, geography, or sector.
+* <b>Keeping the data fresh</b>: The cached data may not be provided or
+  displayed to more than one user. If you're looking to enrich large datasets,
+  and be notified of any changes with [Webhooks](/docs/webhooks), please [get in
+  touch](mailto:sales@brandfetch.io).
+
+<Info>
+  If you have custom requirements, or any questions [contact
+  us](mailto:sales@brandfetch.io) or [book a
+  call](https://calendly.com/jeremy-jaq/brand-api).
+</Info>
+
+## 🔓 Create an account
+
+Before getting started, you'll need to create an account on our [Developer Portal](https://developers.brandfetch.com). Creating an account is quick and easy, and will give you access to your dashboard where you'll find your API key.
+
+<CardGroup columns={1}>
+  <Card title="Developer Portal" icon="code" href="https://developers.brandfetch.com">
+    Register as a developer and get an API key
+  </Card>
+</CardGroup>
+
+## 📊 API quotas and usage
+
+When you sign up for a free developer account, you get 250 free requests.
+
+If you need to make more requests, please upgrade to a paid plan. When upgrading, you can confirm your quota by looking at the `x-api-key-quota` response header. To see your current month's usage, look for the `x-api-key-approximate-usage` response header.
+
+We will also send you an email warning you upon reaching 80% of your quota. The API will return an HTTP status code 429 when the quota has been reached.
+
+In addition to a usage quota we also apply a request throughput limit to protect our service from error and abuse. By default, throughput is limited to 1000 requests/second with some flexibility to accommodate bursts. You'll receive an HTTP status code 429 when you exceed this limit. [Contact us](mailto:sales@brandfetch.io) if your use-case requires higher throughput limits.
+
+## 📈 Overage billing
+
+When you purchase a subscription plan, you are allotted a quota depending on the payment plan. When you make more API requests than your quota allows, rather than blocking requests which are over your quota, we apply overage billing. This means that you'll never have any unexpected downtime. Requests over your quota are charged at an overage-fee rate. To set a spending limit, head to the Developer Dashboard and set a hard spending limit. Set this to \$0 if you want to disable overage. Further details on the mechanics of overage are available [here](/changelog/2023#overage-billing).
+
+Overage billing is not available on the free plan. To start using overage, please upgrade first to one of the paid plans.
+
+## 🔑 Authentication
+
+Authentication is done by passing your API key as a [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/). The Brand API can be accessed through the following structure:
+
+```text
+Authorization: Bearer <API_Key>
+```
+
+## 🧪 Testing / Sandbox
+
+While we don't currently offer a complete sandbox of our APIs, all requests for the domain `brandfetch.com` are free and will not count towards your usage/quotas. You can make as many requests to the Brandfetch's brand as you need while you iterate on and test your integration.
+
+```cURL
+curl --request GET \
+  --url https://api.brandfetch.io/v2/brands/brandfetch.com \
+  --header 'Authorization: Bearer <API_Key>'
+```
+
+## 💳 Pricing
+
+Our pricing is based on the number of API calls you make with each request giving you access to all attributes of a brand.
+
+<CardGroup>
+  <Card title="View pricing" href="https://brandfetch.com/developers/pricing">
+    Simple predictable pricing.
+  </Card>
+
+  <Card title="Book a call" href="https://calendly.com/jeremy-jaq/brand-api">
+    For custom needs, book a demo.
+  </Card>
+</CardGroup>
+
+## 📚 API reference
+
+Check out our [API Reference](/reference/brand-api) for more details on the Brand API.
+
+
+# Brand Search API
+Source: https://docs.brandfetch.com/docs/brand-search-api
+
+Match brand names to their domain and logo
+
+## 🔍 Overview
+
+The Brand Search API provides fast querying of brands. It lets you search by brand names and match them to their corresponding URLs, enabling you to create rich autocomplete experiences like the one on [Brandfetch](https://www.brandfetch.com).
+
+## ⚖️ Guidelines
+
+### 1. Rate Limit
+
+<Note>
+  Brand Search API is free to use and <u>we don't ask for any attribution</u>.
+</Note>
+
+We offer a fair use base rate limit of **500,000 requests per month**, with **200 requests per 5 minutes per IP address**, which is designed to cover most small to medium applications. The rate limit should allow for roughly 30 search-sessions in a 5-minute period and is intended to discourage abuse. Use a [debounce strategy](https://developer.mozilla.org/en-US/docs/Glossary/Debounce) inbetween keystrokes.
+
+If your usage approaches the monthly limit, we may reach out to discuss an upgrade to a paid, unlimited tier.
+
+For enterprises, we provide custom solutions, including SLA agreements, custom terms, and flexible caching options to ensure optimal performance at scale. These plans are tailored to meet the needs of high-volume users.
+
+Feel free to [contact us](mailto:sales@brandfetch.io) to discuss the right plan for your use case.
+
+### 2. Authentication
+
+<Note>Every request must include your unique `clientID`.</Note>
+
+To use Brand Search API, you must include your `clientId` with every request. Adding your `clientId` provides reliable access, supports fair usage, and keeps consistent performance across all requests.
+
+**How to get your client ID:**
+
+1. Register as a developer: [Create a free account](https://developers.brandfetch.com/register) and access your `clientId` from the developer portal.
+
+2. Authenticate your requests: Include your `clientId` in each request as shown in the example below:
+
+```html
+curl --request GET \ --url
+"https://api.brandfetch.io/v2/search/{query}?c={your-client-id-here}"
+```
+
+### 3. Hotlinking
+
+<Note>
+  We require Brand Search API to be directly embedded in your user-facing applications (e.g. in the user's browser).
+</Note>
+
+The API should be used directly as is, with all data fetched live and not altered or persisted. Your users should make requests to the API directly from their browsers.
+
+The logo image URLs provided by the Brand Search API **must** be hotlinked. Other data, such as brand names, should not be cached and should be used exclusively for building an autocomplete experience. Image URLs expire after 24 hours and must be refetched.
+
+For more information on the API’s availability, see our [uptime status](https://status.brandfetch.io/). We can provide custom SLAs for enterprise customers.
+
+If your use case requires more flexibility, please [contact us](mailto:sales@brandfetch.io) for a custom setup.
+
+### 4. Replicating Brandfetch
+
+<Note>You cannot replicate the core user experience of Brandfetch.</Note>
+
+The best way to ensure that your application doesn’t violate this guideline is by integrating Brandfetch into an existing app that offers more value than just the Brandfetch integration.
+
+Some examples:
+
+* ✅ The [Pitch integration](https://brandfetch.com/developers/customers/pitch) helps their users autocomplete brand names to streamline logo search within Pitch’s editor. Without this integration, the app still has a lot of value to its users.
+
+* 🚫 An unofficial Brand Search API that allows users to autocomplete brands. Without the API, the app has no content and no value to users.
+
+If you're unsure about your use case, please [contact us](mailto:support@brandfetch.io).
+
+## 🔌 React integration
+
+The example below shows how to seamlessly integrate Brand Search API with React.
+
+<Card title="React integration" href="https://codesandbox.io/embed/brandfetch-autocomplete-msovos">
+  Try out the React integration on CodeSandbox
+</Card>
+
+## 📚 API reference
+
+Explore the full [API Reference](/reference/brand-search-api) for comprehensive documentation and examples.
+
+<Card title="API Reference" href="/reference/brand-search-api">
+  Access the Brand Search API reference documentation
+</Card>
+
+***
+
+*Logos are the property of their respective trademark owners. Logo usage must comply with the principles of "fair use," which allow referencing a brand without endorsement, misrepresentation, or alteration. If you're unsure, consult a legal professional.*
+
+
+# Getting started
+Source: https://docs.brandfetch.com/docs/getting-started
+
+Our APIs are easy to integrate, most teams are fully set up within 30 minutes.
+
+<Tip>
+  Our APIs are trusted by companies of all sizes, from startups to Fortune 500.
+  Discover some [cool use cases](https://brandfetch.com/developers/customers).
+</Tip>
+
+## Welcome fellow developer! 👋
+
+Reading our documentation will help you integrate our APIs effectively. Here are our different products:
+
+<CardGroup cols={3}>
+  <Card title="Logo Link" icon="image" href="/docs/logo-link">
+    Easily embed brand logos for free.
+  </Card>
+
+  <Card title="Brand API" icon="code" href="/docs/brand-api">
+    Data for B2B personalization.
+  </Card>
+
+  <Card title="Brand Search API" icon="magnifying-glass" href="/docs/brand-search-api">
+    Autocomplete brand names for free.
+  </Card>
+
+  <Card title="Transaction API" icon="money-bill-transfer" href="/docs/transaction-api">
+    Turn payment transactions into merchant data.
+  </Card>
+</CardGroup>
+
+We like to keep things simple; our APIs operate on a REST model, ensuring a simple integration process. It is important to note that SSL should be used for all requests, and responses and errors will be returned in a JSON format.
+
+## 📄 Report inaccurate data
+
+If you come across any inaccuracies in our data, let us know by using [this form](https://airtable.com/shrc9GuiCucAOOmpw).
+
+Our Q\&A team will take a look and keep you informed if we make any updates to our records.
+
+## 💬 Questions?
+
+If you have any questions or run into any issues, just drop us an [email](mailto:support@brandfetch.io).
+
+Brandfetch ❤️ Developers
+
+
+# Overview
+Source: https://docs.brandfetch.com/docs/logo-link
+
+Easily embed logos in your app
+
+<Tip>
+  **Clearbit's Logo API** will shut down on December 1, 2025. Logo Link is the ideal future-proof replacement for modern startups and large enterprises. [Learn more](https://brandfetch.com/developers/resources/migrating-from-clearbit-logo-api).
+</Tip>
+
+## What is Logo Link?
+
+Logos are everywhere, but they’re often low-quality, used inconsistently, and beyond the brand’s control. That’s where Logo Link — a simple solution that delivers the latest logos for any brand.
+
+To embed a logo, simply use an `img` tag with the following `src` attribute:
+
+![Logos by Brandfetch](https://cdn.brandfetch.io/brandfetch.com/h/80/w/80?c=1bfwsmEH20zzEfSNTed)
+
+`https://cdn.brandfetch.io/brandfetch.com?c={your-client-id-here}`
+
+Logo Link is a simple CDN link that gives you access to any brand’s latest logos. It’s customizable with powerful transformation capabilities and is meant to be directly embedded in your HTML tags so the logo always remains up-to-date.
+
+**Key features:**
+
+* **Rich taxonomy:** Access not just logo icons, but also brand symbols and main horizontal logos.
+
+* **Theme support:** Access dark or light logos so you can display them on any background.
+
+* **Customizable sizing:** Adjust the logo’s height and width to fit your needs.
+
+* **Smart fallbacks:** Even when a logo isn’t available, you’ll get fallbacks.
+
+* **Stay on-brand:** Logo Link automatically updates to the latest brand logo, so you’re always on-brand.
+
+* **Financial Identifiers:** Query directly by ISIN (e.g., `US6541061031`) or Stock Symbol (e.g., `NKE`).
+
+Best of all? [It’s free](/docs/logo-link/guidelines#1-rate-limit).
+
+<Note>
+  👉 Get started with our [query
+  builder](https://brandfetch.com/developers/logo-api)—it's quick and easy!
+</Note>
+
+## Why use Logo Link?
+
+### ✨ Make your UI shine
+
+Keep your user interface looking sharp. Logo Link automatically fills in logos, so your app always shows the most current brand imagery. This gives your users a better experience without any extra work on your part.
+
+### ⏱️ Save user time
+
+Save your users the headache of uploading their logo. Just do it for them by using their domain name to prefill their brand. This will accelerate your user onboarding and deliver a faster time to value.
+
+### 💯 Keep your app on-brand
+
+Never display outdated logos again. Logo Link ensures your platform always shows the latest logos available, keeping everything both consistent and compliant.
+
+## ❓ FAQ
+
+<AccordionGroup>
+  <Accordion title="What is Logo Link?">
+    Logo Link provides instant access to the world’s largest and most up-to-date logo repository, allowing you to easily embed the latest logos in your app.
+
+    We invite you to try our [query builder](https://www.brandfetch.com/developers/logo-api) and review our [usage guidelines](/docs/logo-link/guidelines).
+  </Accordion>
+
+  <Accordion title="Is Logo Link truly provided for free?">
+    Logo Link is completely free. If you’re looking for a custom setup, including
+    higher-tier limits, flexible caching options, and additional features, please
+    [contact us](mailto:sales@brandfetch.io).
+  </Accordion>
+
+  <Accordion title="What’s the format of logos?">
+    Logos come in the .webp format, known for its superior compression and quality
+    compared to JPEG and PNG.
+  </Accordion>
+
+  <Accordion title="Is it legally permissible to embed logos into my app?">
+    Under the "fair use" principle, which permits referencing a brand for
+    informational purposes, it is generally permissible to use a logo. A useful
+    guideline is to consider whether you can replace the logo with the brand's
+    name and still convey the same message. If this substitution works, you are
+    likely within legal boundaries in most jurisdictions.
+  </Accordion>
+
+  <Accordion title="How do I update a logo on Logo Link?">
+    You can claim your brand by going to its profile on
+    [Brandfetch](https://www.brandfetch.com) — just search for your brand there.
+    Alternatively, you can fill out [this
+    form](https://airtable.com/appTs5LUC8Yy4Rkn7/shrc9GuiCucAOOmpw), and our QA
+    team will manually update the brand for you.
+  </Accordion>
+
+  <Accordion title="I have another question!">
+    We're happy to answer any additional questions you may have; feel free to
+    [email us](mailto:support@brandfetch.io).
+  </Accordion>
+</AccordionGroup>
+
+
+# Guidelines
+Source: https://docs.brandfetch.com/docs/logo-link/guidelines
+
+Easily embed logos in your app
+
+## ⚖️ Guidelines
+
+### 1. Rate Limit
+
+<Note>
+  Logo Link is free to use and <u>we don't ask for any attribution</u>.
+</Note>
+
+We offer a fair use rate limit of <b>1,000,000 requests per month</b>, which is designed to cover most small to medium applications.
+
+If your usage approaches this limit, we’ll send you a friendly heads-up so you can adjust your usage or explore an upgrade to an unlimited tier.
+
+For enterprises, we provide custom solutions, including SLA agreements, custom terms, and flexible caching options to ensure optimal performance at scale. These plans are tailored to meet the needs of high-volume users.
+
+Feel free to [contact us](mailto:sales@brandfetch.io) to discuss the right plan for your use case.
+
+### 2. Authentication
+
+<Note>Every request must include your unique `clientId`.</Note>
+
+To use Logo Link, you must include your `clientId` with every request. Adding your `clientId` provides reliable access, supports fair usage, and keeps consistent performance across all requests.
+
+**How to get your client ID:**
+
+1. Register as a developer: [Create a free account](https://developers.brandfetch.com/register) and access your `clientId` from the developer portal.
+
+2. Authenticate your requests: Include your `clientId` in each request as shown in the example below:
+
+```html
+<img
+  src="https://cdn.brandfetch.io/{domain}?c={your-client-id-here}"
+  alt="Logos by Brandfetch"
+/>
+```
+
+### 3. Hotlinking
+
+<Note>We require Logo Link to be directly embedded in your applications.</Note>
+
+Embedding Logo Link directly within your HTML image tags guarantees that the logo remains up-to-date at all times. It also ensures a faster and more reliable implementation. [See our uptime](https://status.brandfetch.io/).
+
+```html
+<img
+  src="https://cdn.brandfetch.io/{domain}?c={your-client-id-here}"
+  alt="Logos by Brandfetch"
+/>
+```
+
+👉 When embedding Logo Link, HTTP requests must include the `Referer` header with the request origin. Your HTTP `Referrer-Policy` header must be set to one of: `origin`, `origin-when-cross-origin`, `strict-origin`, `strict-origin-when-cross-origin` (browser default), or `unsafe-url`.
+
+**⚠️ Programmatic access** to logo images is not permitted and may result in rate limiting or blocking. Scraping logos will also lead to a block.
+
+If your use case requires caching, please [contact us](mailto:sales@brandfetch.io) for a custom setup.
+
+### 4. Replicating Brandfetch
+
+<Note>You cannot replicate the core user experience of Brandfetch.</Note>
+
+he best way to ensure that your application doesn’t violate this guideline is by integrating Brandfetch into an existing app that offers more value than just the Brandfetch integration.
+
+Some examples:
+
+* ✅ The [Typeform integration](https://brandfetch.com/developers/customers/typeform) improves the user’s onboarding by presenting brand logos. Without this integration, the app still has a lot of value to its users.
+* ✅ The [Pitch integration](https://brandfetch.com/developers/customers/pitch) brings brand logos inside Pitch’s editor to streamline the creation of presentations. Without this integration, the app still has a lot of value to its users.
+* 🚫 A logo search that only returns logos from Logo Link. Without the integration, the app has no content and no value to users.
+* 🚫 An unofficial Logo API that allows users to access brand logos via Logo Link. Without the API, the app has no content and no value to users.
+
+If you're unsure about your use case, please [contact us](mailto:support@brandfetch.io).
+
+***
+
+*Logos are the property of their respective trademark owners. Logo usage must comply with the principles of "fair use," which allow referencing a brand without endorsement, misrepresentation, or alteration. If you're unsure, consult a legal professional.*
+
+
+# Parameters
+Source: https://docs.brandfetch.com/docs/logo-link/parameters
+
+Easily embed logos in your app
+
+## 🛠️ Path parameters
+
+Below is the complete list of parameters for embedding the logo that best matches your use case:
+
+```text
+.../{identifier}/{type}/theme/{theme}/fallback/{fallback}/h/{height}/w/{width}?c={your-clientId}
+```
+
+| Parameter  | Type     | Description                                               |
+| ---------- | -------- | --------------------------------------------------------- |
+| identifier | `string` | Brand's identifier (see table below). `required`          |
+| type       | `string` | Logo's type (see table below).                            |
+| theme      | `string` | Logo's theme (see table below).                           |
+| fallback   | `string` | Logo's fallback (see table below).                        |
+| height     | `number` | Logo's height. The ratio of the logo is always respected. |
+| width      | `number` | Logo's width. The ratio of the logo is always respected.  |
+
+### Identifier
+
+| Type         | Description                                                                  |
+| ------------ | ---------------------------------------------------------------------------- |
+| domain       | Domain name (FQDN) (e.g. `nike.com`).                                        |
+| brandId      | Brand ID (e.g. `id_0dwKPKT`).                                                |
+| stock symbol | Abbreviation used to uniquely identify publicly traded shares (e.g. `NKE`).  |
+| isin         | International Securities Identification Number (ISIN) (e.g. `US6541061031`). |
+
+### Logo type
+
+| Type   | Description                                                                                                                    |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| icon   | The icon that is used on social profiles (e.g. [Tesla's social icon](https://cdn.brandfetch.io/tesla.com/icon))                |
+| logo   | The horizontal logo, usually seen on large surfaces (e.g. [Tesla's logo](https://cdn.brandfetch.io/tesla.com/logo))            |
+| symbol | The universal mark that abstractly represents the brand (e.g. [Tesla's T symbol](https://cdn.brandfetch.io/tesla.com/symbol)). |
+
+### Logo theme
+
+| Theme | Description                    |
+| ----- | ------------------------------ |
+| light | The light version of the logo. |
+| dark  | The dark version of the logo.  |
+
+### Logo fallback
+
+| Fallback    | Description                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| brandfetch  | The Brandfetch logo (default).                                                            |
+| transparent | A see-through placeholder for custom background options.                                  |
+| lettermark  | A square icon featuring the first letter of the brand’s name (applies only to type=icon). |
+| 404         | HTTP status 404 and a see-through placeholder for custom background options.              |
+
+
+# Transaction API
+Source: https://docs.brandfetch.com/docs/transaction-api
+
+Turn payment transactions into merchant data.
+
+## 🔍 Overview
+
+The Transaction API identifies merchant brands from raw transaction data in a single call. It processes unstructured payment text, maps it to a domain, and returns brand details (e.g., name, logo, domain, industry, etc). For more details, refer to our [API Reference](/reference/transaction-api).
+
+Here are a few things to know about the Transaction API:
+
+* <b>Transaction as input</b>: The primary input for querying the Transaction API is a raw transaction descriptor (the line-item text on a bank or credit card statement). You provide this as the `transactionLabel` in the request body, along with a `countryCode` to narrow down the merchant’s locale. For example, a transaction label like `"STARBUCKS 1523 OMAHA NE"` with country code `"US"` can be resolved to starbucks.com.
+* <b>Global coverage</b>: Transaction API works in real-time to recognize merchants worldwide. If a brand is not part of our dataset, it will index the information live, providing data for brands of every size, geography, or sector.
+* <b>Keeping the data fresh</b>: The cached data may not be provided or displayed to more than one user. If you're looking to enrich large datasets, and be notified of any changes with [Webhooks](/docs/webhooks), please [get in touch](mailto:sales@brandfetch.io).
+
+<Info>
+  If you have custom requirements, or any questions [contact
+  us](mailto:sales@brandfetch.io) or [book a
+  call](https://calendly.com/jeremy-jaq/brand-api).
+</Info>
+
+## 🔓 Create an account
+
+Before getting started, you'll need to create an account on our [Developer Portal](https://developers.brandfetch.com). Creating an account is quick and easy, and will give you access to your dashboard where you'll find your API key.
+
+<CardGroup columns={1}>
+  <Card title="Developer Portal" icon="code" href="https://developers.brandfetch.com">
+    Register as a developer and get an API key
+  </Card>
+</CardGroup>
+
+## 📊 API quotas and usage
+
+When you sign up for a free developer account, you get 100 free requests.
+
+If you need to make more requests, please upgrade to a paid plan. When upgrading, you can confirm your quota by looking at the `x-api-key-quota` response header. To see your current month's usage, look for the `x-api-key-approximate-usage` response header.
+
+We will also send you an email warning you upon reaching 80% of your quota. The API will return an HTTP status code 429 when the quota has been reached.
+
+In addition to a usage quota we also apply a request throughput limit to protect our service from error and abuse. By default, throughput is limited to 1000 requests/second with some flexibility to accommodate bursts. You'll receive an HTTP status code 429 when you exceed this limit. [Contact us](mailto:sales@brandfetch.io) if your use-case requires higher throughput limits.
+
+## 📈 Overage billing
+
+When you purchase a subscription plan, you are allotted a quota depending on the payment plan. When you make more API requests than your quota allows, rather than blocking requests which are over your quota, we apply overage billing. This means that you'll never have any unexpected downtime. Requests over your quota are charged at an overage-fee rate. To set a spending limit, head to the Developer Dashboard and set a hard spending limit. Set this to \$0 if you want to disable overage. Further details on the mechanics of overage are available [here](/changelog/2023#overage-billing).
+
+Overage billing is not available on the free plan. To start using overage, please upgrade first to one of the paid plans.
+
+## 🔑 Authentication
+
+Authentication is done by passing your API key as a [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/). The Transaction API can be accessed through the following structure:
+
+```text
+Authorization: Bearer <API_Key>
+```
+
+## 💳 Pricing
+
+Our pricing is based on the number of API calls you make with each request giving you access to all attributes of a brand.
+
+<CardGroup>
+  <Card title="Book a call" href="https://calendly.com/jeremy-jaq/brand-api">
+    For custom needs, book a demo.
+  </Card>
+</CardGroup>
+
+## 📚 API reference
+
+Check out our [API Reference](/reference/transaction-api) for more details on the Transaction API.
+
+
+# Best practices
+Source: https://docs.brandfetch.com/docs/webhooks/best-practices
+
+Review these best practices to make sure your webhooks remain secure and function well with your integration.
+
+<Info>
+  Webhooks are currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+## Handle duplicate events
+
+Webhook endpoints might occasionally receive the same event more than once. You can guard against duplicated event receipts by making your event processing idempotent. One way of doing this is logging the events you’ve processed, and then not processing already-logged events. Each event payload includes an event URN—a unique identifier for the event—which can be used as an idempotency key.
+
+## Only listen to event types your integration requires
+
+Configure your webhook endpoints to receive only the types of events required by your integration. Listening for extra events (or all events) puts undue strain on your server and we don’t recommend it.
+
+You can change the events that a webhook endpoint receives by updating the webhook object using the `updateWebhook` [mutation](/reference/graphql/schema-definition).
+
+## Handle events asynchrounously
+
+The volume of events that get generated can be spike-y. A data enrichment may result in millions of objects being updated in a very short period of time. Configure your handler to process incoming events with an asynchronous queue. You might encounter scalability issues if you choose to process events synchronously. Any large spike in webhook deliveries (for example, during a large data enrichment) might overwhelm your endpoint hosts.
+
+Asynchronous queues allow you to process the concurrent events at a rate your system can support. For example, your webhook endpoint could simply verify a payload and then push the event directly to a queue (like AWS SQS) where you can then process the events with better concurrency control.
+
+## Receive events with an HTTPS server
+
+You must use an HTTPS URL for your webhook endpoint. Brandfetch validates that the connection to your server is secure before sending your webhook data. For this to work, your server must be correctly configured to support HTTPS with a valid server certificate.
+
+## Verify events are sent from Brandfetch
+
+Verify webhook signatures to confirm that received events are sent from Brandfetch. Brandfetch signs webhook payload sent to your endpoints by including a signature in each event’s `Webhook-Signature` header. This allows you to verify that the events were sent by Brandfetch, not by a third party.
+
+## Preventing replay attacks
+
+A replay attack is when an attacker intercepts a valid payload and its signature, then re-transmits them. To mitigate such attacks, Brandfetch includes a timestamp in the `Webhook-Signature` header. Because this timestamp is part of the signed payload, it’s also verified by the signature, so an attacker can’t change the timestamp without invalidating the signature. If the signature is valid but the timestamp is too old, you can have your application reject the payload.
+
+We recommend a tolerance of no greater than 5 minutes between the timestamp and the current time. Use Network Time Protocol (NTP) to make sure that your server’s clock is accurate and is in-sync with the time on Brandfetch’s servers.
+
+Brandfetch generates the timestamp and signature each time we send an event to your endpoint. If Brandfetch retries an event (for example, your endpoint previously replied with a non-2xx status code), then we generate a new signature and timestamp for the new delivery attempt.
+
+## Example code for handling signature and timing verification
+
+```javascript JavaScript
+import crypto from "node:crypto";
+
+const TIMESTAMP_TOLERANCE_IN_MILISECONDS = 2 * 60 * 1000; // 2 minutes
+
+function hasVerifiedPayload({ sharedWebhookSecret, headers, rawRequestBody }) {
+  const webhookId = headers["webhook-id"];
+  const signature = headers["webhook-signature"].split(",")[1];
+  const timestamp = Number(headers["webhook-timestamp"]);
+  const signatureAlgorithm = headers["webhook-signature-algorithm"];
+  const now = Date.now();
+
+  const signatureIsOk =
+    crypto
+      .createHmac(signatureAlgorithm, sharedWebhookSecret)
+      .update(`${webhookId}.${timestamp}.${rawRequestBody}`)
+      .digest("hex") === signature;
+
+  const timingIsOk =
+    timestamp < now && timestamp > now - TIMESTAMP_TOLERANCE_IN_MILISECONDS;
+
+  return signatureIsOk && timingIsOk;
+}
+```
+
+## Quickly return a 2xx response
+
+Your endpoint must quickly return a successful status code (2xx) prior to any complex logic that could cause a timeout. For example, you must return a 200 response before updating any records in your database or making additional API requests.
+
+
+# Delivery behaviors
+Source: https://docs.brandfetch.com/docs/webhooks/delivery-behaviors
+
+This section helps you understand different behaviors to expect regarding how Brandfetch sends events to your webhook endpoint.
+
+<Info>
+  Webhooks are currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+## Retry behavior
+
+Brandfetch attempts to deliver a given event to your webhook endpoint for up to 3 days with an exponential back off.
+
+If your endpoint has been disabled or deleted when Brandfetch attempts a retry, future retries of that event are prevented. However, if you disable and then re-enable a webhook endpoint before Brandfetch can retry, you can still expect to see future retry attempts.
+
+## Disable behavior
+
+Brandfetch attempts to notify you of a mis-configured endpoint by email if the endpoint hasn’t responded with a 2xx HTTP status code for multiple days in a row. The email also states when the endpoint will be automatically disabled.
+
+## Event ordering
+
+While events are usually in order, your integration should not depend on it. Brandfetch doesn’t guarantee delivery of events in the order in which they’re generated. For example, re-indexing a brand might generate the following events:
+
+* `brand.company.updated`
+* `brand.updated`
+
+Your endpoint shouldn’t expect delivery of these events in this order, and needs to handle delivery accordingly. You can also use the API to fetch any missing objects (for example, you can fetch the current brand information from `brand.company.updated` if you happen to receive this event first).
+
+
+# Event types
+Source: https://docs.brandfetch.com/docs/webhooks/event-types
+
+Overview of subscribable event types
+
+<Info>
+  Webhooks are currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+The following table lists the type of events which can be subscribed to. There are additional events not shown in this table—if you have a custom need for an additional event, please reach out to us.
+
+* **Event type**: `brand.claimed`<br />**Namespace**: `brand`<br />**Scope**: `urn:brandfetch:brand:<id>`<br />**Description**: Triggered when a brand is claimed by the brand owner.
+
+* **Event type**: `brand.deleted`<br />**Namespace**: `brand`<br />**Scope**: `urn:brandfetch:brand:<id>`<br />**Description**: Triggered when a brand is soft-deleted. This is exceedingly rare and usually related to a take-down request by the brand's owner.
+
+* **Event type**: `brand.updated`<br />**Namespace**: `brand`<br />**Scope**: `urn:brandfetch:brand:<id>`<br />**Description**: Triggered anytime a brand's data is updated.
+
+* **Event type**: `brand.company.updated`<br />**Namespace**: `brand`<br />**Scope**: `urn:brandfetch:brand:<id>`<br />**Description**: Triggered anytime a brand's company data is updated.
+
+* **Event type**: `brand.verified`<br />**Namespace**: `brand`<br />**Scope**: `urn:brandfetch:brand:<id>`<br />**Description**: Triggered when a brand's data is human-reviewed (by our curation team).
+
+
+# Overview
+Source: https://docs.brandfetch.com/docs/webhooks/overview
+
+Get notified of changes by receiving events at your webhook URL.
+
+<Info>
+  Webhooks are currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+## Why use webhooks
+
+When building Brandfetch integrations, you might want your applications to receive events as they occur for brands you're interested in, so that your backend systems can execute actions accordingly.
+
+To enable webhook events, you need to [register webhook endpoints](/docs/webhooks/setup#register-your-endpoint). After you register them, Brandfetch can push real-time event data to your application’s webhook endpoint when things happen. Brandfetch uses HTTPS to send webhook payloads to your app as a JSON payload that includes an Event object. The implementation follows the v1 of the [Standard Webhooks](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md) specification.
+
+Receiving webhook events is particularly useful for listening to asynchronous events such as when a brand’s logo changes, a company detail is updated, or when we index new data.
+
+## Event overview
+
+<Info>
+  Brandfetch implements version 1.0.0 of [the Standard
+  Webhooks](https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md)
+  specification.
+</Info>
+
+Brandfetch generates event data that we can send you to inform you of brand activity.
+
+When an event occurs, Brandfetch generates a new event object. A single API request might result in the creation of multiple events. For example, if we re-index a brand, you may receive `brand.company.updated` and `brand.updated` events.
+
+By registering webhook endpoints with Brandfetch, you enable us to automatically send event payloads as part of POST requests to the registered webhook endpoint hosted by your application. After your webhook endpoint receives the event payload, your app can run backend actions (for example, updating your database after you receive a `brand.updated` event).
+
+### Event payload
+
+The event object we send to your webhook endpoint provides a snapshot of the object that changed. They might include a `delta` property that indicates the change, when applicable.
+
+See the full [list of event types](/docs/webhooks/event-types) that we can send to your webhook.
+
+### Example event payload
+
+The following event shows a subscription update at the end of a trial.
+
+<CodeGroup>
+  ```JSON JSON
+  {
+    "type": "brand.updated",
+    "timestamp": "2024-01-01T00:00:00.000000Z",
+    "urn": "urn:brandfetch:organization:0123:webhook:1234:event:2345",
+    "data": {
+      "object": { "__typename": "Brand", "id": "id123456", "domain": "brandfetch.com", "verified": true, ... },
+      "delta": { "verified": { "old": false, "new": true } }
+    }
+  }
+  ```
+
+  ```TypeScript TypeScript
+  interface WebhookEventPayload {
+    readonly type: string;
+    readonly timestamp: string;
+    readonly urn: string;
+    readonly data: {
+      readonly object: Record<string, string>;
+      readonly delta: Record<string, { readonly old: any; readonly new: any }>;
+    };
+  }
+  ```
+</CodeGroup>
+
+### Event type
+
+You receive events for all of the event types your webhook endpoint is listening for in your configuration. Use the received event type to determine what processing your application needs to perform. The `data.object` corresponding to each event type varies, but typically will be the namespace object (e.g. a Brand given brand.updated where `brand.*` is the event namespace.)
+
+### Data object and previous attributes delta
+
+Event payloads may include a `data.delta` property which will indicate which fields changed. For `*.updated` events, the event payload always includes the `data.delta` property which will allow you to inspect what’s been updated on the object.
+
+The delta attributes in the example `brand.updated` event above indicates that the brand has a previous value of `verified: false`. The `data.object` property shows that the verified field has been set to `true` which indicates that the brand has been `verified` by Brandfetch's curation team.
+
+
+# Setup a webhook
+Source: https://docs.brandfetch.com/docs/webhooks/setup
+
+Start receiving event payloads
+
+<Info>
+  Webhooks are currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+## Summary
+
+To start receiving webhook events in your integration, create and register a webhook endpoint by following the steps below:
+
+1. Create a webhook endpoint handler to receive event data POST requests.
+2. Register your endpoint with Brandfetch via an API request.
+3. Secure your webhook endpoint.
+
+You can register and create one endpoint to handle several different event types at once, or set up individual endpoints for specific events.
+
+[Setup a webhook and subscribe to brand updates](/recipes/setup-webhooks)
+
+## Create a handler
+
+See the [events reference](/docs/webhooks/event-types) to identify the event types your webhook handler needs to process.
+
+Set an HTTPS endpoint function that can accept webhook requests with a POST method.
+
+Set up your endpoint function so that it:
+
+1. Handles POST requests with a JSON payload consisting of an event object.
+2. Quickly returns a successful status code (2xx) prior to any complex logic that could cause a timeout.
+
+### Example endpoint
+
+This code snippet is a webhook function configured to check that the event type was received, to handle the event, and return a 200 response.
+
+Example code for `hasVerifiedPayload()` is available [here](/docs/webhooks/best-practices#example-code-for-handling-signature-and-timing-verification).
+
+```javascript
+const express = require("express");
+const app = express();
+
+// Verify the signature by comparing the signature
+// provided in the signature header with one we
+// compute ourselves with the shared secret.
+// If the signatures don't match, we return an error
+function verifyWebhook(request, response, rawBodyBuffer, encoding) {
+  if (!rawBodyBuffer || !rawBodyBuffer.length) {
+    return response.status(400).json({ message: "Request body missing" });
+  }
+
+  const payload = rawBodyBuffer.toString(encoding || "utf8");
+  const headers = request.headers;
+
+  if (
+    !hasVerifiedPayload({
+      sharedWebhookSecret: process.env.SHARED_WEBHOOK_SECRET,
+      headers,
+      rawRequestBody: payload,
+    })
+  ) {
+    return response.status(400).json({
+      message: "Signature does not match.",
+    });
+  }
+}
+
+app.post(
+  "/webhook",
+  express.json({ type: "application/json", verify: verifyWebhook }),
+  (request, response) => {
+    const event = request.body;
+
+    switch (event.type) {
+      case "brand.updated":
+        const brand = event.data.brand;
+        const changes = event.data.delta;
+
+        // Then define and call a method to handle the brand updated event.
+        handleBrandUpdated(brand, changes);
+
+        break;
+      case "brand.verified":
+        const brand = event.data.brand;
+
+        // Then define and call a method to handle the brand verified event.
+        handleBrandVerified(brand);
+
+        break;
+      // ... handle other event types
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    // Return a response to acknowledge receipt of the event
+    response.json({ received: true });
+  }
+);
+
+app.listen(8000, () => console.log("Running on port 8000"));
+```
+
+## Register your endpoint
+
+Once your handler is deployed on the web and ready to go, register your endpoint with Brandfetch by creating a webhook using the GraphQL APIs `createWebhook` [mutation](/reference/graphql/schema-definition).
+
+<Note>
+  Registered webhook endpoint URLs must be publicly accessible HTTPS URLs.
+</Note>
+
+<CodeGroup>
+  ```cURL cURL
+  curl --request POST \
+      --header 'content-type: application/json' \
+      --header 'authorization: Bearer YOUR_API_KEY_HERE' \
+      --url 'https://graphql.brandfetch.io' \
+      --data '{"query":"mutation CreateWebhook($input: CreateWebhookInput!) {\n  createWebhook(input: $input) {\n    code\n    message\n    success\n    webhook {\n      urn\n      enabled\n    }\n  }\n}","variables":{"input":{"description":"My new Webhoook","events":["brand.updated","brand.verified"],"url":"https://httpbin.org/status/200"}}}'
+  ```
+
+  ```GraphQL GraphQL
+  mutation CreateWebhook($input: CreateWebhookInput!) {
+    createWebhook(input: $input) {
+      code
+      message
+      success
+      webhook {
+        urn
+      }
+    }
+  }
+
+  # Example Variables: { "input": { "description": "Get updates when a brand's logo changes", "events": ["brand.updated"], "url": "https://httpbin.org/status/200"}}
+  ```
+</CodeGroup>
+
+## Subscribe to objects using their URNs
+
+The final step is to subscribe to the objects (like brands) for which you want to receive events. You can subscribe to a few objects, or many thousands—one at a time, or in batches.
+
+For example, perhaps you want to receive events for the Brandfetch brand. The URN for this brand is `urn:brandfetch:brand:idL0iThUh6which` means we would subscribe to that URN.
+
+To add a subscription we need two things: The URN for the webhook we created (`$webhookUrn: URN!`) and the URN for the object to which we want to subscribe to (`$subscriptions: [URN!]!`).
+
+<CodeGroup>
+  ```cURL cURL
+  curl --request POST \
+      --header 'content-type: application/json' \
+      --header 'authorization: Bearer YOUR_API_KEY_HERE' \
+      --url 'https://graphql.brandfetch.io' \
+      --data '{"query":"mutation AddWebhookSubscriptions($webhookUrn: URN!, $subscriptions: [URN!]!) {\n  addWebhookSubscriptions(webhook: $webhookUrn, subscriptions: $subscriptions) {\n    code\n    message\n    success\n    webhook {\n      urn\n    }\n  }\n}","variables":{"webhookUrn":"urn:brandfetch:organization:1234:webhook:5678","subscriptions":["urn:brandfetch:brand:idL0iThUh6"]}}'
+  ```
+
+  ```GraphQL GraphQL
+  mutation AddWebhookSubscriptions($webhookUrn: URN!, $subscriptions: [URN!]!) {
+    addWebhookSubscriptions(webhook: $webhookUrn, subscriptions: $subscriptions) {
+      code
+      message
+      success
+      webhook {
+        urn
+      }
+    }
+  }
+
+  # Example Variables: { "webhookUrn": "urn:brandfetch:organization:1234:webhook:1234", "subscriptions": ["urn:brandfetch:brand:id123456"] }
+  ```
+</CodeGroup>
+
+## Debugging delivery issues
+
+To help debug your endpoint, or to later retrieve failed event deliveries when your endpoint has a long duration outage, you can review all of the events Brandfetch attempted to deliver to your webhook endpoint using the GraphQL API.
+
+Performing the following GraphQL query on the Webhooks API will return a list of all attempted webhook deliveries, responses from your endpoint, and the respective HTTP status codes we received. Delivery history is kept for 30 days after which time it is irreversibly deleted.
+
+<CodeGroup>
+  ```cURL cURL
+  curl --request POST \
+      --header 'content-type: application/json' \
+      --header 'authorization: Bearer YOUR_API_KEY_HERE' \
+      --url 'https://graphql.brandfetch.io' \
+      --data '{"query":"query RetrieveWebhookDeliveries($webhookUrn: URN!) {\n  webhook(urn: $webhookUrn) {\n    url\n    urn\n    description\n    enabled\n    deliveries {\n      totalCount\n      edges {\n        node {\n          createdAt\n          deliveredAt\n          status\n          result {\n            body\n            headers {\n              name\n              value\n            }\n            message\n            statusCode\n          }\n        }\n      }\n    }\n  }\n}","variables":{"webhookUrn":"urn:brandfetch:organization:1234:webhook:1234"}}'
+  ```
+
+  ```GraphQL GraphQL
+  query RetrieveWebhookDeliveries($webhookUrn: URN!) {
+    webhook(webhook: $webhookUrn) {
+      url
+      urn
+      description
+      enabled
+      deliveries {
+        totalCount
+        edges {
+          node {
+            createdAt
+            deliveredAt
+            status
+            result {
+              body
+              headers {
+                name
+                value
+              }
+              message
+              statusCode
+            }
+          }
+        }
+      }
+    }
+  }
+
+  # Example Variables: { "webhookUrn": "urn:brandfetch:organization:1234:webhook:1234" }
+  ```
+</CodeGroup>
+
+
+# Customizing Logo Link fallbacks
+Source: https://docs.brandfetch.com/recipes/customize-logo-link-fallback
+
+Learn how to handle 404s and implement loading states for Logo Link
+
+When working with [Logo Link](/docs/logo-link), implementing proper fallback handling ensures a smooth user experience. While we provide [built-in fallback options](/docs/logo-link/parameters#logo-fallback), here's how to implement custom fallback handling for 404s and loading states in React.
+
+## Enhanced Fallback Mechanism
+
+Our React approach combines the basic fallback structure with error handling and loading states:
+
+```jsx
+const LogoLink = ({ domain, clientId, fallbackText = "N / A" }) => {
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
+
+  // Transparent 1x1 pixel PNG used as initial placeholder
+  const transparent = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=`;
+
+  // Construct the logo URL with domain and client ID
+  const logoLink = `https://cdn.brandfetch.io/${domain}/fallback/404/icon?c=${clientId}`;
+
+  // Determine which source to use based on component state
+  // - During loading: show transparent placeholder
+  // - After loading, no error: show actual logo
+  // - On error: transparent placeholder remains while fallback UI shows
+  const src = !isLoading && !isError ? logoLink : transparent;
+
+  return (
+    <div className="wrapper">
+      <img
+        onLoad={() => setLoading(false)}
+        onError={() => setError(true)}
+        alt="Logo by Brandfetch"
+        className="icon"
+        src={src}
+      />
+
+      {/* Fallback UI shown only when there's an error loading the logo */}
+      {isError && (
+        <div className="fallback">
+          <p>{fallbackText}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+Style your fallback mechanism with this CSS:
+
+```css
+.wrapper {
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  height: 128px;
+  width: 128px;
+}
+
+.fallback {
+  background-color: #eaeaea;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.fallback p {
+  font-weight: bold;
+  font-size: 24px;
+  color: #666;
+}
+
+.icon {
+  position: absolute;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+```
+
+### How It Works
+
+1. Initial render: Shows transparent placeholder image
+2. After initial load: Attempts to load actual logo
+3. Success: Displays logo
+4. Error: Shows fallback UI with provided text
+
+The key benefits of using a transparent placeholder is that users never see the default browser "broken image" icon.
+
+### Using the LogoLink Component
+
+The LogoLink component can be easily integrated into your React application. Here's how to use it:
+
+```jsx
+<LogoLink domain="github.com" clientId="client-id" fallbackText="G" />
+```
+
+The component automatically handles loading states and errors, providing a smooth experience for your users.
+
+
+# How to find the best logo for your use case
+Source: https://docs.brandfetch.com/recipes/filter-brand-logos
+
+This recipe explores an effective strategy for selecting the best logo to display in company listing apps, such as those used in fintech and other industries.
+
+## Retrieve the brand icon
+
+```JavaScript JavaScript
+const icon = brand.logos.find(({ type }) => type === 'icon')
+```
+
+## Retrieve the dark logo
+
+```JavaScript JavaScript
+const logoDark = brand.logos.find(({ type, theme }) => type === 'logo' && theme === 'dark')
+```
+
+## Retrieve the light logo
+
+```JavaScript JavaScript
+const logoLight = brand.logos.find(({ type, theme }) => type === 'logo' && theme === 'light')
+```
+
+## Retrieve the dark symbol
+
+```JavaScript JavaScript
+const symbolDark = brand.logos.find(({ type, theme }) => type === 'logo' && theme === 'dark')
+```
+
+## Retrieve the light symbol
+
+```JavaScript JavaScript
+const symbolLight = brand.logos.find(({ type, theme }) => type === 'logo' && theme === 'light')
+```
+
+## Retrieve a specific format
+
+```JavaScript JavaScript
+const file = logo.formats.find(({ format }) => format === 'svg')
+```
+
+## Find a logo with the best format
+
+```JavaScript JavaScript
+const priorityList = ['svg', 'webp', 'png', 'jpeg', 'jpg']
+
+const file = priorityList.find(priorityFormat =>
+  logo.formats.some(({ format }) => format === priorityFormat)
+)
+```
+
+
+# Overview
+Source: https://docs.brandfetch.com/recipes/overview
+
+Our APIs are easy to integrate, most teams are fully set up within 30 minutes.
+
+<Tip>
+  We are the leading brand data provider, our APIs are trusted by companies of
+  all sizes, from startups to Fortune 500. Meet our
+  [customers](https://brandfetch.com/developers/customers).
+</Tip>
+
+## Overview
+
+These tutorials are designed to help you leverage the full potential of our API and streamline your brand data integration process.
+
+* [How to find the best logo for your use case](/recipes/filter-brand-logos)
+* [Setup a webhook and subscribe to brand updates](/recipes/setup-webhooks)
+
+## We're here to help!
+
+If you have any questions or run into any issues, just drop us an [email](mailto:support@brandfetch.io).
+
+We're excited you're here!
+
+
+# Setup a webhook and subscribe to brand updates
+Source: https://docs.brandfetch.com/recipes/setup-webhooks
+
+A quick walk through on how to fetch a brand and subscribe to receive updates using webhooks.
+
+## Setting up APIs
+
+```JavaScript JavaScript
+const BRANDFETCH_SECRET_API_KEY = "..."
+
+async function brandApi(domain) {
+  const response = await fetch(
+    `https://api.brandfetch.io/v2/brands/${domain}`,
+    { method: 'GET', headers: { 'authorization': `Bearer ${BRANDFETCH_SECRET_API_KEY}` } }
+  )
+
+  return response.json()
+}
+
+async function graphql(query, variables) {
+  const response = await fetch(
+    `https://graphql.brandfetch.io/`,
+    { method: 'POST', headers: { 'authorization': `Bearer ${BRANDFETCH_SECRET_API_KEY}` } }
+  )
+
+  return response.json()
+}
+```
+
+## Create a Webhook
+
+Create a new webhook with the `createWebhook` mutation. You can subscribe to receive updates on multiple brands on a single webhook.
+
+```JavaScript JavaScript
+const webhookEndpointUrl = 'https://your-website.com/webhook'
+
+const { data: { createWebhook: { webhook } } } = await graphql(`
+  mutation CreateWebhook($createInput: CreateWebhookInput!) {
+    createWebhook(input: $createInput) {
+      code
+      message
+      success
+      webhook {
+        urn
+      }
+    }
+  }
+`,
+	{
+  	createInput: {
+    	description: 'Brand updates',
+	    enabled: true,
+  	  events: ['brand.updated'],
+    	url: webhookEndpointUrl
+	  }
+})
+```
+
+## Retrieve a brand
+
+We need to retrieve the brand to get it's URN (ID). Typically you'll have already made an initial request to fetched a brand — and now you want to continue to receive updates on it.
+
+```JavaScript JavaScript
+const brand = await brandApi('brandfetch.com')
+```
+
+## Subscribe to brand updates
+
+To subscribe to a brand's data updates, we can use the `addWebhookSubscriptions` mutation to add the brand to the list of active subscriptions on the webhook. We can subscribe to one or more brands at once with this mutation by passing the each brand's URN in the `subscriptions` list variable.
+
+```JavaScript JavaScript
+await graphql(`
+  mutation AddWebhookSubscriptions($webhookUrn: URN!, $subscriptions: [URN!]!)
+    addWebhookSubscriptions(webhook: $webhookUrn, subscriptions: $subscriptions) {
+      code
+      message
+      success
+    }
+  }
+`,
+	{
+  	webhookUrn: webhook.urn,
+  	subscriptions: [brand.urn]
+})
+```
+
+## Unsubscribe a subscription
+
+If we later wish to unsubscribe from a brand we can do so with the `removeWebhookSubscriptions` mutation. Like the `addWebhookSubscriptions` mutation, here we can remove multiple URNs at once by providing them as part of the `subscriptions` list variable.
+
+```JavaScript JavaScript
+await graphql(`
+  mutation RemoveWebhookSubscriptions($webhookUrn: URN!, $subscriptions: [URN!]!)
+    removeWebhookSubscriptions(webhook: $webhookUrn, subscriptions: $subscriptions) {
+      code
+      message
+      success
+    }
+  }
+`,
+	{
+  	webhookUrn: webhook.urn,
+  	subscriptions: [brand.urn]
+})
+```
+
+
+# Brand API
+Source: https://docs.brandfetch.com/reference/brand-api
+
+GET /v2/brands/{identifier}
+Brand data for the internet
+
+
+
+# Brand Search API
+Source: https://docs.brandfetch.com/reference/brand-search-api
+
+GET /v2/search/{name}?c={clientId}
+Search for brands by name, login to get a clientId
+
+<Note>
+  Read our [guidelines](/docs/brand-search-api#guidelines) before using the
+  Brand Search API.
+</Note>
+
+
+# Overview
+Source: https://docs.brandfetch.com/reference/graphql/overview
+
+Explore the Brandfetch GraphQL API.
+
+<Info>
+  GraphQL is currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+## GraphQL Playground
+
+Explore the GraphQL API using the interactive playground:
+
+* [Apollo Studio](https://studio.apollographql.com/sandbox/explorer?endpoint=https%3A%2F%2Fgraphql.brandfetch.io)
+
+## GraphQL schema definition
+
+You can find a guide on previewing the full schema reference in the following sections:
+
+* [Schema definition](/reference/graphql/schema-definition)
+
+## We're here to help!
+
+If you have any questions or run into any issues, just drop us an [email](mailto:support@brandfetch.io).
+
+
+# Query Builder
+Source: https://docs.brandfetch.com/reference/graphql/query-builder
+
+Use the Query Builder to execute queries.
+
+<Info>
+  GraphQL is currently available to
+  [Scale](https://brandfetch.com/developers/pricing) customers only, if you're
+  interested [contact us](mailto:sales@brandfetch.io).
+</Info>
+
+Explore the GraphQL API using the interactive playground:
+
+* [Apollo Studio](https://studio.apollographql.com/sandbox/explorer?endpoint=https%3A%2F%2Fgraphql.brandfetch.io).
+
+
+# Schema definition
+Source: https://docs.brandfetch.com/reference/graphql/schema-definition
+
+A guide on viewing our schema defintion.
+
+<Info>
+  The GraphQL API is currently available to Enterprise customers only, [contact
+  us](mailto:sales@brandfetch.io).
+</Info>
+
+## How to view our schema definition
+
+To preview our GraphQL schema definition:
+
+**First, open the [GraphQL Explorer](https://studio.apollographql.com/sandbox/explorer?endpoint=https%3A%2F%2Fgraphql.brandfetch.io) and navigate to the `Schema` tab on the left-hand side.**
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/brandfetch-d7fb5329/images/schema_definition_tab.png" alt="Schema Definition Tab" />
+
+***
+
+**You're all set! You can now view our GraphQL schema. 🙌**
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/brandfetch-d7fb5329/images/schema_definition.png" alt="Schema Definition" />
+
+## We're here to help!
+
+If you have any questions or run into any issues, just drop us an [email](mailto:support@brandfetch.io).
+
+
+# Overview
+Source: https://docs.brandfetch.com/reference/overview
+
+Learn about Brandfetch's API endpoints.
+
+This documentation provides detailed information about our API endpoints, allowing you to integrate brand data seamlessly into your applications.
+Our API is divided into two main categories:
+
+* [Brand API](/reference/brand-api): Retrieve comprehensive brand data.
+* [Brand Search API](/reference/brand-search-api): Find and search brands
+  by name, view [usage terms](/docs/brand-search-api#guidelines).
+* [Transaction API](/reference/transaction-api): Turn payment transactions into merchant data.
+
+For detailed information on usage, tutorials and guidelines, please refer to the specific [User Guides](/docs/getting-started).
+
+## We're here to help!
+
+If you have any questions or run into any issues, just drop us an [email](mailto:support@brandfetch.io).
+
+We're excited you're here!
+
+
+# Transaction API
+Source: https://docs.brandfetch.com/reference/transaction-api
+
+POST /v2/brands/transaction
+Turn payment transactions into merchant data.
+
+
+
+# Getting help
+Source: https://docs.brandfetch.com/support/getting-help
+
+Our support team is always available and willing to assist you.
+
+## Technical Support
+
+If you come across any questions or encounter any issues, please do not hesitate to [contact us](mailto:support@brandfetch.io).
+
+To help us quickly identify and fix the issue, kindly provide us with the following details:
+
+* The email address of your account.
+* The URL of the call you were making when the error occurred.
+* The brand you were accessing.
+* The status error you were facing.
+
+## Book a Call
+
+If you want to ask for new features, buy additional API requests, unlock premium endpoints, or gain insights on how to make the most out of the API, [book a call](https://calendly.com/jeremy-jaq/brand-api) with us!
+
+
+# Report inaccuracies
+Source: https://docs.brandfetch.com/support/report-inaccuracies
+
+Improve our data quality by reporting inaccuracies in brands
+
+We have an internal QA team that make sure our data is high-quality. If you see any missing information or inaccuracies in our index, you can let us know through [this form](https://airtable.com/shrc9GuiCucAOOmpw).
+
+Our dedicated curation team will be notified, and follow up with your request.
+
+
+# Service status
+Source: https://docs.brandfetch.com/support/service-status
+
+Check the status of Brandfetch services.
+
+<Note>
+  For real-time updates and incident reports, please visit our [status
+  page](https://status.brandfetch.io).
+</Note>
+
+## Reporting Issues
+
+If you're experiencing issues not reflected in our [status page](https://status.brandfetch.io), please don't hesitate to contact our support team.
+
+<Card title="Contact Support" icon="headset" href="/support/getting-help">
+  Get in touch with our support team for assistance
+</Card>
+
+

@@ -1,0 +1,23 @@
+# De.Fi Docs
+
+## De.Fi Docs
+
+- [Introduction](https://docs.de.fi/welcome/readme)
+- [Getting Started](https://docs.de.fi/welcome/getting-started)
+- [The De.Fi Dashboard](https://docs.de.fi/dashboard/the-defi-dashboard)
+- [Address Book](https://docs.de.fi/dashboard/the-defi-dashboard/address-book)
+- [Wallet](https://docs.de.fi/dashboard/the-defi-dashboard/wallet)
+- [Deposit](https://docs.de.fi/dashboard/the-defi-dashboard/deposit)
+- [Lending](https://docs.de.fi/dashboard/the-defi-dashboard/lending)
+- [NFTs](https://docs.de.fi/dashboard/the-defi-dashboard/nfts)
+- [Explore Yields](https://docs.de.fi/dashboard/the-defi-dashboard/explore-yields)
+- [Supported Blockchains](https://docs.de.fi/dashboard/the-defi-dashboard/supported-blockchains)
+- [Supported Protocols](https://docs.de.fi/dashboard/the-defi-dashboard/supported-protocols)
+- [Shield](https://docs.de.fi/security-toolkit/shield)
+- [Scanner](https://docs.de.fi/security-toolkit/scanner)
+- [DEFI Token](https://docs.de.fi/defi-ecosystem/defi-token)
+- [Governance](https://docs.de.fi/defi-ecosystem/governance)
+- [Audit Database](https://docs.de.fi/audits/audit-database)
+- [Rekt Database](https://docs.de.fi/audits/rekt-database)
+- [API](https://docs.de.fi/api/api)
+- [Brand Assets](https://docs.de.fi/resources/brand-assets)

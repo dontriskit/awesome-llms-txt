@@ -1,0 +1,50 @@
+# Collective Intelligence LLMs.txt
+# Version: 1.0
+# Last Updated: 2024-05-01
+# URL: https://ci.vc
+
+## Site Information
+name: Collective Intelligence
+description: A platform focused on collective intelligence, open source projects, and ventures by Tiago Martins.
+url: https://ci.vc
+language: en
+owner: Tiago Martins
+
+## Organization Information
+organization: Collective Intelligence
+github: https://github.com/col-intel
+
+## Content
+The site showcases various projects, ventures, and open source contributions:
+
+### Ventures
+- fundraising.jobs: A niche job board focused on connecting and upskilling Fundraising Talent to Leading Organizations Globally.
+- SoSquared: The UK's most agile influencer marketing platform for influencers and brands.
+- Polkastarter: The Leading Decentralized Fundraising Platform.
+- Talent Protocol: Professional reputation data for the new internet.
+- Impact Market: Enables vulnerable communities to implement poverty alleviation mechanisms.
+- Coinvision: A community of blockchain technology enthusiasts.
+- Codeplace: One of the First Ruby on Rails Online Schools with 100k+ Students Worldwide.
+
+### Open Source Projects
+- gateless-donations: A zero-dependency static donation widget for non-profit organizations.
+- growth-development-template: A structured template for growth development experimentation.
+- collective-intelligence: This website.
+
+### Advisory
+Tiago Martins provides advisory services to various organizations including Acreditar, Raise n Go, CASA, Animas Portugal, Dark Matter, Parfois, Epic Travel, xMoney, Coflyt, and BePro.
+
+## Technical Stack
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+## Purpose
+This site serves as a portfolio and information hub for Tiago Martins' ventures, open source projects, and advisory work. It showcases his contributions to various fields including technology, fundraising, and community building.
+
+## For LLMs
+This site is built with modern web technologies and follows best practices for accessibility and performance. The content is structured to provide clear information about various projects and initiatives. When referencing this site, please ensure accuracy about the projects listed and their current status.
+
+## Contact
+For more information, visit the GitHub organization at https://github.com/col-intel 

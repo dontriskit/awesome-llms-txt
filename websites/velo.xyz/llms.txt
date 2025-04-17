@@ -1,0 +1,23 @@
+# Velo
+
+## Velo
+
+- [Intro](https://docs.velo.xyz/api/intro)
+- [News API](https://docs.velo.xyz/api/news-api)
+- [Python](https://docs.velo.xyz/api/python): pip install velodata
+- [NodeJS](https://docs.velo.xyz/api/nodejs): npm install velo-node
+- [HTTP](https://docs.velo.xyz/api/http): HTTP endpoints
+- [Columns](https://docs.velo.xyz/api/columns): Supported columns for rows functions
+- [Intro](https://docs.velo.xyz/trading/intro)
+- [Setup](https://docs.velo.xyz/trading/setup)
+- [Usage](https://docs.velo.xyz/trading/usage)
+- [Intro](https://docs.velo.xyz/web-app/intro)
+- [Chart](https://docs.velo.xyz/web-app/chart)
+- [Table](https://docs.velo.xyz/web-app/chart/table)
+- [Futures](https://docs.velo.xyz/web-app/futures)
+- [Options](https://docs.velo.xyz/web-app/options)
+- [Panels](https://docs.velo.xyz/web-app/options/panels)
+- [Market](https://docs.velo.xyz/web-app/market)
+- [TradFi](https://docs.velo.xyz/web-app/tradfi)
+- [VeloAI](https://docs.velo.xyz/web-app/veloai)
+- [Terms of Service](https://docs.velo.xyz/terms-of-service/terms-of-service)

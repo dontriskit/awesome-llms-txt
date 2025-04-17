@@ -1,0 +1,23 @@
+# Equipment
+
+> Equipment is a scaffold project focused on the developer experience. Its goal is to avoid repeating basic application setups like handling configuration files or configuring database connections. Equipment scales with your project. It does not force you to follow any specific development strategy, so it can be used with simple scripts and big applications. Equipment is simple to extend and modify, which makes it very flexible to fit any project requirement. It can be easily integrated with other Python frameworks and tools. Developers with any Python skills can work with Equipment. Do not hesitate to reach us to provide feedback, raise issues, and collaborate with the project.
+
+## Docs
+
+- [Full Docs](https://equipment-python.vercel.app/llms-full.txt) Full documentation of Equipment. (with examples)
+
+## Examples
+
+- [Equipment and FastAPI](https://equipment-python.vercel.app/docs/examples/fastapi): Example of a web application using FastAPI.
+
+## Optional
+
+- [Dependency Injection](https://equipment-python.vercel.app/docs/features/dependency-injection)
+- [Configuration Management](https://equipment-python.vercel.app/docs/features/config)
+- [Database](https://equipment-python.vercel.app/docs/features/database)
+- [Logging System](https://equipment-python.vercel.app/docs/features/log)
+- [Queue Management](https://equipment-python.vercel.app/docs/features/queue)
+- [Scheduler](https://equipment-python.vercel.app/docs/features/scheduler)
+- [Storage](https://equipment-python.vercel.app/docs/features/storage)
+- [Testing](https://equipment-python.vercel.app/docs/features/tests)
+- [Project Compilation](https://equipment-python.vercel.app/docs/features/compilation)

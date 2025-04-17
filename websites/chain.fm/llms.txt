@@ -1,0 +1,18 @@
+# Docs
+
+## English
+
+- [Welcome](https://docs.chain.fm/docs/welcome/welcome)
+- [Setting up Your Homepage](https://docs.chain.fm/docs/tutorials/setting-up-your-homepage)
+- [Getting to Know Your Homepage](https://docs.chain.fm/docs/tutorials/getting-to-know-your-homepage)
+- [Filtering Acitvity Feed](https://docs.chain.fm/docs/tutorials/filtering-acitvity-feed)
+- [Get alerted via Telegram](https://docs.chain.fm/docs/tutorials/get-alerted-via-telegram)
+
+## 简体中文
+
+- [欢迎使用](https://docs.chain.fm/docs/zh-cn/huan-ying-shi-yong)
+- [教程](https://docs.chain.fm/docs/zh-cn/jiao-cheng)
+- [定制您的首页](https://docs.chain.fm/docs/zh-cn/jiao-cheng/ding-zhi-nin-de-shou-ye)
+- [熟悉您的首页](https://docs.chain.fm/docs/zh-cn/jiao-cheng/shu-xi-nin-de-shou-ye)
+- [筛选首页动态](https://docs.chain.fm/docs/zh-cn/jiao-cheng/shai-xuan-shou-ye-dong-tai)
+- [Telegram 通知设置](https://docs.chain.fm/docs/zh-cn/jiao-cheng/telegram-tong-zhi-she-zhi)

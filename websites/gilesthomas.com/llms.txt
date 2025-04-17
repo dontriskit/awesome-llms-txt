@@ -1,0 +1,563 @@
+# Giles' Blog
+
+> Giles' Blog is the personal technical blog for Giles Thomas, a software engineer
+> and entrepreneur.  Current information about Giles Thomas can be found on the
+> [about page](https://www.gilesthomas.com/about.md).
+
+This page lists the 20 most recent posts, and then all categorised posts by their
+category (many posts have multiple categories).
+
+## Recent posts
+
+* [Dropout and mandatory vacation](https://www.gilesthomas.com/2025/03/dropout-and-mandatory-vacation.md) posted on 2025-03-24T23:45:00+00:00
+* [Writing an LLM from scratch, part 10 -- dropout](https://www.gilesthomas.com/2025/03/llm-from-scratch-10-dropout.md) posted on 2025-03-19T23:30:00+00:00
+* [Adding /llms.txt](https://www.gilesthomas.com/2025/03/llmstxt.md) posted on 2025-03-18T22:30:00+00:00
+* [The RSS feed now has the full text](https://www.gilesthomas.com/2025/03/rss-now-has-full-text.md) posted on 2025-03-18T19:30:00+00:00
+* [Should RSS feeds contain the full blog post?](https://www.gilesthomas.com/2025/03/full-text-in-rss.md) posted on 2025-03-16T23:30:00+00:00
+* [Writing an LLM from scratch, part 9 -- causal attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-9-causal-attention.md) posted on 2025-03-09T23:30:00+00:00
+* [Writing an LLM from scratch, part 8 -- trainable self-attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-8-trainable-self-attention.md) posted on 2025-03-04T21:30:00+00:00
+* [It's still worth blogging in the age of AI](https://www.gilesthomas.com/2025/02/blogging-in-the-age-of-ai.md) posted on 2025-02-24T23:52:55+00:00
+* [Going through the archives](https://www.gilesthomas.com/2025/02/going-through-the-archives.md) posted on 2025-02-23T23:52:55+00:00
+* [On the benefits of learning in public](https://www.gilesthomas.com/2025/02/20250223-til-deep-dive-posts.md) posted on 2025-02-23T19:00:00+00:00
+* [Basic matrix maths for neural networks: in practice](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-2.md) posted on 2025-02-22T23:45:00+00:00
+* [Basic matrix maths for neural networks: the theory](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1.md) posted on 2025-02-20T22:45:00+00:00
+* [On the perils of AI-first debugging -- or, why Stack Overflow still matters in 2025](https://www.gilesthomas.com/2025/02/ai-debugging-is-not-always-the-solution.md) posted on 2025-02-19T02:30:00+00:00
+* [Getting MathML to render properly in Chrome, Chromium and Brave](https://www.gilesthomas.com/2025/02/mathml-fonts-on-chromium-based-browsers.md) posted on 2025-02-16T20:00:00+00:00
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Blog design update](https://www.gilesthomas.com/2025/02/blog-design.md) posted on 2025-02-07T22:45:00+00:00
+* [Writing an LLM from scratch, part 7 -- wrapping up non-trainable self-attention](https://www.gilesthomas.com/2025/02/llm-from-scratch-7-coding-self-attention-part-2.md) posted on 2025-02-07T21:30:00+00:00
+* [Writing an LLM from scratch, part 6b -- a correction](https://www.gilesthomas.com/2025/01/llm-from-scratch-6b-correction.md) posted on 2025-01-28T22:30:00+00:00
+* [Michael Foord: RIP](https://www.gilesthomas.com/2025/01/michael-foord-rip.md) posted on 2025-01-26T20:30:00+00:00
+* [Writing an LLM from scratch, part 6 -- starting to code self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-6-coding-self-attention-part-1.md) posted on 2025-01-21T22:30:00+00:00
+
+
+## Posts in category Python
+
+* [Resolver One as a Python Success Story](https://www.gilesthomas.com/2008/08/resolver-one-as-a-python-success-story.md) posted on 2008-08-01T10:41:47+00:00
+* [A bit of fun](https://www.gilesthomas.com/2008/09/a-bit-of-fun.md) posted on 2008-09-29T22:52:13+00:00
+* [Why use IronPython?](https://www.gilesthomas.com/2008/10/why-use-ironpython.md) posted on 2008-10-07T11:00:35+00:00
+* [Ironclad 0.7 released](https://www.gilesthomas.com/2008/11/ironclad-07-released.md) posted on 2008-11-27T22:16:36+00:00
+* [Getting phpBB to accept Django sessions](https://www.gilesthomas.com/2008/12/getting-phpbb-to-accept-django-sessions.md) posted on 2008-12-10T16:44:46+00:00
+* [xmlrpc](https://www.gilesthomas.com/2009/02/xmlrpc.md) posted on 2009-02-13T14:07:16+00:00
+* [R in Resolver One (and perhaps IronPython generally)](https://www.gilesthomas.com/2009/03/r-in-resolver-one-and-probably-ironpython-generally.md) posted on 2009-03-02T19:19:04+00:00
+* [Fix for pygame/PyOpenGL/NeHe tutorial windows not disappearing when run from IDLE](https://www.gilesthomas.com/2009/08/fix-for-pygamepyopenglnehe-tutorial-windows-not-disappearing.md) posted on 2009-08-30T20:44:04+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part II: an orrery](https://www.gilesthomas.com/2009/09/3d-graphics-in-resolver-one-using-opengl-and-tao-part-ii-an-orrery.md) posted on 2009-09-17T15:06:10+00:00
+* [London Financial Python Users Group](https://www.gilesthomas.com/2009/11/london-financial-python-users-group.md) posted on 2009-11-11T18:19:30+00:00
+* [New York Financial Users Group](https://www.gilesthomas.com/2009/11/new-york-financial-users-group.md) posted on 2009-11-13T14:50:28+00:00
+* [A website for LFPUG](https://www.gilesthomas.com/2009/12/a-website-for-lfpug.md) posted on 2009-12-07T18:39:50+00:00
+* [Next London Financial Python Users Group meeting](https://www.gilesthomas.com/2010/01/next-london-financial-python-users-group-meeting.md) posted on 2010-01-28T15:57:15+00:00
+* [London Financial Python Users' Group](https://www.gilesthomas.com/2010/02/london-financial-python-users-group-2.md) posted on 2010-02-16T12:01:54+00:00
+* [Playing with NLTK](https://www.gilesthomas.com/2010/02/playing-with-nltk.md) posted on 2010-02-18T18:21:19+00:00
+* [OpenCL: .NET, C# and Resolver One integration -- the very beginnings](https://www.gilesthomas.com/2010/03/opencl-net-c-and-resolver-one-integration-the-very-beginnings.md) posted on 2010-03-18T20:16:47+00:00
+* [Regular expressions and Resolver One column-level formulae](https://www.gilesthomas.com/2010/04/regular-expressions-and-resolver-one-column-level-formulae.md) posted on 2010-04-26T17:26:29+00:00
+* [Generating political news using NLTK](https://www.gilesthomas.com/2010/05/generating-political-news-using-nltk.md) posted on 2010-05-04T17:16:25+00:00
+* [London Financial User Group Meeting: September 15](https://www.gilesthomas.com/2010/08/london-financial-user-group-meeting-september-15.md) posted on 2010-08-24T15:06:05+00:00
+* [A big announcement from Resolver Systems](https://www.gilesthomas.com/2010/10/a-big-announcement-from-resolver.md) posted on 2010-10-01T18:39:24+00:00
+* [London Financial User Group Meeting: 17 January](https://www.gilesthomas.com/2011/01/london-financial-user-group-meeting-17-january.md) posted on 2011-01-10T19:52:19+00:00
+* [Busy, busy, busy](https://www.gilesthomas.com/2011/04/busy-busy-busy.md) posted on 2011-04-27T14:37:28+00:00
+* [Teaching programming](https://www.gilesthomas.com/2011/10/teaching-programming.md) posted on 2011-10-14T14:16:41+00:00
+* [PythonAnywhereAnywhere](https://www.gilesthomas.com/2012/02/pythonanywhereanywhere.md) posted on 2012-02-27T15:31:40+00:00
+* [Running Django unit tests on PythonAnywhere](https://www.gilesthomas.com/2012/05/running-django-unit-tests-on-pythonanywhere.md) posted on 2012-05-21T19:35:19+00:00
+* [How many Python programmers are there in the world?](https://www.gilesthomas.com/2013/06/how-many-python-programmers-are-there-in-the-world.md) posted on 2013-06-24T18:13:05+00:00
+* [An HTTP request's journey through a platform-as-a-service](https://www.gilesthomas.com/2014/08/an-http-requests-journey-through-a-platform-as-a-service.md) posted on 2014-08-20T12:32:33+00:00
+* [Parsing website SSL certificates in Python](https://www.gilesthomas.com/2016/12/parsing-website-ssl-certificates-in-python.md) posted on 2016-12-09T17:31:52+00:00
+* [Creating a time series from existing data in pandas](https://www.gilesthomas.com/2017/05/creating-a-time-series-from-existing-data-in-pandas.md) posted on 2017-05-09T12:31:40+00:00
+* [Python code to generate Let's Encrypt certificates](https://www.gilesthomas.com/2018/11/python-code-to-generate-lets-encrypt-certificates.md) posted on 2018-11-16T19:55:00+00:00
+* [Building an AI chatbot for beginners: part 0](https://www.gilesthomas.com/2023/03/ai-llm-bot-beginners-tutorial-00.md) posted on 2023-03-19T20:45:00+00:00
+* [Building an AI chatbot for beginners: part 1](https://www.gilesthomas.com/2023/03/ai-llm-bot-beginners-tutorial-01.md) posted on 2023-03-19T21:45:00+00:00
+* [Building an AI chatbot for beginners: part 2](https://www.gilesthomas.com/2023/04/ai-llm-bot-beginners-tutorial-02.md) posted on 2023-04-04T19:45:00+00:00
+* [Messing around with fine-tuning LLMs](https://www.gilesthomas.com/2024/04/fine-tuning.md) posted on 2024-04-27T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 2 -- to the cloud!](https://www.gilesthomas.com/2024/04/fine-tuning-2.md) posted on 2024-04-28T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 3 -- moar GPUs](https://www.gilesthomas.com/2024/05/fine-tuning-3.md) posted on 2024-05-15T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 4 -- training cross-GPU.](https://www.gilesthomas.com/2024/05/fine-tuning-4.md) posted on 2024-05-21T21:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 5 -- exploring memory usage](https://www.gilesthomas.com/2024/07/fine-tuning-5.md) posted on 2024-07-05T17:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 6 -- measuring memory usage more systematically](https://www.gilesthomas.com/2024/07/fine-tuning-6.md) posted on 2024-07-10T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 7 -- detailed memory usage across sequence lengths for an 8B model](https://www.gilesthomas.com/2024/08/fine-tuning-7.md) posted on 2024-08-16T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 8 -- detailed memory usage across batch sizes](https://www.gilesthomas.com/2024/08/fine-tuning-8.md) posted on 2024-08-25T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 9 -- gradient checkpointing](https://www.gilesthomas.com/2024/09/fine-tuning-9.md) posted on 2024-09-03T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 10 -- finally training the model!](https://www.gilesthomas.com/2024/12/fine-tuning-10.md) posted on 2024-12-22T19:00:00+00:00
+* [Writing an LLM from scratch, part 2](https://www.gilesthomas.com/2024/12/llm-from-scratch-2.md) posted on 2024-12-23T21:00:00+00:00
+* [Writing an LLM from scratch, part 3](https://www.gilesthomas.com/2024/12/llm-from-scratch-3.md) posted on 2024-12-26T22:30:00+00:00
+* [An AI chatroom (beginnings)](https://www.gilesthomas.com/2024/12/ai-chatroom-1.md) posted on 2024-12-29T23:15:00+00:00
+* [An AI chatroom (a few steps further)](https://www.gilesthomas.com/2024/12/ai-chatroom-2.md) posted on 2024-12-30T23:15:00+00:00
+* [Michael Foord: RIP](https://www.gilesthomas.com/2025/01/michael-foord-rip.md) posted on 2025-01-26T20:30:00+00:00
+* [Writing an LLM from scratch, part 7 -- wrapping up non-trainable self-attention](https://www.gilesthomas.com/2025/02/llm-from-scratch-7-coding-self-attention-part-2.md) posted on 2025-02-07T21:30:00+00:00
+* [Writing an LLM from scratch, part 8 -- trainable self-attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-8-trainable-self-attention.md) posted on 2025-03-04T21:30:00+00:00
+* [Writing an LLM from scratch, part 9 -- causal attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-9-causal-attention.md) posted on 2025-03-09T23:30:00+00:00
+* [Writing an LLM from scratch, part 10 -- dropout](https://www.gilesthomas.com/2025/03/llm-from-scratch-10-dropout.md) posted on 2025-03-19T23:30:00+00:00
+
+## Posts in category TIL deep dives
+
+* [Getting phpBB to accept Django sessions](https://www.gilesthomas.com/2008/12/getting-phpbb-to-accept-django-sessions.md) posted on 2008-12-10T16:44:46+00:00
+* [OpenCL: first investigations with an NVIDIA card](https://www.gilesthomas.com/2010/02/opencl-first-investigations-with-an-nvida-card.md) posted on 2010-02-24T17:54:27+00:00
+* [OpenCL: .NET, C# and Resolver One integration -- the very beginnings](https://www.gilesthomas.com/2010/03/opencl-net-c-and-resolver-one-integration-the-very-beginnings.md) posted on 2010-03-18T20:16:47+00:00
+* [SNI-based reverse proxying with Go(lang)](https://www.gilesthomas.com/2013/07/sni-based-reverse-proxying-with-golang.md) posted on 2013-07-18T20:10:02+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 0: introduction](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-0.md) posted on 2013-08-08T14:18:07+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 1: a trivial single-threaded proxy](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-1.md) posted on 2013-08-12T19:02:48+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 2: handling multiple connections with epoll](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-2-handling-multiple-connections-with-epoll.md) posted on 2013-09-07T16:21:36+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 3: Lua-based configuration](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-3-lua-based-configuration.md) posted on 2013-09-11T19:39:45+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: non-blocking output](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-non-blocking-output.md) posted on 2013-09-28T22:08:46+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: fixed it!](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-fixed-it.md) posted on 2013-09-29T23:09:39+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 4: Dealing with slow writes to the network](https://www.gilesthomas.com/2013/10/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-4-dealing-with-slow-writes-to-the-network.md) posted on 2013-10-10T21:09:34+00:00
+* [SHA-1 sunset in Chromium, and libnss3](https://www.gilesthomas.com/2015/08/sha-1-sunset-in-chromium-and-libnss3.md) posted on 2015-08-06T12:18:50+00:00
+* [pam-unshare: a PAM module that switches into a PID namespace](https://www.gilesthomas.com/2016/04/pam-unshare-a-pam-module-that-switches-into-a-pid-namespace.md) posted on 2016-04-15T19:03:27+00:00
+* [Python code to generate Let's Encrypt certificates](https://www.gilesthomas.com/2018/11/python-code-to-generate-lets-encrypt-certificates.md) posted on 2018-11-16T19:55:00+00:00
+* [Fun with network namespaces](https://www.gilesthomas.com/2021/03/fun-with-network-namespaces.md) posted on 2021-03-13T19:30:00+00:00
+* [Messing around with fine-tuning LLMs](https://www.gilesthomas.com/2024/04/fine-tuning.md) posted on 2024-04-27T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 2 -- to the cloud!](https://www.gilesthomas.com/2024/04/fine-tuning-2.md) posted on 2024-04-28T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 3 -- moar GPUs](https://www.gilesthomas.com/2024/05/fine-tuning-3.md) posted on 2024-05-15T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 4 -- training cross-GPU.](https://www.gilesthomas.com/2024/05/fine-tuning-4.md) posted on 2024-05-21T21:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 5 -- exploring memory usage](https://www.gilesthomas.com/2024/07/fine-tuning-5.md) posted on 2024-07-05T17:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 6 -- measuring memory usage more systematically](https://www.gilesthomas.com/2024/07/fine-tuning-6.md) posted on 2024-07-10T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 7 -- detailed memory usage across sequence lengths for an 8B model](https://www.gilesthomas.com/2024/08/fine-tuning-7.md) posted on 2024-08-16T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 8 -- detailed memory usage across batch sizes](https://www.gilesthomas.com/2024/08/fine-tuning-8.md) posted on 2024-08-25T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 9 -- gradient checkpointing](https://www.gilesthomas.com/2024/09/fine-tuning-9.md) posted on 2024-09-03T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 10 -- finally training the model!](https://www.gilesthomas.com/2024/12/fine-tuning-10.md) posted on 2024-12-22T19:00:00+00:00
+* [Writing an LLM from scratch, part 1](https://www.gilesthomas.com/2024/12/llm-from-scratch-1.md) posted on 2024-12-22T21:00:00+00:00
+* [Writing an LLM from scratch, part 2](https://www.gilesthomas.com/2024/12/llm-from-scratch-2.md) posted on 2024-12-23T21:00:00+00:00
+* [Writing an LLM from scratch, part 3](https://www.gilesthomas.com/2024/12/llm-from-scratch-3.md) posted on 2024-12-26T22:30:00+00:00
+* [Writing an LLM from scratch, part 4](https://www.gilesthomas.com/2024/12/llm-from-scratch-4.md) posted on 2024-12-28T22:30:00+00:00
+* [Writing an LLM from scratch, part 5 -- more on self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-5-self-attention.md) posted on 2025-01-11T23:30:00+00:00
+* [Writing an LLM from scratch, part 6 -- starting to code self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-6-coding-self-attention-part-1.md) posted on 2025-01-21T22:30:00+00:00
+* [Writing an LLM from scratch, part 7 -- wrapping up non-trainable self-attention](https://www.gilesthomas.com/2025/02/llm-from-scratch-7-coding-self-attention-part-2.md) posted on 2025-02-07T21:30:00+00:00
+* [Basic matrix maths for neural networks: the theory](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1.md) posted on 2025-02-20T22:45:00+00:00
+* [Basic matrix maths for neural networks: in practice](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-2.md) posted on 2025-02-22T23:45:00+00:00
+* [Writing an LLM from scratch, part 8 -- trainable self-attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-8-trainable-self-attention.md) posted on 2025-03-04T21:30:00+00:00
+* [Writing an LLM from scratch, part 9 -- causal attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-9-causal-attention.md) posted on 2025-03-09T23:30:00+00:00
+* [Writing an LLM from scratch, part 10 -- dropout](https://www.gilesthomas.com/2025/03/llm-from-scratch-10-dropout.md) posted on 2025-03-19T23:30:00+00:00
+
+## Posts in category AI
+
+* [Evolution in action](https://www.gilesthomas.com/2008/10/evolution-in-action.md) posted on 2008-10-03T17:52:56+00:00
+* [Building an AI chatbot for beginners: part 0](https://www.gilesthomas.com/2023/03/ai-llm-bot-beginners-tutorial-00.md) posted on 2023-03-19T20:45:00+00:00
+* [Building an AI chatbot for beginners: part 1](https://www.gilesthomas.com/2023/03/ai-llm-bot-beginners-tutorial-01.md) posted on 2023-03-19T21:45:00+00:00
+* [Building an AI chatbot for beginners: part 2](https://www.gilesthomas.com/2023/04/ai-llm-bot-beginners-tutorial-02.md) posted on 2023-04-04T19:45:00+00:00
+* [Giving up on the AI chatbot tutorial (for now)](https://www.gilesthomas.com/2024/02/giving-up-on-tutorial-and-link-to-new-pythonanywhere-blog-post.md) posted on 2024-02-27T20:45:00+00:00
+* [LLM Quantisation Weirdness](https://www.gilesthomas.com/2024/02/llm-quantisation-weirdness.md) posted on 2024-02-27T22:45:00+00:00
+* [Messing around with fine-tuning LLMs](https://www.gilesthomas.com/2024/04/fine-tuning.md) posted on 2024-04-27T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 2 -- to the cloud!](https://www.gilesthomas.com/2024/04/fine-tuning-2.md) posted on 2024-04-28T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 3 -- moar GPUs](https://www.gilesthomas.com/2024/05/fine-tuning-3.md) posted on 2024-05-15T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 4 -- training cross-GPU.](https://www.gilesthomas.com/2024/05/fine-tuning-4.md) posted on 2024-05-21T21:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 5 -- exploring memory usage](https://www.gilesthomas.com/2024/07/fine-tuning-5.md) posted on 2024-07-05T17:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 6 -- measuring memory usage more systematically](https://www.gilesthomas.com/2024/07/fine-tuning-6.md) posted on 2024-07-10T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 7 -- detailed memory usage across sequence lengths for an 8B model](https://www.gilesthomas.com/2024/08/fine-tuning-7.md) posted on 2024-08-16T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 8 -- detailed memory usage across batch sizes](https://www.gilesthomas.com/2024/08/fine-tuning-8.md) posted on 2024-08-25T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 9 -- gradient checkpointing](https://www.gilesthomas.com/2024/09/fine-tuning-9.md) posted on 2024-09-03T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 10 -- finally training the model!](https://www.gilesthomas.com/2024/12/fine-tuning-10.md) posted on 2024-12-22T19:00:00+00:00
+* [Writing an LLM from scratch, part 1](https://www.gilesthomas.com/2024/12/llm-from-scratch-1.md) posted on 2024-12-22T21:00:00+00:00
+* [Writing an LLM from scratch, part 2](https://www.gilesthomas.com/2024/12/llm-from-scratch-2.md) posted on 2024-12-23T21:00:00+00:00
+* [Writing an LLM from scratch, part 3](https://www.gilesthomas.com/2024/12/llm-from-scratch-3.md) posted on 2024-12-26T22:30:00+00:00
+* [Writing an LLM from scratch, part 4](https://www.gilesthomas.com/2024/12/llm-from-scratch-4.md) posted on 2024-12-28T22:30:00+00:00
+* [An AI chatroom (beginnings)](https://www.gilesthomas.com/2024/12/ai-chatroom-1.md) posted on 2024-12-29T23:15:00+00:00
+* [An AI chatroom (a few steps further)](https://www.gilesthomas.com/2024/12/ai-chatroom-2.md) posted on 2024-12-30T23:15:00+00:00
+* [Writing an LLM from scratch, part 5 -- more on self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-5-self-attention.md) posted on 2025-01-11T23:30:00+00:00
+* [Do reasoning LLMs need their own Philosophical Language?](https://www.gilesthomas.com/2025/01/philosophical-language-llm.md) posted on 2025-01-16T23:30:00+00:00
+* [Writing an LLM from scratch, part 6 -- starting to code self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-6-coding-self-attention-part-1.md) posted on 2025-01-21T22:30:00+00:00
+* [Writing an LLM from scratch, part 6b -- a correction](https://www.gilesthomas.com/2025/01/llm-from-scratch-6b-correction.md) posted on 2025-01-28T22:30:00+00:00
+* [Writing an LLM from scratch, part 7 -- wrapping up non-trainable self-attention](https://www.gilesthomas.com/2025/02/llm-from-scratch-7-coding-self-attention-part-2.md) posted on 2025-02-07T21:30:00+00:00
+* [On the perils of AI-first debugging -- or, why Stack Overflow still matters in 2025](https://www.gilesthomas.com/2025/02/ai-debugging-is-not-always-the-solution.md) posted on 2025-02-19T02:30:00+00:00
+* [Basic matrix maths for neural networks: the theory](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-1.md) posted on 2025-02-20T22:45:00+00:00
+* [Basic matrix maths for neural networks: in practice](https://www.gilesthomas.com/2025/02/basic-neural-network-matrix-maths-part-2.md) posted on 2025-02-22T23:45:00+00:00
+* [Writing an LLM from scratch, part 8 -- trainable self-attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-8-trainable-self-attention.md) posted on 2025-03-04T21:30:00+00:00
+* [Writing an LLM from scratch, part 9 -- causal attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-9-causal-attention.md) posted on 2025-03-09T23:30:00+00:00
+* [Adding /llms.txt](https://www.gilesthomas.com/2025/03/llmstxt.md) posted on 2025-03-18T22:30:00+00:00
+* [Writing an LLM from scratch, part 10 -- dropout](https://www.gilesthomas.com/2025/03/llm-from-scratch-10-dropout.md) posted on 2025-03-19T23:30:00+00:00
+* [Dropout and mandatory vacation](https://www.gilesthomas.com/2025/03/dropout-and-mandatory-vacation.md) posted on 2025-03-24T23:45:00+00:00
+
+## Posts in category Resolver One
+
+* [Screencast](https://www.gilesthomas.com/2007/12/screencast.md) posted on 2007-12-18T14:23:17+00:00
+* [Off to visit the Beast of Redmond ;-)](https://www.gilesthomas.com/2008/01/off-to-visit-the-beast-of-redmond.md) posted on 2008-01-26T01:40:02+00:00
+* [Resolver One as a Python Success Story](https://www.gilesthomas.com/2008/08/resolver-one-as-a-python-success-story.md) posted on 2008-08-01T10:41:47+00:00
+* [Evolution in action](https://www.gilesthomas.com/2008/10/evolution-in-action.md) posted on 2008-10-03T17:52:56+00:00
+* [Why use IronPython?](https://www.gilesthomas.com/2008/10/why-use-ironpython.md) posted on 2008-10-07T11:00:35+00:00
+* [Do one thing and do it well](https://www.gilesthomas.com/2008/11/do-one-thing-and-do-it-well.md) posted on 2008-11-20T10:34:55+00:00
+* [Resolver One plug](https://www.gilesthomas.com/2008/11/resolver-one-plug.md) posted on 2008-11-26T20:46:08+00:00
+* [Ironclad 0.7 released](https://www.gilesthomas.com/2008/11/ironclad-07-released.md) posted on 2008-11-27T22:16:36+00:00
+* [VAT calculations](https://www.gilesthomas.com/2008/11/vat-calculations.md) posted on 2008-11-28T20:01:00+00:00
+* [Money for spreadsheets](https://www.gilesthomas.com/2008/12/money-for-spreadsheets.md) posted on 2008-12-18T17:18:49+00:00
+* [How much should I charge for my software?](https://www.gilesthomas.com/2009/01/how-much-should-i-charge-for-my-software.md) posted on 2009-01-05T18:26:12+00:00
+* [Resolver Systems competition closing soon](https://www.gilesthomas.com/2009/01/resolver-systems-competition-closing-soon.md) posted on 2009-01-15T15:20:33+00:00
+* [The Resolver One Spreadsheet Challenge: a winner for round one!](https://www.gilesthomas.com/2009/01/the-resolver-one-spreadsheet-challenge-a-winner-for-round-one.md) posted on 2009-01-20T16:18:05+00:00
+* [How much we decided to charge for our software](https://www.gilesthomas.com/2009/01/how-much-we-decided-to-charge-for-our-software.md) posted on 2009-01-23T15:06:41+00:00
+* [xmlrpc](https://www.gilesthomas.com/2009/02/xmlrpc.md) posted on 2009-02-13T14:07:16+00:00
+* [Usability testers needed](https://www.gilesthomas.com/2009/02/usability-testers-needed.md) posted on 2009-02-27T13:21:42+00:00
+* [R in Resolver One (and perhaps IronPython generally)](https://www.gilesthomas.com/2009/03/r-in-resolver-one-and-probably-ironpython-generally.md) posted on 2009-03-02T19:19:04+00:00
+* [One-day discount](https://www.gilesthomas.com/2009/03/one-day-discount.md) posted on 2009-03-17T14:56:09+00:00
+* [Resolver One and Digipede](https://www.gilesthomas.com/2009/04/resolver-one-and-digipede.md) posted on 2009-04-30T17:35:30+00:00
+* [Talk at London Geek Night](https://www.gilesthomas.com/2009/05/talk-at-london-geek-night.md) posted on 2009-05-01T17:57:52+00:00
+* [A Resolver One model on the FT politics blog](https://www.gilesthomas.com/2009/07/a-resolver-one-model-on-the-ft-politics-blog.md) posted on 2009-07-23T17:07:48+00:00
+* [Clicking the tabs from left to right](https://www.gilesthomas.com/2009/08/clicking-the-tabs-from-left-to-right.md) posted on 2009-08-05T17:24:28+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part I](https://www.gilesthomas.com/2009/09/3d-graphics-in-resolver-one-using-opengl-and-tao.md) posted on 2009-09-09T16:43:57+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part II: an orrery](https://www.gilesthomas.com/2009/09/3d-graphics-in-resolver-one-using-opengl-and-tao-part-ii-an-orrery.md) posted on 2009-09-17T15:06:10+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part III: Stock prices](https://www.gilesthomas.com/2009/11/3d-graphics-in-resolver-one-using-opengl-and-tao-part-iii-stock-prices.md) posted on 2009-11-20T20:00:42+00:00
+* [Joining TheyWorkForYou to Twitter](https://www.gilesthomas.com/2010/01/joining-theyworkforyou-to-twitter.md) posted on 2010-01-20T00:06:56+00:00
+* [OpenCL: .NET, C# and Resolver One integration -- the very beginnings](https://www.gilesthomas.com/2010/03/opencl-net-c-and-resolver-one-integration-the-very-beginnings.md) posted on 2010-03-18T20:16:47+00:00
+* [Regular expressions and Resolver One column-level formulae](https://www.gilesthomas.com/2010/04/regular-expressions-and-resolver-one-column-level-formulae.md) posted on 2010-04-26T17:26:29+00:00
+* [Generating political news using NLTK](https://www.gilesthomas.com/2010/05/generating-political-news-using-nltk.md) posted on 2010-05-04T17:16:25+00:00
+* [Running Resolver One on Mono for Windows](https://www.gilesthomas.com/2010/05/running-resolver-one-on-mono-for-windows.md) posted on 2010-05-28T16:52:07+00:00
+* [A big announcement from Resolver Systems](https://www.gilesthomas.com/2010/10/a-big-announcement-from-resolver.md) posted on 2010-10-01T18:39:24+00:00
+* [A Dirigible screencast](https://www.gilesthomas.com/2010/11/a-dirigible-screencast.md) posted on 2010-11-15T18:16:46+00:00
+* [Busy, busy, busy](https://www.gilesthomas.com/2011/04/busy-busy-busy.md) posted on 2011-04-27T14:37:28+00:00
+* [Resolver is hiring](https://www.gilesthomas.com/2011/05/resolver-is-hiring.md) posted on 2011-05-16T17:24:25+00:00
+
+## Posts in category Blogkeeping
+
+* [Hello, world!](https://www.gilesthomas.com/2006/11/hello-world.md) posted on 2006-11-10T22:04:01+00:00
+* [Back again](https://www.gilesthomas.com/2006/11/back-again.md) posted on 2006-11-29T00:59:44+00:00
+* [Recovered!](https://www.gilesthomas.com/2008/10/recovered.md) posted on 2008-10-29T01:04:55+00:00
+* [Click-through ratios](https://www.gilesthomas.com/2009/03/click-through-ratios.md) posted on 2009-03-16T15:34:27+00:00
+* [Shiny new blog theme](https://www.gilesthomas.com/2009/11/shiny-new-blog-theme.md) posted on 2009-11-19T01:37:14+00:00
+* [A brief sidetrack: Varnish](https://www.gilesthomas.com/2013/10/a-brief-sidetrack-varnish.md) posted on 2013-10-02T19:18:38+00:00
+* [...and another sidetrack -- a new theme!](https://www.gilesthomas.com/2013/10/and-another-sidetrack-a-new-theme.md) posted on 2013-10-03T20:08:30+00:00
+* [...just resting...](https://www.gilesthomas.com/2013/12/just-resting.md) posted on 2013-12-12T19:51:40+00:00
+* [A new beginning](https://www.gilesthomas.com/2021/02/new-blog.md) posted on 2021-02-16T22:43:00+00:00
+* [Comments are back!](https://www.gilesthomas.com/2021/02/comments-working.md) posted on 2021-02-22T00:39:00+00:00
+* [Blog design update](https://www.gilesthomas.com/2025/02/blog-design.md) posted on 2025-02-07T22:45:00+00:00
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Going through the archives](https://www.gilesthomas.com/2025/02/going-through-the-archives.md) posted on 2025-02-23T23:52:55+00:00
+* [On the benefits of learning in public](https://www.gilesthomas.com/2025/02/20250223-til-deep-dive-posts.md) posted on 2025-02-23T19:00:00+00:00
+* [It's still worth blogging in the age of AI](https://www.gilesthomas.com/2025/02/blogging-in-the-age-of-ai.md) posted on 2025-02-24T23:52:55+00:00
+* [Should RSS feeds contain the full blog post?](https://www.gilesthomas.com/2025/03/full-text-in-rss.md) posted on 2025-03-16T23:30:00+00:00
+* [Adding /llms.txt](https://www.gilesthomas.com/2025/03/llmstxt.md) posted on 2025-03-18T22:30:00+00:00
+* [The RSS feed now has the full text](https://www.gilesthomas.com/2025/03/rss-now-has-full-text.md) posted on 2025-03-18T19:30:00+00:00
+
+## Posts in category PythonAnywhere
+
+* [Busy, busy, busy](https://www.gilesthomas.com/2011/04/busy-busy-busy.md) posted on 2011-04-27T14:37:28+00:00
+* [Resolver is hiring](https://www.gilesthomas.com/2011/05/resolver-is-hiring.md) posted on 2011-05-16T17:24:25+00:00
+* [Teaching programming](https://www.gilesthomas.com/2011/10/teaching-programming.md) posted on 2011-10-14T14:16:41+00:00
+* [PythonAnywhereAnywhere](https://www.gilesthomas.com/2012/02/pythonanywhereanywhere.md) posted on 2012-02-27T15:31:40+00:00
+* [Running Django unit tests on PythonAnywhere](https://www.gilesthomas.com/2012/05/running-django-unit-tests-on-pythonanywhere.md) posted on 2012-05-21T19:35:19+00:00
+* [Reverse proxying HTTP and WebSockets with virtual hosts using nginx and tcp_proxy_module](https://www.gilesthomas.com/2012/10/reverse-proxying-http-and-websockets-with-virtual-hosts-using-nginx-and-tcp_proxy_module.md) posted on 2012-10-05T19:03:58+00:00
+* [A super-simple chat app with AngularJS, SockJS and node.js](https://www.gilesthomas.com/2013/02/a-super-simple-chat-app-with-angularjs-sockjs-and-node-js.md) posted on 2013-02-12T20:13:01+00:00
+* [How many Python programmers are there in the world?](https://www.gilesthomas.com/2013/06/how-many-python-programmers-are-there-in-the-world.md) posted on 2013-06-24T18:13:05+00:00
+* [SNI-based reverse proxying with Go(lang)](https://www.gilesthomas.com/2013/07/sni-based-reverse-proxying-with-golang.md) posted on 2013-07-18T20:10:02+00:00
+* [A fun bug](https://www.gilesthomas.com/2014/03/a-fun-bug.md) posted on 2014-03-28T17:40:07+00:00
+* [An HTTP request's journey through a platform-as-a-service](https://www.gilesthomas.com/2014/08/an-http-requests-journey-through-a-platform-as-a-service.md) posted on 2014-08-20T12:32:33+00:00
+* [pam-unshare: a PAM module that switches into a PID namespace](https://www.gilesthomas.com/2016/04/pam-unshare-a-pam-module-that-switches-into-a-pid-namespace.md) posted on 2016-04-15T19:03:27+00:00
+* [Parsing website SSL certificates in Python](https://www.gilesthomas.com/2016/12/parsing-website-ssl-certificates-in-python.md) posted on 2016-12-09T17:31:52+00:00
+* [A somewhat indirect way of reporting stolen cards to the bank](https://www.gilesthomas.com/2022/02/card-fraud.md) posted on 2022-02-06T20:45:00+00:00
+* [Acquired!](https://www.gilesthomas.com/2022/09/pythonanywhere-acquisition.md) posted on 2022-09-28T20:45:00+00:00
+* [Giving up on the AI chatbot tutorial (for now)](https://www.gilesthomas.com/2024/02/giving-up-on-tutorial-and-link-to-new-pythonanywhere-blog-post.md) posted on 2024-02-27T20:45:00+00:00
+
+## Posts in category Linux
+
+* [Dear lazyweb: what is is about Linux and WPA?](https://www.gilesthomas.com/2008/01/dear-lazyweb-what-is-is-about-linux-and-wpa.md) posted on 2008-01-11T00:41:40+00:00
+* [New gadget: Nokia N900](https://www.gilesthomas.com/2009/12/new-gadget-nokia-n900.md) posted on 2009-12-23T01:44:55+00:00
+* [An odd crontab problem](https://www.gilesthomas.com/2010/05/an-odd-crontab-problem.md) posted on 2010-05-18T12:40:08+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 0: introduction](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-0.md) posted on 2013-08-08T14:18:07+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 1: a trivial single-threaded proxy](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-1.md) posted on 2013-08-12T19:02:48+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 2: handling multiple connections with epoll](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-2-handling-multiple-connections-with-epoll.md) posted on 2013-09-07T16:21:36+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 3: Lua-based configuration](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-3-lua-based-configuration.md) posted on 2013-09-11T19:39:45+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: non-blocking output](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-non-blocking-output.md) posted on 2013-09-28T22:08:46+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: fixed it!](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-fixed-it.md) posted on 2013-09-29T23:09:39+00:00
+* [A brief sidetrack: Varnish](https://www.gilesthomas.com/2013/10/a-brief-sidetrack-varnish.md) posted on 2013-10-02T19:18:38+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 4: Dealing with slow writes to the network](https://www.gilesthomas.com/2013/10/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-4-dealing-with-slow-writes-to-the-network.md) posted on 2013-10-10T21:09:34+00:00
+* [SHA-1 sunset in Chromium, and libnss3](https://www.gilesthomas.com/2015/08/sha-1-sunset-in-chromium-and-libnss3.md) posted on 2015-08-06T12:18:50+00:00
+* [pam-unshare: a PAM module that switches into a PID namespace](https://www.gilesthomas.com/2016/04/pam-unshare-a-pam-module-that-switches-into-a-pid-namespace.md) posted on 2016-04-15T19:03:27+00:00
+* [Installing the unifi controller on Arch](https://www.gilesthomas.com/2019/08/installing-the-unifi-controller-on-arch.md) posted on 2019-08-20T22:13:32+00:00
+* [Fun with network namespaces](https://www.gilesthomas.com/2021/03/fun-with-network-namespaces.md) posted on 2021-03-13T19:30:00+00:00
+
+## Posts in category Startups
+
+* [Screencast](https://www.gilesthomas.com/2007/12/screencast.md) posted on 2007-12-18T14:23:17+00:00
+* [Making a fool of yourself in public](https://www.gilesthomas.com/2008/05/making-a-fool-of-yourself-in-public.md) posted on 2008-05-06T17:59:42+00:00
+* [Resolver One as a Python Success Story](https://www.gilesthomas.com/2008/08/resolver-one-as-a-python-success-story.md) posted on 2008-08-01T10:41:47+00:00
+* [Off to BoS](https://www.gilesthomas.com/2008/09/off-to-bos.md) posted on 2008-09-02T01:56:25+00:00
+* [Evolution in action](https://www.gilesthomas.com/2008/10/evolution-in-action.md) posted on 2008-10-03T17:52:56+00:00
+* [Do one thing and do it well](https://www.gilesthomas.com/2008/11/do-one-thing-and-do-it-well.md) posted on 2008-11-20T10:34:55+00:00
+* [Product management with Google AdWords](https://www.gilesthomas.com/2008/12/product-management-with-google-adwords.md) posted on 2008-12-04T19:07:09+00:00
+* [How much should I charge for my software?](https://www.gilesthomas.com/2009/01/how-much-should-i-charge-for-my-software.md) posted on 2009-01-05T18:26:12+00:00
+* [How much we decided to charge for our software](https://www.gilesthomas.com/2009/01/how-much-we-decided-to-charge-for-our-software.md) posted on 2009-01-23T15:06:41+00:00
+* [Talk at London Geek Night](https://www.gilesthomas.com/2009/05/talk-at-london-geek-night.md) posted on 2009-05-01T17:57:52+00:00
+* [IT headhunters considered harmful](https://www.gilesthomas.com/2010/01/headhunters-considered-harmful.md) posted on 2010-01-07T18:23:18+00:00
+* [Busy, busy, busy](https://www.gilesthomas.com/2011/04/busy-busy-busy.md) posted on 2011-04-27T14:37:28+00:00
+* [Does #EUVAT make accepting bitcoins impossible for EU-based digital services businesses?](https://www.gilesthomas.com/2014/12/euvat-accepting-bitcoins-impractical-eu-businesses.md) posted on 2014-12-19T16:14:08+00:00
+* [A somewhat indirect way of reporting stolen cards to the bank](https://www.gilesthomas.com/2022/02/card-fraud.md) posted on 2022-02-06T20:45:00+00:00
+* [Acquired!](https://www.gilesthomas.com/2022/09/pythonanywhere-acquisition.md) posted on 2022-09-28T20:45:00+00:00
+
+## Posts in category NSLU2 offsite backup project
+
+* [Project: Automated offsite backups for an NSLU2 -- part 2](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-2.md) posted on 2006-11-11T02:08:39+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 3](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-3.md) posted on 2006-11-11T02:53:34+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 4](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-4.md) posted on 2006-11-11T19:25:51+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 5](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-5.md) posted on 2006-11-11T22:13:19+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 6](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-6.md) posted on 2006-11-11T23:12:06+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 1](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2.md) posted on 2006-11-11T01:41:32+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 7](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-7.md) posted on 2006-11-12T02:01:59+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 8](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-8.md) posted on 2006-11-12T04:00:21+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 10](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-10.md) posted on 2006-11-14T01:15:21+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 11](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-11.md) posted on 2006-11-14T23:00:09+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 9](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-9.md) posted on 2006-11-14T00:07:07+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 12](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-12.md) posted on 2006-11-16T00:50:41+00:00
+* [Project: Automated offsite backups for an NSLU2 -- part 13](https://www.gilesthomas.com/2006/11/project-automated-offsite-backups-for-an-nslu2-part-13.md) posted on 2006-11-17T01:01:59+00:00
+
+## Posts in category TIL
+
+* [MSBuild WTF: 'The error was:'](https://www.gilesthomas.com/2006/11/msbuild-wtf-the-error-was.md) posted on 2006-11-15T19:22:16+00:00
+* [Workaround for Vista stupidity](https://www.gilesthomas.com/2008/07/workaround-for-vista-stupidity.md) posted on 2008-07-01T17:23:20+00:00
+* [Fix for pygame/PyOpenGL/NeHe tutorial windows not disappearing when run from IDLE](https://www.gilesthomas.com/2009/08/fix-for-pygamepyopenglnehe-tutorial-windows-not-disappearing.md) posted on 2009-08-30T20:44:04+00:00
+* [An odd crontab problem](https://www.gilesthomas.com/2010/05/an-odd-crontab-problem.md) posted on 2010-05-18T12:40:08+00:00
+* [Bare Git repositories](https://www.gilesthomas.com/2010/07/bare-git-repositories.md) posted on 2010-07-01T18:55:05+00:00
+* [Running Django unit tests on PythonAnywhere](https://www.gilesthomas.com/2012/05/running-django-unit-tests-on-pythonanywhere.md) posted on 2012-05-21T19:35:19+00:00
+* [Raspberry Pi setup notes: getting the display to work!](https://www.gilesthomas.com/2012/06/raspberry-pi-setup-notes-part-1-getting-the-display-to-work.md) posted on 2012-06-20T19:13:28+00:00
+* [Reverse proxying HTTP and WebSockets with virtual hosts using nginx and tcp_proxy_module](https://www.gilesthomas.com/2012/10/reverse-proxying-http-and-websockets-with-virtual-hosts-using-nginx-and-tcp_proxy_module.md) posted on 2012-10-05T19:03:58+00:00
+* [Parsing website SSL certificates in Python](https://www.gilesthomas.com/2016/12/parsing-website-ssl-certificates-in-python.md) posted on 2016-12-09T17:31:52+00:00
+* [Creating a time series from existing data in pandas](https://www.gilesthomas.com/2017/05/creating-a-time-series-from-existing-data-in-pandas.md) posted on 2017-05-09T12:31:40+00:00
+* [Installing the unifi controller on Arch](https://www.gilesthomas.com/2019/08/installing-the-unifi-controller-on-arch.md) posted on 2019-08-20T22:13:32+00:00
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Getting MathML to render properly in Chrome, Chromium and Brave](https://www.gilesthomas.com/2025/02/mathml-fonts-on-chromium-based-browsers.md) posted on 2025-02-16T20:00:00+00:00
+
+## Posts in category Funny
+
+* [HTML tattoo](https://www.gilesthomas.com/2007/03/html-tattoo.md) posted on 2007-03-04T03:30:53+00:00
+* [A Thinking Ape's Critique of Trans-Simianism](https://www.gilesthomas.com/2008/06/a-thinking-apes-critique-of-trans-simianism.md) posted on 2008-06-11T18:04:45+00:00
+* [Best. Video. Ever.](https://www.gilesthomas.com/2008/11/best-video-ever.md) posted on 2008-11-20T01:17:59+00:00
+* [Spam subject line of the day](https://www.gilesthomas.com/2009/01/spam-subject-line-of-the-day.md) posted on 2009-01-22T08:29:15+00:00
+* [Praying that this isn't a hoax...](https://www.gilesthomas.com/2009/02/praying-that-this-isnt-a-hoax.md) posted on 2009-02-19T14:00:35+00:00
+* [hExcel -- A Hexagonal Spreadsheet](https://www.gilesthomas.com/2009/08/hexcel-a-hexagonal-spreadsheet.md) posted on 2009-08-06T13:54:52+00:00
+* [New splogging technique?](https://www.gilesthomas.com/2009/11/new-splogging-technique.md) posted on 2009-11-04T01:45:48+00:00
+* [Generating political news using NLTK](https://www.gilesthomas.com/2010/05/generating-political-news-using-nltk.md) posted on 2010-05-04T17:16:25+00:00
+* ['Your Support Request has been submitted to the Support Request'](https://www.gilesthomas.com/2010/09/your-support-request-has-been-submitted-to-the-support-request.md) posted on 2010-09-08T16:32:46+00:00
+* [And the same to you too, Google!](https://www.gilesthomas.com/2010/12/and-the-same-to-you-too-google.md) posted on 2010-12-23T14:35:21+00:00
+* [If programming languages were literary genres...](https://www.gilesthomas.com/2011/06/if-programming-languages-were-literary-genres.md) posted on 2011-06-24T23:09:33+00:00
+
+## Posts in category LLM from scratch
+
+* [Writing an LLM from scratch, part 1](https://www.gilesthomas.com/2024/12/llm-from-scratch-1.md) posted on 2024-12-22T21:00:00+00:00
+* [Writing an LLM from scratch, part 2](https://www.gilesthomas.com/2024/12/llm-from-scratch-2.md) posted on 2024-12-23T21:00:00+00:00
+* [Writing an LLM from scratch, part 3](https://www.gilesthomas.com/2024/12/llm-from-scratch-3.md) posted on 2024-12-26T22:30:00+00:00
+* [Writing an LLM from scratch, part 4](https://www.gilesthomas.com/2024/12/llm-from-scratch-4.md) posted on 2024-12-28T22:30:00+00:00
+* [Writing an LLM from scratch, part 5 -- more on self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-5-self-attention.md) posted on 2025-01-11T23:30:00+00:00
+* [Writing an LLM from scratch, part 6 -- starting to code self-attention](https://www.gilesthomas.com/2025/01/llm-from-scratch-6-coding-self-attention-part-1.md) posted on 2025-01-21T22:30:00+00:00
+* [Writing an LLM from scratch, part 6b -- a correction](https://www.gilesthomas.com/2025/01/llm-from-scratch-6b-correction.md) posted on 2025-01-28T22:30:00+00:00
+* [Writing an LLM from scratch, part 7 -- wrapping up non-trainable self-attention](https://www.gilesthomas.com/2025/02/llm-from-scratch-7-coding-self-attention-part-2.md) posted on 2025-02-07T21:30:00+00:00
+* [Writing an LLM from scratch, part 8 -- trainable self-attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-8-trainable-self-attention.md) posted on 2025-03-04T21:30:00+00:00
+* [Writing an LLM from scratch, part 9 -- causal attention](https://www.gilesthomas.com/2025/03/llm-from-scratch-9-causal-attention.md) posted on 2025-03-09T23:30:00+00:00
+* [Writing an LLM from scratch, part 10 -- dropout](https://www.gilesthomas.com/2025/03/llm-from-scratch-10-dropout.md) posted on 2025-03-19T23:30:00+00:00
+
+## Posts in category Finance
+
+* [I came for the article, I stayed for the comments](https://www.gilesthomas.com/2008/10/i-came-for-the-article-i-stayed-for-the-comments.md) posted on 2008-10-09T00:20:11+00:00
+* [VAT calculations](https://www.gilesthomas.com/2008/11/vat-calculations.md) posted on 2008-11-28T20:01:00+00:00
+* [London Financial Python Users Group](https://www.gilesthomas.com/2009/11/london-financial-python-users-group.md) posted on 2009-11-11T18:19:30+00:00
+* [New York Financial Users Group](https://www.gilesthomas.com/2009/11/new-york-financial-users-group.md) posted on 2009-11-13T14:50:28+00:00
+* [A website for LFPUG](https://www.gilesthomas.com/2009/12/a-website-for-lfpug.md) posted on 2009-12-07T18:39:50+00:00
+* [Next London Financial Python Users Group meeting](https://www.gilesthomas.com/2010/01/next-london-financial-python-users-group-meeting.md) posted on 2010-01-28T15:57:15+00:00
+* [London Financial Python Users' Group](https://www.gilesthomas.com/2010/02/london-financial-python-users-group-2.md) posted on 2010-02-16T12:01:54+00:00
+* [London Financial User Group Meeting: September 15](https://www.gilesthomas.com/2010/08/london-financial-user-group-meeting-september-15.md) posted on 2010-08-24T15:06:05+00:00
+* [London Financial User Group Meeting: 17 January](https://www.gilesthomas.com/2011/01/london-financial-user-group-meeting-17-january.md) posted on 2011-01-10T19:52:19+00:00
+* [How to bet on the bubble?](https://www.gilesthomas.com/2011/03/how-to-bet-on-the-bubble.md) posted on 2011-03-30T17:57:46+00:00
+
+## Posts in category Fine-tuning LLMS
+
+* [Messing around with fine-tuning LLMs](https://www.gilesthomas.com/2024/04/fine-tuning.md) posted on 2024-04-27T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 2 -- to the cloud!](https://www.gilesthomas.com/2024/04/fine-tuning-2.md) posted on 2024-04-28T22:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 3 -- moar GPUs](https://www.gilesthomas.com/2024/05/fine-tuning-3.md) posted on 2024-05-15T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 4 -- training cross-GPU.](https://www.gilesthomas.com/2024/05/fine-tuning-4.md) posted on 2024-05-21T21:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 5 -- exploring memory usage](https://www.gilesthomas.com/2024/07/fine-tuning-5.md) posted on 2024-07-05T17:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 6 -- measuring memory usage more systematically](https://www.gilesthomas.com/2024/07/fine-tuning-6.md) posted on 2024-07-10T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 7 -- detailed memory usage across sequence lengths for an 8B model](https://www.gilesthomas.com/2024/08/fine-tuning-7.md) posted on 2024-08-16T23:45:00+00:00
+* [Messing around with fine-tuning LLMs, part 8 -- detailed memory usage across batch sizes](https://www.gilesthomas.com/2024/08/fine-tuning-8.md) posted on 2024-08-25T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 9 -- gradient checkpointing](https://www.gilesthomas.com/2024/09/fine-tuning-9.md) posted on 2024-09-03T23:00:00+00:00
+* [Messing around with fine-tuning LLMs, part 10 -- finally training the model!](https://www.gilesthomas.com/2024/12/fine-tuning-10.md) posted on 2024-12-22T19:00:00+00:00
+
+## Posts in category C
+
+* [A bit of fun](https://www.gilesthomas.com/2008/09/a-bit-of-fun.md) posted on 2008-09-29T22:52:13+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 0: introduction](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-0.md) posted on 2013-08-08T14:18:07+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 1: a trivial single-threaded proxy](https://www.gilesthomas.com/2013/08/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-1.md) posted on 2013-08-12T19:02:48+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 2: handling multiple connections with epoll](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-2-handling-multiple-connections-with-epoll.md) posted on 2013-09-07T16:21:36+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 3: Lua-based configuration](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-3-lua-based-configuration.md) posted on 2013-09-11T19:39:45+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: non-blocking output](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-non-blocking-output.md) posted on 2013-09-28T22:08:46+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, pause to regroup: fixed it!](https://www.gilesthomas.com/2013/09/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-pause-to-regroup-fixed-it.md) posted on 2013-09-29T23:09:39+00:00
+* [Writing a reverse proxy/loadbalancer from the ground up in C, part 4: Dealing with slow writes to the network](https://www.gilesthomas.com/2013/10/writing-a-reverse-proxyloadbalancer-from-the-ground-up-in-c-part-4-dealing-with-slow-writes-to-the-network.md) posted on 2013-10-10T21:09:34+00:00
+* [pam-unshare: a PAM module that switches into a PID namespace](https://www.gilesthomas.com/2016/04/pam-unshare-a-pam-module-that-switches-into-a-pid-namespace.md) posted on 2016-04-15T19:03:27+00:00
+
+## Posts in category Gadgets
+
+* [Eee PC](https://www.gilesthomas.com/2007/12/eee-pc.md) posted on 2007-12-21T00:22:43+00:00
+* [Eee, day 2](https://www.gilesthomas.com/2007/12/eee-day-2.md) posted on 2007-12-22T01:10:42+00:00
+* [New gadget!](https://www.gilesthomas.com/2008/01/new-gadget.md) posted on 2008-01-10T23:54:09+00:00
+* [Dear lazyweb: what is is about Linux and WPA?](https://www.gilesthomas.com/2008/01/dear-lazyweb-what-is-is-about-linux-and-wpa.md) posted on 2008-01-11T00:41:40+00:00
+* [SSDs](https://www.gilesthomas.com/2009/03/ssds.md) posted on 2009-03-18T01:16:13+00:00
+* [Dear lazyweb: To i7 or not to i7?](https://www.gilesthomas.com/2009/10/dear-lazyweb-to-i7-or-not-to-i7.md) posted on 2009-10-28T02:26:32+00:00
+* [New gadget: Nokia N900](https://www.gilesthomas.com/2009/12/new-gadget-nokia-n900.md) posted on 2009-12-23T01:44:55+00:00
+* [New laptop!](https://www.gilesthomas.com/2010/01/new-laptop.md) posted on 2010-01-28T01:44:27+00:00
+
+## Posts in category Musings
+
+* [Why should the government fund space exploration?](https://www.gilesthomas.com/2008/01/why-should-the-government-fund-space-exploration.md) posted on 2008-01-13T00:06:53+00:00
+* [Making a fool of yourself in public](https://www.gilesthomas.com/2008/05/making-a-fool-of-yourself-in-public.md) posted on 2008-05-06T17:59:42+00:00
+* [An aside: SEO for restaurants](https://www.gilesthomas.com/2010/03/seo-for-restaurants.md) posted on 2010-03-19T23:42:05+00:00
+* [Do reasoning LLMs need their own Philosophical Language?](https://www.gilesthomas.com/2025/01/philosophical-language-llm.md) posted on 2025-01-16T23:30:00+00:00
+* [On the perils of AI-first debugging -- or, why Stack Overflow still matters in 2025](https://www.gilesthomas.com/2025/02/ai-debugging-is-not-always-the-solution.md) posted on 2025-02-19T02:30:00+00:00
+* [On the benefits of learning in public](https://www.gilesthomas.com/2025/02/20250223-til-deep-dive-posts.md) posted on 2025-02-23T19:00:00+00:00
+* [It's still worth blogging in the age of AI](https://www.gilesthomas.com/2025/02/blogging-in-the-age-of-ai.md) posted on 2025-02-24T23:52:55+00:00
+* [Dropout and mandatory vacation](https://www.gilesthomas.com/2025/03/dropout-and-mandatory-vacation.md) posted on 2025-03-24T23:45:00+00:00
+
+## Posts in category Robotics
+
+* [Christmas has come early](https://www.gilesthomas.com/2006/11/christmas-has-come-early.md) posted on 2006-11-13T20:48:19+00:00
+* [Make:06 Trimet... hmmm.](https://www.gilesthomas.com/2006/12/make06-trimet-hmmm.md) posted on 2006-12-11T01:03:14+00:00
+* [Another robot](https://www.gilesthomas.com/2006/12/another-robot.md) posted on 2006-12-31T18:31:13+00:00
+* [Building the Coat Hanger Walker](https://www.gilesthomas.com/2007/01/building-the-coat-hanger-walker.md) posted on 2007-01-09T23:25:07+00:00
+* ['Dancing mule'](https://www.gilesthomas.com/2007/01/dancing-mule.md) posted on 2007-01-09T23:57:30+00:00
+* [Feelix Growing](https://www.gilesthomas.com/2007/02/feelix-growing.md) posted on 2007-02-23T19:20:48+00:00
+* [Best. Video. Ever.](https://www.gilesthomas.com/2008/11/best-video-ever.md) posted on 2008-11-20T01:17:59+00:00
+* [Affective robots](https://www.gilesthomas.com/2008/11/affective-robots.md) posted on 2008-11-26T00:08:16+00:00
+
+## Posts in category Website design
+
+* [Clicking the tabs from left to right](https://www.gilesthomas.com/2009/08/clicking-the-tabs-from-left-to-right.md) posted on 2009-08-05T17:24:28+00:00
+* [A new beginning](https://www.gilesthomas.com/2021/02/new-blog.md) posted on 2021-02-16T22:43:00+00:00
+* [Blog design update](https://www.gilesthomas.com/2025/02/blog-design.md) posted on 2025-02-07T22:45:00+00:00
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Getting MathML to render properly in Chrome, Chromium and Brave](https://www.gilesthomas.com/2025/02/mathml-fonts-on-chromium-based-browsers.md) posted on 2025-02-16T20:00:00+00:00
+* [Should RSS feeds contain the full blog post?](https://www.gilesthomas.com/2025/03/full-text-in-rss.md) posted on 2025-03-16T23:30:00+00:00
+* [Adding /llms.txt](https://www.gilesthomas.com/2025/03/llmstxt.md) posted on 2025-03-18T22:30:00+00:00
+* [The RSS feed now has the full text](https://www.gilesthomas.com/2025/03/rss-now-has-full-text.md) posted on 2025-03-18T19:30:00+00:00
+
+## Posts in category Personal
+
+* [Feelix Growing](https://www.gilesthomas.com/2007/02/feelix-growing.md) posted on 2007-02-23T19:20:48+00:00
+* [Making a fool of yourself in public](https://www.gilesthomas.com/2008/05/making-a-fool-of-yourself-in-public.md) posted on 2008-05-06T17:59:42+00:00
+* [A bit of fun](https://www.gilesthomas.com/2008/09/a-bit-of-fun.md) posted on 2008-09-29T22:52:13+00:00
+* [Ada Lovelace day](https://www.gilesthomas.com/2009/03/ada-lovelace-day.md) posted on 2009-03-25T01:19:28+00:00
+* [COVID-19 breakthrough / re-infection: a personal tale](https://www.gilesthomas.com/2021/11/covid-again.md) posted on 2021-11-30T20:59:00+00:00
+* [Happy New Year!](https://www.gilesthomas.com/2025/01/happy-new-year.md) posted on 2025-01-05T23:15:00+00:00
+* [Michael Foord: RIP](https://www.gilesthomas.com/2025/01/michael-foord-rip.md) posted on 2025-01-26T20:30:00+00:00
+
+## Posts in category 3D
+
+* [Fix for pygame/PyOpenGL/NeHe tutorial windows not disappearing when run from IDLE](https://www.gilesthomas.com/2009/08/fix-for-pygamepyopenglnehe-tutorial-windows-not-disappearing.md) posted on 2009-08-30T20:44:04+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part I](https://www.gilesthomas.com/2009/09/3d-graphics-in-resolver-one-using-opengl-and-tao.md) posted on 2009-09-09T16:43:57+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part II: an orrery](https://www.gilesthomas.com/2009/09/3d-graphics-in-resolver-one-using-opengl-and-tao-part-ii-an-orrery.md) posted on 2009-09-17T15:06:10+00:00
+* [WebGL](https://www.gilesthomas.com/2009/10/webgl.md) posted on 2009-10-15T14:09:16+00:00
+* [3D graphics in Resolver One using OpenGL and Tao, part III: Stock prices](https://www.gilesthomas.com/2009/11/3d-graphics-in-resolver-one-using-opengl-and-tao-part-iii-stock-prices.md) posted on 2009-11-20T20:00:42+00:00
+
+## Posts in category Rants
+
+* [Patronising messages](https://www.gilesthomas.com/2007/03/patronising-messages.md) posted on 2007-03-24T23:43:24+00:00
+* [Dear lazyweb: what is is about Linux and WPA?](https://www.gilesthomas.com/2008/01/dear-lazyweb-what-is-is-about-linux-and-wpa.md) posted on 2008-01-11T00:41:40+00:00
+* [Workaround for Vista stupidity](https://www.gilesthomas.com/2008/07/workaround-for-vista-stupidity.md) posted on 2008-07-01T17:23:20+00:00
+* [IT headhunters considered harmful](https://www.gilesthomas.com/2010/01/headhunters-considered-harmful.md) posted on 2010-01-07T18:23:18+00:00
+* [New business idea](https://www.gilesthomas.com/2012/04/new-business-idea.md) posted on 2012-04-10T09:53:52+00:00
+
+## Posts in category Cryptography
+
+* [SNI-based reverse proxying with Go(lang)](https://www.gilesthomas.com/2013/07/sni-based-reverse-proxying-with-golang.md) posted on 2013-07-18T20:10:02+00:00
+* [SHA-1 sunset in Chromium, and libnss3](https://www.gilesthomas.com/2015/08/sha-1-sunset-in-chromium-and-libnss3.md) posted on 2015-08-06T12:18:50+00:00
+* [Parsing website SSL certificates in Python](https://www.gilesthomas.com/2016/12/parsing-website-ssl-certificates-in-python.md) posted on 2016-12-09T17:31:52+00:00
+* [Python code to generate Let's Encrypt certificates](https://www.gilesthomas.com/2018/11/python-code-to-generate-lets-encrypt-certificates.md) posted on 2018-11-16T19:55:00+00:00
+
+## Posts in category JavaScript
+
+* [A bit of fun](https://www.gilesthomas.com/2008/09/a-bit-of-fun.md) posted on 2008-09-29T22:52:13+00:00
+* [Fun with the Audio Data API](https://www.gilesthomas.com/2010/12/fun-with-the-audio-data-api.md) posted on 2010-12-06T20:03:54+00:00
+* [Some old JavaScript](https://www.gilesthomas.com/2011/02/some-old-javascript.md) posted on 2011-02-03T02:04:07+00:00
+* [A super-simple chat app with AngularJS, SockJS and node.js](https://www.gilesthomas.com/2013/02/a-super-simple-chat-app-with-angularjs-sockjs-and-node-js.md) posted on 2013-02-12T20:13:01+00:00
+
+## Posts in category Music
+
+* [Building a collection of classical music](https://www.gilesthomas.com/2008/04/building-a-collection-of-classical-music.md) posted on 2008-04-03T17:49:24+00:00
+* [Copyright and Composers; or, did Intellectual Property kill the English Baroque?](https://www.gilesthomas.com/2009/02/copyright-and-composers.md) posted on 2009-02-04T01:30:48+00:00
+* [Good music composition software](https://www.gilesthomas.com/2009/02/good-music-composition-software.md) posted on 2009-02-05T02:15:50+00:00
+* [Fun with the Audio Data API](https://www.gilesthomas.com/2010/12/fun-with-the-audio-data-api.md) posted on 2010-12-06T20:03:54+00:00
+
+## Posts in category Oddities
+
+* [MSBuild WTF: 'The error was:'](https://www.gilesthomas.com/2006/11/msbuild-wtf-the-error-was.md) posted on 2006-11-15T19:22:16+00:00
+* [Patronising messages](https://www.gilesthomas.com/2007/03/patronising-messages.md) posted on 2007-03-24T23:43:24+00:00
+* [An odd crontab problem](https://www.gilesthomas.com/2010/05/an-odd-crontab-problem.md) posted on 2010-05-18T12:40:08+00:00
+* [Long S is long](https://www.gilesthomas.com/2010/12/long-s-is-long.md) posted on 2010-12-17T01:21:47+00:00
+
+## Posts in category Quick links
+
+* [IPv6](https://www.gilesthomas.com/2006/11/ipv6.md) posted on 2006-11-11T00:39:01+00:00
+* [Making a fool of yourself in public](https://www.gilesthomas.com/2008/05/making-a-fool-of-yourself-in-public.md) posted on 2008-05-06T17:59:42+00:00
+* [I came for the article, I stayed for the comments](https://www.gilesthomas.com/2008/10/i-came-for-the-article-i-stayed-for-the-comments.md) posted on 2008-10-09T00:20:11+00:00
+* [Best. Video. Ever.](https://www.gilesthomas.com/2008/11/best-video-ever.md) posted on 2008-11-20T01:17:59+00:00
+
+## Posts in category Talks
+
+* [Off to visit the Beast of Redmond ;-)](https://www.gilesthomas.com/2008/01/off-to-visit-the-beast-of-redmond.md) posted on 2008-01-26T01:40:02+00:00
+* [Talk at London Geek Night](https://www.gilesthomas.com/2009/05/talk-at-london-geek-night.md) posted on 2009-05-01T17:57:52+00:00
+* [London Financial Python Users' Group](https://www.gilesthomas.com/2010/02/london-financial-python-users-group-2.md) posted on 2010-02-16T12:01:54+00:00
+* [An HTTP request's journey through a platform-as-a-service](https://www.gilesthomas.com/2014/08/an-http-requests-journey-through-a-platform-as-a-service.md) posted on 2014-08-20T12:32:33+00:00
+
+## Posts in category Dirigible
+
+* [A big announcement from Resolver Systems](https://www.gilesthomas.com/2010/10/a-big-announcement-from-resolver.md) posted on 2010-10-01T18:39:24+00:00
+* [A Dirigible screencast](https://www.gilesthomas.com/2010/11/a-dirigible-screencast.md) posted on 2010-11-15T18:16:46+00:00
+* [How to bet on the bubble?](https://www.gilesthomas.com/2011/03/how-to-bet-on-the-bubble.md) posted on 2011-03-30T17:57:46+00:00
+
+## Posts in category Eee
+
+* [Eee PC](https://www.gilesthomas.com/2007/12/eee-pc.md) posted on 2007-12-21T00:22:43+00:00
+* [Eee, day 2](https://www.gilesthomas.com/2007/12/eee-day-2.md) posted on 2007-12-22T01:10:42+00:00
+* [Dear lazyweb: what is is about Linux and WPA?](https://www.gilesthomas.com/2008/01/dear-lazyweb-what-is-is-about-linux-and-wpa.md) posted on 2008-01-11T00:41:40+00:00
+
+## Posts in category Memes
+
+* [A bit of fun](https://www.gilesthomas.com/2008/09/a-bit-of-fun.md) posted on 2008-09-29T22:52:13+00:00
+* [Book meme](https://www.gilesthomas.com/2008/11/book-meme.md) posted on 2008-11-13T02:04:07+00:00
+* [Best. Video. Ever.](https://www.gilesthomas.com/2008/11/best-video-ever.md) posted on 2008-11-20T01:17:59+00:00
+
+## Posts in category Politics
+
+* [Joining TheyWorkForYou to Twitter](https://www.gilesthomas.com/2010/01/joining-theyworkforyou-to-twitter.md) posted on 2010-01-20T00:06:56+00:00
+* [Generating political news using NLTK](https://www.gilesthomas.com/2010/05/generating-political-news-using-nltk.md) posted on 2010-05-04T17:16:25+00:00
+* [Does #EUVAT make accepting bitcoins impossible for EU-based digital services businesses?](https://www.gilesthomas.com/2014/12/euvat-accepting-bitcoins-impractical-eu-businesses.md) posted on 2014-12-19T16:14:08+00:00
+
+## Posts in category Django
+
+* [Getting phpBB to accept Django sessions](https://www.gilesthomas.com/2008/12/getting-phpbb-to-accept-django-sessions.md) posted on 2008-12-10T16:44:46+00:00
+* [Running Django unit tests on PythonAnywhere](https://www.gilesthomas.com/2012/05/running-django-unit-tests-on-pythonanywhere.md) posted on 2012-05-21T19:35:19+00:00
+
+## Posts in category GPU Computing
+
+* [OpenCL: first investigations with an NVIDIA card](https://www.gilesthomas.com/2010/02/opencl-first-investigations-with-an-nvida-card.md) posted on 2010-02-24T17:54:27+00:00
+* [OpenCL: .NET, C# and Resolver One integration -- the very beginnings](https://www.gilesthomas.com/2010/03/opencl-net-c-and-resolver-one-integration-the-very-beginnings.md) posted on 2010-03-18T20:16:47+00:00
+
+## Posts in category LaTeX
+
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Getting MathML to render properly in Chrome, Chromium and Brave](https://www.gilesthomas.com/2025/02/mathml-fonts-on-chromium-based-browsers.md) posted on 2025-02-16T20:00:00+00:00
+
+## Posts in category MathML
+
+* [Adding mathematical typesetting to the blog](https://www.gilesthomas.com/2025/02/adding-maths-to-the-blog.md) posted on 2025-02-09T20:00:00+00:00
+* [Getting MathML to render properly in Chrome, Chromium and Brave](https://www.gilesthomas.com/2025/02/mathml-fonts-on-chromium-based-browsers.md) posted on 2025-02-16T20:00:00+00:00
+
+## Posts in category OLPC XO
+
+* [New gadget!](https://www.gilesthomas.com/2008/01/new-gadget.md) posted on 2008-01-10T23:54:09+00:00
+* [Dear lazyweb: what is is about Linux and WPA?](https://www.gilesthomas.com/2008/01/dear-lazyweb-what-is-is-about-linux-and-wpa.md) posted on 2008-01-11T00:41:40+00:00
+
+## Posts in category Space
+
+* [View from a launched rocket](https://www.gilesthomas.com/2007/03/view-from-a-launched-rocket.md) posted on 2007-03-22T21:03:48+00:00
+* [Why should the government fund space exploration?](https://www.gilesthomas.com/2008/01/why-should-the-government-fund-space-exploration.md) posted on 2008-01-13T00:06:53+00:00
+
+## Posts in category VoIP
+
+* [New project: VoIP](https://www.gilesthomas.com/2006/12/new-project-voip.md) posted on 2006-12-05T20:34:06+00:00
+* [Installing Asterisk](https://www.gilesthomas.com/2006/12/installing-asterisk.md) posted on 2006-12-11T00:32:21+00:00
+
+## Posts in category Copyright
+
+* [Copyright and Composers; or, did Intellectual Property kill the English Baroque?](https://www.gilesthomas.com/2009/02/copyright-and-composers.md) posted on 2009-02-04T01:30:48+00:00
+
+## Posts in category Golang
+
+* [SNI-based reverse proxying with Go(lang)](https://www.gilesthomas.com/2013/07/sni-based-reverse-proxying-with-golang.md) posted on 2013-07-18T20:10:02+00:00
+
+## Posts in category Raspberry Pi
+
+* [Raspberry Pi setup notes: getting the display to work!](https://www.gilesthomas.com/2012/06/raspberry-pi-setup-notes-part-1-getting-the-display-to-work.md) posted on 2012-06-20T19:13:28+00:00
+
+## Posts in category Software development tools
+
+* [Bare Git repositories](https://www.gilesthomas.com/2010/07/bare-git-repositories.md) posted on 2010-07-01T18:55:05+00:00

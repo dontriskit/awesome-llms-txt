@@ -1,0 +1,579 @@
+# Low Code JS
+
+Fractal JS in depth
+
+Welcome to the Widgets API documentation. This API allows you to integrate and interact with various payment widgets seamlessly. You can embed buttons for payments, request payments, and display transaction tables.
+
+### Widget Usage
+
+### Pay Link
+
+**Pay Button**
+
+HTML implementation
+
+```html
+<a href="javascript:void(0);" onclick="getPaymentPage(8)" class="btn btn-primary">Pay</a>
+```
+
+React/Vue js implementation
+
+```java
+import { GetPaymentPage } from 'fractalpay';
+```
+
+**Description**: This widget generates a button that, when clicked, opens a payment page for the amount `8.00`.
+
+**Parameters**:
+
+*   `amount` (number): The amount of the widget to open the payment page for.
+
+**Example**:
+
+```html
+<a href="javascript:void(0);" onclick="getPaymentPage(8.00)" class="btn btn-primary">Pay</a>
+```
+
+```html
+  <GetPaymentPage fractalpayClientKey={fractalpayClientKey} amount={8.55} />
+```
+
+### Request Link
+
+**Request Payment Button**
+
+HTML implementation
+
+```html
+<a href="javascript:void(0);" onclick="sendRequestPayment(8.00, '9695969889')" class="btn btn-primary">Request payment</a>
+```
+
+React/Vue js implementation
+
+```java
+import { RequestPaymentonClick } from 'fractalpay';
+```
+
+**Description**: This widget generates a button that, when clicked, sends a payment request to the specified phone number for the amount of `8.00`.
+
+**Parameters**:
+
+*   `amount` (number): The value of the widget to send the payment request for.
+*   `recipient_phone` (string): The phone number of the recipient.
+
+**Example**:
+
+```html
+<a href="javascript:void(0);" onclick="sendRequestPayment(8.00, '9695969889')" class="btn btn-primary">Request payment</a>
+```
+
+React/Vue js
+
+```html
+  <RequestPaymentonClick fractalpayClientKey={fractalpayClientKey} amount={invoice.amount} phone_number={phoneNumbers[invoice.id] || ""}/>
+```
+
+### Transactions Table
+
+**Transactions Table**
+
+HTML implementation
+
+```html
+<table id="fractal_complete_transactions" class="table"></table>
+```
+
+React/Vue js implementation
+
+```java
+import { CompletedTransactions } from 'fractalpay';
+```
+
+**Description**: This widget generates a table to display complete transactions.
+
+**Parameters**:
+
+*   `id` (string): The ID of the table element. In this case, it is `fractal_complete_transactions`.
+
+**Example**:
+
+```html
+<table id="fractal_complete_transactions" class="table"></table>
+```
+
+React/Vue.js
+
+```html
+<CompletedTransactions fractalpayClientKey={fractalpayClientKey}/>
+```
+
+### Installing JS & NPM Package
+
+To use these widgets, include the following script tag in your HTML:
+
+```html
+<script src="https://testapi.fractalpay.com/js/dynamic-launch.js?fractalpay_merchant_public_key={{merchant_public_key}}"></script>
+```
+
+Replace `{{merchant_public_key}}` with your actual merchant public key.
+
+To use these widgets in a react/Vue.js app, install the following npm package:
+
+```java
+npm i fractal-pay-now
+```
+
+To use the components in a react/Vue.js app, use the below line to import the proper npm function:
+
+```java
+import { --flag-- } from 'fractalpay';
+```
+
+### Error Handling and FAQs
+
+### Error Handling
+
+**Error Codes:**
+
+*   **400 Bad Request**: The request was invalid or cannot be otherwise served.
+*   **401 Unauthorized**: Authentication is required and has failed or has not yet been provided.
+*   **404 Not Found**: The requested resource could not be found.
+*   **500 Internal Server Error**: An error occurred on the server.
+
+### FAQs and Troubleshooting
+
+*   **Q: What should I do if I receive a 401 Unauthorized error?**
+    **A:** Ensure that your API key is correct and included in the request header.
+
+*   **Q: How do I update the settings of a widget?**
+    **A:** Use the PUT /widgets/{id} endpoint with the new settings in the request body.
+
+
+# null
+
+
+
+# Webhook Events
+
+This page documents the various webhook events that can be triggered by the Payrix platform. Webhooks are used to notify your application when specific events occur.
+
+## Table of Contents
+
+1.  [Payment Success](#payment-success)
+2.  [Merchant Onboarding](#merchant-onboarding)
+3.  [Merchant Approval](#merchant-approval)
+
+## Payment Success
+
+### Event: `payment.success`
+
+#### Description
+
+This event is triggered when a payment is successfully processed.
+
+#### Payload Example
+
+```json
+{
+    "event_type": "payment.success",
+    "data": {
+        "sales_id": "673129ee-216f-11ef-af4e-0ef0812e6179",
+        "merchant_id": "c985b556-fac8-11ee-b78a-02fabd890500",
+        "merchant_customer_id": 0,
+        "amount": 1.00,
+        "net_amount": 0.95,
+        "fee_percentage": 0,
+        "payment_currency": "Credit Card",
+        "created_date": "2024-06-03T06:06:22.000Z"
+    }
+}
+```
+
+#### Explanation
+
+*   `sales_id`: Unique identifier for the sale.
+*   `merchant_id`: Unique identifier for the merchant.
+*   `merchant_customer_id`: Identifier for the merchant's customer.
+*   `amount`: Total amount of the payment.
+*   `net_amount`: Amount received after fees.
+*   `fee_percentage`: Percentage of the fee applied.
+*   `payment_currency`: Type of currency used for payment.
+*   `created_date`: Date and time when the payment was created.
+
+## Merchant Onboarding
+
+### Event: `merchant.onboarding`
+
+#### Description
+
+This event is triggered when a merchant completes the onboarding process.
+
+#### Payload Example
+
+```json
+{
+    "event_type": "merchant.onboarding",
+    "data": {
+        "merchant_key": "example-guid",
+        "businessname": "Example Business",
+        "website": "https://example.com",
+        "phonenumber": "123-456-7890",
+        "email": "merchant@example.com",
+        "first_name": "John",
+        "last_name": "Doe",
+        "public_key": "example-public-key",
+        "merchant_guid": "example-merchant-guid"
+    }
+}
+```
+
+#### Explanation
+
+*   `merchant_key`: Unique key assigned to the merchant.
+*   `businessname`: Name of the merchant's business.
+*   `website`: Merchant's website URL.
+*   `phonenumber`: Merchant's contact phone number.
+*   `email`: Merchant's contact email.
+*   `first_name`: First name of the merchant contact.
+*   `last_name`: Last name of the merchant contact.
+*   `public_key`: Public key associated with the merchant.
+*   `merchant_guid`: Unique identifier for the merchant.
+
+## Merchant Approval
+
+### Event: `merchant.approval`
+
+#### Description
+
+This event is triggered when a merchant's application is approved.
+
+#### Payload Example
+
+```json
+{
+    "event_type": "merchant.approval",
+    "data": {
+        "merchant_key": "example-guid",
+        "businessname": "Example Business",
+        "email": "merchant@example.com",
+        "public_key": "example-public-key"
+    }
+}
+```
+
+#### Explanation
+
+*   `merchant_key`: Unique key assigned to the merchant.
+*   `businessname`: Name of the merchant's business.
+*   `email`: Merchant's contact email.
+*   `public_key`: Public key associated with the merchant.
+
+
+# Charge Customer
+
+post /customers/charge/{customerId}
+Charge Customer
+
+
+
+# Create Customer
+
+post /customers/add
+Create Customer
+
+
+
+# Get Customer
+
+get /customers/{customerId}
+Get Customer
+
+
+
+# Get Customers
+
+get /customers
+Get Customers
+
+
+
+# Request Card
+
+post /customers/request-card/{customerId}
+Request Card
+
+
+
+# Full Merchant Submit
+
+post /onboarding
+Full Merchant Submit
+
+
+
+# Get Merchants by Client
+
+get /merchant
+Get Merchants by Client
+
+
+
+# Create Link
+
+post /pay-link
+Create Link
+
+
+
+# Payment Request
+
+post /requests
+Payment Request
+
+
+
+# Payment Request Customer
+
+post /requests/{customerId}
+Payment Request Customer
+
+
+
+# Payment Link
+
+post /order/api-qr_code_link
+Payment Link
+
+
+
+# Capture Pre-Authorization
+
+post /preauth/capture
+Capture Pre-Authorization
+
+
+
+# Increment Pre-Authorization
+
+post /preauth/update
+Increment Pre-Authorization
+
+
+
+# Pre-Authorization with Token
+
+post /preauth
+Pre-Authorization with Token
+
+
+
+# Get Transaction
+
+get /merchant/transactions/294ac4cb-42fc-11ef-af4e-0ef0812e6179
+Get Transaction
+
+
+
+# Get Transactions
+
+get /merchant/transactions
+Get Transactions
+
+
+
+# Return Sale
+
+post /order/sales-return
+Return Sale
+
+
+
+# Void Sale
+
+post /order/sales-void
+Void Sale
+
+
+
+# GooglePay™ Web Integration
+
+
+
+### Add Google Pay to your application (Web)
+
+Reach out to your Fractal point of contact to obtain a `FRACTAL_GATEWAY_MERCHANT_ID`
+
+Follow the [Google Pay Web developer documentation](https://developers.google.com/pay/api/web)
+to integrate Google Pay into your website.
+
+### Tokenization Specification
+
+Use the following values in the the TokenizationSpecification:
+
+```json
+{
+    "gateway": "fractal"
+    "gatewayMerchantId": FRACTAL_GATEWAY_MERCHANT_ID
+}
+```
+
+### Supported Authentication Methods
+
+*   PAN\_ONLY
+*   CRYPTOGRAM\_3DS
+
+### Supported Card Networks
+
+*   Amex
+*   MasterCard
+*   Discover
+*   Visa
+
+## Obtain a Production Merchant ID from Google
+
+Ensure that you follow the [Google Pay Web brand guidelines](https://developers.google.com/pay/api/web/guides/brand-guidelines)
+and complete all items on the
+[Google Pay Web integration checklist](https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist).
+
+Follow [these instructions](https://developers.google.com/pay/api/web/guides/test-and-deploy/publish-your-integration)
+to publish Google Pay integeration and receive a merchant ID that can be used in the production environment.
+
+## Send the Google Pay token in the Preauth API
+
+The Google Pay API response is a [PaymentData](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) object.
+The field containing the encrypted payment information is `paymentMethodData.tokenizationData.token`
+
+This token should be sent in the [/preauth](/api-reference/preauthorizations/pre-authorization-with-token) request
+
+```json
+{
+    "Token": {
+        "type": "google_pay",
+        "data": GOOGLE_PAY_TOKEN
+    },
+    ...
+}
+```
+
+
+# Implementation Guide
+
+Integrations simplified
+
+# Implementation Guide
+
+Information for partners who will integrate Fractal's features into their apps.
+
+This guide provides partners with all the information to set up, test, and launch Fractal integration as part of their application. This process includes four main phases:
+
+1.  [Creating an SOW](#pre-implementation) - Work with Fractal to create a Scope of Work describing your integration and identifying requirements across the Fractal Platform.
+2.  [Sandbox Setup](#sandbox-setup) - In the Fractal Sandbox environment, you will define the settings and workflows utilized in the platform features of Fractal for your integration.
+    *   Merchant Boarding
+    *   Payment Acceptance
+    *   Fees and Billing
+    *   Funding
+3.  [Testing and Migration](#testing-and-migration) - Once your sandbox application is set up, Fractal will help to test and migrate your implementation to the Fractal Production environment.
+4.  [Merchant Support Features](#merchant-support-features) - Enabling Fractal Merchant Support features gives your merchants the ability to manage disputes and run reports.
+
+The diagram below illustrates how the Payments Integration and Support features work together to provide the benefits of the Fractal platform:
+
+![Fractal Payment Workflow](https://uploads-ssl.webflow.com/663a214d683281c78ab2ac7c/666c5c4c3eb4d5128f01b838_TinyPNG%20illustration.png)
+
+***
+
+# Scope Of Work Creation
+
+This resource outlines the Scope of Work requirements pre-Implementation.
+
+All integrating Partners and software platforms work with the Fractal Solution Engineers and Sales Team to create a Scope of Work that describes what your integration will look like and the associated requirements across the Fractal Platform.
+
+During Pre-Implementation, you will work with a Fractal Solution Engineer to fill in the Integration form. This page includes details about all of the information that you we will add to the form.
+
+## Table of Contents
+
+*   1.  [Overview](#overview)
+*   2.  [Merchant Onboarding Details](#merchant-onboarding-details)
+*   3.  [Payment Workflow](#payment-workflow)
+*   4.  [Risk and Compliance](#risk-and-compliance)
+*   5.  [Funding/Disbursement](#funding-disbursement-integration)
+*   6.  [Partner Launch Timeline](#partner-pf-launch-timeline)
+
+## Overview
+
+Building a Scope of Work with our Prospect Platforms involves a discussion about Features and Risk Considerations and collects data on how our Clients hope to leverage the Fractal Platform across the 4 Merchant Support features related to Payment Facilitation:
+
+*   Merchant Boarding
+*   Payment Acceptance
+*   Fees, Billing, and Funding - tbd
+*   Merchant Support - tbd
+
+## Merchant Onboarding Details
+
+### Boarding Integration
+
+Select your Merchant Boarding Integration. See the onboarding Integration Options table for an explanation of each option.
+
+| Boarding Integration Options                                                                                                                                                                                                                                                                                                                                            | Note                                                                                                                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Portal - TBD                                                                                                                                                                                                                                                                                                                                                            | Clients will be boarded via the Fractal portal.                                                                                                                                                              |
+| [Signup Form](https://staging-hosted.fractalpay.com/merchant-onboarding/02b3232aed11c23c7a8cbc164c48b51cbc09d7640ef84774467fb06d23e580eb6c4cfbc48c8715dab5e3d2be1310a201047caa60d3a72f61270cd374eb6ff2fa4f3c39433c08d3bbe94a44f78f83b4f09629b1751aeee1ba6ade0b7229a1d321aa3688798aa52c51b9953a1dba4cca5d614af674d5cf792679b4c464ca6fbc7c123495de989326e0d11856b952cf86) | Merchants will be boarded via an online signup form.                                                                                                                                                         |
+| [Full API Boarding](/api-reference/merchant-onboarding/full-merchant-submit)                                                                                                                                                                                                                                                                                            | The Full Boarding API is a managed service allowing you complete flexibility in the creation of new merchant locations.                                                                                      |
+| Bulk                                                                                                                                                                                                                                                                                                                                                                    | Fractal will work with you to meet the necessary technical and underwriting requirements for bulk onboarding, simplifying the process of migrating your existing Merchants to Fractal from another platform. |
+| [Onboarding Webhooks](https://docs.fractalpay.com/Webhooks#merchant-onboarding)                                                                                                                                                                                                                                                                                         | The onboarding webhooks provide you complete awareness around the merchant onboarding process.                                                                                                               |
+
+## Payment Workflow
+
+| Question                                     | Note                                                                                                                                                                                                                                                                                    | Payment Methods                                                                                                                                                                             |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Please describe your ideal payment workflow: | **Example:** - Customer visits your website, selects products, clicks "pay now".  - The customer enters payment information to pay for the product. - Payment is approved, and the customer is given the option to save card details for future payments.  - The product is dispatched. | - Tokenization & Recurring Payments - Direct Portal Payments & Quick Charge  - Bridge Payments Custom Portal  - Direct API Payments  - Card Present Payments  - eCommerce & Online Payments |
+
+| Payment Integration Options                                                         | Note                                                                                                                     |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| [Widgets](https://ui.fractalpay.com/PayWidget)                                      | A suite of link and payment widgets that can be seamlessly embedded into your application.                               |
+| [Links](https://docs.fractalpay.com/api-reference/endpoint/Create%20iFrame)         | An iframe solution where the payment capture process will occur either within the iFrame or on a hosted page.            |
+| [Fractal JS](https://docs.fractalpay.com/EmbeddedPayments#faqs-and-troubleshooting) | An embeddable JavaScript tokenizer that encrypts card data, ensuring PCI compliance for your application.                |
+| [Wallet](/api-reference/customers/request-card)                                     | Provides merchants with a collection of card-on-file and billing-on-file solutions via API.                              |
+| [Charges Webhooks](https://docs.fractalpay.com/Webhooks#payment-success)            | A feature that allows the platform to receive real-time notifications when charges are captured on our hosted solutions. |
+
+## Risk and Compliance
+
+### Disputes and Chargebacks
+
+| Question                                       | Note                                           |
+| ---------------------------------------------- | ---------------------------------------------- |
+| Portal Only                                    | Disputes are managed via the portal            |
+| API Integration chargeback documents/responses | Disputes are managed by Partner/Client via API |
+
+## Funding
+
+| Question         | Note                                 |
+| ---------------- | ------------------------------------ |
+| Fractal Only     | Funding is managed via Fractal only. |
+| Next-Day Funding | Funding is available the next day.   |
+
+## Partner Launch Timeline
+
+### Projected Timeline
+
+| Question                                    | Description                                 |
+| ------------------------------------------- | ------------------------------------------- |
+| Implementation Kick-Off Call:               | Date of the first implementation call       |
+| Anticipated Integration Target Start Date:  | When do you expect to start the integration |
+| Anticipated Integration Target Finish Date: | Expected date to finalize integration       |
+| Target Beta Onboarded:                      | Estimated Target Beta Onboarded Date        |
+| Target Full Launch:                         | Target full launch date                     |
+
+
+# Introduction
+
+Welcome to the Fractal documentation
+
+<img className="block dark:hidden" src="https://mintlify.s3.us-west-1.amazonaws.com/fractal/images/7.6.png" alt="Hero Light" />
+
+<img className="hidden dark:block" src="https://mintlify.s3.us-west-1.amazonaws.com/fractal/images/7.6.png" alt="Hero Dark" />
+
+## Welcome
+
+Welcome to the documentation for our suite of Gateway APIs. This set of tools is designed to empower developers and SaaS platforms by providing a seamless and efficient interface to manage all things payments. From the onboarding of companies to the streamlined handling of payments, this suite of APIs is purpose-built to be robust, secure, and easy to integrate.
+
+

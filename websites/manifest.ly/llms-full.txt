@@ -1,0 +1,284 @@
+# Introduction
+
+> Manifestly Checklists is a workflow management tool designed for teams to streamline recurring processes and improve collaboration.
+
+## Docs
+- [Manifestly Checklists 101](https://help.manifest.ly/knowledge-base/manifestly-checklists-101/)
+- [Manifestly Checklists Slack Startup Guide](https://help.manifest.ly/knowledge-base/manifestly-checklists-slack-startup-guide/)
+- [Understanding Pricing with the Manifestly Slack Integration](https://help.manifest.ly/knowledge-base/understanding-pricing-with-the-manifestly-slack-integration/)
+- [Using Checklists and Receiving Notifications Within a Slack Channel](https://help.manifest.ly/knowledge-base/using-checklists-and-receiving-notifications-within-a-slack-channel/)
+- [Slack Channels and Restricted Access](https://help.manifest.ly/knowledge-base/slack-channels-and-restricted-access/)
+- [Private Slack Channels](https://help.manifest.ly/knowledge-base/private-slack-channels/)
+- [Using Manifestly Inside Private DMs and Group DMs](https://help.manifest.ly/knowledge-base/using-manifestly-inside-private-dms-and-group-dms/)
+- [GDPR](https://help.manifest.ly/knowledge-base/gdpr/)
+- [Using Manifestly on Your Mobile Device](https://help.manifest.ly/knowledge-base/using-manifestly-on-your-mobile-device/)
+- [Is There a Demo or Webinar?](https://help.manifest.ly/knowledge-base/is-there-a-demo-or-webinar/)
+- [Can I Use My Own Secure Document Store?](https://help.manifest.ly/knowledge-base/can-i-use-my-own-secure-document-store/)
+- [Using Variables in Workflow Step Details](https://help.manifest.ly/knowledge-base/using-variables-in-workflow-step-details/)
+- [Using Checklist Webhooks for Automations](https://help.manifest.ly/knowledge-base/using-checklist-webhooks-for-automations/)
+- [The Difference Between Workflows and Checklists](https://help.manifest.ly/knowledge-base/the-difference-between-workflows-and-checklists/)
+- [Creating a Workflow Video Overview](https://help.manifest.ly/knowledge-base/creating-a-workflow-video-overview/)
+- [Best Practices for Creating Useful Workflows](https://help.manifest.ly/knowledge-base/best-practices-for-creating-useful-workflows/)
+- [Embedding Links, Images, Videos, and Files in a Workflow](https://help.manifest.ly/knowledge-base/embedding-links-images-videos-and-files-in-a-workflow/)
+- [Role-Based Assignments](https://help.manifest.ly/knowledge-base/role-based-assignments/)
+- [Set Due Dates on Steps](https://help.manifest.ly/knowledge-base/set-due-dates-on-steps/)
+- [How to Collect Data with Your Checklists](https://help.manifest.ly/knowledge-base/how-to-collect-data-with-your-checklists/)
+- [Understanding Workflow Expected Duration](https://help.manifest.ly/knowledge-base/understanding-workflow-expected-duration/)
+- [Importing Workflows](https://help.manifest.ly/knowledge-base/importing-workflows/)
+- [Folders: Using Tags to Organize Checklists](https://help.manifest.ly/knowledge-base/folders-using-tags-to-organize-checklists/)
+- [Conditional Logic in Workflows](https://help.manifest.ly/knowledge-base/conditional-logic-in-workflows/)
+- [Configuring Business Days](https://help.manifest.ly/knowledge-base/configuring-business-days/)
+- [How to Delete a Workflow](https://help.manifest.ly/knowledge-base/how-to-delete-a-workflow/)
+- [Customize Your Invitation Signup Message](https://help.manifest.ly/knowledge-base/customize-your-invitation-signup-message/)
+- [Managing Users and Their Permissions](https://help.manifest.ly/knowledge-base/managing-users-and-their-permissions/)
+- [What is a Limited User?](https://help.manifest.ly/knowledge-base/what-is-a-limited-user/)
+- [Organize Users into Departments](https://help.manifest.ly/knowledge-base/organize-users-into-departments/)
+- [Can Manifestly Be Used for Managing Virtual Assistants?](https://help.manifest.ly/knowledge-base/can-manifestly-be-used-for-managing-virtual-assistants/)
+- [Customizing Your Dashboard](https://help.manifest.ly/knowledge-base/customizing-your-dashboard/)
+- [Checklist Reporting and Filtering on the Runs Page](https://help.manifest.ly/knowledge-base/checklist-reporting-and-filtering-on-the-runs-page/)
+- [Reports](https://help.manifest.ly/knowledge-base/reports/)
+- [Exporting Workflows and Checklist Runs](https://help.manifest.ly/knowledge-base/exporting-workflows-and-checklist-runs/)
+- [Implementing SSO with Google](https://help.manifest.ly/knowledge-base/implementing-sso-with-google/)
+- [Integrating Manifestly Checklists with Your Calendar](https://help.manifest.ly/knowledge-base/integrating-manifestly-checklists-with-your-calendar/)
+- [Start a New Checklist Run from Completing a Step in a Different Checklist](https://help.manifest.ly/knowledge-base/start-a-new-checklist-run-from-completing-a-step-in-a-different-checklist/)
+- [Adding Sign-In with Google](https://help.manifest.ly/knowledge-base/adding-sign-in-with-google/)
+- [The Manifestly API](https://help.manifest.ly/knowledge-base/the-manifestly-api-2/)
+- [Does Manifestly Integrate with Other Services?](https://help.manifest.ly/knowledge-base/does-manifestly-integrate-with-other-services/)
+- [Integrating with Your CRM Software](https://help.manifest.ly/knowledge-base/integrating-with-your-crm-software/)
+- [Checklist Run Links](https://help.manifest.ly/knowledge-base/checklist-run-links/)
+- [Import Checklist Runs from a Spreadsheet](https://help.manifest.ly/knowledge-base/import-checklist-runs-from-a-spreadsheet/)
+- [Archiving Old Checklist Runs](https://help.manifest.ly/knowledge-base/archiving-old-checklist-runs/)
+- [Can I Associate a Checklist Run with an ID of a Record in a Different System?](https://help.manifest.ly/knowledge-base/can-i-associate-a-checklist-run-with-an-id-of-a-record-in-a-different-system/)
+- [Using a Checklist Video Overview](https://help.manifest.ly/knowledge-base/using-a-checklist-video-overview/)
+- [Work on Multiple Checklist Runs on the Same Page](https://help.manifest.ly/knowledge-base/work-on-multiple-checklist-runs-on-the-same-page/)
+- [Can I Assign People to Specific Tasks?](https://help.manifest.ly/knowledge-base/can-i-assign-people-to-specific-tasks/)
+- [Keyboard Shortcuts](https://help.manifest.ly/knowledge-base/keyboard-shortcuts/)
+- [Collapse Sections of a Checklist](https://help.manifest.ly/knowledge-base/collapse-sections-of-a-checklist/)
+- [What Can External Users See in the Checklist?](https://help.manifest.ly/knowledge-base/what-can-external-users-see-in-the-checklist/)
+- [How Long is Account Activity Available?](https://help.manifest.ly/knowledge-base/how-long-is-account-activity-available/)
+- [Process Improvement with Workflow Feedback](https://help.manifest.ly/knowledge-base/process-improvement-with-workflow-feedback/)
+- [Can I Schedule a Checklist to Run Every Business Day?](https://help.manifest.ly/knowledge-base/can-i-schedule-a-checklist-to-run-every-business-day/)
+- [Adding Steps to a Checklist in Progress](https://help.manifest.ly/knowledge-base/adding-steps-to-a-checklist-in-progress/)
+- [Notifications Overview](https://help.manifest.ly/knowledge-base/notifications-overview/)
+- [Naming Your Checklist Runs](https://help.manifest.ly/knowledge-base/naming-your-checklist-runs/)
+- [Can I Schedule a Checklist Run in the Future?](https://help.manifest.ly/knowledge-base/can-i-schedule-a-checklist-run-in-the-future/)
+- [How Do I Delete or Archive a Checklist Run?](https://help.manifest.ly/knowledge-base/how-do-i-delete-or-archive-a-checklist-run/)
+- [Can I Update a Checklist Run with Changes to the Workflow?](https://help.manifest.ly/knowledge-base/can-i-update-a-checklist-run-with-changes-to-the-workflow/)
+- [How to Publish a Workflow to Share with the World](https://help.manifest.ly/knowledge-base/how-to-publish-a-workflow-to-share-with-the-world/)
+- [Can I Skip a Step but Still Complete the Checklist?](https://help.manifest.ly/knowledge-base/can-i-skip-a-step-but-still-complete-the-checklist/)
+- [Can I Purchase a Number of Seats?](https://help.manifest.ly/knowledge-base/can-i-purchase-a-number-of-seats/)
+- [Pricing Overview](https://help.manifest.ly/knowledge-base/pricing-overview/)
+- [How to Update Your Billing Information](https://help.manifest.ly/knowledge-base/how-to-update-your-billing-information/)
+- [Setting Up SAML-Based SSO with Okta](https://help.manifest.ly/knowledge-base/setting-up-saml-based-sso-with-okta/)
+- [Setting Up SSO with SAML for Azure AD](https://help.manifest.ly/knowledge-base/setting-up-sso-with-saml-for-azure-ad/)
+- [Implementing 2FA with Manifestly Authentication](https://help.manifest.ly/knowledge-base/implementing-2fa-with-manifestly-authentication/)
+- [Microsoft Teams Manifestly Integration Overview](https://help.manifest.ly/knowledge-base/microsoft-teams-manifestly-integration-overview/)
+- [Create a Customized Signup Page](https://help.manifest.ly/knowledge-base/create-a-customized-signup-page/)
+- [Create a New Checklist Run Automatically on Step Completion](https://help.manifest.ly/knowledge-base/create-a-new-checklist-run-automatically-on-step-completion/)
+- [Copy Step or Sections](https://help.manifest.ly/knowledge-base/copy-step-or-sections/)
+- [How to Re-Assign User Assignments](https://help.manifest.ly/knowledge-base/how-to-re-assign-user-assignments/)
+- [Data Security with Manifestly](https://help.manifest.ly/knowledge-base/data-security-with-manifestly/)
+- [Using QR Codes to Launch a New Workflow Run](https://help.manifest.ly/knowledge-base/using-qr-codes-to-launch-a-new-workflow-run/)
+- [Manifestly Salesforce Integration Setup Guide](https://help.manifest.ly/knowledge-base/manifestly-salesforce-integration-setup-guide/)
+- [Creating Workflow Templates Using AI](https://help.manifest.ly/knowledge-base/creating-workflow-templates-using-ai/)
+- [Adding Workflow Steps Using AI](https://help.manifest.ly/knowledge-base/adding-workflow-steps-using-ai/)
+- [MS Teams: Getting Started with Manifestly](https://help.manifest.ly/knowledge-base/ms-teams-getting-started-with-manifestly/)
+- [Embed Manifestly Checklists into Notion](https://help.manifest.ly/knowledge-base/embed-manifestly-checklists-into-notion/)
+- [Global Search](https://help.manifest.ly/knowledge-base/global-search/)
+- [Logical OR Using an INCLUDES Operator](https://help.manifest.ly/knowledge-base/logical-or-using-anincludes-operator/)
+- [Importing Users from Spreadsheet](https://help.manifest.ly/knowledge-base/importing-users-from-spreadsheet/)
+- [Slack Startup Guide Users](https://help.manifest.ly/knowledge-base/slack-startup-guide-users/)
+- [Guest Users](https://help.manifest.ly/knowledge-base/guest-users/)
+
+## API
+
+### Workflows Collection
+- `GET /checklists`: List all active workflows.
+- `GET /checklists/archived`: List all archived workflows.
+- `POST /checklists`: Create or update a workflow.
+- `DELETE /checklists`: Deactivate a workflow using an `external_id`.
+
+### Workflow
+- `GET /checklists/{checklist_id}`: Get details of a specific workflow.
+
+### Workflow Steps Collection
+- `GET /checklists/{checklist_id}/steps`: List all steps of a workflow.
+- `POST /checklists/{checklist_id}/steps`: Create a new step in a workflow.
+
+### Workflow Step
+- `GET /checklists/{checklist_id}/steps/{step_id}`: Get details of a specific workflow step.
+- `PUT /checklists/{checklist_id}/steps/{step_id}`: Update a specific workflow step.
+- `DELETE /checklists/{checklist_id}/steps/{step_id}`: Delete a specific workflow step.
+
+### Content Objects
+- `GET /checklists/{checklist_id}/steps/{step_id}/content_objects`: List all content objects in a workflow step.
+- `POST /checklists/{checklist_id}/steps/{step_id}/content_objects`: Create a new content object in a workflow step.
+- `GET /checklists/{checklist_id}/steps/{step_id}/content_objects/{content_object_id}`: Get details of a specific content object.
+- `PUT /checklists/{checklist_id}/steps/{step_id}/content_objects/{content_object_id}`: Update a specific content object.
+- `DELETE /checklists/{checklist_id}/steps/{step_id}/content_objects/{content_object_id}`: Delete a specific content object.
+
+### Workflow Hooks
+- `GET /checklists/{checklist_id}/hooks`: List all hooks for a workflow.
+- `POST /checklists/{checklist_id}/hooks`: Create a new hook for a workflow.
+- `POST /checklists/{checklist_id}/hooks/unsubscribe`: Delete a workflow hook.
+
+### Workflow Step Hooks
+- `GET /checklists/{checklist_id}/steps/{step_id}/hooks`: List all hooks for a workflow step.
+- `POST /checklists/{checklist_id}/steps/{step_id}/hooks`: Create a hook for a workflow step.
+- `POST /checklists/{checklist_id}/steps/{step_id}/hooks/unsubscribe`: Delete a hook for a workflow step.
+
+### Runs Collection
+- `GET /runs`: List all runs with optional filters (e.g., `checklist_id`, `status`, `page`, etc.).
+- `POST /runs`: Create a new run of a workflow.
+
+### Run
+- `GET /runs/{run_id}`: Get details of a specific run.
+- `POST /runs/{run_id}`: Update a specific run.
+
+### Run Steps Collection
+- `GET /runs/{run_id}/run_steps`: List all steps of a specific run.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/complete`: Mark a step as complete.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/uncomplete`: Unmark a step as complete.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/skip`: Skip a step.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/unskip`: Unskip a step.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/data`: Add data to a step.
+- `GET /runs/{run_id}/run_steps/{run_step_id}/comments`: List all comments for a step.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/comments`: Add a comment to a step.
+- `POST /runs/{run_id}/run_steps/{run_step_id}/assign`: Assign a step to a user.
+
+### Users Collection
+- `GET /users`: List all users, optionally filtered by `department_id`.
+
+### Departments Collection
+- `GET /departments`: List all departments, including the master department.
+
+## Example Use Cases
+
+### Employee Onboarding
+Automate the employee onboarding process with pre-configured workflows. Ensure all necessary steps (e.g., paperwork, equipment setup, orientation scheduling) are completed on time.
+
+### Recurring Team Meetings
+Streamline meeting preparation and follow-ups by creating a workflow that includes agenda creation, action item assignments, and post-meeting reviews.
+
+### Incident Response Management
+Use Manifestly for DevOps teams to handle incident response workflows, ensuring all critical steps (e.g., notifications, root cause analysis, and post-mortems) are followed consistently.
+
+### Content Publishing
+Manage blog posts or social media content publishing workflows, from drafting and editing to scheduling and promotion.
+
+### Quality Assurance in Manufacturing
+Track and manage recurring quality assurance processes on the factory floor, ensuring every step adheres to compliance requirements.
+
+### Customer Support Follow-Up
+Create workflows for customer support teams to ensure timely and consistent follow-ups after customer tickets are resolved.
+
+### Property Management
+Streamline property maintenance requests and tenant communications with workflows that automate inspections, lease renewals, and repair schedules.
+
+### Real Estate
+Automate transaction management for property sales, including tasks such as document collection, escrow tracking, and closing coordination.
+
+### Financial Services
+Ensure compliance and accuracy in financial audits by creating workflows that track document collection, review processes, and final report preparation.
+
+### Customer Onboarding
+Provide a seamless onboarding experience for new customers with workflows that guide teams through setup, training, and account activation.
+
+### Managed Service Providers (MSPs)
+Create workflows for IT ticket resolution, client system upgrades, and periodic maintenance checks to deliver consistent and timely service.
+
+### Accounting
+Streamline recurring tasks such as monthly reconciliations, tax preparation, and client invoicing with tailored accounting workflows.
+
+### Law Firms
+Manage case workflows, including client intake, document preparation, filings, and court deadlines, to ensure accuracy and timely service delivery.
+
+### Restaurants
+Optimize employee training, inventory management, and compliance checks with workflows that ensure all daily, weekly, and monthly tasks are completed on time.
+
+### Information Technology
+Simplify IT support processes with workflows for incident response, server maintenance, software updates, and system migrations.
+
+### Software Development
+Streamline agile development processes with workflows for sprint planning, code reviews, deployment schedules, and bug tracking.
+
+## External Links
+- [Manifestly Features](https://www.manifest.ly/features)
+- [Manifestly Integrations](https://www.manifest.ly/integrations)
+- [Manifestly Slack Integration](https://www.manifest.ly/integrations/slack-integration)
+- [Manifestly Microsoft Teams Integration](https://www.manifest.ly/integrations/checklists-in-microsoft-teams)
+- [Manifestly Zapier App](https://www.manifest.ly/integrations/integrate-checklists-with-zapier)
+- [Pricing Information](https://www.manifest.ly/pricing)
+- [Sign Up](https://app.manifest.ly/users/sign_up)
+
+## Support and Contact
+- [Help Center](https://help.manifest.ly/)
+- Email: support@manifest.ly
+
+## Latest Features and Roadmap
+- [Manifestly Latest Features](https://www.manifest.ly/latest_features/dark-mode)
+- [Manifestly Product Roadmap](https://trello.com/b/WCQQc43F/manifestly-product-roadmap)
+
+## Videos
+
+These videos can help new users start using Manifestly quickly to manage recurring tasks:
+
+- **Manifestly 60 Second Explainer**  
+  A quick overview of Manifestly's features and benefits.  
+  [Watch Video](https://vimeo.com/479318335)
+
+- **Manifestly 101: Getting Started**  
+  With Manifestly, everything starts with Workflows. Create Workflows and the options for steps within a workflow. Then use your workflows on a Run or schedule recurring Runs. Use Departments to organize your team and then track everything by customizing your dashboard.
+  [Watch Video](https://vimeo.com/showcase/8879000)
+
+- **Using Workflows & Best Practices**  
+  Workflows are the starting point to the Manifestly Checklist service and these videos will help you create best practice checklists with our service.
+  [Watch Video](https://vimeo.com/showcase/manifestly-checklists-workflows)
+
+- **Using Your Workflows**  
+  Working on checklists in Manifestly is easy to do, but there are many features you can take advantage of to improve your organization's performance with checklists.  
+  [Watch Video](https://vimeo.com/showcase/8292528)
+
+- **Manifestly 201: Advanced Features**  
+  Explore advanced features for people looking to implement some of our more advanced workflow editing, reporting, and application customization features, these videos should help.  
+  [Watch Video](https://vimeo.com/showcase/8874635)
+
+- **Manifestly Slack Integration**  
+  Learn how to integrate and use Manifestly Checklists within Slack.  
+  [Watch Video](https://vimeo.com/showcase/7313524)
+
+## Video Showcases
+
+Explore our curated video showcases to enhance your experience with Manifestly Checklists:
+
+- [Manifestly 101: Getting Started](https://vimeo.com/showcase/6708153)  
+  9 Videos / 28:00
+
+- [Managing Users](https://vimeo.com/showcase/9568893)  
+  10 Videos / 22:37
+
+- [Manifestly 101: Getting Started with Slack](https://vimeo.com/showcase/8879000)  
+  10 Videos / 27:34
+
+- [Workflows: Create & Customize](https://vimeo.com/showcase/6964384)  
+  16 Videos / 39:40
+
+- [Tracking Progress with Notifications and Dashboards](https://vimeo.com/showcase/8829778)  
+  2 Videos / 02:00
+
+- [Integrations with iPaaS Services](https://vimeo.com/showcase/8799502)  
+  10 Videos / 44:59
+
+- [Runs: Using Your Workflows](https://vimeo.com/showcase/8292528)  
+  17 Videos / 51:12
+
+- [Manifestly Slack Integration](https://vimeo.com/showcase/7313524)  
+  4 Videos / 08:27
+
+- [Using Zapier to Integrate Manifestly Checklists with Thousands of Services](https://vimeo.com/showcase/7239295)  
+  8 Videos / 34:21
+
+
+- [Manifestly 201: Advanced Features](https://vimeo.com/showcase/8874635)  
+  21 Videos / 38:34
+

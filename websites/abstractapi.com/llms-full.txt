@@ -1,0 +1,379 @@
+# Email Reputation API
+Source: https://abstractapi-email.mintlify.app/email-reputation
+
+GET https://emailreputation.abstractapi.com/v1
+Improve your delivery rates, clean your email lists, and block fraudulent users with Abstract’s industry-leading Email Reputation API.
+
+## Getting Started
+
+Abstract's Email Reputation API requires only your unique API key `api_key` and a single email `email`:
+
+```bash
+https://emailreputation.abstractapi.com/v1/
+? api_key = YOUR_UNIQUE_API_KEY
+& email = johnsmith@gmail.com
+```
+
+This was a successful request, and all available details about that email were returned:
+
+<ResponseExample>
+  ```json
+  {
+    "email_address": "benjamin.richard@abstractapi.com",
+    "email_deliverability": {
+      "status": "deliverable",
+      "status_detail": "valid_email",
+      "is_format_valid": true,
+      "is_smtp_valid": true,
+      "is_mx_valid": true,
+      "mx_records": [
+        "gmail-smtp-in.l.google.com",
+        "alt3.gmail-smtp-in.l.google.com",
+        "alt4.gmail-smtp-in.l.google.com",
+        "alt1.gmail-smtp-in.l.google.com",
+        "alt2.gmail-smtp-in.l.google.com"
+      ]
+    },
+    "email_quality": {
+      "score": 0.8,
+      "is_free_email": false,
+      "is_username_suspicious": false,
+      "is_disposable": false,
+      "is_catchall": true,
+      "is_subaddress": false,
+      "is_role": false,
+      "is_dmarc_enforced": true,
+      "is_spf_strict": true,
+      "minimum_age": 1418
+    },
+    "email_sender": {
+      "first_name": "Benjamin",
+      "last_name": "Richard",
+      "email_provider_name": "Google",
+      "organization_name": "Abstract API",
+      "organization_type": "company"
+    },
+    "email_domain": {
+      "domain": "abstractapi.com",
+      "domain_age": 1418,
+      "is_live_site": true,
+      "registrar": "NAMECHEAP INC",
+      "registrar_url": "http://www.namecheap.com",
+      "date_registered": "2020-05-13",
+      "date_last_renewed": "2024-04-13",
+      "date_expires": "2025-05-13",
+      "is_risky_tld": false
+    },
+    "email_risk": {
+      "address_risk_status": "low",
+      "domain_risk_status": "low"
+    },
+    "email_breaches": {
+      "total_breaches": 2,
+      "date_first_breached": "2018-07-23T14:30:00Z",
+      "date_last_breached": "2019-05-24T14:30:00Z",
+      "breached_domains": [
+        { "domain": "apollo.io", "date_breached": "2018-07-23T14:30:00Z" },
+        { "domain": "canva.com", "date_breached": "2019-05-24T14:30:00Z" }
+      ]
+    }
+  }
+
+  ```
+</ResponseExample>
+
+### Request parameters
+
+<ParamField query="api_key" type="string" required>
+  Your unique API key. Note that each user has unique API keys *for each of
+  Abstract's APIs*, so your Email Validation API key will not work for your IP
+  Geolocation API, for example.
+</ParamField>
+
+<ParamField query="email" type="String" required>
+  The email address to validate.
+</ParamField>
+
+### Response parameters
+
+The API response is returned in a universal and lightweight [JSON format](https://www.json.org/json-en.html).
+
+<ResponseField name="email_address" type="String">
+  The email address you submitted for analysis.
+</ResponseField>
+
+<ResponseField name="email_deliverability.status" type="String">
+  Whether the email is considered `deliverable`, `undeliverable`, or `unknown`.
+</ResponseField>
+
+<ResponseField name="email_deliverability.status_detail" type="String">
+  Additional detail on deliverability (e.g., `inbox_full`, `full_mailbox`, `invalid_format`).
+</ResponseField>
+
+<ResponseField name="email_deliverability.is_format_valid" type="Boolean">
+  Is `true` if the email follows the correct format.
+</ResponseField>
+
+<ResponseField name="email_deliverability.is_smtp_valid" type="Boolean">
+  Is `true` if the SMTP check was successful.
+</ResponseField>
+
+<ResponseField name="email_deliverability.is_mx_valid" type="Boolean">
+  Is `true` if the domain has valid MX records.
+</ResponseField>
+
+<ResponseField name="email_deliverability.mx_records" type="Array[String]">
+  List of MX records associated with the domain.
+</ResponseField>
+
+<ResponseField name="email_quality.score" type="Float">
+  Confidence score between 0.01 and 0.99 representing email quality.
+</ResponseField>
+
+<ResponseField name="email_quality.is_free_email" type="Boolean">
+  Is `true` if the email is from a known free provider like Gmail or Yahoo.
+</ResponseField>
+
+<ResponseField name="email_quality.is_username_suspicious" type="Boolean">
+  Is `true` if the username appears auto-generated or suspicious.
+</ResponseField>
+
+<ResponseField name="email_quality.is_disposable" type="Boolean">
+  Is `true` if the email is from a disposable email provider.
+</ResponseField>
+
+<ResponseField name="email_quality.is_catchall" type="Boolean">
+  Is `true` if the domain is configured to accept all emails.
+</ResponseField>
+
+<ResponseField name="email_quality.is_subaddress" type="Boolean">
+  Is `true` if the email uses subaddressing (e.g., `user+label@domain.com`).
+</ResponseField>
+
+<ResponseField name="email_quality.is_role" type="Boolean">
+  Is `true` if the email is a role-based address (e.g., `info@domain.com`, `support@domain.com`).
+</ResponseField>
+
+<ResponseField name="email_quality.is_dmarc_enforced" type="Boolean">
+  Is `true` if a strict DMARC policy is enforced on the domain.
+</ResponseField>
+
+<ResponseField name="email_quality.is_spf_strict" type="Boolean">
+  Is `true` if the domain enforces a strict SPF policy.
+</ResponseField>
+
+<ResponseField name="email_quality.minimum_age" type="Integer or Null">
+  Is Estimated age of the email address in days, or `null` if unknown.
+</ResponseField>
+
+<ResponseField name="email_sender.first_name" type="String or Null">
+  First name associated with the email address, if available.
+</ResponseField>
+
+<ResponseField name="email_sender.last_name" type="String or Null">
+  Last name associated with the email address, if available.
+</ResponseField>
+
+<ResponseField name="email_sender.email_provider_name" type="String or Null">
+  Name of the email provider (e.g., Google, Microsoft).
+</ResponseField>
+
+<ResponseField name="email_sender.organization_name" type="String or Null">
+  Organization linked to the email or domain, if available.
+</ResponseField>
+
+<ResponseField name="email_sender.organization_type" type="String or Null">
+  Type of organization (e.g., `company`).
+</ResponseField>
+
+<ResponseField name="email_domain.domain" type="String">
+  Domain part of the submitted email address.
+</ResponseField>
+
+<ResponseField name="email_domain.domain_age" type="Integer">
+  Age of the domain in days.
+</ResponseField>
+
+<ResponseField name="email_domain.is_live_site" type="Boolean">
+  Is `true` if the domain has a live website.
+</ResponseField>
+
+<ResponseField name="email_domain.registrar" type="String or Null">
+  Name of the domain registrar.
+</ResponseField>
+
+<ResponseField name="email_domain.registrar_url" type="String or Null">
+  URL of the domain registrar.
+</ResponseField>
+
+<ResponseField name="email_domain.date_registered" type="Datetime">
+  Date when the domain was registered.
+</ResponseField>
+
+<ResponseField name="email_domain.date_last_renewed" type="Datetime">
+  Last renewal date of the domain.
+</ResponseField>
+
+<ResponseField name="email_domain.date_expires" type="Datetime">
+  Expiration date of the domain registration.
+</ResponseField>
+
+<ResponseField name="email_domain.is_risky_tld" type="Boolean">
+  Is `true` if the domain uses a top-level domain associated with risk.
+</ResponseField>
+
+<ResponseField name="email_risk.address_risk_status" type="String">
+  Risk status of the email address: `low`, `medium`, or `high`.
+</ResponseField>
+
+<ResponseField name="email_risk.domain_risk_status" type="String">
+  Risk status of the domain: `low`, `medium`, or `high`.
+</ResponseField>
+
+<ResponseField name="email_breaches.total_breaches" type="Integer">
+  Total number of data breaches involving this email.
+</ResponseField>
+
+<ResponseField name="email_breaches.date_first_breached" type="Datetime">
+  Date of the first known breach.
+</ResponseField>
+
+<ResponseField name="email_breaches.date_last_breached" type="Datetime">
+  Date of the most recent breach.
+</ResponseField>
+
+<ResponseField name="email_breaches.breached_domains" type="Array[Object]">
+  List of breached domains including:
+</ResponseField>
+
+<ResponseField name="email_breaches.breached_domains[].domain" type="String">
+  Domain affected by the breach.
+</ResponseField>
+
+<ResponseField name="email_breaches.breached_domains[].date_breached" type="Datetime">
+  Date when the breach occurred.
+</ResponseField>
+
+## Request examples
+
+### Checking a malformed email
+
+In the example below, we show the request and response for an email does not follow the proper format. If the email fails the `is_format_valid` check, then the other checks will not be performed and will be returned as false
+
+```bash
+https://emailreputation.abstractapi.com/v1/
+? api_key = YOUR_UNIQUE_API_KEY
+& email = johnsmith
+```
+
+The request was valid and successful, and so it returns the following:
+
+```json
+{
+  "email_address": "johnsmith",
+  "email_deliverability": {
+    "status": "undeliverable",
+    "status_detail": "invalid_format",
+    "is_format_valid": false,
+    "is_smtp_valid": false,
+    "is_mx_valid": false,
+    "mx_records": []
+  },
+  "email_quality": {
+    "score": null,
+    "is_free_email": null,
+    "is_username_suspicious": null,
+    "is_disposable": null,
+    "is_catchall": null,
+    "is_subaddress": null,
+    "is_role": null,
+    "is_dmarc_enforced": null,
+    "is_spf_strict": null,
+    "minimum_age": null
+    },
+  "email_sender": {
+    "first_name": null,
+    "last_name": null,
+    "email_provider_name": null,
+    "organization_name": null,
+    "organization_type": null
+  },
+  "email_domain": {
+    "domain": null,
+    "domain_age": null,
+    "is_live_site": null,
+    "registrar": null,
+    "registrar_url": null,
+    "date_registered": null,
+    "date_last_renewed": null,
+    "date_expires": null,
+    "is_risky_tld": null
+  },
+  "email_risk": {
+    "address_risk_status": null,
+    "domain_risk_status": null
+  },
+  "email_breaches": {
+    "total_breaches": null,
+    "date_first_breached": null,
+    "date_last_breached": null,
+    "breached_domains": []
+  }
+}
+```
+
+## Possible values for status\_detail
+
+This field provides more information about the deliverability result.
+
+#### When `status` is `deliverable`:
+
+* **valid\_email**: The email address exists, is valid, and can receive new emails.
+* **high\_traffic\_email**: The email is valid and exists, but the server is receiving too many messages. Your email might bounce.
+
+#### When `status` is `undeliverable`:
+
+* **invalid\_mailbox**: The email address doesn't exist or is no longer active. It can't receive new emails.
+* **full\_mailbox**: The email exists but its mailbox is full, so new emails will bounce.
+* **invalid\_format**: The email doesn't follow the correct format (e.g., missing `@` or domain).
+* **dns\_record\_not\_found**: We couldn't find MX records for the domain, so we couldn’t complete the SMTP check.
+* **unavailable\_server**: The mail server for the domain is currently unreachable.
+
+#### When `status` is `unknown`:
+
+* **null**
+
+## Bulk upload (CSV)
+
+Don't know how to or don't want to make API calls? Use the bulk CSV uploader to easily use the API. The results will be sent to your email when ready.
+
+Here are some best practices when bulk uploading a CSV file:
+
+* Ensure the selected column contains the email addresses to be analyzed.
+* Remove any empty rows from the file.
+* Include only one email address per row.
+* The maximum file size permitted is 50,000 rows.
+
+## Response and error codes
+
+Whenever you make a request that fails for some reason, an error is returned also in the JSON format. The errors include an error code and description, which you can find in detail below.
+
+| Code | Type                  | Details                                                                                                                                                     |
+| ---- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200  | OK                    | Everything worked as expected.                                                                                                                              |
+| 400  | Bad request           | Bad request.                                                                                                                                                |
+| 401  | Unauthorized          | The request was unacceptable. Typically due to the API key missing or incorrect.                                                                            |
+| 422  | Quota reached         | The request was aborted due to insufficient API credits. (Free plans)                                                                                       |
+| 429  | Too many requests     | The request was aborted due to the number of allowed requests per second being reached. This happens on free plans as requests are limited to 1 per second. |
+| 500  | Internal server error | The request could not be completed due to an error on the server side.                                                                                      |
+| 503  | Service unavailable   | The server was unavailable.                                                                                                                                 |
+
+## Code samples and libraries
+
+Please see the top of this page for code samples for these languages and more. If we're missing a code sample, or if you'd like to contribute a code sample or library in exchange for free credits, email us at: [team@abstractapi.com](mailto:team@abstractapi.com)
+
+## Other notes
+
+A note on metered billing: Each individual email you submit counts as a credit used. Credits are also counted per request, not per successful response. So if you submit a request for the (invalid) email address "kasj8929hs", that still counts as 1 credit.
+
+

@@ -1,0 +1,31 @@
+# Moondream
+
+> Moondream is a lightweight open-source vision-language model (VLM) that brings powerful image understanding capabilities to applications. It excels at tasks including image captioning, visual question answering, object detection, and visual pointing, designed to run efficiently both locally and in the cloud.
+
+Moondream is designed with these key principles:
+- Efficiency: Small model size that can run on consumer hardware
+- Versatility: Supports multiple vision-language tasks through a unified interface
+- Accessibility: Available as both local deployments and cloud API
+- Open Source: Fully open source and free to use
+
+## Core Documentation
+
+- [Overview](https://docs.moondream.ai/index): Introduction to Moondream and its capabilities
+- [Quick Start Guide](https://docs.moondream.ai/quick-start): Step-by-step guide to get started with Moondream
+- [Technical Specifications](https://docs.moondream.ai/specifications): Detailed information about model architecture, requirements, and performance
+- [Implementation Recipes](https://docs.moondream.ai/recipes): Best practices and real-world implementation examples
+
+## API Reference
+
+- [Visual Question Answering](https://docs.moondream.ai/cloud/query): Ask questions about images and get natural language answers
+- [Object Detection](https://docs.moondream.ai/cloud/detect): Identify and locate objects in images
+- [Visual Pointing](https://docs.moondream.ai/cloud/point): Get precise coordinates for objects in images
+- [Image Captioning](https://docs.moondream.ai/cloud/caption): Generate natural language descriptions of images
+
+## Community & Resources
+
+- [GitHub Repository](https://github.com/vikhyat/moondream): Source code and development
+- [Discord Community](https://discord.com/invite/tRUdpjDQfH): Join discussions and get support
+- [HuggingFace Model](https://huggingface.co/vikhyatk/moondream2): Model files and documentation
+- [Interactive Demo](https://moondream.ai/playground): Live playground to test capabilities
+- [Vision Language Models Overview](https://docs.moondream.ai/discover): In-depth explanation of VLMs and their capabilities

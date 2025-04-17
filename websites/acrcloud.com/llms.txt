@@ -1,0 +1,67 @@
+# ACRCloud
+
+## ACRCloud
+
+- [Introduction](https://docs.acrcloud.com/master): View reference documentation to learn about the resources available in the ACRCloud  API/SDK.
+- [Console Tutorials](https://docs.acrcloud.com/tutorials): Find a tutorial fits your scenario and get started to test the service.
+- [Recognize Music](https://docs.acrcloud.com/tutorials/recognize-music): Identify music via line-in audio source or microphone with ACRCloud Music database.
+- [Recognize Custom Content](https://docs.acrcloud.com/tutorials/recognize-custom-content): Identify your custom content via media files or microphone with internet connections.
+- [Broadcast Monitoring for Music](https://docs.acrcloud.com/tutorials/broadcast-monitoring-for-music): Monitor live streams, radio or TV stations with ACRCloud Music database.
+- [Broadcast Monitoring for Custom Content](https://docs.acrcloud.com/tutorials/broadcast-monitoring-for-custom-content): Monitor live streams, radio or TV stations with your custom database.
+- [Detect Live & Timeshift TV Channels](https://docs.acrcloud.com/tutorials/detect-live-and-timeshift-tv-channels): Detect which live channels or timeshifting content the audiences are watching on the app/device.
+- [Recognize Custom Content Offline](https://docs.acrcloud.com/tutorials/recognize-custom-content-offline): Identify your custom content on the mobile apps without internet connections
+- [Recognize Live Channels and Custom Content](https://docs.acrcloud.com/tutorials/recognize-tv-channels-and-custom-content): Identify both custom files you uploaded and live channels you ingested.
+- [Find Potential Detections in Unknown Content Filter](https://docs.acrcloud.com/tutorials/find-potential-detections-in-unknown-content-filter): Unknown Content Filter (UCF) is a feature that helps customers to find potential detections in repeated content but not detected in audio recognition.
+- [Mobile SDK](https://docs.acrcloud.com/sdk-reference/mobile-sdk)
+- [iOS](https://docs.acrcloud.com/sdk-reference/mobile-sdk/ios)
+- [Android](https://docs.acrcloud.com/sdk-reference/mobile-sdk/android)
+- [Unity](https://docs.acrcloud.com/sdk-reference/mobile-sdk/unity)
+- [Backend SDK](https://docs.acrcloud.com/sdk-reference/backend-sdk)
+- [Python](https://docs.acrcloud.com/sdk-reference/backend-sdk/python)
+- [PHP](https://docs.acrcloud.com/sdk-reference/backend-sdk/php)
+- [Go](https://docs.acrcloud.com/sdk-reference/backend-sdk/go): Go SDK installation and usage
+- [Java](https://docs.acrcloud.com/sdk-reference/backend-sdk/java)
+- [C/C++](https://docs.acrcloud.com/sdk-reference/backend-sdk/c-c++)
+- [C#](https://docs.acrcloud.com/sdk-reference/backend-sdk/c_sharp)
+- [Error Codes](https://docs.acrcloud.com/sdk-reference/error-codes)
+- [Identification API](https://docs.acrcloud.com/reference/identification-api)
+- [Console API](https://docs.acrcloud.com/reference/console-api)
+- [Access Token](https://docs.acrcloud.com/reference/console-api/accesstoken)
+- [Buckets](https://docs.acrcloud.com/reference/console-api/buckets)
+- [Audio Files](https://docs.acrcloud.com/reference/console-api/buckets/audio-files)
+- [Live Channels](https://docs.acrcloud.com/reference/console-api/buckets/live-channels)
+- [Dedup Files](https://docs.acrcloud.com/reference/console-api/buckets/dedup-files)
+- [Base Projects](https://docs.acrcloud.com/reference/console-api/base-projects)
+- [OfflineDBs](https://docs.acrcloud.com/reference/console-api/offlinedbs)
+- [BM Projects](https://docs.acrcloud.com/reference/console-api/bm-projects)
+- [Custom Streams Projects](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects)
+- [Streams](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/streams)
+- [Streams Results](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/streams-results)
+- [Streams State](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/streams-status)
+- [Recordings](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/recordings): Please make sure that your channels have enabled Timemap before getting the recording.
+- [Analytics](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/analytics): This api is only applicable to projects bound to ACRCloud Music
+- [User Reports](https://docs.acrcloud.com/reference/console-api/bm-projects/custom-streams-projects/user-reports)
+- [Broadcast Database Projects](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects)
+- [Channels](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/channels)
+- [Channels Results](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/channels-results)
+- [Channels State](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/channels-state)
+- [Recordings](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/recordings): Please make sure that your channels have enabled Timemap before getting the recording.
+- [Analytics](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/analytics): This api is only applicable to projects bound to ACRCloud Music
+- [User Reports](https://docs.acrcloud.com/reference/console-api/bm-projects/broadcast-database-projects/user-reports)
+- [File Scanning](https://docs.acrcloud.com/reference/console-api/file-scanning)
+- [FsFiles](https://docs.acrcloud.com/reference/console-api/file-scanning/file-scanning)
+- [UCF Projects](https://docs.acrcloud.com/reference/console-api/ucf-projects)
+- [BM Streams](https://docs.acrcloud.com/reference/console-api/ucf-projects/bm-streams)
+- [UCF Results](https://docs.acrcloud.com/reference/console-api/ucf-projects/ucf-results)
+- [Metadata API](https://docs.acrcloud.com/reference/metadata-api)
+- [Audio File Fingerprinting Tool](https://docs.acrcloud.com/tools/fingerprinting-tool)
+- [Local Monitoring Tool](https://docs.acrcloud.com/tools/local-monitoring-tool)
+- [Live Channel Fingerprinting Tool](https://docs.acrcloud.com/tools/live-channel-fingerprinting-tool)
+- [File Scan Tool](https://docs.acrcloud.com/tools/file-scan-tool)
+- [Music](https://docs.acrcloud.com/metadata/music): Example of JSON result: music with ACRCloud Music bucket with Audio & Video Recognition
+- [Music (Broadcast Monitoring with Broadcast Database)](https://docs.acrcloud.com/metadata/music-broadcast-monitoring-with-broadcast-database): Example of JSON result with ACRCloud Music bucket in Broadcast Database of Broadcast Monitoring service.
+- [Custom Files](https://docs.acrcloud.com/metadata/custom-files): Example of JSON result: Audio & Video buckets of custom files with Audio & Video Recognition, Broadcast Monitoring, Hybrid Recognition and Offline Recognition projects.
+- [Live Channels](https://docs.acrcloud.com/metadata/live-channels): Example of JSON result: Live Channel or Timeshift buckets with Live Channel Detection and Hybrid Recognition projects
+- [Humming](https://docs.acrcloud.com/metadata/humming): Example of JSON result: music with ACRCloud Music bucket with Audio & Video Recognition project.
+- [Definition of Terms](https://docs.acrcloud.com/faq/definition-of-terms)
+- [Service Usage](https://docs.acrcloud.com/service-usage)

@@ -1,0 +1,28 @@
+# PostFast
+
+> PostFast is a social media scheduling platform that helps users save 10+ hours weekly by efficiently managing and automating content publishing across multiple platforms from one centralized dashboard.
+
+PostFast enables content creators, brands, and businesses to schedule posts across major social networks including X (Twitter), LinkedIn, Instagram, Facebook, BlueSky, TikTok, and YouTube. The platform features a clean, intuitive interface designed to streamline social media management workflows.
+
+## Core Features
+
+- [Scheduling](https://postfa.st/#features): Schedule your content in advance across multiple platforms simultaneously
+- [Platform Support](https://postfa.st/#platforms): Connect and manage accounts from X, LinkedIn, Instagram, Facebook, BlueSky, TikTok, and YouTube
+- [Post History](https://postfa.st/#features): Visualize your posts history and use it to plan your next content
+- [Compact View](https://postfa.st/#features): A streamlined interface to save time scrolling through content
+
+## Pricing
+
+- [Affordable Plans](https://postfa.st/#pricing): Starting at just €9/month, PostFast offers budget-friendly pricing that's 30-50% cheaper than comparable alternatives while providing all essential features
+- [Tiered Options](https://postfa.st/#pricing): Flexible pricing tiers for individual creators (€9/mo), small brands (€19/mo), and larger businesses (€79/mo)
+- [Value Proposition](https://postfa.st/#pricing): All plans include access to all supported platforms with no hidden fees
+
+## Resources
+
+- [Demo](https://postfa.st/#demo): Learn how to schedule and manage social media content with our platform
+- [FAQ](https://postfa.st/#faq): Answers to common questions about PostFast's features and functionality
+- [Roadmap](https://postfa.st/roadmap): Upcoming features and platform enhancements
+
+## Support
+
+- [Contact](mailto:postfast@peturgeorgievv.com): Submit feature requests or get assistance with the platform

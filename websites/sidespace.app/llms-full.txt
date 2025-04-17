@@ -1,0 +1,1767 @@
+# https://sidespace.app llms-full.txt
+
+# Side Space Blog
+
+Stay informed with the latest articles on productivity, trending technologies, and more.
+
+[Introducing Side Space\\
+\\
+The Ultimate Vertical Tab Manager for Efficient Tab Grouping and Organization\\
+\\
+![](https://www.sidespace.app/preview.jpg)](https://www.sidespace.app/blog/introducing-side-space)[Discover the Power of Vertical Tabs Manager\\
+\\
+A vertical tabs manager is a tool that allows users to organize their tabs vertically on the side of their browser window. This maximizes screen real estate and solves the issue of overcrowded browser windows.\\
+\\
+![](https://www.sidespace.app/blog_002_02.jpg)](https://www.sidespace.app/blog/discover-the-power-of-vertical-tabs-manager)[AI-Powered Tab Grouping\\
+\\
+Tab Grouping by AI is a groundbreaking feature that helps users categorize and organize their tabs. It offers two methods, AI-based grouping and domain-based grouping. Users can customize categories for AI grouping and witness the magic as AI intelligently organizes tabs.\\
+\\
+![](https://www.sidespace.app/blog_003_00.jpg)](https://www.sidespace.app/blog/ai-powered-tab-grouping)[Introducing the Concept of Spaces\\
+\\
+Side Space is a tool that helps organize tasks into spaces, improving focus and efficiency. Users can create up to 5 spaces, with unlimited spaces for premium users. Navigating between spaces can be done through the sidebar or a two-finger swipe. Spaces can be edited by renaming them or changing their theme. Tabs and tab groups can be managed within a space, including opening, closing, moving, duplicating, suspending, or turning a tab group into a space. Spaces can also be deleted. Side Space aims to enhance workflow and declutter digital space.\\
+\\
+![](https://www.sidespace.app/blog_004_00.jpg)](https://www.sidespace.app/blog/introducing-the-concept-of-spaces)[How to Change the Location of Side Panel in Chrome?\\
+\\
+In today's fast-paced digital world, maximizing productivity is essential. One of the often-overlooked features in Google Chrome is the Chrome Side Panel. This handy tool allows users to access bookmarks, extensions, and other resources without cluttering the main browsing area. With the increasing need for customization, adjusting the side panel's location can significantly enhance your browsing experience and workflow. In this article, we’ll explore how to change the location of the Chrome side panel and introduce you to a powerful vertical tab extension, \*\*Side Space\*\*, that can further optimize your productivity tools.\\
+\\
+![](https://www.sidespace.app/blog_005_00.jpg)](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome)[How to Manage Hundreds Tabs in Your Browser Without Losing Your Mind\\
+\\
+Tabs are indispensable for browsing, and many users frequently have a dozen or more open simultaneously. However, some users, like developer Tom, manage hundreds of tabs in a single session. Utilizing various browser extensions, Tom has transformed potential chaos into an organized browsing experience, effortlessly navigating through his browsing history and tasks.\\
+\\
+![](https://www.sidespace.app/blog_008_00.jpg)](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind)[Replacing Vertical Tabs of Arc with Side Space - A Guide for Chrome Users\\
+\\
+The guide introduces the Side Space extension for Chrome, allowing users to organize tabs vertically, similar to the Arc browser. Vertical tabs enhance navigation and utilize screen space efficiently, especially on widescreen monitors. Side Space enables efficient tab management by creating virtual desktop-like spaces for different tasks and features AI-powered tab grouping for automatic organization. It also offers customization options for appearance. Installing Side Space is easy, and it significantly improves the Chrome browsing experience by enhancing productivity and system performance.\\
+\\
+![](https://www.sidespace.app/blog_002_02.jpg)](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space)[The Future of Browsing - How AI is Transforming Web Browsers\\
+\\
+The integration of Artificial Intelligence (AI) into web browsers is revolutionizing the way we interact with the internet. Major browsers like Chrome, Firefox, Brave, and Edge are leveraging AI to enhance user experience, improve efficiency, and provide innovative features. In this article, we will explore how AI is transforming the browser landscape and how it can benefit users.\\
+\\
+![](https://www.sidespace.app/blog_003_00.jpg)](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers)[Introducing Group Guard Settings: Customizable URL Grouping\\
+\\
+Introduces Group Guard Settings, a new feature allowing users to create custom URL grouping rules. This functionality complements AI Grouping, enabling users to define categories based on their browsing habits and preferences. Group Guard Settings offers enhanced control and customization for those seeking more precise tab organization.\\
+\\
+![](https://www.sidespace.app/blog_009_00.webp)](https://www.sidespace.app/blog/introducing-group-guard-settings)[How to Manage All Your Spaces in One Place with the Space Management Feature\\
+\\
+With the increasing number of spaces, managing them efficiently becomes crucial. The Space Management feature in the Side Space extension offers a centralized platform to manage all your spaces effectively. This feature enhances productivity by allowing users to organize and customize their spaces with ease. In this article, we will guide you through the steps to manage your spaces using this powerful tool.\\
+\\
+![](https://www.sidespace.app/blog_010_00.webp)](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature)[Brave Vertical Tabs vs Side Space\\
+\\
+Vertical tabs offer a more efficient way to manage browser tabs, with two main options available: Brave Vertical Tabs native simple solution and Side Space, a feature-rich extension that provides advanced organization tools and cross-device synchronization.\\
+\\
+![](https://www.sidespace.app/blog_011_00.webp)](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs)[Edge Vertical Tabs vs Side Space\\
+\\
+The Side Space app provides advanced vertical tab management with AI-powered grouping and extensive customization compared to Edges native vertical tabs.\\
+\\
+![](https://www.sidespace.app/blog_012_00.webp)](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs)[Vivaldi Windows Panel vs Side Space\\
+\\
+The webpage compares Vivaldi Windows Panel with Side Space, highlighting their distinct features, user suitability, and upcoming developments in tab management.\\
+\\
+![](https://www.sidespace.app/blog_013_00.webp)](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel)[Arc Browser Sidebar vs Side Space\\
+\\
+The webpage compares Vivaldi Windows Panel with Side Space, highlighting their distinct features, user suitability, and upcoming developments in tab management.\\
+\\
+![](https://www.sidespace.app/blog_014_00.webp)](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar)[10 Best Tab Manager Chrome Extensions In 2024\\
+\\
+In this blog, we’ll explore the \*\*10 best Chrome tab manager extensions of 2024\*\*, each offering unique features to enhance your productivity and streamline your workflows.\\
+\\
+![](https://www.sidespace.app/blog_015_00.webp)](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024)
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)# Your AI-Powered
+
+# Vertical Tabs Manager
+
+## Take control of your web browsing with our Vertical Tabs Manager browser extension. Effortlessly manage multiple tabs at once from the side panel for a seamless browsing experience.
+
+[Get Extension](https://chrome.google.com/webstore/detail/ipcmlnjbpgmnpahkkboglidcbkndekjj?authuser=0&hl=en-GB) [![Side Space - Your AI-powered vertical tabs manager for browsing | Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=581650&theme=neutral&period=daily)](https://www.producthunt.com/posts/side-space?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-side-space)
+
+No credit card required
+
+![App screenshot](https://www.sidespace.app/_nuxt/preview.Byp912SK.jpg)
+
+Overview
+
+## Tired of messy, disorganized browser tabs?   we have a solution for you.
+
+With Side Space, all your tabs are neatly organized into vertical spaces in a side panel
+
+making tabs easy to find, manage and focus on. Say goodbye to tab chaos!
+
+Spaces for your work、life and hobbies
+
+Your browser tabs are neatly organized into separate categories for work, life, shopping, school, and hobbies. To make your thoughts clearer, focus on the present space.
+
+Group tabs easily using AI
+
+Organize tabs between spaces in one windows
+
+Switch space quickly
+
+Foucs on one space at a time
+
+Autosave every spaces
+
+Easily restore tabs
+
+Operating expenses
+
+Sync across devices
+
+Never worry about losing tabs
+
+Every tabs in spaces is autosaved, your can access them on any chrome browsers by simply logging into your account. Restore your tabs anytime.
+
+AI-powered Tab Grouping
+
+Tired of endless tabs? Let AI group and organize them for you! Stay focused on browsing with ease.
+
+![](https://www.sidespace.app/_nuxt/overview_03.DRf46ofr.jpg)
+
+Features
+
+## Dive into powerful features   Supercharge your tab mangement
+
+Take your tab management to the next level with these powerful features
+
+Auto Sync
+
+Tabs automatically sync across devices so your spaces are always up to date.
+
+Space Switcher
+
+Seamlessly switch between your saved spaces, allowing you to maintain a focused workspace.
+
+Theme
+
+Support for customizing the Space color palette, making your Space better suited to your preferences.
+
+Dark mode
+
+Seamlessly switch to dark mode for comfortable night browsing.
+
+Pin Tabs
+
+Pin key tabs for quick access in each spaces, similar to speed dial.
+
+Search Tabs
+
+Instantly find any tab or space with fuzzy search.
+
+Suspend Tabs
+
+Temporarily suspend tabs to free up system memory.
+
+De-duplicate Tabs
+
+Automatically remove duplicate tabs from spaces for clean organization.
+
+Save/Restore Tab Groups
+
+Easily save and restore groups of tabs within a space. No more losing your tab workflow.
+
+Group Tabs by domain
+
+Quickly group all tabs from the same domain with one click.
+
+Group Tabs by AI
+
+AI-Powered tab grouping can efficiently help you group open tabs according to custom grouping categories.
+
+Auto AI Grouping
+
+upcoming...
+
+Testimonial
+
+## Trusted by users
+
+Don't just take our word for it. Read what others say about Side Space.
+
+![Sanniti Sen avatar](https://cdn.senja.io/public/media/KSOsKnlTaAMHg3Lrv56aQ0u0.jpeg?width=63&height=63&format=webp)
+
+Sanniti Sen
+
+@sanniti\_sen
+
+[![product_hunt](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Product_Hunt_Logo_ehjmNNDY1.png?updatedAt=1683237851917)](https://www.producthunt.com/posts/side-space)
+
+Its interesting.user friedly nd helpful enough.
+
+![Boris Sapozhnikov avatar](https://cdn.senja.io/public/media/dI6L2RrCOK6wQJ9Z8AO51e1a.png?width=63&height=63&format=webp)
+
+Boris Sapozhnikov
+
+@boris\_sapozhnikov
+
+[![product_hunt](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Product_Hunt_Logo_ehjmNNDY1.png?updatedAt=1683237851917)](https://www.producthunt.com/posts/side-space)
+
+I tried this product and to my surprise it has been a game changer to my tab productivity. The free plan is generous but I may just buy the paid plan to support the product. Very well put together. Looking forward to the G-drive integration. Thanks for building this!
+
+![Jondeir Junior avatar](https://cdn.senja.io/public/media/8J64XFQrUHkVl7ka2ynZ9OP2.jpeg?width=63&height=63&format=webp)
+
+Jondeir Junior
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+the best one so far! please make it an ARC replacement!
+
+![Thomas Quinlan avatar](https://cdn.senja.io/public/media/KGRofvj86bHGNlokFcHb1mFi.png?width=63&height=63&format=webp)
+
+Thomas Quinlan
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+This works like a charm. I installed it, clicked "Group by AI", and seconds later I had a list of various tab groups all on the right side of my browser (you can choose left in Chrome preferences) just like I wanted. While the AI grouping isn't 100%, that's down to the AI and not the developers. It works really well, looks good, and even managed to find ten duplicate tabs (!) that I had open that it offered to close for me. (I took it up on the offer.) It didn't touch my pinned tabs and even put little icons at the top for all those. (It leaves the tabs at the top as well, not something I initially expected or wanted, but I'm okay with it and I don't know that it could be changed.) My browser looks better than it ever has before and there's a handy search bar as well!
+
+Read more
+
+![j b avatar](https://cdn.senja.io/public/media/BKyOJ4nPGE0tzM7Q9N3GTvdx.jpeg?width=63&height=63&format=webp)
+
+j b
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+this is pretty cool, thank you!
+
+![Mariusz Batorowicz avatar](https://cdn.senja.io/public/media/pm9zHujmiZ0vbDWznFU9jRe1.png?width=63&height=63&format=webp)
+
+Mariusz Batorowicz
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Looks very good!
+
+![Santiago Restrepo avatar](https://cdn.senja.io/public/media/6ACsB9s0d9pVGgQXnz9jAfnf.jpeg?width=63&height=63&format=webp)
+
+Santiago Restrepo
+
+@santiago\_restrepo2
+
+[![product_hunt](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Product_Hunt_Logo_ehjmNNDY1.png?updatedAt=1683237851917)](https://www.producthunt.com/posts/side-space)
+
+Pretty Decent, does what it says. Useful if you are a serial multi-tabber like me
+
+![Sanniti Sen avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Sanniti Sen
+
+@sanniti\_sen
+
+[![product_hunt](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Product_Hunt_Logo_ehjmNNDY1.png?updatedAt=1683237851917)](https://www.producthunt.com/posts/side-space)
+
+Its interesting.user friedly nd helpful enough.
+
+![Boris Sapozhnikov avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Boris Sapozhnikov
+
+@boris\_sapozhnikov
+
+[![product_hunt](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Product_Hunt_Logo_ehjmNNDY1.png?updatedAt=1683237851917)](https://www.producthunt.com/posts/side-space)
+
+I tried this product and to my surprise it has been a game changer to my tab productivity. The free plan is generous but I may just buy the paid plan to support the product. Very well put together. Looking forward to the G-drive integration. Thanks for building this!
+
+![Pro Dev avatar](https://cdn.senja.io/public/media/FCkENQbC9H1yUoQyg3dh5HwP.png?width=63&height=63&format=webp)
+
+Pro Dev
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Awesome but can you add the ability to set a theme for the open tabs window? It only works for new spaces and when I close/open it then it goes back to the open tabs window with black theme
+
+![Alexander Juskovic avatar](https://cdn.senja.io/public/media/AbGFwvXbQ5nlMe2WZhBny34H.png?width=63&height=63&format=webp)
+
+Alexander Juskovic
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+It takes some getting used to but I think I will use it long term. It is better than others.
+
+![Kit T avatar](https://cdn.senja.io/public/media/2hDpXX2QId7CsjABcKqu360g.png?width=63&height=63&format=webp)
+
+Kit T
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Must leave a review after first time used & purchased Early Bird alrd. Cool! But please make minimal & colorable UI same as SideTab Pro - Vertical Tabs. Also please make Mobile / Tablet App / Safari Extention to sync with Bookmarks on Mobile / Tablet with Share Shorcut without any typing Save action (Toby need), I always research on Mobile and Tablet. Bookmarks / Tabs / Notes / Todolist are must things should go together. Hope it usefull after I purchased this awesome extension.
+
+Read more
+
+![Gianni avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Gianni
+
+From Twitter
+
+It's like Arc organization into Chrome, like it!
+
+![Francisc Apostu Traian avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Francisc Apostu Traian
+
+From Chrome Web Store
+
+Really awesome! Thanks!
+
+![Francisc Apostu Traian avatar](https://cdn.senja.io/public/media/6QjbKXC3KH9iJaqX3RGMLT6E.jpeg?width=63&height=63&format=webp)
+
+Francisc Apostu Traian
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Really awesome! Thanks!
+
+How can I move it from the right side to the left side?
+
+![iris LU avatar](https://cdn.senja.io/public/media/kCSWoXz0oWklrKdzdjygStW8.png?width=63&height=63&format=webp)
+
+iris LU
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Vertical tabs have completely changed the way I browse the internet. The AI-powered tab grouping is surprisingly accurate, making my workflow smoother. If you're tired of cluttered tabs, give this a shot – you won't be disappointed!
+
+![Malanore Bal'a Dash avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Malanore Bal'a Dash
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+I like this sidebar extension because it can coexist with the browser window, so I don't have to worry about it disappearing when switching tabs. The pinned tab design is really great, and the grouping feature based on domain names is very practical. I hope more useful features can be added. 👍👍
+
+![Pro Dev avatar](https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png?ik-sdk-version=javascript-1.4.3&updatedAt=1657796891741)
+
+Pro Dev
+
+[![chrome_web_store](https://ik.imagekit.io/senja/tr:w-40,f-png/Logos/Google_Chrome_Web_Store_icon_2015.svg_Zw8C9quImI.png?updatedAt=1709757059969)](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj/reviews)
+
+Awesome but can you add the ability to set a theme for the open tabs window? It only works for new spaces and when I close/open it then it goes back to the open tabs window with black theme
+
+[Collect testimonials with Senja](https://senja.io/?utm_medium=powered_by&utm_source=widget&utm_content=card_marquee)
+
+Pricing
+
+## Simple, transparent pricing   for everyone
+
+Pay once, use forever access unlimited spaces. Free updates for life.
+
+### Free
+
+You can create up to 5 free spaces to manage your tabs
+
+$0
+
+[Getting Started](https://www.sidespace.app/#)
+
+- Up to 5 spaces with cloud sync
+- Up to 1000 URLs with AI Grouping
+- Tab Group Guarding
+- Space Management
+- Basic support
+- Free updates for life!
+
+### Lifetime
+
+For hoarders of tabs, access to unlimited spaces and unlimited AI Grouping URLs.
+
+$39  LTD
+
+[Upgrade now](https://store.sidespace.app/buy/780b92b0-07f9-4dd5-ac52-9931d051feb2)
+
+- Unlimited spaces with cloud sync
+- Unlimited URLs with AI Grouping
+- Tab Group Guarding
+- Space Management
+- Lifetime Premium support
+- Free updates for life!
+
+Each new purchase is granted 100% money back within 7 days from purchase date. After you have purchased a license, sign in and register the license to unlock all features.
+
+FAQ
+
+## Frequently Asked Questions
+
+Need help with something? Here are our most frequently asked questions.
+
+How does the product work?
+
+Good question, why we need a tab manager that live in your side panel. But when you have used the [Vertical tabs](https://www.microsoft.com/en-us/edge/features/vertical-tabs) in Microsoft Edge browser or the [Window Panel](https://help.vivaldi.com/desktop/tabs/window-panel/) in Vivaldi browser, you will understand, because using a side panel to manage tabs is really convenient.
+
+Side Space is a Chrome browser extension created to fill the empty side panel area. It provides tab management capabilities in this previously unused space.
+
+Why do I need to sign in?
+
+Side Space currently offer two optional third-party login options, Google and GitHub. Logging in with these accounts allows you to sync your data to the cloud.
+
+This means that when you log in to another browser or device with your account, your saved spaces will be synchronized.
+
+What does "lifetime" mean?
+
+Once you have purchased the License, you will have access to all of the future updates, free of charge. We'll let you know when updates and improvements are made.
+
+Is it a one-time payment?
+
+Just a one-time payment! No recurring charges or surprises, we promise.
+
+Is there a free version available?
+
+Yes, we offer a free version of Side Space for you to try. With this version, you can create and manage up to 5 spaces for your tabs and up to 1000 URLs for AI Grouping.
+
+What is your refund policy?
+
+If there are any serious issues with the license, reach out and let us know via support@side.space within 7-days and we'll issue a full refund.
+
+You'll no longer be able to saving or access more than 5 spaces if we issue a refund. But we can help you saving the tabs in the cloud for 30-days in case you want to recover your spaces again. We think that's pretty fair! You can read the full refund policy in the License Agreement.
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Revolutionizing Your Browsing Experience with Group Guard Settings](https://www.sidespace.app/blog/introducing-group-guard-settings#revolutionizing-your-browsing-experience-with-group-guard-settings)
+- [How to Use Group Guard Settings](https://www.sidespace.app/blog/introducing-group-guard-settings#how-to-use-group-guard-settings)
+- [Match pattern examples](https://www.sidespace.app/blog/introducing-group-guard-settings#match-pattern-examples)
+- [How to Combine Group Guard Settings with AI Grouping](https://www.sidespace.app/blog/introducing-group-guard-settings#how-to-combine-group-guard-settings-with-ai-grouping)
+- [Why Group Guard Settings Matter](https://www.sidespace.app/blog/introducing-group-guard-settings#why-group-guard-settings-matter)
+- [Get Started Today](https://www.sidespace.app/blog/introducing-group-guard-settings#get-started-today)
+
+## [Revolutionizing Your Browsing Experience with Group Guard Settings](https://www.sidespace.app/blog/introducing-group-guard-settings\#revolutionizing-your-browsing-experience-with-group-guard-settings)
+
+We're excited to announce a powerful new feature for the Side Space extension: Group Guard Settings. Group Guard Settings is a new functionality that allows users to define their own rules for grouping URLs. With this feature, you can create custom categories based on your unique browsing habits and preferences. This function empowers users to take control of their browsing experience by customizing how URLs are grouped and categorized. This feature complements our AI Grouping function. It's designed for users who want to prioritize specific grouping rules or aren't fully satisfied with the AI Grouping results. With Group Guard Settings, you can fine-tune your groupings to achieve a more perfect organization.
+
+Let's dive into what this means for you and how it can transform the way you organize your online world.
+
+## [How to Use Group Guard Settings](https://www.sidespace.app/blog/introducing-group-guard-settings\#how-to-use-group-guard-settings)
+
+Setting up your custom groups is straightforward:
+
+1. Access the Side Space extension settings.
+2. Navigate to the new "Group Guard Settings" section.
+
+![Access the Side Space extension settings.](https://www.sidespace.app/blog_009_01.webp)
+
+1. Click "Add Group" to create a custom category.
+
+![Click "Add Group" to create a custom category.](https://www.sidespace.app/blog_009_02.webp)
+
+1. Name your group (e.g., "Work", "Social Media", "Research").
+2. Define the URL pattern for this group using [match pattern structure](https://developer.chrome.com/docs/extensions/develop/concepts/match-patterns):
+
+match patterns consist of three parts: _scheme_, _host_, and _path_. The scheme and host are separated by `://`.
+
+`<scheme>://<host><path>`
+
+a. The _scheme_ component may take one of two forms:
+
+| Form | Matches |
+| --- | --- |
+| `*` | Only "http" and "https" and in some browsers also ["ws" and "wss"](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API). |
+| `http`, `https`, `ws`, `wss`, `ftp`, `data`, `file`, or `(chrome-)extension`. | Only the given scheme. |
+
+b. The _host_ component may take one of three forms:
+
+| Form | Matches |
+| --- | --- |
+| `*` | Any host. |
+| `*.` followed by part of the hostname. | The given host and any of its subdomains. |
+| A complete hostname, without wildcards. | Only the given host. |
+
+**\*Note that the wildcard** `*` **may only appear at the start.**
+
+c. The _path_ component must begin with a `/`.
+
+After that, it may subsequently contain any combination of the `*` wildcard and any of the characters that are allowed in URL paths or query strings. Unlike _host_, the _path_ component may contain the `*` wildcard in the middle or at the end, and the `*` wildcard may appear more than once.
+
+1. Save your settings and watch as Side Space automatically categorizes your tabs!
+
+## [Match pattern examples](https://www.sidespace.app/blog/introducing-group-guard-settings\#match-pattern-examples)
+
+1. `*.google.com` **or** `*.google.com/*`
+
+Matches any URL that is on a google.com host, with any path. Examples of matches include `http://mail.google.com` or `https://chromewebstore.google.com` or `https://www.google.com/chrome/ai-innovations/`
+
+2. `https://*.google.com/search?*ai*`
+
+Matches any URL using the `https` scheme, on a google.com host, with a path that starts with `search` and contains the keyword `ai`. Examples of matches include `https://www.google.com/search?q=ai`
+
+3. `https://*/*ai*`
+
+Matches any URL using the `https` scheme, on any host, with a path that contains `ai`. Examples of matches include `https://www.google.com/search?q=ai` and  `https://www.bing.com/search?q=ai` and `https://www.baidu.com/s?wd=ai`.
+
+## [How to Combine Group Guard Settings with AI Grouping](https://www.sidespace.app/blog/introducing-group-guard-settings\#how-to-combine-group-guard-settings-with-ai-grouping)
+
+To better categorize your tabs, start by customizing rules with our Group Guard Settings feature. Then, use the AI Grouping Settings to automatically categorize the remaining tabs that don't match your custom rules.
+
+To avoid conflicts between custom rules and AI Grouping results, you can enable a button `Filter out the grouped tabs` in the AI Grouping Settings. This ensures that when you use the AI Grouping feature, it won't affect or move tabs that are already categorized by your custom rules.
+
+![How to Combine Group Guard Settings with AI Grouping](https://www.sidespace.app/blog_009_03.webp)
+
+## [Why Group Guard Settings Matter](https://www.sidespace.app/blog/introducing-group-guard-settings\#why-group-guard-settings-matter)
+
+In today's digital age, we often find ourselves juggling multiple tabs and websites. Group Guard Settings offers several benefits:
+
+- Improved Organization: Keep related websites together, reducing clutter and improving focus.
+- Personalized Experience: Tailor your browsing categories to match your workflow or interests.
+- Enhanced Productivity: Quickly locate and switch between different website groups.
+- Better Overview: Get a clear picture of your browsing habits and time allocation.
+
+## [Get Started Today](https://www.sidespace.app/blog/introducing-group-guard-settings\#get-started-today)
+
+Ready to take your browsing organization to the next level? Update your Side Space extension now and start exploring the power of Group Guard Settings. We can't wait to hear how this new feature transforms your online experience!
+
+For detailed instructions on how to set up and maximize Group Guard Settings, check out our comprehensive guide Insert link to guide. If you have any questions or feedback, don't hesitate to reach out to our support team.
+
+Happy browsing, and enjoy your newly organized digital world!
+
+[Prev](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers "The Future of Browsing - How AI is Transforming Web Browsers") [Next](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature "How to Manage All Your Spaces in One Place with the Space Management Feature")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel#introduction)
+- [Key Differences](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel#key-differences)
+- [Which One to Choose?](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel#which-one-to-choose)
+- [What’s Coming Next?](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel#whats-coming-next)
+
+### [**Introduction**](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel\#introduction)
+
+Managing browser tabs efficiently is crucial for staying organized and productive, especially in today’s multitasking world. Whether you’re a casual user with a few tabs open or a power user handling dozens of projects, having the right tools can make all the difference. In this blog, we’ll compare two powerful solutions for vertical tab management: **Vivaldi Window Panel** and **Side Space**. Both are designed to streamline your workflow, but they cater to different needs and browsing styles. Let’s dive into their features, strengths, and which one might be the best fit for you.
+
+Here’s a detailed comparison of **Vivaldi Windows Panel** and **Side Space**, focusing on their features, functionality, and ideal users:
+
+| **Feature** | **Vivaldi Windows Panel** | **Side Space** |
+| --- | --- | --- |
+| **Primary Function** | A panel that displays open tabs, tab stacks, and windows in a hierarchical, tree-style view. | An advanced vertical tab management extension offering features like AI-powered grouping, `categorized spaces` and cloud syncing. |
+| **Vertical Tab Management** | Supports vertical organization with a tree-style structure for grouping and managing tabs. | Provides a vertical layout with enhanced organization using categorized spaces and advanced grouping features. |
+| **Tab Stacking** | Allows `manully stacking tabs` into groups within the panel for hierarchical organization. | Offers `AI-powered tab grouping`, automatically organizing tabs by topics or tasks into distinct spaces. |
+| **AI-Powered Grouping** | Not available. | Uses a `high-quality AI model` to automatically group tabs for improved organization and efficiency. |
+| **Customization Options** | Highly customizable, with options to adjust the panel’s layout, width, and content. | Offers extensive customization, including themes, icons, `dark mode`, and tailored space layouts. |
+| **Cross-Device Sync** | Syncs tabs, sessions, and settings across devices via Vivaldi's account system. | Automatically syncs tab groups and spaces `across devices and browsers` for seamless browsing. |
+| **Tab Suspension** | Browser-wide tab hibernate settings. | Built-in feature to suspend and save tabs, reducing memory usage and improving performance. |
+| **Search Functionality** | Includes search within the Windows Panel for open tabs and sessions. | Includes `global and fuzzy search`, making it easier to find tabs quickly. |
+| **Browser Compatibility** | Exclusive to the Vivaldi browser. | Works as a Chrome extension, compatible with Chrome, Edge, Brave, and other `Chromium-based browsers`. |
+
+![Vivaldi Windows Panel](https://www.sidespace.app/blog_013_01.webp)
+
+Vivaldi Windows Panel
+
+### [**Key Differences**](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel\#key-differences)
+
+1. **Tab Grouping**:
+
+   - The **Vivaldi Windows Panel** uses a manual tab stacking system for organization.
+   - **Side Space** automates the grouping process with `high-quality AI model`, saving time and improving organization.
+2. **Feature Focus**:
+
+   - Vivaldi’s Windows Panel is deeply integrated into its ecosystem, offering hierarchical management and browser-specific tools.
+   - Side Space emphasizes universal tab management with features like suspension, cross-device syncing, and workflow optimization.
+3. **Browser Compatibility**:
+
+   - The Vivaldi Windows Panel is exclusive to the Vivaldi browser.
+   - Side Space is a Chrome extension, making it accessible across various Chromium browsers.
+4. **Customization**:
+
+   - Both offer high levels of customization, but Side Space stands out with unique features like spaces saving and syncing, dark mode, and duplicate tab removal.
+
+* * *
+
+### [Which One to Choose?](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel\#which-one-to-choose)
+
+- **Vivaldi Windows Panel**: Perfect for users who already use Vivaldi and enjoy its ecosystem of tools and hierarchical tab management.
+- **Side Space**: Ideal for users managing multiple browsers or seeking advanced tab management with AI-powered features and seamless cross-device workflows.
+
+For those who value browser integration and manual control, the **Vivaldi Windows Panel** is a strong choice. If you’re after automation, flexibility, and cross-platform support, **Side Space** delivers unparalleled tab management.
+
+### [What’s Coming Next?](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel\#whats-coming-next)
+
+Exciting updates are on the way! Side Space is developing a `multi-window management` feature, enabling you to manage tabs from different browser windows in one centralized location.
+
+This will be especially valuable for users who often juggle multiple browser windows. You’ll be able to seamlessly move tabs between windows or even reorganize tab groups across them.
+
+Stay updated by visiting our [Roadmap](https://sidespace.featurebase.app/roadmap)!
+
+[Prev](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs "Edge Vertical Tabs vs Side Space") [Next](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar "Arc Browser Sidebar vs Side Space")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+# Changelog
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Side Space: An Arc-Like Experience Across Multiple Browsers](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#side-space-an-arc-like-experience-across-multiple-browsers)
+- [Key Differences Between Arc Browser and Side Space](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#key-differences-between-arc-browser-and-side-space)
+- [1\. Platform Compatibility](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#_1-platform-compatibility)
+- [2\. Tab Management](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#_2-tab-management)
+- [3\. Syncing Across Devices](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#_3-syncing-across-devices)
+- [4\. Customization Options](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#_4-customization-options)
+- [Who Should Choose Arc Browser?](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#who-should-choose-arc-browser)
+- [Who Should Choose Side Space?](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#who-should-choose-side-space)
+- [Conclusion](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar#conclusion)
+
+Managing your tabs effectively can make a world of difference in your productivity, especially when juggling multiple projects or workflows. If you like vertical tabs layout, today we’ll introduce you two popular solutions, **Arc Browser** **Sidebar** and **Side Space**, offer distinct approaches to tab and workspace organization, this comparison will help you decide which one best suits your needs.
+
+### [**Side Space: An Arc-Like Experience Across Multiple Browsers**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#side-space-an-arc-like-experience-across-multiple-browsers)
+
+If you admire Arc Browser’s sleek and intuitive side panel, you’ll love **Side Space**. It’s a powerful **Chrome extension** that brings an **`Arc-like vertical layout`** to Chromium-based browsers like Google Chrome, Edge, and Brave. Side Space transforms your browsing experience by organizing tabs in a clean, vertical interface, making it easier than ever to navigate and manage your workspace without switching browsers.
+
+### [**Key Differences Between Arc Browser and Side Space**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#key-differences-between-arc-browser-and-side-space)
+
+### [**1\. Platform Compatibility**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#_1-platform-compatibility)
+
+- **Arc Browser**: As a standalone browser, Arc combines a unique interface with built-in features for tab organization and workspace customization. However, it’s exclusive to users who fully adopt Arc’s ecosystem, limiting compatibility with other browsers.
+- **Side Space**: Side Space works as a **Chrome extension**, integrating seamlessly with Google Chrome and other `Chromium-based browsers`. Its flexibility allows users to enjoy advanced features across multiple platforms without the need to switch to a new browser.
+
+![chromium-based browsers](https://www.sidespace.app/blog_014_01.webp)
+
+chromium-based browsers
+
+### [**2\. Tab Management**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#_2-tab-management)
+
+- **Arc Browser**:
+
+  - Emphasizes visual organization with tools like workspaces, pinned tabs, and a customizable sidebar.
+  - Includes features like **split view**, which lets you multitask efficiently by viewing multiple tabs side by side.
+  - Focuses on creating a distinct browsing experience, but some users may find the interface too unconventional.
+    ![Arc browser split view](https://www.sidespace.app/blog_014_02.webp)
+    Arc browser split view
+- **Side Space**:
+
+  - Brings a vertical tab layout reminiscent of Arc’s side panel to Chromium-based browsers.
+  - Features **`AI-powered tab grouping`**, which organizes tabs by context—such as topics or tasks—making navigation and workspace management intuitive.
+  - Offers additional tools like fuzzy search, memory-saving tab suspension, and the ability to remove duplicate tabs for a cleaner, more efficient workspace.
+    ![Side Space AI-Powered Tab Grouping](https://www.sidespace.app/blog_014_03.webp)
+    Side Space AI-Powered Tab Grouping
+
+### [**3\. Syncing Across Devices**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#_3-syncing-across-devices)
+
+- **Arc Browser**: Syncing is limited to Arc’s own ecosystem, enabling users to access tabs, workspaces, and settings only within the Arc Browser environment.
+- **Side Space**: Goes beyond by providing **`cloud-based syncing`** across browsers and devices, allowing users to manage tabs and groups seamlessly on multiple Chromium-based browsers.
+
+### [**4\. Customization Options**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#_4-customization-options)
+
+- **Arc Browser**: Boasts visually stunning customization features, including themed workspaces and a tailored sidebar. However, these options are specific to Arc’s interface and may not appeal to users preferring a more traditional layout.
+- **Side Space**: Offers practical customization options, such as **`dark mode`**, **`custom themes`**, and `tab suspension`. These features are designed to blend seamlessly with Chrome’s interface, making it ideal for users who want enhanced functionality without overhauling their browsing experience.
+
+### [**Who Should Choose Arc Browser?**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#who-should-choose-arc-browser)
+
+- Users seeking an all-in-one, standalone browser with a focus on visual organization.
+- Those who prefer a workspace-oriented approach to managing tabs and tasks.
+- Individuals willing to switch entirely to Arc’s ecosystem.
+
+### [**Who Should Choose Side Space?**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#who-should-choose-side-space)
+
+- Chrome or Chromium-based browser users who want **`Arc-like`** functionality without switching browsers.
+- Power users who rely on **chrome group** features and need `AI-driven` tools for enhanced tab management.
+- Anyone seeking a minimalist, intuitive interface with **`cross-browser syncing`**.
+
+### [**Conclusion**](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar\#conclusion)
+
+Both Arc Browser and Side Space offer innovative approaches to **tab management** and workspace organization. If you’re already in the Arc ecosystem or are willing to adopt its unique browser, Arc is a great choice for a visually-driven experience. On the other hand, If you’re looking for a way to bring Arc’s organizational prowess to your current browser, Side Space delivers. Its sleek side panel mimics Arc’s vertical tab layout while incorporating advanced features like AI grouping, memory management, and syncing across browsers.
+
+Furthermore, as The Arc Browser Company shifts its focus to developing a new browser, Arc will no longer receive new features, though it will continue to get stability and security updates.
+
+This transition has led many advanced users, who found Arc's features invaluable, to seek alternatives. Side Space emerges as a compelling solution, allowing users to replicate Arc's sidebar functionalities within their preferred Chromium-based browsers. By integrating features like AI-powered tab grouping and vertical tab management directly into the browser's side panel, Side Space offers a seamless and efficient browsing experience without the need to switch to a new browser. This enables users to continue enjoying a customized, Arc-like interface while leveraging the performance and familiarity of browsers like Chrome.
+
+[Prev](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel "Vivaldi Windows Panel vs Side Space") [Next](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024 "10 Best Tab Manager Chrome Extensions In 2024")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Why using Vertical Tabs](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs#why-using-vertical-tabs)
+- [Detailed Comparison](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs#detailed-comparison)
+- [Key Differences](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs#key-differences)
+- [Which One to Choose?](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs#which-one-to-choose)
+
+### [Why using Vertical Tabs](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs\#why-using-vertical-tabs)
+
+**Say Goodbye to Tab Clutter**
+
+Vertical tabs provide a smart solution for managing your browser space, reducing the chaos of a crowded tab bar while freeing up more visible on-screen area.
+
+**Quickly Spot the Tabs You Need**
+
+When your tab bar is overflowing, horizontal tabs shrink to the point where their labels are unreadable. Vertical tabs solve this issue by offering ample room to display tab titles clearly, making it easier and faster to locate the one you need.
+
+**Optimize Your Screen Layout**
+
+Most monitors are wider than they are tall, which makes top-to-bottom space more limited. Shifting your tabs to a vertical layout takes advantage of the extra width on your screen, allowing you to make better use of the available space.
+
+### [Detailed Comparison](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs\#detailed-comparison)
+
+Here’s a detailed comparison of `Edge Vertical Tabs` and **`Side Space`**, highlighting their features and functionalities:
+
+| **Feature** | **Edge Vertical Tabs** | **Side Space** |
+| --- | --- | --- |
+| **Vertical Tab Management** | Native support for vertical tabs, providing a clean and collapsible layout for managing open tabs. | Advanced vertical tab management with additional features like `categorized spaces` and AI-powered tab grouping. |
+| **Tab Organization** | Basic organization with the ability to rearrange and pin tabs. | Organizes tabs into customizable `spaces` with the ability to group related tabs by `AI` automatically. |
+| **AI-Powered Grouping** | Organize tabs but not accurate. | Automatically organizes tabs by context—like topics or tasks—using a `high-quality AI model`, ensuring seamless navigation and better organization. |
+| **Customization Options** | Limited; focuses on a simple vertical layout with basic visual options. | Offers extensive customization, including themes, icons, `dark mode`, and tailored space layouts. |
+| **Tab Suspension** | Auto suspension, but don’t allow users to manually suspend tabs. | Allows users to `suspend all tabs` by one click to save memory and restore them as needed. |
+| **Search Functionality** | Basic tab search within the browser, showing results for currently open tabs. | Includes `global and fuzzy search`, making it easier to find tabs quickly. |
+| **Cross-Device Sync** | Syncs tabs across devices via a Microsoft account but requires manual reopening on other devices. | Automatically `syncs` spaces and tab groups across multiple devices and browsers for seamless browsing workflows. |
+| **Integration with Other Features** | Fully integrated into Edge with features like Collections and browser settings. | Focused solely on optimizing tab management, without integrating additional browser utilities. |
+| **Browser Compatibility** | Exclusive to Microsoft Edge. | Works on Chrome and other `Chromium-based` browsers like Edge, Chrome, Brave and Vivaldi. |
+
+### [**Key Differences**](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs\#key-differences)
+
+**1\. AI Grouping**
+
+- **Edge Vertical Tabs**: Offers a basic "Organize Tabs" feature, but the grouping results often feel random and lack precision.
+- **Side Space**: Leverages a `high-quality AI model` to deliver smarter, more accurate tab grouping. Users can even customize categories for tailored organization.
+
+Here’s a comparison of the AI grouping results from **Edge Vertical Tabs** vs. **Side Space** for the same set of tabs:
+
+![Edge Vertical Tabs vs Side Space](https://www.sidespace.app/blog_012_01.webp)
+
+> Brave Vertical Tabs vs Side Space
+
+1. **Customization and Feature Depth**:
+   - Edge Vertical Tabs focus on simplicity and ease of use.
+   - Side Space offers extensive customization, catering to users who want more control over their browsing environment. Such as `custom themes`, `dark mode`, and `duplicate tab removal`, `group by domain`, `import/export`.
+2. **Compatibility**:
+   - Edge Vertical Tabs are tied to the Edge browser.
+   - Side Space works as a Chrome extension, making it compatible with various Chromium-based browsers like Chrome, Edge, and Brave. For users who switch between browsers, Side Space offers `seamless synchronization`, ensuring your tab groups stay consistent across platforms.
+
+## [**Which One to Choose?**](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs\#which-one-to-choose)
+
+- **Edge Vertical Tabs**: A great choice for users seeking a straightforward vertical tab layout with minimal features. Best suited for light users or those who primarily use Edge.
+- **Side Space**: Perfect for advanced users and multitaskers who need enhanced tab management, robust organization, and seamless cross-device syncing.
+
+If you’re juggling numerous tabs and projects, **Side Space** offers the tools to keep you organized and efficient.
+
+Stay updated by visiting our [Roadmap](https://sidespace.featurebase.app/roadmap)!
+
+[Prev](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs "Brave Vertical Tabs vs Side Space") [Next](https://www.sidespace.app/blog/compare-to-vivaldi-windows-panel "Vivaldi Windows Panel vs Side Space")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction: Efficiently Managing Browser Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#introduction-efficiently-managing-browser-tabs)
+- [A New Way to Handle Multiple Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#a-new-way-to-handle-multiple-tabs)
+- [How Extensions Help](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#how-extensions-help)
+- [Managing Memory Usage with Side Space](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#managing-memory-usage-with-side-space)
+- [Conclusion: Efficiently Managing Browser Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#conclusion-efficiently-managing-browser-tabs)
+- [External URLs:](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#external-urls)
+- [YouTube URLs:](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind#youtube-urls)
+
+## [Introduction: Efficiently Managing Browser Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#introduction-efficiently-managing-browser-tabs)
+
+Tabs are indispensable for browsing, and many users frequently have a dozen or more open simultaneously. However, some users, like developer Tom, manage hundreds of tabs in a single session. Utilizing various browser extensions, Tom has transformed potential chaos into an organized browsing experience, effortlessly navigating through his browsing history and tasks.
+
+## [A New Way to Handle Multiple Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#a-new-way-to-handle-multiple-tabs)
+
+The concept of tabbed browsing has evolved, with browsers like Microsoft Edge enhancing the experience through features like collections, vertical tabs, and **sleeping** tabs. Vivaldi has also introduced innovations such as **Accordion Tabs**, with similar improvements available in Chrome.
+
+The primary issue with having too many tabs is that it can significantly slow down your PC. Each tab uses memory, and with a large number of them open, performance can suffer as memory runs out, affecting your workflow.
+
+That’s not the only problem: with so many tabs open, navigating between them becomes difficult. Favicon is helpful, but when tab widths shrink, it becomes challenging to identify which one you're viewing.
+
+![](https://www.sidespace.app/blog_006_01.jpg)
+
+## [How Extensions Help](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#how-extensions-help)
+
+Tom detailed how he uses several **Chrome extensions** to solve these issues. One example is the **Tab Deck** extension, which provides **vertical tab** organization, akin to an enhanced version of **One Tab**. A key feature is the ability to save tabs as sessions, which can **sync to the cloud**, allowing you to switch devices and retain your browsing tabs.
+
+For more on **Tab Deck**, check out [this detailed review](https://www.onetab.group/).
+
+![](https://www.sidespace.app/blog_006_02.jpg)
+
+## [Managing Memory Usage with Side Space](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#managing-memory-usage-with-side-space)
+
+Memory consumption increases with more open tabs, and this is where extensions like **Side Space** come in.
+
+What’s great about Side Space is that it organizes tabs into **spaces**, similar to virtual desktops, helping you compartmentalize your browsing session. Your browser tabs are neatly organized into **separate categories** for work, life, shopping, school, and hobbies. To make your thoughts clearer, focus on the present space.
+
+Side Space also allows you to **unload** tabs, similar to Edge’s sleeping tabs. This means tabs remain accessible but don’t consume memory, enabling you to open new tabs without slowing down your PC. This approach helps you manage numerous tabs in browsers like Chrome, improving performance and maintaining a smooth workflow.
+
+For additional insights on **Side Space**, visit [the official website](https://sidespace.app/).
+
+![](https://www.sidespace.app/blog_006_03.jpg)
+
+## [Conclusion: Efficiently Managing Browser Tabs](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#conclusion-efficiently-managing-browser-tabs)
+
+Effectively managing numerous browser tabs is achievable with the right tools and techniques. By leveraging browser features and extensions like **Tab Deck** and **Side Space**, you can maintain an organized, efficient browsing experience without compromising performance.
+
+## [External URLs:](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#external-urls)
+
+1. [6 Efficient Chrome Tab Managers to Organize and Declutter Open Tabs](https://www.makeuseof.com/rome-tab-managers-organize-declutter-tabs/)
+2. [Tab Deck](https://www.tabdeck.so/)
+3. [Side Space](https://sidespace.app/)
+
+## [YouTube URLs:](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind\#youtube-urls)
+
+1. [Managing Tabs with Tab Deck](https://www.youtube.com/watch?v=lkmuvVcfasI&t=4s)
+2. [Improving Browser Performance with Side Space](https://www.youtube.com/watch?v=VYT9JSWLaWc)
+
+[Prev](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome "How to Change the Location of Side Panel in Chrome?") [Next](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space "Replacing Vertical Tabs of Arc with Side Space - A Guide for Chrome Users")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [1\. Side Space](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_1-side-space)
+- [2\. Tab Deck](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_2-tab-deck)
+- [3\. Toby](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_3-toby)
+- [4\. tabExtend](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_4-tabextend)
+- [5\. Vertical Tabs in Side Panel](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_5-vertical-tabs-in-side-panel)
+- [6\. Tab Manager by Workona](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_6-tab-manager-by-workona)
+- [7\. Session Buddy](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_7-session-buddy)
+- [8\. OneTab](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_8-onetab)
+- [9\. TablerOne](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_9-tablerone)
+- [10\. Tab Manager Plus for Chrome](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024#_10-tab-manager-plus-for-chrome)
+
+Managing multiple tabs efficiently has become a critical skill in today's digital world, especially for power users juggling work, research, or personal browsing. With countless tabs open, it’s easy to feel overwhelmed and lose track of important information. That’s where Chrome tab manager extensions come in—tools designed to help you organize, declutter, and optimize your browsing experience.
+
+In this blog, we’ll explore the **10 best Chrome tab manager extensions of 2024**, each offering unique features to enhance your productivity and streamline your workflows.
+
+### [1\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_1-side-space) [Side Space](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en)
+
+- **Last Updated**: December 2024
+- **Users**: 4,000+
+- **Avg Rating**: 4.3/5
+- **Price:** $39 for LTD
+
+![Side Space - Vertical Tab Manager](https://www.sidespace.app/blog_015_01.webp)
+
+- `Side Space` is an AI-powered vertical tab manager extension that organizes multiple tabs in a side panel for seamless browsing. With a simple design and smart AI, it ensures your tabs are not only well-arranged but also logically grouped for maximum efficiency.
+- **Main Features**:
+
+  - AI-driven automatic tab grouping by context.
+  - Vertical tab layout for easier navigation.
+  - Customizable themes, including dark mode.
+  - Memory optimization by suspending unused tabs.
+  - Drag-and-Drop tab movement between spaces.
+  - Auto cloud sync for managing tabs across multiple browsers and devices.
+  - Global search
+- **Advantages**:
+
+  - AI-powered tab grouping for smart, automated organization of tabs.
+  - Arc-style vertical tab management
+  - Custom spaces for different workflows
+  - Efficient use of browser resources.
+- **Disadvantages**:
+
+  - Limited to Chromium-based browsers.
+
+* * *
+
+### [2\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_2-tab-deck) [Tab Deck](https://chromewebstore.google.com/detail/one-tab-group-tabtab-grou/lajbajamkpmkmldodfbljkjihppdclbm)
+
+- **Last Updated**: December 2024
+- **Users**: 6,000+
+- **Avg Rating**: 4.1/5
+- **Price:** $2.9/month, $49.9 for LTD
+
+![Tab Deck](https://www.sidespace.app/blog_015_02.webp)
+
+- `Tab Deck` simplifies tab management by consolidating all your tabs and tab groups into a single, easy-to-navigate interface. It’s designed to help users quickly organize and retrieve tabs for a more streamlined browsing experience.
+- **Main Features**:
+
+  - Combine tabs and tab groups into one interface.
+  - Drag-and-drop support for organizing tabs.
+  - Save and restore tab groups.
+  - Master open windows
+  - Sync tabs and groups across browsers and devices.
+  - Export tabs for sharing or future reference.
+- **Advantages**:
+
+  - Highly visual and intuitive interface.
+  - Smooth syncing between browsers and devices.
+- **Disadvantages**:
+
+  - Lacks AI automation features.
+
+* * *
+
+### [3\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_3-toby) [Toby](https://chromewebstore.google.com/detail/toby-tab-management-tool/hddnkoipeenegfoeaoibdmnaalmgkpip)
+
+- **Last Updated**: December 2024
+- **Users**: 300,000+
+- **Avg Rating**: 4.3/5
+- **Price:** $6/month
+
+![Toby](https://www.sidespace.app/blog_015_03.webp)
+
+- `Toby` transforms your browsing experience by allowing you to save and visually organize your tabs into collections. Perfect for users managing multiple projects or workflows.
+- **Main Features**:
+
+  - Create and save collections of tabs.
+  - Access saved collections with a single click.
+  - Share tab collections with team members.
+  - Multi-device sync for consistent access.
+  - Drag-and-drop tab reordering.
+- **Advantages**:
+
+  - Easy-to-use interface.
+  - Excellent for project and task organization.
+- **Disadvantages**:
+
+  - Consumes significant system resources.
+  - No real-time tab switching feature.
+
+* * *
+
+### [4\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_4-tabextend) [tabExtend](https://chromewebstore.google.com/detail/tabextend-easy-tab-manage/ffikidnnejmibopbgbelephlpigeniph)
+
+- **Last Updated**: December 2024
+- **Users**: 10,000+
+- **Avg Rating**: 4.6/5
+- **Price:** $8/month
+
+![tabExtend](https://www.sidespace.app/blog_015_04.webp)
+
+- `tabExtend` offers a Kanban-style interface for saving and managing tabs. Ideal for users who prefer a task-oriented approach to organizing their browsing sessions.
+- **Main Features**:
+
+  - Save tabs into categorized spaces.
+  - Kanban-style dashboard for visual organization.
+  - Export tabs for sharing or external use.
+  - Option to bookmark tabs directly.
+- **Advantages**:
+
+  - Great for project-based workflows.
+  - Easy to share saved tab groups.
+- **Disadvantages**:
+
+  - Requires switching to a separate page for tab management.
+  - No memory optimization features.
+
+* * *
+
+### [5\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_5-vertical-tabs-in-side-panel) [Vertical Tabs in Side Panel](https://chromewebstore.google.com/detail/vertical-tabs-in-side-pan/akahnknmcbmgodngfjcflnaljdbhnlfo)
+
+- **Last Updated**: November 2024
+- **Users**: 50,000+
+- **Avg Rating**: 4.5/5
+- **Price:** free
+
+![Vertical Tabs in Side Panel](https://www.sidespace.app/blog_015_05.webp)
+
+- `Vertical Tabs in Side Panel` A simple extension that organizes browser tabs vertically in the Chrome side panel, making it easier to navigate and find tabs without clutter.
+- **Main Features**:
+
+  - Vertical tab view in Chrome’s side panel.
+  - Quick tab switching and navigation.
+  - Light and dark themes for customization.
+- **Advantages**:
+
+  - Minimalist and user-friendly.
+  - Integrated directly into Chrome’s interface.
+- **Disadvantages**:
+
+  - Limited to basic tab navigation.
+  - No grouping or memory-saving options.
+
+* * *
+
+### [6\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_6-tab-manager-by-workona) [Tab Manager by Workona](https://chromewebstore.google.com/detail/tab-manager-by-workona/ailcmbgekjpnablpdkmaaccecekgdhlh)
+
+- **Last Updated**: September 2024
+- **Users**: 200,000+
+- **Avg Rating**: 4.7/5
+- **Price:** $7/month
+
+![Tab Manager by Workona](https://www.sidespace.app/blog_015_06.webp)
+
+- `Workona` is a workspace-focused tab manager that helps professionals stay organized by grouping tabs into projects or tasks. It’s perfect for team collaboration and complex workflows.
+- **Main Features**:
+
+  - Organize tabs into customizable workspaces.
+  - Auto-save tabs and sessions.
+  - Sync workspaces across devices.
+  - Collaborative features for sharing workspaces with teams.
+- **Advantages**:
+
+  - Ideal for managing professional tasks and projects.
+  - Robust syncing and session-saving capabilities.
+- **Disadvantages**:
+
+  - Limited flexibility outside the workspace framework.
+  - Higher learning curve for new users.
+
+* * *
+
+### [7\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_7-session-buddy) [Session Buddy](https://chromewebstore.google.com/detail/session-buddy/edacconmaakjimmfgnblocblbcdcpbko)
+
+- **Last Updated**: June 2024
+- **Users**: 800,000+
+- **Avg Rating**: 4.7/5
+- **Price:** free
+
+![Session Buddy](https://www.sidespace.app/blog_015_07.webp)
+
+- `Session Buddy` is a reliable session manager that saves and restores entire browsing sessions, making it ideal for multi-taskers who want to pick up where they left off.
+- **Main Features**:
+
+  - Save complete browsing sessions.
+  - Restore tabs instantly.
+  - Export session data for later use.
+  - Filter and search tabs within sessions.
+- **Advantages**:
+
+  - Excellent for session recovery and backup.
+  - Lightweight and easy to use.
+- **Disadvantages**:
+
+  - Doesn’t manage active tabs dynamically.
+  - Lacks visual organization tools.
+
+* * *
+
+### [8\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_8-onetab) [OneTab](https://chromewebstore.google.com/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall)
+
+- **Last Updated**: June 2024
+- **Users**: 2,000,000+
+- **Avg Rating**: 4.5/5
+- **Price:** free
+
+![OneTab](https://www.sidespace.app/blog_015_08.webp)
+
+- `OneTab` simplifies tab management by collapsing all open tabs into a single list, significantly reducing memory usage and browser clutter.
+- **Main Features**:
+
+  - Collapse tabs into a single, organized list.
+  - Restore tabs individually or as a group.
+  - Share tab lists via URL.
+  - Saves browser memory by reducing active tabs.
+- **Advantages**:
+
+  - Extremely lightweight and efficient.
+  - Simple, no-frills design.
+- **Disadvantages**:
+
+  - Minimal organizational options.
+  - Not suited for dynamic workflows.
+
+* * *
+
+### [9\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_9-tablerone) [TablerOne](https://chromewebstore.google.com/detail/tablerone-tab-manager/andpjllgocabfacjlelkfpdemfklpfpo)
+
+- **Last Updated**: November 2024
+- **Users**: 20,000+
+- **Avg Rating**: 4.5/5
+- **Price:** free
+
+![TablerOne](https://www.sidespace.app/blog_015_09.webp)
+
+- `TablerOne` provides a centralized dashboard for managing and organizing tabs, offering a clear overview of all open sessions.
+- **Main Features**:
+
+  - Dashboard view for tab management.
+  - Filter and search options for tabs.
+  - Categorize tabs into groups.
+- **Advantages**:
+
+  - Comprehensive tab overview.
+  - Useful filtering features.
+- **Disadvantages**:
+
+  - Dashboard can disrupt browsing flow.
+  - Resource-intensive on large tab sets.
+
+* * *
+
+### [10\.](https://www.sidespace.app/blog/ten-best-tab-manager-chrome-extensions-in-2024\#_10-tab-manager-plus-for-chrome) [Tab Manager Plus for Chrome](https://chromewebstore.google.com/detail/tab-manager-plus-for-chro/cnkdjjdmfiffagllbiiilooaoofcoeff)
+
+- **Last Updated**: October 2024
+- **Users**: 200,000+
+- **Avg Rating**: 4.7/5
+- **Price:** free
+
+![Tab Manager Plus for Chrome](https://www.sidespace.app/blog_015_10.webp)
+
+- `Tab Manager Plus` is a lightweight and efficient tool for quick tab access and organization, ideal for users seeking simplicity.
+- **Main Features**:
+
+  - Quick tab search and filtering.
+  - Manage, close, or move tabs efficiently.
+  - Multi-window tab management.
+- **Advantages**:
+
+  - Fast and responsive.
+  - Great for quick tab actions.
+- **Disadvantages**:
+
+  - Lacks advanced features like grouping or saving sessions.
+  - Minimal customization options.
+
+* * *
+
+If you're searching for affordable SaaS solutions, check out [SaaS Pirate](https://saaspirate.com/). They offer top-quality software at unbeatable prices, with discounts of up to 90% off—an opportunity you don't want to miss!
+
+[Prev](https://www.sidespace.app/blog/compare-to-arc-browser-sidebar "Arc Browser Sidebar vs Side Space")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)On this page
+
+# Privacy Policy of _sidespace.app_
+
+Your privacy is important to us. It is sidespace.app's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, [https://sidespace.app](https://sidespace.app/), and other sites we own and operate.
+
+Robert Shaw ("us", "we", or "our") operates the sidespace.app Chrome Extension.
+
+This policy is effective as of 16 March 2022 and was last updated on 16 March 2022.
+
+### How do we access your data?
+
+We never store your data, sidespace.app is a tool running on your local chrome. We can not touch your data, and we can not access your data.
+
+### How do we share your data?
+
+We will never transfer, sell, make copies, or share any of your data stored by the application to third party services or companies unless strictly necessary to enable the application to function properly. Accordingly, personal data will be disclosed to third parties on a strictly limited 'need to know' basis where there is clear justification for transferring Personal Data - either because the Data Subject has consented to the transfer or because disclosure is required to perform a contract to which the Data Subject is a party, or for a legitimate purpose that does not infringe the Data Subject's fundamental rights, including the right to privacy (e.g. sharing in the context of a merger and acquisition operation).
+
+### Limits of Our Policy
+
+Our website may link to external sites that we do not operate. Please be aware that we have no control over the content and policies of those sites and cannot accept responsibility or liability for their respective privacy practices.
+
+### Changes to This Policy
+
+At our discretion, we may change our privacy policy to reflect updates to our business processes, current acceptable practices, or legislative or regulatory changes at our discretion. If we decide to modify this privacy policy, we will post the changes here at the same link by which you are accessing this privacy policy.
+
+If required by law, we will get your permission or allow you to opt in to or opt-out of, as applicable, any new uses of your personal information.
+
+### Contact Us
+
+For any questions or concerns regarding your privacy, you may contact us using the following details:
+
+Robert Shaw
+
+[https://sidespace.app](https://sidespace.app/)
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome#introduction)
+- [How to Change the Position of Chrome's Side Panel](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome#how-to-change-the-position-of-chromes-side-panel)
+- [Enhance Your Browsing with Side Space](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome#enhance-your-browsing-with-side-space)
+- [How to install and set up Side Space for the first time](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome#how-to-install-and-set-up-side-space-for-the-first-time)
+- [Conclusion](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome#conclusion)
+
+## [Introduction](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome\#introduction)
+
+In today's fast-paced digital world, maximizing productivity is essential. One of the often-overlooked features in Google Chrome is the Chrome Side Panel. This handy tool allows users to access bookmarks, extensions, and other resources without cluttering the main browsing area. With the increasing need for customization, adjusting the side panel's location can significantly enhance your browsing experience and workflow. In this article, we’ll explore how to change the location of the Chrome side panel and introduce you to a powerful vertical tab extension, **Side Space**, that can further optimize your productivity tools.
+
+## [How to Change the Position of Chrome's Side Panel](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome\#how-to-change-the-position-of-chromes-side-panel)
+
+Google Chrome's side panel typically appears on the right-hand side by default. However, there’s a way to switch it to the left side, making it easier for those who prefer working on the left or find it more ergonomic. Here’s how you can do it:
+
+![](https://www.sidespace.app/blog_005_01.jpg)
+
+1. First, open Chrome and navigate to the settings menu by clicking on the three dots in the upper right corner.
+2. Next, locate the “Appearance” section and look for the option to change the side panel location.
+3. Last, Select “Chrome Side Panel to the Left” to move it to your preferred side.
+
+**What You Can Do with the Chrome Side Panel:**
+
+The Chrome side panel isn’t just a decorative feature; it’s a productivity hub that can streamline your browsing experience. Here are some key things you can do with it:
+
+- **Access Bookmarks and Reading Lists**: Quickly access your saved pages without needing to navigate away from your current tab.
+- **Google Lens Integration**: Use Google Lens to search with images or screenshots directly from the side panel.
+- **Read Later Functionality**: Add articles or websites to your reading list for future reference.
+- **Third-Party Extensions**: Certain Chrome extensions, such as **Side Space**, can use the side panel to enhance your productivity and browsing workflow.
+
+## [Enhance Your Browsing with Side Space](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome\#enhance-your-browsing-with-side-space)
+
+If you're a power user who needs to manage many tabs, **Side Space** can revolutionize how you organize your online work. Built right into Chrome's side panel, Side Space is the ultimate **vertical tabs manager**, allowing you to manage your tabs with greater efficiency.
+
+![](https://www.sidespace.app/blog_005_02.jpg)
+
+- **Structured Spaces**: Tabs are neatly categorized into vertical spaces, so you can focus on your tasks and avoid clutter.
+- **AI Grouping**: Group your tabs effortlessly with the help of AI, so you can spend less time organizing and more time getting things done.
+- **Cloud Sync Across Devices**: With auto sync, your spaces and tabs are available on any device. Simply log in to your account to access your saved tabs from anywhere.
+- **Dark Mode & Custom Themes**: Customize your browsing experience with dark mode and choose themes to make your Side Space truly personal.
+- **Pin & Search Tabs**: Pin important tabs for quick access, and use the fuzzy search to instantly find any tab or group.
+- **Suspend & Save Tabs**: Temporarily suspend tabs to save memory, and restore them when needed without losing any progress.
+
+## [How to install and set up Side Space for the first time](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome\#how-to-install-and-set-up-side-space-for-the-first-time)
+
+1. Visit the Chrome Web Store and search for "Side Space."
+2. Click "Add to Chrome" to install the extension.
+3. Once installed, click the Side Space icon next to the address bar to open your customized side panel.
+4. Follow the on-screen instructions to customize your side panel.
+
+## [Conclusion](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome\#conclusion)
+
+Customizing Chrome's side panel, especially with extensions like Side Space, can significantly enhance your online productivity and browsing experience. By taking the time to personalize your side panel, you create a more efficient and enjoyable digital workspace. Explore the possibilities and start customizing your side panel today for a more productive tomorrow.
+
+[**Download Side Space**](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en-GB&authuser=0&pli=1) Side Space is the **Chrome vertical tab extension** you’ve been waiting for.
+
+[Prev](https://www.sidespace.app/blog/introducing-the-concept-of-spaces "Introducing the Concept of Spaces") [Next](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind "How to Manage Hundreds Tabs in Your Browser Without Losing Your Mind")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Create a New Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#create-a-new-space)
+- [Navigate Between Spaces](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#navigate-between-spaces)
+- [Switch Spaces](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#switch-spaces)
+- [Edit a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#edit-a-space)
+- [Manage Tab/Tab Groups in a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#manage-tabtab-groups-in-a-space)
+- [Delete a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#delete-a-space)
+- [Conclusion](https://www.sidespace.app/blog/introducing-the-concept-of-spaces#conclusion)
+
+`Side Space`, is designed to revolutionize your workflow with spaces. Spaces enable you to efficiently cluster tabs related to different topics like `work`, `research`, `shopping`, or `school` in a unified location. By centralizing your tasks, spaces enhance `clarity of thought`, fostering `focused attention` on the present moment while minimizing distractions from extraneous information. Once you've established a set of spaces, navigating between them and managing tabs becomes a seamless process.
+
+## [Create a New Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#create-a-new-space)
+
+> Please note that creating a space requires `login`. After logging in, users can create up to `5 spaces`, benefiting from `auto cloud sync`. Premium users can create `unlimited` spaces.
+
+![](https://www.sidespace.app/blog_004_01.jpg)
+
+Follow these steps to create a new space:
+
+1. Click the `+` button at the bottom right side of the sidebar.
+2. Click `+ Create space`.
+3. Type in a space name. Choose a theme color.
+4. Choose whether you want to `Create blank space` or `Save tabs` / `Save tab groups` that are open in the current window to this new space.
+
+## [Navigate Between Spaces](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#navigate-between-spaces)
+
+To maximize the benefits of having multiple Spaces, it is crucial to efficiently navigate among them.
+
+![](https://www.sidespace.app/blog_004_02.jpg)
+
+Our product drew inspiration from Arc Browser, offering two user-friendly methods for navigating between spaces:
+
+1. Select the Space icon at the bottom of the sidebar to switch between different spaces.
+2. In the case of using a `trackpad`, you can switch between spaces by performing a `two-finger swipe` to the left or right in the Sidebar.
+
+## [Switch Spaces](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#switch-spaces)
+
+![](https://www.sidespace.app/blog_004_03.jpg)
+
+Switch to a different space is quite simple:
+
+1. Select the space you want to open at the bottom of the sidebar.
+2. Click the `Switch` button at the top right side of the sidebar, to open the space in the current window, in replace of the opened space.
+
+## [Edit a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#edit-a-space)
+
+![](https://www.sidespace.app/blog_004_04.jpg)
+
+To rename a space:
+
+1. Open the space.
+2. Click the three dots button on the top right.
+3. Select `Rename Space`.
+4. Give the space a new name.
+5. Click `Confirm`
+
+To update the space’s emoji and theme:
+
+1. Open the space.
+2. Click the three dots button on the top right.
+3. Select `Change Icon` / `Change Theme`.
+4. Select a new one.
+
+## [Manage Tab/Tab Groups in a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#manage-tabtab-groups-in-a-space)
+
+Inside a space, you can open and close tabs/tab groups, move tabs/tab groups between spaces, duplicate and suspend tabs, or turn a tab group into a space.
+
+![](https://www.sidespace.app/blog_004_05.jpg)
+
+To open tabs, just click the tab in the sidebar.
+
+To close tabs/tab groups:
+
+1. Right-click on the tabs/tab groups you want to move.
+2. In the context menu select `Close Tab` / `Close Group`
+
+To move tabs/tab groups between spaces:
+
+1. Right-click on the tabs/tab groups you want to move.
+2. In the context menu select `Move To` \> `Space` \> `Space name`.
+
+To duplicate or suspend tabs:
+
+1. Right-click on the tabs you want to move.
+2. In the context menu select `Duplicate` / `Suspend tab`
+
+To turn a tab group into a space:
+
+1. Right-click on the tab groups you want to move.
+2. In the context menu select `Turn group into Space`.
+
+## [Delete a Space](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#delete-a-space)
+
+1. Open the space you want to delete.
+2. Click on the three dots button at the top right.
+3. Select Delete Space.
+4. Confirm your decision in the dialogue box that appears.
+
+## [Conclusion](https://www.sidespace.app/blog/introducing-the-concept-of-spaces\#conclusion)
+
+`Side Space` introduces an innovative concept that transforms your workflow by seamlessly organizing tasks into spaces, enhancing focus and efficiency. The ability to create, manage, and navigate between spaces provides a tailored experience.
+
+Ready to optimize your workflow and declutter your digital space? [Download](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en-GB) Side Space now and revolutionize the way you work!
+
+[Prev](https://www.sidespace.app/blog/ai-powered-tab-grouping "AI-Powered Tab Grouping") [Next](https://www.sidespace.app/blog/how-to-change-the-location-of-side-panel-in-chrome "How to Change the Location of Side Panel in Chrome?")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction: Efficiently Managing Your Spaces](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#introduction-efficiently-managing-your-spaces)
+- [Navigate to the "Spaces Management" Section](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#navigate-to-the-spaces-management-section)
+- [Manage Your Spaces on the Space Management Page](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#manage-your-spaces-on-the-space-management-page)
+- [Rename, Customize, or Delete a Space](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#rename-customize-or-delete-a-space)
+- [Reorder Spaces with Drag-and-Drop](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#reorder-spaces-with-drag-and-drop)
+- [Move Groups to Different Spaces](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#move-groups-to-different-spaces)
+- [Move Tabs to Different Groups](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#move-tabs-to-different-groups)
+- [Conclusion](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#conclusion)
+- [Other Tutorials:](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#other-tutorials)
+- [YouTube URLs:](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature#youtube-urls)
+
+## [Introduction: Efficiently Managing Your Spaces](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#introduction-efficiently-managing-your-spaces)
+
+With the increasing number of `spaces`, managing them efficiently becomes crucial. The `Spaces Management` feature in the Side Space extension offers a centralized platform to manage all your spaces effectively. This feature enhances productivity by allowing users to organize and customize their spaces with ease. In this article, we will guide you through the steps to manage your spaces using this powerful tool.
+
+## [Navigate to the "Spaces Management" Section](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#navigate-to-the-spaces-management-section)
+
+To begin managing your spaces, open your browser and navigate to the Side Space extension settings.Click on the new `Spaces Management` section. This will open the management interface where you can oversee all your spaces.
+
+![Navigate to the "Spaces Management" Section](https://www.sidespace.app/blog_010_01.webp)
+
+## [Manage Your Spaces on the Space Management Page](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#manage-your-spaces-on-the-space-management-page)
+
+On the Space Management page, you can view and manage all your spaces. This centralized platform allows for efficient organization and customization of your spaces.
+
+![Manage Your Spaces on the Space Management Page](https://www.sidespace.app/blog_010_02.webp)
+
+## [Rename, Customize, or Delete a Space](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#rename-customize-or-delete-a-space)
+
+Within the Space Management page, you can rename a space, customize its icon and theme, or delete it as needed. This flexibility ensures that your spaces are tailored to your preferences.
+
+![Rename, Customize, or Delete a Space](https://www.sidespace.app/blog_010_03.webp)
+
+## [Reorder Spaces with Drag-and-Drop](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#reorder-spaces-with-drag-and-drop)
+
+You can easily change the order of your spaces by `dragging and dropping` them using the button at the left-bottom of each space. This intuitive feature helps you keep your spaces organized.
+
+![Reorder Spaces with Drag-and-Drop](https://www.sidespace.app/blog_010_04.gif)
+
+## [Move Groups to Different Spaces](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#move-groups-to-different-spaces)
+
+The Space Management feature allows you to move groups to different spaces by simply `dragging and dropping` them. This is particularly useful for organizing your workflow and keeping related groups together.
+
+![Move Groups to Different Spaces](https://www.sidespace.app/blog_010_05.gif)
+
+## [Move Tabs to Different Groups](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#move-tabs-to-different-groups)
+
+To further enhance organization, you can move tabs to different groups within your space or to `another space`. This ensures that all your tabs are categorized and easy to find.
+
+![Move Tabs to Different Groups](https://www.sidespace.app/blog_010_06.gif)
+
+## [Conclusion](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#conclusion)
+
+The Space Management feature in the Side Space extension offers a comprehensive solution for managing all your spaces in one place. By providing tools for customization, reordering, and organization, this feature not only saves time but also helps in better organization of `tabs, groups and spaces`, making it easier to find and access relevant information. It significantly enhances productivity and ensures a seamless browsing experience.
+
+As we continue to innovate, users can look forward to even more advanced features that will further improve their web browsing experience.
+
+## [Other Tutorials:](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#other-tutorials)
+
+1. [Introducing the Concept of Spaces](https://www.sidespace.app/blog/introducing-the-concept-of-spaces)
+2. [Introducing Group Guard Settings](https://youtu.be/_Ay3X3VbjGo)
+3. [How to Change the Location of Side Panel in Chrome?](https://www.sidespace.app/how-to-change-the-location-of-side-panel-in-chrome)
+4. [Download Chrome Extension](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en)
+
+## [YouTube URLs:](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature\#youtube-urls)
+
+1. [Side Space Introduction](https://youtu.be/_Ay3X3VbjGo)
+
+[Prev](https://www.sidespace.app/blog/introducing-group-guard-settings "Introducing Group Guard Settings: Customizable URL Grouping") [Next](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs "Brave Vertical Tabs vs Side Space")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [✨ Introduction to Side Space](https://www.sidespace.app/blog/introducing-side-space#introduction-to-side-space)
+- [🚀 How do vertical tabs work?](https://www.sidespace.app/blog/introducing-side-space#how-do-vertical-tabs-work)
+- [✨ Features](https://www.sidespace.app/blog/introducing-side-space#features)
+- [🗂️ How to stay organized with Side Space](https://www.sidespace.app/blog/introducing-side-space#%EF%B8%8F-how-to-stay-organized-with-side-space)
+- [💡 Tips for grouping and organizing browser tabs](https://www.sidespace.app/blog/introducing-side-space#tips-for-grouping-and-organizing-browser-tabs)
+- [Conclusion](https://www.sidespace.app/blog/introducing-side-space#conclusion)
+
+In today's digital age, web users, professionals, and tech enthusiasts are constantly seeking ways to optimize their browser productivity.
+
+One revolutionary solution that has been gaining traction is `Side Space`, the ultimate vertical tab manager.
+
+This powerful tool offers a seamless and efficient way to group and organize browser tabs, providing a game-changing experience for users looking to enhance their productivity.
+
+## [✨ Introduction to Side Space](https://www.sidespace.app/blog/introducing-side-space\#introduction-to-side-space)
+
+Side Space redefines the way we manage browser tabs by offering a comprehensive set of features that cater to the needs of modern internet users.
+
+Its intuitive interface and customizable options make it a standout choice for those seeking a more organized and efficient browsing experience.
+
+## [🚀 How do vertical tabs work?](https://www.sidespace.app/blog/introducing-side-space\#how-do-vertical-tabs-work)
+
+With Side Space, users can experience a myriad of benefits, including improved multitasking capabilities, reduced clutter, and visual fatigue, and enhanced accessibility and navigation.
+
+By leveraging the vertical tab manager, users can effortlessly navigate through their tabs with ease, streamlining their workflow and boosting overall productivity.
+
+## [✨ Features](https://www.sidespace.app/blog/introducing-side-space\#features)
+
+- ⚡️ Manage tabs and tab groups efficiently with a vertical tabs panel
+- 🗂️ To save, restore, and reorganize tabs, including tab groups, is now available
+- 🔄 The Vertical Tabs Panel displays your open tabs in a mirrored view
+- 🔍 Efficiently search multiple tabs using fuzzy search
+- 🧹 To save memory, you can suspend open tabs
+- ☁️ Enable cross-browser cloud synchronization with a single login
+- 🌛 Dark Mode Support
+- 💾 Space Backup Solution
+  - 📑 Save your session as a JSON file
+  - ☁️ Cloud sync by login
+- 🗂️ Tab Grouping Methods
+  - 🔗 **Group by domain**
+  - ✨ **Group by AI**
+
+## [🗂️ How to stay organized with Side Space](https://www.sidespace.app/blog/introducing-side-space\#%EF%B8%8F-how-to-stay-organized-with-side-space)
+
+To stay organized with Side Space, start by utilizing the vertical tabs panel to manage your tabs and tab groups efficiently.
+
+Take advantage of the ability to save, restore, and reorganize tabs, including tab groups.
+
+The mirrored view in the Vertical Tabs Panel lets you see your open tabs in a more streamlined manner.
+
+Additionally, make use of the fuzzy search feature to efficiently search through multiple tabs.
+
+To save memory, consider suspending open tabs. You can also enable cross-browser cloud synchronization with a single login, allowing for seamless access to your tabs across devices.
+
+Lastly, take advantage of the Dark Mode support for a more comfortable browsing experience at night.
+
+## [💡 Tips for grouping and organizing browser tabs](https://www.sidespace.app/blog/introducing-side-space\#tips-for-grouping-and-organizing-browser-tabs)
+
+To maximize the benefits of Side Space, users can implement various strategies for grouping and organizing their browser tabs.
+
+Categorizing tabs based on tasks or projects helps users maintain a clear overview of their browsing activities.
+
+Furthermore, leveraging color-coding and labeling features adds an extra layer of organization, making it easier to identify and access specific tabs.
+
+For a more efficient approach, users can utilize keyboard shortcuts to navigate and manage their tabs seamlessly.
+
+## [Conclusion](https://www.sidespace.app/blog/introducing-side-space\#conclusion)
+
+`Side Space` is not just a tab manager, it's a gateway to a more organized, efficient, and productive browsing experience.
+
+With its innovative approach to tab management, Side Space is poised to revolutionize the way we interact with our browsers, empowering users to take control of their online activities and achieve unparalleled levels of productivity.
+
+[Next](https://www.sidespace.app/blog/discover-the-power-of-vertical-tabs-manager "Discover the Power of Vertical Tabs Manager")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Why using Vertical Tabs](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs#why-using-vertical-tabs)
+- [Detailed Comparison](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs#detailed-comparison)
+- [Key Differences](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs#key-differences)
+- [Which One to Choose?](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs#which-one-to-choose)
+- [Bonus Tip](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs#bonus-tip)
+
+## [Why using Vertical Tabs](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs\#why-using-vertical-tabs)
+
+**Say Goodbye to Tab Clutter**
+
+Vertical tabs provide a smart solution for managing your browser space, reducing the chaos of a crowded tab bar while freeing up more visible on-screen area.
+
+**Quickly Spot the Tabs You Need**
+
+When your tab bar is overflowing, horizontal tabs shrink to the point where their labels are unreadable. Vertical tabs solve this issue by offering ample room to display tab titles clearly, making it easier and faster to locate the one you need.
+
+**Optimize Your Screen Layout**
+
+Most monitors are wider than they are tall, which makes top-to-bottom space more limited. Shifting your tabs to a vertical layout takes advantage of the extra width on your screen, allowing you to make better use of the available space.
+
+## [Detailed Comparison](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs\#detailed-comparison)
+
+Here’s a detailed comparison of **`Brave Vertical Tabs`** and **`Side Space`**, focusing on their features,functionality, and user experience:
+
+| **Feature** | **Brave Vertical Tabs** | **Side Space** |
+| --- | --- | --- |
+| **Vertical Tab Management** | Supports vertical tabs natively within the browser. | Provides an advanced vertical tab management system through a Chrome extension. |
+| **Tab Organization** | Displays all open tabs in a collapsible vertical layout. | Organizes open tabs and Saves valued tabs into categorized `spaces`. |
+| **AI-Powered Grouping** | Not available. | Automatically groups tabs by context (e.g., topics, projects) using `AI` for better organization. |
+| **Browser Compatibility** | Exclusive to the Brave browser. | Works on Chrome and other `Chromium-based` browsers, including Brave. |
+| **Cross-Device&Browser Sync** | Syncs tabs through a Brave profile, but requires manual reopening of tabs on other devices. | `Automatically syncs` spaces and tab groups across devices for seamless workflows. |
+| **Search Functionality** | Basic users can search open tabs via the browser’s standard tab search bar. | Provides `global and fuzzy search` for tabs, making it faster and more intuitive to locate specific tabs. |
+| **Tab Suspension** | Not available. | Allows `suspension of tabs` to free up memory, with the ability to restore saved groups later. |
+| **Customization** | Limited customization, primarily focused on vertical layout. | Offers dark mode, custom themes, icons and more personalization options for managing tabs. |
+
+![Brave Vertical Tabs vs Side Space](https://www.sidespace.app/blog_011_01.webp)
+
+> Brave Vertical Tabs vs Side Space
+
+## [**Key Differences**](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs\#key-differences)
+
+1. **Feature Depth**:
+   - Brave’s Vertical Tabs offer a simple vertical layout for basic tab navigation, ideal for users who prefer minimalistic functionality.
+   - Side Space enhances the vertical tab experience with advanced features like `AI-powered grouping`, tab suspension, and memory optimization, making it a powerhouse for heavy tab users.
+2. **Customization**:
+   - Brave’s vertical tabs come with limited customization options, keeping the experience straightforward.
+   - Side Space, on the other hand, caters to users who seek full control over their vertical tab management with `custom themes`, `dark mode`, and personalized layouts.
+3. **Compatibility**:
+   - Brave’s Vertical Tabsare integrated exclusively into the Brave browser.
+   - Side Space works as a Chrome extension, making it compatible with various Chromium-based browsers like Chrome, Edge, and Brave. For users who switch between browsers, Side Space offers `seamless synchronization`, ensuring your tab groups stay consistent across platforms.
+
+## [**Which One to Choose?**](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs\#which-one-to-choose)
+
+- **Brave Vertical Tabs**: Best for casual users who want an easy way to navigate tabs vertically without additional features.
+- **Side Space**: Designed for power users managing numerous tabs, projects, or workflows. Its advanced organization tools and memory efficiency make it the ultimate choice for maximizing productivity with vertical tabs.
+
+## [**Bonus Tip**](https://www.sidespace.app/blog/compare-to-brave-vertical-tabs\#bonus-tip)
+
+Combine the power of Side Space with Brave’s AI assistant, **`Leo`**, for the ultimate browsing experience. While Side Space optimizes your vertical tab management, Leo can summarize pages, provide insights, and streamline your research, making this duo a perfect match for productivity enthusiasts.
+
+Stay updated by visiting our [Roadmap](https://sidespace.featurebase.app/roadmap)!
+
+[Prev](https://www.sidespace.app/blog/how-to-manage-all-your-spaces-in-one-place-with-the-space-management-feature "How to Manage All Your Spaces in One Place with the Space Management Feature") [Next](https://www.sidespace.app/blog/compare-to-edge-vertical-tabs "Edge Vertical Tabs vs Side Space")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction: Enhancing Chrome with Vertical Tabs](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#introduction-enhancing-chrome-with-vertical-tabs)
+- [Why Choose Vertical Tabs?](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#why-choose-vertical-tabs)
+- [Efficient Tab Management and Memory Usage](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#efficient-tab-management-and-memory-usage)
+- [AI-Powered Tab Grouping](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#ai-powered-tab-grouping)
+- [Customization and User Experience](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#customization-and-user-experience)
+- [How to Get Started with Side Space](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#how-to-get-started-with-side-space)
+- [Conclusion: Elevate Your Chrome Experience](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#conclusion-elevate-your-chrome-experience)
+- [External URLs:](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space#external-urls)
+
+## [Introduction: Enhancing Chrome with Vertical Tabs](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#introduction-enhancing-chrome-with-vertical-tabs)
+
+Arc Browser has been gaining traction thanks to its innovative features and user-friendly interface. However, many long-time Chrome and Firefox users may be hesitant to switch entirely, especially Windows users who have experienced performance issues with Arc. Fortunately, you don’t have to give up Chrome to enjoy some of Arc’s best features. This guide will show you how to use the **Side Space extension** to organize your tabs more efficiently, just like Arc does.
+
+## [Why Choose Vertical Tabs?](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#why-choose-vertical-tabs)
+
+For Chrome users looking to enhance their browsing experience with vertical tabs similar to those in the Arc browser, **Side Space** offers an excellent alternative. This extension not only provides vertical tab functionality but also introduces innovative features to improve tab management and memory usage.
+
+The vertical tab layout offered by **Side Space** provides a more intuitive way to navigate through your open tabs. Unlike traditional horizontal tabs, which can become cluttered and difficult to read when numerous tabs are open, **vertical tabs** utilize screen space more efficiently. This layout is particularly beneficial for users with widescreen monitors, as it takes advantage of the extra horizontal space.
+
+### [Efficient Tab Management and Memory Usage](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#efficient-tab-management-and-memory-usage)
+
+**Side Space** organizes your tabs into **spaces**, which function like virtual desktops. This feature allows you to compartmentalize your browsing sessions effectively. You can create separate spaces for work, personal life, shopping, education, and hobbies, making it easier to focus on specific tasks without the distraction of unrelated tabs.
+
+### [AI-Powered Tab Grouping](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#ai-powered-tab-grouping)
+
+One of the key innovations **Side Space** brings is its **AI-powered tab grouping** feature. This smart functionality automatically organizes your tabs into relevant categories based on the content of each page. Whether you're researching a project, shopping online, or browsing for leisure, the AI algorithm intuitively groups related tabs into clusters, streamlining your workflow and helping you stay focused.
+
+### [Customization and User Experience](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#customization-and-user-experience)
+
+For those concerned about customization, **Side Space** offers various themes and appearance options. You can adjust the width of the sidebar, choose between light and dark modes, and even customize the color scheme to match your preferences or existing Chrome theme.
+
+## [How to Get Started with Side Space](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#how-to-get-started-with-side-space)
+
+Transitioning from Arc to Chrome with **Side Space** is straightforward. After installing the extension from the Chrome Web Store, you'll find a new icon in your browser's toolbar. Clicking this icon opens the Side Space sidebar, where you can begin organizing your tabs into spaces and exploring the extension's features.
+
+## [Conclusion: Elevate Your Chrome Experience](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#conclusion-elevate-your-chrome-experience)
+
+In conclusion, for Chrome users seeking to replace the vertical tabs functionality of Arc, **Side Space** provides a comprehensive solution. It not only replicates the vertical tab layout but also introduces powerful tab management features, memory optimization, and customization options. By adopting **Side Space**, you can significantly enhance your browsing experience in Chrome, improving both productivity and system performance.
+
+## [External URLs:](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space\#external-urls)
+
+1. [Make your own Arc at home](https://cascaspace.substack.com/p/make-your-own-arc-at-home)
+2. [How AI is Changing Tab Management](https://www.youtube.com/watch?v=VYT9JSWLaWc)
+
+[Prev](https://www.sidespace.app/blog/how-to-manage-hundreds-tabs-in-your-browser-without-losing-your-mind "How to Manage Hundreds Tabs in Your Browser Without Losing Your Mind") [Next](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers "The Future of Browsing - How AI is Transforming Web Browsers")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [Introduction: The Future of Browsing](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#introduction-the-future-of-browsing)
+- [AI-Powered Browsing: A New Era](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#ai-powered-browsing-a-new-era)
+- [Brave and Firefox: AI for Privacy and Customization](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#brave-and-firefox-ai-for-privacy-and-customization)
+- [The Future of Browsing: AI-Driven Innovation](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#the-future-of-browsing-ai-driven-innovation)
+- [Side Space: AI Grouping for Efficient Tab Management](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#side-space-ai-grouping-for-efficient-tab-management)
+- [Conclusion: The Road Ahead for AI in Browsers](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#conclusion-the-road-ahead-for-ai-in-browsers)
+- [External URLs:](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers#external-urls)
+
+## [Introduction: The Future of Browsing](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#introduction-the-future-of-browsing)
+
+The integration of **Artificial Intelligence (AI)** into web browsers is revolutionizing the way we interact with the internet. Major browsers like **Chrome, Firefox, Brave, and Edge** are leveraging AI to enhance user experience, improve efficiency, and provide innovative features. In this article, we will explore how AI is transforming the browser landscape and how it can benefit users.
+
+## [AI-Powered Browsing: A New Era](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#ai-powered-browsing-a-new-era)
+
+![](https://www.sidespace.app/blog_008_01.jpg)
+
+AI is being used to streamline browsing experiences, making it easier for users to find what they need quickly and efficiently. For instance, **Google Chrome** is introducing features like **AI-generated themes** and a "Help me write" tool to assist users in drafting content on the web. **Microsoft Edge**, on the other hand, has integrated **Copilot**, an AI assistant that provides natural language answers, suggestions for related searches, and text generation capabilities.
+
+[Learn more about AI in Chrome](https://www.google.com/chrome/ai-innovations/)
+
+[Learn more about Copilot in Edge](https://learn.microsoft.com/en-us/copilot/edge)
+
+## [Brave and Firefox: AI for Privacy and Customization](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#brave-and-firefox-ai-for-privacy-and-customization)
+
+![](https://www.sidespace.app/blog_008_02.jpg)
+
+**Brave**, known for its focus on privacy, has introduced **Leo**, an AI assistant that helps with tasks like summarizing web pages, answering questions, and generating new content. Leo ensures that chats are private, anonymous, and secure. **Firefox**, meanwhile, is taking a different approach by allowing users to choose their preferred AI chatbot, similar to selecting a search engine. This feature is currently available in the experimental Nightly version of Firefox.
+
+[Discover Brave's AI Leo](https://brave.com/leo/)
+
+## [The Future of Browsing: AI-Driven Innovation](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#the-future-of-browsing-ai-driven-innovation)
+
+The impact of AI on browsers extends beyond just these features. AI is being used to improve accessibility, such as **Mozilla's AI-generated alt-text** for images in PDFs, which benefits visually impaired users. Additionally, AI is enhancing security by detecting and preventing malware and other online threats.
+
+[Read about Mozilla's AI initiatives](https://mozilla.ai/)
+
+## [Side Space: AI Grouping for Efficient Tab Management](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#side-space-ai-grouping-for-efficient-tab-management)
+
+In the midst of this AI-driven transformation, our Chrome extension, **Side Space**, offers a unique solution for tab management. With its **AI grouping feature**, users can automatically categorize their tabs, making it easier to navigate and find relevant information. This feature is particularly useful for users who work with multiple tabs simultaneously, ensuring a more organized and efficient browsing experience.
+
+[Try Side Space for better tab management](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en-GB&authuser=0)
+
+## [Conclusion: The Road Ahead for AI in Browsers](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#conclusion-the-road-ahead-for-ai-in-browsers)
+
+The integration of AI into web browsers is a significant step forward in enhancing user experience. From **AI-powered assistants** to **AI-driven tab management**, these innovations are changing the way we interact with the internet. As AI continues to evolve, we can expect even more exciting developments in the world of browsers.
+
+## [External URLs:](https://www.sidespace.app/blog/the-future-of-browsing-how-aiis-transforming-web-browsers\#external-urls)
+
+1. [Learn more about AI in Chrome](https://www.google.com/chrome/ai-innovations/)
+2. [Learn more about Copilot in Edge](https://learn.microsoft.com/en-us/copilot/edge)
+3. [Discover Brave's AI Leo](https://brave.com/leo/)
+4. [Mozilla's AI initiatives](https://mozilla.ai/)
+5. [Try Side Space for better tab management](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en-GB&authuser=0)
+
+[Prev](https://www.sidespace.app/blog/replacing-vertical-tabs-of-arc-with-side-space "Replacing Vertical Tabs of Arc with Side Space - A Guide for Chrome Users") [Next](https://www.sidespace.app/blog/introducing-group-guard-settings "Introducing Group Guard Settings: Customizable URL Grouping")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)![lights](https://www.sidespace.app/lights.png)
+
+On this page
+
+- [What is Tab Grouping?](https://www.sidespace.app/blog/ai-powered-tab-grouping#what-is-tab-grouping)
+- [How to Use Tab Grouping by AI?](https://www.sidespace.app/blog/ai-powered-tab-grouping#how-to-use-tab-grouping-by-ai)
+- [How to Use Tab Grouping by Domain?](https://www.sidespace.app/blog/ai-powered-tab-grouping#how-to-use-tab-grouping-by-domain)
+- [Advantages of Tab Grouping by AI](https://www.sidespace.app/blog/ai-powered-tab-grouping#advantages-of-tab-grouping-by-ai)
+- [Conclusion](https://www.sidespace.app/blog/ai-powered-tab-grouping#conclusion)
+
+In the fast-paced digital world, managing multiple tabs efficiently is a common challenge. However, our product introduces a groundbreaking feature – `Tab Grouping by AI`.
+
+Discover how this feature can transform your browsing experience, enhance productivity, and keep your browser organized.
+
+### [What is Tab Grouping?](https://www.sidespace.app/blog/ai-powered-tab-grouping\#what-is-tab-grouping)
+
+Tab grouping is a powerful feature designed to help users categorize their tabs rapidly. With two primary methods：
+
+- `AI-based` grouping
+- `domain-based` grouping
+
+our extension simplifies tab management, allowing users to maintain order in their digital workspace.
+
+### [How to Use Tab Grouping by AI?](https://www.sidespace.app/blog/ai-powered-tab-grouping\#how-to-use-tab-grouping-by-ai)
+
+![](https://www.sidespace.app/blog_003_01.jpg)
+
+- Step 1: Start by clicking on the user icon located at the bottom left of your screen. Navigate to `AI Grouping Settings`.
+- Step 2: Create `customized categories` that align with your workflow. These categories serve as the basis for AI grouping. Although we've established some default categories, we recommend adding more to enhance the precision of AI grouping.
+- Step 3: Click on the `Group By AI` button on the top right. Within seconds, witness the magic as AI intelligently organizes all your tabs based on the designated categories. You also have the flexibility to customize the grouping of specific tabs according to your preferences.
+
+### [How to Use Tab Grouping by Domain?](https://www.sidespace.app/blog/ai-powered-tab-grouping\#how-to-use-tab-grouping-by-domain)
+
+![](https://www.sidespace.app/blog_003_02.jpg)
+
+For users who prefer a more straightforward approach, our extension offers domain-based grouping. Simply click the three dots button on the top right, and select `Group By Domain` to instantly organize your tabs by the website domain name.
+
+### [Advantages of Tab Grouping by AI](https://www.sidespace.app/blog/ai-powered-tab-grouping\#advantages-of-tab-grouping-by-ai)
+
+`Quick and Efficient`: Say goodbye to manual tab sorting. AI-based grouping provides a swift and efficient way to classify your tabs.
+
+`Meaningful Classification`: Unlike traditional methods that rely solely on domain names, our AI classifies tabs based on their meaning and use.
+
+`Tidy Browser, Enhanced Productivity`: Keep your browser clutter-free and experience enhanced productivity as AI takes the reins in organizing your tabs.
+
+### [Conclusion](https://www.sidespace.app/blog/ai-powered-tab-grouping\#conclusion)
+
+In conclusion, tab grouping by AI is a game-changer for users seeking an organized and efficient browser experience. Leap enhanced productivity by trying our AI-based grouping feature.
+
+Download our Chrome extension today and enjoy the benefits of a tidy and streamlined browsing environment.
+
+Ready to optimize your tab management? [Get Extension](https://chromewebstore.google.com/detail/side-space-vertical-tab-m/ipcmlnjbpgmnpahkkboglidcbkndekjj?hl=en-GB)
+
+[Prev](https://www.sidespace.app/blog/discover-the-power-of-vertical-tabs-manager "Discover the Power of Vertical Tabs Manager") [Next](https://www.sidespace.app/blog/introducing-the-concept-of-spaces "Introducing the Concept of Spaces")
+
+- [Side Space on TwitterTwitter](https://twitter.com/side_space_app)
+- [Blog](https://www.sidespace.app/blog)
+- [Features](https://www.sidespace.app/)
+- [Pricing](https://www.sidespace.app/)
+- [Terms & Conditions](https://www.sidespace.app/terms-of-services)

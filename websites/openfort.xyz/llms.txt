@@ -1,0 +1,163 @@
+# Openfort
+
+## Documentation
+
+### React
+
+- [Overview](https://openfort.xyz/docs/guides/react)
+- [Configuration](https://openfort.xyz/docs/guides/react/configuration)
+  - [Button](https://openfort.xyz/docs/guides/react/configuration/button)
+  - [Custom UI](https://openfort.xyz/docs/guides/react/configuration/custom-ui)
+  - [Provider](https://openfort.xyz/docs/guides/react/configuration/provider)
+  - [Wagmi](https://openfort.xyz/docs/guides/react/configuration/wagmi)
+- [Hooks](https://openfort.xyz/docs/guides/react/hooks)
+- [Wallets](https://openfort.xyz/docs/guides/react/wallets)
+  - [Embedded Signer](https://openfort.xyz/docs/guides/react/wallets/embedded-signer)
+  - [Funding](https://openfort.xyz/docs/guides/react/wallets/funding)
+  - [Usage](https://openfort.xyz/docs/guides/react/wallets/usage)
+- [White Label](https://openfort.xyz/docs/guides/react/white-label)
+
+### React Native
+
+- [Overview](https://www.openfort.xyz/docs/guides/javascript/react-native)
+
+### Unity
+
+- [Overview](https://openfort.xyz/docs/guides/unity)
+- [Quickstart](https://openfort.xyz/docs/guides/unity/quickstart)
+- [WebGL](https://openfort.xyz/docs/guides/unity/webgl)
+- [Authentication](https://openfort.xyz/docs/guides/unity/auth)
+  - [Email](https://openfort.xyz/docs/guides/unity/auth/email)
+  - [External Wallet](https://openfort.xyz/docs/guides/unity/auth/external-wallet)
+  - [Guest](https://openfort.xyz/docs/guides/unity/auth/guest)
+  - [OAuth](https://openfort.xyz/docs/guides/unity/auth/oauth)
+  - [Third Party](https://openfort.xyz/docs/guides/unity/auth/third-party)
+  - [User Sessions](https://openfort.xyz/docs/guides/unity/auth/user-sessions)
+- [Embedded Signer](https://openfort.xyz/docs/guides/unity/embedded-signer)
+  - [Recovery](https://openfort.xyz/docs/guides/unity/embedded-signer/recovery)
+  - [Sign Messages](https://openfort.xyz/docs/guides/unity/embedded-signer/sign-messages)
+  - [State](https://openfort.xyz/docs/guides/unity/embedded-signer/state)
+- [Smart Wallet](https://openfort.xyz/docs/guides/unity/smart-wallet)
+  - [Session Keys](https://openfort.xyz/docs/guides/unity/smart-wallet/advanced/session-keys)
+  - [Connected Wallets](https://openfort.xyz/docs/guides/unity/smart-wallet/connected-wallets)
+  - [Send](https://openfort.xyz/docs/guides/unity/smart-wallet/send)
+- [Resources](https://openfort.xyz/docs/guides/unity/resources)
+- [Security](https://openfort.xyz/docs/guides/unity/security)
+- [Troubleshooting](https://openfort.xyz/docs/guides/unity/troubleshooting)
+
+### JavaScript
+
+- [Overview](https://openfort.xyz/docs/guides/javascript)
+- [Use Openfort](https://openfort.xyz/docs/guides/javascript/use-openfort) # Added this key page
+- [Authentication](https://openfort.xyz/docs/guides/javascript/auth)
+  - [External Auth](https://openfort.xyz/docs/guides/javascript/auth/external-auth)
+  - [External Wallet](https://openfort.xyz/docs/guides/javascript/auth/external-wallet)
+  - [Guest](https://openfort.xyz/docs/guides/javascript/auth/guest)
+  - [OAuth Login](https://openfort.xyz/docs/guides/javascript/auth/oauth-login)
+  - [Password](https://openfort.xyz/docs/guides/javascript/auth/password)
+  - [User Management](https://openfort.xyz/docs/guides/javascript/auth/user-management)
+  - [User Sessions](https://openfort.xyz/docs/guides/javascript/auth/user-sessions)
+- [Embedded Signer](https://openfort.xyz/docs/guides/javascript/embedded-signer)
+  - [Advanced](https://openfort.xyz/docs/guides/javascript/embedded-signer/advanced)
+  - [Export Key](https://openfort.xyz/docs/guides/javascript/embedded-signer/export-key)
+  - [Recovery](https://openfort.xyz/docs/guides/javascript/embedded-signer/recovery)
+  - [Sign Messages](https://openfort.xyz/docs/guides/javascript/embedded-signer/sign-messages)
+  - [Update Recovery](https://openfort.xyz/docs/guides/javascript/embedded-signer/update-recovery) # Added missing page
+- [Smart Wallet](https://openfort.xyz/docs/guides/javascript/smart-wallet)
+  - [Advanced](https://openfort.xyz/docs/guides/javascript/smart-wallet/advanced)
+    - [Session Keys](https://openfort.xyz/docs/guides/javascript/smart-wallet/advanced/session-keys)
+    - [Social Recovery](https://openfort.xyz/docs/guides/javascript/smart-wallet/advanced/social-recovery)
+    - [Transfer Ownership](https://openfort.xyz/docs/guides/javascript/smart-wallet/advanced/transfer-ownership)
+  - [Connected Wallets](https://openfort.xyz/docs/guides/javascript/smart-wallet/connected-wallets)
+  - [Funding](https://openfort.xyz/docs/guides/javascript/smart-wallet/funding)
+  - [Handling Networks](https://openfort.xyz/docs/guides/javascript/smart-wallet/handling-networks) # Added missing page
+  - [Libraries](https://openfort.xyz/docs/guides/javascript/smart-wallet/libraries) # Added missing page
+  - [Send](https://openfort.xyz/docs/guides/javascript/smart-wallet/send)
+- [Wallets](https://openfort.xyz/docs/guides/javascript/wallets) # Added missing page
+- [FAQs](https://openfort.xyz/docs/guides/javascript/faqs)
+- [Resources](https://openfort.xyz/docs/guides/javascript/resources)
+- [Troubleshooting](https://openfort.xyz/docs/guides/javascript/troubleshooting)
+
+### Server
+
+- [Overview](https://openfort.xyz/docs/guides/server)
+- [Quickstarts](https://openfort.xyz/docs/guides/server/quickstarts)
+  - [API](https://openfort.xyz/docs/guides/server/quickstarts/api)
+  - [SDK](https://openfort.xyz/docs/guides/server/quickstarts/sdk)
+- [Access Token](https://openfort.xyz/docs/guides/server/access-token)
+- [Backend Wallets](https://openfort.xyz/docs/guides/server/dev)
+- [Pregenerate Wallets](https://openfort.xyz/docs/guides/server/pregenerate-wallets)
+- [Security](https://openfort.xyz/docs/guides/server/security)
+- [Setup](https://openfort.xyz/docs/guides/server/setup)
+- [Usage](https://openfort.xyz/docs/guides/server/usage)
+- [Webhooks](https://openfort.xyz/docs/guides/server/webhooks)
+
+### Ecosystem Wallet
+
+- [Overview](https://openfort.xyz/docs/guides/ecosystem)
+- [Configuration](https://openfort.xyz/docs/guides/ecosystem/configuration)
+  - [Branding](https://openfort.xyz/docs/guides/ecosystem/configuration/branding)
+  - [Ecosystem ID](https://openfort.xyz/docs/guides/ecosystem/configuration/ecosystem-id)
+  - [Login Methods](https://openfort.xyz/docs/guides/ecosystem/configuration/login-methods)
+  - [Samples](https://openfort.xyz/docs/guides/ecosystem/configuration/samples)
+  - [Wallet UI](https://openfort.xyz/docs/guides/ecosystem/configuration/wallet-ui)
+- [Batch Transactions](https://openfort.xyz/docs/guides/ecosystem/batch-transactions)
+- [Create Wallet Button](https://openfort.xyz/docs/guides/ecosystem/create-wallet-button)
+- [Dashboard](https://openfort.xyz/docs/guides/ecosystem/dashboard)
+- [FAQs](https://openfort.xyz/docs/guides/ecosystem/faqs)
+- [Gas Policies](https://openfort.xyz/docs/guides/ecosystem/gas-policies)
+- [Getting Started](https://openfort.xyz/docs/guides/ecosystem/getting-started)
+- [Intro](https://openfort.xyz/docs/guides/ecosystem/intro)
+- [Libraries](https://openfort.xyz/docs/guides/ecosystem/libraries)
+- [React Native Integration](https://openfort.xyz/docs/guides/ecosystem/react-native-integration)
+- [Security](https://openfort.xyz/docs/guides/ecosystem/security)
+- [Signatures](https://openfort.xyz/docs/guides/ecosystem/signatures)
+- [Web App Wagmi](https://openfort.xyz/docs/guides/ecosystem/web-app-wagmi)
+
+### Dashboard
+
+- [Overview](https://openfort.xyz/docs/guides/dashboard)
+- [Custom Auth](https://openfort.xyz/docs/guides/dashboard/custom-auth)
+  - [Auth Token](https://openfort.xyz/docs/guides/dashboard/custom-auth/auth-token)
+  - [OIDC Token](https://openfort.xyz/docs/guides/dashboard/custom-auth/oidc-token)
+  - [Telegram Mini App](https://openfort.xyz/docs/guides/dashboard/custom-auth/telegram-mini-app)
+- [External Auth](https://openfort.xyz/docs/guides/dashboard/external-auth)
+  - [AccelByte](https://openfort.xyz/docs/guides/dashboard/external-auth/accelbyte)
+  - [Firebase](https://openfort.xyz/docs/guides/dashboard/external-auth/firebase)
+  - [LootLocker](https://openfort.xyz/docs/guides/dashboard/external-auth/lootlocker)
+  - [PlayFab](https://openfort.xyz/docs/guides/dashboard/external-auth/playfab)
+  - [Supabase](https://openfort.xyz/docs/guides/dashboard/external-auth/supabase)
+- [Password](https://openfort.xyz/docs/guides/dashboard/password)
+  - [Custom SMTP](https://openfort.xyz/docs/guides/dashboard/password/custom-smtp)
+  - [Security](https://openfort.xyz/docs/guides/dashboard/password/security)
+- [Social Login](https://openfort.xyz/docs/guides/dashboard/social-login)
+  - [Discord](https://openfort.xyz/docs/guides/dashboard/social-login/auth-discord)
+  - [Epic Games](https://openfort.xyz/docs/guides/dashboard/social-login/auth-epic)
+  - [Facebook](https://openfort.xyz/docs/guides/dashboard/social-login/auth-facebook)
+  - [Google](https://openfort.xyz/docs/guides/dashboard/social-login/auth-google)
+  - [LINE](https://openfort.xyz/docs/guides/dashboard/social-login/auth-line)
+  - [Telegram](https://openfort.xyz/docs/guides/dashboard/social-login/auth-telegram)
+  - [Twitter](https://openfort.xyz/docs/guides/dashboard/social-login/auth-twitter)
+- [Backend Wallets](https://openfort.xyz/docs/guides/dashboard/dev)
+- [Ecosystem](https://openfort.xyz/docs/guides/dashboard/ecosystem)
+- [External Auth Overview](https://openfort.xyz/docs/guides/dashboard/external-auth)
+- [FAQs](https://openfort.xyz/docs/guides/dashboard/faqs)
+- [Gas ERC20](https://openfort.xyz/docs/guides/dashboard/gas-erc20)
+- [Gas Sponsorship](https://openfort.xyz/docs/guides/dashboard/gas-sponsorship)
+- [Keys](https://openfort.xyz/docs/guides/dashboard/keys)
+- [Notifications](https://openfort.xyz/docs/guides/dashboard/notifications)
+- [Project Billing](https://openfort.xyz/docs/guides/dashboard/project-billing)
+- [Social Login Overview](https://openfort.xyz/docs/guides/dashboard/social-login)
+- [Sponsor Rules](https://openfort.xyz/docs/guides/dashboard/sponsor-rules)
+- [Team](https://openfort.xyz/docs/guides/dashboard/team)
+- [Users](https://openfort.xyz/docs/guides/dashboard/users)
+- [Webhooks](https://openfort.xyz/docs/guides/dashboard/webhooks)
+
+### Reference
+
+- [Entity Addresses](https://openfort.xyz/docs/addresses)
+- [AI Tooling](https://openfort.xyz/docs/ai-tooling)
+- [API Keys](https://openfort.xyz/docs/api-keys)
+- [Supported Chains](https://openfort.xyz/docs/chains)
+- [Libraries](https://openfort.xyz/docs/libraries)
+- [Security](https://openfort.xyz/docs/security)

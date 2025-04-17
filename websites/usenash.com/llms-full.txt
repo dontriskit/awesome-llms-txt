@@ -1,0 +1,3275 @@
+# Cancel Batch Job
+Source: https://docs.usenash.com/api-reference/batch-job/cancel-job-by-job-id-and-task-or-job-configuration-id
+
+post /v1/jobs/{jobId}/cancel
+This endpoint allows you to cancel a batch job by job ID and task or job configuration ID.
+
+
+
+# Create Batch Job
+Source: https://docs.usenash.com/api-reference/batch-job/create-batch-job
+
+post /v1/batch_job
+Create a job with multiple packages
+
+### What’s a batch job?
+
+A batch job is a group of packages that are delivered by same courier (and thus same provider).
+A batch job has N packages where N > 1, in contrast with single jobs (non-batch) which have a single package.
+
+### Batch types
+
+* **pattern 1: single pickup, multiple dropoffs** = same pickup address, name and phone-number for all packages
+* **pattern 2: multiple pickups, single dropoff** = same dropoff address, name and phone-number for all packages
+* **pattern 3: multiple pickups, multiple dropoff**
+  * multiple pickups then multiple dropoffs. note: there’s no pickup after a dropoff (interleaving)
+
+The response is similar to [Create Job](/api-reference/job/create-job), but with the addition of two new fields:
+`isBatch`, and `batch` field:
+
+`batch` field:
+
+* batch.id: unique id for this batch
+* batch.type: one of these values:
+  * `SINGLE_PICKUP_MULTIPLE_DROPOFFS`
+  * `MULTIPLE_PICKUPS_SINGLE_DROPOFF`
+  * `MULTIPLE_PICKUPS_MULTIPLE_DROPOFFS`
+* batch.objectSequence: list of `jobConfigurations` (which container package information) in order:
+* batch.stopTypes: list of stop representing actions sequence: `PICKUP` or `DROPOFF`
+* batch.quotes, batch.winnerQuote, batch.failedQuotes: same as task.quotes, task.winnerQuote, task.failedQuotes from non-batch jobs
+
+```json
+{
+	"batch": {
+		"id": "bth_...",
+		"type": "MULTIPLE_PICKUPS_MULTIPLE_DROPOFFS",
+		"objectSequence": [],
+		"stopTypes": [
+			"PICKUP",
+			"DROPOFF",
+			"DROPOFF"
+		],
+		"providerId": "FleetSimulatorFast",
+		"winnerQuote": {
+			"id": "qot_..",
+			"providerId": "FleetSimulatorFast",
+			"providerName": "FleetSimulator (4TestRunner)"
+		},
+		"quotes": [],
+		"failedQuotes": []
+	},
+        ...
+}
+```
+
+<Note>
+  For this and all other endpoints, as Nash processes fields from different providers, please assume that any field in the response we provide may be `null`.
+</Note>
+
+
+# Refresh Quotes (Batch)
+Source: https://docs.usenash.com/api-reference/batch-job/refresh-quotes-by-job-id-and-batch-id
+
+post /v1/jobs/{jobId}/batch/{batchId}/refresh_quotes
+Refresh the quotes for a batch job.
+
+
+
+# Select Quote (Batch)
+Source: https://docs.usenash.com/api-reference/batch-job/select-quote
+
+post /v1/select_quote
+Select the quote you would like to execute from a specific job.
+
+
+
+# Update Batch Job
+Source: https://docs.usenash.com/api-reference/batch-job/update-job-by-job-id-and-job-configuration-id
+
+patch /v1/jobs/{jobId}/{jobConfigurationId}
+This endpoint allows you to update some fields in the Nash job. Updating a job should always work before a quote is selected, but if a quote has been selected, Nash will return an error if the fleet rejects the update of the order.
+
+## Pre Dispatch Updates
+
+Updating a job should always work before a quote is selected. Some updates may result in pricing changes
+
+Please note that you are only able to update the package delivery times and the pickup or dropoff addresses before an order has been dispatched to a fleet. If any task in a job is dispatched and a delivery time or address are attempted to be updated, then an error will be thrown by the endpoint.
+
+If you update any of the following fields, then the quotes returned by the job will be refreshed and the endpoint will return a new set of quotes. Moreover, any existing quotes (and quote IDs) will be invalid for dispatch. The fields that will force a refresh in the Quotes:
+
+1. `pickupAddress`
+2. `dropoffAddress`
+3. `packagePickupStartTime`
+4. `packagePickupEndTime`
+5. `packageDropoffStartTime`
+6. `packageDropoffEndTime`
+7. `packageDeliveryMode`
+8. `packageRequirements`
+9. `packageMinimumVehicleSize`
+10. `packageValue`: for this field, it can also be updated in the [post-dispatch stage](/api-reference/job/update-job-by-job-id#post-dispatch-updates)
+
+### Note on Updating Times
+
+If you wish to update the times of a Job, you must provide at least one time constraint out of `packagePickupStartTime`, `packagePickupEndTime`, `packageDropoffStartTime`, and `packageDropoffEndTime`. Times that are not specified will be calculated by Nash, and the previous times not included in the Update Request will be overwritten. Therefore, if you want to update only one time field and keep the rest the same, you must provide them in the parameters of the Update Request.
+
+If you change a `packageDeliveryMode=SCHEDULED` job to `NOW`, you do not need to specify any other time fields.
+
+## Post Dispatch Updates
+
+If a quote has been selected or the job is dispatched via auto-dispatch, Nash will return an error if any of the assigned fleets in the job reject the update of the order.
+
+In the post-dispatch stage, updating the package value of the job may result in a price change, based on how the providers calculate their pricing.
+
+Below is a list of fields that are allowed to be updated, with more details on pre-dispatch or post-dispatch restrictions.
+
+
+# Book a delivery window for order
+Source: https://docs.usenash.com/api-reference/delivery-windows/book-a-delivery-window-for-order
+
+post /v1/order/external-identifier/{externalId}/delivery-window/book
+
+
+
+# Confirm a delivery window for order
+Source: https://docs.usenash.com/api-reference/delivery-windows/confirm-a-delivery-window-for-order
+
+post /v1/order/external-identifier/{externalId}/delivery-window/confirm
+
+
+
+# Revoke a delivery window for order
+Source: https://docs.usenash.com/api-reference/delivery-windows/revoke-a-delivery-window-for-order
+
+post /v1/order/external-identifier/{externalId}/delivery-window/revoke
+
+
+
+# Create dispatch strategy
+Source: https://docs.usenash.com/api-reference/dispatch-strategies/create-dispatch-strategy
+
+post /v1/options_group
+
+
+
+# Automations
+Source: https://docs.usenash.com/api-reference/dispatch-strategies/dispatch-automations
+
+
+
+Dispatch Automation provides a way to dynamically manage your dispatch strategies. An Automation is comprised of several Rules. If the conditions of a Rule are True, then the resulting action is that a Dispatch Strategy will be applied to the job. Let's assume you have two dispatch strategies:
+
+* Individual Order Dispatch Strategy (*DS\_1*): comprised of short-distance gig fleets, lowest price strategy
+* High Value Dispatch Strategy (*DS\_2*): contains a list of long-range fleets that specialize in white-glove delivery
+* Default Dispatch Strategy (*DS\_3*): a mix of all fleets
+
+You may want to assign different dispatch strategies based on the content of each delivery. One way to do that is to have the logic live on your server and attach the appropriate dispatch strategy for each new order.
+
+Another way to do this is by creating an Automation at the account level. An automation is a set of IF / ELIF / ELSE conditions:
+
+```py
+# psuedo code
+if condition_1:
+  apply dispatch_strategy_1
+else if condition2:
+  apply dispatch_strategy_2
+else:
+  apply dispatch_strategy_3
+```
+
+Dispatch Automations will apply to any job that does not have a Dispatch Strategy assigned.
+If a job meets the defined criteria then it will have the relevant dispatch strategy applied, otherwise,
+the default dispatch strategy will be applied. The fallback default dispatch strategy can also be `None`,
+if you do not want any dispatch strategy to apply (not common).
+
+### Properties
+
+Dispatch Rules have a set of properties that can be used to evaluate incoming jobs. Here's a list of those properties:
+
+1. Package Value
+2. Pickup Business Name
+3. Pickup City
+4. Pickup State
+5. Pickup Zip/Postal Code
+6. Dropoff Business Name
+7. Dropoff City
+8. Dropoff State
+9. Dropoff Zip/Postal Code
+10. Items Count
+11. Driving Distance
+12. Minutes Until Pickup
+13. JobMetadata
+
+<Note>
+  **Don't see the property you need?**
+
+  We are continuously adding to this list based on customer needs - reach out to [support@usenash.com](mailto:support@usenash.com) and we can help you add a new property
+</Note>
+
+### Utilizing Job Metadata
+
+You can query fields tags that you set in the JobMetadata when applying Dispatch Automations. For example,
+
+```js
+jobMetadata: {
+  "tags": ["catering"]
+}
+```
+
+And then when creating your Dispatch Rule you would query that the JobMetadata "tags" key contains the value "catering".
+
+### Configuration
+
+Dispatch Automations can be configured from the [Nash Portal](https://portal.sandbox.usenash.com/settings/dispatch-automation/active). If you plan to create several Nash Organizations to manage as part of a partnership with Nash, you can get in touch with your Nash CS member to configure it at the Org Creation level.
+
+![Dispatch Automation](https://files.readme.io/af1a6c4-Screenshot_2023-07-07_at_4.21.42_PM.png)
+
+
+# Dispatch Strategies
+Source: https://docs.usenash.com/api-reference/dispatch-strategies/dispatch-strategy
+
+
+
+Dispatch Strategies, or Options Groups, are sets of configurations that can be attached to Nash jobs during creation.
+
+For example, you can set up a job to dispatch to the most affordable provider. In another scenario, you might want to
+dispatch the job to your internal fleet, and if they cannot fulfill it then you may want to send it to a third party provider.
+Dispatch Strategies allow all of these customizations to happen.
+
+### Allowed Providers
+
+The list of allowed providers allows you to limit the number of delivery providers available to a job. Through this list,
+you can add (or remove) any provider that is currently enabled for your account. That way, when creating a job with that
+dispatch strategy, only the providers you choose will show availability for that delivery.
+
+### Selection Strategy
+
+Jobs that are assigned via auto-dispatch are assigned to a delivery provider based on one of three selection strategies:
+
+**Price**: Choosing a price-based selection strategy will compare all of the available delivery provider's quotes, and
+dispatch the job to the one with the lowest price.
+
+**Ranked**: Choosing a selection strategy based on rank allows you to set your preferred delivery providers. Jobs will be
+dispatched in order, based on which providers are actually available for each job.
+
+**Reliability**: Choosing a reliability-based dispatch will engage with Nash's proprietary algorithm that ranks each
+elivery provider's reliability. This is determined by a number of factors including completion rate, cancellation rate, and on-time rate.
+
+When auto-dispatch is enabled, the provider will be selected and job dispatched to them immediately upon job creation.
+In case your use case, requires user confirmation before dispatch (example confirming price) you can use the
+[autodispatch](/api-reference/order/autodispatch-order) API endpoint to trigger the outcome of the strategy when you are ready for dispatch.
+
+![Dispatch Strategy](https://files.readme.io/420d599-image.png)
+
+## To enable or not to enable auto-dispatch?
+
+### Possible applications where you might want to enable this option:
+
+* You want to send only one command to Nash to simultaneously create and dispatch a Job (set it and forget it).
+* You offer free or fixed price delivery and don't want to show any dynamic delivery options or prices to your customers.
+* You will always want the delivery to occur, you just want the lowest price option without having to write logic to
+  figure out this (you can set a max possible fee). This is popular with restaurants.
+
+### Possible applications where you might NOT want to enable this option:
+
+* You want to allow a customer to choose their own delivery options like provider or price which is dynamically calculated by Nash.
+* You want to know how much a particular delivery will cost before committing to the delivery, either for yourself or to show your customer. Very common in customer checkout workflows
+
+
+# Get Dispatch Strategies
+Source: https://docs.usenash.com/api-reference/dispatch-strategies/get-dispatch-strategies
+
+get /v1/options_group
+List your organization's dispatch strategies.
+
+
+
+# Update dispatch strategy
+Source: https://docs.usenash.com/api-reference/dispatch-strategies/update-dispatch-strategy
+
+patch /v1/options_group/{id}
+
+
+
+# Nash API
+Source: https://docs.usenash.com/api-reference/introduction
+
+Nash API is the gateway to our delivery orchestration platform.
+
+Nash is a delivery orchestration platform enabling your business to offer reliable delivery.
+
+<CardGroup cols={3}>
+  <Card title="Orders" icon="box-circle-check" href="/api-reference/order">
+    The fastest and most flexible way to manage your delivery operations.
+  </Card>
+
+  <Card title="Dispatch Strategies" icon="truck-fast" href="/api-reference/dispatch-strategies/dispatch-strategy">
+    Choose your delivery providers and set dispatch strategies.
+  </Card>
+
+  <Card title="Store Locations" icon="shop" href="/api-reference/store-locations" iconType="solid">
+    Create and manage your store locations.
+  </Card>
+
+  <Card title="Jobs" icon="box-taped" href="/api-reference/job/jobs">
+    Once a delivery is dispatched, you can track it and update it.
+  </Card>
+
+  <Card title="Batch Jobs" icon="boxes-stacked" href="/api-reference/batch-job">
+    Once a delivery with mutliple packages is dispatched, you can track it and update it.
+  </Card>
+
+  <Card title="Notifications" icon="message-lines" href="/api-reference/notifications">
+    Send notifications to your customers or internal systems.
+  </Card>
+
+  <Card title="Providers" icon="truck" href="/api-reference/provider">
+    Get all available providers in your organization.
+  </Card>
+
+  <Card title="Misc" icon="rectangles-mixed" href="/api-reference/miscellaneous">
+    Server health check.
+  </Card>
+</CardGroup>
+
+
+# Autodispatch Job
+Source: https://docs.usenash.com/api-reference/job/autodispatch-job
+
+post /v1/jobs/{id}/autodispatch
+Automatically select a quote based on dispatch strategy
+
+## Autodispatch Job
+
+For a given job, you can set up auto dispatch features by creating Dispatch Strategies.
+
+In some scenarios, you may want to create a job to display the quotes to your customer before sending the job for fulfillment.
+This is the case in a checkout experience, where you would want to display the delivery options before dispatching the job.
+After the customer accepts the order and would like to place it, you can utilize the
+Autodispatch Job endpoint to make sure that the job is sent using the customized Options Group that you have created.
+
+Therefore, to autodispatch a job using an options group, you need to ensure that an options group has been attached to
+the job and that you have selected a dispatching strategy for the options group. When creating a job, you can display
+the quotes to your customers, and then instead of selecting a quote, you can autodispatch the job using this endpoint.
+
+### Autodispatch Preferred Quote
+
+When a call to `/autodispatch` is made, the quote with the tag `autodispatch_preferred_quote` will be selected.
+You may utilize this tag to know what price to display to your customers, if you are utilizing this feature as part of your checkout experience.
+You can access the full list of quotes `create_job_response["jobConfigurations"][0]["advanced_task"]["quotes"]` and then filter the one with `"autodispatch_preferred_quote"` in quote.tags.
+
+<Note>
+  Please make sure that Enable Autodispatch is switched off on the Dispatch Strategy that you are using to autodispatch the job.
+</Note>
+
+
+# Autodispatch Job by External Identifier
+Source: https://docs.usenash.com/api-reference/job/autodispatch-job-by-external-identifier
+
+post /v1/jobs/external_identifier/{externalIdentifier}/autodispatch
+Automatically select a quote based on dispatch strategy
+
+## Autodispatch Job
+
+For a given job, you can set up auto dispatch features by creating Dispatch Strategies.
+
+In some scenarios, you may want to create a job to display the quotes to your customer before sending the job for fulfillment.
+This is the case in a checkout experience, where you would want to display the delivery options before dispatching the job.
+After the customer accepts the order and would like to place it, you can utilize the
+Autodispatch Job endpoint to make sure that the job is sent using the customized Options Group that you have created.
+
+Therefore, to autodispatch a job using an options group, you need to ensure that an options group has been attached to
+the job and that you have selected a dispatching strategy for the options group. When creating a job, you can display
+the quotes to your customers, and then instead of selecting a quote, you can autodispatch the job using this endpoint.
+
+### Autodispatch Preferred Quote
+
+When a call to `/autodispatch` is made, the quote with the tag `autodispatch_preferred_quote` will be selected.
+You may utilize this tag to know what price to display to your customers, if you are utilizing this feature as part of your checkout experience.
+You can access the full list of quotes `create_job_response["jobConfigurations"][0]["advanced_task"]["quotes"]` and then filter the one with `"autodispatch_preferred_quote"` in quote.tags.
+
+<Note>
+  Please make sure that Enable Autodispatch is switched off on the Dispatch Strategy that you are using to autodispatch the job.
+</Note>
+
+
+# Cancel Job by External Identifier
+Source: https://docs.usenash.com/api-reference/job/cancel-job-by-external-identifier
+
+post /v1/jobs/external_identifier/{externalIdentifier}/cancel
+Cancels a Nash Job by the Partner's External ID if one was supplied at job creation.
+
+
+
+# Cancel Job
+Source: https://docs.usenash.com/api-reference/job/cancel-job-by-job-id-and-job-configuration-id
+
+post /v1/jobs/{jobId}/{objectId}/cancel
+
+
+
+# Create Delivery Incident
+Source: https://docs.usenash.com/api-reference/job/create-delivery-incident
+
+post /v1/jobs/{jobId}/tasks/{taskId}/delivery_incident
+Create a new delivery incident for a task
+
+
+
+# Create Job
+Source: https://docs.usenash.com/api-reference/job/create-job
+
+post /v1/jobs
+Create a new job (delivery)
+
+<Warning>This endpoint is deprecated. Please use the [Create Order](/api-reference/order/create-order) endpoint instead.</Warning>
+
+### Scheduled Job Time Calculations
+
+When creating a scheduled job, you must include at least one time constraint out of `packagePickupStartTime`, `packagePickupEndTime`, `packageDropoffStartTime`, and `packageDropoffEndTime`. Times that are not specified will be calculated by Nash.
+
+If the specified pickup time of a scheduled job is very close to the current time (within 5 minutes in the past or 10 minutes in the future), it will be automatically transformed into an ASAP job.
+
+<Note>
+  For this and all other endpoints, as Nash processes fields from different providers, please assume that any field in the response we provide may be `null`.
+</Note>
+
+### Package Items
+
+An array of item objects, each describing an item within the package for delivery.
+
+Each object should include the item's name, dimensions (length, width, height), and count, providing a detailed inventory of the package's contents. This information is used to ensure accurate handling and space allocation for transport.
+![Package Items](https://files.readme.io/30c332b-package_items.png)
+
+<Note>
+  Note that it's still highly recommended to include both **pickup** and **dropoff times** since our estimations are based on historical time data rather than real-time metrics.
+</Note>
+
+<Warning>
+  The fields `selectedConfiguration` and `jobSpecification` returned in the job response are deprecated and not recommended to be used.
+
+  **Migration guide, replace:**
+
+  `jobSpecification->package` with `data->jobConfiguration[0]->package`
+
+  and `selectedConfiguration` with `jobConfiguration[0]`
+</Warning>
+
+
+# Create or Update Job by External Identifier
+Source: https://docs.usenash.com/api-reference/job/create-or-update-job-by-external-identifier
+
+post /v1/jobs/external_identifier/{externalIdentifier}
+
+<Warning>This endpoint is deprecated. Please use the [Create or Update Order by External Identifier](/api-reference/order/create-or-update-order-by-external-identifier) endpoint instead.</Warning>
+
+
+# Get Job
+Source: https://docs.usenash.com/api-reference/job/get-job
+
+get /v1/jobs/{id}
+Retrieve a job by its ID.
+
+
+
+# Get Job by External Identifier
+Source: https://docs.usenash.com/api-reference/job/get-job-by-external-identifier
+
+get /v1/jobs/external_identifier/{externalIdentifier}
+Retrieve a job by its external identifier.
+
+
+
+# Get Refund Request
+Source: https://docs.usenash.com/api-reference/job/get-refund-request
+
+get /v1/refund-request/{id}
+Retrieve a refund request by its ID.
+
+
+
+# Get Refund Requests
+Source: https://docs.usenash.com/api-reference/job/get-refund-requests
+
+get /v1/refund-requests
+Retrieve a list of refund requests by task ID or job ID.
+
+
+
+# Background
+Source: https://docs.usenash.com/api-reference/job/jobs
+
+Overview of Nash Jobs
+
+<Info> When one or more Orders are dispatched, they become a Job. </Info>
+
+Jobs represent the actual delivery process. A Job holds the package(s) to be delivered, the quotes from fleets willing to deliver the package(s), and the current delivery status if one was selected.
+
+Within each job, there's a structure that includes **Job Configurations**, **Tasks**,  and **Deliveries** that manage the details and processes of delivery.
+
+## Job Data Model
+
+![Jobs Data Model](https://files.readme.io/2764ee3-Screenshot_2023-12-18_at_10.44.04_PM.png)
+
+Here's how the data model relates to each other:
+
+* **Job**: This is the primary object that represents a delivery. It contains all the specifications for the package(s) to be delivered, such as the size, value, and the pickup and dropoff locations.
+* **Job Configuration**: Within each Job, there is a JobConfiguration. It includes information on the dispatch strategy, special instructions, and other configurations specific to this job.
+* **Task**: Under each Job Configuration, there can be a list of Tasks. A Task is where the action happens; it involves a set of Quotes and a Delivery object. When you create a new Task, you're seeking quotes for a new delivery to occur. After requesting a Task, you will receive a set of quotes from different providers, and upon selecting one, you will initiate a Delivery object that tracks the job's delivery lifecycle.
+* **Delivery**: The Delivery object holds information on the actual progress of the delivery, such as the status, estimated delivery time, courier details, and proof of delivery. It is created after you choose a quote for a Task and it becomes active when a delivery is underway.
+
+<Tip> Nash provides standardized statuses ([Delivery Statuses](/reference/delivery-status)) that help you understand the delivery's progress, regardless of the provider. This simplicity lets you focus on a single integration with Nash rather than deal with the idiosyncrasies of different providers' status naming conventions.</Tip>
+
+## Putting it into Practice
+
+Here's an example scenario: You create a Job to deliver an order using your internal fleet (this would be your first Task). If you later realize that you don't have an internal driver available, you might create a new Task for the same Job to get quotes from third-party fleets within Nash. Once you select a new quote, this initiates another Delivery object associated with the second Task.
+
+## Common Paths in the Job Object
+
+The Job object contains various nested structures. Here are the most commonly used paths to access important information:
+
+### Basic Job information
+
+* **Job ID**: `Job["id"]`
+
+### Quotes and Tasks
+
+* **All quotes for the first task**: `Job["jobConfigurations"][0]["tasks"][0]["quotes"]`
+* **ID of a specific quote** (replace `Index` with the quote's index): `Job["jobConfigurations"][0]["tasks"][0]["quotes"][INDEX]["id"]`
+
+### Advanced Tasks
+
+When a job has multiple tasks (e.g. it has been reassigned to a different delivery provider), use this to get the most advanced (aka latest) task in the process:
+`Job["jobConfigurations"][0]["advancedTask"]`
+
+## Delivery Status
+
+* **Check if a provider has been assigned**: `Job["jobConfigurations"][0]["tasks"][0]["delivery"]` If this value is `null`, no provider has been assigned yet.
+* **Access delivery information**: `Job["jobConfigurations"][0]["tasks"][0]["delivery"]`
+  This object contains useful attributes such as:
+  * `status`
+  * `dropoffEta`
+  * `courierName`
+  * `courierPhoneNumber`
+  * `courierLocation`
+
+### Example Job Object
+
+Note: All timestamps are in UTC and in this format `%Y-%m-%dT%H:%M:%S.%f`
+
+The Job object returned for most endpoints looks like this:
+
+```json
+{
+    "id": "job_R7FXJrfB99bpvpzf6CriJC",
+    "createdAt": "2022-03-05T01:11:51.078927",
+    "portalUrl": "https://portal.usenash.com/active/job_R7FXJrfB99bpvpzf6CriJC",
+    "externalIdentifier": null,
+    "jobMetadata":
+    {
+        "key": "val"
+    },
+    "isActive": false,
+    "jobConfigurations":
+    [
+        {
+            "package":
+            {
+                "description": "Test package description",
+                "pickupEndTime": null,
+                "pickupStartTime": "2022-03-05T01:16:51",
+                "dropoffStartTime": null,
+                "dropoffEndTime": null,
+                "valueCents": 100,
+                "taxCents": 950,
+                "serviceFeeCents": null,
+                "itemsCount": 1,
+                "pickupLocation":
+                {
+                    "id": "loc_dB4x4pToexhgRvGhZSTHaQ",
+                    "address": "185 University Ave, Palo Alto, CA 94301",
+                    "formattedAddress": "185 University Ave, Palo Alto, CA 94301, USA",
+                    "addressNumber": "185",
+                    "addressFormattedStreet": "University Ave",
+                    "addressCity": "Palo Alto",
+                    "addressCountry": "US",
+                    "addressState": "CA",
+                    "addressZip": "94301",
+                    "addressCounty": "Santa Clara County",
+                    "businessName": "Test pickup Business",
+                    "instructions": "Test pickup Instructions",
+                    "firstName": "Test pickup FirstName",
+                    "lastName": "Test pickup LastName",
+                    "phoneNumber": "+12345679012",
+                    "email": null
+                },
+                "dropoffLocation":
+                {
+                    "id": "loc_5heYem2xKGfNt9twg33kcT",
+                    "address": "401 San Antonio Rd, Mountain View, CA 94040",
+                    "formattedAddress": "401 San Antonio Rd, Mountain View, CA 94040, USA",
+                    "addressNumber": "401",
+                    "addressFormattedStreet": "San Antonio Rd",
+                    "addressCity": "Mountain View",
+                    "addressCountry": "US",
+                    "addressState": "CA",
+                    "addressZip": "94040",
+                    "addressCounty": "Santa Clara County",
+                    "businessName": "Test dropoff Business",
+                    "instructions": "Test dropoff Instructions",
+                    "firstName": "Test dropoff FirstName",
+                    "lastName": "Test dropoff LastName",
+                    "phoneNumber": "+12345679019",
+                    "email": null
+                }
+            },
+            "tasks":
+            [
+                {
+                    "id": "tsk_7xKGR6PW2pBtuTeRg2b7Bw",
+                    "createdAt": "2022-03-05T01:11:51.078927",
+                    "status": "COMPLETED",
+                    "providerId": "FleetSimulator",
+                    "tipAmountCents": 250,
+                    "winnerQuote":
+                    {
+                        "id": "qot_nh5VSwxr4trHsuKHpQbGW6",
+                        "providerId": "FleetSimulator",
+                        "providerName": "FleetSimulator"
+                    },
+                    "quotes":
+                    [
+                        {
+                            "id": "qot_DSv9NrbiNMjQw556H33LkY",
+                            "providerId": "uber_partner",
+                            "providerName": "Uber",
+                            "providerLogo": "https://nash-provider-logos.s3.us-west-1.amazonaws.com/uber-logo.png",
+                            "createdTime": "2022-03-05T01:11:52.912584",
+                            "expireTime": "2022-03-05T01:16:52.913410",
+                            "priceCents": 1209,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": "2022-03-05T01:29:08",
+                            "dropoffEta": "2022-03-05T02:03:39",
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                          	"taxAmountCents": 0,
+                            "totalPriceCents": 1209
+                        },
+                        {
+                            "id": "qot_DSv9NrbiNMjQw556H33LkY",
+                            "providerId": "doordash_partner",
+                            "providerName": "DoorDash Drive",
+                            "providerLogo": "https://nash-provider-logos.s3.us-west-1.amazonaws.com/doordash-logo.png",
+                            "createdTime": "2022-03-05T01:11:52.912584",
+                            "expireTime": "2022-03-05T01:16:52.913410",
+                            "priceCents": 699,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": "2022-03-05T01:29:08",
+                            "dropoffEta": "2022-03-05T02:03:39",
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                          	"taxAmountCents": 0,
+                            "totalPriceCents": 699
+                        },
+                        {
+                            "id": "qot_nh5VSwxr4trHsuKHpQbGW6",
+                            "providerId": "FleetSimulator",
+                            "providerName": "FleetSimulator",
+                            "providerLogo": "https://nash-provider-logos.s3.amazonaws.com/FleetSimulator.png",
+                            "createdTime": "2022-03-05T01:11:52.417462",
+                            "expireTime": "2022-03-05T02:11:52.417463",
+                            "priceCents": 0,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": null,
+                            "dropoffEta": "2022-03-05T01:17:52.417416",
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                            "totalPriceCents": 0
+                        },
+                        {
+                            "id": "qot_mfqxvKhCK8jqioCiVZBnXt",
+                            "providerId": "frayt_partner",
+                            "providerName": "Frayt",
+                            "providerLogo": "https://nash-provider-logos.s3.us-west-1.amazonaws.com/frayt-logo.jpeg",
+                            "createdTime": "2022-03-05T01:11:52.870453",
+                            "expireTime": "2022-03-05T03:11:52.870457",
+                            "priceCents": 3239,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": null,
+                            "dropoffEta": null,
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                            "totalPriceCents": 3239
+                        },
+                        {
+                            "id": "qot_5DyiesH2CXYXunoavBuBux",
+                            "providerId": "skipcart_partner",
+                            "providerName": "Skipcart",
+                            "providerLogo": "https://nash-provider-logos.s3.us-west-1.amazonaws.com/skipcart-logo.png",
+                            "createdTime": "2022-03-05T01:11:52.900834",
+                            "expireTime": "2022-03-05T01:21:52",
+                            "priceCents": 699,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": "2022-03-05T01:26:51",
+                            "dropoffEta": "2022-03-05T02:11:51",
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                            "totalPriceCents": 699
+                        },
+                        {
+                            "id": "qot_F48QHqWtNdEeZWNGJH9MzJ",
+                            "providerId": "senpex_partner",
+                            "providerName": "Senpex",
+                            "providerLogo": "https://nash-provider-logos.s3.us-west-1.amazonaws.com/senpex-logo.png",
+                            "createdTime": "2022-03-05T01:11:53.875782",
+                            "expireTime": "2022-03-05T02:11:53.875797",
+                            "priceCents": 3450,
+                            "nashFeeCents": 100,
+                            "currency": "USD",
+                            "pickupWindow": null,
+                            "dropoffEta": "2022-03-05T02:41:53.875791",
+                            "tollFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                            "totalPriceCents": 3450
+                        }
+                    ],
+                    "failedQuotes":
+                    [
+                        {
+                            "id": "qot_n7pBYDYawaEFb83VL9C6oc",
+                            "providerId": "Entree_OnFleet",
+                            "providerName": "Entree",
+                            "errorMessage": "Provider Entree_OnFleet is ineligible because of location coverage: pickup_state=CA and dropoff_state=CA. Provider location_coverage=['IL']"
+                        },
+                        {
+                            "id": "qot_cQWPW48ZDkHLpcR5Bof6Y8",
+                            "providerId": "caterwheels_partner",
+                            "providerName": "CaterWheels",
+                            "errorMessage": "Provider caterwheels_partner is ineligible because of location coverage: pickup_state=CA and dropoff_state=CA. Provider location_coverage=['NY']"
+                        },
+                        {
+                            "id": "qot_JzcNUsiqrBpDptZpDeuNwk",
+                            "providerId": "deluxe_delivery_partner",
+                            "providerName": "Deluxe Delivery",
+                            "errorMessage": "Provider deluxe_delivery_partner is ineligible because of location coverage: pickup_state=CA and dropoff_state=CA. Provider location_coverage=['NY', 'CT', 'PA', 'NJ', 'DE', 'MD', 'VA']"
+                        },
+                        {
+                            "id": "qot_gkXDGdT5wJvVbafHvLRrGf",
+                            "providerId": "senpex_batch_partner",
+                            "providerName": "Senpex (Batch)",
+                            "errorMessage": "Provider senpex_batch_partner is ineligible because of PackageDeliveryMode is not scheduled"
+                        },
+                        {
+                            "id": "qot_FoidPBMEvuFcs6rdVXmDvJ",
+                            "providerId": "dropcar_partner",
+                            "providerName": "Dropcar",
+                            "errorMessage": "Provider dropcar_partner is ineligible because of location coverage: pickup_city='Palo Alto, CA' and dropoff_city='Mountain View, CA'. Provider location_coverage=['Chicago, IL', 'New York, NY']"
+                        },
+                        {
+                            "id": "qot_QYjd23Rbo7Ca452pL6ACyt",
+                            "providerId": "snap_partner",
+                            "providerName": "Snap",
+                            "errorMessage": "Provider snap_partner is ineligible because of location coverage: pickup_city='Palo Alto, CA' and dropoff_city='Mountain View, CA'. Provider location_coverage=['Chicago, IL']"
+                        }
+                    ],
+                    "delivery":
+                    {
+                        "id": "dlv_MwQDy3s6ajvw5aQ7eQPt7i",
+                        "status": "DROPOFF_COMPLETE",
+                        "isActive": false,
+                        "pickupEta": null,
+                        "dropoffEta": "2022-03-05T01:17:52.417416",
+                        "dropoffDeadline": null,
+                        "priceCents": 0,
+                        "nashFeeCents": 100,
+                        "currency": "USD",
+                        "documents": [],
+                        "courierName": "Tjy Ifulu",
+                        "courierPhoneNumber": "+13408480904",
+                        "courierLocation":
+                        {
+                            "lat": 37.4043247,
+                            "lng": -122.1112215
+                        },
+                        "proofOfDelivery":
+                        [
+                            {
+                                "type": "photo_proof_of_delivery",
+                                "url": "https://nash-proof-of-delivery-dev.s3-us-west-1.amazonaws.com/dlv_ZkHf4mLVCXy3avKDJE77jj_J2YHkGbRN8kTdjBrgu8gaQ==.jpg"
+                            },
+                            {
+                                "type": "photo_proof_of_delivery",
+                                "url": "https://nash-proof-of-delivery-dev.s3-us-west-1.amazonaws.com/dlv_ZkHf4mLVCXy3avKDJE77jj_AKapMndrIp2DDW5YUnWa9w==.jpg"
+                            },
+                            {
+                                "type": "signature_proof_of_delivery",
+                                "url": "https://nash-proof-of-delivery-dev.s3-us-west-1.amazonaws.com/dlv_ZkHf4mLVCXy3avKDJE77jj_toG5E7I-BZrvXqnIZAVyWw==.jpg"
+                            }
+                        ],
+                        "statusHistory":
+                        [
+                            {
+                                "createdAt": "2022-03-05T01:12:00.984078",
+                                "status": "created"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:12:16.067396",
+                                "status": "not_assigned_driver"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:13:02.459762",
+                                "status": "assigned_driver"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:14:32.532602",
+                                "status": "pickup_enroute"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:15:17.533789",
+                                "status": "pickup_complete"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:16:02.598233",
+                                "status": "dropoff_enroute"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:17:32.690484",
+                                "status": "dropoff_arrived"
+                            },
+                            {
+                                "createdAt": "2022-03-05T01:18:17.945368",
+                                "status": "dropoff_complete"
+                            }
+                        ],
+                        "tollFeeCents": 0,
+                        "waitFeeCents": 0,
+                        "waitTimeMinutes": 0,
+                        "cancellationFeeCents": 0,
+                        "returnFeeCents": 0,
+                        "insuranceFeeCents": 0,
+                        "totalPriceCents": 0
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+## Public tracking URL
+
+Nash provides your end customers with a way to track deliveries without having to be logged into the Nash portal. Nash will automatically send text alerts which include the tracking link for a live delivery to the end recipient, unless you would like to disable this feature for your organization. To get a public tracking link for a given job:
+`https://portal.usenash.com/tracking/[JOB_ID]`
+`https://portal.sandbox.usenash.com/tracking/[JOB_ID]`
+
+
+# Package Requirements
+Source: https://docs.usenash.com/api-reference/job/package-requirements
+
+
+
+When creating a job, Nash allows specifying different requirements to suit your package delivery.
+Available options are:
+
+| Requirement                         | Description                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `photo_proof_of_delivery`           | Require a picture of package after drop off                                                                                                                                                                                                                                                                                                                 |
+| `signature_proof_of_delivery`       | Require the customer's signature after drop off                                                                                                                                                                                                                                                                                                             |
+| `photo_proof_of_pickup`             | Require a picture of package after picking it up                                                                                                                                                                                                                                                                                                            |
+| `signature_proof_of_pickup`         | Require the customer's signature after picking the package up from                                                                                                                                                                                                                                                                                          |
+| `age_verification_on_delivery`      | Requires driver to verify recipient's age from a government-issued ID.<br /><br />minimum\_age depends on country:<br />US: 21<br />AU: 18<br />NZ: 18<br />GB: 18<br />CA: 19                                                                                                                                                                              |
+| `alcohol`                           | Let's the provider know there's alcohol in package and requires driver to verify recipient's age from a government-issued ID.<br /><br />minimum\_age depends on country:<br />US: 21<br />AU: 18<br />NZ: 18<br />GB: 18<br />CA: 21                                                                                                                       |
+| `id_verification_on_delivery`       | Requires driver to the verify recipient's ID when dropping off the package (for pharmaceutical delivery)                                                                                                                                                                                                                                                    |
+| `barcode_scan_on_pickup`            | Requires driver to scan a barcode on pickup.<br />barcode values are provided in "pickup\_barcodes"                                                                                                                                                                                                                                                         |
+| `barcode_scan_on_dropoff`           | Requires driver to scan a barcode on dropoff<br />barcode values are provided in "dropoff\_barcodes"                                                                                                                                                                                                                                                        |
+| `meet_on_delivery`                  | Instructs driver to meet customer on delivery and hand off package.<br />Note: This's applicable for Doordash and Uber deliveries only and is best effort and not always guaranteed.                                                                                                                                                                        |
+| `shipping_label`                    | Requires driver to check or scan the shipping label at the pickup and drop-off location.<br /><br />Note: The shipping label sometimes should be printed and stamped to the package depending on the provider.                                                                                                                                              |
+| `two_person_team`                   | Requires a two-person team to assist in the delivery                                                                                                                                                                                                                                                                                                        |
+| `pincode_verification`              | Requires a pincode entry at dropoff. The pincode will be shared with the dropoff customer through SMS.<br /><br />Note: The pincode will also be added to the proofOfDelivery object and will trigger a webhook event of type `delivery.pincode_verification`.<br />example:<br />`"proofOfDelivery": [{"type": "pincode_verification","pincode": "1578"}]` |
+| `parking_check_in`                  | Requires courier to check in upon arrival while waiting in their vehicle. The courier will provide the parking location information.<br /><br />Note: The parking location can be found in the `delivery.courier_vehicle.parking_location` field.                                                                                                           |
+| `schedule_ii_controlled_substances` | Require the package to be handled by a provider that certified to handle Schedule II Controlled Substances (US)                                                                                                                                                                                                                                             |
+| `custom:{requirement_name}`         | Custom requirement that will filter any provider/contract without this specific requirement. The requirement must be added to the wanted contract before being used. Example: "custom:refrigerated" will only match providers that explicitly support refrigerated transport.                                                                               |
+
+<Note>
+  ### Notes
+
+  **Multiple package requirements are allowed.**
+  Example:
+  `packageRequirements: ["photo_proof_of_delivery", "signature_proof_of_delivery"]`
+
+  **Not all providers support all requirements.** Providers that don't support provided package requirements will be ineligible and will show in the failedQuotes section.
+</Note>
+
+<Info>
+  By default, `packageRequirements: ["photo_proof_of_delivery"]`
+  `packageRequirements=[]` means no requirements are expected.
+</Info>
+
+
+# Reassign a Task
+Source: https://docs.usenash.com/api-reference/job/reassign-task-by-job-id-and-task-id
+
+post /v1/jobs/{jobId}/{taskId}/reassign
+Create a new task in a job based on a given job ID and task ID.
+
+
+
+# Refresh Quotes
+Source: https://docs.usenash.com/api-reference/job/refresh-quotes-by-job-id-and-task-id
+
+post /v1/jobs/{jobId}/tasks/{taskId}/refresh_quotes
+Regenerate quotes for a given job's task.
+
+
+
+# Select Quote
+Source: https://docs.usenash.com/api-reference/job/select-quote
+
+post /v1/select_quote
+Select the quote you would like to execute from a specific job.
+
+
+
+# Update Job
+Source: https://docs.usenash.com/api-reference/job/update-job-by-job-id
+
+patch /v1/jobs/{jobId}
+
+This endpoint allows you to update some fields in the Nash job. Updating a job should always work before a quote is selected,
+but if a quote has been selected, Nash will return an error if the fleet rejects the update of the order.
+
+### Pre Dispatch Updates
+
+Updating a job should always work before a quote is selected. Some updates may result in pricing changes
+
+Please note that you are only able to update the package delivery times and the pickup or dropoff addresses before an order has been dispatched to a fleet. If any task in a job is dispatched and a delivery time or address are attempted to be updated, then an error will be thrown by the endpoint.
+
+If you update any of the following fields, then the quotes returned by the job will be refreshed and the endpoint will return a new set of quotes.
+Moreover, any existing quotes (and quote IDs) will be invalid for dispatch. The fields that will force a refresh in the quotes:
+
+1. pickupAddress
+2. dropoffAddress
+3. packagePickupStartTime
+4. packagePickupEndTime
+5. packageDropoffStartTime
+6. packageDropoffEndTime
+7. packageDeliveryMode
+8. packageRequirements
+9. packageMinimumVehicleSize
+10. packageValue: for this field, it can also be updated in the post-dispatch stage
+
+### Note on Updating Times
+
+If you wish to update the times of a Job, you must provide at least one time constraint out of packagePickupStartTime, packagePickupEndTime, packageDropoffStartTime, and packageDropoffEndTime.
+Times that are not specified will be calculated by Nash, and the previous times not included in the Update Request will be overwritten.
+Therefore, if you want to update only one time field and keep the rest the same, you must provide them in the parameters of the Update Request.
+
+<Tip>If you change packageDeliveryMode from `SCHEDULED` job to `NOW`, you do not need to specify any other time fields.</Tip>
+
+### Post Dispatch Updates
+
+If a quote has been selected or the job is dispatched via auto-dispatch, Nash will return an error if any of the assigned fleets in the job reject the update of the order.
+
+In the post-dispatch stage, updating the package value of the job may result in a price change, based on how the providers calculate their pricing.
+
+Below is a list of fields that are allowed to be updated, with more details on pre-dispatch or post-dispatch restrictions.
+
+
+# Server Health Check
+Source: https://docs.usenash.com/api-reference/miscellaneous/server-health-check
+
+get /v1/health-check
+Check the health of the Nash API server.
+
+
+
+# Add Contact to the Deny List
+Source: https://docs.usenash.com/api-reference/notifications/add-a-contact-to-the-deny-list
+
+post /v1/organization-management/notifications/deny-list
+Adds a contact to the deny list to opt the user out of communications.
+
+
+
+# Get Contacts in the Deny List
+Source: https://docs.usenash.com/api-reference/notifications/get-contacts-in-the-deny-list
+
+get /v1/organization-management/notifications/deny-list
+Retrieves a list of contacts that have opted out of communications.
+
+
+
+# Notifications
+Source: https://docs.usenash.com/api-reference/notifications/notifications
+
+
+
+Nash has a built-in, fully customizable, notifications platform. This platform enables you to own the end-to-end customer experience and keep your internal teams up to speed on events and potential issues.
+
+Each notification is broken down into two primary parts: defining the **trigger** and **message**, and identifying the **audience**. The trigger and message are defined in each Notification Trigger, and the audience is defined by the Destination. By separating the trigger and message from the audience, Nash makes it easy to send multiple notifications to the same audience.
+
+Within the message section, you will have access to delivery-specific variables that you can use to customize the message to your end customer or internal team.
+
+<img style={{ borderRadius: '0.5rem', boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.1)', border: '1px solid #e0e0e0'}} src="https://mintlify.s3.us-west-1.amazonaws.com/nashtechnologies/images/screenshots/notif-triggers.png" alt="Notification Triggers" />
+
+## Supported Channels
+
+Nash can send notifications across the following channels:
+
+* SMS
+* Email
+* Slack Channel
+* Webhook endpoint
+
+## Default Notifications
+
+By default, your account will have 3 customer-facing SMS notifications enabled, and 2 internal notifications that are disabled. To see these notifications and edit them if necessary, go to Settings > Triggers in the Nash dashboard.
+
+### Customer-Facing Notifications
+
+1. **Status transitions to "Pickup Complete"**
+
+   Message: `Your order from {{pickup_business_name}} has been picked up. Stay tuned for more text updates and track the delivery here {{job_tracking_link}}`
+
+2. **Status transitions to "Dropoff Enroute"**
+
+   Message: `The driver is on their way. They should arrive by {{dropoff_eta}}.`
+
+3. **Status transitions to "Dropoff Complete"**
+
+   Message: `Your order from {{pickup_business_name}} has been delivered.`
+
+### Internal Notifications (Disabled by Default)
+
+To activate internal notifications, you need to create a Destination and add it to each notification. You can select to receive notifications via SMS, email, Slack, and/or webhook.
+
+1. **Delivery Booked**
+
+   Message: `A new delivery has been scheduled with Nash. Track here: {{job_tracking_link}}.`
+
+2. **Task Reassigned**
+
+   Message: `Task reassigned on job {{job_id}}. Track here: {{job_tracking_link}}.`
+
+## Recommendations
+
+### Setting Up Flags
+
+Flags allow teams to be proactive during live delivery operations. You can enable flags for any notification in the Nash history dashboard under the "Flagged" view.
+
+### Recommended Triggers
+
+We strongly recommend setting up and enabling these triggers:
+
+1. **Failed to Auto Dispatch**: Alerts when a delivery fails to auto-dispatch.
+2. **Address Validation Failed**: Notifies when there's an issue with the customer's address.
+
+## Trigger Options
+
+Here are examples of triggers you can use to send notifications:
+
+| Trigger                              | Description                                                                   |
+| :----------------------------------- | :---------------------------------------------------------------------------- |
+| `delivery_incident_report`           | Notifies when a delivery incident is reported                                 |
+| `status_changed_too_quickly`         | Flags when delivery statuses change more rapidly than expected                |
+| `dropoff_delayed`                    | Flags when dropoff ETA is significantly later than the specified dropoff time |
+| `driver_geolocation`                 | Provides updates on driver location                                           |
+| `pickup_delayed`                     | Flags when pickup ETA is significantly later than the specified pickup time   |
+| `driver_location_vs_delivery_status` | Flags when driver's location doesn't match the reported delivery status       |
+| `stuck_status`                       | Alerts when a delivery seems to be stuck in a particular status               |
+| `task_reassignment`                  | Notifies when a delivery task is reassigned                                   |
+| `delivery_status_transition`         | Informs about changes in delivery status                                      |
+| `autodispatch_failed`                | Alerts when automatic dispatching of a delivery fails                         |
+| `address_validation_failed`          | Notifies when there's an issue validating an address                          |
+| `order_needs_attention`              | Alerts when an order requires manual intervention                             |
+| `order_ready_to_fulfill`             | Notifies when an order is ready for fulfillment                               |
+| `job_creation_failed`                | Alerts when there's an error creating a new job                               |
+| `delivery_cancellation_failed`       | Notifies when a delivery cancellation attempt fails                           |
+| `task_health_status`                 | Provides updates on the real-time status of tasks                             |
+| `internal_driver_not_assigned`       | Alerts when an internal driver hasn't been assigned to a task                 |
+| `nash_ai_invalid_pod`                | Notifies when the AI system detects an invalid proof of delivery photo        |
+
+## Dynamic Text Options
+
+Here are examples of variables your can use in notification messages. We add to them regularly, so feel free to request more.
+
+| Variable                                  | Description                                                                               |
+| :---------------------------------------- | :---------------------------------------------------------------------------------------- |
+| **Customer**                              |                                                                                           |
+| `{{customer.first_name}}`                 | The customer's first name (in dropoff address)                                            |
+| `{{customer.last_name}}`                  | The customer's last name (in dropoff address)                                             |
+| `{{customer.phone_number}}`               | The customer's phone number                                                               |
+| `{{customer.email}}`                      | The customer's email address                                                              |
+| `{{customer_feedback_link}}`              | The URL for the customer to provide feedback                                              |
+| **Pickup**                                |                                                                                           |
+| `{{org_name}}`                            | Name of your organization in Nash                                                         |
+| `{{pickup_business_name}}`                | The business name from where the order(s) were picked up                                  |
+| `{{pickup_business.phone_number}}`        | The phone number associated with pickup location                                          |
+| `{{pickup_location.email}}`               | The email address associated with the pickup location                                     |
+| `{{pickup_eta}}`                          | The pickup ETA                                                                            |
+| `{{pickup_datetime}}`                     | The actual pickup datetime localized to the pickup location                               |
+| **Dropoff**                               |                                                                                           |
+| `{{dropoff_eta}}`                         | The dropoff ETA                                                                           |
+| `{{dropoff_datetime}}`                    | The dropoff datetime localized to the dropoff location.                                   |
+| `{{dropoff_business_name}}`               | The dropoff business name.                                                                |
+| `{{dropoff_location.address_first_line}}` | The first line of the dropoff address                                                     |
+| `{{proof_of_delivery_photo_url}}`         | The URL link to the photo proof of delivery                                               |
+| **Job**                                   |                                                                                           |
+| `{{job_id}}`                              | The job ID e.g. job\_oBDDbYnKFCHAfivtjMoabt                                               |
+| `{{job_cfg_id}}`                          | The job configuration ID e.g. cfg\_SuC7dAU8VErdhzx9Wa345k                                 |
+| `{{job_metadata.X}}`                      | Pulls from the key X in job\_metadata. X can be any field                                 |
+| `{{job_tracking_link}}`                   | The link to track the job                                                                 |
+| `{{job_details_url}}`                     | The URL to view job details                                                               |
+| `{{job_external_identifier}}`             | The external ID of a job                                                                  |
+| `{{job_feedback_url}}`                    | The URL for providing job feedback                                                        |
+| **Delivery Provider**                     |                                                                                           |
+| `{{provider_delivery_id}}`                | The delivery ID provided by the delivery provider                                         |
+| `{{provider_name}}`                       | The name of the delivery provider                                                         |
+| `{{driver.name}}`                         | The name of the driver/courier                                                            |
+| `{{driver.phone_number}}`                 | The phone number of the driver/courier                                                    |
+| `{{delivery_incident_report_type}}`       | The type of the delivery incident                                                         |
+| `{{delivery_incident_report_message}}`    | The message contained in the delivery incident                                            |
+| **Nash**                                  |                                                                                           |
+| `{{nash_order_id}}`                       | The Nash order ID                                                                         |
+| `{{nash_order_portal_url}}`               | The URL to view the order in the Nash portal                                              |
+| `{{nash_order_validation_errors}}`        | Any validation errors associated with the Nash order                                      |
+| `{{nash_order_external_id}}`              | The external ID of the Nash order                                                         |
+| `{{nash_order_pickup_location.email}}`    | The email associated with the pickup location for the Nash order                          |
+| `{{nash_order_dropoff_location.email}}`   | The email associated with the dropoff location for the Nash order                         |
+| `{{nash_order_pickup_business_name}}`     | The business name of the pickup location for the Nash order                               |
+| `{{nash_order_dropoff_business_name}}`    | The business name of the dropoff location for the Nash order                              |
+| `{{nash_order_pickup_time}}`              | The pickup time for the Nash order                                                        |
+| `{{reference_id}}`                        | The order's reference ID                                                                  |
+| **Misc**                                  |                                                                                           |
+| `{{request_id}}`                          | The ID of the request as generated by Nash's API service. Helpful for debugging purposes. |
+
+## Opt Contacts out of Notifications through Nash
+
+Nash maintains a communication "deny list" for contacts who have opted out of communications.
+The deny list includes a type of communication (e.g., email or SMS) and the value for the type
+(e.g., [customer@usenash.com](mailto:customer@usenash.com)). This way, your organization can have fine-grained control of who receives
+notifications via the Nash platform and who doesn't.
+
+
+# Remove Contact from the Deny List
+Source: https://docs.usenash.com/api-reference/notifications/remove-a-contact-from-the-deny-list
+
+delete /v1/organization-management/notifications/deny-list
+Removes a contact from the deny list to opt the user back into communications.
+
+
+
+# Add Custom Event to Order
+Source: https://docs.usenash.com/api-reference/order/add-custom-event-to-order
+
+post /v1/order/{id}/events
+Adds a customizable event to an existing Nash order. Custom order events will be shown in the order events page alongside other Nash-generated events.
+
+<Info>
+  ### Limits
+
+  * **Rate limits:** Max 3 requests/second
+  * **Size limit:** Request body must not exceed 1kb
+</Info>
+
+
+# Archive order
+Source: https://docs.usenash.com/api-reference/order/archive-order
+
+delete /v1/order/{id}
+
+
+
+# Autodispatch Order
+Source: https://docs.usenash.com/api-reference/order/autodispatch-order
+
+post /v1/order/{id}/autodispatch
+Automatically select a quote based on the order's dispatch stategy.
+
+<Info>
+  This is similar to [Autodispatch Job](/api-reference/job/autodispatch-job)
+</Info>
+
+## Autodispatch Order
+
+For a given order, you can set up auto dispatch features by creating a [Dispatch Strategy](/api-reference/dispatch-strategies/dispatch-strategy).
+
+In some scenarios, you may want to create an order to display the quotes to your customer before sending the order for fulfillment.
+This is the case in a checkout experience, where you would want to display the delivery options before dispatching the order.
+After the customer accepts the order and would like to place it, you can utilize the `Autodispatch Order` endpoint to make sure
+that the order is sent using the customized Options Group that you have created.
+
+Therefore, to autodispatch a order using an options group, you need to ensure that an options group has been attached to the
+order and that you have selected a dispatching strategy for the options group. When creating a order, you can display the
+quotes to your customers, and then instead of selecting a quote, you can autodispatch the order using this endpoint.
+
+## Autodispatch Preferred Quote
+
+When a call to `/autodispatch` is made, the quote with the tag `autodispatch_preferred_quote` will be selected.
+You may utilize this tag to know what price to display to your customers, if you are utilizing this feature as
+part of your checkout experience. You can access the full list of quotes `order["quotes"]` and then filter
+the one with `"autodispatch_preferred_quote"` in `quote.tags`.
+
+Note: please make sure that `Enable Autodispatch` is switched off so that the order is not autodispatched upon creation.
+
+
+# Create or update order by external identifier
+Source: https://docs.usenash.com/api-reference/order/create-or-update-order-by-external-identifier
+
+post /v1/order/external-identifier/{externalId}
+
+This endpoint allows you to create and/or update an order by specifying an ID. Using this endpoint is relevant for checkout workflows, where you can create an order based on the customers cart / order ID and then update it once the customer completes the checkout.
+
+<Note>
+  Create or Update Order by External Identifier behavior: If two requests with the same `external_id` are received, Nash will block the second request until the first request has been committed to the db and the response has been sent to the client. After that, the second request will be processed as an update since the order has already been created by the first request.
+  This ensures that only one order is created per `external_id`, even when multiple requests are made simultaneously.
+</Note>
+
+<Note>
+  Updating an archived order will also unarchive it.
+</Note>
+
+
+# Create Order
+Source: https://docs.usenash.com/api-reference/order/create-order
+
+post /v1/order
+Create an order in Nash
+
+<Note>
+  See [Order Address Validation](/api-reference/order/order-address-validation-geocoding) for
+  more info on how Nash validates addresses and how you can use your own geocoding service.
+</Note>
+
+
+# Create Orders
+Source: https://docs.usenash.com/api-reference/order/create-orders
+
+post /v1/orders
+
+
+
+# Bulk Order Actions
+Source: https://docs.usenash.com/api-reference/order/create-update-upsert-or-delete-orders-asynchronously-in-bulk
+
+post /v1/orders/bulk
+Create, update, upsert, or delete orders asynchronously in bulk.
+
+<Note>
+  The **upsert** (update or insert) action will update existing orders that match the provided `externalId`, and
+  create new orders for those that don't.
+
+  The **delete** action will archive the order, akin to the [Archive Order endpoint](/api-reference/order/archive-order).
+
+  Status field returned is for the bulk operation, not the individual orders and can be one of the following:
+
+  * `QUEUED`: The request has been received and is waiting to be processed in the bulk operation queue
+  * `IN_PROGRESS`: The request is currently being worked on
+  * `SUCCESS`: The request was successfully processed without any errors to the overall async process (individual orders might have failed)
+  * `FAILED`: The request encountered an error and could not be completed
+  * `CANCELLED`: The request processing was manually cancelled or terminated before completion
+  * `SKIPPED`: The request was intentionally not processed due to validation issues or business rules
+  * `SCHEDULED`: The bulk action is set to be processed at a future specified time (n/a)
+</Note>
+
+<Tip>
+  Bulk order actions are asynchronous operations. You can either poll the [GET endpoint](/api-reference/order/get-response-from-asynchronous-bulk-order-operation)
+  using the returned `id`, and/or opt-in to receive the results via webhook. The webhook event is
+  `order.bulk_operation.completed` and will be sent once the bulk operation is complete.
+</Tip>
+
+
+# Get order
+Source: https://docs.usenash.com/api-reference/order/get-order
+
+get /v1/order/{id}
+
+
+
+# Get Order Documents
+Source: https://docs.usenash.com/api-reference/order/get-order-documents
+
+get /v1/order/{id}/documents
+Get the documents for an order
+
+
+
+# Create Quote
+Source: https://docs.usenash.com/api-reference/order/get-order-quotes
+
+post /v1/order/get_quotes
+Create a new quote for an order
+
+
+
+# Get Bulk Order Response
+Source: https://docs.usenash.com/api-reference/order/get-response-from-asynchronous-bulk-order-operation
+
+get /v1/orders/bulk/{id}
+Get the response from an asynchronous bulk order operation.
+
+
+
+# Background
+Source: https://docs.usenash.com/api-reference/order/order
+
+Overview of Nash Orders (and their relation to Jobs)
+
+An Order represents the delivery details for package(s) in the real world. It's the most flexible way to initiate deliveries in Nash.
+
+Orders enable you to:
+
+* Update the delivery details before a delivery is created (contact details, addresses, times, and requirements) *e.g. E-Commerce Checkout Experience*
+* Understand whether the order meets the criteria to become a delivery (validation) *e.g. Error handling as early as possible*
+* Batch orders through Nash Platform (not optimized or batched on your end) *e.g. Optimizing catering routes*
+
+<Info> When one or more Orders are dispatched, they become a Job. </Info>
+
+![f1](https://files.readme.io/3bf8238-image.png)
+
+## Order Data Model
+
+![Nash Order Components](https://files.readme.io/49bbb08-Screenshot_2023-12-18_at_11.46.23_PM.png)
+
+**Order status**
+
+* `needs_attention`: The order requires attention due to some data issues (e.g. invalid address)
+* `valid`: The order is valid and is ready to be dispatched to a Nash Job & Delivery.
+* `dispatched`: The associated Nash job is found in order\_metadata or by clicking on the action “view dispatched job”
+* `archived`: The order has been archived and is moved to archived tab in the Nash portal.
+
+Note: All timestamps are in UTC and in this format `%Y-%m-%dT%H:%M:%S.%f`
+
+```json
+{
+  "id": "ord_PewiSWzxmCFPzW62Ry3A6V",
+  "createdAt": "2024-01-25T21:10:43.722214",
+  "externalId": null,
+  "externalGroupId": null,
+  "referenceId": null,
+  "portalUrl": "https://portal.dev.usenash.com/orders/ord_PewiSWzxmCFPzW62Ry3A6V",
+  "publicTrackingUrl": "https://tracking.dev.usenash.com/ord_PewiSWzxmCFPzW62Ry3A6V",
+  "status": "valid",
+  "tags": null,
+  "orderMetadata": null,
+  "pickupAddress": null,
+  "pickupPhoneNumber": "+15005550005",
+  "pickupFirstName": "pickupFName",
+  "pickupLastName": "pickupLName",
+  "pickupBusinessName": "pickupBusinessName",
+  "pickupInstructions": "new pickup Instructions111",
+  "pickupBarcodes": null,
+  "dropoffAddress": "401 San Antonio Rd, Mountain View, CA 94040",
+  "dropoffPhoneNumber": "+15005550006",
+  "dropoffFirstName": "dropoffLName",
+  "dropoffLastName": "dropoffFtName",
+  "dropoffBusinessName": "dropoffBusinessName",
+  "dropoffInstructions": "1) Arrive at Ferrari North America building, 250 Sylvan Ave: Driver can park in visitors or any open spots in the font of the building.",
+  "dropoffBarcodes": null,
+  "deliveryMode": "now",
+  "pickupStartTime": null,
+  "pickupEndTime": null,
+  "dropoffStartTime": null,
+  "dropoffEndTime": null,
+  "description": "Test package description",
+  "itemsCount": null,
+  "requirements": ["photo_proof_of_delivery"],
+  "minimumVehicleSize": null,
+  "currency": null,
+  "documents": [
+    {
+      "id": "doc_ELre5GCELQ6w3UHKAgbm6F",
+      "type": "SHIPPING_LABEL",
+      "url": "https://nash-documents-dev.s3-us-west-1.amazonaws.com/dlv_bR7NWwhWSQRohyjs7UZd7D_fEavuZda787M70sJEhtCAA==.png",
+      "data": null,
+      "contentType": "image/png"
+    },
+    {
+      "id": "doc_nuKEL5W8mMgnXuRrFqwwsc",
+      "type": "PICKUP_LABEL",
+      "url": "https://nash-documents-dev.s3-us-west-1.amazonaws.com/dlv_bR7NWwhWSQRohyjs7UZd7D_QPiARbKwfJRkC94KVQrT8w==.png",
+      "data": null,
+      "contentType": "image/png"
+    }
+  ],
+  "valueCents": "5000",
+  "tipAmountCents": "100",
+  "width": null,
+  "depth": null,
+  "height": null,
+  "volume": null,
+  "weight": null,
+  "dispatchStrategyId": null,
+  "validationErrors": {}
+}
+```
+
+
+# Order Address Validation (Geocoding)
+Source: https://docs.usenash.com/api-reference/order/order-address-validation-geocoding
+
+
+
+By default, Nash validates an address on every request when passed a pickup or dropoff address or Google Place ID. When provided with a raw address, Nash uses several geocoding services and selects the most appropriate result based on the region of the address.  Once geocoded, Nash will populate the componentized pickup/dropoff address in the corresponding component fields, which will be returned in the API response, providing you with structured and standardized address data.
+
+### Bypassing Nash's Address Validation
+
+If you prefer to use your own geocoding service, you can bypass Nash's address validation by passing the componentized address fields directly. To do this, provide the following fields INSTEAD of the `<pickup|dropoff>Address` or `<pickup|dropoff>PlaceId` when creating or updating an order.
+
+**Pickup**
+
+* `pickupAddressNumber`
+* `pickupAddressSecondaryNumber`
+* `pickupAddressFormattedStreet`\*
+* `pickupAddressCity`\*
+* `pickupAddressCounty`
+* `pickupAddressState`
+* `pickupAddressZip`\*
+* `pickupAddressCountry`\*
+* `pickupLat`\*
+* `pickupLng`\*
+
+**Dropoff**
+
+* `dropoffAddressNumber`
+* `dropoffAddressSecondaryNumber`
+* `dropoffAddressFormattedStreet`\*
+* `dropoffAddressCounty`
+* `dropoffAddressState`
+* `dropoffAddressZip`\*
+* `dropoffAddressCountry`\*
+* `dropoffLat`\*
+* `dropoffLng`\*
+
+*\* = Required components of the address if using address components*
+
+<Note>
+  When using componentized address fields, do not pass `<pickup|dropoff>Address` or `<pickup|dropoff>PlaceId` in the request to create or update an order.
+</Note>
+
+### Using a Store Location as a Pickup or Dropoff Point
+
+As an alternative to providing an address, address components, or a Google Place ID, you can specify a store location as the pickup or dropoff point for an order. To do this, simply pass the Store Location ID (starting with `stl_`) or the Store Location External ID in the request when creating or updating an order.
+
+When a Store Location ID or External ID is provided without any accompanying address information, Nash will automatically populate the pickup or dropoff address fields using the address associated with the specified store location. This eliminates the need to manually input the address details for frequently used store locations.
+
+<Note>
+  If a Store Location ID or External ID is provided along with address information, the address information will take precedence over the store location's address.
+</Note>
+
+
+# Refresh order quotes
+Source: https://docs.usenash.com/api-reference/order/refresh-order-quotes
+
+post /v1/order/refresh_quotes
+
+
+
+# Select Quote
+Source: https://docs.usenash.com/api-reference/order/select-quote
+
+post /v1/select_quote
+Select the quote you would like to execute from a specific order.
+
+
+
+# Unarchive order
+Source: https://docs.usenash.com/api-reference/order/unarchive-order
+
+patch /v1/order/{id}/unarchive
+
+Unarchives a specific order, changing its status to either `valid` or `needs_attention` based on validation results.
+An order that has been dispatched to a job cannot be unarchived.
+
+
+# Update order
+Source: https://docs.usenash.com/api-reference/order/update-order
+
+patch /v1/order/{id}
+
+<Note>
+  Updating an archived order will also unarchive it.
+</Note>
+
+
+# Get Providers
+Source: https://docs.usenash.com/api-reference/provider/get-providers
+
+get /v1/providers
+This endpoint allows you to get all available providers in your organization.
+
+
+
+# Get Route
+Source: https://docs.usenash.com/api-reference/route/get-route
+
+get /v1/routes/{id}
+
+A `Route` object represents a planned sequence of stops for a vehicle or delivery agent.
+
+The core of the `Route` is the `stops` array, which lists the specific locations to visit in order. Each stop within this array details:
+
+* The actions to be performed (like `stopType`).
+* Associated items (`objectIds`).
+* Timing estimates (`arrivalTime`, `departTime`, `serviceTime`).
+* Travel details from the prior stop (`distanceFromPrevious`, `durationFromPrevious`).
+* The physical coordinates (`location`).
+
+
+# Create store location
+Source: https://docs.usenash.com/api-reference/store-locations/create-store-location
+
+post /v1/store_locations
+
+
+
+# Delete store location
+Source: https://docs.usenash.com/api-reference/store-locations/delete-store-location
+
+delete /v1/store_locations/{id}
+
+
+
+# Get Store Location
+Source: https://docs.usenash.com/api-reference/store-locations/get-store-location
+
+get /v1/store_locations/{id}
+Get a store location by ID.
+
+
+
+# Get store location by external identifier
+Source: https://docs.usenash.com/api-reference/store-locations/get-store-location-by-external-identifier
+
+get /v1/store_locations/external_identifier/{externalIdentifier}
+
+
+
+# Get Store Locations
+Source: https://docs.usenash.com/api-reference/store-locations/get-store-locations
+
+get /v1/store_locations
+Get a list of store locations.
+
+
+
+# Get store locations that cover specified location (latitude & longitude, city_zipcode)
+Source: https://docs.usenash.com/api-reference/store-locations/get-store-locations-that-cover-specified-latitude-and-longitude
+
+get /v1/store_locations/coverage
+
+
+
+# Update Store Location
+Source: https://docs.usenash.com/api-reference/store-locations/update-store-location
+
+patch /v1/store_locations/{id}
+Update a store location by ID.
+
+
+
+# Using LLMs with Nash API
+Source: https://docs.usenash.com/api-reference/using-llms-with-nash-api
+
+A guide to leveraging LLMs for Nash API integration and development
+
+# Using LLMs with Nash API
+
+Large Language Models (LLMs) like ChatGPT, Claude, and others can significantly streamline the process of integrating with Nash's delivery orchestration API. This guide provides a quick overview of how to use LLMs with Nash API effectively.
+
+## Nash API Documentation for LLMs
+
+When working with LLMs to assist with Nash API integration, provide the AI with comprehensive API documentation:
+
+* **Complete API Documentation**: [https://docs.usenash.com/llms-full.txt](https://docs.usenash.com/llms-full.txt)
+* **Condensed Documentation**: [https://docs.usenash.com/llms.txt](https://docs.usenash.com/llms.txt)
+
+These specially formatted text files contain the Nash API endpoints, schemas, and implementation details in a format that's optimized for LLMs to process.
+
+## Example Prompt
+
+```
+I'm working on integrating with Nash's delivery API. Here's the relevant documentation:
+https://docs.usenash.com/llms-full.txt
+
+I need to implement [SPECIFIC FUNCTIONALITY]. Can you help me understand how to structure this request?
+```
+
+## Best Practices for Using LLMs with Nash API
+
+1. **Provide Clear Context**: Share the relevant Nash API documentation links with the LLM
+2. **Be Specific**: Clearly describe your use case and requirements
+3. **Include Complete Information**: When troubleshooting, share error messages and API responses
+
+## Key Integration Areas Where LLMs Can Help
+
+* **Understanding Nash Concepts**: Orders, Jobs, Batch Jobs, Dispatch Strategies
+* **API Request/Response Formatting**: Generate code samples for API calls
+* **Webhook Implementation**: Set up secure webhook handlers for delivery updates
+* **Error Handling**: Understand and resolve API error responses
+
+## Security Considerations
+
+1. **Never share API keys** or sensitive customer data with LLMs
+2. **Always review and test** LLM-generated code before deploying to production
+
+For comprehensive integration guidance, refer to our [Plan Your Integration](/reference/plan-your-integration) documentation.
+
+
+# Create a zone
+Source: https://docs.usenash.com/api-reference/zones/create-a-zone
+
+post /v1/zones
+
+
+
+# Delete a zone
+Source: https://docs.usenash.com/api-reference/zones/delete-a-zone
+
+delete /v1/zones/{id}
+
+
+
+# Get zone
+Source: https://docs.usenash.com/api-reference/zones/get-zone
+
+get /v1/zones/{id}
+
+
+
+# Get zone by external identifier
+Source: https://docs.usenash.com/api-reference/zones/get-zone-by-external-identifier
+
+get /v1/zones/external_identifier/{externalIdentifier}
+
+
+
+# Get zones
+Source: https://docs.usenash.com/api-reference/zones/get-zones
+
+get /v1/zones
+
+
+
+# Get zones that cover specified location (latitude & longitude, city_zipcode)
+Source: https://docs.usenash.com/api-reference/zones/get-zones-that-cover-specified-location-latitude-and-longitude-city_zipcode
+
+get /v1/zones/coverage
+
+
+
+# Update a zone
+Source: https://docs.usenash.com/api-reference/zones/update-a-zone
+
+patch /v1/zones/{id}
+
+
+
+# Changelog
+Source: https://docs.usenash.com/changelog/change
+
+
+
+<Update label="March 3, 2025">
+  🤖 **AI:** AI agent available for calls regarding delivery status and refunds
+
+  🚙 **Nash TMS:** Requires drivers to confirm pickup before releasing drop-off location
+
+  👩‍👧**Hierarchy:** Organization filter available in Analytics
+
+  ✍ **Dispatch Planning:** Duplicate dispatch and optimization strategies&#x20;
+
+  ✍ **Dispatch Planning:** Automation rules updated to include "not in" operator
+
+  ✍ **Dispatch Planning:** Added an inactive Automations Rule catalog for reactivation
+
+  🌎 **Localization:** Currency field optional in the order import flow
+
+  🛍️ **Shopify:** Enable specific products for local delivery on designated days of the week
+
+  🚛 **Provider Portal:** Develop custom contract eligibility in the provider portal
+
+  🎨 **UI:** Floating action bar added to Orders and Deliveries tabs
+
+  🎨 **UI:** Orders tab updated to display order counts for each delivery phase
+
+  🌐 **API:** `Reassign_Tasks` added to API endpoints
+
+  🌐 **API:** `create-or-update-order-by-external-id `added to API endpoints
+</Update>
+
+<Update label="February 24, 2025">
+  🚛 **Provider Portal:** Refund AI agent available to automatically resolve incident reports
+
+  ✍ **Dispatch Planning:** Auto-reassignment based on time since creation
+
+  ✍ **Dispatch Planning:** Automation operator includes day-of-the-week condition
+
+  ✍ **Dispatch Planning:** Create optimizations based on Zones
+
+  ⭐️ **Experience:** Customizable tracking link expiration timeline
+
+  🚛 **Provider Portal:** Refund AI agent available to automatically resolve incident reports
+
+  💨 **Live Deliveries:** Improved process for handling tobacco products
+
+  💨 **Live Deliveries:** Stop numbers included in batched routes
+
+  📦 **Shipping:** Shipping available for Shopify merchants
+
+  🚙 **Nash TMS:** Package weight viewable by drivers
+</Update>
+
+<Update label="February 17, 2025">
+  💨 **Live Deliveries:** Cancellation reason available on the All Tasks tab
+
+  **💻 Nash Platform:** Performance improvements for search speed and filters
+
+  🚙 **Nash TMS:** Add a vehicle name when creating fleet vehicles
+
+  🚙 **Nash TMS:** Push notification sent to drivers when an order is canceled
+
+  🚛 **Provider Portal:** Merchants tab shows organizations with access to provider
+
+  🎨 **UI:** Pin favorite pages onto your sidebar for easy access
+
+  🚚 **Provider Management:** Reference ID support added for Grubhub
+</Update>
+
+<Update label="February 10, 2025">
+  💨 **Live Deliveries:** Managing store locations is more efficient with pagination&#x20;
+
+  💨 **Live Deliveries:** Barcode support has been integrated for GoPeople
+
+  🌎 **Localization:** When using multiple regions, country icons displayed in platform
+
+  ✍ **Dispatch Planning:** The email field is now available in CSV uploads
+
+  ✍ **Dispatch Planning:** Clear labels indicate the status of optimization processes
+
+  🛍️ **Shopify:** ASAP orders auto-schedule for immediate pickup
+
+  🚙 **Nash TMS:** The driver app now includes return task management
+
+  🚙 **Nash TMS:** A new form has been added to the Proof of Delivery process
+
+  🗞 **Read More:** [On the Nash Help Center](https://help.usenash.com/articles/8992649312-copy-of-changelog-cycle-114)
+</Update>
+
+<Update label="February 3, 2025">
+  💨 **Live Deliveries:** Add custom events to the timeline from the delivery details page
+
+  💨 **Live Deliveries:** Relay jobs now display a `Delivery Returned` status
+
+  💨 **Live Deliveries:** DoorDash barcode timestamps are now visible in the timeline
+
+  👩‍👧**Hierarchy:** Child organizations can now be billed to the parent organization
+
+  📢 **Webhooks:** A new webhook event has been added for parking bay information
+
+  📦 **Shipping:** ZPL labels can now be previewed in the POD section
+
+  💵 **Finance:** (Beta) Invoice reconciliation tool available for Uber deliveries
+
+  🚙 **Nash TMS:** Vehicle information is no longer required to add a driver
+
+  🚙 **Nash TMS:** Organization selector added to the Nash driver application
+
+  🗞 **Read More:**[ On the Nash Help Center](https://help.usenash.com/articles/7128180925-changelog-cycle-113)
+</Update>
+
+<Update label="January 27, 2025">
+  🎨 **UI:** Nash portal redesign features new UI, colors, and modes
+
+  ![Untitled design (2).gif](https://assets.usepylon.com/e2153d49-49ba-488c-a0cc-dc0fe2b9081b%2F1738010773395-Untitleddesign%25282%2529.gif?Expires=253370764800\&Signature=KD4TvVcWssmI3HsTbNhZ8sQQJX00yNOJwEpdIKQbHmF3vFppSlN0Zail7cc-DZXIDYB-ZbEVt15aC3C3OcXHjcmWTfiNg7HxMUw3P96XwNYyCJ4-tADH-SVrCqv7v-rLHoUue9c8dS05U5G9Uy1wkxdU8BuS9fPgF0imVX0VmTsVBwvVXe-jkz8DTovdMSbTaFrDLvjBTbt9mghJJ7nZYTjoCBkOLQeOAMAwS7Y0uJNCM0mWpfB3rtSTsQDhN-nsRp3aL9vOyT0DInHUXIei7T5rygE-WRsrIfk0IhvLnBYjuqHc9S-tKaXnuOZmmimeoUydjbIYZHcZXoPoHi301A__\&Key-Pair-Id=K3NV4LZ47N8M46 "Untitled design (2).gif")👩‍👧**Hierarchy:** Create a new child org from a template
+
+  🚚 **Provider Management:** View Hours of Operations on Provider Contracts
+
+  💨 **Live Deliveries:** Updated barcode scan status in the timeline (Uber)
+
+  💨 **Live Deliveries:** Confirmation required prior to deleting a custom view
+
+  📊 **Analytics:** Analytics page includes tooltips with data definitions
+
+  📊 **Analytics:** Batched route table includes total miles traveled
+
+  🌐 **API:** `externalOrderId` support added to all Orders API endpoints
+
+  📢 **Webhooks:** Added new refund created and updated webhook events
+
+  📦 **Shipping:** Manually consolidate individual shipping orders into a manifest
+
+  📦 **Shipping:** Convert ZPL documents into PNG labels
+
+  🗞 **Read More:** [On the Nash Help Center](https://help.usenash.com/articles/1444213441-new-feature-releases-cycle-112)
+</Update>
+
+<Update label="January 20, 2025">
+  🤖 **AI:** Geolocation service validation powered by AI
+
+  ![Untitled design (1).gif](https://assets.usepylon.com/e2153d49-49ba-488c-a0cc-dc0fe2b9081b%2F1737657663219-Untitleddesign%25281%2529.gif?Expires=253370764800\&Signature=VjOWaxiWmfLgTge~LTTbNMLozXHVF8iMWKbtPEVFMxmnvN8~orcOtKvhFkiyInhRwhzSxJfRN2uQpBsmvKTPZX1oGZFU0fomQHupzQflxc9~RPFaAc-E~s4tnR~iM1hYJUMZhPg4VBfKiaws5dEGkaSXwKgAYMNHLdQD7NWnktaPoVSavzpM6Y3GEULDPZc1rbIOinvEbePo-gC1UP4~Ho2hvjClbnbhnJcU3AWO32KtnyyNJ7Snclyni1UtR37Rk3LsGNA-860kIAm4TeyRxWqBsSrGWpsPrjTtKAVZ77dZRWi7YB8oEOfLxvI~GqTiz5iltgjQEDfscKINERrBRg__\&Key-Pair-Id=K3NV4LZ47N8M46 "Untitled design (1).gif")
+
+  * AI agent automatically validates delivery address using Google, Here, & AWS databases
+
+  * Agent selects the address that best matches the input, and updates if necessary
+
+  * Beta testers saw an 84% reduction in address parsing issues over first two weeks
+
+  ✍ **Dispatch Planning:** Unassigned orders display in Optimization summary
+
+  🌎 **Localization:** New currency supported: UAE
+
+  💨 **Live Deliveries:** Delivery timeline now includes barcode scan timestamps
+
+  ✍ **Dispatch Planning:** Ability to move/add a package to an internal batched order
+
+  📊 **Analytics:** *Completed Delivery Report* updated to include `providerDeliveryId`
+
+  ✍ **Dispatch Planning:** Item dimensions added as an additional automation rule criteria
+
+  🚚 **Provider Management:** Roadie tracking links will no longer display driver contact information
+
+  ✍ **Dispatch Planning:** Easily swap pickup/dropoff locations when creating delivery
+
+  🚛 **Provider Portal:** Provider opportunity table includes acceptance notes
+
+  💨 **Live Deliveries:** Batch/route pick-up location added to list view
+
+  🗞 **Read More:** [On the Nash Help Center](https://help.usenash.com/articles/7933802985-changelog-cycle-111)
+</Update>
+
+<Update label="January 13, 2025">
+  🚚 **Provider Management:** View details related to provider contracts
+
+  📍 **Routing:** Optimization results display stages: Success, Failed, and Unassigned
+
+  📍 **Routing:** Optimization flow includes lists of Assigned and Unassigned orders
+
+  📍 **Routing:** Additional settings added on the internal fleet provider page
+
+  👩‍👧 **Hierarchy:** Add child organizations to switch between organizations
+
+  👩‍👧**Hierarchy:** Assign team members to specific child organizations
+
+  🚛 **Provider Portal:** Additional details in the provider opportunity dialog
+
+  ✍ **Dispatch Planning:** Automation rules support `does not contain` operator
+
+  🗞 **Read More:** [On the Nash Help Center](https://help.usenash.com/articles/2179652643-changelog-110)
+</Update>
+
+
+# API Tutorial Example Workflow - Nom Nom Goods
+Source: https://docs.usenash.com/guides/api-tutorial-workflow-nom-nom-foods
+
+
+
+This guide demonstrates how to integrate Nash into the checkout and delivery process. It uses our fictional company `Nom Nom Goods` as an example, following our customer Sammy through the process.
+
+## Introduction
+
+Imagine you built a business and app called `Nom Nom Goods`. `Nom Nom Goods` manages hundreds of stores across the country and is eager to leverage Nash for orchestrating deliveries.
+
+## The Typical Customer Experience
+
+Here’s what Sammy's experience looks like in the `Nom Nom` app:
+
+1. 🍩 Sammy adds items to his cart and selects a nearby store location.
+2. 🧾 At checkout, he chooses to have his order delivered immediately.
+3. 🚚 Nash is integrated into the checkout flow to provide delivery quotes and manage the delivery process.
+4. 👍 Sammy receives his orders quickly and reliably, along with status updates about his delivery.
+
+## Integration with Nash on Checkout
+
+To integrate Nash into your `Nom Nom Goods` checkout flow, you'll follow these steps:
+
+1. **Build the Dispatch Strategy**: Configure how Nash selects the best delivery provider for each order.
+2. **Set up Automations**: Automatically apply the appropriate Dispatch Strategy based on predefined rules.
+3. **Create an Order**: When Sammy completes checkout, create a new order in Nash for delivery coverage and pricing.
+4. **Autodispatch the Order**: After Sammy places his order, Use Nash's autodispatch feature.
+5. **Track the Delivery**: Use live updates from Nash to keep Sammy informed about his order status.
+
+Here's a diagram of the process we'll build:
+![Overview of how Nom Nom interacts with Nash and the delivery providers.](https://mintlify.s3.us-west-1.amazonaws.com/nashtechnologies/images/nomnom-overview.png)
+
+## 1. Building the Dispatch Strategy
+
+Dispatch Strategies are configurations that determine how Nash selects delivery providers for your orders. You may prefer selecting the lowest-cost provider or have a ranked list of providers.
+
+To create a Dispatch Strategy, you can use either the Nash API or the Nash Portal. Below is an example of using the API to create a Dispatch Strategy with the following configuration:
+
+* **Allowed Providers**: `NomNomDrive`, `HotRodWheels`, `FastFleet`
+* **Provider Selection Strategy**: `lowest_price` (This indicates that Nash will choose the provider with the lowest delivery cost.)
+* **Reassign on Failure**: `true` (Nash will seek an alternative provider if the first choice cannot fulfill the order.)
+* **Auto Dispatch**: `false` (Indicate that we will manually manage the autodispatch of orders.)
+
+For more details, refer to [Dispatch Strategies](/api-reference/dispatch-strategies/dispatch-strategy).
+
+Here's a sample curl command to create the Dispatch Strategy:
+
+```shell create dispatch strategy
+curl --request POST \
+  --url https://api.sandbox.usenash.com/v1/options_group \
+  --header 'Authorization: Bearer $TOKEN' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"label": "NomNomCheckoutStrategy",
+	"allowedProviders": [
+		"NomNomDrive", "HotRodWheels", "FastFleet"
+	],
+	"enableAutoDispatch": false,
+	"providerSelectionStrategy": "lowest_price",
+	"reassignOnFailure": true
+}'
+```
+
+## 2. Setting Up Automations
+
+Automations allow you to apply Dispatch Strategies to your orders based on predefined rules, such as package value or delivery location. This ensures the correct Dispatch Strategy applies without manual intervention.
+
+You can configure Automations in the Nash Portal. For example, create a rule that applies the "NomNomCheckoutStrategy" Dispatch Strategy to any order with a package value over \$50. This helps ensure that higher-value deliveries receive appropriate treatment.
+
+## 3. Creating an Order
+
+When customer Sammy completes checkout in your `Nom Nom Goods` app, you'll create a new order in Nash using the `/v1/order` endpoint. The order payload should include details such as:
+
+* Pickup address
+* Dropoff address
+* Package description
+* Package value
+* Any special instructions
+
+Below is an example of an order creation payload:
+
+```shell payload for creating an order
+{
+  # pickup
+  "pickupAddress": "185 University Ave, Palo Alto, CA 94301",
+  "pickupBusinessName": "Yummy Donuts",
+  "pickupPhoneNumber": "+172012345678",
+  "pickupInstructions": "Pickup 10 boxes of glazed for Sammy. Order Number 1234",
+
+  # dropoff
+  "dropoffAddress": "401 San Antonio Rd, Mountain View, CA 94040",
+  "dropoffBusinessName": "Sammy's House",
+  "dropoffFirstName": "Sammy",
+  "dropoffLastName": "Camchaw",
+  "dropoffPhoneNumber": "+12345679019",
+  "dropoffInstructions": "Leave at the doorstep, plz!",
+
+  # package info
+  "deliveryMode": "now",
+  "description": "10 boxes of donuts",
+  "valueCents": 100,
+  "taxAmountCents": 9.3,
+  "tipAmountCents": 10.0,
+  "currency": "USD",
+  "itemsCount": 10,
+
+  # dispatch strategy
+  "dispatchStrategyId": "dss_1234567890"
+}
+```
+
+After creating the order, Nash will return a list of quotes from available delivery providers, including the price, estimated delivery time, and a tag indicating the preferred quote for autodispatch.
+
+```shell quote list in create order response
+  "quotes": [
+	{
+		"id": "qot_UPVrXwaAt4tQraeY2mDgH2",
+		"providerId": "NomNomDrive",
+		"providerName": "NomNomDrive",
+		"providerLogo": "https://nash-provider-logos.s3.amazonaws.com/FleetSimulator.png",
+		"createdTime": "2022-09-21T22:28:47.533139",
+		"expireTime": "2022-09-21T23:28:47.533139",
+		"priceCents": 1800,
+		"nashFeeCents": 100,
+		"currency": "USD",
+		"pickupWindow": null,
+		"dropoffEta": "2022-09-21T22:31:47.533124",
+		"costSplitCustomerCents": null,
+		"costSplitBusinessCents": null
+	},
+	{
+		"id": "qot_coBkLwCrgvtbAewhUGehf3",
+		"providerId": "FastFleet",
+		"providerName": "FastFleet",
+		"providerLogo": "https://nash-provider-logos.s3.amazonaws.com/FleetSimulator.png",
+		"createdTime": "2022-09-21T22:28:47.533681",
+		"expireTime": "2022-09-21T23:28:47.533682",
+		"priceCents": 650,
+		"nashFeeCents": 100,
+		"currency": "USD",
+		"pickupWindow": null,
+		"dropoffEta": "2022-09-21T22:37:47.533667",
+		"tags": [
+			"autodispatch_preferred_quote"
+		],
+		"costSplitCustomerCents": null,
+		"costSplitBusinessCents": null
+	},
+	{
+		"id": "qot_dvwfGGNGSc8yUrQxrp6cgp",
+		"providerId": "HotRodWheels",
+		"providerName": "HotRodWheels",
+		"providerLogo": "https://nash-provider-logos.s3.amazonaws.com/FleetSimulator.png",
+		"createdTime": "2022-09-21T22:28:47.534574",
+		"expireTime": "2022-09-21T23:28:47.534574",
+		"priceCents": 2000,
+		"nashFeeCents": 100,
+		"currency": "USD",
+		"pickupWindow": null,
+		"dropoffEta": "2022-09-21T22:34:47.534567",
+		"tags": null,
+		"costSplitCustomerCents": null,
+		"costSplitBusinessCents": null
+	}
+]
+```
+
+Let’s say several minutes elapsed because Sammy was lingering on checkout (deciding whether to add an 11th box of Donuts!) As a result, the quotes have expired!! We can do a simple quote refresh for the order:
+
+```shell refresh order quotes
+curl --request POST \
+  --url https://api.sandbox.usenash.com/v1/order/refresh_quotes \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "orderId": "ord_1234567890"
+}'
+```
+
+Finally, Sammy clicks the Place Order button in the `Nom Nom` app. Since `Nom Nom` already created the order with the appropriate details in Nash, the only thing left is to autodispatch!
+
+## 4. Autodispatching the Order
+
+Once you have reviewed the quotes, you can leverage Nash's autodispatch feature to assign the delivery automatically to the best provider based on your Dispatch Strategy. To initiate the autodispatch process, you will call the `/v1/order/{id}/autodispatch` endpoint.
+
+Here’s an example of how to autodispatch an order:
+
+```shell autodispatch order
+curl --request POST \
+  --url https://api.usenash.com/v1/order/ord_1234567890/autodispatch \
+  --header 'Authorization: Bearer $TOKEN'
+```
+
+When an Order gets dispatched, it becomes a Job. In the response, you'll get several objects.
+
+A `winnerQuote` object has the quote ID.
+
+```shell autodispatch response - winner quote
+"winnerQuote": {
+  "id": "qot_5yb6yrMtvTvxQnDaEZymDp",
+  "price_cents": 100
+}
+```
+
+The `delivery` object indicates the delivery is active.
+
+```shell autodispatch response - delivery object
+"delivery": {
+  "id": "dlv_01234567890",
+  "type": "<string>",
+  "status": "CREATED",
+}
+```
+
+## 5. Tracking the Delivery
+
+After dispatching the order, Nash provides live updates on the delivery status via [webhooks](/reference/webhooks). Leverage these webhooks to keep customers like Sammy informed about their order's progress, such as when the driver is en route or when the delivery is complete. This transparency enhances the customer experience throughout the delivery process.
+
+## Conclusion
+
+That's it! Sammy received his donuts and is a happy customer. 🎉🍩
+
+
+# Sample Checkout Workflow
+Source: https://docs.usenash.com/guides/checkout-workflow
+
+
+
+In this page, we outline a sample workflow for partners that want to embed Nash into their custom checkout workflows.
+We define a few terms and specify all relevant Nash endpoints that we recommend using to seamlessly
+use Nash to fulfill delivery for your customers in their checkout experience.
+
+## Relevant Concepts
+
+* [Nash Order](/api-reference/order/order)
+* [Dispatch Automations](/api-reference/dispatch-strategies/dispatch-automations)
+* [Dispatch Strategy](/api-reference/dispatch-strategies/dispatch-strategy)
+
+## Step 1: Fetching Order Quotes
+
+If you want to validate that Nash has a delivery option or if you want to pull the delivery price quotes from Nash for
+your customer's cart, you should use the [Get Order Quotes](/api-reference/order/get-order-quotes) endpoint to fetch all
+the valid quotes for the order.
+
+Some fields you want to include in this request are:
+
+* Pickup location: you should determine the location you would like to fulfill from. Alternatively, Nash can help
+  you determine the closest location to the customer that has inventory of the item, if you use our
+  [Store Locations](/api-reference/store-locations/get-store-location).
+* Customer Address: the dropoff location for the order. You'll need a full, valid address to obtain delivery quotes.
+* Estimated Pickup + Dropoff times: pass the time your customer would like to have the order delivered. If only the dropoff
+  time is sent, Nash will compute the pickup time based on the driving distance between the pickup and dropoff.
+* Order / cart ID (if available): associating a unique identifier to the Nash Order will allow you to recognize it in the Nash dashboard.
+* DispatchStrategyId (optional): we highly recommend leveraging [Dispatch Automations](/api-reference/dispatch-strategies/dispatch-automations)
+  to determine the dispatch strategy for an order, but if you want to specify the dispatch strategy at the quote creation step, then you can set up [Dispatch Strategies](/api-reference/dispatch-strategies/dispatch-strategy) and pass the ID.
+
+### Processing the Quotes Response
+
+How you process the quotes from Nash depends on the type of integration you are building. For instance, do you plan to show your customers an accurate delivery price in the checkout or will you just charge them a fixed fee for delivery, regardless of the Nash price? Here's a few fields that may be relevant:
+
+* **id**: This is the Nash Order ID that you'll use in the following steps of the checkout.
+* **Quotes**: this is a list of quotes that you can process. If using Dispatch Strategies, then look for the quote with `autodispatch_preferred_quote` in `quote.tags`.
+* **FailedQuotes**: a list of quotes from providers that can't fulfill the order, along with the failure reason.
+
+If your customer abandons the cart, you don't need to cancel the Nash Order that was created to obtain quotes.
+
+## Step 2: Updating Order
+
+If your customer decides to place the order for local delivery, then you should initially use the [Update Order](/api-reference/order/update-order)
+endpoint to add any fields that were missing when you first obtained your quotes. For this endpoint, you will use the Order ID returned in
+Step 1, and you should consider adding any new information that's relevant for the order. For example, if an order is
+created in your system, then you should add it in the `externalId` field. Similarly, you can update the `description`,
+`itemsCount`, `pickupInstructions`, and `dropoffInstructions` fields to give the driver what they need to ensure a
+successful delivery.
+
+You can also call Update Order anytime your customer updates their cart and tries to fetch a new delivery quote.
+To avoid excessive calls, you should only call update order when your customer is ready to check out and wants
+the latest delivery price.
+
+## Step 3: Dispatching Orders for Delivery
+
+Once your customer has placed the order, you should indicate to Nash that the order should be dispatched to the provider.
+Nash will forward the delivery information about the order (addresses, pickup + dropoff times, order details, etc.) to
+the chosen provider.
+
+There are two ways you can dispatch the order, and it depends on whether you are using Dispatch Strategies:
+
+1. With Dispatch Strategies: [Autodispatch Order](/api-reference/order/autodispatch-order) Autodispatching an order
+   selects a quote based on the dispatch strategy.
+2. Without Dispatch Strategies: [Select Order Quote](/api-reference/order/select-quote) choose the quote your customer
+   has accepted in the checkout page.
+
+## Step 4: Tracking your Deliveries
+
+Once the customer's order is placed and booked with the provider, you might want to track
+the status of the delivery in your app. To do that, you can either use the
+[GET Order](/api-reference/order/get-order) endpoint or [set up webhook](/reference/webhooks) updates.
+
+<br />
+
+## FAQs
+
+#### (Optional) Zip / Postal Code Validation
+
+Some merchants want their customers to validate that delivery is available for them before they reach the checkout page.
+A common question is "What if I want to check for local delivery availability in the pre-checkout step before a customer inserts their full address?"
+
+If you want to add a delivery widget option, we recommend adding a step in your cart page or a banner in your website to
+ask your customers to check if they are eligible for Local Delivery. If your system already tracks stores, you can store
+a list of zip / postal codes that are reachable by local delivery for each store, or you can rely on the Nash
+[Store Locations](/api-reference/store-locations/get-store-location) to check which areas are serviceable from your stores.
+
+<Frame caption="Example delivery widget">
+  <img width="300" src="https://files.readme.io/c49c228-Screenshot_2024-03-29_at_5.38.06_PM.png" />
+</Frame>
+
+#### Refreshing Quotes
+
+Quotes have an `expireTime`. You can use the [Refresh Quotes](/api-reference/order/refresh-order-quotes)
+endpoint to refresh the quotes. The pricing shouldn't change assuming no other information about the order has changed.
+
+
+# Production Testing
+Source: https://docs.usenash.com/guides/production-testing
+
+
+
+Welcome to Production Testing!
+
+You’re now one step closer to offering reliable, local delivery to your customers! If you have already validated the Nash integration locally and are ready to take the integration live, please reach out to your Nash point of contact to schedule an integration testing call with our team.
+
+Please be ready to walk through:
+
+* Your desired checkout experience
+* Outlining how you will use Nash to:
+  * show quotes
+  * select them
+  * dispatch them
+* Jobs that are coming into Nash:
+  * confirming the pickup/dropoff times
+  * delivery instructions
+  * other Nash fields.
+* We will also go over your Nash Dispatch Strategies (aka Options Groups) if you’ve decided to use them.
+
+Once everything is good to go, our team will enable the production API keys for you and you are ready to start delivering
+
+
+# Authentication
+Source: https://docs.usenash.com/reference/authentication
+
+
+
+Nash APIs use API keys for authentication and authorization. **API keys can be created in Nash's portal, follow [this tutorial](/reference/generating-api-key-and-org-id) to learn how.
+Also follow the part on how to get the Organization ID, this will be important here.**
+
+<Note>If your API key has access to multiple Nash Organizations, you must include the `Nash-Org-Id` header in your request to indicate which Org the request is accessing</Note>
+
+To make an API request, you need to include your API Key and optionally Organization ID in the request headers:
+
+1. `Authorization: Bearer <API KEY>`: Replace `<API KEY>` with your actual API key. This header authenticates your request.
+2. (OPTIONAL) `Nash-Org-Id: <ORG ID>`: Replace `<ORG ID>` with the ID of the organization you want to access. This header is required because API keys can be scoped to multiple organizations.
+
+If you followed the tutorial, you should already have your API Key and Organization ID. With these two pieces of information, you can make a request like this:
+
+## API Key Authentication
+
+```sh
+curl --request GET \
+  --url https://api.sandbox.usenash.com/v1/jobs \
+  --header 'Authorization: Bearer <API KEY>' \
+  --header 'Nash-Org-Id: <ORG ID>' \
+  # ... request body, etc
+```
+
+> 🔒 Secure your API Key!
+>
+> Your organization's API key can hold many privileges so be sure to keep it secure. Be careful to not share the key unintentionally, since it enables direct access to the Nash API.
+
+
+# Delivery Status
+Source: https://docs.usenash.com/reference/delivery-status
+
+
+
+Nash integrates with hundreds of fleets, and we normalize all their statuses into a list of Nash Delivery Statuses. In this page, we explain these statuses and highlight a few things that are important to know when working on processing the Nash status updates.
+
+### Delivery Status List
+
+For delivery status. The values are:
+
+| Status                | Description                                                                                                                                                                                                                                                                                        |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CREATED`             | if you see this value in the DeliveryStatus object then this means that the delivery order has registered with the provider and is therefore "created". In the frontend, currently a job status can also be created if its TaskStatus is Created (which happens before it's sent to the provider). |
+| `SCHEDULED`           | the provider has scheduled the order.                                                                                                                                                                                                                                                              |
+| `NOT_ASSIGNED_DRIVER` | provider acknowledges the order but has not assigned a driver to it yet.                                                                                                                                                                                                                           |
+| `ASSIGNED_DRIVER`     | a driver has been assigned to the order.                                                                                                                                                                                                                                                           |
+| `STARTED`             | the delivery has started. This status is not that common.                                                                                                                                                                                                                                          |
+| `PICKUP_ENROUTE`      | the driver is en route to the pickup point.                                                                                                                                                                                                                                                        |
+| `PICKUP_ARRIVED`      | the driver has arrived at the pickup point.                                                                                                                                                                                                                                                        |
+| `PICKUP_COMPLETE`     | the driver has completed the pickup.                                                                                                                                                                                                                                                               |
+| `DROPOFF_ENROUTE`     | the driver is en route to the dropoff point.                                                                                                                                                                                                                                                       |
+| `DROPOFF_ARRIVED`     | the driver has arrived at the dropoff point.                                                                                                                                                                                                                                                       |
+| `RETURN_IN_PROGRESS`  | the driver is en route to the pickup point with intentions to return the package (e.g., delivery containing alcohol cannot be delivered due to failed age verification and needs to be returned to the store)                                                                                      |
+
+### Terminal Statuses
+
+Once a delivery reaches this status, it will not change again
+
+| Status                      | Description                                                                                     |
+| :-------------------------- | :---------------------------------------------------------------------------------------------- |
+| `DROPOFF_COMPLETE`          | the driver has dropped off the order.                                                           |
+| `CANCELED_BY_CUSTOMER`      | the order was canceled by the Nash customer via the portal or API.                              |
+| `CANCELED_BY_PROVIDER`      | the order was canceled by the provider.                                                         |
+| `CANCELED_BY_NASH`          | the order was canceled by a member of the Nash team or the Nash system.                         |
+| `CANCELED_BY_AUTO_REASSIGN` | the order was canceled by the Nash auto-reassignment functionality.                             |
+| `RETURNED`                  | the provider has returned the order.                                                            |
+| `EXPIRED`                   | the order has expired.                                                                          |
+| `FAILED`                    | the provider marked the order as failed. You can check the `task.failure_reason` for more notes |
+
+## Guaranteed Status Order
+
+Nash guarantees the following path if the delivery is completed.\
+`CREATED` ->`ASSIGNED_DRIVER`  -> `PICKUP_ENROUTE`  -> `PICKUP_ARRIVED`  -> `DROPOFF_ENROUTE` -> `DROPOFF_ARRIVED` -> `DROPOFF_COMPLETE`
+
+This means if a delivery reaches `DROPOFF_COMPLETE` we guarantee the other statuses before that will exist in the same order presented. Note you can have more statuses than these, but they will preserve their relative order and will always exist.
+
+We do this by inferring some statuses from providers, even if they do not provide them. For example, if a fleet doesn't support the `Dropoff Arrived` status but they send us a `Dropoff Complete` one, then we will inject the `Dropoff Arrived` status right before adding `Dropoff Complete`. This helps our API partners build workflows on top of the Critical Path status.
+
+### Important to Know
+
+* Different providers will support *different subsets* of the statuses above. It's important to know this when building workflows on top of the statuses above.
+* Nash does not guarantee the order in which providers will send us the statuses, outside of the Critical Delivery Status Path defined earlier.
+* Critical Path Delivery Statuses may be inferred by Nash.
+
+
+# Environments
+Source: https://docs.usenash.com/reference/environments-1
+
+
+
+|                     | API Endpoint                                | Corresponding Nash Portal URL                                               |
+| :------------------ | :------------------------------------------ | :-------------------------------------------------------------------------- |
+| **Production**      | `https://api.usenash.com/v1`                | [`https://portal.usenash.com`](https://portal.usenash.com/)                 |
+| **Production (AU)** | `https://api.ap-southeast-2.usenash.com/v1` | [`https://portal.usenash.com`](https://portal.usenash.com/)                 |
+| **Sandbox**         | `https://api.sandbox.usenash.com/v1`        | [`https://portal.sandbox.usenash.com`](https://portal.sandbox.usenash.com/) |
+| **Sandbox (AU)**    | `https://api.ap-southeast-2.usenash.com/v1` | [`https://portal.sandbox.usenash.com`](https://portal.sandbox.usenash.com/) |
+
+## Production
+
+All activity in the Production environment will be billed.
+
+<Note>
+  When you’re getting ready to launch into production, follow the steps in
+  [Getting Started](/reference/generating-api-key-and-org-id) to generate your
+  production API Key credentials. This will require prior approval from your
+  account manager at Nash.
+</Note>
+
+## Sandbox
+
+The Nash Sandbox is a free and fully-featured environment that allows you to test your integration without sending
+requests to actual drivers. All Nash API functionality is supported in the Sandbox environment.
+
+Most endpoints can be immediately tested in Sandbox with no extra configuration. Nash's sandbox uses simulated fleet data
+with real fleet integrations, and unlike Production, it is free to use. This enables you to test your implementation in
+"production-like" conditions. Please note that the prices reflected in Sandbox do not reflect Production settings.
+
+### Fleet Simulators
+
+Nash has a set of FleetSimulators which are mock fleets that will emulate scenarios you might encounter while using Nash
+in a production setting.
+
+Fleet simulators will start the job based on the scheduled pickup time.
+
+* FleetSimulator: will cycle through several job statuses from `Driver Not Assigned` up until `Dropoff Complete`
+* FleetSimulatorFast: same as FleetSimulator but with a shorter cycling interval between statuses.
+* FailingFleetSimulator: will send you a "Failed" fleet status.
+
+## Differences between Sandbox and Production
+
+While we try to make the Sandbox environment mimic Production as much as possible, there are a few limitations that
+you should be aware of:
+
+* SMS notifications are not triggered in Sandbox.
+* The behavior of fleets and fleet simulators is not an indication of how fleets will behave in the real world. In practice.
+
+
+# Errors
+Source: https://docs.usenash.com/reference/errors
+
+
+
+Nash uses HTTP response status codes to indicate the success or failure of your API requests. If your request fails, Nash returns an error using the appropriate status code.
+
+In general, there are three status code ranges you can expect:
+
+* 2xx success status codes confirm that your request worked as expected
+* 4xx error status codes indicate an error because of the information provided (for example, a required parameter was missing)
+* 5xx error status codes are rare and indicate an error with Nash's end
+
+Example of a failed request:
+
+```json
+{
+	"error": {
+		"code": "MISSING_RESOURCE",
+		"message": "job 'job_123' does not exist"
+	},
+	"response_status": "404 NOT_FOUND",
+	"RequestID": "d97e3f4d-114d-4b77-ae47-9e10c5151424"
+}
+```
+
+Please Include`RequestID` in when communicating [support@usenash.com](mailto:support@usenash.com) so we can help you faster
+
+## Possible error codes
+
+## BAD\_REQUEST
+
+The request failed, often due to missing a required parameter or malformed input field
+Example:
+
+```json
+{
+	"error": {
+		"code": "BAD_REQUEST",
+		"message": "'pickupAddress' is a required property"
+	},
+	"response_status": "400 BAD_REQUEST",
+	"RequestID": "1-62057334-011d10e02c0f2ad839cf0a26"
+}
+```
+
+Solution: include `pickupAddress` field.
+
+Another example:
+
+```json
+{
+	"error": {
+		"code": "BAD_REQUEST",
+		"message": "quote_id qot_abc has expired"
+	},
+	"response_status": "400 BAD_REQUEST",
+	"RequestID": "1-62057334-41a43ef8a6d4f58a71e09ad2"
+}
+```
+
+Solution: refresh quotes and try again [refresh-quotes](/api-reference/order/refresh-order-quotes)
+
+## UNAUTHORIZED
+
+Invalid or missing API key.
+Example:
+
+```json
+{
+	"error": {
+		"code": "UNAUTHORIZED",
+		"message": "Authorization token is missing"
+	},
+	"response_status": "401 UNAUTHORIZED",
+	"RequestID": "1-62057941-67a549bb5faa77236a03ef8d"
+}
+```
+
+## FORBIDDEN
+
+Provided API key does not have access to requested resource/action
+Example:
+
+```json
+{
+	"error": {
+		"code": "FORBIDDEN",
+		"message": "job_id 'job_Y8B5CWhvN9G8odcfAiqd29' is not owned by ''"
+	},
+	"response_status": "403 FORBIDDEN",
+	"RequestID": "1-620579a6-7ef612c414f3b59c1e74ffbb"
+}
+```
+
+## INVALID\_ADDRESS
+
+Provided address in either `pickupsAddress` or `dropoffAddress` is missing, invalid or couldn't be parsed.
+Example:
+
+```json
+{
+	"error": {
+		"code": "INVALID_ADDRESS",
+		"message": "Failed to parse provided address 'bad_address'"
+	},
+	"response_status": "400 BAD_REQUEST",
+	"RequestID": "1-620572c5-1c8927c37edbd37173140be3"
+}
+```
+
+## INVALID\_PHONE\_NUMBER
+
+Provided phone-number in either `pickupPhoneNumber` or `dropoffPhoneNumber` is missing, invalid or couldn't be parsed.
+
+Provided phone-number are expected to be in [E.164 format.](https://en.wikipedia.org/wiki/E.164)
+
+Example:
+
+```json
+{
+	"error": {
+		"code": "INVALID_PHONE_NUMBER",
+		"message": "Provided US phone-number '+1111111' is invalid"
+	},
+	"response_status": "400 BAD_REQUEST",
+	"RequestID": "1-62057a15-2d3444806b950c514da305be"
+}
+```
+
+## RESOURCE\_ALREADY\_EXISTS
+
+provided `externalIdentifier` has been already used for another job
+Example:
+
+```json
+{
+	"error": {
+		"code": "RESOURCE_ALREADY_EXISTS",
+		"message": "Provided external identifier: '123' was used in a previous job"
+	},
+	"response_status": "400 BAD_REQUEST",
+	"RequestID": "1-62057a2b-17e8db5600cd5da143e75a95"
+}
+```
+
+## MISSING\_RESOURCE
+
+job/task/options\_group cannot be found
+Example:
+
+```json
+{
+	"error": {
+		"code": "MISSING_RESOURCE",
+		"message": "job 'job_123' does not exist"
+	},
+	"response_status": "404 NOT_FOUND",
+	"RequestID": "1-62057a4a-1833f34338a256b23d8fe9de"
+}
+```
+
+## INVALID\_TIME\_CONSTRAINT
+
+Provided `packagePickupStartTime`, `packagePickupEndTime`, `packageDropoffStartTime` , `packageDropoffEndTime` are invalid (e.g. dropoff time window is before pickup time window)
+
+Example:
+
+```json
+{
+  "error": {
+    "code": "INVALID_TIME_CONSTRAINT",
+    "message": "Pickup time cannot be in the past"
+  },
+  "response_status": "400 BAD_REQUEST",
+  "RequestID": "1-62057a5f-206feee76c4da88d0d599fb5"
+}
+```
+
+## DISALLOWED\_OPERATION
+
+An API operation was attempted but was disallowed, e.g., updating a job after completion.
+
+```json JSON
+{
+  "error": {
+    "code": "DISALLOWED_OPERATION",
+    "message": "Job updates are not allowed when at least 1 task is completed. Task statuses are ['completed']"
+  },
+  "response_status":"400 BAD_REQUEST",
+  "RequestID": "1-62057a5f-206feee76c4da88d0d593455"
+}
+```
+
+## AUTODISPATCH\_FAILURE
+
+Auto-dispatch failed due to no valid quotes.
+
+```json
+{
+  "error": {
+    "code": "AUTODISPATCH_FAILURE",
+    "message": "job_123: Failed auto-dispatch (preferred_order): No provider satisfied requirements: No valid quotes found, error_code=NO_VALID_QUOTES, error_code=AUTODISPATCH_FAILURE"
+  },
+  "response_status": "400 BAD_REQUEST",
+  "RequestID": "e5dc2885-606c-4de2-84cb-6da6b495eda1"
+}
+```
+
+## INTERNAL\_SERVER\_ERROR
+
+Something went wrong on Nash's end. (These are rare.)
+Example:
+
+```json
+{
+  "error": {
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "The server encountered an error and was unable to complete the request"
+  },
+  "response_status": "500 INTERNAL_SERVER_ERROR",
+  "RequestID": "e5dc2885-606c-4de2-84cb-6da6b495eda1"
+}
+```
+
+## List of possible HTTP response statuses
+
+| response\_status            | Description                                                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| 200 OK                      | Everything worked as expected.                                                                                |
+| 400 BAD\_REQUEST            | The request was unacceptable, often due to missing a required parameter.<br />See error.code for more details |
+| 401 UNAUTHORIZED            | Invalid or missing API key.                                                                                   |
+| 403 FORBIDDEN               | The API key doesn't have permissions to perform the request.                                                  |
+| 404 NOT\_FOUND              | The requested resource doesn't exist.                                                                         |
+| 429 TOO\_MANY\_REQUESTS     | Too many requests hit the API too quickly.                                                                    |
+| 500 INTERNAL\_SERVER\_ERROR | Something went wrong on Nash's end.                                                                           |
+
+
+# API Key and Org ID
+Source: https://docs.usenash.com/reference/generating-api-key-and-org-id
+
+How to retrieve an API Key and Organization ID from the Nash portal
+
+## RESTful API
+
+The API follows modern RESTful conventions and speaks JSON in both directions. As the API uses JSON for both requests and responses, we will assume that requests with a payload are using properly formatted JSON, however, we still recommend setting the Content-Type header to the value application/json.
+
+## API protocols and headers
+
+The Nash API uses POST requests to communicate and HTTP response codes to indicate status and errors.
+
+Every Nash API response includes a job\_id as the 'X-Job-Id' header. The request\_id is included regardless of whether or not the API request succeeded or failed. For faster support, include the request\_id when contacting support regarding a specific API call.
+
+All requests are strictly HTTPS
+
+## Enabling your API access
+
+Your organization's API will be enabled in Sandbox automatically (`portal.sandbox.usenash.com`). When you are ready for Production testing, please reach out to [support@usenash.com](mailto:support@usenash.com) to enable the API in Production.
+
+## Generating your API Key directly from Nash's Portal
+
+Go to your `Settings` page by clicking this option in the Nash's Portal sidebar.
+
+![Nash Portal Settings Page](https://files.readme.io/7db9d04-Screen_Shot_2023-06-26_at_9.37.59_PM.png)
+
+Select `API`. This will redirect you to the API Settings and will contain all API Keys created by you.
+
+![API Settings Page](https://files.readme.io/c085d59-Screen_Shot_2023-06-26_at_9.40.35_PM.png)
+
+Once you are there, click on `Generate Key`.
+
+![Generate Key Page](https://files.readme.io/db7dd7a-Screen_Shot_2023-06-26_at_9.42.54_PM.png)
+
+Add a `key name` (mandatory) and `description` (optional) to help you identify the API Key later. If you are registered in multiple organizations, you'll have the chance to select which organizations you want to scope this Key with in the Selector. We will preselect the current organization to which you are logged in. Make sure to also add all features you want this Key to have access.
+
+Adding a feature to a key does not guarantee the key's access to that feature under the organizations you've selected. If you, the user, do not have access to that feature in a particular organization, then your key won't be able to access it either, regardless of which permissions you have placed on the key.
+
+![Generate Key Page 2](https://files.readme.io/d723a3f-Screen_Shot_2023-06-26_at_9.45.26_PM.png)
+
+After you're done, click `Save` and your API Key will be created. **Make sure to copy and store it because this will be the only time you'll have access to view your key.**
+
+[Confirmation Page](https://files.readme.io/74476f6-Screen_Shot_2023-06-26_at_9.49.20_PM.png)
+
+## Retrieving and Using an Organization ID
+
+Now that you created your API Key, you'll need the id for the Organization you wanna read/write information from. We call this `Org ID`. **You will add this as a header param to every endpoint which interacts with an Organization's resources, such as creating a job. For instance, you would need to add `"Nash-Org-Id": "org_AbC123"`:  to create a job within org\_AbC123.**
+
+The `"Nash-Org-Id"` header is an optional field for API keys that have access to multiple Nash organizations. If an API key is generated and it only has access to one Nash Organization, then there's no need to include it in the request headers.
+
+To retrieve that `Org ID`, hover over the organizations in a key and copy it.
+
+![Org ID Page](https://files.readme.io/fe57fb4-Screen_Shot_2023-06-26_at_9.52.26_PM.png)
+
+
+# Welcome to Nash
+Source: https://docs.usenash.com/reference/getting-started
+
+The Most Reliable Way to Organize and Manage Delivery
+
+Nash is a delivery orchestration platform enabling your business to offer reliable delivery.
+
+<Tip>
+  New Nash TMS Driver App available in the <Link href="https://apps.apple.com/us/app/nash-driver/id6612010141">App Store</Link>
+  and <Link href="https://play.google.com/store/apps/details?id=com.usenash.nashtms">Google Play Store</Link>.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Introduction to Nash" icon="hand-wave" href="/reference/getting-started-with-your-api">
+    A brief introduction to Nash and how it can help your business.
+  </Card>
+
+  <Card title="Api Docs" icon="code" href="/api-reference/introduction">
+    View the API documentation to get started with Nash.
+  </Card>
+
+  <Card title="Integration Examples" icon="book-sparkles" href="/guides">
+    Some long-form examples of how various use cases can be implemented with Nash.
+  </Card>
+</CardGroup>
+
+
+# What is Nash?
+Source: https://docs.usenash.com/reference/getting-started-with-your-api
+
+A brief introduction to Nash and how it can help your business.
+
+Nash is a delivery orchestration platform enabling your business to offer reliable delivery. Nash instantly connects with a large number of fleet providers and drivers. We provide these services through the Nash Portal, and programmatically through the Nash API to **create and manage instant and scheduled delivery jobs**.
+
+![Nash Introduction](https://assets.website-files.com/624f59f2831cca98595515d2/62a35c263e84722e154b356d_graphic-2.1.svg)
+
+## How it works
+
+To get the most value from Nash, it is important to understand how your specific account can be configured mainly
+through the following features.
+
+* **Dispatch Strategies** Choosing optimal provider to fulfill the job.
+* **Automations** Business rules to choose the best Dispatch Strategy based on job information
+* **Notifications** Define triggers to send messages to end customers or internal systems
+* **Tracking Customization** Look and feel of tracking links that you can send to end customers
+
+When the account is set up, and orders are starting to flow in, there are three logical phases in the Nash delivery lifecycle:
+
+<Steps>
+  <Step title="Order Ingestion">
+    Submit an order to Nash
+  </Step>
+
+  <Step title="Dispatch">
+    Choose your delivery providers and set dispatch strategies
+  </Step>
+
+  <Step title="Monitoring and Tracking">
+    Monitor and track your deliveries throughout the delivery process.
+  </Step>
+</Steps>
+
+### Phase I: Order Ingestion
+
+Starting point for Nash is to process information about a potential delivery. This happens through creating an
+*order* in Nash. An order can be created directly from the Nash Portal, uploaded by CSV in the portal, or
+by using the [Create Order](/api-reference/order/create-order) API endpoint.
+
+Once the submitted information is validated, the output will be a list of quotes from providers that are eligible to
+fulfill this delivery.
+
+### Phase II: Dispatch
+
+The dispatch phase is the collection of actions that solve for deciding which delivery provider to send the job to for
+fulfillment. Nash leans heavily on using **Dispatch Strategies** to make this decision. These strategies are configurable in
+the Nash portal and guides the decision engine in Nash to select the most appropriate provider for a job.
+
+A job can be submitted to Nash with a specific dispatch strategy, or the user can take advantage of [**Automations**](/api-reference/dispatch-strategies/dispatch-automations)
+to
+map specific business rules to desired strategies. For example, for jobs with value greater than \$200 use strategy
+A otherwise use strategy B. This is the recommended path since it simplifies the implementation of the Nash API and moves
+complexity of managing dispatch strategies to the Nash Portal.
+
+The last approach for dispatch is to send a job to specific provider manually. This can be achieved in the Nash Portal
+or through the API by using the [Select Quote](/api-reference/job/select-quote)  endpoint.
+
+The result of this phase will be a job dispatched to a delivery provider. At this point, we have a *delivery* object.
+
+### Phase III: Monitoring and Tracking
+
+Third phase of the job lifecycle is to monitor it as it progresses through the statues list until it reaches a terminal
+state. Nash builds scalable monitoring tools in the Nash Portal to enable the live monitoring of thousands of concurrent
+jobs. We recommend using the Nash Portal as the central operational tools to take action on live jobs.
+
+In addition to the Nash Portal, users can consume our API endpoints to systematically process information about jobs in real-time.
+In use cases where you need to consume real-time information the best path is to process our [**webhooks**](/reference/webhooks).
+In addition to the standard set of webhooks, Nash enables the user to define custom notifications that trigger a
+webhook alert for operational triggers relevant to the use case. Example, send a webhook when the courier
+is running more than 10 minutes late.
+
+![Nash Introduction2](https://assets.website-files.com/624f59f2831cca98595515d2/63052f3b1de93de7b6db3c3d_img-ui-3.png)
+
+<Card title="Nash API Docs" icon="code" href="/api-reference/introduction">
+  View the API reference documentation
+</Card>
+
+
+# Glossary
+Source: https://docs.usenash.com/reference/glossary
+
+
+
+### Order
+
+An **Order** represents the delivery details for package(s) in the real world.
+
+### Package
+
+A **Package** is a container, like a box, to be delivered. It may contain multiple items.
+
+### Job
+
+A **Job** represents the actual delivery process. A job holds the package(s) to be delivered, the quotes from fleets willing to deliver the package(s), and the current delivery status if one was selected. One or more Orders become a Job when dispatched. For instance, a job could consist of multiple Orders from a single merchant being delivered together to a customer.
+
+### Batch Job
+
+A **Batch Job** is a group of packages delivered by the same courier, thereby using the same provider. A batch job comprises more than one package, in contrast to single jobs (non-batch), which contain a single package. For example, if a merchant has five items for different customers in close proximity, these could be consolidated into a batch job for more efficient delivery.
+
+### Job Configuration
+
+Each job includes a **Job Configuration** that contains detailed information on how the delivery will be executed. This configuration encompasses particulars on the dispatch strategy, any special instructions, and additional settings that govern how the job should be managed. The Job Configuration may determine if special handling is required due to item fragility or temperature sensitivity.
+
+### Task
+
+Within each Job Configuration, there exists a list of **Tasks**. A Task is where operational activities take place, involving a set of Quotes and a Delivery object. When you create a new Task, you solicit quotes from various providers for the delivery. For example, a Task might request quotes from different delivery providers, allowing the merchant to choose the best option based on cost and delivery time.
+
+### Quote
+
+A **Quote** is a pricing estimate for a delivery task. Quotes are generated for specific orders or jobs and contain important information such as price and provider. Quotes can be created, selected, and refreshed within the Nash system.
+
+### Delivery
+
+The **Delivery** object retains critical information concerning the progress of the delivery, including the status, estimated delivery time, courier details, and proof of delivery. It is instantiated before selecting a quote for a Task and becomes active when the quote has been selected. For example, customers can check the Delivery object to see if the courier has picked up the package and is en route to the destination.
+
+### Dispatch Strategy
+
+A **Dispatch Strategy** is a set of configurations that can be attached to Nash jobs during creation that enable features such as Auto Dispatch, Auto Reassign on Provider Failure, and Auto Reassign based on Pickup/Dropoff Time(s). These strategies help minimize manual oversight in monitoring and modifying jobs. For instance, you might configure a dispatch strategy to automatically reassign a job if the original provider fails to pick up the parcel within a specified timeframe.
+
+### Provider
+
+A **Provider** is the delivery company responsible for fulfilling your order. This company may be an internal fleet or a third-party provider that Nash partners with to offer diverse delivery options.
+
+
+# What Nash Offers
+Source: https://docs.usenash.com/reference/how-can-nash-help
+
+Nash is a powerful delivery orchestration platform designed for businesses to streamline their delivery operations, reduce costs, and expand their reach.
+
+<AccordionGroup>
+  <Accordion title="Flexible Delivery Options" icon="route">
+    * On-demand, scheduled, and multi-stop deliveries
+    * Batch orders for optimization
+  </Accordion>
+
+  <Accordion title="Fleet Management" icon="truck">
+    * Use Nash's international fleet or integrate your own
+    * Manage all fleets in a central place
+  </Accordion>
+
+  <Accordion title="Market Expansion" icon="maximize">
+    * Enter new markets with instant delivery capabilities
+  </Accordion>
+
+  <Accordion title="Delivery Cost Reduction" icon="sack-dollar">
+    * Auto-dispatch based on price or custom criteria
+    * Access a large selection of integrated fleets for competitive pricing
+    * Leverage Nash's high volumes to negotiate better rates with fleet partners
+  </Accordion>
+
+  <Accordion title="Delivery Speed and Efficiency" icon="truck-fast">
+    * Select fleets based on ETA
+    * Gain real-time visibility into courier and fleet ETAs
+    * Optimize routes for faster deliveries
+  </Accordion>
+
+  <Accordion title="Customer Satisfaction" icon="face-smile-beam">
+    * Track deliveries via the Nash portal
+    * Provide accurate and up-to-date delivery information to customers
+  </Accordion>
+</AccordionGroup>
+
+
+# Nash API Overview
+Source: https://docs.usenash.com/reference/nash-api-overview
+
+
+
+Nash's operating model is streamlined and efficient. You provide us with the delivery details, and within seconds, we can:
+
+1. Identify the optimal provider in the market that meets your specific requirements
+2. Dispatch the job on your behalf
+
+This process ensures fast, reliable, and tailored delivery solutions for your needs. To achieve this, we use a few key concepts:
+
+[**Order**](/api-reference/order/order): An order is the most flexible way to create delivery details in Nash. It maps 1:1 to a package in the real world.
+
+[**Job**](/api-reference/job/jobs): One or more orders become a job when dispatched. Jobs can have a single package (point-to-point delivery) or multiple, which we call "batch jobs".
+
+### Pre Dispatch
+
+* **[Create Order](/api-reference/order/create-order)**: Use this endpoint to submit delivery details: pickup, dropoff,
+  and more information on the goods delivered. You may request quotes along with the create request, and the response
+  will include costs and ETAs from multiple fleet providers integrated with Nash that meet the order criteria
+  (mainly coverage and quality filters specified by your organization as part of the onboarding).
+
+* **Autodispatch**: To dispatch the order, you need to choose the optimal service provider. This step can be done in three different ways:
+
+  1. Automatically with [Create Order](/api-reference/order/create-order) endpoint by specifying a dispatch strategy with auto-dispatch enabled
+  2. Via API using the [Autodispatch Order](/api-reference/order/autodispatch-order) endpoint when the order is confirmed for delivery
+  3. Via API using the [Select Quote](/api-reference/order/select-quote) endpoint, and manually owning the selection process internally.
+     For this, you need the quote ID (this is not a common path)
+
+### Post Dispatch
+
+Once the delivery provider has been selected, you now have an active delivery you can [track](/api-reference/job/get-job),
+[update](/api-reference/job/update-job-by-job-id-and-job-configuration-id),
+or [cancel](/api-reference/job/cancel-job-by-job-id-and-job-configuration-id) the job.
+
+
+# Plan Your Integration
+Source: https://docs.usenash.com/reference/plan-your-integration
+
+
+
+## Introduction
+
+This guide provides an overview of how to integrate with Nash's API for a custom integration. You can also manually initiate deliveries in the Nash Portal.
+
+Familiarizing yourself with Nash's capabilities and configuration choices will help you provide a seamless and efficient delivery experience for your customers.
+
+## Timeline
+
+Implementing a Nash integration typically takes 2 - 4 weeks. This timeline may vary based on the complexity of your delivery requirements and the extent of integration with your existing systems.
+
+| Phase                                                       | Duration    | Tasks                                                                       |
+| :---------------------------------------------------------- | :---------- | :-------------------------------------------------------------------------- |
+| **Account Setup and Onboarding**                            | 1 - 2  days | Familiarize your team with the Nash system                                  |
+| **Plan Checkout, Dispatch, Automations, and Notifications** | 1 - 2 days  | Plan your customer experience, dispatch strategies, and monitoring approach |
+| **Build and Test**                                          | 1 - 3 weeks | Implement API calls, set up webhook handling, configure dispatch strategies |
+| **Go-Live**                                                 | 1 - 2 days  | Conduct final testing and move from Sandbox to Production                   |
+
+## Account Setup and Onboarding
+
+Get access to the [Nash API](/reference/nash-api-overview). Determine who needs access to the API and to the Nash Portal.
+
+## Plan Dispatch Strategies, Automations, and Notifications
+
+Choose the [dispatch strategy](/api-reference/dispatch-strategies/dispatch-strategy) that Nash will use to select delivery providers for your orders, including options such as lowest cost, highest reliability, or a tailored ranking. Decide whether or not you want auto-dispatch. Read more about dispatch strategy considerations in the [help center](https://help.usenash.com/en/articles/7260581-understanding-dispatch-strategies).
+
+Then, set [automations](/api-reference/dispatch-strategies/dispatch-automations) to automatically apply the dispatch strategies based on parameters such as order value, delivery location, and product type.
+
+Finally, decide what [notifications](/api-reference/notifications/notifications) you want to send to your customers and your internal teams. Read more about the default enabled and disabled notifications in the [help center](https://help.usenash.com/en/articles/7310266-notification-settings).
+
+## Build and test
+
+Now it's time to integrate with your e-commerce platform or order management system to ingest orders into Nash.
+
+The bulk of the work is building the end-to-end delivery experience. You'll implement the customer checkout experience, the delivery dispatch and automation strategy, and the tracking experience for customers and internal teams.
+
+To enable real-time delivery updates, you'll need to configure [webhooks](/reference/webhooks).
+
+## Go-Live
+
+When you are ready for Production testing, please reach out to **[support@usenash.com](mailto:support@usenash.com)** to enable the API in Production.
+
+## Best Practices
+
+To ensure a successful Nash integration and ongoing delivery improvements, follow these best practices:
+
+1. **Start with a Solid Foundation**: Take time upfront to determine your dispatch strategies and automations. Think about your existing customer experience and what you want to optimize for.
+
+2. **Leverage Notifications**: Establish a robust notification system to keep you informed about delivery status, facilitating quick identification and resolution of issues.
+
+3. **Continuously Improve**: Analyze delivery performance data and adjust your dispatch strategies and automations as needed to foster continuous improvement in efficiency and customer satisfaction.
+
+
+# Rate-Limits & Request Throttling
+Source: https://docs.usenash.com/reference/rate-limits-throttling
+
+Nash's APIs use rate-limiting mechanisms to control the number of requests an organization can make to the API.
+
+Nash's APIs use rate-limiting mechanisms to control the number of requests that come in. Each account is limited to 20 requests per second across all Nash API endpoints.
+
+Too many requests hitting will result in HTTP 429 (Too Many Requests) responses. This signals to your application that it should slow down or halt the sending of requests. We strongly recommend that you use a library to help you orchestrate your request rate, for instance by using a backoff approach
+
+If you believe your organization has valid reasons to need a higher limit, contact the Nash support team to discuss the possibility of rate limit adjustments.
+
+
+# Webhooks
+Source: https://docs.usenash.com/reference/webhooks
+
+
+
+If you are building an application that relies on constant updates for your Nash deliveries, then integrating a Nash webhook will help you receive real-time delivery events.
+
+At Nash, we support a few webhooks types. The webhook response will include 3 fields:
+
+* `type` field. Webhook types can be of type `delivery`, `task`, `courier_location`.
+* `event` field which can be one of several possible statuses (see below).
+* `data` field which is a Job object, similar to the [Create Job endpoint](/api-reference/job/create-job) or see the example below.
+
+To set up a webhook, you can do so in the [Webhook Management](https://portal.usenash.com/settings/webhook-management) page in the Nash Portal. Here, you can filter by event type and add multiple endpoints if you want to send different events to different endpoints, for example. All event schemas and types are enumerated under the **Event Catalog** tab. Select events will have example payloads. Note that event schemas are assumed to be batch jobs. If your job is not a batch job, there will be no key "batch" and you'll see `"isBatch": false`, both nested under the key "data".
+
+We support webhooks in both sandbox and production environments. Failed webhook requests will be retried according to our [retry policy](/reference/webhooks#retry-policy) and are sent [securely](/reference/webhooks#verifying-webhooks).
+
+<hr />
+
+## `type=delivery`:
+
+**Frequency**: once per state transition (e.g., from `created` -> `assigned_driver`, or `dropoff_arrived`-> `dropoff_complete`)
+
+**Guaranteed events**: `created`, `assigned_driver`, `pickup_enroute`, `pickup_arrived`, `dropoff_enroute`, `dropoff_arrived`, `dropoff_complete` (guaranteed events may be inferred from future events)
+
+Events:
+
+```text Delivery events
+created
+not_assigned_driver
+assigned_driver
+started
+pickup_enroute
+pickup_arrived
+pickup_complete
+dropoff_enroute
+dropoff_arrived
+dropoff_complete
+canceled_by_provider
+return_in_progress
+return_arrived
+returned
+scheduled
+expired
+failed
+canceled_by_customer
+canceled_by_nash
+canceled_by_auto_reassign: this is triggered when using the auto-reassignment functionality in Dispatch Settings/Options Groups
+proof_of_delivery: proof(s) of delivery have been added/updated in the `delivery.proofOfDelivery` field
+pincode_verification: pincode of delivery when pincode is requested. it will be updated in the `delivery.proofOfDelivery` field
+pickup_label: available if a pickup label is configured to be generated for your account
+shipping_label: (SHIPPING ONLY) shipping label has been added/updated in the `delivery.documents` field
+manifested: (SHIPPING ONLY) shipment has been manifested and manifest document has been added/updated in the `delivery.documents` field
+```
+
+<hr />
+
+## `type=task`:
+
+**Frequency**: once per state transition (e.g., from running -> completed)
+Events:
+
+```text
+created
+updated
+running
+completed
+canceled_by_provider
+failed
+canceled_by_customer
+canceled_by_nash
+planned_selection
+refund_created
+refund_updated
+```
+
+<hr />
+
+## `type=courier_location`:
+
+Events:
+-`updated`
+
+**Frequency**: once every 1-2 minutes (if courier\_location is available)
+
+<hr />
+
+Here's a sample response that you can expect from our webhook for an ongoing delivery:
+
+<Note>
+  Note: All timestamps are in UTC and in this format "%Y-%m-%dT%H:%M:%S.%f".
+</Note>
+
+```json Webhook response
+{
+    "type": "delivery",
+    "event": "dropoff_complete",
+    "data": {
+        "id": "job_R7FXJrfB99bpvpzf6CriJC",
+        "createdAt": "2022-03-05T01:11:51.078927",
+        "portalUrl": "https://portal.usenash.com/active/job_R7FXJrfB99bpvpzf6CriJC",
+        "externalIdentifier": null,
+        "jobMetadata": {},
+        "isActive": false,
+        "jobConfigurations": [
+            {
+                "package": {
+                    "description": "Test package description",
+                    "pickupEndTime": null,
+                    "pickupStartTime": "2022-03-05T01:16:51",
+                    "dropoffStartTime": null,
+                    "dropoffEndTime": null,
+                    "valueCents": 100,
+                    "taxCents": 950,
+                    "serviceFeeCents": null,
+                    "itemsCount": 1,
+                    "pickupLocation": {
+                        "id": "loc_dB4x4pToexhgRvGhZSTHaQ",
+                        "address": "185 University Ave, Palo Alto, CA 94301",
+                        "formattedAddress": "185 University Ave, Palo Alto, CA 94301, USA",
+                        "addressNumber": "185",
+                        "addressFormattedStreet": "University Ave",
+                        "addressCity": "Palo Alto",
+                        "addressCountry": "US",
+                        "addressState": "CA",
+                        "addressZip": "94301",
+                        "addressCounty": "Santa Clara County",
+                        "businessName": "Test pickup Business",
+                        "instructions": "Test pickup Instructions",
+                        "firstName": "Test pickup FirstName",
+                        "lastName": "Test pickup LastName",
+                        "phoneNumber": "+12345679012",
+                        "email": null
+                    },
+                    "dropoffLocation": {
+                        "id": "loc_5heYem2xKGfNt9twg33kcT",
+                        "address": "401 San Antonio Rd, Mountain View, CA 94040",
+                        "formattedAddress": "401 San Antonio Rd, Mountain View, CA 94040, USA",
+                        "addressNumber": "401",
+                        "addressFormattedStreet": "San Antonio Rd",
+                        "addressCity": "Mountain View",
+                        "addressCountry": "US",
+                        "addressState": "CA",
+                        "addressZip": "94040",
+                        "addressCounty": "Santa Clara County",
+                        "businessName": "Test dropoff Business",
+                        "instructions": "Test dropoff Instructions",
+                        "firstName": "Test dropoff FirstName",
+                        "lastName": "Test dropoff LastName",
+                        "phoneNumber": "+12345679019",
+                        "email": null
+                    }
+                },
+                "tasks": [
+                    {
+                        "id": "tsk_7xKGR6PW2pBtuTeRg2b7Bw",
+                        "createdAt": "2022-03-05T01:11:51.078927",
+                        "status": "COMPLETED",
+                        "providerId": "FleetSimulator",
+                        "tipAmountCents": 250,
+                        "winnerQuote": {
+                            "id": "qot_nh5VSwxr4trHsuKHpQbGW6",
+                            "providerId": "FleetSimulator",
+                            "providerName": "FleetSimulator"
+                        },
+                        "quotes": [
+]                            {
+                                "id": "qot_nh5VSwxr4trHsuKHpQbGW6",
+                                "providerId": "FleetSimulator",
+                                "providerName": "FleetSimulator",
+                                "providerLogo": "https://nash-provider-logos.s3.amazonaws.com/FleetSimulator.png",
+                                "createdTime": "2022-03-05T01:11:52.417462",
+                                "expireTime": "2022-03-05T02:11:52.417463",
+                              	"nashFeeCents": 100,
+                                "priceCents": 0,
+                                "currency": "USD",
+                                "pickupWindow": null,
+                                "dropoffEta": "2022-03-05T01:17:52.417416",
+                                "tollFeeCents": 0,
+                                "insuranceFeeCents": 0,
+                                "totalPriceCents": 0
+                            }
+                        ],
+                        "failedQuotes": [],
+                        "delivery": {
+                            "id": "dlv_MwQDy3s6ajvw5aQ7eQPt7i",
+                            "status": "DROPOFF_COMPLETE",
+                            "isActive": false,
+                            "pickupEta": null,
+                            "dropoffEta": "2022-03-05T01:17:52.417416",
+                            "dropoffDeadline": null,
+                            "currency": "USD",
+                          	"documents": [
+                                {
+                                    "id": "doc_ELre5GCELQ6w3UHKAgbm6F",
+                                    "type": "SHIPPING_LABEL",
+                                    "url": "https://nash-documents-dev.s3-us-west-1.amazonaws.com/dlv_bR7NWwhWSQRohyjs7UZd7D_fEavuZda787M70sJEhtCAA==.png",
+                                    "data": null,
+                                    "contentType": "image/png"
+                                },
+                              	{
+                                    "id": "doc_nuKEL5W8mMgnXuRrFqwwsc",
+                                    "type": "PICKUP_LABEL",
+                                    "url": "https://nash-documents-dev.s3-us-west-1.amazonaws.com/dlv_bR7NWwhWSQRohyjs7UZd7D_QPiARbKwfJRkC94KVQrT8w==.png",
+                                    "data": null,
+                                    "contentType": "image/png"
+                                }
+                            ],
+                            "nashFeeCents": 100,
+                            "priceCents": 0,
+                            "courierName": "Tjy Ifulu",
+                            "courierPhoneNumber": "+13408480904",
+                            "courierLocation": {
+                                "lat": 37.4043247,
+                                "lng": -122.1112215
+                            },
+                            "courierProfileImage":"https://nash-proof-of-delivery-sandbox.s3-us-west-1.amazonaws.com/dlv_SXnvEsXY4aEQ5YVY92sLPK_4t9WSOg3Zw-h4BT0fFUWqw==.jpg",
+                            "proofOfDelivery": [
+                                {
+                                    "type": "photo_proof_of_delivery",
+                                    "url": "https://nash-proof-of-delivery-sandbox.s3-us-west-1.amazonaws.com/dlv_SXnvEsXY4aEQ5YVY92sLPK_4t9WSOg3Zw-h4BT0fFUWqw==.jpg",
+                                    "size": 12421
+                                },
+                                {
+                                    "type": "barcode_scan",
+                                    "text": "pkg_SggEeiudfNRQDvtAF35qPr",
+                                    "url": "https://nash-proof-of-delivery-dev.s3-us-west-1.amazonaws.com/dlv_JJUqcMDdxDxoj6Zsk8iru3_rp_nNJtdAVItcnBpKxTHBQ==..png",
+                                    "size": 566,
+                                }
+                            ],
+                            "statusHistory": [
+                                {
+                                    "createdAt": "2022-03-05T01:12:00.984078",
+                                    "status": "created"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:12:16.067396",
+                                    "status": "not_assigned_driver"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:13:02.459762",
+                                    "status": "assigned_driver"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:14:32.532602",
+                                    "status": "pickup_enroute"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:15:17.533789",
+                                    "status": "pickup_complete"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:16:02.598233",
+                                    "status": "dropoff_enroute"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:17:32.690484",
+                                    "status": "dropoff_arrived"
+                                },
+                                {
+                                    "createdAt": "2022-03-05T01:18:17.945368",
+                                    "status": "dropoff_complete"
+                                }
+                            ],
+                            "tollFeeCents": 0,
+                            "waitFeeCents": 0,
+                            "waitTimeMinutes": 0,
+                            "cancellationFeeCents": 0,
+                            "returnFeeCents": 0,
+                            "insuranceFeeCents": 0,
+                            "taxAmountCents": 0,
+                            "totalPriceCents": 0
+                        },
+                        "failureReason": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+## Best Practices
+
+Nash jobs can include multiple delivery attempts (see [Job Overview](/api-reference/job/jobs)). When processing our webhook updates, please ensure that cancellations
+/ failures of one task does not cause issues in your application.
+
+Furthermore, since there are multiple tasks, you should be prepared to handle multiple instances of the same
+webhook event. For example, if a job has two tasks - one assigned to Fleet A and another assigned to Fleet B -
+both fleets might send `pickup arrived` events. Refer to [this section](/reference/webhooks#type-delivery) for more details on the guaranteed statuses we will send.
+
+You should also be prepared for some fleets erroneously sending statuses such as `pickup complete` or
+`dropoff complete` when their drivers have not completed a delivery yet.
+
+## Verifying Webhooks
+
+We use a service called [Svix](https://www.svix.com/) to send webhooks. Svix prevents attacks and forgeries by signing webhook requests, and also handles [retries](#retry-policy).
+
+### How to Verify
+
+To verify the webhook signature and ensure the request genuinely came from Nash via Svix, you have a couple of options:
+
+1. **Use the Svix SDKs:** The recommended approach is to use the official [Svix SDKs](https://docs.svix.com/receiving/verifying-payloads/how) for your language/framework. These libraries handle signature verification and timestamp checks automatically.
+2. **Manually Verify:** You can [manually verify](https://docs.svix.com/receiving/verifying-payloads/how-manual) the signature using the request headers (`svix-id`, `svix-timestamp`, `svix-signature`) and your endpoint's signing secret. You will also need to implement the timestamp check yourself to prevent replay attacks.
+
+You'll need the **signing secret**, which can be found in the Nash Portal under Settings > Webhook Management > Click on an Endpoint > Signing Secret.
+
+![Where to find your Svix signing secret.](https://files.readme.io/26032a2-Screenshot_2023-07-21_at_2.11.17_PM.png)
+
+### Firewall Configuration (Static IP Addresses)
+
+If your webhook receiving endpoint is behind a firewall or NAT, you may need to explicitly allow traffic from Svix's IP addresses. webhooks will originate from the following IP addresses:  [https://docs.svix.com/receiving/source-ips](https://docs.svix.com/receiving/source-ips)
+
+## Retry Policy
+
+A webhook retry is an attempt by Svix to re-send a webhook message that previously failed to be delivered to your endpoint (e.g., due to a network error, server error (5xx), or certain 4xx errors like 408, 409, 429 on your end). Our automatic retry schedule is approximately as follows:
+
+* Immediately
+* 5 seconds
+* 5 minutes
+* 30 minutes
+* 2 hours
+* 5 hours
+* 10 hours
+* Another 10 hours
+
+Reference: [https://docs.svix.com/retries](https://docs.svix.com/retries)
+
+You can also manually trigger retries for specific messages or automatically retry ("Recover") all failed messages starting from a given date via the Nash Portal (Webhook Management > Select Endpoint > Attempts).
+
+

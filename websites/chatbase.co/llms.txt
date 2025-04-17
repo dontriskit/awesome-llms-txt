@@ -1,0 +1,71 @@
+# Chatbase
+
+## Docs
+
+- [Add Contacts to Chatbase](https://chatbase.co/docs/developer-guides/api/contacts/add-contacts-to-chatbase.md): Add one or more contacts to a chatbot.
+- [Contact](https://chatbase.co/docs/developer-guides/api/contacts/contact.md): Contact Object represent your saved contacts in Chatbase.
+- [Create Custom Attribute](https://chatbase.co/docs/developer-guides/api/contacts/create-custom-attribute.md): Create a new custom attribute for contacts in a chatbot.
+- [Custom Attributes](https://chatbase.co/docs/developer-guides/api/contacts/custom-attributes.md): Custom Attributes are the additional fields you can add to your contacts.
+- [Delete Contact](https://chatbase.co/docs/developer-guides/api/contacts/delete-contact.md): Delete a contact from a chatbot.
+- [Get Contact](https://chatbase.co/docs/developer-guides/api/contacts/get-contact.md): Retrieve a single contact by ID.
+- [List Contacts](https://chatbase.co/docs/developer-guides/api/contacts/list-contacts.md): Retrieve a list of contacts for a chatbot with pagination support.
+- [List Custom Attributes](https://chatbase.co/docs/developer-guides/api/contacts/list-custom-attributes.md): Retrieve all custom attributes defined for a chatbot.
+- [Update Contact](https://chatbase.co/docs/developer-guides/api/contacts/update-contact.md): Update an existing contact's information.
+- [Update Custom Attribute](https://chatbase.co/docs/developer-guides/api/contacts/update-custom-attribute.md): Update an existing custom attribute's properties.
+- [null](https://chatbase.co/docs/developer-guides/api/create-a-chatbot.md)
+- [null](https://chatbase.co/docs/developer-guides/api/delete-a-chatbot.md)
+- [null](https://chatbase.co/docs/developer-guides/api/delete-chatbot-icon.md)
+- [null](https://chatbase.co/docs/developer-guides/api/delete-chatbot-profile-picture.md)
+- [null](https://chatbase.co/docs/developer-guides/api/get-chatbots.md)
+- [null](https://chatbase.co/docs/developer-guides/api/get-conversations.md)
+- [null](https://chatbase.co/docs/developer-guides/api/get-leads.md)
+- [null](https://chatbase.co/docs/developer-guides/api/message-a-chatbot.md)
+- [null](https://chatbase.co/docs/developer-guides/api/streaming-messages.md)
+- [null](https://chatbase.co/docs/developer-guides/api/update-a-chatbot.md)
+- [null](https://chatbase.co/docs/developer-guides/api/update-chatbot-settings.md)
+- [null](https://chatbase.co/docs/developer-guides/api/upload-chatbot-icon.md)
+- [null](https://chatbase.co/docs/developer-guides/api/upload-chatbot-profile-picture.md)
+- [null](https://chatbase.co/docs/developer-guides/api/webhooks.md)
+- [Chatbot Event Listeners](https://chatbase.co/docs/developer-guides/chatbot-event-listeners.md)
+- [Client-Side Custom Actions](https://chatbase.co/docs/developer-guides/client-side-custom-actions.md)
+- [Control Widget](https://chatbase.co/docs/developer-guides/control-widget.md)
+- [Custom Initial Messages](https://chatbase.co/docs/developer-guides/custom-initial-messages.md)
+- [Identity Verification](https://chatbase.co/docs/developer-guides/identity-verification.md)
+- [Frequently Asked Questions](https://chatbase.co/docs/faq/faq.md): Discover answers to common questions about Chatbase, the powerful AI chatbot platform designed for businesses.
+- [Bubble](https://chatbase.co/docs/integrations/bubble.md)
+- [Framer](https://chatbase.co/docs/integrations/framer.md)
+- [Instagram](https://chatbase.co/docs/integrations/instagram.md)
+- [Messenger](https://chatbase.co/docs/integrations/messenger.md)
+- [Shopify](https://chatbase.co/docs/integrations/shopify.md)
+- [Slack](https://chatbase.co/docs/integrations/slack.md)
+- [Stripe](https://chatbase.co/docs/integrations/stripe.md)
+- [Sunshine](https://chatbase.co/docs/integrations/sunshine.md)
+- [Webflow](https://chatbase.co/docs/integrations/webflow.md)
+- [Weebly](https://chatbase.co/docs/integrations/weebly.md)
+- [WhatsApp](https://chatbase.co/docs/integrations/whatsapp.md)
+- [Wix](https://chatbase.co/docs/integrations/wix.md)
+- [WordPress](https://chatbase.co/docs/integrations/wordpress.md)
+- [Zapier](https://chatbase.co/docs/integrations/zapier.md)
+- [Overview](https://chatbase.co/docs/user-guides/chatbot/actions/actions-overview.md): AI actions are a set of functions or tasks that your AI agent can trigger or execute during a conversation with users. These actions enhance the conversational experience, improve efficiency, and allow the AI agent to go beyond just responding to queries. Some of these actions may include performing specific tasks, gathering information, providing insights, or even integrating with other systems.
+- [Cal.com](https://chatbase.co/docs/user-guides/chatbot/actions/cal.md)
+- [Calendly](https://chatbase.co/docs/user-guides/chatbot/actions/calendly.md)
+- [Collect Leads](https://chatbase.co/docs/user-guides/chatbot/actions/collect-leads.md)
+- [Custom Action](https://chatbase.co/docs/user-guides/chatbot/actions/custom-action.md)
+- [Custom Button](https://chatbase.co/docs/user-guides/chatbot/actions/custom-button.md)
+- [Slack](https://chatbase.co/docs/user-guides/chatbot/actions/slack.md)
+- [Web Search](https://chatbase.co/docs/user-guides/chatbot/actions/web-search.md)
+- [Activity](https://chatbase.co/docs/user-guides/chatbot/activity.md): This section shows the chat logs of the conversations your users had with your AI agent and the Lead forms filled by your users.
+- [Analytics](https://chatbase.co/docs/user-guides/chatbot/analytics.md)
+- [Connect](https://chatbase.co/docs/user-guides/chatbot/connect.md): This section in the AI agent shows how you can integrate the bot with your website, or even add it as an integration to Messenger or WhatsApp or many more!
+- [Overview](https://chatbase.co/docs/user-guides/chatbot/contacts/contacts-overview.md): Contacts dashboard is a tool that allows you to manage your chatbot contacts in one place.
+- [Getting Started](https://chatbase.co/docs/user-guides/chatbot/contacts/getting-started.md): Learn how to get started with the Contacts API
+- [Custom Domains](https://chatbase.co/docs/user-guides/chatbot/custom-domains.md): On this page, you can configure your AI agent to integrate with your own domain. This allows you to hide the Chatbase branding, making it appear as if the AI agent is built entirely by your team rather than using a third-party tool.
+- [Models Comparison](https://chatbase.co/docs/user-guides/chatbot/models-comparison.md)
+- [Playground](https://chatbase.co/docs/user-guides/chatbot/playground.md): The Playground area is a space where you can interact with and test your AI agent. It allows you to see how it responds to different inputs and make adjustments as needed. This area is useful for refining the AI agent’s behavior and ensuring it meets your requirements before deploying it on your website or other platforms.
+- [Settings](https://chatbase.co/docs/user-guides/chatbot/settings.md)
+- [Sources](https://chatbase.co/docs/user-guides/chatbot/sources.md)
+- [Best Practices](https://chatbase.co/docs/user-guides/quick-start/best-practices.md): This page page offers tips to help you improve your AI agent’s performance and user experience. It covers improving the instructions, teaching the bot how to send links.
+- [Introduction](https://chatbase.co/docs/user-guides/quick-start/introduction.md): Welcome to the Quick Start guide for Chatbase! This page will help you get up and running with Chatbase by walking you through the essential steps to set up your account, create your first AI Agent, and integrate it into your platform
+- [Manage  ](https://chatbase.co/docs/user-guides/team/manage.md): Organize your users in Chatbase teams for better collaboration and permission control.
+- [Settings](https://chatbase.co/docs/user-guides/team/settings.md): This page provides all the details for the specified team, including member information, plan and billing details, Chatbase API keys, and API keys for the external LLM.
+- [Usage](https://chatbase.co/docs/user-guides/team/usage.md): This tab displays the usage details of all AI agents in the selected team. You can also filter usage data for a specific team. 

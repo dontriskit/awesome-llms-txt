@@ -1,0 +1,39 @@
+# DataImpulse
+
+## DataImpulse Documentation
+
+- [Welcome](https://docs.dataimpulse.com/readme)
+- [Proxies](https://docs.dataimpulse.com/proxies)
+- [Types of connections](https://docs.dataimpulse.com/proxies/types-of-connections): We offer two types of proxy connections: Rotating and Sticky.
+- [Protocols](https://docs.dataimpulse.com/proxies/protocols): The proxies support HTTP, HTTPS, and SOCKS5 protocols.
+- [Connection Hosts](https://docs.dataimpulse.com/proxies/connection-hosts): To connect proxies, you have two options for hostnames:
+- [Targeting](https://docs.dataimpulse.com/proxies/targeting)
+- [Default Targeting](https://docs.dataimpulse.com/proxies/targeting/default-targeting)
+- [Target Filters](https://docs.dataimpulse.com/proxies/targeting/target-filters)
+- [Parameters](https://docs.dataimpulse.com/proxies/parameters)
+- [Country](https://docs.dataimpulse.com/proxies/parameters/country)
+- [Exclude Country](https://docs.dataimpulse.com/proxies/parameters/exclude-country)
+- [Exclude ASN](https://docs.dataimpulse.com/proxies/parameters/exclude-asn)
+- [State](https://docs.dataimpulse.com/proxies/parameters/state): Traffic routed through this parameter is billed at double the standard rate
+- [ASN](https://docs.dataimpulse.com/proxies/parameters/asn): Traffic routed through this parameter is billed at double the standard rate
+- [ZIP](https://docs.dataimpulse.com/proxies/parameters/zip): Traffic routed through this parameter is billed at double the standard rate
+- [City](https://docs.dataimpulse.com/proxies/parameters/city): Traffic routed through this parameter is billed at double the standard rate
+- [Anonymous](https://docs.dataimpulse.com/proxies/parameters/anonymous)
+- [Session Id](https://docs.dataimpulse.com/proxies/parameters/session-id)
+- [Session Interval](https://docs.dataimpulse.com/proxies/parameters/session-interval)
+- [Threads](https://docs.dataimpulse.com/proxies/threads)
+- [UDP](https://docs.dataimpulse.com/proxies/udp)
+- [Authentication methods](https://docs.dataimpulse.com/authentication-methods)
+- [User:pass authentication](https://docs.dataimpulse.com/authentication-methods/user-pass-authentication)
+- [Whitelist IPs](https://docs.dataimpulse.com/authentication-methods/whitelist-ips)
+- [Port access](https://docs.dataimpulse.com/port-access)
+- [Auto-recharge](https://docs.dataimpulse.com/auto-recharge)
+- [Blocked Websites](https://docs.dataimpulse.com/blocked-websites)
+- [Errors](https://docs.dataimpulse.com/errors)
+- [Resellers](https://docs.dataimpulse.com/resellers)
+- [Custom DNS host](https://docs.dataimpulse.com/resellers/custom-dns-host)
+- [Manage SSL Certificates](https://docs.dataimpulse.com/resellers/manage-ssl-certificates)
+- [Deposit Calculation Update](https://docs.dataimpulse.com/resellers/deposit-calculation-update)
+- [Target Filters for sub-users](https://docs.dataimpulse.com/resellers/target-filters-for-sub-users)
+- [Affiliate Program](https://docs.dataimpulse.com/affiliate-program)
+- [Support](https://docs.dataimpulse.com/support): Have a Question? Our support team is available 24/7.

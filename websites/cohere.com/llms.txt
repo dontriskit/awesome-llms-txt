@@ -1,0 +1,741 @@
+# Cohere Documentation
+
+> Cohere's API documentation helps developers easily integrate natural language processing and generation into their products.
+
+export const LandingPageCard = ({ href, title, imgSrc, description }) => (
+  <div className="rounded-lg bg-[#F5F4F2] dark:bg-[#0F0F0F] px-6 py-5 hover:bg-[#E9E6DE] dark:hover:bg-[#292929] md:p-8">
+    <a
+      href={href}
+      target="_self"
+      className="flex h-full flex-col justify-between"
+      style={{ textDecoration: 'none' }}
+    >
+      <div className="mb-5 flex flex-col justify-between gap-5">
+        <h2 className="lg:min-h-20 [@media(min-width:1181px)]:min-h-0">
+          {title}
+        </h2>
+        <img src={imgSrc} alt={title} />
+        <p className="p-lg">{description}</p>
+      </div>
+      <div className="mt-2 text-sm text-[#2D4CB9] dark:text-[#4C6EE6] md:mt-0 md:self-end">
+        {"GET STARTED"}
+        <div className="ml-2 inline-block group-hover:no-underline">
+          <svg
+            width="12"
+            height="11"
+            viewBox="0 0 12 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ transform: "rotate(-90deg)" }}
+          >
+            <path
+              d="M6 10.75L0.75 5.31686L1.74907 4.27907L5.2556 8.00291L5.2556 0.25L6.7444 0.25L6.7444 8.00291L10.2509 4.27907L11.25 5.31686L6 10.75Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+);
+
+export const EndpointLink = ({ href, title }) => (
+  <a
+    href={href}
+    className="group flex cursor-pointer flex-row text-sm !font-normal text-[#2D4CB9] dark:text-[#4C6EE6]"
+    rel="noreferrer"
+    target="_self"
+  >
+    {title}
+    <span className="duration-400 flex items-center transition-all ease-in-out group-hover:pl-1 group-hover:pr-2">
+      <div className="ml-2 inline-block text-sm !text-[#2D4CB9] group-hover:no-underline">
+        <svg
+          width="12"
+          height="11"
+          viewBox="0 0 12 11"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ transform: "rotate(-90deg)" }}
+        >
+          <path
+            d="M6 10.75L0.75 5.31686L1.74907 4.27907L5.2556 8.00291L5.2556 0.25L6.7444 0.25L6.7444 8.00291L10.2509 4.27907L11.25 5.31686L6 10.75Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+    </span>
+  </a>
+);
+
+export const cards = [
+  {
+    href: "/docs",
+    imgSrc: "https://fern-image-hosting.s3.amazonaws.com/cohere/8da77c9-Frame_138972.png",
+    title: "Guides and concepts",
+    description:
+      "Understand how to use our API on a deeper level. Train and customize the model to work for you.",
+  },
+  {
+    href: "/reference/about",
+    imgSrc: "https://fern-image-hosting.s3.amazonaws.com/cohere/8ff146a-Group_138977.png",
+    title: "API reference",
+    description:
+      "Integrate natural language processing and generation into your products with a few lines of code.",
+  },
+  {
+    href: "/release-notes",
+    imgSrc: "https://fern-image-hosting.s3.amazonaws.com/cohere/d51d176-Group_138977_1.png",
+    title: "Release notes",
+    description:
+      "Keep up with the latest releases and platform updates from Cohere.",
+  },
+  {
+    href: "/page/cookbooks",
+    imgSrc: "https://fern-image-hosting.s3.amazonaws.com/cohere/7fca92c-Group_138977_2.png",
+    title: "Cookbooks",
+    description:
+      "A collection of resources to help developers get up and running with Cohere.",
+  },
+];
+
+export const endpoints = [
+  {
+    href: "/reference/chat",
+    title: "/CHAT",
+  },
+  {
+    href: "/reference/embed",
+    title: "/EMBED",
+  },
+  {
+    href: "/reference/rerank",
+    title: "/RERANK",
+  },
+  {
+    href: "/reference/classify",
+    title: "/CLASSIFY",
+  },
+];
+
+<div>
+  <div>
+    {cards.map((card) => (
+          <LandingPageCard
+            key={card.href}
+            href={card.href}
+            imgSrc={card.imgSrc}
+            title={card.title}
+            description={card.description}
+          />
+        ))}
+
+    <div>
+      <div>
+        <div>
+          <h2>
+            Endpoints
+          </h2>
+
+          <p>
+            Our endpoints offer different ways to interact with our models and
+            offer additional value on top of them
+          </p>
+        </div>
+
+        <div>
+          {endpoints.map((endpoint) => (
+                      <EndpointLink key={endpoint.href} {...endpoint} />
+                    ))}
+        </div>
+      </div>
+
+      <div>
+        <a href="https://cohere.com/llmu" target="_blank">
+          <div>
+            <div>
+              <img src="https://fern-image-hosting.s3.amazonaws.com/cohere/9d0694c-Symbol.svg" alt="" />
+
+              <h2>
+                LLM University
+              </h2>
+            </div>
+
+            <p>
+              Join our learning hub to master Enterprise AI with expert-led
+              courses and step-by-step guides
+            </p>
+          </div>
+
+          <div>
+            <img src="https://fern-image-hosting.s3.amazonaws.com/cohere/64d7b4f-Group_138975.png" alt="" />
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <a href="https://cohere.com/llmu" target="_blank">
+      <div>
+        <div>
+          <img src="https://fern-image-hosting.s3.amazonaws.com/cohere/9d0694c-Symbol.svg" alt="" />
+
+          <h2>
+            LLM University
+          </h2>
+        </div>
+
+        <p>
+          New to NLP? Learn about Natural Language processing and Large Language
+          Models through our structured curriculum.
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+## Docs
+
+- [An Overview of The Cohere Platform](https://docs.cohere.com/v2/docs/the-cohere-platform.mdx): Cohere offers world-class Large Language Models (LLMs) like Command, Rerank, and Embed. These help developers and enterprises build LLM-powered applications.
+- [Installation](https://docs.cohere.com/v2/docs/get-started-installation.mdx): A guide for installing the Cohere SDK, supported in 4 different languages – Python, TypeScript, Java, and Go.
+- [Creating a client](https://docs.cohere.com/v2/docs/create-client.mdx): A guide for creating Cohere API client using Cohere SDK, supported in 4 different languages – Python, TypeScript, Java, and Go.
+- [Text generation - quickstart](https://docs.cohere.com/v2/docs/text-gen-quickstart.mdx): A quickstart guide for performing text generation with Cohere's Command models (v2 API).
+- [Retrieval augmented generation (RAG) - quickstart](https://docs.cohere.com/v2/docs/rag-quickstart.mdx): A quickstart guide for performing retrieval augmented generation (RAG) with Cohere's Command models (v2 API).
+- [Tool use & agents - quickstart](https://docs.cohere.com/v2/docs/tool-use-quickstart.mdx): A quickstart guide for using tool use and building agents with Cohere's Command models (v2 API).
+- [Semantic search - quickstart](https://docs.cohere.com/v2/docs/sem-search-quickstart.mdx): A quickstart guide for performing text semantic search with Cohere's Embed models (v2 API).
+- [Reranking - quickstart](https://docs.cohere.com/v2/docs/reranking-quickstart.mdx): A quickstart guide for performing reranking with Cohere's Reranking models (v2 API).
+- [An Overview of the Developer Playground](https://docs.cohere.com/v2/docs/playground-overview.mdx): The Cohere Playground is a powerful visual interface for testing Cohere's generation and embedding language models without coding.
+- [Frequently Asked Questions About Cohere](https://docs.cohere.com/v2/docs/cohere-faqs.mdx): Cohere is a powerful platform for using Large Language Models (LLMs). This page covers FAQs related to functionality, pricing, troubleshooting, and more.
+- [An Overview of Cohere's Models](https://docs.cohere.com/v2/docs/models.mdx): Cohere has a variety of models that cover many different use cases. If you need more customization, you can train a model to tune it to your specific use case.
+- [Command A](https://docs.cohere.com/v2/docs/command-a.mdx): Command A is a performant mode good at tool use, RAG, agents, and multilingual use cases. It has 111 billion parameters and a 256k context length.
+- [Command R7B](https://docs.cohere.com/v2/docs/command-r7b.mdx): Command R7B is the smallest, fastest, and final model in our R family of enterprise-focused large language models. It excels at RAG, tool use, and agents.
+- [Cohere's Command R+ Model (Details and Application)](https://docs.cohere.com/v2/docs/command-r-plus.mdx): Command R+ is Cohere's model for conversational interaction and long-context tasks, best suited for complex RAG workflows and multi-step tool use.
+- [The Command R Model (Details and Application)](https://docs.cohere.com/v2/docs/command-r.mdx): Command R is a conversational model that excels in language tasks and supports multiple languages.
+- [Cohere Command and Command Light](https://docs.cohere.com/v2/docs/command-beta.mdx): Cohere's Command offers cutting-edge generative capabilities with weekly updates for improved performance and user feedback.
+- [Cohere's Embed Models (Details and Application)](https://docs.cohere.com/v2/docs/cohere-embed.mdx): Explore Embed models for text classification and embedding generation in English and multiple languages, with details on dimensions and endpoints.
+- [Cohere's Rerank Model (Details and Application)](https://docs.cohere.com/v2/docs/rerank.mdx): This page describes how Cohere's Rerank models work and how to use them.
+- [Aya Family of Models](https://docs.cohere.com/v2/docs/aya.mdx): Understand Cohere Labs groundbreaking multilingual Aya models, which aim to bring many more languages into generative AI.
+- [Aya Vision](https://docs.cohere.com/v2/docs/aya-vision.mdx): Understand Cohere Labs groundbreaking multilingual model Aya Vision, a state-of-the-art multimodal language model excelling at multiple tasks.
+- [Aya Expanse](https://docs.cohere.com/v2/docs/aya-expanse.mdx): Understand Cohere Labs highly performant multilingual Aya models, which aim to bring many more languages into generative AI.
+- [Introduction to Text Generation at Cohere](https://docs.cohere.com/v2/docs/introduction-to-text-generation-at-cohere.mdx): This page describes how a large language model generates textual output.
+- [Using the Cohere Chat API for Text Generation](https://docs.cohere.com/v2/docs/chat-api.mdx): How to use the Chat API endpoint with Cohere LLMs to generate text responses in a conversational interface
+- [A Guide to Streaming Responses](https://docs.cohere.com/v2/docs/streaming.mdx): The document explains how the Chat API can stream events like text generation in real-time.
+- [How do Structured Outputs Work?](https://docs.cohere.com/v2/docs/structured-outputs.mdx): This page describes how to get Cohere models to create outputs in a certain format, such as JSON, TOOLS, using parameters such as `response_format`.
+- [Parameter Types in Structured Outputs (JSON)](https://docs.cohere.com/v2/docs/parameter-types-in-json.mdx): This page shows usage examples of the JSON Schema parameter types supported in Structured Outputs (JSON).
+- [How to Get Predictable Outputs with Cohere Models](https://docs.cohere.com/v2/docs/predictable-outputs.mdx): Strategies for decoding text, and the parameters that impact the randomness and predictability of a language model's output.
+- [Advanced Generation Parameters](https://docs.cohere.com/v2/docs/advanced-generation-hyperparameters.mdx): This page describes advanced parameters for controlling generation.
+- [Retrieval Augmented Generation (RAG)](https://docs.cohere.com/v2/docs/retrieval-augmented-generation-rag.mdx): Guide on using Cohere's Retrieval Augmented Generation (RAG) capabilities such as document grounding and citations.
+- [End-to-end example of RAG with Chat, Embed, and Rerank](https://docs.cohere.com/v2/docs/rag-complete-example.mdx): Guide on using Cohere's Retrieval Augmented Generation (RAG) capabilities covering the Chat, Embed, and Rerank endpoints (API v2).
+- [RAG Streaming](https://docs.cohere.com/v2/docs/rag-streaming.mdx): Guide on implementing streaming for RAG with Cohere and details on the events stream (API v2).
+- [RAG Citations](https://docs.cohere.com/v2/docs/rag-citations.mdx): Guide on accessing and utilizing citations generated by the Cohere Chat endpoint for RAG. It covers both non-streaming and streaming modes (API v2).
+- [An Overview of Tool Use with Cohere](https://docs.cohere.com/v2/docs/tools.mdx): Learn when to use leverage multi-step tool use in your workflows.
+- [Basic usage of tool use (function calling)](https://docs.cohere.com/v2/docs/tool-use-overview.mdx): An overview of using Cohere's tool use capabilities, enabling developers to build agentic workflows (API v2).
+- [Usage patterns for tool use (function calling)](https://docs.cohere.com/v2/docs/tool-use-usage-patterns.mdx): Guide on implementing various tool use patterns with the Cohere Chat endpoint such as parallel tool calling, multi-step tool use, and more (API v2).
+- [Parameter types for tool use (function calling)](https://docs.cohere.com/v2/docs/tool-use-parameter-types.mdx): Guide on using structured outputs with tool parameters in the Cohere Chat API. Includes guide on supported parameter types and usage examples (API v2).
+- [Streaming for tool use (function calling)](https://docs.cohere.com/v2/docs/tool-use-streaming.mdx): Guide on implementing streaming for tool use in Cohere's platform and details on the events stream (API v2).
+- [Citations for tool use (function calling)](https://docs.cohere.com/v2/docs/tool-use-citations.mdx): Guide on accessing and utilizing citations generated by the Cohere Chat endpoint for tool use. It covers both non-streaming and streaming modes (API v2).
+- [A Guide to Tokens and Tokenizers](https://docs.cohere.com/v2/docs/tokens-and-tokenizers.mdx): This document describes how to use the tokenize and detokenize API endpoints.
+- [A Guide to Crafting Effective Prompts](https://docs.cohere.com/v2/docs/crafting-effective-prompts.mdx): This page describes different ways of crafting effective prompts for prompt engineering.
+- [Advanced Prompt Engineering Techniques](https://docs.cohere.com/v2/docs/advanced-prompt-engineering-techniques.mdx): This page describes advanced ways of controlling prompt engineering.
+- [An Overview of System Messages](https://docs.cohere.com/v2/docs/preambles.mdx): This page describes how Cohere system messages work, and the effect they have on output.
+- [Create CSV data from JSON data](https://docs.cohere.com/v2/docs/create-csv-data-from-json-data.mdx): This document provides an example of converting a JSON object into CSV format using the Cohere API.
+- [Create a markdown table from raw data](https://docs.cohere.com/v2/docs/create-a-markdown-table-from-raw-data.mdx): The document provides a prompt to format CSV data into a markdown table and includes the output table as well as an API request using the Cohere platform.
+- [How to Build a Meeting Summarizer](https://docs.cohere.com/v2/docs/meeting-summarizer.mdx): The document discusses the creation of a meeting summarizer with Cohere's large language model.
+- [How to Programmatically Remove PII](https://docs.cohere.com/v2/docs/remove-pii.mdx): This document provides an example of redacting personally identifiable information (PII) from a conversation while maintaining context, using the Cohere API.
+- [How to Add a Docstring to Your Code](https://docs.cohere.com/v2/docs/add-a-docstring-to-your-code.mdx): This document provides an example of adding a docstring to a Python function using the Cohere API.
+- [How to Evaluate your LLM Response](https://docs.cohere.com/v2/docs/evaluate-your-llm-response.mdx): Learn how to use Command-R to evaluate natural language responses with an example of grading formality.
+- [How to Build a Multilingual interpreter](https://docs.cohere.com/v2/docs/multilingual-interpreter.mdx): This document provides a prompt to interpret a customer's issue into multiple languages using an API.
+- [Summarizing Text with the Chat Endpoint](https://docs.cohere.com/v2/docs/summarizing-text.mdx): Learn how to perform text summarization using Cohere's Chat endpoint with features like length control and RAG.
+- [Safety Modes](https://docs.cohere.com/v2/docs/safety-modes.mdx): The safety modes documentation describes how to use default and strict modes in order to exercise additional control over model output.
+- [Introduction to Embeddings at Cohere](https://docs.cohere.com/v2/docs/embeddings.mdx): Embeddings transform text into numerical data, enabling language-agnostic similarity searches and efficient storage with compression.
+- [Semantic Search with Embeddings](https://docs.cohere.com/v2/docs/semantic-search-embed.mdx): Examples on how to use the Embed endpoint to perform semantic search (API v2).
+- [Unlocking the Power of Multimodal Embeddings](https://docs.cohere.com/v2/docs/multimodal-embeddings.mdx): Multimodal embeddings convert text and images into embeddings for search and classification (API v2).
+- [Batch Embedding Jobs with the Embed API](https://docs.cohere.com/v2/docs/embed-jobs-api.mdx): Learn how to use the Embed Jobs API to handle large text data efficiently with a focus on creating datasets and running embed jobs.
+- [An Overview of Cohere's Rerank Model](https://docs.cohere.com/v2/docs/rerank-overview.mdx): This page describes how Cohere's Rerank models work.
+- [Best Practices for using Rerank](https://docs.cohere.com/v2/docs/reranking-best-practices.mdx): Tips for optimal endpoint performance, including constraints on the number of documents, tokens per document, and tokens per query.
+- [Introduction to Fine-Tuning with Cohere Models](https://docs.cohere.com/v2/docs/fine-tuning.mdx): Fine-tune Cohere's large language models for specific tasks, styles, and formats with custom data.
+- [Fine-tuning with Cohere's Dashboard](https://docs.cohere.com/v2/docs/fine-tuning-with-the-cohere-dashboard.mdx): Use the Cohere Web UI to start the fine-tuning jobs and track the progress.
+- [Programmatic Fine-tuning with Cohere's Python SDK](https://docs.cohere.com/v2/docs/fine-tuning-with-the-python-sdk.mdx): Fine-tune models using the Cohere Python SDK programmatically and monitor the results through the Dashboard Web UI.
+- [Fine-tuning for Cohere's Chat Model](https://docs.cohere.com/v2/docs/chat-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving chat models.
+- [Preparing the Chat Fine-tuning Data](https://docs.cohere.com/v2/docs/chat-preparing-the-data.mdx): Prepare your data for fine-tuning a Command model for Chat with this step-by-step guide, including data formatting, requirements, and best practices.
+- [Starting the Chat Fine-Tuning Run](https://docs.cohere.com/v2/docs/chat-starting-the-training.mdx): Learn how to fine-tune a Command model for chat with the Cohere Web UI or Python SDK, including data requirements, pricing, and calling your model.
+- [Understanding the Chat Fine-tuning Results](https://docs.cohere.com/v2/docs/chat-understanding-the-results.mdx): Learn how to evaluate and troubleshoot a fine-tuned chat model with accuracy and loss metrics.
+- [Improving the Chat Fine-tuning Results](https://docs.cohere.com/v2/docs/chat-improving-the-results.mdx): Learn how to refine data, iterate on hyperparameters, and troubleshoot to fine-tune your Chat model effectively.
+- [Fine-tuning for Cohere's Rerank Model](https://docs.cohere.com/v2/docs/rerank-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving rerank models.
+- [Preparing the Rerank Fine-tuning Data](https://docs.cohere.com/v2/docs/rerank-preparing-the-data.mdx): Learn how to prepare and format your data for fine-tuning Cohere's Rerank model.
+- [Starting the Rerank Fine-Tuning](https://docs.cohere.com/v2/docs/rerank-starting-the-training.mdx): How to start training a fine-tuning model for Rerank using both the Web UI and the Python SDK.
+- [Understanding the Rerank Fine-tuning Results](https://docs.cohere.com/v2/docs/rerank-understanding-the-results.mdx): Understand how fine-tuned models for Rerank are evaluated, and learn about the specific metrics used, including Accuracy, MRR, and nDCG.
+- [Improving the Rerank Fine-tuning Results](https://docs.cohere.com/v2/docs/rerank-improving-the-results.mdx): Tips for achieving the best fine-tuned rerank model and troubleshooting guide for fine-tuned models.
+- [Fine-tuning for Cohere's Classify Model](https://docs.cohere.com/v2/docs/classify-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving classification models.
+- [Preparing the Classify Fine-tuning data](https://docs.cohere.com/v2/docs/classify-preparing-the-data.mdx): Learn how to prepare your data for fine-tuning classification models, including single-label and multi-label data formats and dataset cleaning tips.
+- [Train and deploy a fine-tuned model.](https://docs.cohere.com/v2/docs/classify-starting-the-training.mdx): Fine-tune classification models with Cohere's Web UI or Python SDK using custom datasets. (V2)
+- [Understanding the Classify Fine-tuning Results](https://docs.cohere.com/v2/docs/classify-understanding-the-results.mdx): Understand the performance metrics for a fine-tuned classification model and learn how to interpret its accuracy, precision, recall, and F1 scores.
+- [Improving the Classify Fine-tuning Results](https://docs.cohere.com/v2/docs/classify-improving-the-results.mdx): Troubleshoot your fine-tuned classification model with these tips for refining data quality and improving results.
+- [FAQs for Troubleshooting A Fine-Tuned Model](https://docs.cohere.com/v2/docs/troubleshooting-a-fine-tuned-model.mdx): Train custom AI models with Cohere's platform and leverage human evaluations to compare model performances.
+- [Different Types of API Keys and Rate Limits](https://docs.cohere.com/v2/docs/rate-limits.mdx): This page describes Cohere API rate limits for production and evaluation keys.
+- [Going Live with a Cohere Model](https://docs.cohere.com/v2/docs/going-live.mdx): Learn to upgrade from a Trial to a Production key; understand the limitations and benefits of each and go live with Cohere.
+- [Deprecations](https://docs.cohere.com/v2/docs/deprecations.mdx): Learn about Cohere's deprecation policies and recommended replacements
+- [How Does Cohere's Pricing Work?](https://docs.cohere.com/v2/docs/how-does-cohere-pricing-work.mdx): This page details Cohere's pricing model. Our models can be accessed directly through our API, allowing for the creation of scalable production workloads.
+- [Integrating Embedding Models with Other Tools](https://docs.cohere.com/v2/docs/integrations.mdx): Learn how to integrate Cohere embeddings with open-source vector search engines for enhanced applications.
+- [Elasticsearch and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/elasticsearch-and-cohere.mdx): Learn how to create a semantic search pipeline with Elasticsearch and Cohere's generative AI capabilities.
+- [MongoDB and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/mongodb-and-cohere.mdx): Build semantic search and RAG systems using Cohere and MongoDB Atlas Vector Search.
+- [Redis and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/redis-and-cohere.mdx): Learn how to integrate Cohere with Redis for similarity searches on text data with this step-by-step guide.
+- [Haystack and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/haystack-and-cohere.mdx): Build custom LLM applications with Haystack, now integrated with Cohere for embedding, generation, chat, and retrieval.
+- [Pinecone and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/pinecone-and-cohere.mdx): This page describes how to integrate Cohere with the Pinecone vector database.
+- [Weaviate and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/weaviate-and-cohere.mdx): This page describes how to integrate Cohere with the Weaviate database.
+- [Open Search and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/opensearch-and-cohere.mdx): Unlock the power of search and analytics with OpenSearch, enhanced by ML connectors like Cohere and Amazon Bedrock.
+- [Vespa and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/vespa-and-cohere.mdx): This page describes how to integrate Cohere with the Vespa database.
+- [Qdrant and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/qdrant-and-cohere.mdx): This page describes how to integrate Cohere with the Qdrant vector database.
+- [Milvus and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/milvus-and-cohere.mdx): This page describes integrating Cohere with the Milvus vector database.
+- [Zilliz and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/zilliz-and-cohere.mdx): This page describes how to integrate Cohere with the Zilliz database.
+- [Chroma and Cohere (Integration Guide)](https://docs.cohere.com/v2/docs/chroma-and-cohere.mdx): This page describes how to integrate Cohere and Chroma.
+- [Cohere and LangChain (Integration Guide)](https://docs.cohere.com/v2/docs/cohere-and-langchain.mdx): Integrate Cohere with LangChain for advanced chat features, RAG, embeddings, and reranking; this guide includes code examples for each feature.
+- [Cohere Chat on LangChain (Integration Guide)](https://docs.cohere.com/v2/docs/chat-on-langchain.mdx): Integrate Cohere with LangChain to build applications using Cohere's models and LangChain tools.
+- [Cohere Embed on LangChain (Integration Guide)](https://docs.cohere.com/v2/docs/embed-on-langchain.mdx): This page describes how to work with Cohere's embeddings models and LangChain.
+- [Cohere Rerank on LangChain (Integration Guide)](https://docs.cohere.com/v2/docs/rerank-on-langchain.mdx): This page describes how to integrate Cohere's ReRank models with LangChain.
+- [Cohere Tools on LangChain (Integration Guide)](https://docs.cohere.com/v2/docs/tools-on-langchain.mdx): Explore code examples for multi-step and single-step tool usage in chatbots, harnessing internet search and vector storage.
+- [LlamaIndex and Cohere's Models](https://docs.cohere.com/v2/docs/llamaindex.mdx): Learn how to use Cohere and LlamaIndex together to generate responses based on data.
+- [Deployment Options - Overview](https://docs.cohere.com/v2/docs/deployment-options-overview.mdx): This page provides an overview of the available options for deploying Cohere's models.
+- [Cohere SDK Cloud Platform Compatibility](https://docs.cohere.com/v2/docs/cohere-works-everywhere.mdx): This page describes various places you can use Cohere's SDK.
+- [Private Deployment Overview](https://docs.cohere.com/v2/docs/private-deployment-overview.mdx): This page provides an overview of private deployments of Cohere's models.
+- [Private Deployment – Setting Up](https://docs.cohere.com/v2/docs/private-deployment-setup.mdx): This page describes the setup required for private deployments of Cohere's models.
+- [Deploying Models in Private Environments](https://docs.cohere.com/v2/docs/single-container-on-private-clouds.mdx): Learn how to pull and test Cohere's container images using a license with Docker and Kubernetes.
+- [AWS Private Deployment Guide (EC2 and EKS)](https://docs.cohere.com/v2/docs/aws-private-deployment.mdx): Deploying Cohere models in AWS via EC2 or EKS for enhanced security, compliance, and control.
+- [Private Deployment Usage](https://docs.cohere.com/v2/docs/private-deployment-usage.mdx): This page describes how to use Cohere's SDK to access privately deployed Cohere models.
+- [Cohere on Amazon Web Services (AWS)](https://docs.cohere.com/v2/docs/cohere-on-aws.mdx): Access Cohere's language models on AWS with customization options through Amazon SageMaker and Amazon Bedrock.
+- [Cohere Models on Amazon Bedrock](https://docs.cohere.com/v2/docs/amazon-bedrock.mdx): This document provides a guide for using Cohere's models on Amazon Bedrock.
+- [An Amazon SageMaker Setup Guide](https://docs.cohere.com/v2/docs/amazon-sagemaker-setup-guide.mdx): This document will guide you through enabling development teams to access Cohere’s offerings on Amazon SageMaker.
+- [Deploy Finetuned Command Models from AWS Marketplace](https://docs.cohere.com/v2/docs/bring-your-finetuned-models-to-sagemaker.mdx): This document provides a guide for bringing your own finetuned models to Amazon SageMaker.
+- [Cohere on the Microsoft Azure Platform](https://docs.cohere.com/v2/docs/cohere-on-microsoft-azure.mdx): This page describes how to work with Cohere models on Microsoft Azure.
+- [Cohere on Oracle Cloud Infrastructure (OCI)](https://docs.cohere.com/v2/docs/oracle-cloud-infrastructure-oci.mdx): This page describes how to work with Cohere models on Oracle Cloud Infrastructure (OCI)
+- [Cohere Cookbooks: Build AI Agents and Solutions](https://docs.cohere.com/v2/docs/cookbooks.mdx): Get started with Cohere's cookbooks to build agents, QA bots, perform searches, and more, all organized by category.
+- [Welcome to LLM University!](https://docs.cohere.com/v2/docs/llmu-2.mdx): LLM University (LLMU) offers in-depth, practical NLP and LLM training. Ideal for all skill levels. Learn, build, and deploy Language AI with Cohere.
+- [Build an Onboarding Assistant with Cohere!](https://docs.cohere.com/v2/docs/build-things-with-cohere.mdx): This page describes how to build an onboarding assistant with Cohere's large language models.
+- [Cohere Text Generation Tutorial](https://docs.cohere.com/v2/docs/text-generation-tutorial.mdx): This page walks through how Cohere's generation models work and how to use them.
+- [Building a Chatbot with Cohere](https://docs.cohere.com/v2/docs/building-a-chatbot-with-cohere.mdx): This page describes building a generative-AI powered chatbot with Cohere.
+- [Semantic Search with Cohere Models](https://docs.cohere.com/v2/docs/semantic-search-with-cohere.mdx): This is a tutorial describing how to leverage Cohere's models for semantic search.
+- [Master Reranking with Cohere Models](https://docs.cohere.com/v2/docs/reranking-with-cohere.mdx): This page contains a tutorial on using Cohere's ReRank models.
+- [Building RAG models with Cohere](https://docs.cohere.com/v2/docs/rag-with-cohere.mdx): This page walks through building a retrieval-augmented generation model with Cohere.
+- [Building a Generative AI Agent with Cohere](https://docs.cohere.com/v2/docs/building-an-agent-with-cohere.mdx): This page describes building a generative-AI powered agent with Cohere.
+- [Building Agentic RAG with Cohere](https://docs.cohere.com/v2/docs/agentic-rag.mdx): Hands-on tutorials on building agentic RAG applications with Cohere
+- [Routing Queries to Data Sources](https://docs.cohere.com/v2/docs/routing-queries-to-data-sources.mdx): Build an agentic RAG system that routes queries to the most relevant tools based on the query's nature.
+- [Generate Parallel Queries for Better RAG Retrieval](https://docs.cohere.com/v2/docs/generating-parallel-queries.mdx): Build an agentic RAG system that can expand a user query into a more optimized set of queries for retrieval.
+- [Performing Tasks Sequentially with Cohere's RAG](https://docs.cohere.com/v2/docs/performing-tasks-sequentially.mdx): Build an agentic RAG system that can handle user queries that require tasks to be performed in a sequence.
+- [Generating Multi-Faceted Queries](https://docs.cohere.com/v2/docs/generating-multi-faceted-queries.mdx): Build a system that generates multi-faceted queries to capture the full intent of a user's request.
+- [Querying Structured Data (Tables)](https://docs.cohere.com/v2/docs/querying-structured-data-tables.mdx): Build an agentic RAG system that can query structured data (tables).
+- [Querying Structured Data (SQL)](https://docs.cohere.com/v2/docs/querying-structured-data-sql.mdx): Build an agentic RAG system that can query structured data (SQL).
+- [Introduction to Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/cohere-on-azure-ai-foundry.mdx): An introduction to Cohere on Azure AI Foundry, a fully managed service by Azure (API v2).
+- [Text generation - Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/azure-ai-text-generation.mdx): A guide for performing text generation with Cohere's Command models on Azure AI Foundry (API v2).
+- [Semantic search - Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/azure-ai-sem-search.mdx): A guide for performing text semantic search with Cohere's Embed models on Azure AI Foundry (API v2).
+- [Reranking - Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/azure-ai-reranking.mdx): A guide for performing reranking with Cohere's Reranking models on Azure AI Foundry (API v2).
+- [Retrieval augmented generation (RAG) - Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/azure-ai-rag.mdx): A guide for performing retrieval augmented generation (RAG) with Cohere's Command models on Azure AI Foundry (API v2).
+- [Tool use & agents - Cohere on Azure AI Foundry](https://docs.cohere.com/v2/docs/cohere-on-azure/azure-ai-tool-use.mdx): A guide for using tool use and building agents with Cohere's Command models on Azure AI Foundry (API v2).
+- [Usage Policy](https://docs.cohere.com/v2/docs/usage-policy.mdx): Developers must outline and get approval for their use case to access the Cohere API, understanding the models and limitations. They should refer to model cards for detailed information and document potential harms of their application. Certain use cases, such as violence, hate speech, fraud, and privacy violations, are strictly prohibited.
+- [Command R and Command R+ Model Card](https://docs.cohere.com/v2/docs/responsible-use.mdx): This doc provides guidelines for using Cohere generation models ethically and constructively.
+- [Cohere Labs Acceptable Use Policy](https://docs.cohere.com/v2/docs/cohere-labs-acceptable-use-policy.mdx): "Promoting safe and ethical use of generative AI with guidelines to prevent misuse and abuse."
+- [How to Start with the Cohere Toolkit](https://docs.cohere.com/v2/docs/cohere-toolkit.mdx): Build and deploy RAG applications quickly with the Cohere Toolkit, which offers pre-built front-end and back-end components.
+- [The Cohere Datasets API (and How to Use It)](https://docs.cohere.com/v2/docs/datasets.mdx): Learn about the Dataset API, including its file size limits, data retention, creation, validation, metadata, and more, with provided code snippets.
+- [Help Us Improve The Cohere Docs](https://docs.cohere.com/v2/docs/contribute.mdx): Contribute to our docs content, stored in the cohere-developer-experience repo; we welcome your pull requests!
+- [Working with Cohere's API and SDK](https://docs.cohere.com/v2/reference/about.mdx): Cohere's NLP platform provides customizable large language models and tools for developers to build AI applications.
+- [Teams and Roles on the Cohere Platform](https://docs.cohere.com/v2/reference/teams-and-roles.mdx): The document outlines how to work in teams on the Cohere platform, including inviting others, managing roles, and access permissions for Owners and Users.
+- [Errors (status codes and description)](https://docs.cohere.com/v2/reference/errors.mdx): Understand Cohere's HTTP response codes and how to handle errors in various programming languages.
+- [Migrating From API v1 to API v2](https://docs.cohere.com/v2/docs/migrating-v1-to-v2.mdx): The document serves as a reference for developers looking to update their existing Cohere API v1 implementations to the new v2 standard.
+- [Using Cohere models via the OpenAI SDK](https://docs.cohere.com/v2/docs/compatibility-api.mdx): The document serves as a guide for Cohere's Compatibility API, which allows developers to seamlessly use Cohere's models using OpenAI's SDK.
+- [Announcing Embed Multimodal v4](https://docs.cohere.com/v2/changelog/embed-multimodal-v4.mdx): Release of Embed Multimodal v4, a performant search model, with Matryoshka embeddings and a 128k context length.
+- [Announcing Command A](https://docs.cohere.com/v2/changelog/command-a.mdx): Release of Command A, a performant model suited for tool use, RAG, agents, and multilingual uses, with 111 billion parameters and a 256k context length.
+- [Our Groundbreaking Multimodal Model, Aya Vision, is Here!](https://docs.cohere.com/v2/changelog/aya-vision-announcement.mdx): Release announcement for the new multimodal Aya Vision model 
+- [Cohere Releases Arabic-Optimized Command Model!](https://docs.cohere.com/v2/changelog/command-r7b-arabic.mdx): Release announcement for the Command R7B Arabic model
+- [Use Cohere models via the OpenAI SDK with the Compatibility API](https://docs.cohere.com/v2/changelog/compatibility-api.mdx): With the Compatibility API, you can use Cohere models via the OpenAI SDK without major refactoring.
+- [Cohere's Rerank v3.5 Model is on Azure AI Foundry!](https://docs.cohere.com/v2/changelog/rerank-v3.5-on-azure.mdx): Release announcement for the ability to work with Cohere Rerank v3.5 models in the Azure's AI Foundry.
+- [Cohere's Rerank v3.5 Model is on Azure AI Foundry!](https://docs.cohere.com/v2/changelog/rerank-v3.5-on-azure.mdx): Release announcement for the ability to work with Cohere Rerank v3.5 models in the Azure's AI Foundry.
+- [Deprecation of the Classify endpoint via default Embed models](https://docs.cohere.com/v2/changelog/classify-default-model-deprecation.mdx): Usage of Classify endpoint via the default Embed models is now deprecated. Usage of Classify endpoint via a fine-tuned Embed model is not affected.
+- [Cohere's Multimodal Embedding Models are on Bedrock!](https://docs.cohere.com/v2/changelog/multimodal-models-on-bedrock.mdx): Release announcement for the ability to work with multimodal image models on the Amazon Bedrock platform.
+- [Aya Expanse is Available on WhatsApp!](https://docs.cohere.com/v2/changelog/aya-expanse-on-whatsapp.mdx): Release announcement for the ability to chat with Aya Expanse on WhatsApp
+- [Announcing Command R7b](https://docs.cohere.com/v2/changelog/command-r-7b.mdx): Release announcment for Command R 7B - our fastest, lightest, and last Command R model.
+- [Announcing Rerank-v3.5](https://docs.cohere.com/v2/changelog/rerank-v3.5.mdx): Release announcment for Rerank 3.5 - our new state of the art model for ranking.
+- [Structured Outputs support for tool use](https://docs.cohere.com/v2/changelog/structured-outputs-tools.mdx): Structured Outputs now supports both JSON and tool use scenarios.
+- [Embed v3.0 Models are now Multimodal](https://docs.cohere.com/v2/changelog/embed-v3-is-multimodal.mdx): Launch of multimodal embeddings for our Embed models, plus some code to help get started.
+- [Fine-Tuning Now Available for Command R 08-2024](https://docs.cohere.com/v2/changelog/commandr-082024-ft.mdx): Launch of fine-tuning for Command R 08-2024 and other new fine-tuning features.
+- [New Embed, Rerank, Chat, and Classify APIs](https://docs.cohere.com/v2/changelog/v2-api-release.mdx): Introducing improvements to our Chat, Classify, Embed, and Rerank APIs in a major version upgrade, making it easier and faster to build with Cohere.
+- [Refreshed Command R and R+ models now on Azure](https://docs.cohere.com/v2/changelog/refresh-models-on-azure.mdx): Introducing our improved Command models are available on the Azure cloud computing platform.
+- [Command models get an August refresh](https://docs.cohere.com/v2/changelog/command-gets-refreshed.mdx): We're excited to announce updates to our Command R and R+ models, offering improved performance, new features, and more.
+- [Force JSON object response format](https://docs.cohere.com/v2/changelog/force-json-object-response-format.mdx): Generate outputs in JSON objects with the new 'response_format' parameter, now available with the 'command-nightly' model.
+- [Release Notes for June 10th 2024](https://docs.cohere.com/v2/changelog/release-notes-for-june-10th-2024.mdx): Get started with multi-step tool use, explore new docs, and learn about billing changes in Cohere's Chat API.
+- [Advanced Retrieval Launch release](https://docs.cohere.com/v2/changelog/advanced-retrieval-launch.mdx): Rerank 3 offers improved performance and inference speed for long and short documents with a context length of 4096.
+- [Cohere Python SDK v5.2.0 release](https://docs.cohere.com/v2/changelog/python-sdk-v520-release.mdx): Stay up to date with our Python SDK update, including local tokenizer defaults and new required fields.
+- [Command R: Retrieval-Augmented Generation at Scale](https://docs.cohere.com/v2/changelog/command-r-retrieval-augmented-generation-at-production-scale.mdx): Command R: Retrieval Augmented Generation at scale.
+- [Fine-tuning has been added to the Python SDK](https://docs.cohere.com/v2/changelog/fine-tuning-has-been-added-to-the-python-sdk.mdx): Stay up-to-date with Cohere's Python SDK by checking out the new `fine_tuning` feature and its functions.
+- [Cohere Python SDK v5.0.0 release](https://docs.cohere.com/v2/changelog/python-sdk-v500.mdx): Stay up-to-date with our latest Python SDK release and learn about deprecated functions and migration instructions.
+- [Release Notes January 22, 2024](https://docs.cohere.com/v2/changelog/release-notes-january-x-2024.mdx): Discover new AI capabilities with Cohere's latest features, including improved fine-tuning, Embed Jobs API, and multi-language SDK support.
+- [Release Notes September 29th 2023](https://docs.cohere.com/v2/changelog/release-notes-september-29th-2023.mdx): Experience the future of generative AI with co.chat() and explore the power of retrieval-augmented generation for grounded and timely outputs.
+- [Release Notes August 8th 2023 (Changelog)](https://docs.cohere.com/v2/changelog/release-notes-august-4th-2023.mdx): Unlock improved reasoning and conversation with Command R+, now featuring Okta OIDC support and an enhanced finetuning SDK.
+- [Release Notes June 28th 2023 (Changelog)](https://docs.cohere.com/v2/changelog/release-notes-june-28th-2023.mdx): The latest Command model update brings enhanced code, conversation, and reasoning, along with new API features and usage/billing improvements.
+- [New Maximum Number of Input Documents for Rerank](https://docs.cohere.com/v2/changelog/new-maximum-document-length-for-rerank.mdx): Stay up to date with our latest changes to co.rerank, now with an improved maximum document limit.
+- [Cohere Model Names Are Changing!](https://docs.cohere.com/v2/changelog/model-names-are-changing.mdx): We've updated our model names for simplicity and consistency, and old names will work for now.
+- [Multilingual Support for Co.classify](https://docs.cohere.com/v2/changelog/multilingual-support-for-coclassify.mdx): The co.classify endpoint now supports multilingual capabilities with the new multilingual-22-12 model.
+- [Command Model Nightly Available!](https://docs.cohere.com/v2/changelog/command-model-nightly-available.mdx): Get improved performance with our new nightly versions of Command models, now available in medium and x-large sizes.
+- [Command R+ is a scalable LLM for business](https://docs.cohere.com/v2/changelog/command-r-is-a-scalable-llm-for-business.mdx): Explore Command R+, Cohere's powerful language model, excelling in multi-step tool use and complex conversational AI tasks.
+- [Multilingual Text Understanding Model + Language Detection!](https://docs.cohere.com/v2/changelog/multilingual-text-understanding-model-language-detection.mdx): Cohere's multilingual model now supports semantic search across 100 languages with a single index.
+- [Model Sizing Update + Improvements](https://docs.cohere.com/v2/changelog/model-sizing-update-improvements.mdx): We're updating our generative AI models to offer improved Medium and X-Large options.
+- [Improvements to Current Models + New Beta Model (Command)!](https://docs.cohere.com/v2/changelog/improvements-to-current-models-new-beta-model-command.mdx): Introducing new and improved Medium and XLarge models, plus a Command model for precise responses to commands.
+- [New Look For Cohere Documentation!](https://docs.cohere.com/v2/changelog/new-look-for-docs.mdx): Explore our updated docs with interactive tutorials, improved info architecture, and a UI refresh for a streamlined experience.
+- [Co.classify powered by our Representational model embeddings](https://docs.cohere.com/v2/changelog/coclassify-powered-by-our-representational-model-embeddings.mdx): Improve few-shot classification with Co.classify and embeddings from our Representational model.
+- [New Logit Bias experimental parameter](https://docs.cohere.com/v2/changelog/new-logit-bias-experimental-parameter.mdx): Take control of your generative models with the new logit_bias parameter to guide token generation.
+- [Pricing Update and New Dashboard UI](https://docs.cohere.com/v2/changelog/pricing-update-and-new-dashboard-ui.mdx): Unlock new features, including production keys, flat-rate pricing, improved UI, and enhanced team collaboration and model insights.
+- [Introducing Moderate Tool (Beta)!](https://docs.cohere.com/v2/changelog/introducing-moderate-beta.mdx): Access cutting-edge natural language processing tools without the need for costly supercomputing power.
+- [The `model` Parameter Becomes Optional.](https://docs.cohere.com/v2/changelog/model-parameter-now-optional.mdx): Our APIs are now model-agnostic with default endpoint settings, offering greater flexibility and control for users.
+- [New & Improved Generation and Representation Models](https://docs.cohere.com/v2/changelog/new-improved-generation-and-representation-models.mdx): Enhance your text generation and representation with improved models, now offering better context support and optimal performance.
+- [New and Improved Extremely Large Model!](https://docs.cohere.com/v2/changelog/new-extremely-large-model.mdx): We're thrilled to introduce our enhanced `xlarge` model, now with superior generation quality and speed.
+- [Updated Small, Medium, and Large Generation Models](https://docs.cohere.com/v2/changelog/updated-small-medium-and-large-generation-models.mdx): The latest updates improve model stability and fix a bug for more effective generation presence and frequency penalties.
+- [Introducing Classification Endpoint](https://docs.cohere.com/v2/changelog/classification-endpoint.mdx): Classify text with Cohere's new classification endpoint, powered by generation models, offering few-shot learning.
+- [Finetuning Available + Policy Updates](https://docs.cohere.com/v2/changelog/finetuning-available-policy-updates.mdx): Fine-tune models with your own data and leverage updated policies for powerful NLP solutions.
+- [New & Improved Generation Models](https://docs.cohere.com/v2/changelog/new-improved-generation-models.mdx): Try our new small, medium, and large generation models with improved performance from our high-quality dataset.
+- [Extremely Large (Beta) Release](https://docs.cohere.com/v2/changelog/extremely-large-beta-release.mdx): Take your NLP tasks further with our new top-tier model, Extremely Large (Beta), now available.
+- [Larger Cohere Representation Models](https://docs.cohere.com/v2/changelog/larger-representation-models.mdx): New Representation Model sizes and an increased token limit offer improved performance and flexibility.
+- [Cookbooks](https://docs.cohere.com/v2/page/cookbooks.mdx): Explore a range of AI guides and get started with Cohere's generative platform, ready-made and best-practice optimized.
+- [Building an LLM Agent with the Cohere API](https://docs.cohere.com/v2/page/agent-api-calls.mdx): This page how to use Cohere's API to build an LLM-based agent.
+- [Short-Term Memory Handling for Agents](https://docs.cohere.com/v2/page/agent-short-term-memory.mdx): This page describes how to manage short-term memory in an agent built with Cohere models.
+- [Agentic Multi-Stage RAG with Cohere Tools API](https://docs.cohere.com/v2/page/agentic-multi-stage-rag.mdx): This page describes how to build a powerful, multi-stage agent with the Cohere platform.
+- [Agentic RAG for PDFs with mixed data](https://docs.cohere.com/v2/page/agentic-rag-mixed-data.mdx): This page describes building a powerful, multi-step chatbot with Cohere's models.
+- [Analysis of Form 10-K/10-Q Using Cohere and RAG](https://docs.cohere.com/v2/page/analysis-of-financial-forms.mdx): This page describes how to use Cohere's large language models to build an agent able to analyze financial forms like a 10-K or a 10-Q.
+- [Analyzing Hacker News with Cohere](https://docs.cohere.com/v2/page/analyzing-hacker-news.mdx): This page describes building a generative-AI powered tool to analyze headlines with Cohere.
+- [Article Recommender with Text Embedding and Classification](https://docs.cohere.com/v2/page/article-recommender-with-text-embeddings.mdx): This page describes how to build a generative-AI tool to recommend articles with Cohere.
+- [Multi-Step Tool Use with Cohere](https://docs.cohere.com/v2/page/basic-multi-step.mdx): This page describes how to create a multi-step, tool-using AI agent with Cohere's tool use functionality.
+- [Basic RAG: Retrieval-Augmented Generation with Cohere](https://docs.cohere.com/v2/page/basic-rag.mdx): This page describes how to work with Cohere's basic retrieval-augmented generation functionality.
+- [Basic Semantic Search with Cohere Models](https://docs.cohere.com/v2/page/basic-semantic-search.mdx): This page describes how to do basic semantic search with Cohere's models.
+- [Getting Started with Basic Tool Use](https://docs.cohere.com/v2/page/basic-tool-use.mdx): This page describes how to work with Cohere's basic tool use functionality.
+- [Calendar Agent with Native Multi Step Tool](https://docs.cohere.com/v2/page/calendar-agent.mdx): This page describes how to use cohere Chat API with list_calendar_events and create_calendar_event tools to book appointments.
+- [Effective Chunking Strategies for RAG](https://docs.cohere.com/v2/page/chunking-strategies.mdx): This page describes various chunking strategies you can use to get better RAG performance.
+- [Creating a QA Bot From Technical Documentation](https://docs.cohere.com/v2/page/creating-a-qa-bot.mdx): This page describes how to use Cohere to build a simple question-answering system.
+- [Financial CSV Agent with Native Multi-Step Cohere API](https://docs.cohere.com/v2/page/csv-agent-native-api.mdx): This page describes how to use Cohere's models and its native API to build an agent able to work with CSV data.
+- [Financial CSV Agent with Langchain](https://docs.cohere.com/v2/page/csv-agent.mdx): This page describes how to use Cohere's models to build an agent able to work with CSV data.
+- [Migrating away from deprecated create_csv_agent in langchain-cohere](https://docs.cohere.com/v2/page/migrate-csv-agent.mdx): This page contains a tutorial on how to build a CSV agent without the deprecated `create_csv_agent` abstraction in langchain-cohere v0.3.5 and beyond.
+- [A Data Analyst Agent Built with Cohere and Langchain](https://docs.cohere.com/v2/page/data-analyst-agent.mdx): This page describes how to build a data-analysis system out of Cohere's models.
+- [Advanced Document Parsing For Enterprises](https://docs.cohere.com/v2/page/document-parsing-for-enterprises.mdx): This page describes how to use Cohere's models to build a document-parsing agent.
+- [End-to-end RAG using Elasticsearch and Cohere](https://docs.cohere.com/v2/page/elasticsearch-and-cohere.mdx): This page contains a basic tutorial on how to get Cohere and ElasticSearch to work well together.
+- [Serverless Semantic Search with Cohere and Pinecone](https://docs.cohere.com/v2/page/embed-jobs-serverless-pinecone.mdx): This page contains a basic tutorial on how to get Cohere and the Pinecone vector database to work well together.
+- [Semantic Search with Cohere Embed Jobs](https://docs.cohere.com/v2/page/embed-jobs.mdx): This page contains a basic tutorial on how to use Cohere's Embed Jobs functionality.
+- [Fueling Generative Content with Keyword Research](https://docs.cohere.com/v2/page/fueling-generative-content.mdx): This page contains a basic workflow for using Cohere's models to come up with keyword content ideas.
+- [Grounded Summarization Using Command R](https://docs.cohere.com/v2/page/grounded-summarization.mdx): This page contains a basic tutorial on how to do grounded summarization with Cohere's models.
+- [Hello World! Explore Language AI with Cohere](https://docs.cohere.com/v2/page/hello-world-meet-ai.mdx): This page contains a breakdown of some of what can be achieved with Cohere's LLM platform.
+- [Long-Form Text Strategies with Cohere](https://docs.cohere.com/v2/page/long-form-general-strategies.mdx): This discusses ways of getting Cohere's LLM platform to perform well in generating long-form text.
+- [Migrating Monolithic Prompts to Command-R with RAG](https://docs.cohere.com/v2/page/migrating-prompts.mdx): This page contains a discussion of how to automatically migrating monolothic prompts.
+- [Multilingual Search with Cohere and Langchain](https://docs.cohere.com/v2/page/multilingual-search.mdx): This page contains a basic tutorial on how to do search across different languages with Cohere's LLM platform.
+- [PDF Extractor with Native Multi Step Tool Use](https://docs.cohere.com/v2/page/pdf-extractor.mdx): This page describes how to create an AI agent able to extract information from PDFs.
+- [Pondr, Fostering Connection through Good Conversation](https://docs.cohere.com/v2/page/pondr.mdx): This page contains a basic tutorial on how tplay an AI-powered version of the icebreaking game 'Pondr'.
+- [Deep Dive Into Evaluating RAG Outputs](https://docs.cohere.com/v2/page/rag-evaluation-deep-dive.mdx): This page contains information on evaluating the output of RAG systems.
+- [RAG With Chat Embed and Rerank via Pinecone](https://docs.cohere.com/v2/page/rag-with-chat-embed.mdx): This page contains a basic tutorial on how to build a RAG-powered chatbot.
+- [Learn How Cohere's Rerank Models Work](https://docs.cohere.com/v2/page/rerank-demo.mdx): This page contains a basic tutorial on how Cohere's ReRank models work and how to use them.
+- [Build a SQL Agent with Cohere's LLM Platform](https://docs.cohere.com/v2/page/sql-agent.mdx): This page contains a tutorial on how to build a SQL agent with Cohere's LLM platform.
+- [Evaluating Text Summarization Models](https://docs.cohere.com/v2/page/summarization-evals.mdx): This page discusses how to evaluate a model's text summarization.
+- [Text Classification Using Embeddings](https://docs.cohere.com/v2/page/text-classification-using-embeddings.mdx): This page discusses the creation of a text classification model using word vector embeddings.
+- [Topic Modeling System for AI Papers](https://docs.cohere.com/v2/page/topic-modeling-ai-papers.mdx): This page discusses how to create a topic-modeling system for papers focused on AI papers.
+- [Wikipedia Semantic Search with Cohere + Weaviate](https://docs.cohere.com/v2/page/wikipedia-search-with-weaviate.mdx): This page contains a description of building a Wikipedia-focused search engine with Cohere's LLM platform and the Weaviate vector database.
+- [Wikipedia Semantic Search with Cohere Embedding Archives](https://docs.cohere.com/v2/page/wikipedia-semantic-search.mdx): This page contains a description of building a Wikipedia-focused semantic search engine with Cohere's LLM platform and the Weaviate vector database.
+- [Build Chatbots with MongoDB and Cohere](https://docs.cohere.com/v2/page/rag-cohere-mongodb.mdx): This page describes how to build a chatbot that provides actionable insights on technology company market reports.
+- [Finetuning on Cohere's Platform](https://docs.cohere.com/v2/page/convfinqa-finetuning-wandb.mdx): An example of finetuning using Cohere's platform and a financial dataset.
+- [Deploy your finetuned model on AWS Marketplace](https://docs.cohere.com/v2/page/deploy-finetuned-model-aws-marketplace.mdx): Learn how to deploy your finetuned model on AWS Marketplace.
+- [Finetuning Cohere Models on AWS Sagemaker](https://docs.cohere.com/v2/page/finetune-on-sagemaker.mdx): Learn how to finetune one of Cohere's models on AWS Sagemaker.
+- [SQL Agent with Cohere and LangChain (i-5O Case Study)](https://docs.cohere.com/v2/page/sql-agent-cohere-langchain.mdx): This page contains a tutorial on how to build a SQL agent with Cohere and LangChain in the manufacturing industry.
+- [Introduction to Aya Vision](https://docs.cohere.com/v2/page/aya-vision-intro.mdx): In this notebook, we will explore the capabilities of Aya Vision, which can take text and image inputs to generates text responses.
+- [Retrieval evaluation using LLM-as-a-judge via Pydantic AI](https://docs.cohere.com/v2/page/retrieval-eval-pydantic-ai.mdx): This page contains a tutorial on how to evaluate retrieval systems using LLMs as judges via Pydantic AI.
+- [Cohere Documentation](https://docs.cohere.com/cohere-documentation.mdx): Cohere's API documentation helps developers easily integrate natural language processing and generation into their products.
+- [An Overview of The Cohere Platform](https://docs.cohere.com/v1/docs/the-cohere-platform.mdx): Cohere offers world-class Large Language Models (LLMs) like Command, Rerank, and Embed. These help developers and enterprises build LLM-powered applications.
+- [Installation](https://docs.cohere.com/v1/docs/get-started-installation.mdx): A guide for installing the Cohere SDK, supported in 4 different languages – Python, TypeScript, Java, and Go.
+- [Creating a client](https://docs.cohere.com/v1/docs/create-client.mdx): A guide for creating Cohere API client using Cohere SDK, supported in 4 different languages – Python, TypeScript, Java, and Go.
+- [Text Generation](https://docs.cohere.com/v1/docs/text-gen-quickstart.mdx): A quickstart guide for performing text generation with Cohere's Command models (v1 API).
+- [Retrieval Augmented Generation (RAG)](https://docs.cohere.com/v1/docs/rag-quickstart.mdx): A quickstart guide for performing retrieval augmented generation (RAG) with Cohere's Command models (v1 API).
+- [Tool Use & Agents](https://docs.cohere.com/v1/docs/tool-use-quickstart.mdx): A quickstart guide for using tool use and building agents with Cohere's Command models (v1 API).
+- [Semantic Search](https://docs.cohere.com/v1/docs/sem-search-quickstart.mdx): A quickstart guide for performing text semantic search with Cohere's Embed models (v1 API).
+- [Reranking](https://docs.cohere.com/v1/docs/reranking-quickstart.mdx): A quickstart guide for performing reranking with Cohere's Reranking models (v1 API).
+- [An Overview of the Developer Playground](https://docs.cohere.com/v1/docs/playground-overview.mdx): The Cohere Playground is a powerful visual interface for testing Cohere's generation and embedding language models without coding.
+- [Frequently Asked Questions About Cohere](https://docs.cohere.com/v1/docs/cohere-faqs.mdx): Cohere is a powerful platform for using Large Language Models (LLMs). This page covers FAQs related to functionality, pricing, troubleshooting, and more.
+- [An Overview of Cohere's Models](https://docs.cohere.com/v1/docs/models.mdx): Cohere has a variety of models that cover many different use cases. If you need more customization, you can train a model to tune it to your specific use case.
+- [Command A](https://docs.cohere.com/v1/docs/command-a.mdx): Command A is a performant mode good at tool use, RAG, agents, and multilingual use cases. It has 111 billion parameters and a 256k context length.
+- [Command R7B](https://docs.cohere.com/v1/docs/command-r7b.mdx): Command R7B is the smallest, fastest, and final model in our R family of enterprise-focused large language models. It excels at RAG, tool use, and agents.
+- [Cohere's Command R+ Model (Details and Application)](https://docs.cohere.com/v1/docs/command-r-plus.mdx): Command R+ is Cohere's optimized for conversational interaction and long-context tasks, best suited for complex RAG workflows and multi-step tool use.
+- [The Command R Model (Details and Application)](https://docs.cohere.com/v1/docs/command-r.mdx): Command R is a conversational model that excels in language tasks and supports multiple languages, making it ideal for coding use cases.
+- [Cohere Command and Command Light](https://docs.cohere.com/v1/docs/command-beta.mdx): Cohere's Command offers cutting-edge generative capabilities with weekly updates for improved performance and user feedback.
+- [Cohere's Embed Models (Details and Application)](https://docs.cohere.com/v1/docs/cohere-embed.mdx): Explore Embed models for text classification and embedding generation in English and multiple languages, with details on dimensions and endpoints.
+- [Cohere's Rerank Model (Details and Application)](https://docs.cohere.com/v1/docs/rerank.mdx): This page describes how Cohere's Rerank models work and how to use them.
+- [Aya Family of Models](https://docs.cohere.com/v1/docs/aya.mdx): Understand Cohere Labs groundbreaking multilingual Aya models, which aim to bring many more languages into generative AI.
+- [Aya Vision](https://docs.cohere.com/v1/docs/aya-vision.mdx): Understand Cohere Labs groundbreaking multilingual model Aya Vision, a state-of-the-art multimodal language model excelling at multiple tasks.
+- [Aya Expanse](https://docs.cohere.com/v1/docs/aya-expanse.mdx): Understand Cohere Labs highly performant multilingual Aya models, which aim to bring many more languages into generative AI.
+- [Introduction to Text Generation at Cohere](https://docs.cohere.com/v1/docs/introduction-to-text-generation-at-cohere.mdx): This page describes how a large language model generates textual output.
+- [Using the Cohere Chat API for Text Generation](https://docs.cohere.com/v1/docs/chat-api.mdx): How to use the Chat API endpoint with Cohere LLMs to generate text responses in a conversational interface.
+- [A Guide to Streaming Responses](https://docs.cohere.com/v1/docs/streaming.mdx): The document explains how the Chat API can stream events like text generation in real-time.
+- [How do Structured Outputs Work?](https://docs.cohere.com/v1/docs/structured-outputs.mdx): This page describes how to get Cohere models to create outputs in a certain format, such as JSON, using parameters such as `response_format`.
+- [How to Get Predictable Outputs with Cohere Models](https://docs.cohere.com/v1/docs/predictable-outputs.mdx): Strategies for decoding text, and the parameters that impact the randomness and predictability of a language model's output.
+- [Advanced Generation Parameters](https://docs.cohere.com/v1/docs/advanced-generation-hyperparameters.mdx): This page describes advanced parameters for controlling generation.
+- [Retrieval Augmented Generation (RAG)](https://docs.cohere.com/v1/docs/retrieval-augmented-generation-rag.mdx): Generate text with external data and inline citations using Retrieval Augmented Generation and Cohere's Chat API.
+- [An Overview of Cohere's RAG Connectors](https://docs.cohere.com/v1/docs/overview-rag-connectors.mdx): This page describes how to work with Cohere's retrieval-augmented generation connectors.
+- [Creating and Deploying a Connector](https://docs.cohere.com/v1/docs/creating-and-deploying-a-connector.mdx): Learn how to implement a connector, from setup to deployment, to enable grounded generations with Cohere's Chat API.
+- [How to Manage a Cohere Connector](https://docs.cohere.com/v1/docs/managing-your-connector.mdx): Learn how to manage connectors, including listing, authorizing, updating settings, and debugging issues.
+- [How to Authenticate a Connector](https://docs.cohere.com/v1/docs/connector-authentication.mdx): The document outlines three methods for authentication and authorization in Cohere.
+- [Frequently Asked Questions About Connectors](https://docs.cohere.com/v1/docs/connector-faqs.mdx): Get solutions to common issues when implementing connectors for Cohere's language models, including performance, relevance, and quality.
+- [An Overview of Tool Use with Cohere](https://docs.cohere.com/v1/docs/tools.mdx): Understand single-step and multi-step tool use, and learn when to use each in your workflows.
+- [Multi-step Tool Use (Agents)](https://docs.cohere.com/v1/docs/multi-step-tool-use.mdx): "Cohere's tool use feature enhances AI capabilities by connecting external tools for dynamic, adaptable, and sequential actions."
+- [Implementing a Multi-Step Agent with Langchain](https://docs.cohere.com/v1/docs/implementing-a-multi-step-agent-with-langchain.mdx): This page describes how to building a powerful, flexible AI agent with Cohere and LangChain. (V1)
+- [How Does Single-Step Tool Use Work?](https://docs.cohere.com/v1/docs/tool-use.mdx): Enable your large language models to connect with external tools for more advanced and dynamic interactions (V1).
+- [What Parameter Types are Available in Tool Use?](https://docs.cohere.com/v1/docs/parameter-types-in-tool-use.mdx): This page describes Cohere's tool use parameters and how to work with them.
+- [A Guide to Tokens and Tokenizers](https://docs.cohere.com/v1/docs/tokens-and-tokenizers.mdx): This document describes how to use the tokenize and detokenize API endpoints.
+- [A Guide to Crafting Effective Prompts](https://docs.cohere.com/v1/docs/crafting-effective-prompts.mdx): This page describes different ways of crafting effective prompts for prompt engineering.
+- [Advanced Prompt Engineering Techniques](https://docs.cohere.com/v1/docs/advanced-prompt-engineering-techniques.mdx): This page describes advanced ways of controlling prompt engineering.
+- [How Does Prompt Truncation Work?](https://docs.cohere.com/v1/docs/prompt-truncation.mdx): This page describes how Cohere's prompt truncation works.
+- [An Overview of System Messages](https://docs.cohere.com/v1/docs/preambles.mdx): This page describes how Cohere preambles work, and the effect they have on output.
+- [Create CSV data from JSON data](https://docs.cohere.com/v1/docs/create-csv-data-from-json-data.mdx): This document provides an example of converting a JSON object into CSV format using the Cohere API.
+- [Create a markdown table from raw data](https://docs.cohere.com/v1/docs/create-a-markdown-table-from-raw-data.mdx): The document provides a prompt to format CSV data into a markdown table and includes the output table as well as an API request using the Cohere platform.
+- [How to Build a Meeting Summarizer](https://docs.cohere.com/v1/docs/meeting-summarizer.mdx): The document discusses the creation of a meeting summarizer with Cohere's large language model.
+- [How to Programmatically Remove PII](https://docs.cohere.com/v1/docs/remove-pii.mdx): This document provides an example of redacting personally identifiable information (PII) from a conversation while maintaining context, using the Cohere API.
+- [How to Add a Docstring to Your Code](https://docs.cohere.com/v1/docs/add-a-docstring-to-your-code.mdx): This document provides an example of adding a docstring to a Python function using the Cohere API.
+- [How to Evaluate your LLM Response](https://docs.cohere.com/v1/docs/evaluate-your-llm-response.mdx): Learn how to use Command-R to evaluate natural language responses with an example of grading formality.
+- [Faster Web Search](https://docs.cohere.com/v1/docs/faster-web-search.mdx): Using Cohere's language models to search the web more quickly.
+- [How to Build a Multilingual interpreter](https://docs.cohere.com/v1/docs/multilingual-interpreter.mdx): This document provides a prompt to interpret a customer's issue into multiple languages using an API.
+- [Migrating from the Generate API to the Chat API](https://docs.cohere.com/v1/docs/migrating-from-cogenerate-to-cochat.mdx): Learn about the transition from Generate to Chat for improved generative capabilities with Cohere.
+- [Summarizing Text with the Chat Endpoint](https://docs.cohere.com/v1/docs/summarizing-text.mdx): Learn how to perform text summarization using Cohere's Chat endpoint with features like length control and RAG.
+- [Safety Modes](https://docs.cohere.com/v1/docs/safety-modes.mdx): The safety modes documentation describes how to use default and strict modes in order to exercise additional control over model output.
+- [Introduction to Embeddings at Cohere](https://docs.cohere.com/v1/docs/embeddings.mdx): Embeddings transform text into numerical data, enabling language-agnostic similarity searches and efficient storage with compression.
+- [Semantic Search with Embeddings](https://docs.cohere.com/v1/docs/semantic-search-embed.mdx): Examples on how to use the Embed endpoint to perform semantic search (API v1).
+- [Unlocking the Power of Multimodal Embeddings](https://docs.cohere.com/v1/docs/multimodal-embeddings.mdx): Multimodal embeddings convert text and images into embeddings for search and classification.
+- [Batch Embedding Jobs with the Embed API](https://docs.cohere.com/v1/docs/embed-jobs-api.mdx): Learn how to use the Embed Jobs API to handle large text data efficiently with a focus on creating datasets and running embed jobs.
+- [An Overview of Cohere's Rerank Model](https://docs.cohere.com/v1/docs/rerank-overview.mdx): This page describes how Cohere's Rerank models work.
+- [Best Practices for using Rerank](https://docs.cohere.com/v1/docs/reranking-best-practices.mdx): Tips for optimal endpoint performance, including constraints on the number of documents, tokens per document, and tokens per query.
+- [Introduction to Fine-Tuning with Cohere Models](https://docs.cohere.com/v1/docs/fine-tuning.mdx): Fine-tune Cohere's large language models for specific tasks, styles, and formats with custom data.
+- [Fine-tuning with Cohere's Dashboard](https://docs.cohere.com/v1/docs/fine-tuning-with-the-cohere-dashboard.mdx): Use the Cohere Web UI to start the fine-tuning jobs and track the progress.
+- [Programmatic Fine-tuning](https://docs.cohere.com/v1/docs/fine-tuning-with-the-python-sdk.mdx): Fine-tune models using the Cohere Python SDK programmatically and monitor the results through the Dashboard Web UI.
+- [Fine-tuning for Cohere's Chat Model](https://docs.cohere.com/v1/docs/chat-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving chat models.
+- [Preparing the Chat Fine-tuning Data](https://docs.cohere.com/v1/docs/chat-preparing-the-data.mdx): Prepare your data for fine-tuning a Command model for Chat with this step-by-step guide, including data formatting, requirements, and best practices.
+- [Starting the Chat Fine-Tuning Run](https://docs.cohere.com/v1/docs/chat-starting-the-training.mdx): Learn how to fine-tune a Command model for chat with the Cohere Web UI or Python SDK, including data requirements, pricing, and calling your model.
+- [Understanding the Chat Fine-tuning Results](https://docs.cohere.com/v1/docs/chat-understanding-the-results.mdx): Learn how to evaluate and troubleshoot a fine-tuned chat model with accuracy and loss metrics.
+- [Improving the Chat Fine-tuning Results](https://docs.cohere.com/v1/docs/chat-improving-the-results.mdx): Learn how to refine data, iterate on hyperparameters, and troubleshoot to fine-tune your Chat model effectively.
+- [Fine-tuning for Cohere's Rerank Model](https://docs.cohere.com/v1/docs/rerank-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving rerank models.
+- [Preparing the Rerank Fine-tuning Data](https://docs.cohere.com/v1/docs/rerank-preparing-the-data.mdx): Learn how to prepare and format your data for fine-tuning Cohere's Rerank model.
+- [Starting the Rerank Fine-Tuning](https://docs.cohere.com/v1/docs/rerank-starting-the-training.mdx): How to start training a fine-tuning model for Rerank using both the Web UI and the Python SDK.
+- [Understanding the Rerank Fine-tuning Results](https://docs.cohere.com/v1/docs/rerank-understanding-the-results.mdx): Understand how fine-tuned models for Rerank are evaluated, and learn about the specific metrics used, including Accuracy, MRR, and nDCG.
+- [Improving the Rerank Fine-tuning Results](https://docs.cohere.com/v1/docs/rerank-improving-the-results.mdx): Tips for achieving the best fine-tuned rerank model and troubleshooting guide for fine-tuned models.
+- [Fine-tuning for Cohere's Classify Model](https://docs.cohere.com/v1/docs/classify-fine-tuning.mdx): This document provides guidance on fine-tuning, evaluating, and improving classification models.
+- [Preparing the Classify Fine-tuning data](https://docs.cohere.com/v1/docs/classify-preparing-the-data.mdx): Learn how to prepare your data for fine-tuning classification models, including single-label and multi-label data formats and dataset cleaning tips.
+- [Training and deploying a fine-tuned Cohere model.](https://docs.cohere.com/v1/docs/classify-starting-the-training.mdx): Fine-tune classification models with Cohere's Web UI or Python SDK using custom datasets. (V1)
+- [Understanding the Classify Fine-tuning Results](https://docs.cohere.com/v1/docs/classify-understanding-the-results.mdx): Understand the performance metrics for a fine-tuned classification model and learn how to interpret its accuracy, precision, recall, and F1 scores.
+- [Improving the Classify Fine-tuning Results](https://docs.cohere.com/v1/docs/classify-improving-the-results.mdx): Troubleshoot your fine-tuned classification model with these tips for refining data quality and improving results.
+- [FAQs for Troubleshooting A Fine-Tuned Model](https://docs.cohere.com/v1/docs/troubleshooting-a-fine-tuned-model.mdx): Train custom AI models with Cohere's platform and leverage human evaluations to compare model performances.
+- [Different Types of API Keys and Rate Limits](https://docs.cohere.com/v1/docs/rate-limits.mdx): This page describes Cohere API rate limits for production and evaluation keys.
+- [Going Live with a Cohere Model](https://docs.cohere.com/v1/docs/going-live.mdx): Learn to upgrade from a Trial to a Production key; understand the limitations and benefits of each and go live with Cohere.
+- [Deprecations](https://docs.cohere.com/v1/docs/deprecations.mdx): Learn about Cohere's deprecation policies and recommended replacements
+- [How Does Cohere's Pricing Work?](https://docs.cohere.com/v1/docs/how-does-cohere-pricing-work.mdx): This page details Cohere's pricing model. Our models can be accessed directly through our API, allowing for the creation of scalable production workloads.
+- [Integrating Embedding Models with Other Tools](https://docs.cohere.com/v1/docs/integrations.mdx): Learn how to integrate Cohere embeddings with open-source vector search engines for enhanced applications.
+- [Elasticsearch and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/elasticsearch-and-cohere.mdx): Learn how to create a semantic search pipeline with Elasticsearch and Cohere's generative AI capabilities.
+- [MongoDB and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/mongodb-and-cohere.mdx): Build semantic search and RAG systems using Cohere and MongoDB Atlas Vector Search.
+- [Redis and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/redis-and-cohere.mdx): Learn how to integrate Cohere with Redis for similarity searches on text data with this step-by-step guide.
+- [Haystack and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/haystack-and-cohere.mdx): Build custom LLM applications with Haystack, now integrated with Cohere for embedding, generation, chat, and retrieval.
+- [Pinecone and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/pinecone-and-cohere.mdx): This page describes how to integrate Cohere with the Pinecone vector database.
+- [Weaviate and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/weaviate-and-cohere.mdx): This page describes how to integrate Cohere with the Weaviate database.
+- [Open Search and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/opensearch-and-cohere.mdx): Unlock the power of search and analytics with OpenSearch, enhanced by ML connectors like Cohere and Amazon Bedrock.
+- [Vespa and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/vespa-and-cohere.mdx): This page describes how to integrate Cohere with the Vespa database.
+- [Qdrant and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/qdrant-and-cohere.mdx): This page describes how to integrate Cohere with the Qdrant vector database.
+- [Milvus and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/milvus-and-cohere.mdx): This page describes integrating Cohere with the Milvus vector database.
+- [Zilliz and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/zilliz-and-cohere.mdx): This page describes how to integrate Cohere with the Zilliz database.
+- [Chroma and Cohere (Integration Guide)](https://docs.cohere.com/v1/docs/chroma-and-cohere.mdx): This page describes how to integrate Cohere and Chroma.
+- [Cohere and LangChain (Integration Guide)](https://docs.cohere.com/v1/docs/cohere-and-langchain.mdx): Integrate Cohere with LangChain for advanced chat features, RAG, embeddings, and reranking; this guide includes code examples for each feature.
+- [Cohere Chat on LangChain (Integration Guide)](https://docs.cohere.com/v1/docs/chat-on-langchain.mdx): Integrate Cohere with LangChain to build applications using Cohere's models and LangChain tools.
+- [Cohere Embed on LangChain (Integration Guide)](https://docs.cohere.com/v1/docs/embed-on-langchain.mdx): This page describes how to work with Cohere's embeddings models and LangChain.
+- [Cohere Rerank on LangChain (Integration Guide)](https://docs.cohere.com/v1/docs/rerank-on-langchain.mdx): This page describes how to integrate Cohere's ReRank models with LangChain.
+- [Cohere Tools on LangChain (Integration Guide)](https://docs.cohere.com/v1/docs/tools-on-langchain.mdx): Explore code examples for multi-step and single-step tool usage in chatbots, harnessing internet search and vector storage.
+- [LlamaIndex and Cohere's Models](https://docs.cohere.com/v1/docs/llamaindex.mdx): Learn how to use Cohere and LlamaIndex together to generate responses based on data.
+- [Deployment Options - Overview](https://docs.cohere.com/v1/v2/docs/deployment-options-overview.mdx): This page provides an overview of the available options for deploying Cohere's models.
+- [Cohere SDK Cloud Platform Compatibility](https://docs.cohere.com/v1/docs/cohere-works-everywhere.mdx): This page describes various places you can use Cohere's SDK.
+- [Private Deployment Overview](https://docs.cohere.com/v1/v2/docs/private-deployment-overview.mdx): This page provides an overview of private deployments of Cohere's models.
+- [Private Deployment – Setting Up](https://docs.cohere.com/v1/v2/docs/private-deployment-setup.mdx): This page describes the setup required for private deployments of Cohere's models.
+- [Deploying Models in Private Environments](https://docs.cohere.com/v1/v2/docs/single-container-on-private-clouds.mdx): Learn how to pull and test Cohere's container images using a license with Docker and Kubernetes.
+- [AWS Private Deployment Guide (EC2 and EKS)](https://docs.cohere.com/v1/v2/docs/aws-private-deployment.mdx): Deploying Cohere models in AWS via EC2 or EKS for enhanced security, compliance, and control.
+- [Private Deployment Usage](https://docs.cohere.com/v1/docs/private-deployment-usage.mdx): This page describes how to use Cohere's SDK to access privately deployed Cohere models.
+- [Cohere on Amazon Web Services (AWS)](https://docs.cohere.com/v1/docs/cohere-on-aws.mdx): Access Cohere's language models on AWS with customization options through Amazon SageMaker and Amazon Bedrock.
+- [Cohere Models on Amazon Bedrock](https://docs.cohere.com/v1/docs/amazon-bedrock.mdx): This document provides a guide for using Cohere's models on Amazon Bedrock.
+- [An Amazon SageMaker Setup Guide](https://docs.cohere.com/v1/docs/amazon-sagemaker-setup-guide.mdx): This document will guide you through enabling development teams to access Cohere’s offerings on Amazon SageMaker.
+- [Deploy Finetuned Command Models from AWS Marketplace](https://docs.cohere.com/v1/docs/bring-your-finetuned-models-to-sagemaker.mdx): This document provides a guide for bringing your own finetuned models to Amazon SageMaker.
+- [Cohere on the Microsoft Azure Platform](https://docs.cohere.com/v1/docs/cohere-on-microsoft-azure.mdx): This page describes how to work with Cohere models on Microsoft Azure.
+- [Cohere on Oracle Cloud Infrastructure (OCI)](https://docs.cohere.com/v1/docs/oracle-cloud-infrastructure-oci.mdx): This page describes how to work with Cohere models on Oracle Cloud Infrastructure (OCI)
+- [Cohere Cookbooks: AI Agents, RAG, Search, and More](https://docs.cohere.com/v1/docs/cookbooks.mdx): Get started with Cohere's cookbooks to build agents, QA bots, perform searches, and more, all organized by category.
+- [Welcome to LLM University!](https://docs.cohere.com/v1/docs/llmu-2.mdx): LLM University (LLMU) offers in-depth, practical NLP and LLM training. Ideal for all skill levels. Learn, build, and deploy Language AI with Cohere.
+- [Build an Onboarding Assistant with Cohere!](https://docs.cohere.com/v1/docs/build-things-with-cohere.mdx): This page describes how to build an onboarding assistant with Cohere's large language models.
+- [Cohere Text Generation Tutorial](https://docs.cohere.com/v1/docs/text-generation-tutorial.mdx): This page walks through how Cohere's generation models work and how to use them.
+- [Building a Chatbot with Cohere](https://docs.cohere.com/v1/docs/building-a-chatbot-with-cohere.mdx): This page describes building a generative-AI powered chatbot with Cohere.
+- [Semantic Search with Cohere Models](https://docs.cohere.com/v1/docs/semantic-search-with-cohere.mdx): This is a tutorial describing how to leverage Cohere's models for semantic search.
+- [Master Reranking with Cohere Models](https://docs.cohere.com/v1/docs/reranking-with-cohere.mdx): This page contains a tutorial on using Cohere's ReRank models.
+- [Building RAG models with Cohere](https://docs.cohere.com/v1/docs/rag-with-cohere.mdx): This page walks through building a retrieval-augmented generation model with Cohere.
+- [Building a Generative AI Agent with Cohere](https://docs.cohere.com/v1/docs/building-an-agent-with-cohere.mdx): This page describes building a generative-AI powered agent with Cohere.
+- [Usage Policy](https://docs.cohere.com/v1/docs/usage-policy.mdx): Developers must outline and get approval for their use case to access the Cohere API, understanding the models and limitations. They should refer to model cards for detailed information and document potential harms of their application. Certain use cases, such as violence, hate speech, fraud, and privacy violations, are strictly prohibited.
+- [Command R and Command R+ Model Card](https://docs.cohere.com/v1/docs/responsible-use.mdx): This doc provides guidelines for using Cohere generation models ethically and constructively.
+- [Cohere Labs Acceptable Use Policy](https://docs.cohere.com/v1/docs/cohere-labs-acceptable-use-policy.mdx): "Promoting safe and ethical use of generative AI with guidelines to prevent misuse and abuse."
+- [How to Start with the Cohere Toolkit](https://docs.cohere.com/v1/docs/cohere-toolkit.mdx): Build and deploy RAG applications quickly with the Cohere Toolkit, which offers pre-built front-end and back-end components.
+- [The Cohere Datasets API (and How to Use It)](https://docs.cohere.com/v1/docs/datasets.mdx): Learn about the Dataset API, including its file size limits, data retention, creation, validation, metadata, and more, with provided code snippets.
+- [Help Us Improve The Cohere Docs](https://docs.cohere.com/v1/docs/contribute.mdx): Contribute to our docs content, stored in the cohere-developer-experience repo; we welcome your pull requests!
+- [Working with Cohere's API and SDK](https://docs.cohere.com/v1/reference/about.mdx): Cohere's NLP platform provides customizable large language models and tools for developers to build AI applications.
+- [Teams and Roles on the Cohere Platform](https://docs.cohere.com/v1/reference/teams-and-roles.mdx): The document outlines how to work in teams on the Cohere platform, including inviting others, managing roles, and access permissions for Owners and Users.
+- [Errors (status codes and description)](https://docs.cohere.com/v1/reference/errors.mdx): Understand Cohere's HTTP response codes and how to handle errors in various programming languages.
+- [Announcing Embed Multimodal v4](https://docs.cohere.com/v1/changelog/embed-multimodal-v4.mdx): Release of Embed Multimodal v4, a performant search model, with Matryoshka embeddings and a 128k context length.
+- [Announcing Command A](https://docs.cohere.com/v1/changelog/command-a.mdx): Release of Command A, a performant model suited for tool use, RAG, agents, and multilingual uses, with 111 billion parameters and a 256k context length.
+- [Our Groundbreaking Multimodal Model, Aya Vision, is Here!](https://docs.cohere.com/v1/changelog/aya-vision-announcement.mdx): Release announcement for the new multimodal Aya Vision model 
+- [Cohere Releases Arabic-Optimized Command Model!](https://docs.cohere.com/v1/changelog/command-r7b-arabic.mdx): Release announcement for the Command R7B Arabic model
+- [Use Cohere models via the OpenAI SDK with the Compatibility API](https://docs.cohere.com/v1/changelog/compatibility-api.mdx): With the Compatibility API, you can use Cohere models via the OpenAI SDK without major refactoring.
+- [Cohere's Rerank v3.5 Model is on Azure AI Foundry!](https://docs.cohere.com/v1/changelog/rerank-v3.5-on-azure.mdx): Release announcement for the ability to work with Cohere Rerank v3.5 models in the Azure's AI Foundry.
+- [Cohere's Rerank v3.5 Model is on Azure AI Foundry!](https://docs.cohere.com/v1/changelog/rerank-v3.5-on-azure.mdx): Release announcement for the ability to work with Cohere Rerank v3.5 models in the Azure's AI Foundry.
+- [Deprecation of the Classify endpoint via default Embed models](https://docs.cohere.com/v1/changelog/classify-default-model-deprecation.mdx): Usage of Classify endpoint via the default Embed models is now deprecated. Usage of Classify endpoint via a fine-tuned Embed model is not affected.
+- [Cohere's Multimodal Embedding Models are on Bedrock!](https://docs.cohere.com/v1/changelog/multimodal-models-on-bedrock.mdx): Release announcement for the ability to work with multimodal image models on the Amazon Bedrock platform.
+- [Aya Expanse is Available on WhatsApp!](https://docs.cohere.com/v1/changelog/aya-expanse-on-whatsapp.mdx): Release announcement for the ability to chat with Aya Expanse on WhatsApp
+- [Announcing Command R7b](https://docs.cohere.com/v1/changelog/command-r-7b.mdx): Release announcment for Command R 7B - our fastest, lightest, and last Command R model.
+- [Announcing Rerank-v3.5](https://docs.cohere.com/v1/changelog/rerank-v3.5.mdx): Release announcment for Rerank 3.5 - our new state of the art model for ranking.
+- [Structured Outputs support for tool use](https://docs.cohere.com/v1/changelog/structured-outputs-tools.mdx): Structured Outputs now supports both JSON and tool use scenarios.
+- [Embed v3.0 Models are now Multimodal](https://docs.cohere.com/v1/changelog/embed-v3-is-multimodal.mdx): Launch of multimodal embeddings for our Embed models, plus some code to help get started.
+- [Fine-Tuning Now Available for Command R 08-2024](https://docs.cohere.com/v1/changelog/commandr-082024-ft.mdx): Launch of fine-tuning for Command R 08-2024 and other new fine-tuning features.
+- [New Embed, Rerank, Chat, and Classify APIs](https://docs.cohere.com/v1/changelog/v2-api-release.mdx): Introducing improvements to our Chat, Classify, Embed, and Rerank APIs in a major version upgrade, making it easier and faster to build with Cohere.
+- [Refreshed Command R and R+ models now on Azure](https://docs.cohere.com/v1/changelog/refresh-models-on-azure.mdx): Introducing our improved Command models are available on the Azure cloud computing platform.
+- [Command models get an August refresh](https://docs.cohere.com/v1/changelog/command-gets-refreshed.mdx): We're excited to announce updates to our Command R and R+ models, offering improved performance, new features, and more.
+- [Force JSON object response format](https://docs.cohere.com/v1/changelog/force-json-object-response-format.mdx): Generate outputs in JSON objects with the new 'response_format' parameter, now available with the 'command-nightly' model.
+- [Release Notes for June 10th 2024](https://docs.cohere.com/v1/changelog/release-notes-for-june-10th-2024.mdx): Get started with multi-step tool use, explore new docs, and learn about billing changes in Cohere's Chat API.
+- [Advanced Retrieval Launch release](https://docs.cohere.com/v1/changelog/advanced-retrieval-launch.mdx): Rerank 3 offers improved performance and inference speed for long and short documents with a context length of 4096.
+- [Cohere Python SDK v5.2.0 release](https://docs.cohere.com/v1/changelog/python-sdk-v520-release.mdx): Stay up to date with our Python SDK update, including local tokenizer defaults and new required fields.
+- [Command R: Retrieval-Augmented Generation at Scale](https://docs.cohere.com/v1/changelog/command-r-retrieval-augmented-generation-at-production-scale.mdx): Command R: Retrieval Augmented Generation at scale.
+- [Fine-tuning has been added to the Python SDK](https://docs.cohere.com/v1/changelog/fine-tuning-has-been-added-to-the-python-sdk.mdx): Stay up-to-date with Cohere's Python SDK by checking out the new `fine_tuning` feature and its functions.
+- [Cohere Python SDK v5.0.0 release](https://docs.cohere.com/v1/changelog/python-sdk-v500.mdx): Stay up-to-date with our latest Python SDK release and learn about deprecated functions and migration instructions.
+- [Release Notes January 22, 2024](https://docs.cohere.com/v1/changelog/release-notes-january-x-2024.mdx): Discover new AI capabilities with Cohere's latest features, including improved fine-tuning, Embed Jobs API, and multi-language SDK support.
+- [Release Notes September 29th 2023](https://docs.cohere.com/v1/changelog/release-notes-september-29th-2023.mdx): Experience the future of generative AI with co.chat() and explore the power of retrieval-augmented generation for grounded and timely outputs.
+- [Release Notes August 8th 2023 (Changelog)](https://docs.cohere.com/v1/changelog/release-notes-august-4th-2023.mdx): Unlock improved reasoning and conversation with Command R+, now featuring Okta OIDC support and an enhanced finetuning SDK.
+- [Release Notes June 28th 2023 (Changelog)](https://docs.cohere.com/v1/changelog/release-notes-june-28th-2023.mdx): The latest Command model update brings enhanced code, conversation, and reasoning, along with new API features and usage/billing improvements.
+- [New Maximum Number of Input Documents for Rerank](https://docs.cohere.com/v1/changelog/new-maximum-document-length-for-rerank.mdx): Stay up to date with our latest changes to co.rerank, now with an improved maximum document limit.
+- [Cohere Model Names Are Changing!](https://docs.cohere.com/v1/changelog/model-names-are-changing.mdx): We've updated our model names for simplicity and consistency, and old names will work for now.
+- [Multilingual Support for Co.classify](https://docs.cohere.com/v1/changelog/multilingual-support-for-coclassify.mdx): The co.classify endpoint now supports multilingual capabilities with the new multilingual-22-12 model.
+- [Command Model Nightly Available!](https://docs.cohere.com/v1/changelog/command-model-nightly-available.mdx): Get improved performance with our new nightly versions of Command models, now available in medium and x-large sizes.
+- [Command R+ is a scalable LLM for business](https://docs.cohere.com/v1/changelog/command-r-is-a-scalable-llm-for-business.mdx): Explore Command R+, Cohere's powerful language model, excelling in multi-step tool use and complex conversational AI tasks.
+- [Multilingual Text Understanding Model + Language Detection!](https://docs.cohere.com/v1/changelog/multilingual-text-understanding-model-language-detection.mdx): Cohere's multilingual model now supports semantic search across 100 languages with a single index.
+- [Model Sizing Update + Improvements](https://docs.cohere.com/v1/changelog/model-sizing-update-improvements.mdx): We're updating our generative AI models to offer improved Medium and X-Large options.
+- [Improvements to Current Models + New Beta Model (Command)!](https://docs.cohere.com/v1/changelog/improvements-to-current-models-new-beta-model-command.mdx): Introducing new and improved Medium and XLarge models, plus a Command model for precise responses to commands.
+- [New Look For Cohere Documentation!](https://docs.cohere.com/v1/changelog/new-look-for-docs.mdx): Explore our updated docs with interactive tutorials, improved info architecture, and a UI refresh for a streamlined experience.
+- [Co.classify powered by our Representational model embeddings](https://docs.cohere.com/v1/changelog/coclassify-powered-by-our-representational-model-embeddings.mdx): Improve few-shot classification with Co.classify and embeddings from our Representational model.
+- [New Logit Bias experimental parameter](https://docs.cohere.com/v1/changelog/new-logit-bias-experimental-parameter.mdx): Take control of your generative models with the new logit_bias parameter to guide token generation.
+- [Pricing Update and New Dashboard UI](https://docs.cohere.com/v1/changelog/pricing-update-and-new-dashboard-ui.mdx): Unlock new features, including production keys, flat-rate pricing, improved UI, and enhanced team collaboration and model insights.
+- [Introducing Moderate Tool (Beta)!](https://docs.cohere.com/v1/changelog/introducing-moderate-beta.mdx): Access cutting-edge natural language processing tools without the need for costly supercomputing power.
+- [The `model` Parameter Becomes Optional.](https://docs.cohere.com/v1/changelog/model-parameter-now-optional.mdx): Our APIs are now model-agnostic with default endpoint settings, offering greater flexibility and control for users.
+- [New & Improved Generation and Representation Models](https://docs.cohere.com/v1/changelog/new-improved-generation-and-representation-models.mdx): Enhance your text generation and representation with improved models, now offering better context support and optimal performance.
+- [New and Improved Extremely Large Model!](https://docs.cohere.com/v1/changelog/new-extremely-large-model.mdx): We're thrilled to introduce our enhanced `xlarge` model, now with superior generation quality and speed.
+- [Updated Small, Medium, and Large Generation Models](https://docs.cohere.com/v1/changelog/updated-small-medium-and-large-generation-models.mdx): The latest updates improve model stability and fix a bug for more effective generation presence and frequency penalties.
+- [Introducing Classification Endpoint](https://docs.cohere.com/v1/changelog/classification-endpoint.mdx): Classify text with Cohere's new classification endpoint, powered by generation models, offering few-shot learning.
+- [Finetuning Available + Policy Updates](https://docs.cohere.com/v1/changelog/finetuning-available-policy-updates.mdx): Fine-tune models with your own data and leverage updated policies for powerful NLP solutions.
+- [New & Improved Generation Models](https://docs.cohere.com/v1/changelog/new-improved-generation-models.mdx): Try our new small, medium, and large generation models with improved performance from our high-quality dataset.
+- [Extremely Large (Beta) Release](https://docs.cohere.com/v1/changelog/extremely-large-beta-release.mdx): Take your NLP tasks further with our new top-tier model, Extremely Large (Beta), now available.
+- [Larger Cohere Representation Models](https://docs.cohere.com/v1/changelog/larger-representation-models.mdx): New Representation Model sizes and an increased token limit offer improved performance and flexibility.
+- [Cookbooks](https://docs.cohere.com/v1/page/cookbooks.mdx): Explore a range of AI guides and get started with Cohere's generative platform, ready-made and best-practice optimized.
+- [Building an LLM Agent with the Cohere API](https://docs.cohere.com/v1/page/agent-api-calls.mdx): This page how to use Cohere's API to build an LLM-based agent.
+- [Short-Term Memory Handling for Agents](https://docs.cohere.com/v1/page/agent-short-term-memory.mdx): This page describes how to manage short-term memory in an agent built with Cohere models.
+- [Agentic Multi-Stage RAG with Cohere Tools API](https://docs.cohere.com/v1/page/agentic-multi-stage-rag.mdx): This page describes how to build a powerful, multi-stage agent with the Cohere platform.
+- [Agentic RAG for PDFs with mixed data](https://docs.cohere.com/v1/page/agentic-rag-mixed-data.mdx): This page describes building a powerful, multi-step chatbot with Cohere's models.
+- [Analysis of Form 10-K/10-Q Using Cohere and RAG](https://docs.cohere.com/v1/page/analysis-of-financial-forms.mdx): This page describes how to use Cohere's large language models to build an agent able to analyze financial forms like a 10-K or a 10-Q.
+- [Analyzing Hacker News with Cohere](https://docs.cohere.com/v1/page/analyzing-hacker-news.mdx): This page describes building a generative-AI powered tool to analyze headlines with Cohere.
+- [Article Recommender with Text Embedding and Classification](https://docs.cohere.com/v1/page/article-recommender-with-text-embeddings.mdx): This page describes how to build a generative-AI tool to recommend articles with Cohere.
+- [Multi-Step Tool Use with Cohere](https://docs.cohere.com/v1/page/basic-multi-step.mdx): This page describes how to create a multi-step, tool-using AI agent with Cohere's tool use functionality.
+- [Basic RAG: Retrieval-Augmented Generation with Cohere](https://docs.cohere.com/v1/page/basic-rag.mdx): This page describes how to work with Cohere's basic retrieval-augmented generation functionality.
+- [Basic Semantic Search with Cohere Models](https://docs.cohere.com/v1/page/basic-semantic-search.mdx): This page describes how to do basic semantic search with Cohere's models.
+- [Getting Started with Basic Tool Use](https://docs.cohere.com/v1/page/basic-tool-use.mdx): This page describes how to work with Cohere's basic tool use functionality.
+- [Calendar Agent with Native Multi Step Tool](https://docs.cohere.com/v1/page/calendar-agent.mdx): This page describes how to use cohere Chat API with list_calendar_events and create_calendar_event tools to book appointments.
+- [Effective Chunking Strategies for RAG](https://docs.cohere.com/v1/page/chunking-strategies.mdx): This page describes various chunking strategies you can use to get better RAG performance.
+- [Creating a QA Bot From Technical Documentation](https://docs.cohere.com/v1/page/creating-a-qa-bot.mdx): This page describes how to use Cohere to build a simple question-answering system.
+- [Financial CSV Agent with Native Multi-Step Cohere API](https://docs.cohere.com/v1/page/csv-agent-native-api.mdx): This page describes how to use Cohere's models and its native API to build an agent able to work with CSV data.
+- [Financial CSV Agent with Langchain](https://docs.cohere.com/v1/page/csv-agent.mdx): This page describes how to use Cohere's models to build an agent able to work with CSV data.
+- [A Data Analyst Agent Built with Cohere and Langchain](https://docs.cohere.com/v1/page/data-analyst-agent.mdx): This page describes how to build a data-analysis system out of Cohere's models.
+- [Advanced Document Parsing For Enterprises](https://docs.cohere.com/v1/page/document-parsing-for-enterprises.mdx): This page describes how to use Cohere's models to build a document-parsing agent.
+- [End-to-end RAG using Elasticsearch and Cohere](https://docs.cohere.com/v1/page/elasticsearch-and-cohere.mdx): This page contains a basic tutorial on how to get Cohere and ElasticSearch to work well together.
+- [Serverless Semantic Search with Cohere and Pinecone](https://docs.cohere.com/v1/page/embed-jobs-serverless-pinecone.mdx): This page contains a basic tutorial on how to get Cohere and the Pinecone vector database to work well together.
+- [Semantic Search with Cohere Embed Jobs](https://docs.cohere.com/v1/page/embed-jobs.mdx): This page contains a basic tutorial on how to use Cohere's Embed Jobs functionality.
+- [Fueling Generative Content with Keyword Research](https://docs.cohere.com/v1/page/fueling-generative-content.mdx): This page contains a basic workflow for using Cohere's models to come up with keyword content ideas.
+- [Grounded Summarization Using Command R](https://docs.cohere.com/v1/page/grounded-summarization.mdx): This page contains a basic tutorial on how to do grounded summarization with Cohere's models.
+- [Hello World! Explore Language AI with Cohere](https://docs.cohere.com/v1/page/hello-world-meet-ai.mdx): This page contains a breakdown of some of what can be achieved with Cohere's LLM platform.
+- [Long-Form Text Strategies with Cohere](https://docs.cohere.com/v1/page/long-form-general-strategies.mdx): This discusses ways of getting Cohere's LLM platform to perform well in generating long-form text.
+- [Migrating Monolithic Prompts to Command-R with RAG](https://docs.cohere.com/v1/page/migrating-prompts.mdx): This page contains a discussion of how to automatically migrating monolothic prompts.
+- [Multilingual Search with Cohere and Langchain](https://docs.cohere.com/v1/page/multilingual-search.mdx): This page contains a basic tutorial on how to do search across different languages with Cohere's LLM platform.
+- [PDF Extractor with Native Multi Step Tool Use](https://docs.cohere.com/v1/page/pdf-extractor.mdx): This page describes how to create an AI agent able to extract information from PDFs.
+- [Pondr, Fostering Connection through Good Conversation](https://docs.cohere.com/v1/page/pondr.mdx): This page contains a basic tutorial on how tplay an AI-powered version of the icebreaking game 'Pondr'.
+- [Deep Dive Into Evaluating RAG Outputs](https://docs.cohere.com/v1/page/rag-evaluation-deep-dive.mdx): This page contains information on evaluating the output of RAG systems.
+- [RAG With Chat Embed and Rerank via Pinecone](https://docs.cohere.com/v1/page/rag-with-chat-embed.mdx): This page contains a basic tutorial on how to build a RAG-powered chatbot.
+- [Learn How Cohere's Rerank Models Work](https://docs.cohere.com/v1/page/rerank-demo.mdx): This page contains a basic tutorial on how Cohere's ReRank models work and how to use them.
+- [Build a SQL Agent with Cohere's LLM Platform](https://docs.cohere.com/v1/page/sql-agent.mdx): This page contains a tutorial on how to build a SQL agent with Cohere's LLM platform.
+- [Evaluating Text Summarization Models](https://docs.cohere.com/v1/page/summarization-evals.mdx): This page discusses how to evaluate a model's text summarization.
+- [Text Classification Using Embeddings](https://docs.cohere.com/v1/page/text-classification-using-embeddings.mdx): This page discusses the creation of a text classification model using word vector embeddings.
+- [Topic Modeling System for AI Papers](https://docs.cohere.com/v1/page/topic-modeling-ai-papers.mdx): This page discusses how to create a topic-modeling system for papers focused on AI papers.
+- [Wikipedia Semantic Search with Cohere + Weaviate](https://docs.cohere.com/v1/page/wikipedia-search-with-weaviate.mdx): This page contains a description of building a Wikipedia-focused search engine with Cohere's LLM platform and the Weaviate vector database.
+- [Wikipedia Semantic Search with Cohere Embedding Archives](https://docs.cohere.com/v1/page/wikipedia-semantic-search.mdx): This page contains a description of building a Wikipedia-focused semantic search engine with Cohere's LLM platform and the Weaviate vector database.
+- [Build Chatbots with MongoDB and Cohere](https://docs.cohere.com/v1/page/rag-cohere-mongodb.mdx): This page describes how to build a chatbot that provides actionable insights on technology company market reports.
+- [Finetuning on Cohere's Platform](https://docs.cohere.com/v1/page/convfinqa-finetuning-wandb.mdx): An example of finetuning using Cohere's platform and a financial dataset.
+- [Deploy your finetuned model on AWS Marketplace](https://docs.cohere.com/v1/page/deploy-finetuned-model-aws-marketplace.mdx): Learn how to deploy your finetuned model on AWS Marketplace.
+- [Finetuning Cohere Models on AWS Sagemaker](https://docs.cohere.com/v1/page/finetune-on-sagemaker.mdx): Learn how to finetune one of Cohere's models on AWS Sagemaker.
+- [SQL Agent with Cohere and LangChain (i-5O Case Study)](https://docs.cohere.com/v1/page/sql-agent-cohere-langchain.mdx): This page contains a tutorial on how to build a SQL agent with Cohere and LangChain in the manufacturing industry.
+- [Introduction to Aya Vision](https://docs.cohere.com/v1/page/aya-vision-intro.mdx): In this notebook, we will explore the capabilities of Aya Vision, which can take text and image inputs to generates text responses.
+- [Retrieval evaluation using LLM-as-a-judge via Pydantic AI](https://docs.cohere.com/v1/page/retrieval-eval-pydantic-ai.mdx): This page contains a tutorial on how to evaluate retrieval systems using LLMs as judges via Pydantic AI.
+
+## API Docs
+
+- Cohere API > Endpoints > v2/chat [Chat](https://docs.cohere.com/v2/reference/chat.mdx)
+- Cohere API > Endpoints > v2/chat [Chat with Streaming](https://docs.cohere.com/v2/reference/chat-stream.mdx)
+- Cohere API > Endpoints > v2/rerank [Rerank](https://docs.cohere.com/v2/reference/rerank.mdx)
+- Cohere API > Endpoints > v2/embed [Embed](https://docs.cohere.com/v2/reference/embed.mdx)
+- Cohere API > Endpoints > v1/embed-jobs [Create an Embed Job](https://docs.cohere.com/v2/reference/create-embed-job.mdx)
+- Cohere API > Endpoints > v1/embed-jobs [List Embed Jobs](https://docs.cohere.com/v2/reference/list-embed-jobs.mdx)
+- Cohere API > Endpoints > v1/embed-jobs [Fetch an Embed Job](https://docs.cohere.com/v2/reference/get-embed-job.mdx)
+- Cohere API > Endpoints > v1/embed-jobs [Cancel an Embed Job](https://docs.cohere.com/v2/reference/cancel-embed-job.mdx)
+- Cohere API > Endpoints > v1/classify [Classify](https://docs.cohere.com/v2/reference/classify.mdx)
+- Cohere API > Endpoints > v1/datasets [Create a Dataset](https://docs.cohere.com/v2/reference/create-dataset.mdx)
+- Cohere API > Endpoints > v1/datasets [List Datasets](https://docs.cohere.com/v2/reference/list-datasets.mdx)
+- Cohere API > Endpoints > v1/datasets [Get Dataset Usage](https://docs.cohere.com/v2/reference/get-dataset-usage.mdx)
+- Cohere API > Endpoints > v1/datasets [Get a Dataset](https://docs.cohere.com/v2/reference/get-dataset.mdx)
+- Cohere API > Endpoints > v1/datasets [Delete a Dataset](https://docs.cohere.com/v2/reference/delete-dataset.mdx)
+- Cohere API > Endpoints > v1/tokenize [Tokenize](https://docs.cohere.com/v2/reference/tokenize.mdx)
+- Cohere API > Endpoints > v1/detokenize [Detokenize](https://docs.cohere.com/v2/reference/detokenize.mdx)
+- Cohere API > Endpoints > v1/connectors [List Connectors](https://docs.cohere.com/v2/reference/list-connectors.mdx)
+- Cohere API > Endpoints > v1/connectors [Create a Connector](https://docs.cohere.com/v2/reference/create-connector.mdx)
+- Cohere API > Endpoints > v1/connectors [Get a Connector](https://docs.cohere.com/v2/reference/get-connector.mdx)
+- Cohere API > Endpoints > v1/connectors [Update a Connector](https://docs.cohere.com/v2/reference/update-connector.mdx)
+- Cohere API > Endpoints > v1/connectors [Delete a Connector](https://docs.cohere.com/v2/reference/delete-connector.mdx)
+- Cohere API > Endpoints > v1/connectors [Authorize with oAuth](https://docs.cohere.com/v2/reference/oauthauthorize-connector.mdx)
+- Cohere API > Endpoints > v1/models [Get a Model](https://docs.cohere.com/v2/reference/get-model.mdx)
+- Cohere API > Endpoints > v1/models [List Models](https://docs.cohere.com/v2/reference/list-models.mdx)
+- Cohere API > Endpoints > v1/finetuning [Lists fine-tuned models.](https://docs.cohere.com/v2/reference/listfinetunedmodels.mdx)
+- Cohere API > Endpoints > v1/finetuning [Trains and deploys a fine-tuned model.](https://docs.cohere.com/v2/reference/createfinetunedmodel.mdx)
+- Cohere API > Endpoints > v1/finetuning [Updates a fine-tuned model.](https://docs.cohere.com/v2/reference/updatefinetunedmodel.mdx)
+- Cohere API > Endpoints > v1/finetuning [Returns a fine-tuned model by ID.](https://docs.cohere.com/v2/reference/getfinetunedmodel.mdx)
+- Cohere API > Endpoints > v1/finetuning [Deletes a fine-tuned model.](https://docs.cohere.com/v2/reference/deletefinetunedmodel.mdx)
+- Cohere API > Endpoints > v1/finetuning [Retrieves the chronology of statuses the fine-tuned model has been through.](https://docs.cohere.com/v2/reference/listevents.mdx)
+- Cohere API > Endpoints > v1/finetuning [Retrieves metrics measured during the training of a fine-tuned model.](https://docs.cohere.com/v2/reference/listtrainingstepmetrics.mdx)
+- Cohere API > API Reference > v1/chat [Chat  (V1)](https://docs.cohere.com/v1/reference/chat.mdx)
+- Cohere API > API Reference > v1/chat [Chat with Streaming (V1)](https://docs.cohere.com/v1/reference/chat-stream.mdx)
+- Cohere API > API Reference > v1/embed [Embed](https://docs.cohere.com/v1/reference/embed.mdx)
+- Cohere API > API Reference > v1/embed-jobs [Create an Embed Job](https://docs.cohere.com/v1/reference/create-embed-job.mdx)
+- Cohere API > API Reference > v1/embed-jobs [List Embed Jobs](https://docs.cohere.com/v1/reference/list-embed-jobs.mdx)
+- Cohere API > API Reference > v1/embed-jobs [Fetch an Embed Job](https://docs.cohere.com/v1/reference/get-embed-job.mdx)
+- Cohere API > API Reference > v1/embed-jobs [Cancel an Embed Job](https://docs.cohere.com/v1/reference/cancel-embed-job.mdx)
+- Cohere API > API Reference > v1/rerank [Rerank](https://docs.cohere.com/v1/reference/rerank.mdx)
+- Cohere API > API Reference > v1/classify [Classify](https://docs.cohere.com/v1/reference/classify.mdx)
+- Cohere API > API Reference > v1/datasets [Create a Dataset](https://docs.cohere.com/v1/reference/create-dataset.mdx)
+- Cohere API > API Reference > v1/datasets [List Datasets](https://docs.cohere.com/v1/reference/list-datasets.mdx)
+- Cohere API > API Reference > v1/datasets [Get Dataset Usage](https://docs.cohere.com/v1/reference/get-dataset-usage.mdx)
+- Cohere API > API Reference > v1/datasets [Get a Dataset](https://docs.cohere.com/v1/reference/get-dataset.mdx)
+- Cohere API > API Reference > v1/datasets [Delete a Dataset](https://docs.cohere.com/v1/reference/delete-dataset.mdx)
+- Cohere API > API Reference > v1/tokenize [Tokenize](https://docs.cohere.com/v1/reference/tokenize.mdx)
+- Cohere API > API Reference > v1/detokenize [Detokenize](https://docs.cohere.com/v1/reference/detokenize.mdx)
+- Cohere API > API Reference > v1/connectors [List Connectors](https://docs.cohere.com/v1/reference/list-connectors.mdx)
+- Cohere API > API Reference > v1/connectors [Create a Connector](https://docs.cohere.com/v1/reference/create-connector.mdx)
+- Cohere API > API Reference > v1/connectors [Get a Connector](https://docs.cohere.com/v1/reference/get-connector.mdx)
+- Cohere API > API Reference > v1/connectors [Update a Connector](https://docs.cohere.com/v1/reference/update-connector.mdx)
+- Cohere API > API Reference > v1/connectors [Delete a Connector](https://docs.cohere.com/v1/reference/delete-connector.mdx)
+- Cohere API > API Reference > v1/connectors [Authorize with oAuth](https://docs.cohere.com/v1/reference/oauthauthorize-connector.mdx)
+- Cohere API > API Reference > v1/models [Get a Model](https://docs.cohere.com/v1/reference/get-model.mdx)
+- Cohere API > API Reference > v1/models [List Models](https://docs.cohere.com/v1/reference/list-models.mdx)
+- Cohere API > API Reference > v1/finetuning [Lists fine-tuned models.](https://docs.cohere.com/v1/reference/listfinetunedmodels.mdx)
+- Cohere API > API Reference > v1/finetuning [Trains and deploys a fine-tuned model.](https://docs.cohere.com/v1/reference/createfinetunedmodel.mdx)
+- Cohere API > API Reference > v1/finetuning [Updates a fine-tuned model.](https://docs.cohere.com/v1/reference/updatefinetunedmodel.mdx)
+- Cohere API > API Reference > v1/finetuning [Returns a fine-tuned model by ID.](https://docs.cohere.com/v1/reference/getfinetunedmodel.mdx)
+- Cohere API > API Reference > v1/finetuning [Deletes a fine-tuned model.](https://docs.cohere.com/v1/reference/deletefinetunedmodel.mdx)
+- Cohere API > API Reference > v1/finetuning [Retrieves the chronology of statuses the fine-tuned model has been through.](https://docs.cohere.com/v1/reference/listevents.mdx)
+- Cohere API > API Reference > v1/finetuning [Retrieves metrics measured during the training of a fine-tuned model.](https://docs.cohere.com/v1/reference/listtrainingstepmetrics.mdx)
+- Cohere API > Legacy > v1/generate [Generate](https://docs.cohere.com/v1/reference/generate.mdx)
+- Cohere API > Legacy > v1/generate [Generate with Streaming](https://docs.cohere.com/v1/reference/generate-stream.mdx)
+- Cohere API > Legacy > v1/summarize [Summarize](https://docs.cohere.com/v1/reference/summarize.mdx)

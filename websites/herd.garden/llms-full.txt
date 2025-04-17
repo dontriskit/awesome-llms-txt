@@ -1,0 +1,5785 @@
+Herd Documentation
+================================================================================
+
+Document: Alternative Herd Vs Apify
+URL: https://herd.garden/docs/alternative-herd-vs-apify
+
+# Herd vs Apify: A Cost-Effective Alternative for Web Automation
+
+Apify is a popular platform for web scraping and automation, but its cloud-based infrastructure can be costly and limiting. Herd offers a compelling alternative with similar capabilities but a fundamentally different approach that eliminates infrastructure costs and provides more control over your automation.
+
+## Quick Comparison
+
+| Feature | Herd | Apify |
+| --- | --- | --- |
+| **Primary Focus** | Browser automation & web scraping | Web scraping platform with cloud infrastructure |
+| **Infrastructure** | Uses your existing browser | Cloud-based platform with managed instances |
+| **Pricing Model** | Flat rate subscription | Usage-based pricing |
+| **Browser Control** | Direct control of your browser | Remote control of cloud browsers |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Chrome/Chromium in cloud |
+| **Setup Required** | Simple browser extension | No browser setup (cloud-based) |
+| **Authentication** | Uses existing browser sessions | Requires manual setup |
+| **Data Extraction** | Built-in extraction tools | Various actor-based extraction tools |
+| **Resource Usage** | Minimal (shared with browser) | Separate cloud resources (higher cost) |
+| **Customization** | Full control of local environment | Limited to platform capabilities |
+
+## Key Differences in Depth
+
+### Infrastructure and Pricing Model
+
+**Apify:**
+- Cloud-based platform with usage-based pricing
+- Costs scale with computation time and resource usage
+- Requires paid proxy services for many use cases
+- Monthly subscription plus usage-based fees
+
+**Herd:**
+- Uses your existing browser and computer
+- No cloud infrastructure required
+- Direct control of your local resources 
+- Supports Chrome, Edge, Brave, Arc, Opera
+- No additional infrastructure costs
+- No separate compute units to pay for
+- Simple and predictable pricing
+
+### Browser Control and Authentication
+
+**Apify:**
+- Operates browsers in the cloud
+- Must manually set up authentication flows
+- Sessions are isolated and temporary
+- Limited access to browser-specific features
+
+**Herd:**
+- Direct control of your own browser
+- Uses your existing authenticated sessions
+- Persistent cookies and storage between runs
+- Full access to browser capabilities and extensions
+
+### Setup and Customization
+
+## herd
+
+Code (javascript):
+// Install the Herd SDK
+npm install @monitoro/herd
+
+// Simple setup code
+import { HerdClient } from '@monitoro/herd';
+
+// Connect to your own browser
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a page and automate it
+const page = await device.newPage();
+await page.goto('https://example.com');
+
+## apify
+
+Code (javascript):
+// Install the Apify SDK
+npm install apify
+
+// Create an actor
+import { Actor } from 'apify';
+
+// Run in Apify cloud environment
+await Actor.init();
+
+// Launch a browser in the cloud
+const browser = await Actor.launchPuppeteer();
+const page = await browser.newPage();
+await page.goto('https://example.com');
+
+// Must manually handle stopping the actor
+await Actor.exit();
+
+### Data Extraction Capabilities
+
+**Apify:**
+- Offers pre-built actors for common websites
+- Large marketplace of ready-made solutions
+- Extraction limited to what actors provide
+- Can become expensive for large-scale extraction
+
+**Herd:**
+- Powerful built-in extraction API
+- Simple selector-based data retrieval
+- Access to authenticated content
+- Extract data without usage limits
+
+## Use Case Comparisons
+
+### Web Scraping with Authentication
+
+## herd-auth
+
+Code (javascript):
+// Using Herd with an already authenticated browser
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Access a site where you're already logged in
+const page = await device.newPage();
+await page.goto('https://account.example.com/dashboard');
+
+// Extract authenticated data directly
+const userData = await page.extract({
+  username: '.user-profile .username',
+  accountType: '.account-type',
+  balance: '.account-balance',
+  transactions: {
+    _$r: '.transaction-item',
+    date: '.transaction-date',
+    amount: '.transaction-amount',
+    description: '.transaction-description'
+  }
+});
+
+console.log(userData);
+await client.close();
+
+## apify-auth
+
+Code (javascript):
+// Using Apify with manual authentication
+import { Actor } from 'apify';
+
+await Actor.init();
+const browser = await Actor.launchPuppeteer();
+const page = await browser.newPage();
+
+// Need to manually log in first
+await page.goto('https://example.com/login');
+await page.type('#username', 'your-username');
+await page.type('#password', 'your-password');
+await page.click('.login-button');
+await page.waitForNavigation();
+
+// Now navigate to the dashboard
+await page.goto('https://account.example.com/dashboard');
+
+// Extract data with multiple evaluations
+const username = await page.$eval('.user-profile .username', el => el.textContent);
+const accountType = await page.$eval('.account-type', el => el.textContent);
+const balanceText = await page.$eval('.account-balance', el => el.textContent);
+const balance = parseFloat(balanceText.replace(/[^0-9.-]+/g, ''));
+
+// Extract transaction data
+const transactions = await page.$$eval('.transaction-item', items => 
+  items.map(item => ({
+    date: item.querySelector('.transaction-date').textContent,
+    amount: item.querySelector('.transaction-amount').textContent,
+    description: item.querySelector('.transaction-description').textContent
+  }))
+);
+
+const userData = {
+  username,
+  accountType,
+  balance,
+  transactions
+};
+
+console.log(userData);
+await Actor.exit();
+
+### Multi-Page Crawling
+
+## herd-crawl
+
+Code (javascript):
+// Using Herd for multi-page crawling
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+const page = await device.newPage();
+await page.goto('https://example.com/products');
+
+// Collect all product links first
+const productLinks = await page.extract({
+  links: {
+    _$r: '.product-card a',
+    url: { attribute: 'href' }
+  }
+});
+
+// Visit each product page and extract details
+const products = [];
+for (const { url } of productLinks.links) {
+  await page.goto(url);
+  
+  const productData = await page.extract({
+    name: '.product-name',
+    price: '.product-price',
+    description: '.product-description',
+    specs: {
+      _$r: '.spec-item',
+      name: '.spec-name',
+      value: '.spec-value'
+    }
+  });
+  
+  products.push(productData);
+}
+
+console.log(products);
+await client.close();
+
+## apify-crawl
+
+Code (javascript):
+// Using Apify for multi-page crawling
+import { Actor, PuppeteerCrawler } from 'apify';
+
+await Actor.init();
+
+// Define the crawler
+const crawler = new PuppeteerCrawler({
+  async requestHandler({ request, page }) {
+    console.log(`Processing ${request.url}...`);
+    
+    if (request.userData.detailPage) {
+      // Extract product details
+      const productData = {
+        url: request.url,
+        name: await page.$eval('.product-name', el => el.textContent),
+        price: await page.$eval('.product-price', el => el.textContent),
+        description: await page.$eval('.product-description', el => el.textContent),
+        specs: await page.$$eval('.spec-item', items => 
+          items.map(item => ({
+            name: item.querySelector('.spec-name').textContent,
+            value: item.querySelector('.spec-value').textContent
+          }))
+        )
+      };
+      
+      // Save the extracted data
+      await Actor.pushData(productData);
+    } else {
+      // On the listing page, extract links to products
+      const productLinks = await page.$$eval('.product-card a', links => 
+        links.map(link => link.href)
+      );
+      
+      // Enqueue product detail pages
+      for (const url of productLinks) {
+        await crawler.requestQueue.addRequest({
+          url,
+          userData: { detailPage: true }
+        });
+      }
+    }
+  },
+  maxRequestsPerCrawl: 100,
+});
+
+// Start with the product listing page
+await crawler.run(['https://example.com/products']);
+
+await Actor.exit();
+
+## Migration Guide: From Apify to Herd
+
+Transitioning from Apify to Herd is straightforward. Here's a guide to help you migrate:
+
+### 1. Installation
+
+1. Install the Herd SDK:
+   
+Code (bash):
+   npm install @monitoro/herd
+
+2. Install the Herd browser extension in your preferred browser
+
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| Apify | Herd | Notes |
+| --- | --- | --- |
+| `Actor.init()` | `const client = new HerdClient(apiUrl, token)`  `await client.initialize()` | Herd uses a simple client-server model |
+| `Actor.launchPuppeteer()` | `const devices = await client.listDevices()`  `const device = devices[0]` | Herd connects to your existing browser |
+| `browser.newPage()` | `await device.newPage()` | Similar API |
+| `page.goto(url)` | `await page.goto(url)` | Identical usage |
+| `page.$eval(selector, fn)` | `await page.extract({ key: selector })` | Herd has a more powerful extraction API |
+| `Actor.pushData(data)` | Store data directly in your code | No platform-specific storage |
+| `Actor.exit()` | `await client.close()` | Herd just disconnects, browser stays open |
+
+### 3. Handling Authentication
+
+**Apify:**
+
+Code (javascript):
+// Manual login process
+await page.goto('https://example.com/login');
+await page.type('#username', 'user');
+await page.type('#password', 'pass');
+await page.click('#login-button');
+
+**Herd:**
+
+Code (javascript):
+// Simply use your already authenticated browser
+await page.goto('https://example.com/dashboard');  // Already logged in
+
+## Why Choose Herd Over Apify?
+
+### 1. Cost Efficiency
+
+Herd eliminates the need for cloud infrastructure, resulting in:
+- No usage-based computation costs
+- No proxy costs for most use cases
+- Significant cost savings for regular automation
+- Predictable pricing independent of usage volume
+
+### 2. Use Existing Authentication
+
+With Herd, you can automate tasks in your already authenticated browser:
+- No need to handle authentication flows in code
+- Access to sites with complex auth (2FA, CAPTCHA)
+- Use existing cookies, local storage, and sessions
+
+### 3. Local Control and Privacy
+
+Herd provides:
+- Full control over the automation environment
+- Higher privacy (data stays on your machine)
+- Direct access to local resources when needed
+- No dependence on third-party cloud infrastructure
+
+### 4. Simpler Development Experience
+
+Herd offers:
+- More intuitive APIs for common tasks
+- Real-time debugging in your browser
+- No need to deploy or manage cloud resources
+- Faster iteration during development
+
+## Get Started with Herd Today
+
+Ready to try a more flexible alternative to Apify? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the Herd browser extension](/docs/installation) in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can provide all the capabilities you need for web automation and scraping at a fraction of the cost of cloud-based solutions like Apify.
+
+================================================================================
+
+Document: Alternative Herd Vs Browserbase
+URL: https://herd.garden/docs/alternative-herd-vs-browserbase
+
+# Herd vs Browserbase: No-Infrastructure Browser Automation
+
+Browserbase provides cloud-based headless browsers for automation and AI applications. While it offers a reliable platform for running browser instances, Herd takes a fundamentally different approach by leveraging your existing browsers, eliminating infrastructure costs and complexity.
+
+## Quick Comparison
+
+| Feature | Herd | Browserbase |
+| --- | --- | --- |
+| **Browser Location** | Your local machine | Cloud-based infrastructure |
+| **Infrastructure Needed** | None (uses your browser) | Managed cloud infrastructure |
+| **Pricing Model** | Flat subscription | Usage-based pricing |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Chromium in cloud |
+| **Latency** | Minimal (1-hop) | Higher (multiple hops) |
+| **Authentication** | Uses existing browser sessions | Requires manual setup |
+| **Framework Support** | JavaScript/Python SDKs | Stagehand, Playwright, Puppeteer, Selenium |
+| **Setup Required** | Browser extension installation | No installation (cloud-based) |
+| **Resource Constraints** | Depends on local resources | Limited by pricing tier |
+
+## Key Differences in Depth
+
+### Infrastructure and Cost Model
+
+**Browserbase:**
+- Runs browsers on managed cloud infrastructure
+- Costs scale with usage and session duration
+- Requires networking between your code and cloud
+- Additional costs for premium features like proxies
+
+**Herd:**
+- Uses browsers already installed on your machine
+- No cloud infrastructure required
+- Direct access to your local machine resources
+- Supports Chrome, Edge, Brave, Arc, Opera
+- Fixed, predictable pricing not tied to usage
+- Local execution with minimal network overhead
+- No additional infrastructure costs to manage
+
+### Setup and Integration
+
+## herd
+
+Code (javascript):
+// Simple installation - no code required
+// 1. Install the Herd browser extension in Chrome, Edge, or Brave (Firefox/Safari not supported)
+// 2. Connect your browser to Herd
+
+// Simple connection to your browser
+import { HerdClient } from '@monitoro/herd';
+
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a new page
+const page = await device.newPage();
+await page.goto('https://example.com');
+
+## browserbase
+
+Code (javascript):
+// Install the SDK
+npm install browserbase
+
+// Connect to cloud infrastructure
+import { Browserbase } from 'browserbase';
+
+const bb = new Browserbase({
+  api_key: 'your-api-key'
+});
+
+// Create a session on cloud infrastructure
+const session = await bb.sessions.create({
+  timeout: 60, // Session timeout in seconds
+});
+
+// Create a page in the cloud browser
+const page = await session.newPage();
+await page.goto('https://example.com');
+
+### Session Management and Performance
+
+**Browserbase:**
+- Cloud-based sessions with timeout limits
+- Performance dependent on cloud resources and network
+- Sessions isolated from local environment
+- Must explicitly manage session lifecycle
+
+**Herd:**
+- Direct access to local browser sessions
+- Local performance without network latency
+- Integrated with your local environment
+- Sessions persist with your browser
+
+### Authentication and User Context
+
+**Browserbase:**
+- Requires implementing authentication for each session
+- Isolated sessions without access to existing cookies
+- Must manually handle login flows
+- Credentials need to be stored and managed
+
+**Herd:**
+- Uses your browser's existing authenticated sessions
+- Access to all cookies, local storage, and session data
+- No need to implement authentication flows
+- Use sites you're already logged into
+
+## Use Case Comparisons
+
+### Web Automation for Logged-in Services
+
+## herd-auth
+
+Code (javascript):
+// Using Herd with pre-authenticated browser
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Directly access authenticated service
+const page = await device.newPage();
+await page.goto('https://app.example.com/dashboard');  // Already logged in
+
+// Perform actions on authenticated page
+await page.click('.create-new-button');
+await page.type('#item-name', 'New Item');
+await page.click('.save-button');
+
+// Verify result
+const confirmationText = await page.$eval('.confirmation', el => el.textContent);
+console.log(confirmationText);
+
+## browserbase-auth
+
+Code (javascript):
+// Using Browserbase with manual authentication
+const bb = new Browserbase({
+  api_key: 'your-api-key'
+});
+
+// Create cloud browser session
+const session = await bb.sessions.create({
+  timeout: 300,  // Longer timeout for auth flow
+});
+
+// Create page and handle login manually
+const page = await session.newPage();
+
+// Navigate to login page
+await page.goto('https://app.example.com/login');
+
+// Fill login form
+await page.type('#email', 'user@example.com');
+await page.type('#password', 'your-secure-password');
+await page.click('#login-button');
+
+// Wait for login to complete
+await page.waitForNavigation();
+
+// Now navigate to dashboard
+await page.goto('https://app.example.com/dashboard');
+
+// Perform actions on authenticated page
+await page.click('.create-new-button');
+await page.type('#item-name', 'New Item');
+await page.click('.save-button');
+
+// Verify result
+const confirmationText = await page.$eval('.confirmation', el => el.textContent);
+console.log(confirmationText);
+
+// Must explicitly end session
+await session.close();
+
+### Data Extraction at Scale
+
+## herd-extract
+
+Code (javascript):
+// Using Herd for data extraction
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Open multiple pages for parallel extraction
+const pages = await Promise.all([1, 2, 3].map(() => device.newPage()));
+
+// Extract data from multiple sources in parallel
+const results = await Promise.all(pages.map(async (page, index) => {
+  await page.goto(`https://example.com/category/${index+1}`);
+  
+  // Use Herd's extraction API
+  const data = await page.extract({
+    categoryName: '.category-header h1',
+    items: {
+      _$r: '.product-item',
+      title: '.product-title',
+      price: '.product-price',
+      rating: '.rating-value'
+    }
+  });
+  
+  return data;
+}));
+
+// Close pages when done
+await Promise.all(pages.map(page => page.close()));
+await client.close();
+
+console.log(results);
+
+## browserbase-extract
+
+Code (javascript):
+// Using Browserbase for data extraction
+const bb = new Browserbase({
+  api_key: 'your-api-key'
+});
+
+// Create separate sessions for parallel extraction
+const sessions = await Promise.all([1, 2, 3].map(() => 
+  bb.sessions.create({ timeout: 120 })
+));
+
+// Extract data from multiple sources
+const results = await Promise.all(sessions.map(async (session, index) => {
+  const page = await session.newPage();
+  await page.goto(`https://example.com/category/${index+1}`);
+  
+  // Extract data using Puppeteer-style selectors
+  const categoryName = await page.$eval('.category-header h1', el => el.textContent);
+  
+  const itemElements = await page.$$('.product-item');
+  const items = [];
+  
+  for (const element of itemElements) {
+    const title = await element.$eval('.product-title', el => el.textContent);
+    const price = await element.$eval('.product-price', el => el.textContent);
+    
+    let rating = null;
+    try {
+      rating = await element.$eval('.rating-value', el => el.textContent);
+    } catch (e) {
+      // Element might not exist
+    }
+    
+    items.push({ title, price, rating });
+  }
+  
+  // Must close session when done
+  await session.close();
+  
+  return { categoryName, items };
+}));
+
+console.log(results);
+
+## Migration Guide: From Browserbase to Herd
+
+Transitioning from Browserbase to Herd is straightforward. Here's a guide to help you migrate:
+
+### Installation Steps
+
+1. [Sign up for a Herd account](/register)
+2. Install the Herd browser extension in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| Browserbase | Herd | Notes |
+| --- | --- | --- |
+| `new Browserbase({ api_key })` | `new HerdClient(apiUrl, token)`  `await client.initialize()` | Herd uses a client-server architecture |
+| `bb.sessions.create()` | `const devices = await client.listDevices()`  `const device = devices[0]` | Herd connects to your existing browser |
+| `session.newPage()` | `await device.newPage()` | Similar API |
+| `await page.goto(url)` | `await page.goto(url)` | Identical usage |
+| `await page.type(selector, text)` | `await page.type(selector, text)` | Identical usage |
+| `await page.click(selector)` | `await page.click(selector)` | Identical usage |
+| `await page.$eval(selector, fn)` | `await page.extract({ key: selector })` | Herd offers a more powerful extraction API |
+| `await session.close()` | `await client.close()` | Herd just disconnects, browser stays open |
+
+### 3. Framework Integration
+
+**Browserbase:**
+
+Code (javascript):
+// Browserbase with Playwright
+const { chromium } = require('playwright');
+const browser = await chromium.connectOverCDP(session.wsEndpoint);
+const page = await browser.newPage();
+
+**Herd:**
+
+Code (javascript):
+// Herd uses its own API directly
+const page = await device.newPage();
+// Direct integrations with testing frameworks available
+
+## Why Choose Herd Over Browserbase?
+
+### 1. No Cloud Infrastructure Required
+
+Herd eliminates the need for cloud infrastructure, providing:
+- Zero dependency on remote browser instances
+- No need to manage cloud resources
+- Reduced latency with local execution
+- Complete isolation from cloud service disruptions
+
+### 2. Cost Predictability and Efficiency
+
+Herd offers a more predictable and often lower cost:
+- No usage-based billing surprises
+- No charges based on session duration
+- No additional costs for scaling automation
+- Fixed costs regardless of automation volume
+
+### 3. Use Existing Browser State and Auth
+
+With Herd, you can leverage your browser's existing state:
+- Use sites you're already logged into
+- Access to all browser extensions
+- Utilize stored passwords and authentication
+- No need to manage credentials in code
+
+### 4. Lower Latency and Higher Performance
+
+Herd provides performance advantages with local execution:
+- No network latency between code and browser
+- Faster execution of automation tasks
+- Direct access to local resources
+- No timeout limitations on sessions
+
+## Get Started with Herd Today
+
+Ready to try a more flexible alternative to Browserbase? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the browser extension](/docs/installation)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can provide all the capabilities you need for web automation without the complexity and costs of cloud-based infrastructure.
+
+================================================================================
+
+Document: Alternative Herd Vs Firecrawl
+URL: https://herd.garden/docs/alternative-herd-vs-firecrawl
+
+# Herd vs Firecrawl: Flexible Browser Automation and Data Extraction
+
+Firecrawl is a specialized web scraping and crawling tool designed primarily for extracting and cleaning web content, especially for use with LLMs. While Firecrawl offers powerful crawling capabilities, Herd provides a more comprehensive browser automation solution with greater flexibility and control over the browsing experience.
+
+## Quick Comparison
+
+| Feature | Herd | Firecrawl |
+| --- | --- | --- |
+| **Primary Focus** | Complete browser automation | Web crawling and content extraction |
+| **Infrastructure** | Uses your existing browser | Cloud-based crawling infrastructure |
+| **Pricing Model** | Flat subscription | Usage-based pricing |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Managed cloud browsers |
+| **Browser Control** | Full interactive browser control | Limited to crawling and extraction |
+| **Authentication** | Uses existing browser sessions | Limited authentication capabilities |
+| **Content Processing** | Raw and structured data extraction | Optimized for clean text/markdown output |
+| **Usage Flexibility** | General-purpose automation | Specialized for content crawling |
+| **Interactive Workflows** | Supports complex interactions | Limited to extraction patterns |
+
+## Key Differences in Depth
+
+### Primary Focus and Capabilities
+
+**Firecrawl:**
+- Specialized in high-quality web content extraction
+- Optimized for converting websites to clean markdown
+- Focused on crawling through website links
+- Built primarily for LLM data ingestion
+- Limited interactive capabilities
+
+**Herd:**
+- Complete browser automation platform
+- Full interactive control of browser actions
+- Supports Chrome, Edge, Brave, Arc, Opera
+- Supports both data extraction and automation workflows
+- General-purpose browser control
+- Rich interaction with web applications
+
+### Infrastructure and Execution Model
+
+## herd
+
+Code (javascript):
+// Install the Herd SDK
+npm install @monitoro/herd
+
+// Connect to your existing browser
+import { HerdClient } from '@monitoro/herd';
+
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Full browser automation capabilities
+const page = await device.newPage();
+await page.goto('https://example.com');
+
+## firecrawl
+
+Code (javascript):
+// Install the Firecrawl SDK
+npm install @mendable/firecrawl-js
+
+// Connect to Firecrawl's cloud service
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: "fc-YOUR_API_KEY" });
+
+// Send request to cloud-based crawling service
+const result = await app.scrapeUrl('example.com');
+console.log(result.markdown);
+
+### Data Extraction Approaches
+
+**Firecrawl:**
+- Specializes in converting HTML to clean markdown
+- Automatically handles JavaScript rendering
+- Built-in content cleaning and formatting
+- Output optimized for LLM consumption
+- Limited customization of extraction patterns
+
+**Herd:**
+- Flexible data extraction patterns
+- CSS selector-based extraction
+- Support for complex nested data structures
+- Raw data access and custom transformations
+- Complete control over extraction logic
+
+## Use Case Comparisons
+
+### Website Content Extraction
+
+## herd-extract
+
+Code (javascript):
+// Using Herd for content extraction
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+const page = await device.newPage();
+await page.goto('https://example.com/article');
+
+// Extract structured content with control over the format
+const articleData = await page.extract({
+  title: '.article-title',
+  author: '.author-name',
+  published: {
+    _$: '.publish-date',
+    pipes: ['parseDate']
+  },
+  content: '.article-body',
+  tags: {
+    _$r: '.tag',
+    text: ':root'
+  }
+});
+
+console.log(articleData);
+await client.close();
+
+## firecrawl-extract
+
+Code (javascript):
+// Using Firecrawl for content extraction
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: "fc-YOUR_API_KEY" });
+
+// Simple URL-based extraction
+const scrapeResult = await app.scrapeUrl('https://example.com/article');
+
+if (scrapeResult.success) {
+  // Get the clean markdown content
+  console.log(scrapeResult.markdown);
+  
+  // Access metadata
+  console.log(scrapeResult.metadata);
+} else {
+  console.error('Failed to scrape:', scrapeResult.error);
+}
+
+### Interactive Web Automation
+
+## herd-automation
+
+Code (javascript):
+// Using Herd for interactive web automation
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+const page = await device.newPage();
+
+// Navigate to a web application
+await page.goto('https://app.example.com/dashboard');
+
+// Fill out a form
+await page.click('.create-new-button');
+await page.type('#title-input', 'New Project');
+await page.type('#description-input', 'This is a test project created by automation');
+await page.select('#category-select', 'development');
+
+// Upload a file
+const fileInput = await page.$('input[type="file"]');
+await fileInput.uploadFile('/path/to/local/file.pdf');
+
+// Submit the form
+await page.click('.submit-button');
+
+// Wait for confirmation and extract result
+await page.waitForSelector('.success-message');
+const confirmationText = await page.$eval('.success-message', el => el.textContent);
+console.log('Form submitted successfully:', confirmationText);
+
+await client.close();
+
+## firecrawl-automation
+
+Code (javascript):
+// Firecrawl has limited interactive capabilities
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: "fc-YOUR_API_KEY" });
+
+// For interactive tasks like form submission, 
+// Firecrawl has limited capabilities, primarily focused
+// on crawling and content extraction.
+
+// You could use the actions feature for limited interactions:
+const result = await app.scrapeUrl('https://app.example.com', {
+  actions: [
+    { type: 'click', selector: '.login-button' },
+    { type: 'wait', time: 2000 }
+    // Limited set of basic actions available
+  ]
+});
+
+// But complex workflows like file uploads or 
+// multi-step interactions require a more 
+// comprehensive automation tool like Herd
+
+### Multi-Page Crawling
+
+## herd-crawl
+
+Code (javascript):
+// Using Herd for custom crawling
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+const page = await device.newPage();
+await page.goto('https://example.com/products');
+
+// Extract all product links
+const productLinks = await page.extract({
+  links: {
+    _$r: '.product-card a',
+    url: { attribute: 'href' }
+  }
+});
+
+// Custom crawling logic with full control
+const productDetails = [];
+for (const { url } of productLinks.links) {
+  // Navigate to each product page
+  await page.goto(url);
+  
+  // Extract detailed information
+  const product = await page.extract({
+    name: '.product-name',
+    price: '.product-price',
+    description: '.product-description',
+    inStock: '.stock-status'
+  });
+  
+  productDetails.push(product);
+  
+  // You can implement custom logic: only continue if conditions are met
+  if (productDetails.length >= 10) break;
+}
+
+console.log(productDetails);
+await client.close();
+
+## firecrawl-crawl
+
+Code (javascript):
+// Using Firecrawl for website crawling
+import FirecrawlApp from '@mendable/firecrawl-js';
+
+const app = new FirecrawlApp({ apiKey: "fc-YOUR_API_KEY" });
+
+// Crawl an entire site
+const crawlResult = await app.crawlWebsite('example.com', {
+  maxPages: 10,  // Limit the crawl
+  includeSitemap: true, // Use sitemap if available
+  followExternalLinks: false // Stay on the same domain
+});
+
+if (crawlResult.success) {
+  // Access all crawled pages
+  for (const page of crawlResult.pages) {
+    console.log(`Page: ${page.url}`);
+    console.log(`Content: ${page.markdown}`);
+  }
+} else {
+  console.error('Crawl failed:', crawlResult.error);
+}
+
+## Migration Guide: From Firecrawl to Herd
+
+Transitioning from Firecrawl to Herd is straightforward. Here's a guide to help you migrate:
+
+### Installation Steps
+
+1. [Sign up for a Herd account](/register)
+2. Install the Herd browser extension in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| Firecrawl | Herd | Notes |
+| --- | --- | --- |
+| `new FirecrawlApp({ apiKey })` | `new HerdClient(apiUrl, token)`  `await client.initialize()`  `const devices = await client.listDevices()`  `const device = devices[0]` | Herd connects to your existing browser |
+| `app.scrapeUrl(url)` | `const page = await device.newPage()`  `await page.goto(url)`  `const data = await page.extract(...)` | More granular control in Herd |
+| `result.markdown` | Custom extraction patterns with formatting | More flexible data extraction options |
+| `app.crawlWebsite(domain)` | Custom crawling logic implemented with Herd's navigation and extraction APIs | Full control over crawling behavior |
+
+### 3. Implementing Markdown Conversion
+
+If you specifically need markdown output like Firecrawl provides:
+
+Code (javascript):
+// Helper function to convert extracted HTML to markdown
+function htmlToMarkdown(html) {
+  // Use a library like turndown
+  const turndownService = new TurndownService();
+  return turndownService.turndown(html);
+}
+
+// Extract with Herd and convert to markdown
+const content = await page.extract({
+  body: {
+    _$: '.article-content',
+    attribute: 'innerHTML'
+  }
+});
+
+## Why Choose Herd Over Firecrawl?
+
+### 1. Comprehensive Browser Control
+
+Herd provides full browser automation capabilities:
+- Complete interactive control beyond just crawling
+- Support for complex user interactions
+- Ability to automate any browser-based workflow
+- Full access to browser APIs and capabilities
+
+### 2. Flexible Authentication and Sessions
+
+Herd's approach offers significant authentication advantages:
+- Use your existing authenticated browser sessions
+- No need to implement login flows
+- Support for complex authentication scenarios
+- Access to secure content without credential management
+
+### 3. Customizable Extraction and Processing
+
+Herd gives you complete control over data extraction:
+- Custom extraction patterns for any website structure
+- Flexible transformation of extracted data
+- Support for complex nested data extraction
+- Processing options beyond just markdown conversion
+
+### 4. Broader Use Case Support
+
+Herd supports a wider range of automation scenarios:
+- Form submission and interactive workflows
+- File uploads and downloads
+- Conditional logic based on page content
+- Testing and verification workflows
+
+## Get Started with Herd Today
+
+Ready to try a more flexible alternative to Firecrawl? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the browser extension](/docs/installation)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can provide enhanced capabilities for both content extraction and browser automation, giving you more control and flexibility than specialized crawling tools like Firecrawl.
+
+================================================================================
+
+Document: Alternative Herd Vs Mcp Sdk
+URL: https://herd.garden/docs/alternative-herd-vs-mcp-sdk
+
+# Herd vs MCP SDK: Streamlined Browser Automation
+
+The Model Context Protocol (MCP) SDK provides browser automation capabilities primarily focused on AI agent integration. While MCP SDK offers powerful integration with Large Language Models, Herd provides a more accessible and straightforward approach to browser automation with simplified setup and direct browser control.
+
+## Quick Comparison
+
+| Feature | Herd | MCP SDK |
+| --- | --- | --- |
+| **Primary Focus** | General browser automation | AI agent browser automation |
+| **Infrastructure** | Uses your existing browser | Requires separate browser setup |
+| **API Design** | Simple, direct browser control | Protocol-oriented architecture |
+| **Integration** | JavaScript/Python SDKs | Multiple languages supported |
+| **Setup Complexity** | Simple browser extension | More complex server configuration |
+| **Authentication** | Uses existing browser sessions | Requires manual configuration |
+| **Learning Curve** | Shallow, familiar browser API | Steeper with protocol concepts |
+| **Use Cases** | General automation and extraction | AI agent browsing tasks |
+
+## Key Differences in Depth
+
+### Focus and Architecture
+
+**MCP SDK:**
+- Designed primarily for AI model integration
+- Protocol-based communication model
+- Server-client architecture
+- Focus on enabling AI agents to browse
+- More complex protocol implementation
+
+**Herd:**
+- Direct browser automation focus
+- Simple client-browser connection
+- Intuitive API design
+- Supports Chrome, Edge, Brave, Arc, Opera
+- Streamlined API for common tasks
+- Designed for developers first
+- Lower implementation complexity
+
+### Setup and Integration
+
+## herd
+
+Code (javascript):
+// Install the Herd SDK
+npm install @monitoro/herd
+
+// Simple direct connection to your browser
+import { HerdClient } from '@monitoro/herd';
+
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a page and automate it
+const page = await device.newPage();
+await page.goto('https://example.com');
+
+## mcp
+
+Code (javascript):
+// Install MCP SDK
+npm install mcp-browser-automation
+
+// Set up the MCP server
+const { MCPServer } = require('mcp-browser-automation');
+const server = new MCPServer({
+  port: 8000,
+  // Additional configuration for the server
+});
+
+// Start the server
+await server.start();
+
+// Client side needs to implement MCP protocol
+// to communicate with the server
+
+// Then through MCP protocol interactions:
+// 1. Create a browser session
+// 2. Navigate to URL
+// 3. Interact with page
+
+### Integration with AI Systems
+
+**MCP SDK:**
+- Designed specifically for AI model integration
+- Protocol-based approach for AI agents
+- Built to enable AI systems to browse the web
+- Complex implementation for general use cases
+- Strong focus on AI agent capabilities
+
+**Herd:**
+- General-purpose browser automation
+- Can be integrated with AI systems through standard APIs
+- Simpler implementation for most use cases
+- Direct browser control paradigm
+- Focus on developer experience and simplicity
+
+## Use Case Comparisons
+
+### Basic Web Automation
+
+## herd-auto
+
+Code (javascript):
+// Using Herd for basic web automation
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a new page
+const page = await device.newPage();
+
+// Navigate to a website
+await page.goto('https://example.com/login');
+
+// Fill login form
+await page.type('#username', 'test_user');
+await page.type('#password', 'password123');
+await page.click('.login-button');
+
+// Wait for navigation and verify login
+await page.waitForSelector('.dashboard');
+const welcomeText = await page.$eval('.welcome-message', el => el.textContent);
+console.log('Login successful:', welcomeText);
+
+await client.close();
+
+## mcp-auto
+
+Code (javascript):
+// Using MCP SDK for basic web automation
+// First, set up and start the MCP server
+const { MCPServer } = require('mcp-browser-automation');
+const server = new MCPServer({ port: 8000 });
+await server.start();
+
+// For client-side interaction, implement the MCP protocol
+// This is a simplified example showing the concept
+const response = await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'createSession',
+    params: {}
+  })
+});
+const { sessionId } = await response.json();
+
+// Navigate to a website
+await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'navigate',
+    sessionId,
+    params: { url: 'https://example.com/login' }
+  })
+});
+
+// Fill login form (multiple requests needed)
+await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'type',
+    sessionId,
+    params: { selector: '#username', text: 'test_user' }
+  })
+});
+
+// Additional requests for password and clicking login button
+// ...
+
+// MCP SDK is more verbose for simple automation tasks
+// and requires protocol knowledge
+
+### Data Extraction Tasks
+
+## herd-extract
+
+Code (javascript):
+// Using Herd for data extraction
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+const page = await device.newPage();
+await page.goto('https://example.com/products');
+
+// Extract data using Herd's powerful extraction API
+const productData = await page.extract({
+  title: '.page-title',
+  products: {
+    _$r: '.product-item',  // Repeat for all products
+    name: '.product-name',
+    price: '.product-price',
+    rating: '.rating-stars',
+    available: '.stock-status'
+  }
+});
+
+console.log(productData);
+await client.close();
+
+## mcp-extract
+
+Code (javascript):
+// Using MCP SDK for data extraction
+// First, set up and start the MCP server
+const { MCPServer } = require('mcp-browser-automation');
+const server = new MCPServer({ port: 8000 });
+await server.start();
+
+// For client-side extraction, implement the MCP protocol
+// This is a simplified example showing the concept
+const response = await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'createSession',
+    params: {}
+  })
+});
+const { sessionId } = await response.json();
+
+// Navigate to the products page
+await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'navigate',
+    sessionId,
+    params: { url: 'https://example.com/products' }
+  })
+});
+
+// Extract the page title
+const titleResponse = await fetch('http://localhost:8000/mcp', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'evaluate',
+    sessionId,
+    params: { 
+      script: "document.querySelector('.page-title').textContent" 
+    }
+  })
+});
+const { result: title } = await titleResponse.json();
+
+// Extract product data would require more complex script execution
+// or multiple requests to get all the product information
+// ...
+
+// MCP SDK requires more complex orchestration for data extraction
+// compared to Herd's simplified extraction API
+
+### AI Integration
+
+## herd-ai
+
+Code (javascript):
+// Using Herd with AI integration
+// First, set up Herd client as usual
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a function to handle AI requests for web content
+async function fetchWebContentForAI(url, query) {
+  const page = await device.newPage();
+  await page.goto(url);
+  
+  // Extract relevant content based on the AI query
+  const content = await page.extract({
+    title: 'h1',
+    mainContent: '.main-content',
+    relevantSections: {
+      _$r: '.content-section',
+      heading: 'h2',
+      text: 'p'
+    }
+  });
+  
+  // Close the page when done
+  await page.close();
+  
+  // Return the content for AI processing
+  return content;
+}
+
+// Example usage with an AI system
+const aiPrompt = "Summarize the information about machine learning from example.com";
+const url = "https://example.com/machine-learning";
+
+// Get the content for the AI
+const webContent = await fetchWebContentForAI(url, "machine learning");
+
+// Feed the content to the AI system
+const aiResponse = await callAISystem(aiPrompt, webContent);
+console.log(aiResponse);
+
+await client.close();
+
+// This pattern keeps the AI integration simple and separate from
+// the browser automation concerns
+
+## mcp-ai
+
+Code (javascript):
+// Using MCP SDK with AI integration
+// MCP is specifically designed for this use case
+
+// First, set up and start the MCP server
+const { MCPServer } = require('mcp-browser-automation');
+const server = new MCPServer({ port: 8000 });
+await server.start();
+
+// This server can now be used by AI agents through the MCP protocol
+console.log('MCP Browser Automation server is running on port 8000');
+
+// When an AI system wants to browse, it would send requests like:
+/*
+{
+  "action": "createSession",
+  "params": {}
+}
+*/
+
+// And receive responses like:
+/*
+{
+  "sessionId": "session123",
+  "status": "success"
+}
+*/
+
+// The AI can then navigate, interact with pages, and extract content
+// through the MCP protocol
+
+// This architecture is optimized for AI systems that implement
+// the MCP protocol, but requires more complex integration
+// than direct SDK usage like Herd offers
+
+## Migration Guide: From MCP SDK to Herd
+
+Transitioning from MCP SDK to Herd simplifies your browser automation code. Here's a migration guide:
+
+### Installation Steps
+
+1. [Sign up for a Herd account](/register)
+2. Install the Herd browser extension in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| MCP SDK | Herd | Notes |
+| --- | --- | --- |
+| MCP server setup | `new HerdClient(apiUrl, token)`  `await client.initialize()` | No server needed with Herd |
+| Session creation via protocol | `const devices = await client.listDevices()`  `const device = devices[0]` | Simplified session management |
+| Navigation requests | `const page = await device.newPage()`  `await page.goto(url)` | Direct browser control |
+| Element interactions via protocol | `await page.click(selector)`  `await page.type(selector, text)` | Simpler interaction API |
+| Data extraction with custom scripts | `await page.extract(selectors)` | Powerful extraction API |
+| Session closing via protocol | `await client.close()` | Simple cleanup |
+
+### 3. AI Integration Approach
+
+**MCP SDK:**
+
+Code (javascript):
+// AI systems implement MCP protocol directly
+// Complex integration but designed for AI
+
+// AI system would send requests like:
+const request = {
+  action: "evaluateElement",
+  params: { selector: ".content", attribute: "textContent" }
+};
+// And process responses
+
+**Herd:**
+
+Code (javascript):
+// Build an adapter layer for AI integration
+async function getWebContent(url, aiQuery) {
+  // Use Herd to fetch and extract the content
+  const page = await device.newPage();
+  await page.goto(url);
+  const content = await page.extract({ /* ... */ });
+  await page.close();
+  return content;
+}
+
+// Then use this in your AI system
+const content = await getWebContent(url, query);
+const aiResponse = await yourAISystem.process(content);
+
+### 4. Simpler Setup
+
+Herd simplifies your automation workflow:
+
+- No need to run a server process
+- Uses your existing browser
+- Simple browser extension rather than complex setup
+- Supports Chrome, Edge, Brave, Arc, Opera
+- Works with browsers you're already using every day
+
+## Why Choose Herd Over MCP SDK?
+
+### 1. Simpler Developer Experience
+
+Herd provides a more straightforward approach to browser automation:
+- No complex protocol implementation
+- Direct browser control API
+- Familiar programming model
+- Lower learning curve
+
+### 2. Less Infrastructure to Manage
+
+Herd eliminates the need for additional infrastructure:
+- No server to set up and maintain
+- Uses your existing browser
+- Simpler deployment architecture
+- Fewer moving parts
+
+### 3. Powerful Built-in Capabilities
+
+Herd includes powerful features out of the box:
+- Sophisticated data extraction API
+- Session and cookie management
+- Authentication handling
+- Browser state persistence
+
+### 4. Broader Applicability
+
+While MCP SDK focuses on AI integration, Herd supports:
+- General browser automation
+- Web scraping and data extraction
+- Testing and monitoring
+- Process automation
+
+## Get Started with Herd
+
+Ready to try a more straightforward alternative to MCP SDK? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the browser extension](/docs/installation) in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can simplify your browser automation tasks with its intuitive API and direct browser control, providing a more accessible alternative to protocol-based approaches like MCP SDK.
+
+================================================================================
+
+Document: Alternative Herd Vs Monitoro
+URL: https://herd.garden/docs/alternative-herd-vs-monitoro
+
+# Herd vs Monitoro: Complementary Browser Tools
+
+Herd and Monitoro are sister products created by the same team, designed to serve complementary but distinct purposes. While Herd provides programmatic browser control and multi-browser orchestration capabilities, Monitoro focuses on no-code monitoring and data extraction. Understanding their differences helps you choose the right tool for your specific needs.
+
+## Quick Comparison
+
+| Feature | Herd | Monitoro |
+| --- | --- | --- |
+| **Primary Focus** | Browser automation & orchestration | Website monitoring & data extraction |
+| **Core Function** | Programmatic browser control | Monitoring webpages for changes |
+| **Target User** | Developers & automation teams | Non-technical users & business teams |
+| **Coding Required** | Yes (JavaScript/Python) | No (visual interface) |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Chrome, Edge, Brave |
+| **Browser Orchestration** | Multiple browsers and devices | Single-focus monitoring |
+| **Implementation** | JavaScript/Python SDK | No-code browser extension |
+| **Data Processing** | Programmatic data workflows | Automated alerts and integrations |
+| **Best For** | Complex automation needs | Monitoring & simple data extraction |
+
+## Understanding the Difference
+
+### Herd
+
+Herd is designed for **programmatic browser control and orchestration**, allowing developers to:
+- Automate complex web tasks across multiple browsers
+- Extract data from websites at scale
+- Leverage their existing browsers for automation
+- Build persistent automation workflows
+- Orchestrate multiple browser instances simultaneously
+- Create sophisticated data processing pipelines
+- Works with Chrome, Edge, Brave, Arc, Opera
+
+### Monitoro
+
+Monitoro is designed for **no-code webpage monitoring and alerts**, allowing anyone to:
+- Track changes on websites without coding
+- Set up alerts when specific data changes
+- Extract structured data from webpages
+- Send notifications to various channels (Slack, Discord, etc.)
+- Create automated workflows based on webpage changes
+- Integrate with tools like Google Sheets and Airtable
+
+## When to Use Each Tool
+
+## herd-use
+
+**Use Herd when you need to:**
+
+- Create complex automation scripts
+- Orchestrate multiple browsers
+- Build sophisticated data extraction pipelines
+- Integrate browser automation into your application
+- Control browsers programmatically
+- Run continuous automation jobs
+- Implement advanced web interaction patterns
+- Scale automation across multiple devices
+
+**Example use cases:**
+- Large-scale data extraction projects
+- Multi-step workflow automation
+- Integration testing across browsers
+- Sophisticated web monitoring systems
+- Building browser-based APIs
+- Authentication-required data access
+
+## monitoro-use
+
+**Use Monitoro when you need to:**
+
+- Monitor websites for changes without coding
+- Get alerts when specific data changes
+- Extract data and send it to other tools
+- Create simple automations based on website changes
+- Set up monitoring dashboards
+- Share monitoring alerts with teams
+
+**Example use cases:**
+- Price monitoring on e-commerce sites
+- Tracking product availability
+- Monitoring competitor websites
+- Setting up alerts for new content
+- Syncing web data to spreadsheets
+- Creating webhooks for website changes
+
+## Implementation Comparison
+
+### Herd Implementation
+
+## herd-js
+
+Code (javascript):
+// Using Herd for browser automation
+import { HerdClient } from '@monitoro/herd';
+
+// Initialize the client
+const client = new HerdClient('your-token');
+await client.initialize();
+
+// Get a device
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a new page and automate it
+const page = await device.newPage();
+await page.goto('https://example.com');
+
+// Interact with the page
+await page.type('#search', 'automation');
+await page.click('.search-button');
+
+// Extract data
+const results = await page.extract({
+  titles: {
+    _$r: '.result-item',
+    title: '.item-title',
+    description: '.item-description'
+  }
+});
+
+console.log(results);
+await client.close();
+
+## herd-py
+
+Code (python):
+# Using Herd for browser automation
+from monitoro_herd import HerdClient
+
+# Initialize the client
+client = HerdClient('your-token')
+client.initialize()
+
+# Get a device
+devices = client.list_devices()
+device = devices[0]
+
+# Create a new page and automate it
+page = device.new_page()
+page.goto('https://example.com')
+
+# Interact with the page
+page.type('#search', 'automation')
+page.click('.search-button')
+
+# Extract data
+results = page.extract({
+  "titles": {
+    "_$r": ".result-item",
+    "title": ".item-title",
+    "description": ".item-description"
+  }
+})
+
+print(results)
+client.close()
+
+### Monitoro Implementation
+
+Monitoro works through a no-code interface:
+
+1. **Install the Monitoro browser extension**
+2. **Create a monitor:**
+   - Navigate to the webpage you want to monitor
+   - Use the Monitoro interface to select elements to track
+   - Set up conditions for when alerts should trigger
+   - Configure how often the page should be checked
+
+3. **Configure integrations:**
+   - Connect to notification channels like Discord, Slack, or Telegram
+   - Set up data destinations like Google Sheets or Airtable
+   - Create webhooks for custom integrations
+
+Code:
+# No code required for Monitoro - it's all done through the visual interface
+
+# Example monitoring workflow:
+1. Set up a monitor for a product page on an e-commerce site
+2. Configure it to check for price changes or "In Stock" status
+3. Set up alerts to Discord when conditions are met
+4. Configure Google Sheets integration to log all price changes
+
+## Using Herd and Monitoro Together
+
+These tools can work together in a complementary fashion:
+
+1. **Use Monitoro for initial monitoring and alerts:**
+   - Set up no-code monitors for important websites
+   - Get alerted when specific changes occur
+   - Collect initial data in spreadsheets
+
+2. **Use Herd for advanced follow-up automation:**
+   - Trigger Herd workflows based on Monitoro alerts
+   - Perform complex interactions beyond Monitoro's capabilities
+   - Extract deeper data that requires authentication or multiple steps
+   - Orchestrate actions across multiple browsers
+
+### Example workflow:
+
+1. Monitoro monitors competitor pricing and alerts when prices change
+2. A webhook from Monitoro triggers a Herd automation
+3. Herd performs a deep analysis across multiple pages, including login-required areas
+4. Herd generates a comprehensive report and updates internal systems
+
+## When to Upgrade from Monitoro to Herd
+
+Consider upgrading from Monitoro to Herd when:
+
+1. You need to go beyond simple monitoring to complex automation
+2. Your workflows require orchestration of multiple browsers
+3. You need to access authenticated areas of websites
+4. You require sophisticated data processing capabilities
+5. You need programmatic control over browser behavior
+6. Your team has development resources for coding solutions
+
+## monitoro-simple
+
+Code:
+# Monitoro approach (no-code)
+
+1. Set up a monitor for an e-commerce product page
+2. Configure it to check price every hour
+3. Send price alerts to Slack channel
+4. Log all prices to Google Sheets
+
+## herd-advanced
+
+Code (javascript):
+// Herd advanced solution
+
+import { HerdClient } from '@monitoro/herd';
+
+async function monitorPrices() {
+  const client = new HerdClient('your-token');
+  await client.initialize();
+  const devices = await client.listDevices();
+  const device = devices[0];
+  
+  // Open multiple pages for parallel extraction
+  const productUrls = [
+    'https://example.com/product/1',
+    'https://example.com/product/2',
+    'https://example.com/product/3'
+  ];
+  
+  // Login first to access special pricing
+  const page = await device.newPage();
+  await page.goto('https://example.com/login');
+  await page.type('#email', process.env.USERNAME);
+  await page.type('#password', process.env.PASSWORD);
+  await page.click('#login-button');
+  await page.waitForNavigation();
+  
+  // Now check all products in parallel
+  const priceData = [];
+  for (const url of productUrls) {
+    await page.goto(url);
+    
+    const data = await page.extract({
+      productId: {
+        _$: '.product-id',
+        regex: 'ID: (.*)'
+      },
+      regularPrice: '.regular-price',
+      salePrice: '.sale-price',
+      memberPrice: '.member-price',
+      availability: '.stock-status',
+      shipping: '.shipping-info'
+    });
+    
+    // Compare with historical data in database
+    const priceChanged = await comparePriceWithHistory(data);
+    if (priceChanged) {
+      // Send custom notification with detailed info
+      await sendDetailedAlert(data);
+      // Update database with new price info
+      await updatePriceDatabase(data);
+    }
+    
+    priceData.push(data);
+  }
+  
+  await client.close();
+  return priceData;
+}
+
+// Run on schedule
+setInterval(monitorPrices, 3600000); // Every hour
+
+## Why Use Both Herd and Monitoro?
+
+### 1. Complementary Capabilities
+
+- **Monitoro:** Fast, no-code setup for basic monitoring needs
+- **Herd:** Developer-focused tool for complex automation requirements
+
+### 2. Different Team Members, Different Needs
+
+- **Business Teams:** Can use Monitoro without technical skills
+- **Developers:** Can use Herd for advanced customization
+- **Operations:** Can set up Monitoro for quick insights
+- **Engineering:** Can build on those insights with Herd
+
+### 3. Staged Implementation
+
+Monitoro and Herd support a natural progression:
+- Start with simple Monitoro monitoring
+- Identify areas that need deeper automation
+- Implement targeted Herd solutions for those areas
+- Maintain both for their distinct advantages
+
+## Customer Testimonials
+Note: "We started with Monitoro for basic price tracking, but as our needs grew more complex, we added Herd to our toolkit. Now our business team uses Monitoro for quick monitoring setup while our developers create sophisticated data pipelines with Herd." – **Michael K., E-commerce Director**
+Note: "Monitoro was perfect for our team members without coding skills, letting them set up their own monitoring dashboards. When we need deeper automation, our developers use Herd. Having both tools gives us the perfect balance of accessibility and power." – **Jennifer R., Operations Manager**
+
+## Get Started with Herd and Monitoro
+
+Ready to implement a complete browser automation and monitoring solution?
+
+### For Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the Herd browser extension](/docs/installation) in Chrome, Edge, or Brave (Firefox and Safari not supported)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+### For Monitoro:
+
+1. Visit [Monitoro.co](https://monitoro.co) to sign up
+2. Install the Monitoro browser extension
+3. Navigate to the website you want to monitor
+4. Use the visual interface to set up your first monitor
+
+Choose the right tool for each specific need, or use them together for a comprehensive web monitoring and automation solution.
+
+================================================================================
+
+Document: Alternative Herd Vs Puppeteer
+URL: https://herd.garden/docs/alternative-herd-vs-puppeteer
+
+# Herd vs Puppeteer: A Better Alternative for Browser Automation
+
+In the world of browser automation and web scraping, Puppeteer has long been a popular choice for developers. However, Herd provides a compelling alternative that addresses many of Puppeteer's limitations while offering unique advantages for modern development workflows.
+
+## Quick Comparison
+
+| Feature | Herd | Puppeteer |
+| --- | --- | --- |
+| **Browser Type** | Your existing browser | Separate Chromium instance |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Chromium, Chrome (limited Firefox) |
+| **Infrastructure Requirements** | None (uses your browser) | Requires separate browser instances |
+| **Authentication** | Uses existing sessions | Requires manual setup |
+| **Setup Complexity** | Simple extension installation | More complex setup |
+| **Programming Languages** | JavaScript, Python | JavaScript/TypeScript only |
+| **Session Management** | Persistent across runs | Must be rebuilt each run |
+| **Resource Usage** | Minimal (shared with browser) | High (separate processes) |
+
+## Key Differences in Depth
+
+### Infrastructure Requirements
+
+**Puppeteer:**
+- Requires installing and managing separate Chromium instances
+- Needs dedicated resources for each browser instance
+- Increases infrastructure costs in cloud environments
+- Requires managing updates to the Chromium engine
+
+**Herd:**
+- Uses your existing browser installation
+- No additional browser instances to manage
+- Significantly lower resource utilization
+- Leverages native browser capabilities
+
+### Setup and Installation Process
+
+## herd
+
+Code (bash):
+# Install the Herd SDK
+npm install @monitoro/herd
+
+# Then install the browser extension and connect your browser
+# That's it! No browser installation or management needed
+
+## puppeteer
+
+Code (bash):
+# Install Puppeteer
+npm install puppeteer
+
+# Puppeteer will download and manage its own Chromium instance
+# You'll need to handle this in deployment environments
+# Additional setup for proxies, authentication, etc.
+
+### Browser Support
+
+**Puppeteer:**
+- Primarily designed for Chrome/Chromium browsers
+- Limited experimental support for Firefox
+- No support for Safari or Edge
+
+**Herd:**
+- Works with Chrome, Edge, Brave, Arc, Opera 
+- Consistent experience across all supported Chromium-based browsers
+
+### Authentication and Session Handling
+
+**Puppeteer:**
+- Sessions must be recreated for each new Puppeteer instance
+- Requires manually handling cookies and authentication flows
+- Accessing logged-in state requires additional code
+- Difficult to use existing authenticated sessions
+
+**Herd:**
+- Uses your existing browser's authenticated sessions
+- No need to handle authentication separately
+- Persistent cookies and storage between sessions
+- Access to browser extensions that manage authentication
+
+## Use Case Comparisons
+
+### Data Extraction
+
+## herd-extract
+
+Code (javascript):
+// Initialize the client and connect to your browser
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Extract data using simple selectors
+const page = await device.newPage();
+await page.goto('https://example.com');
+const data = await page.extract({
+  title: 'h1',
+  description: 'p',
+  links: {
+    _$r: 'a',  // Extract all links
+    href: { attribute: 'href' },
+    text: ':root'
+  }
+});
+
+console.log(data);
+
+## puppeteer-extract
+
+Code (javascript):
+// Launch a separate browser instance
+const browser = await puppeteer.launch();
+const page = await browser.newPage();
+await page.goto('https://example.com');
+
+// Extract data with multiple evaluations
+const data = {
+  title: await page.$eval('h1', el => el.textContent),
+  description: await page.$eval('p', el => el.textContent),
+  links: await page.$$eval('a', elements => 
+    elements.map(el => ({
+      href: el.getAttribute('href'),
+      text: el.textContent
+    }))
+  )
+};
+
+console.log(data);
+await browser.close();
+
+### Web Automation
+
+## herd-auto
+
+Code (javascript):
+// Initialize and connect to your browser
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Use the existing browser with current sessions
+const page = await device.newPage();
+await page.goto('https://myapp.com/dashboard'); // Already logged in
+
+// Interact with the page
+await page.click('.new-item-button');
+await page.type('#item-name', 'New Task');
+await page.click('.save-button');
+
+// Process results
+const notification = await page.waitForSelector('.success-message');
+console.log(notification.textContent);
+
+## puppeteer-auto
+
+Code (javascript):
+// Launch a separate browser instance
+const browser = await puppeteer.launch();
+const page = await browser.newPage();
+
+// Need to handle login first
+await page.goto('https://myapp.com/login');
+await page.type('#username', 'user@example.com');
+await page.type('#password', 'password');
+await page.click('.login-button');
+await page.waitForNavigation();
+
+// Now navigate to dashboard after login
+await page.goto('https://myapp.com/dashboard');
+
+// Interact with the page
+await page.click('.new-item-button');
+await page.type('#item-name', 'New Task');
+await page.click('.save-button');
+
+// Process results
+const notification = await page.waitForSelector('.success-message');
+console.log(await notification.evaluate(el => el.textContent));
+await browser.close();
+
+## Migration Guide: From Puppeteer to Herd
+
+Transitioning from Puppeteer to Herd is straightforward. Here's a simple migration guide:
+
+### 1. Installation
+
+1. Install the Herd SDK:
+   
+Code (bash):
+   npm install @monitoro/herd
+
+2. Install the Herd browser extension in your preferred browser
+
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| Puppeteer | Herd | Notes |
+| --- | --- | --- |
+| `const browser = await puppeteer.launch()` | `const client = new HerdClient(apiUrl, token)`  `await client.initialize()`  `const devices = await client.listDevices()`  `const device = devices[0]` | Herd connects to your existing browser |
+| `const page = await browser.newPage()` | `const page = await device.newPage()` | Similar API, different source |
+| `await page.goto(url)` | `await page.goto(url)` | Identical usage |
+| `await page.type(selector, text)` | `await page.type(selector, text)` | Identical usage |
+| `await page.click(selector)` | `await page.click(selector)` | Identical usage |
+| `await page.$eval(selector, fn)` | `const element = await page.$(selector)`  `await element.evaluate(fn)` | Slightly different approach |
+| `await page.screenshot()` | `await page.screenshot()` | Identical usage |
+| `await browser.close()` | `await client.close()` | Browser stays open, just disconnects client |
+
+## Why Choose Herd Over Puppeteer?
+
+### 1. No Infrastructure Management
+
+Herd eliminates the need to maintain separate browser instances, significantly reducing:
+- Memory and CPU usage
+- Infrastructure costs for cloud deployments
+- Maintenance overhead for browser updates
+
+### 2. Use Existing Authentication
+
+With Herd, you can automate tasks in your already authenticated browser:
+- No need to handle authentication flows in code
+- Access to sites that require complex authentication
+- Use existing cookies, local storage, and sessions
+
+### 3. Cross-Browser Compatibility
+
+While Puppeteer is primarily focused on Chromium:
+- Herd works across Chrome, Edge, and Brave
+- Same code works on any supported browser
+- Test on multiple browsers with minimal configuration changes
+
+### 4. Simpler Development Experience
+
+Herd provides:
+- More intuitive APIs for common tasks
+- Better debugging experience (view automation in real browser)
+- Easier integration with existing workflows
+
+## Customer Testimonials
+Note: "We reduced our AWS costs by 65% after switching from Puppeteer to Herd. No more managing fleets of headless browsers – we just use our existing Chrome instances." – **Sarah T., Engineering Lead**
+Note: "Puppeteer was great, but Herd's ability to use our logged-in sessions was a game-changer for our workflow automation. It cut our development time in half." – **Mark L., Automation Engineer**
+
+## Get Started with Herd Today
+
+Ready to try a better alternative to Puppeteer? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the browser extension](/docs/installation)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can simplify your browser automation workflows while reducing infrastructure costs and complexity.
+
+================================================================================
+
+Document: Alternative Herd Vs Selenium
+URL: https://herd.garden/docs/alternative-herd-vs-selenium
+
+# Herd vs Selenium: A More Efficient Browser Automation Alternative
+
+Selenium has been the industry standard for browser automation for many years, but its architecture presents significant challenges for modern development workflows. Herd offers a compelling alternative that addresses many of Selenium's pain points while providing a more intuitive experience.
+
+## Quick Comparison
+
+| Feature | Herd | Selenium |
+| --- | --- | --- |
+| **Driver Requirements** | No drivers needed | Requires WebDriver for each browser |
+| **Browser Type** | Your existing browser | Creates new browser instances |
+| **Browser Support** | Chrome, Edge, Brave, Arc, Opera | Chrome, Firefox, Edge, Safari, IE |
+| **Infrastructure** | Uses your existing browser | Requires WebDriver servers |
+| **Authentication** | Uses existing sessions | Requires manual setup |
+| **Programming Languages** | JavaScript, Python | Java, Python, C#, Ruby, JavaScript |
+| **Setup Complexity** | Simple browser extension | WebDriver setup for each browser |
+| **Maintenance Required** | Minimal (browser updates only) | High (drivers must match browser versions) |
+| **Session Management** | Persistent across runs | Must be rebuilt each run |
+
+## Key Differences in Depth
+
+### Driver and Infrastructure Requirements
+
+**Selenium:**
+- Requires installation and management of WebDrivers for each browser
+- WebDrivers must be kept in sync with browser versions
+- Separate browser instances for automation
+- Complex setup in CI/CD environments
+- High resource usage (separate process for each browser)
+
+**Herd:**
+- No WebDrivers or separate drivers needed
+- Works directly with your installed browser
+- No version synchronization issues
+- Simple setup in any environment
+- Low resource usage (shares existing browser process)
+
+### Setup and Installation Process
+
+## herd
+
+Code (bash):
+# JavaScript
+npm install @monitoro/herd
+
+# Python
+pip install herd-client
+
+# Then install the browser extension and connect your browser
+# That's it! No WebDrivers or browser drivers to manage
+
+## selenium
+
+Code (bash):
+# JavaScript
+npm install selenium-webdriver
+
+# Python
+pip install selenium
+
+# Additionally, you must:
+# 1. Download the correct WebDriver for each browser
+# 2. Ensure WebDriver versions match browser versions
+# 3. Add WebDrivers to your PATH or specify their location
+# 4. Update WebDrivers when browsers update
+
+### Browser Support and Consistency
+
+**Selenium:**
+- Supports all major browsers including Chrome, Firefox, Safari, Edge, and IE
+- Requires separate WebDriver configurations for each browser
+- May exhibit inconsistent behavior across different browsers
+- Requires updates when browsers update
+
+**Herd:**
+- Supports Chrome, Edge, Brave, Arc, Opera
+- Uniform behavior across supported Chromium-based browsers
+- No additional configuration needed for different browsers
+
+### Authentication and Session Handling
+
+**Selenium:**
+- Sessions are isolated and temporary
+- Requires manually handling authentication steps
+- Session storage is cleared between runs
+- Difficult to use existing authenticated sessions
+
+**Herd:**
+- Uses your browser's existing authenticated sessions
+- Access sites you're already logged into
+- Persistent cookies and storage
+- Access to browser extensions that manage authentication
+
+## Use Case Comparisons
+
+### Web Testing
+
+## herd-test
+
+Code (javascript):
+// JavaScript
+import { HerdClient } from '@monitoro/herd';
+
+async function runTest() {
+  // Connect to your existing browser
+  const client = new HerdClient('your-token');
+  await client.initialize();
+  const devices = await client.listDevices();
+  const device = devices[0];
+  
+  // Create a new page for testing
+  const page = await device.newPage();
+  await page.goto('https://example.com');
+  
+  // Test interactions
+  await page.click('.nav-item');
+  await page.waitForSelector('.content-loaded');
+  
+  // Assert condition
+  const header = await page.$('.header');
+  const text = await header.getText();
+  console.assert(text.includes('Expected Text'), 'Header text verification failed');
+  
+  // Cleanup
+  await page.close();
+  await client.close();
+}
+
+runTest();
+
+## selenium-test
+
+Code (javascript):
+// JavaScript
+import { Builder, By, until } from 'selenium-webdriver';
+
+async function runTest() {
+  // Launch a separate browser instance with WebDriver
+  const driver = await new Builder()
+    .forBrowser('chrome')
+    .build();
+  
+  try {
+    // Navigate to the test site
+    await driver.get('https://example.com');
+    
+    // Test interactions
+    await driver.findElement(By.css('.nav-item')).click();
+    await driver.wait(until.elementLocated(By.css('.content-loaded')), 5000);
+    
+    // Assert condition
+    const header = await driver.findElement(By.css('.header'));
+    const text = await header.getText();
+    console.assert(text.includes('Expected Text'), 'Header text verification failed');
+  } finally {
+    // Always close the browser
+    await driver.quit();
+  }
+}
+
+runTest();
+
+### Data Extraction
+
+## herd-extract
+
+Code (javascript):
+// JavaScript
+import { HerdClient } from '@monitoro/herd';
+
+async function extractData() {
+  const client = new HerdClient('your-token');
+  await client.initialize();
+  const devices = await client.listDevices();
+  const device = devices[0];
+  
+  const page = await device.newPage();
+  await page.goto('https://example.com/products');
+  
+  // Extract product data with a single call
+  const products = await page.extract({
+    items: {
+      _$r: '.product-card',  // Repeat for each product card
+      name: '.product-name',
+      price: '.product-price',
+      rating: '.product-rating',
+      inStock: '.stock-status'
+    }
+  });
+  
+  console.log(products.items);
+  await client.close();
+}
+
+extractData();
+
+## selenium-extract
+
+Code (javascript):
+// JavaScript
+import { Builder, By } from 'selenium-webdriver';
+
+async function extractData() {
+  const driver = await new Builder()
+    .forBrowser('chrome')
+    .build();
+  
+  try {
+    await driver.get('https://example.com/products');
+    
+    // Extract product data with multiple queries
+    const productElements = await driver.findElements(By.css('.product-card'));
+    
+    const products = [];
+    for (const element of productElements) {
+      const name = await element.findElement(By.css('.product-name')).getText();
+      const price = await element.findElement(By.css('.product-price')).getText();
+      
+      let rating = '';
+      try {
+        rating = await element.findElement(By.css('.product-rating')).getText();
+      } catch (e) {
+        // Element might not exist
+        rating = 'N/A';
+      }
+      
+      let inStock = false;
+      try {
+        const stockText = await element.findElement(By.css('.stock-status')).getText();
+        inStock = stockText.includes('In Stock');
+      } catch (e) {
+        // Element might not exist
+      }
+      
+      products.push({ name, price, rating, inStock });
+    }
+    
+    console.log(products);
+  } finally {
+    await driver.quit();
+  }
+}
+
+extractData();
+
+## Migration Guide: From Selenium to Herd
+
+Transitioning from Selenium to Herd is straightforward. Here's a guide to help you migrate your existing code:
+
+### 1. Installation
+
+1. Install the Herd SDK:
+   
+Code (bash):
+   # JavaScript
+   npm install @monitoro/herd
+   
+   # Python
+   pip install herd-client
+
+2. Install the Herd browser extension in your preferred browser
+
+3. Register your browser as a device in the Herd dashboard
+
+### 2. Code Migration
+
+| Selenium | Herd | Notes |
+| --- | --- | --- |
+| `new Builder().forBrowser().build()` | `new HerdClient(apiUrl, token)`  `await client.initialize()`  `const devices = await client.listDevices()`  `const device = devices[0]` | Herd connects to your existing browser |
+| `driver.get(url)` | `await page.goto(url)` | Similar syntax |
+| `driver.findElement(By.css(selector))` | `await page.$(selector)` | Herd uses CSS selectors directly |
+| `element.sendKeys(text)` | `await element.type(text)` | Different method name |
+| `element.click()` | `await element.click()` | Identical usage |
+| `driver.wait(until.elementLocated())` | `await page.waitForSelector(selector)` | Similar functionality |
+| `driver.quit()` | `await client.close()` | Herd just disconnects, browser stays open |
+
+### 3. Handling Multiple Browsers
+
+**Selenium:**
+
+Code (javascript):
+const chrome = await new Builder().forBrowser('chrome').build();
+const firefox = await new Builder().forBrowser('firefox').build();
+
+**Herd:**
+
+Code (javascript):
+// Connect to different browsers that are registered as devices
+const chromiumDevice = devices.find(d => d.name === 'Chrome Browser');
+
+## Why Choose Herd Over Selenium?
+
+### 1. No WebDriver Headaches
+
+Herd eliminates the need for WebDrivers, solving the most common Selenium pain points:
+- No driver version compatibility issues
+- No driver installation or updates needed
+- No broken tests due to browser updates
+
+### 2. Use Existing Authentication
+
+With Herd, you can automate tasks in your already authenticated browser:
+- No need to write and maintain authentication code
+- Access to sites requiring complex authentication
+- Use existing cookies, local storage, and sessions
+
+### 3. Simplified Setup and Maintenance
+
+Herd significantly reduces the overhead of browser automation:
+- No complex CI/CD configuration
+- No driver path management
+- No browser version tracking
+
+### 4. Intuitive API for Modern Development
+
+Herd provides:
+- Clean, Promise-based API
+- Powerful data extraction capabilities
+- Better debugging experience (view automation in your browser)
+
+## Customer Testimonials
+Note: "We spent hours every month maintaining our Selenium WebDrivers across different environments. With Herd, that maintenance overhead disappeared completely." – **Michael K., QA Lead**
+Note: "The biggest pain point with Selenium was always authentication flows. Herd's ability to use our existing browser sessions eliminated that problem entirely." – **Jennifer R., Test Automation Engineer**
+
+## Get Started with Herd Today
+
+Ready to try a more efficient alternative to Selenium? Get started with Herd:
+
+1. [Create a Herd account](/register)
+2. [Install the browser extension](/docs/installation)
+3. [Connect your browser](/docs/connect-your-browser)
+4. [Run your first automation](/docs/automation-basics)
+
+Discover how Herd can simplify your browser automation workflows while eliminating the most common frustrations of working with Selenium.
+
+================================================================================
+
+Document: Automation Basics
+URL: https://herd.garden/docs/automation-basics
+
+# Automation Basics
+
+Welcome to Monitoro Herd! This guide will walk you through creating your first browser automation step-by-step. We'll start with the basics and gradually build up to more complex examples, explaining each concept along the way.
+
+## javascript
+
+## JavaScript SDK
+
+### Setting Up Your Environment
+
+Before writing any code, you'll need to set up your JavaScript environment and install the Herd SDK:
+
+1. Make sure you have Node.js installed (version 14 or higher recommended)
+2. Create a new project directory
+3. Install the SDK using npm:
+
+Code (bash):
+npm install @monitoro/herd
+
+### Initializing the Client
+
+The first step in any automation is to initialize the Herd client with your API credentials:
+
+Code (javascript):
+// Import the Herd client
+import { HerdClient } from '@monitoro/herd';
+
+// Initialize the client with your API URL and token
+const client = new HerdClient('your-token');
+
+// Always initialize the client before using it
+await client.initialize();
+Note: **Note:** Replace the token with your actual Herd API token from your dashboard.
+
+### Connecting to a Device
+
+After initializing the client, you need to connect to a device (browser) that will perform the automation:
+
+Code (javascript):
+// Get a list of available devices
+const devices = await client.listDevices();
+
+// Connect to the first available device
+const device = devices[0];
+
+console.log(`Connected to device: ${device.id}`);
+
+This code retrieves all devices registered to your account and connects to the first one. In a production environment, you might want to select a specific device based on its properties or availability.
+
+### Creating a Page and Navigating
+
+Now that you're connected to a device, you can create a new browser page and navigate to a website:
+
+Code (javascript):
+// Create a new page in the browser
+const page = await device.newPage();
+
+// Navigate to a website
+await page.goto('https://example.com');
+
+console.log('Successfully navigated to example.com');
+
+The `goto` method loads the specified URL and waits for the page to load. By default, it waits until the page's `load` event is fired, but you can customize this behavior with options.
+
+### Extracting Basic Information
+
+One of the most common automation tasks is extracting information from web pages. Here's how to extract basic elements:
+
+Code (javascript):
+// Extract content using CSS selectors
+const content = await page.extract({
+  title: 'h1',           // Extracts the main heading
+  description: 'p',      // Extracts the first paragraph
+  link: 'a'              // Extracts the first link text
+});
+
+// Display the extracted content
+console.log('Extracted content:');
+console.log(`Title: ${content.title}`);
+console.log(`Description: ${content.description}`);
+console.log(`Link: ${content.link}`);
+
+The `extract` method uses CSS selectors to find elements on the page and extract their text content. This is a powerful way to scrape structured data from websites.
+
+### Proper Resource Management
+
+Always remember to close resources when you're done with them to prevent memory leaks:
+
+Code (javascript):
+// Close the page when done
+await page.close();
+
+// Close the client connection
+await client.close();
+
+### Putting It All Together
+
+Here's a complete example that combines all the steps above into a single function:
+
+Code (javascript):
+import { HerdClient } from '@monitoro/herd';
+
+async function runBasicAutomation() {
+  const client = new HerdClient('your-token');
+  
+  try {
+    // Initialize the client
+    await client.initialize();
+    console.log('Client initialized successfully');
+    
+    // Get the first available device
+    const devices = await client.listDevices();
+    if (devices.length === 0) {
+      throw new Error('No devices available');
+    }
+    const device = devices[0];
+    console.log(`Connected to device: ${device.id}`);
+    
+    // Create a new page
+    const page = await device.newPage();
+    console.log('New page created');
+    
+    // Navigate to a website
+    console.log('Navigating to example.com...');
+    await page.goto('https://example.com');
+    console.log('Navigation complete');
+    
+    // Extract content
+    console.log('Extracting content...');
+    const content = await page.extract({
+      title: 'h1',
+      description: 'p',
+      link: 'a'
+    });
+    
+    // Display the extracted content
+    console.log('\nExtracted content:');
+    console.log(`Title: ${content.title}`);
+    console.log(`Description: ${content.description}`);
+    console.log(`Link: ${content.link}`);
+    
+  } catch (error) {
+    console.error('Error during automation:', error);
+  } finally {
+    // Always close the client when done
+    console.log('Closing client connection...');
+    await client.close();
+    console.log('Client connection closed');
+  }
+}
+
+// Run the automation
+runBasicAutomation();
+
+### Interacting with Web Pages
+
+Now let's explore how to interact with elements on a page. This includes clicking buttons, typing text, and handling forms.
+
+#### Finding Elements
+
+Before interacting with an element, you need to find it on the page:
+
+Code (javascript):
+// Find an element using a CSS selector
+const searchBox = await page.$('input[name="q"]');
+
+// Check if the element was found
+if (searchBox) {
+  console.log('Search box found');
+} else {
+  console.log('Search box not found');
+}
+
+The `$` method returns the first element that matches the CSS selector, or `null` if no element is found.
+
+#### Typing Text
+
+To type text into an input field:
+
+Code (javascript):
+// Type text into an input field
+await page.type('input[name="q"]', 'Monitoro Herd automation');
+console.log('Text entered into search box');
+
+The `type` method finds the element using the CSS selector and simulates typing the specified text.
+
+#### Clicking Elements
+
+To click a button or link:
+
+Code (javascript):
+// Click a button
+await page.click('input[type="submit"]');
+console.log('Search button clicked');
+
+By default, the `click` method just clicks the element. If you want to wait for navigation to complete after clicking:
+
+Code (javascript):
+// Click and wait for navigation
+await page.click('input[type="submit"]', { 
+  waitForNavigation: 'networkidle2' 
+});
+console.log('Search button clicked and navigation completed');
+
+The `networkidle2` option waits until there are no more than 2 network connections for at least 500ms.
+
+#### Waiting for Elements
+
+Sometimes you need to wait for elements to appear on the page:
+
+Code (javascript):
+// Wait for an element to appear
+await page.waitForSelector('#search');
+console.log('Search results have loaded');
+
+This is useful when dealing with dynamic content that loads after the initial page load.
+
+#### Search Engine Example
+
+Let's put these concepts together in a search engine example:
+
+Code (javascript):
+async function searchExample() {
+  const client = new HerdClient('your-token');
+  
+  try {
+    await client.initialize();
+    const devices = await client.listDevices();
+    const device = devices[0];
+    const page = await device.newPage();
+    
+    // Navigate to a search engine
+    console.log('Navigating to Google...');
+    await page.goto('https://www.google.com');
+    
+    // Type in the search box
+    console.log('Entering search query...');
+    await page.type('input[name="q"]', 'Monitoro Herd automation');
+    
+    // Submit the search form and wait for results
+    console.log('Submitting search...');
+    await page.click('input[type="submit"]', { 
+      waitForNavigation: 'networkidle2' 
+    });
+    
+    // Wait for results to load completely
+    console.log('Waiting for search results...');
+    await page.waitForSelector('#search');
+    
+    // Extract search result titles
+    console.log('Extracting search results...');
+    const searchResults = await page.extract({
+      titles: {
+        _$r: '#search .g h3',  // _$r extracts multiple elements
+        text: ':root'           // For each match, get its text
+      }
+    });
+    
+    // Display the search result titles
+    console.log('\nSearch Results:');
+    searchResults.titles.forEach((result, index) => {
+      console.log(`${index + 1}. ${result.text}`);
+    });
+    
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    await client.close();
+  }
+}
+
+## python
+
+## Python SDK
+
+### Setting Up Your Environment
+
+Before writing any code, you'll need to set up your Python environment and install the Herd SDK:
+
+1. Make sure you have Python 3.8+ installed
+2. Create a virtual environment (recommended)
+3. Install the SDK using pip:
+
+Code (bash):
+pip install monitoro-herd
+
+### Initializing the Client
+
+The first step in any automation is to initialize the Herd client with your API credentials:
+
+Code (python):
+# Import the Herd client
+from monitoro_herd import HerdClient
+
+# Initialize the client with your API URL and token
+client = HerdClient('your-token')
+
+# Always initialize the client before using it
+client.initialize()
+Note: **Note:** Replace the token with your actual Herd API token from your dashboard.
+
+### Connecting to a Device
+
+Next, connect to a device that will run your automation:
+
+Code (python):
+# Get available devices
+devices = await client.list_devices()
+
+# Connect to the first device
+device = devices[0]
+
+print(f"Connected to device: {device.id}")
+
+### Creating a Page and Navigating
+
+Now create a browser page and navigate to a website:
+
+Code (python):
+# Create a new page
+page = await device.new_page()
+
+# Navigate to a website
+await page.goto("https://example.com")
+
+print("Successfully navigated to example.com")
+
+### Extracting Basic Information
+
+Extract information from the page using CSS selectors:
+
+Code (python):
+# Extract basic information
+data = await page.extract({
+    "title": "h1",          # Main heading
+    "description": "p",     # First paragraph
+    "link": "a"             # First link text
+})
+
+# Display the extracted data
+print("Extracted data:")
+print(f"Title: {data['title']}")
+print(f"Description: {data['description']}")
+print(f"Link: {data['link']}")
+
+### Resource Management
+
+Always close resources when you're done:
+
+Code (python):
+# Close the page
+await page.close()
+
+# Close the client
+await client.close()
+
+### Complete Basic Example
+
+Here's a complete example putting all these concepts together:
+
+Code (python):
+import asyncio
+from monitoro_herd import HerdClient
+
+async def basic_extraction():
+    # Initialize the client
+    client = HerdClient("your-token")
+    
+    try:
+        # Initialize the connection
+        await client.initialize()
+        print("Client initialized successfully")
+        
+        # Get the first available device
+        devices = await client.list_devices()
+        if not devices:
+            raise Exception("No devices available")
+        device = devices[0]
+        print(f"Connected to device: {device.id}")
+        
+        # Create a new page
+        page = await device.new_page()
+        print("New page created")
+        
+        # Navigate to a website
+        print("Navigating to example.com...")
+        await page.goto("https://example.com")
+        print("Navigation complete")
+        
+        # Extract data using simple selectors
+        print("Extracting content...")
+        data = await page.extract({
+            "title": "h1",
+            "description": "p",
+            "link": "a"
+        })
+        
+        # Display the extracted data
+        print("\nExtracted data:")
+        print(f"Title: {data['title']}")
+        print(f"Description: {data['description']}")
+        print(f"Link: {data['link']}")
+        
+    except Exception as e:
+        print(f"Error during automation: {e}")
+    finally:
+        # Always close resources
+        print("Closing client connection...")
+        await client.close()
+        print("Client connection closed")
+
+# Run the async function
+asyncio.run(basic_extraction())
+
+### Working with Lists and Structured Data
+
+One of the most powerful features of Herd is the ability to extract structured data from lists of elements. This is perfect for scraping search results, product listings, or article collections.
+
+#### The `_$r` Selector
+
+To extract multiple elements that match a pattern, use the `_$r` (repeat) selector:
+
+Code (python):
+# Extract a list of items
+data = await page.extract({
+    "items": {
+        "_$r": ".item",       # Find all elements with class "item"
+        "name": ".item-name", # For each item, get the name
+        "price": ".price"     # For each item, get the price
+    }
+})
+
+# Access the extracted items
+for item in data["items"]:
+    print(f"Name: {item['name']}, Price: {item['price']}")
+
+The `_$r` selector tells Herd to find all elements matching the selector and extract the specified properties for each one.
+
+#### Extracting Attributes
+
+Sometimes you need to extract an attribute rather than the text content:
+
+Code (python):
+# Extract links and their href attributes
+data = await page.extract({
+    "links": {
+        "_$r": "a",              # Find all links
+        "text": ":root",         # Get the link text
+        "url": {
+            "_$": ":root",       # Reference the same element
+            "attribute": "href"  # Get its href attribute
+        }
+    }
+})
+
+# Display the links
+for link in data["links"]:
+    print(f"Link: {link['text']} -> {link['url']}")
+
+#### Hacker News Example
+
+Let's put these concepts together to scrape stories from Hacker News:
+
+Code (python):
+import asyncio
+from monitoro_herd import HerdClient
+
+async def scrape_hacker_news():
+    client = HerdClient("your-token")
+    
+    try:
+        await client.initialize()
+        devices = await client.list_devices()
+        device = devices[0]
+        page = await device.new_page()
+        
+        # Navigate to Hacker News
+        print("Navigating to Hacker News...")
+        await page.goto("https://news.ycombinator.com")
+        
+        # Extract stories and their metadata
+        print("Extracting stories...")
+        data = await page.extract({
+            # Extract the story elements
+            "stories": {
+                "_$r": ".athing",           # Each story row
+                "title": ".titleline > a",  # Story title
+                "site": ".sitestr",         # Source website
+                "link": {
+                    "_$": ".titleline > a", # Story link
+                    "attribute": "href"     # Get the URL
+                }
+            },
+            # Extract the metadata (points, author, etc.)
+            "metadata": {
+                "_$r": ".subline",          # Metadata rows
+                "points": ".score",         # Points count
+                "author": ".hnuser",        # Author username
+                "time": ".age"              # Submission time
+            }
+        })
+        
+        # Combine stories with their metadata
+        # (They're in separate lists but in the same order)
+        combined_stories = list(zip(data["stories"], data["metadata"]))
+        
+        # Display the first 3 stories
+        print(f"\nExtracted {len(combined_stories)} stories:")
+        for i, (story, meta) in enumerate(combined_stories[:3]):
+            print(f"\nStory {i+1}:")
+            print(f"Title: {story['title']}")
+            if "site" in story:
+                print(f"Site: {story['site']}")
+            print(f"Link: {story['link']}")
+            if "points" in meta:
+                print(f"Points: {meta['points']}")
+            if "author" in meta:
+                print(f"Author: {meta['author']}")
+            if "time" in meta:
+                print(f"Posted: {meta['time']}")
+    
+    finally:
+        await page.close()
+        await client.close()
+
+# Run the function
+asyncio.run(scrape_hacker_news())
+
+## Tips for Successful Automation
+
+1. **Start Simple**: Begin with basic extractions before moving to complex interactions
+2. **Use Appropriate Selectors**: Learn CSS selectors to target elements precisely
+3. **Handle Errors**: Always include try/catch (JavaScript) or try/except (Python) blocks
+4. **Close Resources**: Always close pages and clients when done to avoid resource leaks
+5. **Test Incrementally**: Build your automation step by step, testing each part
+6. **Add Delays When Needed**: For dynamic content, use `waitForSelector` or similar methods
+7. **Debug with Screenshots**: Take screenshots during automation to see what's happening
+
+## Next Steps
+
+Now that you've created your first automation, you can:
+
+- Explore more complex selectors and extraction patterns
+- Learn how to handle authentication and login flows
+- Set up scheduled automations for regular data collection
+- Integrate with your existing systems via APIs
+
+================================================================================
+
+Document: Connect Your Browser
+URL: https://herd.garden/docs/connect-your-browser
+
+# Connect your Browser to Herd
+
+After installing the Herd extension, you need to connect your browser to your account. This guide explains how to establish and manage connections between your browsers and the Herd platform. You can connect multiple browsers to the same account. Learn more about [managing multiple devices](/docs/device-management).
+
+## Device Registration
+
+Before you can connect a browser, you need to register the device in your Herd dashboard:
+
+1. Log in to your Herd account
+2. Navigate to the "Devices" section
+3. Click "Register New Device" 
+4. Enter a descriptive name for the device (e.g., "Work Laptop - Chrome")
+5. Choose appropriate tags if you're organizing devices into groups
+6. Click "Create Registration"
+7. Copy the registration code that appears (you'll need this to connect the browser)
+
+## Connecting Your Browser
+
+Once you have a registration code, follow these steps to connect your browser:
+
+1. Make sure the Herd extension is installed in your browser
+2. Click the Herd icon in your browser toolbar
+3. Select "Connect Browser" or "Register Device" from the menu
+4. Paste the registration code into the field
+5. Click "Connect"
+6. You should see a confirmation message indicating the browser is now connected
+
+## Managing Active Connections
+
+You can view and manage all your connected browsers from the Herd dashboard:
+
+### Viewing Connected Devices
+
+1. Log in to your Herd account
+2. Navigate to the "Devices" section
+3. The "Active Connections" tab shows all currently connected browsers
+4. Each connection displays information such as:
+   - Device name
+   - Browser type and version
+   - Connection status
+   - Last activity timestamp
+
+### Remote Actions
+
+Once a browser is connected, you can perform various remote actions:
+
+1. **Remote Control**: Initiate a remote control session to view and interact with the browser
+2. **Capture Screenshot**: Take a snapshot of the current browser window
+3. **Tab Management**: View, open, close, or navigate tabs
+4. **Bookmark Management**: View or modify the browser's bookmarks
+5. **History Access**: View browsing history (if permissions allow)
+
+## Connection Troubleshooting
+
+If you're having trouble connecting your browser to Herd, try these solutions:
+
+### Connection Failures
+
+* Verify that the registration code is correct and hasn't expired
+* Make sure the browser is online and has a stable internet connection
+* Check that the Herd extension is properly installed and enabled
+* Try restarting your browser
+
+### Dropped Connections
+
+* Check your network stability
+* Ensure the browser hasn't entered sleep mode
+* Verify that the extension hasn't been disabled
+* Check if a browser update has affected the extension
+
+### Reconnecting
+
+If a connection is lost, you can easily reconnect:
+
+1. Click the Herd icon in your browser toolbar
+2. If the connection status shows "Disconnected," click "Reconnect"
+3. If prompted, enter your registration code again
+4. Wait for the connection to be reestablished
+
+## Connection Security
+
+All connections between your browser and the Herd platform are secured with end-to-end encryption. Your data remains private and protected throughout the connection process.
+
+For more information on security features, see our [Security & Privacy](security-privacy) documentation.
+
+================================================================================
+
+Document: Data Extraction
+URL: https://herd.garden/docs/data-extraction
+
+# Data Extraction
+
+Welcome to Monitoro Herd's powerful data extraction system! This guide will walk you through how to extract structured data from web pages using our intuitive selector system and transformation pipelines.
+
+## Understanding Selectors
+
+Herd provides a flexible and powerful way to extract data from web pages using a declarative JSON-based selector system.
+
+### Basic Extraction
+
+## javascript
+
+The simplest form of extraction uses CSS selectors to target elements:
+
+Code (javascript):
+// Extract basic text content
+const data = await page.extract({
+  title: 'h1',           // Extracts the main heading
+  description: 'p',      // Extracts the first paragraph
+  link: 'a'              // Extracts the first link text
+});
+
+console.log(data.title);       // "Welcome to Our Website"
+console.log(data.description); // "This is our homepage."
+
+## python
+
+The simplest form of extraction uses CSS selectors to target elements:
+
+Code (python):
+# Extract basic text content
+data = await page.extract({
+    "title": "h1",           # Extracts the main heading
+    "description": "p",      # Extracts the first paragraph
+    "link": "a"              # Extracts the first link text
+})
+
+print(data["title"])       # "Welcome to Our Website"
+print(data["description"]) # "This is our homepage."
+
+### Advanced Selector Syntax
+
+## javascript
+
+For more complex extraction needs, use the expanded object syntax:
+
+Code (javascript):
+const data = await page.extract({
+  title: {
+    _$: 'h1',            // CSS selector
+    attribute: 'id'      // Extract the ID attribute instead of text
+  },
+  price: {
+    _$: '.price',        // Target price element
+    pipes: ['parseNumber'] // Apply transformation
+  }
+});
+
+## python
+
+For more complex extraction needs, use the expanded object syntax:
+
+Code (python):
+data = await page.extract({
+    "title": {
+        "_$": "h1",            # CSS selector
+        "attribute": "id"      # Extract the ID attribute instead of text
+    },
+    "price": {
+        "_$": ".price",        # Target price element
+        "pipes": ["parseNumber"] # Apply transformation
+    }
+})
+
+### Extracting Lists of Items
+
+## javascript
+
+To extract multiple elements that match a pattern, use the `_$r` (repeat) selector:
+
+Code (javascript):
+const data = await page.extract({
+  items: {
+    _$r: '.item',        // Find all elements with class "item"
+    title: 'h2',         // For each item, get the title
+    price: '.price',     // For each item, get the price
+    date: 'time'         // For each item, get the date
+  }
+});
+
+// Access the extracted items
+data.items.forEach(item => {
+  console.log(`${item.title}: ${item.price}, Posted: ${item.date}`);
+});
+
+## python
+
+To extract multiple elements that match a pattern, use the `_$r` (repeat) selector:
+
+Code (python):
+data = await page.extract({
+    "items": {
+        "_$r": ".item",        # Find all elements with class "item"
+        "title": "h2",         # For each item, get the title
+        "price": ".price",     # For each item, get the price
+        "date": "time"         # For each item, get the date
+    }
+})
+
+# Access the extracted items
+for item in data["items"]:
+    print(f"{item['title']}: {item['price']}, Posted: {item['date']}")
+
+### Nested Extraction
+
+## javascript
+
+You can nest selectors to extract hierarchical data:
+
+Code (javascript):
+const data = await page.extract({
+  product: {
+    name: '.product-name',
+    details: {
+      _$: '.product-details',
+      specs: {
+        _$r: '.spec-item',
+        label: '.spec-label',
+        value: '.spec-value'
+      }
+    }
+  }
+});
+
+## python
+
+You can nest selectors to extract hierarchical data:
+
+Code (python):
+data = await page.extract({
+    "product": {
+        "name": ".product-name",
+        "details": {
+            "_$": ".product-details",
+            "specs": {
+                "_$r": ".spec-item",
+                "label": ".spec-label",
+                "value": ".spec-value"
+            }
+        }
+    }
+})
+
+## Special Selectors
+
+Herd provides special selectors to handle various extraction scenarios:
+
+### Root Selector (`:root`)
+
+The `:root` selector refers to the current element in context:
+
+## javascript
+
+Code (javascript):
+const data = await page.extract({
+  items: {
+    _$r: '.item',
+    someElement: ':root',        // Extract text of the .item element itself
+    classes: {
+      _$: ':root',
+      attribute: 'class'  // Extract class attribute of the same element
+    }
+  }
+});
+
+## python
+
+Code (python):
+data = await page.extract({
+    "items": {
+        "_$r": ".item",
+        "someElement": ":root",        # Extract text of the .item element itself
+        "classes": {
+            "_$": ":root",
+            "attribute": "class"  # Extract class attribute of the same element
+        }
+    }
+})
+
+### Property Extraction
+
+You can extract JavaScript properties from elements:
+
+## javascript
+
+Code (javascript):
+const data = await page.extract({
+  dimensions: {
+    _$: '.box',
+    property: 'getBoundingClientRect'  // Get element dimensions
+  },
+  html: {
+    _$: '.content',
+    property: 'innerHTML'  // Get inner HTML
+  }
+});
+
+## python
+
+Code (python):
+data = await page.extract({
+    "dimensions": {
+        "_$": ".box",
+        "property": "getBoundingClientRect"  # Get element dimensions
+    },
+    "html": {
+        "_$": ".content",
+        "property": "innerHTML"  # Get inner HTML
+    }
+})
+
+## Transformation Pipelines
+
+Herd includes powerful transformation pipelines to process extracted data:
+
+### Available Transformations
+
+| Pipe | Description | Example Input | Example Output |
+|------|-------------|--------------|----------------|
+| `trim` | Removes whitespace from start/end | `"  Hello  "` | `"Hello"` |
+| `toLowerCase` | Converts text to lowercase | `"HELLO"` | `"hello"` |
+| `toUpperCase` | Converts text to uppercase | `"hello"` | `"HELLO"` |
+| `parseNumber` | Extracts numbers from text | `"$1,2K.45"` | `1200.45` |
+| `parseDate` | Converts text to date | `"2024-01-15"` | `"2024-01-15T00:00:00.000Z"` |
+| `parseDateTime` | Converts text to datetime | `"2024-01-15T12:00:00Z"` | `"2024-01-15T12:00:00.000Z"` |
+
+### Using Transformations
+
+Apply transformations using the `pipes` property:
+
+## javascript
+
+Code (javascript):
+const data = await page.extract({
+  price: {
+    _$: '.price',
+    pipes: ['parseNumber']  // Convert "$1,234.56" to 1234.56
+  },
+  title: {
+    _$: 'h1',
+    pipes: ['trim', 'toLowerCase']  // Apply multiple transformations
+  }
+});
+
+## python
+
+Code (python):
+data = await page.extract({
+    "price": {
+        "_$": ".price",
+        "pipes": ["parseNumber"]  # Convert "$1,234.56" to 1234.56
+    },
+    "title": {
+        "_$": "h1",
+        "pipes": ["trim", "toLowerCase"]  # Apply multiple transformations
+    }
+})
+
+### Handling Currency and Large Numbers
+
+The `parseNumber` transformation handles various formats:
+
+## javascript
+
+Code (javascript):
+const data = await page.extract({
+  price1: {
+    _$: '.price-1',  // Contains "$1,234.56"
+    pipes: ['parseNumber']  // Result: 1234.56
+  },
+  price2: {
+    _$: '.price-2',  // Contains "$1.5M"
+    pipes: ['parseNumber']  // Result: 1500000
+  },
+  price3: {
+    _$: '.price-3',  // Contains "1.5T€"
+    pipes: ['parseNumber']  // Result: 1500000000000
+  }
+});
+
+## python
+
+Code (python):
+data = await page.extract({
+    "price1": {
+        "_$": ".price-1",  # Contains "$1,234.56"
+        "pipes": ["parseNumber"]  # Result: 1234.56
+    },
+    "price2": {
+        "_$": ".price-2",  # Contains "$1.5M"
+        "pipes": ["parseNumber"]  # Result: 1500000
+    },
+    "price3": {
+        "_$": ".price-3",  # Contains "1.5T€"
+        "pipes": ["parseNumber"]  # Result: 1500000000000
+    }
+})
+
+## Real-World Examples
+
+Let's look at some practical examples of data extraction:
+
+### E-commerce Product Listing
+
+Extract products from a search results page:
+
+## javascript
+
+Code (javascript):
+const searchResults = await page.extract({
+  products: {
+    _$r: '[data-component-type="s-search-result"]',
+    title: {
+      _$: 'h2 .a-link-normal',
+      pipes: ['trim']
+    },
+    price: {
+      _$: '.a-price .a-offscreen',
+      pipes: ['parseNumber']
+    },
+    rating: {
+      _$: '.a-icon-star-small .a-icon-alt',
+      pipes: ['trim']
+    },
+    reviews: {
+      _$: '.a-size-base.s-underline-text',
+      pipes: ['trim']
+    }
+  }
+});
+
+## python
+
+Code (python):
+searchResults = await page.extract({
+    "products": {
+        "_$r": '[data-component-type="s-search-result"]',
+        "title": {
+            "_$": "h2 .a-link-normal",
+            "pipes": ["trim"]
+        },
+        "price": {
+            "_$": ".a-price .a-offscreen",
+            "pipes": ["parseNumber"]
+        },
+        "rating": {
+            "_$": ".a-icon-star-small .a-icon-alt",
+            "pipes": ["trim"]
+        },
+        "reviews": {
+            "_$": ".a-size-base.s-underline-text",
+            "pipes": ["trim"]
+        }
+    }
+})
+
+### News Article List
+
+Extract articles from a news site:
+
+## javascript
+
+Code (javascript):
+const articles = await page.extract({
+  items: {
+    _$r: '.item',
+    title: {
+      _$: 'h2',
+      pipes: ['trim', 'toLowerCase']
+    },
+    price: {
+      _$: '.price',
+      pipes: ['parseNumber']
+    },
+    date: {
+      _$: 'time',
+      pipes: ['parseDate']
+    }
+  }
+});
+
+## python
+
+Code (python):
+articles = await page.extract({
+    "items": {
+        "_$r": ".item",
+        "title": {
+            "_$": "h2",
+            "pipes": ["trim", "toLowerCase"]
+        },
+        "price": {
+            "_$": ".price",
+            "pipes": ["parseNumber"]
+        },
+        "date": {
+            "_$": "time",
+            "pipes": ["parseDate"]
+        }
+    }
+})
+
+## Advanced Techniques
+
+### Handling Dynamic Content
+
+For dynamic content that loads after the page is ready:
+
+## javascript
+
+Code (javascript):
+// Wait for dynamic content to load
+await page.waitForElement('#dynamic span');
+
+// Then extract the content
+const data = await page.extract({
+  content: '#dynamic span'
+});
+
+## python
+
+Code (python):
+# Wait for dynamic content to load
+await page.waitForElement('#dynamic span')
+
+# Then extract the content
+data = await page.extract({
+    "content": "#dynamic span"
+})
+
+### Extracting Page Metadata
+
+Extract information about the page itself:
+
+## javascript
+
+Code (javascript):
+const pageInfo = await page.extract({
+  title: 'title',
+  metaDescription: 'meta[name="description"]',
+  canonicalUrl: {
+    _$: 'link[rel="canonical"]',
+    attribute: 'href'
+  }
+});
+
+## python
+
+Code (python):
+pageInfo = await page.extract({
+    "title": "title",
+    "metaDescription": 'meta[name="description"]',
+    "canonicalUrl": {
+        "_$": 'link[rel="canonical"]',
+        "attribute": "href"
+    }
+})
+
+## Tips for Effective Extraction
+
+1. **Use Specific Selectors**: The more specific your CSS selectors, the more reliable your extraction
+2. **Test Incrementally**: Build your extraction schema step by step, testing each part
+3. **Handle Missing Data**: Always account for elements that might not exist on the page
+4. **Apply Appropriate Transformations**: Use pipes to clean and format data as needed
+5. **Combine with Interactions**: For complex sites, interact with the page before extraction
+
+## Next Steps
+
+Now that you understand Herd's data extraction system, you can:
+
+- Create complex extraction schemas for any website
+- Transform raw data into structured, usable formats
+- Build powerful automations that collect and process web data
+
+================================================================================
+
+Document: Device Management
+URL: https://herd.garden/docs/device-management
+
+# Device Management
+
+Managing your devices in Herd is simple and intuitive. This guide will walk you through the various actions you can perform on the Devices page.
+
+## Understanding the Devices Page
+
+The Devices page is your central hub for managing all browsers and headless devices connected to your Herd account. Here you can:
+
+- View all your connected devices
+- Register new devices
+- Access device registration URLs
+- Delete devices you no longer need
+
+## Viewing Your Devices
+
+When you visit the Devices page, you'll see a list of all your registered devices. For each device, you can view:
+
+- Device name
+- Status (active or inactive)
+- Device ID
+- Device type (browser or headless)
+- Last active timestamp
+
+Devices with an active status will display a pulsing green indicator, while inactive devices will show a gray status indicator.
+
+## Registering a New Device
+
+To add a new device to your Herd account:
+
+1. Click the **Register New Device** button at the top of the Devices page
+2. Enter a name for your device (or use the suggested name)
+3. Select the device type:
+   - **Browser**: For devices with a visual interface such as your own browser
+   - **Headless**: For devices running in headless mode (for docker and kubernetes deployments)
+4. Click **Register Device**
+5. A registration URL will be generated - use this URL to connect your device to Herd
+
+The registration URL will be stored locally in your browser, allowing you to access it again later if needed.
+
+## Accessing Registration URLs
+
+If you need to access a previously generated registration URL:
+
+1. Find the device in your devices list
+2. Look for the "Registration URL available" indicator
+3. Click the **View URL** button
+4. The registration URL will be displayed in a modal window
+
+This is particularly useful if you need to reconnect a device or share the registration link with team members.
+
+## Deleting a Device
+
+To remove a device from your Herd account:
+
+1. Find the device you want to delete in your devices list
+2. Click the **Delete** button for that device
+3. Confirm the deletion in the confirmation dialog
+
+Please note that deleting a device is permanent and cannot be undone. The device will be removed from your account, and any stored registration URLs for that device will be cleared from your local storage.
+
+## Device Status
+
+Devices in Herd can have different statuses:
+
+- **Active**: The device is currently connected and ready to use
+- **Inactive**: The device is registered but not currently connected
+
+An active device can be used immediately for automation tasks, while inactive devices need to be reconnected before use.
+
+## Best Practices
+
+Here are some tips for effective device management:
+
+- Use descriptive names for your devices to easily identify them
+- Regularly clean up unused devices to keep your dashboard organized
+- Store registration URLs securely if you plan to share them with team members
+- Check the "Last Active" timestamp to identify devices that haven't been used recently
+
+By following these guidelines, you'll be able to maintain an organized and efficient device management system in Herd.
+
+================================================================================
+
+Document: Getting Started
+URL: https://herd.garden/docs/getting-started
+
+# Getting Started with Herd
+
+This guide will help you get up and running with Herd quickly to run your first trail.
+
+## What is Herd?
+
+Herd connects AI Agents to websites using your own browser credentials. It enables you to:
+
+- **Run Trails** - pre-built automations for specific websites and tasks
+- **Extract data and interact with websites** using your logged-in browser sessions
+- **Interact with web pages** through AI Agents like OpenAI's ChatGPT and Anthropic's Claude
+
+## Quick Start
+
+### 1. Install the Browser Extension
+
+     Chrome
+
+     Edge
+
+     Brave
+
+### 2. Register Your Browser
+
+After installing the extension:
+
+1. Click the Herd icon in your browser toolbar
+2. Sign in with your Herd account (or create one)
+3. Name your device and register it
+
+![Browser Registration](https://herd.garden/register-device.png)
+
+### 3. Install the Herd SDK
+
+Install the Herd SDK using npm:
+
+## npm
+
+Code (bash):
+npm install -g @monitoro/herd
+
+## yarn
+
+Code (bash):
+yarn global add @monitoro/herd
+
+## pnpm
+
+Code (bash):
+pnpm add -g @monitoro/herd
+
+### 4. Run Your First Trail
+
+The browser trail provides core functionality for navigating and extracting data from any website. Run this command to test it out:
+
+Code (bash):
+herd trail run @herd/browser -a markdown -p '{"url": "https://example.com"}'
+
+That's it! Add it to your MCP config to use it in your AI agents like in this example. Note, you can add as many trails as you want to your MCP config:
+
+Code (json):
+{
+    "mcpServers": {
+        "browser": {
+            "command": "herd",
+            "args": [
+                "trail",
+                "server",
+                "@herd/browser"
+            ]
+        }
+    }
+}
+
+## For Developers
+
+You can also automate your browser with the Herd SDK. Connect to it with your AI agents or code:
+
+## javascript
+
+Code (javascript):
+// Connect to your Herd device
+const client = new HerdClient('your-token');
+await client.initialize();
+const devices = await client.listDevices();
+const device = devices[0];
+
+// Create a new page and navigate
+const page = await device.newPage();
+await page.goto("https://example.com");
+
+// Extract data using simple selectors
+const data = await page.extract({
+  title: "h1",
+  description: "p",
+  link: "a"
+});
+
+console.log("Extracted data:", data);
+
+## python
+
+Code (python):
+from monitoro_herd import HerdClient
+
+# Connect to your Herd device
+client = HerdClient("your-token")
+await client.initialize()
+devices = await client.list_devices()
+device = devices[0]
+
+# Create a new page and navigate
+page = await device.new_page()
+await page.goto("https://example.com")
+
+# Extract data using simple selectors
+data = await page.extract({
+  "title": "h1",
+  "description": "p",
+  "link": "a"
+})
+
+print("Extracted data:", data)
+
+## What's Next?
+
+Now that you've run your first trail, you can:
+
+- [Explore available trails](/trails) - Browse pre-built trails for various websites
+- [Learn about data extraction](/docs/data-extraction) - Extract structured data from web pages
+- [Create your own trail](/docs/trails-automations) - Build and share your own custom trails
+
+## Need Help?
+
+If you encounter any issues during setup:
+
+- Make sure your browser extension is correctly installed and you're signed in
+- Check that your device is registered in the [device dashboard](/devices)
+- Visit our [troubleshooting guide](/docs/troubleshooting) for common solutions
+
+.browser-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  background-color: #1f2937;
+  color: white;
+  border-radius: 0.375rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-btn:hover {
+  background-color: #374151;
+}
+
+================================================================================
+
+Document: Installation
+URL: https://herd.garden/docs/installation
+
+# Installing the Herd Extension
+
+The Herd extension is the client component that allows your browser to be remotely managed. This guide provides detailed instructions for installing the extension on different browsers.
+
+## Chrome Installation
+
+The Herd extension is primarily designed for Google Chrome and Chromium-based browsers. Follow these steps to install:
+
+### Standard Installation
+
+1. Download the Herd extension from your dashboard by clicking "Download Herd" in the navigation bar
+2. Open Chrome and navigate to `chrome://extensions`
+3. Enable "Developer mode" by toggling the switch in the top-right corner
+4. Drag and drop the downloaded `herd-latest.zip` file onto the extensions page
+5. Chrome will automatically install the extension
+
+### Verifying Installation
+
+After installation, you should see the Herd extension in your extensions list. To verify it's working correctly:
+
+1. Look for the Herd icon in your browser toolbar
+2. If it's not visible, click the puzzle piece icon to see all extensions and pin the Herd extension
+3. The icon should be colored, indicating it's ready to be connected
+
+## Installation on Other Browsers
+
+While Herd works best with Chrome, it's also compatible with other Chromium-based browsers:
+
+### Microsoft Edge
+
+1. Download the Herd extension zip file
+2. Open Edge and navigate to `edge://extensions`
+3. Enable "Developer mode" using the toggle in the left sidebar
+4. Drag and drop the `herd-latest.zip` file onto the extensions page
+5. Follow the prompts to complete installation
+
+### Brave Browser
+
+1. Download the Herd extension zip file
+2. Open Brave and navigate to `brave://extensions`
+3. Enable "Developer mode" in the top-right corner
+4. Drag and drop the `herd-latest.zip` file onto the extensions page
+5. Confirm the installation when prompted
+
+## Enterprise Deployment
+
+For enterprise environments, you may want to deploy the Herd extension to multiple browsers. Here are some options:
+
+### Chrome Enterprise Policy
+
+You can use Chrome Enterprise policies to automatically install and configure the Herd extension:
+
+1. Extract the Herd extension zip file to a network location accessible to all users
+2. Configure a policy to force-install extensions from a local path
+3. Set up the appropriate extension settings via policy
+
+### Manual Distribution
+
+For smaller teams, you can manually distribute the extension:
+
+1. Download the extension once
+2. Share the zip file with team members
+3. Provide them with instructions for installation
+4. Create device registrations for each team member in your Herd dashboard
+
+## Troubleshooting Installation Issues
+
+If you encounter issues during installation, try these solutions:
+
+### Extension Won't Install
+
+* Make sure Developer mode is enabled in your browser's extensions page
+* Check that you're using a supported browser (Chrome, Edge, Brave)
+* Verify that the zip file wasn't corrupted during download (try re-downloading)
+* Make sure you're dragging the zip file itself, not an extracted folder
+
+### Extension Installed But Not Working
+
+* Check if the extension is enabled in your browser
+* Try restarting your browser
+* Verify that you've completed the device registration process
+* Check your browser's console for any error messages
+
+For more troubleshooting tips, see our [Troubleshooting](troubleshooting) guide.
+
+================================================================================
+
+Document: Reference Device
+URL: https://herd.garden/docs/reference-device
+
+# Device
+
+The Device class represents a connected browser or device in the Herd platform. It provides methods for managing pages, handling events, and controlling the device's lifecycle. 
+
+Each Device instance gives you full control over a browser, allowing you to create and manage pages (tabs), handle various browser events, and automate browser interactions.
+
+## javascript
+
+You can obtain a Device instance either by calling `client.listDevices()` to get all available devices, or `client.getDevice(deviceId)` to get a specific device by its ID.
+
+## Properties
+
+### deviceId
+The unique identifier for the device in the Herd platform. This is an internal ID that uniquely identifies the device in our system and is automatically generated when the device is registered.
+
+### type
+The type of device, which indicates its capabilities and behavior. Currently supported types include:
+- 'browser': A browser instance that can be automated
+- 'headless': A headless browser instance running on docker or kubernetes
+
+### name
+An optional display name for the device. This can be used to give the device a human-readable label for easier identification in your application or the Herd dashboard.
+
+### status
+The current status of the device. Possible values include:
+- 'online': The device is connected and ready to receive commands
+- 'offline': The device is not currently connected
+- 'busy': The device is processing a command
+- 'error': The device encountered an error
+
+### lastActive
+A timestamp indicating when the device was last active. This is automatically updated whenever the device performs an action or responds to a command. The value is a JavaScript Date object.
+
+## Methods
+
+### newPage()
+Creates a new page (tab) in the device.
+
+Code (javascript):
+// Create a new page
+const page = await device.newPage();
+console.log('New page created:', page.id);
+
+### listPages()
+Returns a list of all pages (tabs) currently open in the device.
+
+Code (javascript):
+// List all open pages
+const pages = await device.listPages();
+pages.forEach(page => {
+    console.log(`Page ${page.id}: ${page.url}`);
+});
+
+### getPage(pageId)
+Gets a specific page by ID.
+
+Code (javascript):
+// Get a specific page
+const page = await device.getPage(123);
+console.log('Current URL:', page.url);
+
+### onEvent(callback)
+Subscribes to all events from the device. Returns an unsubscribe function.
+
+Code (javascript):
+// Subscribe to all device events
+const unsubscribe = device.onEvent((event) => {
+    console.log('Device event:', event);
+});
+
+// Later: stop listening to events
+unsubscribe();
+
+### on(eventName, callback)
+Subscribes to a specific event from the device. Returns the device instance for chaining.
+
+Code (javascript):
+// Subscribe to specific events
+device.on('navigation', (event) => {
+    console.log('Navigation occurred:', event);
+}).on('console', (event) => {
+    console.log('Console message:', event);
+});
+
+### close()
+Closes the device and cleans up resources. This will close all pages and remove event listeners.
+
+Code (javascript):
+// Close the device and cleanup
+await device.close();
+
+## Example Usage
+
+Here's a complete example showing how to use the Device class:
+
+Code (javascript):
+import { HerdClient } from '@monitoro/herd';
+
+async function main() {
+    const client = new HerdClient({
+        token: 'your-auth-token'
+    });
+    
+    await client.initialize();
+    
+    // Get a device
+    const device = await client.getDevice('my-browser');
+    
+    // Create a new page and navigate
+    const page = await device.newPage();
+    await page.goto('https://example.com');
+    
+    // Listen for navigation events
+    device.on('navigation', (event) => {
+        console.log('Page navigated:', event.url);
+    });
+    
+    // List all pages
+    const pages = await device.listPages();
+    console.log(`Device has ${pages.length} pages open`);
+    
+    // Cleanup when done
+    await device.close();
+    await client.close();
+}
+
+main().catch(console.error);
+
+## python
+
+You can obtain a Device instance either by calling `client.list_devices()` to get all available devices, or `client.get_device(device_id)` to get a specific device by its ID.
+
+## Properties
+
+### device_id
+The unique identifier for the device in the Herd platform. This is an internal ID that uniquely identifies the device in our system and is automatically generated when the device is registered.
+
+### type
+The type of device, which indicates its capabilities and behavior. Currently supported types include:
+- 'browser': A browser instance that can be automated
+- 'headless': A headless browser instance running on docker or kubernetes
+
+### name
+An optional display name for the device. This can be used to give the device a human-readable label for easier identification in your application or the Herd dashboard.
+
+### status
+The current status of the device. Possible values include:
+- 'online': The device is connected and ready to receive commands
+- 'offline': The device is not currently connected
+- 'busy': The device is processing a command
+- 'error': The device encountered an error
+
+### last_active
+A timestamp indicating when the device was last active. This is automatically updated whenever the device performs an action or responds to a command. The value is a Python datetime object.
+
+## Methods
+
+### new_page()
+Creates a new page (tab) in the device.
+
+Code (python):
+# Create a new page
+page = await device.new_page()
+print(f"New page created: {page.id}")
+
+### list_pages()
+Returns a list of all pages (tabs) currently open in the device.
+
+Code (python):
+# List all open pages
+pages = await device.list_pages()
+for page in pages:
+    print(f"Page {page.id}: {page.url}")
+
+### get_page(page_id)
+Gets a specific page by ID.
+
+Code (python):
+# Get a specific page
+page = await device.get_page(123)
+print(f"Current URL: {page.url}")
+
+### on_event(callback)
+Subscribes to all events from the device. Returns an unsubscribe function.
+
+Code (python):
+# Subscribe to all device events
+def handle_event(event):
+    print("Device event:", event)
+
+unsubscribe = device.on_event(handle_event)
+
+# Later: stop listening to events
+unsubscribe()
+
+### on(event_name, callback)
+Subscribes to a specific event from the device. Returns the device instance for chaining.
+
+Code (python):
+# Subscribe to specific events
+def handle_navigation(event):
+    print("Navigation occurred:", event)
+
+def handle_console(event):
+    print("Console message:", event)
+
+device.on("navigation", handle_navigation)\
+      .on("console", handle_console)
+
+### close()
+Closes the device and cleans up resources. This will close all pages and remove event listeners.
+
+Code (python):
+# Close the device and cleanup
+await device.close()
+
+## Example Usage
+
+Here's a complete example showing how to use the Device class:
+
+Code (python):
+from monitoro_herd import HerdClient
+
+async def main():
+    client = HerdClient(
+        token="your-auth-token"
+    )
+    
+    await client.initialize()
+    
+    # Get a device
+    device = await client.get_device("my-browser")
+    
+    # Create a new page and navigate
+    page = await device.new_page()
+    await page.goto("https://example.com")
+    
+    # Listen for navigation events
+    def handle_navigation(event):
+        print("Page navigated:", event["url"])
+    
+    device.on("navigation", handle_navigation)
+    
+    # List all pages
+    pages = await device.list_pages()
+    print(f"Device has {len(pages)} pages open")
+    
+    # Cleanup when done
+    await device.close()
+    await client.close()
+
+# Run the async function
+import asyncio
+asyncio.run(main())
+
+================================================================================
+
+Document: Reference Herd Client
+URL: https://herd.garden/docs/reference-herd-client
+
+# HerdClient
+
+The HerdClient is the main entry point for interacting with the Herd platform. It provides methods for managing devices, pages, and executing browser automation commands.
+
+## javascript
+
+## Installation
+
+Code (bash):
+npm install @monitoro/herd
+# or
+yarn add @monitoro/herd
+
+## Usage
+
+Code (javascript):
+import { HerdClient } from '@monitoro/herd';
+
+// Create a client instance
+const client = new HerdClient({
+    token: 'your-auth-token' // Get your token at herd.garden
+});
+
+// Initialize the client
+await client.initialize();
+
+## Methods
+
+### initialize()
+Initializes the client by establishing connections to the Herd platform. Must be called before using other methods.
+
+Code (javascript):
+await client.initialize();
+
+### listDevices()
+Returns a list of all available devices.
+
+Code (javascript):
+const devices = await client.listDevices();
+console.log('Available devices:', devices);
+
+### getDevice(deviceId)
+Gets a specific device by ID.
+
+Code (javascript):
+const device = await client.getDevice('device-123');
+
+### registerDevice(options)
+Registers a new device with the platform.
+
+Code (javascript):
+const device = await client.registerDevice({
+    deviceId: 'my-device',
+    type: 'browser',
+    name: 'My Test Browser'
+});
+
+### sendCommand(deviceId, command, params)
+Sends a command to a specific device. This is a low-level method that allows you to send arbitrary commands to a device and is not recommended for most use cases.
+
+Code (javascript):
+const result = await client.sendCommand('device-123', 'Page.click', {
+    selector: '#submit-button'
+});
+
+### subscribeToDeviceEvents(deviceId, callback)
+Subscribes to all events from a device.
+
+Code (javascript):
+const unsubscribe = client.subscribeToDeviceEvents('device-123', (event) => {
+    console.log('Device event:', event);
+});
+
+// Later: unsubscribe to stop receiving events
+unsubscribe();
+
+### subscribeToDeviceEvent(deviceId, eventName, callback) 
+Subscribes to a specific event from a device.
+
+Code (javascript):
+const unsubscribe = client.subscribeToDeviceEvent('device-123', 'navigation', (event) => {
+    console.log('Navigation event:', event);
+});
+
+### close()
+Closes the client and cleans up resources.
+
+Code (javascript):
+await client.close();
+
+## python
+
+## Installation
+
+Code (bash):
+pip install monitoro-herd
+
+## Usage
+
+Code (python):
+from monitoro_herd import HerdClient
+
+# Create a client instance
+client = HerdClient(
+    token='your-auth-token'  # Get your token at herd.garden
+)
+
+# Initialize the client
+await client.initialize()
+
+## Methods
+
+### initialize()
+Initializes the client by establishing connections to the Herd platform. Must be called before using other methods.
+
+Code (python):
+await client.initialize()
+
+### list_devices()
+Returns a list of all available devices.
+
+Code (python):
+devices = await client.list_devices()
+print('Available devices:', devices)
+
+### get_device(device_id)
+Gets a specific device by ID.
+
+Code (python):
+device = await client.get_device('device-123')
+
+### register_device(device_id, device_type, name)
+Registers a new device with the platform.
+
+Code (python):
+device = await client.register_device(
+    device_id='my-device',
+    device_type='browser',
+    name='My Test Browser'
+)
+
+### send_command(device_id, command, payload)
+Sends a command to a specific device.
+
+Code (python):
+result = await client.send_command(
+    'device-123',
+    'Page.click',
+    {'selector': '#submit-button'}
+)
+
+### subscribe_to_device_events(device_id, callback)
+Subscribes to all events from a device.
+
+Code (python):
+def handle_event(event):
+    print('Device event:', event)
+
+unsubscribe = client.subscribe_to_device_events('device-123', handle_event)
+
+# Later: unsubscribe to stop receiving events
+unsubscribe()
+
+### subscribe_to_device_event(device_id, event_name, callback)
+Subscribes to a specific event from a device.
+
+Code (python):
+def handle_navigation(event):
+    print('Navigation event:', event)
+
+unsubscribe = client.subscribe_to_device_event('device-123', 'navigation', handle_navigation)
+
+### close()
+Closes the client and cleans up resources.
+
+Code (python):
+await client.close()
+
+================================================================================
+
+Document: Reference Mcp Server
+URL: https://herd.garden/docs/reference-mcp-server
+
+# MCP Server
+
+Herd's MCP Server allows you to securely expose web applications to Large Language Models (LLMs) through local browser automation. Using the Model Context Protocol (MCP), you can create a secure bridge between AI models and your favorite websites without sharing credentials or running browsers in the cloud.
+
+## Key Benefits
+
+- **Secure Access**: Your browser runs locally, keeping your credentials and cookies secure
+- **Privacy First**: No need to share sensitive data or tokens with third-party services
+- **Native Experience**: Interact with web apps through your actual browser, maintaining all your preferences and login state
+- **Universal Compatibility**: Works with any web application without needing API access
+- **Custom Tools**: Create tailored tools that encapsulate complex web interactions
+
+## javascript
+
+## Installation
+
+Code (bash):
+npm install @monitoro/herd
+
+## Basic Setup
+
+Here's how to create an MCP server that exposes web application functionality:
+
+Code (javascript):
+import { HerdMcpServer } from '@monitoro/herd';
+
+const server = new HerdMcpServer({
+    info: {
+        name: "gmail-assistant",
+        version: "1.0.0",
+        description: "Gmail automation tools for LLMs"
+    },
+    transport: {
+        type: "sse",
+        port: 3000
+    },
+    herd: {
+        token: "your-herd-token"  // Get from herd.garden
+    }
+});
+
+// Start the server
+await server.start();
+
+## Creating Web App Tools
+
+Tools encapsulate web application functionality for LLMs. Here are some examples:
+
+Code (javascript):
+// Gmail: Compose new email
+server.tool({
+    name: "composeEmail",
+    description: "Compose and send a new email",
+    schema: {
+        to: z.string().email(),
+        subject: z.string(),
+        body: z.string()
+    }
+}, async ({ to, subject, body }, devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    
+    // Navigate to Gmail compose
+    await page.goto('https://mail.google.com/mail/u/0/#compose');
+    
+    // Fill out the email form
+    await page.type('input[aria-label="To"]', to);
+    await page.type('input[aria-label="Subject"]', subject);
+    await page.type('div[aria-label="Message Body"]', body);
+    
+    // Send the email
+    await page.click('div[aria-label="Send"]');
+    
+    return { success: true };
+});
+
+// Twitter: Post a tweet
+server.tool({
+    name: "postTweet",
+    description: "Post a new tweet",
+    schema: {
+        content: z.string().max(280)
+    }
+}, async ({ content }, devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    
+    await page.goto('https://twitter.com/compose/tweet');
+    await page.type('div[aria-label="Tweet text"]', content);
+    await page.click('div[data-testid="tweetButton"]');
+    
+    return { success: true };
+});
+
+## Creating Web App Resources
+
+Resources provide structured data from web applications:
+
+Code (javascript):
+// Gmail: Unread emails
+server.resource({
+    name: "unreadEmails",
+    uriOrTemplate: "gmail/unread",
+}, async (devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    
+    await page.goto('https://mail.google.com/mail/u/0/#inbox');
+    
+    // Extract unread email information
+    const emails = await page.evaluate(() => {
+        return Array.from(document.querySelectorAll('tr.unread'))
+            .map(row => ({
+                sender: row.querySelector('.sender').textContent,
+                subject: row.querySelector('.subject').textContent,
+                date: row.querySelector('.date').textContent
+            }));
+    });
+    
+    return { emails };
+});
+
+// LinkedIn: Profile Information
+server.resource({
+    name: "linkedinProfile",
+    uriOrTemplate: "linkedin/profile/{username}",
+}, async ({ username }, devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    
+    await page.goto(`https://www.linkedin.com/in/${username}`);
+    
+    // Extract profile information
+    return await page.extract({
+        name: 'h1',
+        headline: '.headline',
+        about: '.about-section p',
+        experience: '.experience-section li'
+    });
+});
+
+## Complete Example: Twitter Assistant
+
+Here's a complete example showing how to create an MCP server that provides Twitter automation capabilities to LLMs:
+
+Code (javascript):
+import { HerdMcpServer } from '@monitoro/herd';
+import { z } from 'zod';
+
+const server = new HerdMcpServer({
+    info: {
+        name: "twitter-assistant",
+        version: "1.0.0",
+        description: "Twitter automation for LLMs"
+    },
+    transport: {
+        type: "sse",
+        port: 3000
+    },
+    herd: {
+        token: process.env.HERD_TOKEN
+    }
+});
+
+// Post a tweet
+server.tool({
+    name: "postTweet",
+    description: "Post a new tweet",
+    schema: {
+        content: z.string().max(280)
+    }
+}, async ({ content }, devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    await page.goto('https://twitter.com/compose/tweet');
+    await page.type('div[aria-label="Tweet text"]', content);
+    await page.click('div[data-testid="tweetButton"]');
+    return { success: true };
+});
+
+// Get timeline
+server.resource({
+    name: "timeline",
+    uriOrTemplate: "twitter/timeline",
+}, async (devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    await page.goto('https://twitter.com/home');
+    
+    return await page.extract({
+        tweets: {
+            _$r: 'article[data-testid="tweet"]',
+            author: '[data-testid="User-Name"]',
+            content: '[data-testid="tweetText"]',
+            stats: {
+                likes: '[data-testid="like"]',
+                retweets: '[data-testid="retweet"]'
+            }
+        }
+    });
+});
+
+// Like a tweet
+server.tool({
+    name: "likeTweet",
+    description: "Like a tweet by its URL",
+    schema: {
+        tweetUrl: z.string().url()
+    }
+}, async ({ tweetUrl }, devices) => {
+    const device = devices[0];
+    const page = await device.newPage();
+    await page.goto(tweetUrl);
+    await page.click('div[data-testid="like"]');
+    return { success: true };
+});
+
+// Start the server
+server.start().then(() => {
+    console.log('Twitter Assistant ready!');
+}).catch(console.error);
+
+This setup allows LLMs to:
+1. Post tweets
+2. Read the timeline
+3. Like tweets
+4. All through your local browser, maintaining your security and privacy
+
+## python
+
+The MCP Server implementation is currently only available in JavaScript. Python support is coming soon!
+
+In the meantime, you can:
+1. Use the JavaScript implementation to create your MCP server
+2. Connect to it from Python using standard MCP client libraries
+3. Use the Python Herd SDK for direct browser automation without MCP
+
+Example of direct web automation with Python:
+
+Code (python):
+from monitoro_herd import HerdClient
+
+async def main():
+    client = HerdClient(token="your-token")
+    await client.initialize()
+    
+    device = await client.get_device("my-browser")
+    page = await device.new_page()
+    
+    # Navigate to Twitter
+    await page.goto("https://twitter.com")
+    
+    # Extract timeline content
+    content = await page.extract({
+        "tweets": {
+            "_$r": "article[data-testid='tweet']",
+            "author": "[data-testid='User-Name']",
+            "content": "[data-testid='tweetText']"
+        }
+    })
+    print("Timeline:", content)
+
+# Run the async function
+import asyncio
+asyncio.run(main())
+
+Stay tuned for native Python MCP support!
+
+Read more about Model Context Protocol in the MCP official documentation.
+
+================================================================================
+
+Document: Reference Node
+URL: https://herd.garden/docs/reference-node
+
+# Node
+
+The Node class provides a DOM-like API for interacting with elements on a page. It allows you to inspect and manipulate elements using familiar DOM methods and properties.
+
+## javascript
+
+You can obtain Node instances through Page query methods:
+- `page.querySelector(selector)` - Find first matching element
+- `page.querySelectorAll(selector)` - Find all matching elements
+- `node.querySelector(selector)` - Find first matching element within this node
+- `node.querySelectorAll(selector)` - Find all matching elements within this node
+
+## Properties
+
+### nodeType
+The type of node (1 for Element, 3 for Text).
+
+### nodeName
+The name of the node (tag name for elements, '#text' for text nodes).
+
+### nodeValue
+The text content for text nodes, null for elements.
+
+### tagName
+The tag name of the element (empty string for non-elements).
+
+### textContent
+The text content of the node and its descendants.
+
+### innerHTML
+The HTML content inside the element.
+
+### childNodes
+Array of child nodes.
+
+### firstChild
+The first child node, or null if none exists.
+
+### lastChild
+The last child node, or null if none exists.
+
+## Methods
+
+### getAttribute(name)
+Gets the value of an attribute.
+
+Code (javascript):
+const href = element.getAttribute('href');
+
+### hasAttribute(name)
+Checks if an attribute exists.
+
+Code (javascript):
+if (element.hasAttribute('disabled')) {
+    console.log('Element is disabled');
+}
+
+### click([options])
+Clicks the element.
+
+Code (javascript):
+// Simple click
+await element.click();
+
+// Click with navigation wait
+await element.click({ waitForNavigation: 'networkidle2' });
+
+### type(text[, options])
+Types text into the element.
+
+Code (javascript):
+await element.type('Hello world');
+
+### focus([options])
+Focuses the element.
+
+Code (javascript):
+await element.focus();
+
+### blur([options])
+Removes focus from the element.
+
+Code (javascript):
+await element.blur();
+
+### hover([options])
+Hovers over the element.
+
+Code (javascript):
+await element.hover();
+
+### scrollIntoView([options])
+Scrolls the element into view.
+
+Code (javascript):
+await element.scrollIntoView();
+
+### setValue(value[, options])
+Sets the value of a form element.
+
+Code (javascript):
+// Set input value
+await element.setValue('test@example.com');
+
+// Set checkbox
+await element.setValue(true);
+
+### dispatchEvent(eventName[, detail, options])
+Dispatches an event on the element.
+
+Code (javascript):
+await element.dispatchEvent('click');
+
+### dragTo(target[, options])
+Drags this element to another element or selector.
+
+Code (javascript):
+// Drag to another element
+const target = await page.querySelector('.dropzone');
+await element.dragTo(target);
+
+// Drag to selector
+await element.dragTo('.dropzone');
+
+### querySelector(selector)
+Finds the first matching element within this node.
+
+Code (javascript):
+const child = await element.querySelector('.child');
+
+### querySelectorAll(selector)
+Finds all matching elements within this node.
+
+Code (javascript):
+const children = await element.querySelectorAll('.child');
+
+### getBoundingClientRect()
+Gets the element's position and size.
+
+Code (javascript):
+const rect = element.getBoundingClientRect();
+console.log(rect.x, rect.y, rect.width, rect.height);
+
+## Example Usage
+
+Here's a complete example showing how to use the Node class:
+
+Code (javascript):
+// Get a form element
+const form = await page.querySelector('form');
+
+// Fill out form fields
+const emailInput = await form.querySelector('input[type="email"]');
+await emailInput.type('test@example.com');
+
+// Check a checkbox
+const checkbox = await form.querySelector('.terms-checkbox');
+await checkbox.setValue(true);
+
+// Get form dimensions
+const rect = form.getBoundingClientRect();
+console.log('Form size:', rect.width, rect.height);
+
+// Submit the form
+const submitButton = await form.querySelector('button[type="submit"]');
+await submitButton.click({ waitForNavigation: 'networkidle2' });
+
+## python
+
+The Node API is currently only available in JavaScript. In Python, you should use the Page methods directly with CSS selectors to interact with elements:
+
+Code (python):
+# Instead of:
+# element = await page.querySelector('.button')
+# await element.click()
+
+# Use:
+await page.click('.button')
+
+# Instead of:
+# element = await page.querySelector('input')
+# await element.type('Hello')
+
+# Use:
+await page.type('input', 'Hello')
+
+This provides the same functionality but with a slightly different API. The Node API will be available in Python in a future release.
+
+================================================================================
+
+Document: Reference Page
+URL: https://herd.garden/docs/reference-page
+
+# Page
+
+The Page class represents a browser tab or page in the Herd platform. It provides methods for navigating, interacting with elements, handling events, and automating browser actions.
+
+## javascript
+
+You can obtain a Page instance using any of these Device methods:
+- `device.newPage()` - Create a new page
+- `device.listPages()` - Get all pages
+- `device.getPage(pageId)` - Get a specific page by ID
+
+## Properties
+
+### id
+The unique identifier for the page (tab) in the browser. This is a number that uniquely identifies the tab.
+
+### url
+The current URL of the page. Returns an empty string if the page hasn't loaded any URL yet.
+
+### title
+The current title of the page. Returns an empty string if the page hasn't loaded or has no title.
+
+### active
+Whether this page is currently the active tab in the browser window.
+
+## Methods
+
+### goto(url[, options])
+Navigates the page to the specified URL.
+
+Code (javascript):
+// Navigate to a URL and wait for network to be idle
+await page.goto('https://example.com');
+
+// Navigate with custom options
+await page.goto('https://example.com', {
+    waitForNavigation: 'load' // Wait for load event instead of network idle
+});
+
+Options:
+- `waitForNavigation`: When to consider navigation complete
+  - `'load'`: Wait for load event
+  - `'domcontentloaded'`: Wait for DOMContentLoaded event
+  - `'networkidle0'`: Wait for network to be idle (0 connections for 500ms)
+  - `'networkidle2'`: Wait for network to be idle (≤ 2 connections for 500ms)
+
+### querySelector(selector)
+Finds the first element matching the CSS selector. Returns a Node object that can be used for further interactions.
+
+Code (javascript):
+const element = await page.querySelector('.submit-button');
+if (element) {
+    console.log('Element found:', element.textContent);
+}
+
+### querySelectorAll(selector)
+Finds all elements matching the CSS selector. Returns an array of Node objects.
+
+Code (javascript):
+const elements = await page.querySelectorAll('li.item');
+for (const element of elements) {
+    console.log('Item text:', element.textContent);
+}
+
+### dom()
+Returns the DOM of the page as a JSDOM object for ultimate flexibility. This is useful for extracting data by walking the DOM and finding elements manually.
+Note: This is a read-only view of the DOM, so you cannot trigger events or modify the DOM this way.
+
+Code (javascript):
+const dom = await page.dom();
+console.log(dom);
+
+### waitForElement(selector[, options])
+Waits for an element matching the selector to appear or disappear on the page.
+
+Code (javascript):
+// Wait for an element to be visible
+await page.waitForElement('#loading-indicator'); // or the following which is equivalent 
+await page.waitForElement('#loading-indicator', { state: 'visible' });
+
+// Wait for an element to be hidden
+await page.waitForElement('#loading-indicator', { state: 'hidden' });
+
+// Wait for an element to be attached to DOM
+await page.waitForElement('.dynamic-content', { state: 'attached' });
+
+// Wait for an element to be detached from DOM
+await page.waitForElement('.old-content', { state: 'detached' });
+
+// Wait with timeout
+await page.waitForElement('.dynamic-content', { 
+    state: 'visible',
+    timeout: 10000 // 10 seconds (default is 5 seconds)
+});
+
+Options:
+- `state`: The state to wait for
+  - `'visible'`: Wait for element to be visible (default)
+  - `'hidden'`: Wait for element to be hidden
+  - `'attached'`: Wait for element to be attached to DOM
+  - `'detached'`: Wait for element to be detached from DOM
+- `timeout`: Maximum time to wait in milliseconds (default: 5000)
+
+### waitForSelector(selector[, options])
+Alias for waitForElement. Waits for an element matching the selector to appear or disappear.
+
+Code (javascript):
+// Wait for a selector to be visible
+await page.waitForSelector('.search-results', { state: 'visible' });
+
+// Wait for a selector to be detached
+await page.waitForSelector('.loading-spinner', { state: 'detached', timeout: 5000 });
+
+### waitForNavigation(condition)
+Waits for navigation to complete based on the specified condition.
+
+Code (javascript):
+// Wait for page load event
+await page.waitForNavigation('load');
+
+// Wait for network to be idle
+await page.waitForNavigation('networkidle0');
+
+// Wait for URL change
+await page.waitForNavigation('change');
+
+Conditions:
+- `'load'`: Wait for load event
+- `'domcontentloaded'`: Wait for DOMContentLoaded event
+- `'change'`: Wait for URL change
+- `'networkidle0'`: Wait for network to be idle (0 connections for 500ms)
+- `'networkidle2'`: Wait for network to be idle (≤ 2 connections for 500ms)
+
+### click(selector[, options])
+Clicks an element that matches the selector.
+
+Code (javascript):
+// Simple click
+await page.click('#submit-button');
+
+// Click with navigation wait
+await page.click('a.link', { waitForNavigation: 'networkidle2' });
+
+### type(selector, text[, options])
+Types text into an input element.
+
+Code (javascript):
+// Type into an input field
+await page.type('#search-input', 'search query');
+
+// Type with navigation wait (for auto-submit forms)
+await page.type('#search-input', 'search query', {
+    waitForNavigation: 'networkidle2'
+});
+
+### focus(selector[, options])
+Focuses an element on the page.
+
+Code (javascript):
+await page.focus('#email-input');
+
+### hover(selector[, options])
+Hovers over an element.
+
+Code (javascript):
+await page.hover('.dropdown-trigger');
+
+### press(key[, options])
+Presses a keyboard key.
+
+Code (javascript):
+await page.press('Enter');
+
+### scroll(x, y[, options])
+Scrolls the page by the specified amount.
+
+Code (javascript):
+// Scroll down 500 pixels
+await page.scroll(0, 500);
+
+### scrollIntoView(selector[, options])
+Scrolls an element into view.
+
+Code (javascript):
+await page.scrollIntoView('#bottom-content');
+
+### back([options])
+Navigates back in the browser history.
+
+Code (javascript):
+await page.back({ waitForNavigation: 'networkidle2' });
+
+### forward([options])
+Navigates forward in the browser history.
+
+Code (javascript):
+await page.forward({ waitForNavigation: 'networkidle2' });
+
+### reload([options])
+Reloads the current page.
+
+Code (javascript):
+await page.reload({ waitForNavigation: 'networkidle2' });
+
+### activate()
+Activates the page (makes it the active tab).
+
+Code (javascript):
+await page.activate();
+
+### close()
+Closes the page (tab).
+
+Code (javascript):
+await page.close();
+
+## Example Usage
+
+Here's a complete example showing how to use the Page class:
+
+Code (javascript):
+// Create a new page
+const page = await device.newPage();
+
+// Navigate to a URL
+await page.goto('https://example.com');
+
+// Fill out a form
+await page.type('#username', 'myuser');
+await page.type('#password', 'mypass');
+await page.click('#submit-button', { waitForNavigation: 'networkidle2' });
+
+// Extract some data
+const title = await page.evaluate(() => document.title);
+console.log('Page title:', title);
+
+// Close the page when done
+await page.close();
+
+## python
+
+You can obtain a Page instance using any of these Device methods:
+- `device.new_page()` - Create a new page
+- `device.list_pages()` - Get all pages
+- `device.get_page(page_id)` - Get a specific page by ID
+
+## Properties
+
+### id
+The unique identifier for the page (tab) in the browser. This is a number that uniquely identifies the tab.
+
+### url
+The current URL of the page. Returns an empty string if the page hasn't loaded any URL yet.
+
+### title
+The current title of the page. Returns an empty string if the page hasn't loaded or has no title.
+
+### active
+Whether this page is currently the active tab in the browser window.
+
+## Methods
+
+### goto(url[, options])
+Navigates the page to the specified URL.
+
+Code (python):
+# Navigate to a URL and wait for network to be idle
+await page.goto("https://example.com")
+
+# Navigate with custom options
+await page.goto("https://example.com", {
+    "waitForNavigation": "load"  # Wait for load event instead of network idle
+})
+
+Options:
+- `waitForNavigation`: When to consider navigation complete
+  - `'load'`: Wait for load event
+  - `'domcontentloaded'`: Wait for DOMContentLoaded event
+  - `'networkidle0'`: Wait for network to be idle (0 connections for 500ms)
+  - `'networkidle2'`: Wait for network to be idle (≤ 2 connections for 500ms)
+
+### querySelector(selector) / Q(selector)
+Finds the first element matching the CSS selector. Returns a dictionary representing the element.
+
+Code (python):
+# Using querySelector (alias for Q)
+element = await page.querySelector(".submit-button")
+if element:
+    print("Element found:", element)
+
+# Using Q directly
+element = await page.Q(".submit-button")
+
+### querySelectorAll(selector) / QQ(selector)
+Finds all elements matching the CSS selector. Returns a list of dictionaries representing the elements.
+
+Code (python):
+# Using querySelectorAll (alias for QQ)
+elements = await page.querySelectorAll("li.item")
+for element in elements:
+    print("Item:", element)
+
+# Using QQ directly
+elements = await page.QQ("li.item")
+
+### click(selector[, options])
+Clicks an element that matches the selector.
+
+Code (python):
+# Simple click
+await page.click("#submit-button")
+
+# Click with navigation wait
+await page.click("a.link", {"waitForNavigation": "networkidle2"})
+
+### type(selector, text[, options])
+Types text into an input element.
+
+Code (python):
+# Type into an input field
+await page.type("#search-input", "search query")
+
+# Type with navigation wait (for auto-submit forms)
+await page.type("#search-input", "search query", {
+    "waitForNavigation": "networkidle2"
+})
+
+### focus(selector[, options])
+Focuses an element on the page.
+
+Code (python):
+await page.focus("#email-input")
+
+### hover(selector[, options])
+Hovers over an element.
+
+Code (python):
+await page.hover(".dropdown-trigger")
+
+### scroll(x, y[, options])
+Scrolls the page by the specified amount.
+
+Code (python):
+# Scroll down 500 pixels
+await page.scroll(0, 500)
+
+### scroll_into_view(selector[, options])
+Scrolls an element into view.
+
+Code (python):
+await page.scroll_into_view("#bottom-content")
+
+### set_value(selector, value[, options])
+Sets the value of a form element directly.
+
+Code (python):
+# Set input value
+await page.set_value("#quantity", "5")
+
+# Set checkbox
+await page.set_value("#agree", True)
+
+### dispatch_event(selector, event_name[, detail, options])
+Dispatches a DOM event on an element.
+
+Code (python):
+await page.dispatch_event("#my-button", "click")
+
+### close()
+Closes the page (tab).
+
+Code (python):
+await page.close()
+
+## Example Usage
+
+Here's a complete example showing how to use the Page class:
+
+Code (python):
+# Create a new page
+page = await device.new_page()
+
+# Navigate to a URL
+await page.goto("https://example.com")
+
+# Fill out a form
+await page.type("#username", "myuser")
+await page.type("#password", "mypass")
+await page.click("#submit-button", {"waitForNavigation": "networkidle2"})
+
+# Extract some data using the extract method
+data = await page.extract({
+    "title": "h1",
+    "description": ".description"
+})
+print("Extracted data:", data)
+
+# Close the page when done
+await page.close()
+
+================================================================================
+
+Document: Security Privacy
+URL: https://herd.garden/docs/security-privacy
+
+# Security & Privacy in Herd
+
+At Herd, we take security and privacy seriously. This guide outlines the security features built into the platform and the privacy measures we take to protect your data.
+
+## Security Architecture
+
+Herd is built with security at its core:
+
+### End-to-End Encryption
+
+All communication between your browsers and the Herd platform is encrypted end-to-end:
+
+- **Transport Layer Security (TLS)**: All API requests and responses use TLS 1.3.
+- **WebRTC Encryption**: Remote control sessions use WebRTC with DTLS-SRTP encryption.
+- **Secure WebSockets**: Real-time communication uses encrypted WebSocket connections.
+- **NATS**: All communication between your browser and the code you run is encrypted end-to-end using a NATS-based PKI infrastructure and we do not intercept or inspect the content of the communication.
+
+### Authentication & Authorization
+
+Multiple layers of security protect access to your account and devices:
+
+- **Multi-factor Authentication**: Optional 2FA for account access
+- **Device Registration Codes**: One-time codes for connecting browsers
+- **Session Management**: Automatic timeouts and the ability to revoke sessions
+- **Role-Based Access Control**: Granular permissions for team members
+
+### Infrastructure Security
+
+Our platform infrastructure implements industry best practices:
+
+- **Regular Security Audits**: Third-party security audits of our systems
+- **Vulnerability Scanning**: Continuous monitoring for vulnerabilities
+- **Secure Development**: Strict coding practices and security reviews
+- **Cloud Security**: Leveraging secure cloud infrastructure with isolation between customers
+
+## Privacy Features
+
+Herd includes several features to protect your privacy:
+
+### Data Minimization
+
+We only collect the data necessary for the platform to function:
+
+- **Selective Access**: You control which browsers are connected and which data is shared
+- **No Unnecessary Telemetry**: Limited data collection focused on service performance
+- **Automatic Data Expiry**: Logs and temporary data are automatically purged after set periods
+
+### User Control
+
+You maintain control over your data and connections:
+
+- **Connection Visibility**: Clear indicators when a browser is being monitored or controlled
+- **Permission Prompts**: Optional prompts before remote control is initiated
+- **Incognito Mode Handling**: Special handling of private browsing sessions
+- **Activity Logs**: Transparent logs of all remote control activities
+
+### Compliance Features
+
+For organizations with specific compliance requirements:
+
+- **Data Residency Options**: Select where your data is stored (Enterprise plan)
+- **Compliance Reporting**: Generate reports for audit purposes
+- **Custom Retention Policies**: Set data retention periods to match your policies
+- **Privacy Mode**: Additional restrictions for sensitive environments
+
+## Security Best Practices
+
+To maximize security when using Herd:
+
+### Account Security
+
+- Use strong, unique passwords for your Herd account
+- Enable two-factor authentication
+- Regularly review active sessions and revoke any suspicious ones
+- Limit account access to necessary team members only
+
+### Device Security
+
+- Register devices with descriptive names for easy identification
+- Regularly review connected devices and remove unused ones
+- Use device tagging to organize and manage access
+- Consider network-level restrictions for sensitive devices
+
+### Remote Control Security
+
+- Always end remote control sessions when not in use
+- Use view-only mode when full control isn't necessary
+- Be cautious about what information is visible during remote sessions
+- Consider scheduling remote sessions in advance when possible
+
+## Privacy Policy
+
+Herd's formal privacy policy can be found at [monitoro.co/privacy](https://monitoro.co/privacy). Key points include:
+
+- We do not sell your data to third parties
+- We only process your data to provide the Herd service
+- You retain ownership of all content viewed or managed through Herd
+- We implement strong security measures to protect your data
+- We are transparent about any data breaches or security incidents
+
+## Security Updates
+
+We continuously improve our security and privacy features:
+
+- Security updates are automatically applied to the platform
+- Extension updates are released regularly with security improvements
+- Follow our blog for detailed information on security enhancements
+
+## Reporting Security Issues
+
+If you discover a security vulnerability, please report it responsibly:
+
+1. Email security@herd.garden with details of the vulnerability
+2. Include steps to reproduce if possible
+3. Allow time for us to address the issue before public disclosure
+
+Note: We unfortunately do not offer a bug bounty program as we are a small team and our resources are limited. We do appreciate your responsible disclosure and help keeping the internet a safer place.
+
+================================================================================
+
+Document: Trails Automations
+URL: https://herd.garden/docs/trails-automations
+
+# Trails
+
+Trails in the Herd platform are packaged automations that perform specific tasks such as extracting data or submitting forms. They make it easy to reuse automation logic across different projects and achieve high reliability through a solid and accessible testing process.
+
+## javascript
+
+Trails are fully supported in the JavaScript SDK.
+
+## Creating a Trail
+
+A trail defines the following components:
+
+- **urls.ts**: Exports an array of URL definitions
+- **selectors.ts**: Exports an array of selector configurations
+- **actions.ts**: Exports action classes that implement the `TrailAction` interface
+
+A trail at the minimum has the following structure:
+
+Code:
+google-search/
+    urls.ts
+    selectors.ts
+    actions.ts
+    package.json
+
+The `package.json` file defines the trail and its dependencies:
+
+Code (json):
+{
+    "name": "google-search",
+    "description": "Search google for webpages.",
+    "version": "1.0.0",
+    "dependencies": {
+        "@monitoro/herd": "latest"
+    }
+}
+
+You should never run the .ts files manually. Instead, use the Herd CLI to run, test, debug, and publish trails. Make sure to use version control to manage your trails, as publishing submits a built version to the Herd registry, not the source code.
+
+## Trail Implementation Guide
+
+### Step 1: Set up the trail structure
+
+Create a new directory for your trail with the following files:
+
+Code:
+my-trail/
+    urls.ts
+    selectors.ts
+    actions.ts
+    package.json
+
+Add the basic package.json configuration:
+
+Code (json):
+{
+    "name": "my-trail",
+    "version": "1.0.0",
+    "dependencies": {
+        "@monitoro/herd": "latest"
+    }
+}
+
+### Step 2: Define URLs
+
+In `urls.ts`, export an array of URL definitions that your trail will interact with:
+
+Code (typescript):
+export default [{
+    "id": "my-url",
+    "template": "https://example.com/path?param1={param1}&param2={param2}",
+    "description": "Description of what this URL represents",
+    "examples": [
+        { "param1": "value1", "param2": "value2" }
+    ],
+    "params": {
+        "param1": {
+            "type": "string",
+            "required": true,
+            "description": "Description of param1"
+        },
+        "param2": {
+            "type": "string",
+            "required": false,
+            "default": "defaultValue",
+            "description": "Description of param2"
+        }
+    }
+}];
+
+### Step 3: Define Selectors
+
+In `selectors.ts`, export an array of selector configurations that define how to extract data from web pages:
+
+Code (typescript):
+export default [{
+    "id": "my-selector",
+    "value": {
+        "dataKey": {
+            "_$r": "#main-container",
+            "title": { "_$": ".title" },
+            "description": { "_$": ".description" },
+            "link": { "_$": "a.link", "attribute": "href" }
+        }
+    },
+    "description": "Selector for extracting specific data",
+    "examples": [
+        {
+            "urlId": "my-url",
+            "urlParams": { "param1": "value1", "param2": "value2" }
+        }
+    ]
+}];
+
+### Step 4: Implement Actions
+
+In `actions.ts`, define one or more action classes that implement the `TrailAction` interface:
+
+Code (typescript):
+import type { Device, TrailAction, TrailActionManifest, TrailRunResources } from "@monitoro/herd";
+
+export class MyTrailAction implements TrailAction {
+    manifest: TrailActionManifest = {
+        name: "my-action",
+        description: "Description of what this action does",
+        params: {
+            param1: {
+                type: "string",
+                description: "Description of param1"
+            },
+            param2: {
+                type: "number",
+                description: "Description of param2",
+                default: 10
+            }
+        },
+        result: {
+            type: "array",
+            description: "Description of the result",
+            items: {
+                type: "object",
+                properties: {
+                    property1: { type: "string" },
+                    property2: { type: "number" }
+                }
+            }
+        },
+        examples: [
+            {
+                "param1": "value1",
+                "param2": 10
+            }
+        ]
+    }
+
+    async test(device: Device, params: Record, resources: TrailRunResources) {
+        try {
+            const result = await this.run(device, params, resources);
+            // Validate result
+            if (!result || result.length === 0) {
+                return { status: "error", message: "No results found", result: [] };
+            }
+            return { status: "success", result };
+        } catch (e) {
+            return { status: "error", message: `Error: ${e}`, result: null };
+        }
+    }
+
+    async run(device: Device, params: Record, resources: TrailRunResources) {
+        const { param1, param2 } = params;
+        const page = await device.newPage();
+        
+        try {
+            // Navigate to URL using the URL template from urls.ts
+            await page.goto(resources.url('my-url', { param1, param2 }));
+            
+            // Extract data using selectors from selectors.ts
+            const extracted = await page.extract(resources.selector('my-selector'));
+            
+            // Process extracted data
+            const results = (extracted as any)?.dataKey || [];
+            
+            // Return processed results
+            return results;
+        } finally {
+            await page.close();
+        }
+    }
+}
+
+### Step 5: Testing and debugging
+
+Use the Herd CLI to test your trail locally (make sure to define test cases as `examples` in the trail action manifest):
+
+Code (bash):
+herd trail test --action my-trail
+
+You can also watch for changes in the trail and re-run tests:
+
+Code (bash):
+herd trail test --action my-trail --watch  # or herd trail test -a my-trail -w
+
+And you can also test selectors only:
+
+Code (bash):
+herd trail test --selector my-selector
+
+And watch for changes in the selectors:
+
+Code (bash):
+herd trail test --selector my-selector --watch  # or herd trail test -s my-selector -w
+
+### Step 6: Publish your trail
+
+Publishing is coming soon!
+
+### Best Practices
+
+1. **Error handling**: Implement robust error handling in your actions to handle network issues, missing elements, etc.
+2. **Performance**: Minimize page loads and extract as much data as possible from each page.
+3. **Maintainability**: Use descriptive names and add comments to make your trail easier to maintain.
+4. **Testing**: Test your trail with different parameters to ensure it works in various scenarios.
+5. **Versioning**: Increment your trail's version in package.json when making changes.
+
+## python
+
+Trails support for Python SDK is coming soon. Stay tuned for updates!
+
+In the meantime, you can use the JavaScript SDK to create trails and then use the Herd CLI to publish them.
+
+================================================================================
+
+Document: Troubleshooting
+URL: https://herd.garden/docs/troubleshooting
+
+# Troubleshooting Herd
+
+This guide provides solutions for common issues you might encounter when using the Herd platform. If you can't find a solution here, please contact our [support team](/docs/getting-started) for further assistance.
+
+## Installation Issues
+
+### Extension Won't Install
+
+**Problem**: You can't install the Herd extension in your browser.
+
+**Solutions**:
+- Verify Developer mode is enabled in your browser's extensions page
+- Make sure you're using a supported browser (Chrome, Edge, Brave)
+- Try downloading the extension file again as it might be corrupted
+- Check if your browser has restrictions on installing third-party extensions
+- Try installing from a different browser profile
+
+If all else fails, follow the [Getting Started guide](/docs/getting-started), or [contact](mailto:support@herd.garden) us for help with as much context about the issue as you can share.
+
+### Extension Shows as Corrupted
+
+**Problem**: Your browser shows the Herd extension as corrupted or invalid.
+
+**Solutions**:
+- Re-download the extension package
+- Clear your browser cache before installing
+- Try extracting the zip file and loading it as an unpacked extension
+- Verify that you have the latest version of the extension
+
+If all else fails, follow the [Getting Started guide](/docs/getting-started), or [contact](mailto:support@herd.garden) us for help with as much context about the issue as you can share.
+
+## Connection Issues
+
+### Browser is disconnected or no browser registered
+
+**Problem**: Running a trail or calling any Herd command throws an exception "Browser is disconnected or no browser registered".
+This means that your browser is not connected to the Herd platform 
+
+**Solutions**:
+- First ensure that you have installed Herd and registered your browser following our [Getting Started guide](/docs/getting-started).
+- Check the internet connection of the computer where you installed Herd extension
+- Go to `chrome://extensions` and click the reload icon next to Herd extension
+- If that doesn't work, delete the extension and reconnect it again from scratch, following our [Getting Started guide](/docs/getting-started).
+
+If nothing works, [contact](mailto:support@herd.garden) us for additional help with as much context about the issue as you can share.
+
+### Can't Connect to Herd Server
+
+**Problem**: The extension is installed but can't connect to the Herd server.
+
+**Solutions**:
+- Check your internet connection
+- Verify that the registration code is correct and hasn't expired
+- Make sure your firewall isn't blocking the connection
+- Try disabling any VPN or proxy services temporarily
+- Check if your organization blocks WebSocket connections
+
+### Connection Keeps Dropping
+
+**Problem**: The connection between your browser and Herd keeps disconnecting.
+
+**Solutions**:
+- Check for network stability issues
+- Make sure your computer isn't going to sleep
+- Verify that the browser is allowed to run in the background
+- Check if other extensions are conflicting with Herd
+- Try connecting using a wired network connection if possible
+
+## Remote Control Issues
+
+### Black Screen During Remote Control
+
+**Problem**: You see a black screen when trying to view a remote browser.
+
+**Solutions**:
+- Check if the remote device is in sleep mode or locked
+- Refresh the remote control session
+- Make sure the remote browser tab is active (not minimized)
+- Try restarting the remote browser
+- Verify that the remote device has granted screen sharing permissions
+
+### High Latency in Remote Control
+
+**Problem**: There's significant lag when controlling a remote browser.
+
+**Solutions**:
+- Lower the streaming quality in the remote control settings
+- Check network conditions on both ends
+- Close unnecessary tabs and applications on both devices
+- Make sure no bandwidth-heavy activities are running (like video streaming)
+- Try using a wired connection if possible
+
+### Input Not Registering
+
+**Problem**: Mouse clicks or keyboard input aren't registering on the remote browser.
+
+**Solutions**:
+- Check if you're in "View Only" mode and switch to "Control" mode
+- Try clicking on the remote view area to ensure it has focus
+- Refresh the remote control session
+- Check if the remote browser is responding to local inputs
+- Try restarting the remote control session
+
+## Account and Management Issues
+
+### Device Not Appearing in Dashboard
+
+**Problem**: A connected device isn't showing up in your Herd dashboard.
+
+**Solutions**:
+- Verify the device is properly connected
+- Refresh the dashboard page
+- Check if the device is registered under a different account
+- Make sure the extension is enabled and running
+- Try reconnecting the device using a new registration code
+
+### Can't Create New Device Registration
+
+**Problem**: You're unable to create a new device registration.
+
+**Solutions**:
+- Check if you've reached your plan's device limit
+- Verify that you have the necessary permissions in your account
+- Try using a different browser to access the dashboard
+- Clear your browser cache and cookies
+- Check if your account has any restrictions
+
+## System Requirements
+
+If you're experiencing persistent issues, verify that your system meets these minimum requirements:
+
+- **Browser**: Chrome 70+, Edge 79+, or Brave 1.0+
+- **Operating System**: Windows 10+, macOS 10.14+, or Ubuntu 18.04+
+- **RAM**: 4GB minimum (8GB recommended)
+- **Network**: Stable internet connection with at least 1Mbps upload/download
+- **Processor**: Dual-core processor at 2GHz or higher
+
+## Contacting Support
+
+If you've tried the solutions above and are still experiencing issues, please contact our support team:
+
+1. Email: support@herd.garden
+2. In-app: Click the "Help" icon in the dashboard footer
+3. Documentation: Check for updated troubleshooting guides on our website
+
+When contacting support, please include:
+- Your browser type and version
+- Your operating system
+- A description of the issue
+- Any error messages you've received
+- Steps you've already taken to resolve the issue
+
+================================================================================

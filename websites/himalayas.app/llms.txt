@@ -1,0 +1,72 @@
+
+# Himalayas: Remote Job Board and AI-Powered Job Search Tools
+
+> Himalayas is a remote job board dedicated to connecting job seekers with remote opportunities worldwide. Founded in 2020, it offers a suite of AI job search tools including an AI resume builder, cover letter generator, mock interviewer, and career coach to enhance the job search experience.
+
+**Key Terms:** Remote Job Board, AI Resume Builder, AI Cover Letter Generator, AI Interview Preparation, AI Career Coach, Remote Work Tools, Remote Company Profiles, Remote Job Search, Remote Talent Marketplace, Remote Hiring Platform
+
+## Himalayas Products
+
+- [Remote Jobs](https://himalayas.app/jobs/matches): Discover the best remote and work from home jobs at top remote companies. Search by job title, skill, country, timezone and more. 
+
+- [AI Resume Builder](https://himalayas.app/ai-resume-builder): Automatically generate ATS-optimized resumes in the Harvard format based on your profile and any job in seconds. 
+
+- [AI Cover Letter Generator](https://himalayas.app/ai-cover-letter-generator): Create personalized cover letters tailored to specific job descriptions and companies. 
+
+- [AI Interview Preparation](https://himalayas.app/ai-interview): Practice interviewing with AI, receiving instant feedback and improved responses using techniques like the STAR method. 
+
+- [AI Career Coach](https://himalayas.app/ai-career-coach): Access personalized career guidance to navigate your job search effectively. 
+
+- [Job Application Tracker](https://himalayas.app/job-application-tracker): A free tool to organize and monitor your job applications, centralizing every role you're interested in.
+
+- [Remote Company Profiles](https://himalayas.app/companies): Detailed profiles showcasing company missions, cultures, tech stacks, employee benefits, and open roles. 
+
+- [Remote Talent Marketplace](https://himalayas.app/talent): Connects employers with a global pool of remote-ready candidates, offering advanced filters to find the right fit. 
+
+## Key Help Center Resources
+
+- [Pricing](https://himalayas.app/pricing): Information on job posting options and AI tool subscriptions.
+
+- [Contact](mailto:hi@himalayas.app): Ways to reach the Himalayas team for support, partnerships, and inquiries.
+
+- [Terms and Conditions](https://himalayas.app/terms): The legal terms governing the use of Himalayas' services. 
+
+- [Privacy Policy](https://himalayas.app/privacy): Details on how Himalayas collects, uses, and protects user data.
+
+## Account Actions
+
+- [Talent Sign Up](https://himalayas.app/signup/talent): Create an account to access personalized job recommendations and AI tools. 
+
+- [Log In](https://himalayas.app/login): Access your existing Himalayas account. 
+
+- [Post a Job](https://himalayas.app/post): Employers can post remote job openings to attract global talent. 
+
+- [Create Company Profile](https://himalayas.app/signup/recruit): Employers can showcase their company culture, tech stack, and open roles to potential candidates. 
+
+## Resources
+
+- - [Remote Jobs RSS Feed](https://himalayas.app/rss): Use our public RSS feed to get the latest remote jobs from Himalayas. 
+- [Resume Examples & Templates](https://himalayas.app/resumes): Explore thousands of expert-crafted editable resume samples.
+- [Cover Letter Examples & Templates](https://himalayas.app/cover-letters): Explore thousands of expertly crafted and editable cover letter samples.
+- [Interview Questions and Answers](https://himalayas.app/interview-questions): Explore thousands of real-world interview questions and answers—covering every role, industry, and experience level.
+- [Job Description Templates and Examples](https://himalayas.app/job-descriptions): Explore thousands of job board approved and SEO optimized job description templates and examples across job functions, industries, experience levels, and more.
+- [Remote salaries](https://himalayas.app/salaries): Explore salary ranges for remote jobs by title, country, and experience level. 
+- [Changelog](https://himalayas.app/changelog): Discover the new updates and improvements to Himalayas. 
+
+
+## More Information About Himalayas
+
+- [About Us](https://himalayas.app/companies/himalayas): Information about Himalayas, including the company's mission and vision. 
+
+- [Tech Stack](https://himalayas.app/companies/himalayas/tech-stack): Learn about the tools and technologies that Himalayas uses to build, market, and sell its products. 
+
+- [Employee Benefits](https://himalayas.app/companies/himalayas/benefits): Information about the employee benefits and perks provided at Himalayas. 
+
+## Developer Documentation
+
+- [Remote Jobs API Documentation](https://himalayas.app/api): Information on available endpoints and example code for using the Himalayas API. 
+
+
+
+
+

@@ -1,0 +1,46 @@
+# Consentik GDPR Cookie Banner
+
+## Consentik GDPR Cookie Banner
+
+- [Welcome to Consentik GDPR/CCPA Cookie Banner](https://docs.consentik.com/welcome-to-consentik-gdpr-ccpa-cookie-banner)
+- [GDPR Setup Checklist](https://docs.consentik.com/gdpr-setup-checklist)
+- [How the app function](https://docs.consentik.com/settings/how-the-app-function)
+- [Design the banner](https://docs.consentik.com/settings/design-the-banner)
+- [Edit text on the banner](https://docs.consentik.com/settings/edit-text-on-the-banner)
+- [Privacy policy page generating](https://docs.consentik.com/settings/privacy-policy-page-generating)
+- [Positioning your banner](https://docs.consentik.com/settings/positioning-your-banner)
+- [Restrict banner for specific regions only](https://docs.consentik.com/settings/restrict-banner-for-specific-regions-only)
+- [Browser cookies lifetime](https://docs.consentik.com/settings/browser-cookies-lifetime)
+- [Advanced Settings](https://docs.consentik.com/settings/advanced-settings)
+- [Translations](https://docs.consentik.com/settings/translations)
+- [Language Selector on Banner](https://docs.consentik.com/settings/translations/language-selector-on-banner)
+- [Cookie Preferences Re-opener](https://docs.consentik.com/settings/cookie-preferences-re-opener)
+- [Glass Effect](https://docs.consentik.com/settings/glass-effect)
+- [Banner Button Position](https://docs.consentik.com/settings/banner-button-position)
+- [Quick Categories Selector](https://docs.consentik.com/settings/quick-categories-selector)
+- [Preferences popup config](https://docs.consentik.com/settings/preferences-popup-config)
+- [Managing cookies](https://docs.consentik.com/manage-cookies-and-categories/managing-cookies)
+- [Managing categories](https://docs.consentik.com/manage-cookies-and-categories/managing-categories)
+- [Cookie Auto-Scanner and Auto-Transfer](https://docs.consentik.com/manage-cookies-and-categories/cookie-auto-scanner-and-auto-transfer)
+- [Import & Export Cookies](https://docs.consentik.com/manage-cookies-and-categories/import-and-export-cookies)
+- [Consent log](https://docs.consentik.com/consent-log)
+- [Consent Response Statistics Page](https://docs.consentik.com/consent-response-statistics-page)
+- [Pricing](https://docs.consentik.com/pricing)
+- [Setup Data Request Management](https://docs.consentik.com/data-request-management/setup-data-request-management)
+- [Email Template Configuration](https://docs.consentik.com/data-request-management/email-template-configuration)
+- [Data Rights Page Configuration](https://docs.consentik.com/data-request-management/data-rights-page-configuration)
+- [Data Request Log](https://docs.consentik.com/data-request-management/data-request-log)
+- [Tips for Effective Use and Compliance](https://docs.consentik.com/data-request-management/tips-for-effective-use-and-compliance)
+- [Guide to Complying with Google’s Consent Management Requirements](https://docs.consentik.com/integrations/guide-to-complying-with-googles-consent-management-requirements)
+- [IAB TCF 2.2 Compliance](https://docs.consentik.com/integrations/iab-tcf-2.2-compliance): Learn how to seamlessly integrate IAB TCF v2.2 with Consentik Cookie.
+- [Google Consent Mode V2 Integrated](https://docs.consentik.com/integrations/google-consent-mode-v2-integrated)
+- [Microsoft Universal Event Tracking Consent Mode Integrated](https://docs.consentik.com/integrations/microsoft-universal-event-tracking-consent-mode-integrated)
+- [Sklik Retargeting Consent Integrated](https://docs.consentik.com/integrations/sklik-retargeting-consent-integrated)
+- [Auto-blocker tracking scripts](https://docs.consentik.com/integrations/auto-blocker-tracking-scripts)
+- [Global Privacy Control (GPC) Signal](https://docs.consentik.com/integrations/global-privacy-control-gpc-signal)
+- [Checkout Banner Block](https://docs.consentik.com/integrations/checkout-banner-block)
+- [Which consent type should I select for Google Consent Mode Settings?](https://docs.consentik.com/faq/which-consent-type-should-i-select-for-google-consent-mode-settings)
+
+## Consentik GDPR Cookie Banner for Wix
+
+- [Welcome to Consentik GDPR/CCPA Cookie Banner for Wix](https://docs.consentik.com/consentik-cookie-wix/welcome-to-consentik-gdpr-ccpa-cookie-banner-for-wix)

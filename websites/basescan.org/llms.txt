@@ -1,0 +1,35 @@
+# BaseScan
+
+## BaseScan
+
+- [Introduction](https://docs.basescan.org/readme): Welcome to the BaseScan APIs documentation 🚀.
+- [Creating an Account](https://docs.basescan.org/getting-started/creating-an-account)
+- [Getting an API key](https://docs.basescan.org/getting-started/viewing-api-usage-statistics)
+- [Endpoint URLs](https://docs.basescan.org/getting-started/endpoint-urls)
+- [Accounts](https://docs.basescan.org/api-endpoints/accounts)
+- [Contracts](https://docs.basescan.org/api-endpoints/contracts)
+- [Transactions](https://docs.basescan.org/api-endpoints/stats)
+- [Blocks](https://docs.basescan.org/api-endpoints/blocks)
+- [Logs](https://docs.basescan.org/api-endpoints/logs)
+- [Geth/Parity Proxy](https://docs.basescan.org/api-endpoints/geth-parity-proxy)
+- [Tokens](https://docs.basescan.org/api-endpoints/tokens)
+- [Stats](https://docs.basescan.org/api-endpoints/stats-1)
+- [BaseScan API PRO](https://docs.basescan.org/api-pro/api-pro)
+- [API PRO Endpoints](https://docs.basescan.org/api-pro/api-pro-endpoints)
+- [FAQ](https://docs.basescan.org/support/faq): Frequently Asked Questions.
+- [Rate Limits](https://docs.basescan.org/support/rate-limits)
+- [Common Error Messages](https://docs.basescan.org/support/common-error-messages)
+- [Common Verification Errors](https://docs.basescan.org/support/common-verification-errors)
+- [Getting Help](https://docs.basescan.org/support/getting-help)
+
+## Sepolia BaseScan
+
+- [Base Sepolia Testnet](https://docs.basescan.org/sepolia-basescan/readme)
+- [Accounts](https://docs.basescan.org/sepolia-basescan/api-endpoints/accounts)
+- [Contracts](https://docs.basescan.org/sepolia-basescan/api-endpoints/contracts)
+- [Transactions](https://docs.basescan.org/sepolia-basescan/api-endpoints/stats)
+- [Blocks](https://docs.basescan.org/sepolia-basescan/api-endpoints/blocks)
+- [Logs](https://docs.basescan.org/sepolia-basescan/api-endpoints/logs)
+- [Geth Proxy](https://docs.basescan.org/sepolia-basescan/api-endpoints/geth-parity-proxy)
+- [Tokens](https://docs.basescan.org/sepolia-basescan/api-endpoints/tokens)
+- [Stats](https://docs.basescan.org/sepolia-basescan/api-endpoints/stats-1)

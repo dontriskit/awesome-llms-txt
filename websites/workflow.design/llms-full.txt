@@ -1,0 +1,684 @@
+# Add a Creative to a Task
+Source: https://docs.workflow.design/articles/adding-creative-work-to-workflow/adding-a-creative-to-a-task
+
+
+
+Adding creative assets to tasks in Workflow allows others to easily review, comment on, and collaborate on various types of files directly within the context of a task.
+
+This article will guide you through adding creatives, uploading new versions, deleting creatives or versions, and embedding live websites.
+
+![creative](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/Product_Window.png)
+
+## Adding a Creative Asset to a Task
+
+Adding a creative asset to a task is straightforward:
+
+1.  Open a task.
+2.  Click "Add creative work" in the sidebar.
+3.  Upload a file or paste a website URL.
+
+![adding\_creative](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/add-creative.png)
+
+## Uploading a New Version of a Creative
+
+If a task already has a creative attached, you can easily upload a newer version while maintaining access to past versions for reference.
+
+To upload a new version:
+
+1.  In the task sidebar, click the current version number.
+2.  Select "Add new version".
+
+![add-creative-version](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/add-creative-version.png)
+
+## Embedding a Live Website as a Creative
+
+Embed live websites within tasks for comprehensive team review and feedback directly within Workflow. You and your teammates can navigate through the website, review different pages, and share feedback directly on web elements.
+
+To embed a website:
+
+1.  Select "Add Creative Work" in the task sidebar.
+2.  Click "Website" and paste the URL.
+3.  Paste your website's URL and confirm.
+
+
+# Supported Creative Formats
+Source: https://docs.workflow.design/articles/adding-creative-work-to-workflow/creative-formats-that-workflow-supports
+
+
+
+Workflow natively supports a wide variety of file types, which you can add to tasks as creatives. Here's an overview of what’s currently supported:
+
+![creative-formats](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/inviting_guests.png)
+
+## Images
+
+All common image formats, like: JPEG, PNG, GIF, BMP, and more.
+
+## Videos
+
+Common video formats like: MP4, AVI, MOV, among others.
+
+## Presentations
+
+Common formats like PowerPoint, Google Slides, PDF, and other common presentation formats.
+
+## Figma Files
+
+Use the [Figma plugin](https://www.figma.com/community/plugin/1194400816695978796) to upload specific Figma frames directly into Workflow.
+
+## Live Websites
+
+Embed live websites directly into Workflow, including support for interactive elements.
+
+<Info>
+  Missing a creative type you need? Reach out with suggestions to
+  [help@workflow.design](mailto:help@workflow.design).
+</Info>
+
+
+# Upload Work from Figma
+Source: https://docs.workflow.design/articles/adding-creative-work-to-workflow/uploading-work-from-figma
+
+
+
+![figma](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/figma-plugin.png)
+
+The Workflow Figma plugin lets you attach specific Figma frames to a Workflow task. Others can then view the frames directly from the task, and comment directly on them.
+
+By uploading specific frames, you ensure that your team sees exactly what you want them to see, and can provide feedback on the exact elements you're looking for input on.
+
+## Installing the Figma Plugin
+
+To install the Figma plugin:
+
+1.  Go to the [plugin page](https://www.figma.com/community/plugin/1194400816695978796).
+2.  Click 'Install.'
+
+Here's a quick video to show you how to install it:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k4iyBLdlv34?si=Up1x-oeAar4_3oL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+
+## Using the Plugin
+
+Here's a 2-minute video to walk you through how to use the Figma plugin:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lrYBLHXPAyU?si=wCL9Utgzqd8igfgL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+
+To use the plugin:
+
+1.  Open your Figma file, and select the frames you want to share.
+2.  Navigate to 'Plugins' on the top menu and select 'Workflow.' Alternatively, open the Figma command bar with `Cmd` + `P` (Mac) or `Ctrl` + `P` (Windows), and type 'Workflow'.
+3.  In the plugin window, verify the selected frames and click 'Next' or press 'Enter'.
+4.  Choose an existing task to add the frames to, or create a new one.
+5.  Set the desired status for the task after uploading your frames.
+6.  (Optional) Record a video walkthrough to provide additional context and notify your team.
+
+## Send Comments to Figma
+
+Workflow can send comments back to your Figma file automatically. This only goes one way - you still need to reply in Workflow to keep the conversation going.
+
+This keeps your design feedback loop efficient and reduces the need to switch between applications.
+
+To set up:
+
+1.  [Go to your Figma Settings](https://app.workflow.design/w?user-figma=t) in the Settings area.
+2.  Click “Connect to Figma” and authorise Workflow to send comments to Figma.
+3.  Install the [Workflow Figma plugin](https://www.figma.com/community/plugin/1194400816695978796).
+4.  Send your Figma frames to a Workflow task as usual, using the plugin.
+
+Comments made in Workflow will now automatically appear on the corresponding Figma file.
+
+
+# Checking Your Work With AI
+Source: https://docs.workflow.design/articles/ai-checks/check-your-work-with-AI
+
+
+
+Reviewing work by eye is slow and repetitive. It's easy to miss something - which can cause unnecessary extra rounds of review.
+
+Workflow's AI scans your designs and images for potential errors, helping you quickly catch issues before they interrupt your feedback process.
+
+![ai-review](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/Atelier-AI-Check-Screenshot.png)
+
+## Default AI Checks
+
+There are out-of-the-box categories of AI check, plus you can add your own:
+
+1.  **Spelling errors**: Never release work with a typo again.
+
+2.  **Grammar**: A helping hand for the most complicated (and simple) grammatical issues.
+
+3.  **Biased language**: Identifying and suggesting alternatives for gendered or exclusionary language.
+
+4.  **Clarity**: Keeping your writing easy to follow by removing unnecessary jargon.
+
+5.  **Brand voice consistency**: Maintaining a consistent tone, style and language across your work.
+
+To see the status of your check, click the “Checks” tab. When in the "Checks" tab comments from the AI will appear on your work.
+
+Only you and your internal team will see the AI's responses. Guests cannot see them.
+
+## Adding Your Own AI Checks
+
+You can create a custom AI check by selecting "Add Check". They can verify best practices for your type of company, or ensure you aren’t referencing other brands.
+Just provide a custom prompt, name it, and it will run against your work.
+
+<Info>
+  Custom checks currently only look at the text within the design work, and not the visuals themselves. Custom checks that review the asset visuals are coming soon.
+</Info>
+
+## Supported Content Types
+
+Only certain types of file type that you add to Workflow can use the AI checks.
+
+<Info>
+  AI checks currently work on images (PNG, JPG, GIF, WEBP) and
+  design files (Figma, Sketch, Adobe XD, PSD)
+</Info>
+
+We're working to expand this list - [let us know](https://workflowdesign.featurebase.app) which content types we should add AI checks to next.
+
+## AI Checks Settings
+
+Click the settings cog at the top right of the AI checks tab to view the settings for the AI checks. Here, you can turn off automatic checks or remove specific checks.
+
+<Info>
+  AI checks is an assistive tool and may not always be 100% accurate. Use your best judgment when deciding whether to accept or ignore its suggestions.
+</Info>
+
+## Privacy and Security
+
+Workflow never trains on your data. The platform use a mixture of local and industry leading LLMs, including LLMs provided by OpenAI and Anthropic.
+
+AI checks are optional. To prevent checks from running, turn off AI checks on the AI checks settings page.
+
+
+# Create an Account
+Source: https://docs.workflow.design/articles/get-started/create-an-account
+
+
+
+If you haven't done so yet, create an account. Join the waitlist [here](https://workflow.design/) to get your invite.
+
+
+# General Concepts
+Source: https://docs.workflow.design/articles/get-started/general-concepts
+
+
+
+Gain a basic understanding of Workflow's key concepts.
+
+## Tasks
+
+At the heart of Workflow are tasks. These are the basic building blocks that everything in Workflow revolves around.
+Every task requires a title and a status, but you can also add properties like priority, labels, due date, and assignee to keep things organized. Plus, you can attach creative assets directly to tasks for seamless collaboration and feedback.
+
+<Info>Press `C` to create tasks from anywhere in the app.</Info>
+
+![mockup](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/task_mockup.png)
+
+### Adding Creative Assets to a Task
+
+Workflow makes it easy to share creative assets by attaching them directly to tasks. With support for [30+ file types](/articles/adding-creative-work-to-workflow/creative-formats-that-workflow-supports), including images, PDFs, videos, live sites, and Figma files, your team can view and comment on creative work right within a task. This simplifies the feedback process, allowing you to reply to comments and resolve them once addressed, keeping everyone on the same page.
+
+<Info>
+  Workflow also supports video comments. Record short screen recordings to
+  clearly and efficiently share your thoughts. [Learn
+  more](/articles/present-work-and-get-feedback/presenting-work-with-a-screen-recording).
+</Info>
+
+When you're ready for another round of feedback, simply upload a new version of the creative asset and notify your team. Workflow keeps past versions and their associated comments easily accessible, providing a clear record of iterations and feedback.
+
+<Info>
+  If you use Figma, we highly recommend installing the [Figma
+  plugin](https://www.figma.com/community/plugin/1194400816695978796) to add
+  specific frames to Workflow without leaving Figma.
+</Info>
+
+### Board View
+
+To get a visual overview of all your tasks and their corresponding stages, use the board view. From there, you can easily filter and search to find specific tasks.
+
+![kanban](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/kanban-noshadow.png)
+
+## Organizing Tasks in Projects
+
+Projects group tasks together towards a specific, well-defined deliverable. Each project has its own dedicated page displaying all tasks related to the project.
+
+![project](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/project-page.png)
+
+<Info>
+  To create a project, go to the Projects tab and click "Create project," or use
+  the shortcut `Cmd` + `P` on Mac (`Ctrl` + `P` on Windows) from anywhere in the
+  app.
+</Info>
+
+### Collaborators and Guests
+
+Only team members and guests who have been added to a project can view and edit it.
+
+*   Team members can join any public project they'd like.
+*   External guests, such as freelancers or clients, can be added to specific projects. Guests will only have access to the project they've been invited to.
+
+<Note>
+  [Learn more about guest
+  permissions](/articles/inviting-guests-to-workflow-projects).
+</Note>
+
+## Inbox
+
+![inbox](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/Inbox.png)
+
+The Inbox is your notification center for important action items. It provides a single place to check and prioritize your to-dos. Mark items as "done" to dismiss them and automatically view the next pending item, streamlining your workflow.
+
+## Taking Actions
+
+Anytime you do something in Workflow that changes a task, project, or another piece of data, you're taking an action. Workflow offers multiple ways to take actions:
+
+*   **Using the command bar:** Access the command bar with `Cmd` + `K` (or `Ctrl` + `K`) and search for relevant actions based on what you have open or selected.
+*   **Using keyboard shortcuts:** Keyboard shortcuts are the fastest way to use Workflow. Try learning the most common ones:
+    *   `C` to create a task
+    *   `Cmd` + `K` (or `Ctrl` + `K`) to open the command bar
+*   **Using the mouse:** Of course, you can always use your mouse to interact with the interface.
+
+
+# Add Your Team
+Source: https://docs.workflow.design/articles/get-started/invite-team
+
+
+
+![team](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/team.png)
+
+Collaboration is at the heart of Workflow. Bring your team onboard in just a few clicks:
+
+*   **Direct invite**: Click "Invite Team" in the left sidebar, enter your teammates' email addresses and click "invite".
+*   **Shareable link**: Also in the "Invite Team" section, copy the shareable link and share it with your team.
+
+
+# Inbox
+Source: https://docs.workflow.design/articles/inbox-and-notifications/inbox
+
+The Inbox in Workflow serves as your notification center, where you’ll find important updates about your tasks.
+
+![inbox\_image](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/Inbox.png)
+
+## Notification Triggers
+
+You will receive a notification in your Workflow inbox when:
+
+1.  You're assigned to a task.
+2.  Someone comments on a task you created.
+3.  Someone replies to one of your comments.
+
+## Navigating through the Inbox
+
+1.  Notifications will appear as a new item in your inbox.
+2.  Click on it to view the task related to the notification. Note: You can also use your keyboard to navigate through the inbox. Use the arrow keys to move up and down, and press `Enter` to open the task.
+3.  After reviewing, you can dismiss the notification by clicking "Done" at the top right of the task or by pressing `E` on your keyboard.
+4.  Dismissing a notification brings up the next one, letting you rapidly move through your task list.
+
+<Info>
+  Notifications can also be dismissed directly from the inbox by clicking the "Done" button or with the "E" keyboard shortcut.
+</Info>
+
+
+# Create and Customise Workspace Statuses
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/create-and-customise-workspace-statuses
+
+
+
+By default, your workspace has four status columns to help organize tasks.
+
+You can add, remove and rename status columns by clicking on Settings > Board.
+
+![custom-columns](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/customise-status-columns.png)
+
+Note that changes you make here will affect every project in your workspace.
+
+
+# Inviting Guests to a Project
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/inviting-guests-to-workflow-projects
+
+
+
+![inviting-guests](https://mintlify.s3.us-west-1.amazonaws.com/workflow/images/inviting_guests.png)
+
+Collaborating with external stakeholders is easy in Workflow. You can invite guests to specific projects, granting them access to view, comment on, and edit tasks and files within the project. This article will guide you through the process of adding guests to an existing project.
+
+## Adding Guests to an Existing Project:
+
+1. Navigate to projects section in your Workflow dashboard and hover over the project you want to invite guests to.
+
+2. Click the settings (gear icon).
+
+3. In the popup, select "Members" from the toolbar.
+
+4. Invite guests by entering their email. People who you add who aren't already members of your workspace will be added as guests.
+
+5. Guests will only need to enter their email to access the project.
+
+<Info>
+  Guests can only access the specific project they are invited to, ensuring that
+  your other projects remain private.
+</Info>
+
+
+# Project and Task Templates
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/project-and-task-templates
+
+
+
+## Project Templates
+
+You can create templates for repeatable processes when creating projects and tasks, like setting up design sprints, organizing client briefs, and preparing for review meetings.
+
+1.  Create a project with the tasks you'd like in your template.
+2.  Click Info > Project Settings > Settings > Duplicate Project.
+
+![project-templates-settings](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/project-templates-image-1.png)
+
+Your entire project, including all tasks, will be duplicated. Project properties (e.g. project status, briefing…) will also be preserved.
+Note: Project members (except the user duplicating) and task comments won't be copied.
+
+## Task Templates
+
+1.  Click the three vertical dots to open the task settings menu.
+2.  Click "Duplicate task".
+
+![duplicate-tasks](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/project-templates-image-2.png)
+
+The new task retains all properties and versions from the original. Task comments won't be duplicated.
+
+
+# Project Notifications
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/projects-notifications
+
+
+
+You can subscribe to projects in Workflow. This is handy when working with a team and want to make sure that you don't miss key updates.
+
+# Notification Triggers
+
+When you subscribe to a project, you'll get notified when:
+
+*   Someone creates a task
+*   Someone leaves a comment
+*   Someone adds a new version
+*   A task changes status
+
+Notifications will appear as usual: via email, Workflow inbox, and Slack (if you've set up the integrated).
+
+# Subscribing to a Project
+
+![project-notifications](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/project-notifications.gif)
+
+To subscribe to a project:
+
+1.  Go to the project settings
+2.  Click the notifications tab
+3.  Check the "subscribe to project" box
+
+
+# Projects Overview
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/projects-overview
+
+
+
+Projects in Workflow help you organize tasks, collaborate with teammates and guests, and stay focused on specific deliverables.
+
+![project-page](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/project-page.png)
+
+Projects provide dedicated spaces for your work, with each project having its own page and board containing all related tasks. This allows you to immerse yourself in a single project without distractions from other tasks.
+
+All your active projects are easily accessible from the sidebar.
+
+Finally, projects allow you to invite external collaborators to work with you, without giving them access to your entire workspace. Projects are the perfect way to work with clients, contractors, or other external partners.
+
+## Creating a Project
+
+There are multiple ways to create a new project in Workflow:
+
+*   **With your mouse**: Click "Create Project" in the sidebar.
+*   **Command bar**: Open the command bar with `Cmd/Ctrl + K` and find "Create Project".
+*   **Keyboard shortcut**: Use `Cmd/Ctrl + P` from anywhere in the app.
+
+When creating a project, you now have the option to select its visibility:
+
+*   **All team members:** All team members in your Workspace can see and edit the project.
+*   **Private:** Only you and the collaborators you invite can see and edit the project.
+
+## Viewing Projects
+
+You can view all projects in your workspace on the Projects page. Navigate there using:
+
+*   **Mouse**: Click "Projects" in the sidebar.
+*   **Command bar**: Open the command bar and find "Go to Projects".
+*   **Keyboard shortcut**: Press `G` then `P`.
+
+Projects can be in an Active or Completed state. All your active projects will appear in the sidebar for quick access.
+
+## Completing Projects
+
+Once you're done with a project, mark it as Complete. Completed projects are hidden from the sidebar but can still be accessed from the Projects page.
+
+## Collaborating on Projects
+
+Inviting teammates and guests to a project is simple:
+
+1.  Open the project settings.
+2.  [Invite collaborators](/articles/managing-projects-and-inviting-guests/inviting-guests-to-workflow-projects) by email or by sharing the project's unique share link.
+
+
+# Removing Teammates or Guests from a Project
+Source: https://docs.workflow.design/articles/managing-projects-and-inviting-guests/removing-teammates-or-guests-from-a-project
+
+
+
+![inviting-guests](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/inviting_guests.png)
+
+At times, you may need to remove teammates or guests from a project in Workflow. This article will guide you through the process of removing people from a project, helping you maintain control over project.
+
+1.  Navigate to "Projects" in the left-hand sidebar, or press `Cmd` + `P` (`Ctrl` + `P` on Windows)
+2.  Hover over the project you wish to remove people from and click the settings gear.
+3.  Select "Members" from the toolbar at the top of the popup box.
+4.  Select the three-dot action button to the right of the member you wish to remove and select "remove".
+5.  You can remove teammates in a similar way from the "Teammates" tab
+
+
+# Managing Teammates
+Source: https://docs.workflow.design/articles/managing-users-and-roles/adding-removing-and-managing-teammates
+
+
+
+![team](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/team.png)
+
+Manage your team in Workflow by inviting and managing teammates under `Settings` > `Team`. In this section, you can manually add and remove teammates from your workspace and manage their roles.
+
+## Inviting Teammates
+
+Click `Invite Team` at the bottom of the left-hand sidebar, or navigate to `Settings` > `Team`. You can invite people via email or share an invitation link.
+
+<Info>
+  Teammates have full access to your workspace. They can view and edit tasks,
+  public projects, and other data within the workspace.
+</Info>
+
+## Removing Teammates
+
+1.  Select `Invite Team` at the bottom of the left-hand sidebar or navigate to `Settings` > `Team`.
+2.  Find the user you wish to remove, click the dropdown button to the right of their name, and select `Remove`. They will no longer have access to your workspace.
+
+## Owner Roles
+
+Users assigned the `Owner` role in Workflow have special permissions. Owners can:
+
+*   Remove teammates
+*   Delete a Workspace
+*   Change user roles
+
+<Info>Only Owners can elevate another teammate's role to "Owner."</Info>
+
+
+# The Difference Between Teammates, Guests, and Share Links
+Source: https://docs.workflow.design/articles/managing-users-and-roles/difference-teammates-guests-links
+
+
+
+In Workflow, you can collaborate with others in three ways: by inviting teammates, guests, or sharing a task link. Each method grants different levels of access and is suitable for different collaboration scenarios.
+
+## Teammates
+
+Teammates have access to all public projects within your workspace. They can view, edit, and create tasks in any project they join.
+
+Teammates are ideal for people you regularly work with, such as colleagues within your company or long-term collaborators.
+
+## Guests
+
+Guests only have access to the specific project they've been invited to. They can view, edit, create tasks, and comment within that project, but they cannot access any other projects in your workspace.
+
+Guests are perfect for collaborators who are only involved in a single project, such as freelancers or clients.
+
+Learn more about guests [here](/articles/managing-projects-and-inviting-guests/inviting-guests-to-workflow-projects)
+
+## Share Links
+
+In addition to inviting teammates and guests, you can also share individual tasks using a [share link](/articles/present-work-and-get-feedback/shareable-links). When you create a share link for a task, anyone with the link can view and comment on that specific task, but they won't have access to the rest of the project project or workspace.
+
+Share links are ideal for getting feedback or input on a particular task without granting access to the entire project.
+
+Learn more about share links [here](/articles/present-work-and-get-feedback/shareable-links)
+![shareable-review-links](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/share-link-share-button.png)
+
+
+# Video Walkthroughs and Reviews
+Source: https://docs.workflow.design/articles/present-work-and-get-feedback/presenting-work-with-a-screen-recording
+
+Use the built-in screen recorder for effective feedback and walkthroughs
+
+![recording](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/recording.png)
+Workflow's built-in screen and video recorder lets you create engaging video walkthroughs and comments. It also provides a quick and easy way to give feedback over video.
+
+When you leave a video comment, Workflow automatically transcribes the video, making it easy for your team to follow along even if they can't watch the video.
+
+<Note>You can only leave video comments on tasks with a creative asset.</Note>
+
+## Creating a Video Comment or Walkthrough
+
+1.  Click the camera icon at the top of the asset. Note: If it's your first time, you'll be asked to grant access to your camera and microphone.
+2.  The recording will start automatically.
+3.  Once you've finished recording, click the red square to stop the recording.
+4.  You can preview your video before posting it. If you're happy with it, click "Post." You can also discard the video and start over if you're not happy with it.
+
+<Note>
+  Video comments have a maximum length of 5 minutes. If you need to record a
+  longer video, consider breaking it up into multiple comments.
+</Note>
+
+
+# Shareable Review Links
+Source: https://docs.workflow.design/articles/present-work-and-get-feedback/shareable-links
+
+
+
+Shareable review links allow you to easily share any asset for review.
+
+## Share Your Work With A Link
+
+To share your work using a review link:
+
+1.  Open the task you want to share
+2.  Click the "Share" button in the top right
+3.  Copy the link
+4.  Share it with anyone
+
+Reviewers can see your work and comment on it.
+
+Links have two levels of permissions:
+
+1.  Comment-only: Perfect for getting feedback. Reviewers can see the task and leave comments, but they can't make edits.
+2.  Editor: For deeper collaboration. Reviewers can see the task, leave comments, upload new versions, and edit task metadata.
+
+![shareable-review-links](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/share-link-share-button.png)
+
+## What Do Reviewers See When They Access a Link?
+
+**"Comment-only" viewers**
+
+*   Can see the task, past versions, and leave comments
+*   Cannot make edits
+*   Do not see the AI review or task details toolbar
+*   Cannot go back to the rest of the workspace
+
+![comment-view](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/share-link-commentor.png)
+
+**"Editor" viewers**
+
+*   Can see the task and leave comments
+*   Can see the task details and edit it
+*   Can upload new versions
+
+![editor-view](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/share-link-editor.png)
+
+<Info>
+  Guests who access a file via a shared link can only see that specific task and
+  nothing else in the workspace
+</Info>
+
+## Leaving Feedback Via Shareable Links
+
+People who receive a review link can see the shared work without creating a Workflow account. To comment, they only need to provide their email. This allows the sharer to know who is commenting.
+
+![sign-up-to-comment](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/share-link-sign-up.png)
+
+
+# Getting Feedback on SquareSpace Websites
+Source: https://docs.workflow.design/articles/present-work-and-get-feedback/squarespace-sites
+
+
+
+Squarespace staging URLs are usually password-protected. To embed them in Workflow:
+
+1.  Copy the full Squarespace staging URL. It should look something like this: `https://example.squarespace.com`
+
+2.  At the end of the URL, append `/?password=[your-password-here]` (without the brackets).
+
+For example: `https://example.squarespace.com/?password=mypassword123`
+
+3.  Paste this modified URL into Workflow when adding the site for review.
+
+![squarespace-sites](https://mintlify.s3-us-west-1.amazonaws.com/workflow/images/squarespace-sites.png)
+
+
+# Home
+Source: https://docs.workflow.design/home
+
+Get an overview of Workflow's features and how to use them.
+
+<CardGroup cols={2}>
+  <Card title="Start Guide" icon="circle-play" href="/articles/get-started/create-an-account" color="#6D6D6D">
+    Learn how to use Workflow in a few minutes and start creating.
+  </Card>
+
+  <Card title="Share, Review, and Approval Work" icon="upload" color="#6D6D6D" href="/articles/adding-creative-work-to-workflow/adding-a-creative-to-a-task">
+    Upload your creative work to Workflow, share it with others, and get
+    feedback.
+  </Card>
+
+  <Card title="Organize Work in Projects" icon="table-columns" color="#6D6D6D" href="/articles/managing-projects-and-inviting-guests/inviting-guests-to-workflow-projects">
+    Use projects to manage your work, and invite guests to collaborate with you.
+  </Card>
+
+  <Card title="Manage Users and Roles" icon="users" color="#6D6D6D" href="/articles/managing-users-and-roles/adding-removing-and-managing-teammates">
+    Manage teammates, guests, and roles.
+  </Card>
+</CardGroup>
+
+Here's a 3 minute video to get an overview of Workflow's features and how to use them.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nSRWASwFb1M?si=qUDVK9BWnhh2Yhi6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+
+**Need Help?**
+
+If you can't find what you're looking for, [contact us](mailto:help@workflow.design). We're always happy to help.
+
+

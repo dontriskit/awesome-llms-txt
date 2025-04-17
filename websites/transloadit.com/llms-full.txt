@@ -1,0 +1,128 @@
+# Transloadit
+
+> Transloadit is a versatile file uploading and processing API that allows developers to create complex media processing workflows through declarative JSON recipes called Assembly Instructions.
+
+## Uploading and importing (INPUT)
+
+Transloadit handles file uploads over XHR or tus.io (our open source protocol for resumable file uploads) and can process files through various "Robots" (specialized processing steps) that can be chained together to create customized workflows.
+
+## Encoding workflows (PROCESS)
+
+Assembly Instructions at a glance:
+
+```json
+{
+  "steps": {
+    ":original": {
+      "robot": "/upload/handle"
+    },
+    "browser720_webm_encoded": {
+      "use": ":original",
+      "robot": "/video/encode",
+      "preset": "webm",
+      "width": 1280,
+      "height": 720
+    },
+    "browser720_h264_encoded": {
+      "use": ":original",
+      "robot": "/video/encode",
+      "preset": "mp4",
+      "width": 1280,
+      "height": 720
+    },
+    "thumbed": {
+      "use": "browser720_h264_encoded",
+      "robot": "/video/thumbs",
+      "width": 1280,
+      "height": 720,
+      "format": "jpg",
+      "resize_strategy": "fit",
+      "count": 1,
+    },
+    "exported": {
+      "use": ["browser720_webm_encoded", "browser720_h264_encoded", "thumbed", ":original"],
+      "robot": "/s3/store",
+      "credentials": "demo_s3_credentials",
+      "url_prefix": "https://demos.transloadit.com/"
+    }
+  }
+}
+```
+
+As you can see, our features are called Robots, and each Step inside
+the Assembly Instructions can refer one. Robots can pass files to each other
+with the `use` keyword. This means you can create complex workflows
+unique to your application.
+
+## Exporting to cloud storage or downloading results (OUTPUT)
+
+Transloadit can export to all the major cloud storage providers.
+Customers first need to store their credentials in their Transloadit account and
+then refer to them in the Assembly Instructions.
+
+Alternatively, Transloadit keeping 24h of temporary storage, you can directly download
+resulting files when an Assembly is finished.
+
+All meta data is available on a unique Assembly URL which contains the Assembly Status JSON.
+
+## Example integration code with Node.js
+
+```js
+// npm install transloadit
+const { Transloadit } = require('transloadit')
+
+const transloadit = new Transloadit({
+  authKey: 'TRANSLOADIT_KEY',
+  authSecret: 'TRANSLOADIT_SECRET',
+})
+
+const options = {
+  files: {
+    file1: '/PATH/TO/FILE.jpg',
+  },
+  params: {
+    steps: {
+      // You can have many Steps. In this case we will just resize any inputs (:original)
+      ':original': {
+        robot: '/upload/handle',
+      },
+      resize: {
+        use: ':original',
+        robot: '/image/resize',
+        result: true,
+        width: 75,
+        height: 75,
+      },
+    },
+    // OR if you already created a template, you can use it instead of "steps":
+    // template_id: 'YOUR_TEMPLATE_ID',
+  },
+  waitForCompletion: true, // Wait for the Assembly (job) to finish executing before returning
+}
+
+const status = await transloadit.createAssembly(options)
+console.log('✅ Success - Your resized image:', status?.results?.resize?.[0]?.ssl_url)
+```
+
+## SDKs
+
+- [Uppy](https://uppy.io/): Our open source browser UI for uploading files
+- [Node.js SDK](https://github.com/transloadit/node-sdk): Official Node.js integration
+- [Python SDK](https://github.com/transloadit/python-sdk): Official Python integration
+- [Ruby SDK](https://github.com/transloadit/ruby-sdk): Official Ruby integration
+- [All SDKs](https://transloadit.com/docs/sdks/): Complete list of available SDKs
+
+**Error loading robot information. Please check the server logs for details.**
+
+## More resources
+
+- [Getting Started](https://transloadit.com/docs/): Introduction to Transloadit's core concepts
+- [Assembly Instructions](https://transloadit.com/docs/topics/assembly-instructions/): How to create processing workflows
+- [Templates](https://transloadit.com/docs/topics/templates/): Learn about reusable Assembly Instructions
+- [API Reference](https://transloadit.com/docs/api/): Detailed API documentation
+- [Community Forum](https://community.transloadit.com/): Get help from other Transloadit users
+- [Status Page](https://status.transloadit.com/): Real-time status of our services
+- [Pricing](https://transloadit.com/pricing/): Transloadit pricing plans
+- [Blog](https://transloadit.com/blog/): Latest news and updates
+
+this file is 5kB

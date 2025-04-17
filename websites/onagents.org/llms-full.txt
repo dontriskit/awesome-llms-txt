@@ -1,0 +1,39 @@
+
+# LLMs Metadata File (Full Version)
+
+## Repository Overview
+- **Title**: OnAgents.org
+- **Description**: A repository exploring LLM agent systems, patterns, and related legal and technical topics curated by Dazza Greenwood.
+- **Primary URL**: https://onagents.org
+- **Owner**: Dazza Greenwood (Daniel "Dazza" Greenwood)
+- **License**: Creative Commons Attribution-ShareAlike 4.0 International
+  - License URL: https://creativecommons.org/licenses/by-sa/4.0/
+
+## Key Features
+1. **Background Materials**: Historical context and foundational information on agents.
+2. **Agento Project**: Design patterns and methodologies for agent collaboration.
+3. **Design Patterns**: Frameworks for creating effective LLM agent systems.
+4. **Principal Authority**: Legal discussions on the role of principal authority in agent interactions.
+5. **Agent Transactions**: Prototypes and examples of agent-based transactional systems.
+6. **Generating New Value (GenSpring)**: Strategies for producing novel outputs with LLM agents.
+
+## Content Directory
+- **/docs/background/**: Personal experiences and historical references in agent development.
+- **/docs/patterns/**: Core and hybrid design patterns for agent systems.
+- **/docs/principals/**: Legal and ethical considerations for LLM agents.
+- **/docs/transactions/**: Transactional systems, including UETA tips and scenarios.
+- **/docs/genspring/**: Concepts for value generation through LLM agents.
+- **/docs/agento/**: Working prototype code content (to be added soon).
+
+## Technical Configuration
+- **Platform**: GitHub Pages (jekyll-based site)
+- **Build Settings**:
+  - `markdown`: kramdown
+  - `defaults`:
+    - Layout: `default.html`
+    - Includes: `analytics.html`
+  - CSS: `/docs/assets/css/style.css`
+
+## Additional Notes
+- Repository actively maintained and updated.
+- Visual and audio media support: Images, videos, interactive prototypes.

@@ -1,0 +1,1713 @@
+# Android
+Source: https://docs.imprint.co/android
+
+Embed the Imprint application experience in your Android app
+
+## Installation
+
+#### Step 1: Add to app-level build.gradle and sync project to gradle
+
+```groovy
+repositories {     
+    ...     
+    maven { url 'https://jitpack.io' }     
+    ...
+}
+
+dependencies {     
+    implementation 'com.github.Imprint-Tech:imprint-sdk-android-source:0.1.8'
+}
+```
+
+## Implementation
+
+#### Step 2: Import the SDK
+
+```kotlin
+import co.imprint.imprintsdk.application.Imprint
+```
+
+#### Step 3: Configuration
+
+Create an instance of `ImprintConfiguration` with your `clientSecret`, `partnerReference` and `environment`, then assign additional optional fields as needed.
+
+```kotlin
+val configuration = ImprintConfiguration(
+  clientSecret = "client_secret",
+  partnerReference: "partner_reference",
+  environment = ImprintConfiguration.Environment.SANDBOX,
+)
+```
+
+#### Step 4: Define the completion handler
+
+Define the completion handler `onCompletion` to manage the terminal states when the application flow ends.
+
+```kotlin
+val onCompletion =
+      { state: CompletionState, metadata: Map<String, String?>? ->
+        val metadataInfo = metadata?.toString() ?: "No metadata"
+        val resultText = when (state) {
+          CompletionState.OFFER_ACCEPTED -> {
+            "Offer accepted\n$metadataInfo"
+          }
+          CompletionState.REJECTED -> {
+            "Application rejected\n$metadataInfo"
+          }
+          CompletionState.IN_PROGRESS -> {
+            "Incomplete application\n$metadataInfo"
+          }
+          CompletionState.ERROR -> {
+            "Error occured\n$metadataInfo"
+          }
+        }
+        Log.d("Application result:", resultText)
+      }
+```
+
+#### Step 5: Starting the Application flow
+
+Once you have configured the `ImprintConfiguration`, initiate the application flow by calling `ImprintApp.startApplication`. This will start within a new Activity.
+
+```kotlin
+  fun startApplication(
+    context: Context,
+    configuration: ImprintConfiguration,
+    onCompletion: (CompletionState, Map<String, String?>?) -> Unit,
+  )
+```
+
+`context`: The context from which the application process will be presented
+
+`configuration`: The previously created ImprintConfiguration object containing your API key and completion handler
+
+`onCompletion`: The completion handler of the flow
+
+## Complete code example
+
+```kotlin
+fun startApplication(context: Context) {
+    val configuration = ImprintConfiguration(
+      clientSecret = "client_secret",
+      partnerReference: "partner_reference",
+      environment = ImprintConfiguration.Environment.SANDBOX,
+    )
+
+    val onCompletion =
+      { state: CompletionState, metadata: Map<String, String?>? ->
+        val metadataInfo = metadata?.toString() ?: "No metadata"
+        val resultText = when (state) {
+          CompletionState.OFFER_ACCEPTED -> {
+            "Offer accepted\n$metadataInfo"
+          }
+          CompletionState.REJECTED -> {
+            "Application rejected\n$metadataInfo"
+          }
+          CompletionState.IN_PROGRESS -> {
+            "Incomplete application\n$metadataInfo"
+          }
+          CompletionState.ERROR -> {
+            "Error occured\n$metadataInfo"
+          }
+        }
+        Log.d("Application result:", resultText)
+      }
+
+    // Start the application process with the provided context, configuration, and callback
+    Imprint.startApplication(
+      context = context,
+      configuration = configuration,
+      onCompletion = onCompletion,
+    )
+  }
+```
+
+Request Parameters
+
+| PROPERTY NAME          | REQUIRED | TYPE   | DESCRIPTION                                     |   |
+| ---------------------- | -------- | ------ | ----------------------------------------------- | - |
+| **`clientSecret`**     | TRUE     | String | Generated through Create Customer Session       |   |
+| **`partnerReference`** | TRUE     | String | The unique reference identifier for the partner |   |
+
+Response Metadata
+
+| PROPERTY NAMES            | TYPE           | DESCRIPTION                                   |
+| ------------------------- | :------------- | --------------------------------------------- |
+| **`customer_id`**         | String \| null | Imprint identifier for customer               |
+| **`partner_customer_id`** | String \| null | Partner identifier for customer               |
+| **`payment_method_id`**   | String \| null | ID to the payment method of customer          |
+| **`error_code`**          | String \| null | Identifier for the specific issue encountered |
+
+Application States
+
+| ENUM                 | DESCRIPTION                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| **`OFFER_ACCEPTED`** | Application has been approved and credit offer accepted. New cardholder! |
+| **`REJECTED`**       | Application has been rejected by Imprint                                 |
+| **`IN_PROGRESS`**    | Application has been exited, not completed                               |
+| **`ERROR`**          | Invalid request parameters (e.g., invalid client secret)                 |
+
+
+# Authentication
+Source: https://docs.imprint.co/api-reference/authentication
+
+Finding and using your API keys
+
+The Imprint API uses API Keys to authenticate requests, and these are different for each environment. You can view and manage your API keys in the **Imprint Dashboard.**
+
+API authentication is performed via **HTTP Basic Auth**. Provide your API key as the basic auth username value. You do not need to provide a password.
+
+If you need to authenticate via bearer auth (e.g., for a cross-origin request), use `-H "Authorization: Bearer 4eC39HqLyjWDarjtT1zdp7dc"` instead of `-u 4eC39HqLyjWDarjtT1zdp7dc`.
+
+
+# Link an Imprint customer and partner customer accounts
+Source: https://docs.imprint.co/api-reference/customer-links/link-an-imprint-customer-and-partner-customer-accounts
+
+api-reference/openapi.yaml post /v2/customers/{customer_id}/link
+Creates a link between an existing Imprint customer and a partner's customer account. The API key provided with the request will be used to link the partner with the imprint customer.
+
+
+
+# Create a new customer session
+Source: https://docs.imprint.co/api-reference/customer-sessions/create-a-new-customer-session
+
+api-reference/openapi.yaml post /v2/customer_sessions
+Creates a new session for a customer with a client_secret that can be passed to the SDK, providing client access to modify their own profile, card, or card/loan application. If required, a new customer will be created to attach this session to. Customer history can be attached to this session and will be included in the customer's profile if created, or attached to the application the customer creates during the session
+
+
+
+# Retrieve a session
+Source: https://docs.imprint.co/api-reference/customer-sessions/retrieve-a-session
+
+api-reference/openapi.yaml get /v2/customer_sessions/{session_id}
+
+
+
+# Create a customer
+Source: https://docs.imprint.co/api-reference/customers/create-a-customer
+
+api-reference/openapi.yaml post /v2/customers
+Creates a new customer object in the Imprint system.
+
+
+
+# Get customer's current rewards balance
+Source: https://docs.imprint.co/api-reference/customers/get-customers-current-rewards-balance
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}/rewards_balance
+
+
+
+# List customer's payment methods
+Source: https://docs.imprint.co/api-reference/customers/list-customers-payment-methods
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}/payment_methods
+
+
+
+# List customer's rewards
+Source: https://docs.imprint.co/api-reference/customers/list-customers-rewards
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}/rewards
+
+
+
+# List customer's transaction intents
+Source: https://docs.imprint.co/api-reference/customers/list-customers-transaction-intents
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}/transaction_intents
+
+
+
+# List customer's transactions
+Source: https://docs.imprint.co/api-reference/customers/list-customers-transactions
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}/transactions
+
+
+
+# Retrieve a customer
+Source: https://docs.imprint.co/api-reference/customers/retrieve-a-customer
+
+api-reference/openapi.yaml get /v2/customers/{customer_id}
+Retrieves the details of an existing customer by ID
+
+
+
+# Search for customers
+Source: https://docs.imprint.co/api-reference/customers/search-for-customers
+
+api-reference/openapi.yaml get /v2/customers
+
+
+
+# Update a customer
+Source: https://docs.imprint.co/api-reference/customers/update-a-customer
+
+api-reference/openapi.yaml post /v2/customers/{customer_id}
+Updates the details of the customer associated with the supplied `customer_id`
+
+
+
+# Data types
+Source: https://docs.imprint.co/api-reference/data-types
+
+Learn how we format amounts, currencies, and dates across the Imprint API
+
+### Amount
+
+All API requests expect amount values in the currency's minor unit, meaning the lowest denomination of the currency. For example, in USD, `1000` represents \$10.
+
+```json
+{
+  "amount": 1000
+}
+```
+
+### Currencies
+
+We use the [ISO 4217 standard](https://www.iso.org/iso-4217-currency-codes.html) standard for defining currencies. If the currency is not specified, **`USD`** is assumed.
+
+```json
+{
+  "currency": "USD"
+}
+```
+
+### Dates
+
+All dates are expressed using [RFC-3339](https://datatracker.ietf.org/doc/html/rfc3339) timestamps:
+
+```json
+{ 
+  "created_at": "2025-02-13T19:08:07.000Z",
+  "updated_at": "2025-02-13T19:08:07.000Z"
+}
+```
+
+
+# Error handling
+Source: https://docs.imprint.co/api-reference/error-handling
+
+How Imprint communicates errors
+
+Imprint uses standard HTTP codes to indicate the success or failure of a request. In general, codes in the **`2xx`** range indicate success, and codes in the **`4xx`** range indicate an error. When an API call fails, Imprint will also provide an error object in the response body, which includes an error code (**`type`**), the human-readable error description (**`message`**), and (if applicable) the parameter related to the error (**`param`**).
+
+```json 400
+{
+  "error": {
+    "type": "INVALID_REQUEST_ERROR",
+    "message": "Invalid email format",
+    "param": "email"
+  }
+}
+```
+
+
+# Base URLs
+Source: https://docs.imprint.co/api-reference/introduction
+
+Introduction to Imprint environments and API URLs
+
+Imprint provides two environments: sandbox and production. Use the sandbox environment to familiarize yourself with API behavior and to build your integration; use the production environment once you are ready to launch and create real applications and transactions with Imprint.
+
+<CardGroup cols="2">
+  <Card title="Sandbox" icon="sparkles" horizontal={2}>
+    [<u>https://dev.sbx.imprint.co</u>](https://dev.sbx.imprint.co)
+  </Card>
+
+  <Card title="Production" icon="credit-card" horizontal={2}>
+    [<u>https://dev.imprint.co</u>](https://dev.imprint.co)
+  </Card>
+</CardGroup>
+
+<Info>
+  Please use HTTPS for all interactions with Imprint APIs. Any requests over
+  HTTP will fail.
+</Info>
+
+
+# Retrieve an offer
+Source: https://docs.imprint.co/api-reference/offers/retrieve-an-offer
+
+api-reference/openapi.yaml get /v2/offers
+Returns the marketing placement for the given customer
+
+
+
+# Apply for a new payment method
+Source: https://docs.imprint.co/api-reference/payment-methods/apply-for-a-new-payment-method
+
+api-reference/openapi.yaml post /v2/payment_methods/apply
+
+
+
+# List payment methods
+Source: https://docs.imprint.co/api-reference/payment-methods/list-payment-methods
+
+api-reference/openapi.yaml get /v2/payment_methods
+
+
+
+# Retrieve a payment method
+Source: https://docs.imprint.co/api-reference/payment-methods/retrieve-a-payment-method
+
+api-reference/openapi.yaml get /v2/payment_methods/{payment_method_id}
+Retrieves the details of the payment method associated with the supplied `payment_method_id`
+
+
+
+# Update a payment method
+Source: https://docs.imprint.co/api-reference/payment-methods/update-a-payment-method
+
+api-reference/openapi.yaml post /v2/payment_methods/{payment_method_id}
+Updates the details of the payment method associated with the supplied `payment_method_id`
+
+
+
+# Retrieve a reward
+Source: https://docs.imprint.co/api-reference/rewards/retrieve-a-reward
+
+api-reference/openapi.yaml get /v2/rewards/{reward_id}
+Retrieves the details of an existing reward by ID
+
+
+
+# Search for rewards
+Source: https://docs.imprint.co/api-reference/rewards/search-for-rewards
+
+api-reference/openapi.yaml get /v2/rewards
+
+
+
+# Simulate transaction event in sandbox environment
+Source: https://docs.imprint.co/api-reference/simulate-transaction-event/simulate-transaction-event-in-sandbox-environment
+
+api-reference/openapi.yaml post /v2/simulate_transaction_event
+
+
+
+# Create a transaction intent
+Source: https://docs.imprint.co/api-reference/transaction-intents/create-a-transaction-intent
+
+api-reference/openapi.yaml post /v2/transaction_intents
+Creates a transaction intent object that represents a pending financial transaction. Transaction intents are used to initiate, validate, and track the lifecycle of a transaction before it is finalized.
+
+
+
+# List transaction intents
+Source: https://docs.imprint.co/api-reference/transaction-intents/list-transaction-intents
+
+api-reference/openapi.yaml get /v2/transaction_intents
+Retrieves a list of transaction intents.
+
+
+
+# Retrieve a transaction intent
+Source: https://docs.imprint.co/api-reference/transaction-intents/retrieve-a-transaction-intent
+
+api-reference/openapi.yaml get /v2/transaction_intents/{intent_id}
+Retrieves the details of an existing transaction intent by `id`.
+
+
+
+# Update a transaction intent
+Source: https://docs.imprint.co/api-reference/transaction-intents/update-a-transaction-intent
+
+api-reference/openapi.yaml post /v2/transaction_intents/{intent_id}
+Updates the details of the transaction intent associated with the supplied intent_id
+
+
+
+# Retrieve a transaction
+Source: https://docs.imprint.co/api-reference/transactions/retrieve-a-transaction
+
+api-reference/openapi.yaml get /v2/transactions/{transaction_id}
+Retrieves the details of an existing transaction by `id`
+
+
+
+# Search for transaction
+Source: https://docs.imprint.co/api-reference/transactions/search-for-transaction
+
+api-reference/openapi.yaml get /v2/transactions
+
+
+
+# Verify event signature
+Source: https://docs.imprint.co/api-reference/verify-event-notification
+
+Secure transmission using the event signature header
+
+Imprint provides signed webhooks to ensure authenticity and verify that the webhook requests originate from our servers. You'll receive a unique event signing token while enrolling in event notifications, and each event request includes a signature in the `X-IMPRINT-HMAC-SIGNATURE` header.
+
+## Header Format
+
+The `X-IMPRINT-HMAC-SIGNATURE` header consists of two parts:
+
+* **Timestamp (`t`)** – the time the request was sent, represented as milliseconds since January 1, 1970 (Unix epoch).
+
+* **Signature (`s`)** – the cryptographic hash used to verify the request.
+
+These values are separated by a comma, as shown in the example below:
+
+```plaintext
+t=1740779129,s=d3d12f37e9ccb686313322da672c3dbc19176d2bfbd29f987923b5784cd6ae7d
+```
+
+## Verify signature
+
+<Steps>
+  <Step title="Extract the timestamp and signature">
+    * Split the `X-IMPRINT-HMAC-SIGNATURE` header at the comma (`,`), which separates the timestamp and signature.&#x20;
+
+    * Then, split each part at the equals sign (`=`) to extract the respective values.
+  </Step>
+
+  <Step title="Construct the message to sign">
+    * Take the extracted timestamp and concatenate it with a period (`.`), followed by the JSON payload with fields ordered **lexicographically** (sorted by key names).
+
+    * Ensure that the JSON fields are sorted in **ascending order before computing the signature**, as different field orders will generate different signatures. For example, if the received payload is:
+
+    ```json
+    {"hello": "world", "amount": 5000}
+    ```
+
+    and the timestamp is `1723493048949`, the correctly ordered message to sign would be:
+
+    ```
+    1723493048949.{"amount":5000,"hello":"world"}
+    ```
+  </Step>
+
+  <Step title="Compute the expected signature">
+    * Use the signing token you were provided during event enrollment (hashed with SHA-256) to generate a Hash-based Message Authentication Code (HMAC).
+
+    * Apply HMAC using the SHA-256 algorithm to the message created in Step 2.
+  </Step>
+
+  <Step title="Compare signatures">
+    * Compare the computed signature with the s value from the X-IMPRINT-HMAC-SIGNATURE header.&#x20;
+
+    * If they match, the request is authentic and was sent by Imprint.
+  </Step>
+</Steps>
+
+
+# Application event notification
+Source: https://docs.imprint.co/api-reference/webhooks/application-event-notification
+
+api-reference/openapi.yaml webhook Application
+Receive an event notification when an application for a payment method is created or transitions statuses.
+
+
+
+# Payment method event notification
+Source: https://docs.imprint.co/api-reference/webhooks/payment-method-event-notification
+
+api-reference/openapi.yaml webhook PaymentMethod
+Receive a notification when a payment method (e.g. credit card or loan) is created or transitions statuses.
+
+
+
+# Reward event notification
+Source: https://docs.imprint.co/api-reference/webhooks/reward-event-notification
+
+api-reference/openapi.yaml webhook Reward
+Receive an event notification when a reward is created, updated, or available
+
+
+
+# Transaction event notification
+Source: https://docs.imprint.co/api-reference/webhooks/transaction-event-notification
+
+api-reference/openapi.yaml webhook Transaction
+Receive a notification when a transaction is created or when events for the transaction happen
+Please see the [event notifications guide](https://docs.imprint.co/guide-event-notifications) for more information regarding the lifecycle of a transaction.
+
+
+
+
+# Create a transaction intent
+Source: https://docs.imprint.co/create-transaction-intent
+
+Unlock personalized experiences that stand out in the marketplace
+
+Use **`Transaction Intents`** to connect your transaction data to the Imprint rewards platform and take advantage of its full potential:
+
+* **Dynamic Rewards Calculation:** set the amount of rewards earned on a transaction based on your internal calculation (e.g. item or category-level rewards rates, promotions, etc.), or simply share the order data and use the Imprint platform to configure your calculation logic;
+
+* **Additional Offers and Benefits:** trigger additional rewards based on qualification criteria (e.g., certain types of purchases or behaviors);
+
+* **Transaction Matching:** provide criteria for Imprint to search for related transactions (e.g., purchases at complementary businesses) and trigger rewards;
+
+* **Transaction Enrichment:** provide transaction details (e.g., order lines, logos, images, travel dates, etc.) to display in the Imprint customer experience;
+
+* *And more  ...*&#x20;
+
+In just one or (at most) two API requests, you can provide your customers with a truly differentiated rewards experience.
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/imprint-b3c5d5af/images/transaction-intent-1.png)
+
+### Step 1: Create transaction intent
+
+Once the transaction has been completed on your platform, immediately make an API request to Imprint to create a corresponding Transaction Intent.
+
+* **`POST`** request to [**`v2/transaction_intents`**](https://docs.imprint.co/api-reference/transaction-intents/create-a-transaction-intent) including several required fields (e.g., Currency, Amount, Customer ID) and the metadata object. *The metadata schema will be provided by your Imprint team depending on the above features selected and enabled for your program.*&#x20;
+
+* Responds with Intent ID and Status. *If status equals `"REQUIRES_CONFIRMATION"` please proceed to Step 2 below.*
+
+### Step 2: Confirm or cancel transaction intent (optional, depending on the program)
+
+Depending on the above Imprint features enabled, partners with "multi-step" transactions may be required to provide an update with the final transaction outcome. If the transaction intent is updated to `CONFIRMED` status, Imprint will enable the loyalty and rewards experiences. Otherwise,`CANCELED` will result in no further action.&#x20;
+
+* **`POST`** request to [**`/v2/transaction_intents/{intent_id}`**](https://docs.imprint.co/api-reference/transaction-intents/update-a-transaction-intent) including the final status and any other details that may have changed, e.g. amount, anything within the metadata object, etc.
+
+* Responds with the latest status and all other details
+
+### Step 3: List or retrieve transaction intents (optional)
+
+Finally, there are two ways to read existing Transaction Intents.
+
+**List Transaction Intents**
+
+* **`GET`** request to [**`/v2/transaction_intents`**](https://docs.imprint.co/api-reference/transaction-intents/list-transaction-intents) including the Customer ID
+
+* Responds with a paginated list of all Transaction Intents associated with the Customer ID
+
+**Retrieve Transaction Intents**
+
+* **`GET`** request to [**`/v2/transaction_intents/{intent_id}`**](https://docs.imprint.co/api-reference/transaction-intents/retrieve-a-transaction-intent)
+
+* Responds with full detail of the Transaction Intent
+
+
+# Apply for a loan or credit card
+Source: https://docs.imprint.co/creating-an-application
+
+The end-to-end process of applying for an Imprint payment method involves three steps
+
+Imprint has powered hundreds of thousands of applications for financial products across retail, grocery, and travel programs. You can embed the Imprint application directly into your website or mobile app to give your customers an experience that looks and feels like your brand – while Imprint still owns the technical, regulatory, and compliance effort to host and maintain the application. Imprint provides three Application SDKs ([Web](https://docs.imprint.co/web), [iOS](https://docs.imprint.co/ios), and [Android](https://docs.imprint.co/android)) to make setup as simple as possible.
+
+To enable an Imprint application on your website or mobile app, you need to complete the following three steps:&#x20;
+
+1. **Create a new customer session** - make a server-side request to start the application
+
+2. **Render the Imprint application** - install Imprint SDK and display the application
+
+3. **Handle the application result** - graceful exit from the application to your site or app
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/imprint-b3c5d5af/images/sdk-diagram-2.png)
+
+### **Step 1: Create a new customer session**
+
+Once the customer clicks "Apply" on your site or app, you will start by creating a new customer session with Imprint. In this request, you can share transaction and account history data (if available) to provide Imprint with more context regarding the customer and augment their application data. This request starts a customer-specific, time-limited session and responds with a **Client Secret**, which you will need to display the Imprint application experience in the next step. The **Client Secret** is a piece of secret data, do not log it.
+
+<CodeGroup>
+  ```json Request
+  {
+    "customer_id": "AD87A18A-A4BE-49FF-BC46-BF6F0779DBAA",
+    "partner_customer_id": "CUST_03476998",
+    "transaction_amount": 34000,
+    "transaction_currency": "USD",
+    "customer_history": {
+      "email": "customer@example.com",
+      "phone": "+14155552671",
+      "first_name": "John",
+      "last_name": "Doe",
+      "preferred_language": "en",
+      "address": {
+        "street_line1": "123 Main St",
+        "street_line2": "Apt 4B",
+        "city": "San Francisco",
+        "state": "CA",
+        "postal_code": "94105",
+        "country": "USA"
+      },
+      "account_tenure": 13,
+      "ltv_amount": 34000,
+      "ltv_currency": "USD",
+      "loyalty_tier": "GOLD"
+    }
+  }
+  ```
+
+  ```json Response (200)
+  {
+    "id": "2EE24580-B97B-4949-A65C-929CCB9B9B8D",
+    "customer_id": "B40A789E-BD46-4BB9-B63E-F9919582694C",
+    "client_secret": "QzMyNzg4QzgtNEUwOS00QkU4LThDMjEtMkU5OUQ3QzkwRDhGCg==",
+    "expires_at": "2025-02-13T19:08:07.000Z",
+    "metadata": {
+      "external_id": "USER_123"
+    }
+  }
+  ```
+</CodeGroup>
+
+### Step 2:  Render the Imprint application experience
+
+Please see the SDK reference for detailed instructions regarding how to launch Imprint on your [website](https://docs.imprint.co/web) and [iOS](https://docs.imprint.co/ios) and [Android](https://docs.imprint.co/android) mobile apps. In short, use the **Client Secret** returned above and the **Partner Reference** value provided by your Imprint team to initiate a client-side request and render the Imprint application experience.&#x20;
+
+Most customers will complete an Imprint application in under two minutes. Information is pre-filled as much as possible from both data you have (optionally) provided above and other Imprint sources. Additionally, the Imprint team will help tailor the application experience to your brand (colors, logos, copy, etc.) and enable/disable program-specific features like card art selection.&#x20;
+
+### Step 3: Handle the application result
+
+The Imprint SDK will always share an application result. There are three possible results:&#x20;
+
+| Result               | Description                                                                      | Recommended Customer Experience                                                         |
+| -------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **`OFFER_ACCEPTED`** | Application has been approved and the credit offer accepted. **New cardholder!** | Hide acquisition placements, show cardholder placements, enable cardholder benefits     |
+| **`REJECTED`**       | Application has been rejected by Imprint                                         | Hide acquisition marketing (e.g. next 90 days)                                          |
+| **`IN_PROGRESS`**    | Application has been exited, not completed                                       | Continue to show                                                                        |
+| **`ERROR`**          | Invalid request parameters (e.g., invalid token)                                 | Continue to show acquisition marketing. The error will indicate whether it's retryable. |
+
+### After application
+
+For new cardholders, card details are immediately available in the customer's Imprint account. You can also make requests to the Imprint API to retrieve card details (i.e. [Retrieve Payment Method](https://docs.imprint.co/api-reference/payment-methods/retrieve-a-payment-method) or [List Customer's Payment Methods](https://docs.imprint.co/api-reference/customers/list-customers-payment-methods)) - but you will need to verify PCI compliance with the Imprint team to see the full card number, card verification code (CVV), and expiration date.&#x20;
+
+Rejected applicants may apply again immediately (e.g. correcting typo) and as many times as they would like - but credit profiles are unlikely to change quickly, so we recommend temporarily hiding acquisition marketing (e.g. for the next 90 days).
+
+<Info>
+  Please see the [Web](https://docs.imprint.co/web), [iOS](https://docs.imprint.co/ios), and [Android](https://docs.imprint.co/android) pages in the SDK reference for further implementation detail
+</Info>
+
+[
+](https://imprint-b3c5d5af-noel-docs-update-2-17.mintlify.app/create-transaction-intent)
+
+
+# Subscribe to event notifications
+Source: https://docs.imprint.co/guide-event-notifications
+
+Receive and react to real-time event notifications from Imprint
+
+## Overview
+
+You can subscribe to specific event types to receive real-time event notifications. This enables you to build efficient, event-driven workflows and respond promptly to changes in transaction activity, account status, and other critical events.
+
+## How event notifications work
+
+When an event occurs, Imprint will `POST` to the endpoint configured. This event notification contains a JSON payload with details about the event.&#x20;
+As part of event notification enrollment, you will receive a secret shared only between Imprint and you.All requests are signed (HMAC SHA-256) using the shared secret.
+
+For increased security, you can restrict your endpoint to only allow requests from Imprint's IP Ranges, which can be provided by your Imprint team. &#x20;
+
+Your system should acknowledge events with a `2XX` HTTP response status to confirm successful receipt. If a delivery fails, Imprint will retry the request based on an exponential back-off strategy.
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/imprint-b3c5d5af/images/event-notification-diagram-1.png)
+
+## Setup
+
+To start receiving event notifications, please coordinate the following with your Imprint team:
+
+1. **Select events**: subscribe to specific event types. For a description of each event notification, see the [reference pages](https://docs.imprint.co/api-reference/webhooks/application-event-notification).
+
+2. **Register your endpoint(s)**: provide at least one publicly accessible URL where events should be sent. You may provide multiple endpoints, e.g. one per event type. All endpoints must use HTTPS to ensure encrypted communication.
+
+3. **Store event signing token**: your Imprint team will provide the secret key that you will use to validate the signature of incoming requests. Please see the [signature verification page](https://docs.imprint.co/api-reference/verify-event-notification) for more detail on how to interpret the `X-IMPRINT-HMAC-SIGNATURE` header.
+
+4. **Retry logic**: implement idempotency handling to avoid processing duplicate events, as Imprint will retry failed webhook deliveries.
+
+## Examples
+
+### Transaction notifications
+
+Below, we have provided more detail regarding the possible transaction statuses and expected transaction scenarios.
+
+#### Transaction statuses
+
+| Status     | Description                                                                                                                                                                                                               |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `APPROVED` | Authorization request was received from the merchant and approved by Imprint, which creates a pending transaction on the customer's statement.                                                                            |
+| `UPDATED`  | Authorization request was updated by the merchant, which updates the pending transaction on the customer's statement.                                                                                                     |
+| `VOIDED`   | Approved authorization has been cancelled by the merchant or expired by Imprint, which removes the pending transaction from the customer's statement.                                                                     |
+| `CAPTURED` | Approved authorization has been captured, or a force capture has been created (e.g., bypassing the authorization step), which creates a confirmed transaction on the customer's statement with the final purchase amount. |
+| `REFUNDED` | Refund has been created by the merchant, either related to a previous capture or standalone (e.g., "blind return"), which creates a confirmed transaction on the customer's statement with the final refund amount.       |
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/imprint-b3c5d5af/images/transaction-state-map-1.png)
+
+<Info>
+  Use `transaction_id` to track a transaction throughout the lifecycle of different statuses and  `event_id` to identify each step uniquely
+</Info>
+
+#### Common transaction scenarios
+
+<Steps>
+  <Step title="Customer completes $50 purchase">
+    As soon as the customer pays with their card, you will receive an `APPROVED` event. However, it may take several hours for the merchant to finalize the transaction through the card network. Once a transaction is finalized, you will receive a `CAPTURED` event with the confirmed purchase amount.&#x20;
+
+    | Event ID | Transaction ID | Amount | Status     |
+    | -------- | -------------- | ------ | ---------- |
+    | 123      | 123            | \$50   | `APPROVED` |
+    | 234      | 123            | \$50   | `CAPTURED` |
+
+    <Info>
+      In some cases, merchants may bypass the `APPROVED` step (e.g., force capture) or capture for more/less than the `APPROVED` amount. Regardless, `CAPTURED` always represents a confirmed purchase amount.
+    </Info>
+  </Step>
+
+  <Step title="Customer completes $50 purchase, which is partially captured multiple times">
+    It's possible for a merchant to capture a single transaction multiple times (e.g., single order split into multiple shipments). When this happens, you will receive multiple `CAPTURED` events with the `amount` encompassing each individual charge.&#x20;
+
+    | Event ID | Transaction ID | Amount | Status     | ... |
+    | -------- | -------------- | ------ | ---------- | --- |
+    | 123      | 123            | \$50   | `APPROVED` | ... |
+    | 234      | 123            | \$20   | `CAPTURED` | ... |
+    | 345      | 123            | \$30   | `CAPTURED` | ... |
+  </Step>
+
+  <Step title="Merchant updates transaction amount">
+    It's possible for merchants to authorize one amount initially and later request an updated authorization amount that is higher/lower. For example, automated fuel dispensers which authorize for \~\$100 immediately and then update the authorization to the final purchase amount after the customer has finished pumping.&#x20;
+
+    | Event ID | Transaction ID | Amount | Status     | ... |
+    | -------- | -------------- | ------ | ---------- | :-- |
+    | 123      | 123            | \$100  | `APPROVED` | ... |
+    | 234      | 123            | \$50   | `UPDATED`  | ... |
+    | ...      | ...            | ...    | ...        | ... |
+  </Step>
+
+  <Step title="Merchant cancels the order">
+    If a merchant reverses an `APPROVED` authorization or lets the authorization expire (e.g., after nine days without capture), you will receive a `VOIDED` event.&#x20;
+
+    | Event ID | Transaction ID | Amount | Status     | ... |
+    | -------- | -------------- | ------ | ---------- | --- |
+    | 123      | 123            | \$50   | `APPROVED` | ... |
+    | 234      | 123            | \$50   | `VOIDED`   | ... |
+  </Step>
+
+  <Step title="Customer completes $50 purchase, then receives a $30 refund">
+    There can be multiple refunds associated with a transaction and you will receive a `REFUNDED` event for each. In most cases, refunds are linked to an existing transaction (e.g., example below), but standalone refunds are possible as well.
+
+    | Event ID | Transaction ID | Amount | Status     | ... |
+    | -------- | -------------- | ------ | ---------- | :-- |
+    | 123      | 123            | \$50   | `APPROVED` | ... |
+    | 234      | 123            | \$50   | `CAPTURED` | ... |
+    | 345      | 123            | \$30   | `REFUNDED` | ... |
+  </Step>
+
+  <Step title="$50 purchase is disputed and won by the customer">
+    If the `CAPTURED` transaction is disputed and won by the customer (e.g., example below), it translates to a new refund. If the dispute is lost, no change - it's still a purchase on the customer's statement.&#x20;
+
+    | Event ID | Transaction ID | Amount | Status     | ... |
+    | -------- | -------------- | ------ | ---------- | :-- |
+    | 123      | 123            | \$50   | `APPROVED` | ... |
+    | 234      | 123            | \$50   | `CAPTURED` | ... |
+    | 345      | 123            | \$50   | `REFUNDED` | ... |
+  </Step>
+</Steps>
+
+
+# iOS
+Source: https://docs.imprint.co/ios
+
+Embed the Imprint application experience in your iOS app
+
+## Installation
+
+### Option 1 Swift Package Manager
+
+1. Add the following repository URL
+
+```ruby
+https://github.com/Imprint-Tech/imprint-sdk-ios
+```
+
+1. Select your desired version or branch
+
+2. Click **Add Package**
+
+Or you can also add Imprint as a dependency to your \`Package.swift\`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/Imprint-Tech/imprint-sdk-ios", from: "0.1.6")
+]
+```
+
+### Option 2 Cocoapods
+
+> (minimum support cocoapods version: 1.16.1)
+
+1. Add Imprint to your `Podfile`
+
+```ruby
+target 'YourApp' do
+  pod 'Imprint'   
+end
+```
+
+1. Install the dependencies
+
+```ruby
+pod install
+```
+
+1. open the **`.xcworkspace`** project file
+
+## Implementation
+
+1. &#x20;**Import the SDK**
+
+Import the SDK in your view controllers or wherever needed:
+
+```swift
+import Imprint
+```
+
+1. &#x20;**Configuration**
+
+Create an instance of `ImprintConfiguration` with your `client_secret`, `partner_reference` and `environment`, then assign additional optional fields as needed.
+
+```swift
+let configuration = ImprintConfiguration(clientSecret: "client_secret", partnerReference: "partner_reference", environment: .sandbox)
+```
+
+1. **Define the Completion Handler**
+
+Define the completion handler **`onCompletion`** to manage the terminal states when the application flow ends.
+
+```swift
+configuration.onCompletion = { state, data in
+  switch state {
+  case .offerAccepted:
+    print("Offer accepted, data: \(String(describing: data))")
+  case .rejected:
+    print("Application rejected, data: \(String(describing: data))")
+  case .inProgress:
+    print("Incomplete application, data: \(String(describing: data))")
+  case .error:
+    print("Error occurred, data: \(String(describing: data))")
+  }
+  // Perform any generic actions after the flow ends if needed
+}
+```
+
+1. **Start the Application flow**
+
+Once you've configured the **`ImprintConfiguration`**, initiate the application flow by calling **`ImprintApp.startApplication`** from your view controller.
+
+```swift
+public static func startApplication(from viewController: UIViewController, configuration: ImprintConfiguration) 
+```
+
+* **`from viewController`:** The view controller from which the application flow will be presented
+
+* **`configuration`:** The previously created **`ImprintConfiguration`** object containing your API key and completion handler
+
+### Complete Code Example
+
+Check out our complete demo project at [Imprint-Tech/imprint-sdk-ios](https://github.com/Imprint-Tech/imprint-sdk-ios)
+
+```swift
+import Imprint
+
+class YourViewController: UIViewController {
+
+  // …
+  
+  func startImprintApplication() {
+    let configuration = ImprintConfiguration(clientSecret: "client_secret", partnerReference: "partner_reference", environment: .sandbox)
+    
+    // Define the completion handler
+    configuration.onCompletion = { state, data in
+      switch state {
+      case .offerAccepted:
+        print("Offer accepted, data: \(String(describing: data))")
+      case .rejected:
+        print("Application rejected, data: \(String(describing: data))")
+      case .inProgress:
+        print("Incomplete application, data: \(String(describing: data))")
+      case .error:
+        print("Error occurred, data: \(String(describing: data))")
+      }
+      // Perform any generic actions after the flow ends if needed
+    }
+    
+    ImprintApp.startApplication(from: self, configuration: configuration)
+  }
+}
+```
+
+Request Parameters
+
+| PROPERTY NAMES     | REQUIRED | TYPE   | DESCRIPTION                                     |    |
+| ------------------ | -------- | ------ | ----------------------------------------------- | :- |
+| **`clientSecret`** | TRUE     | String | Generated through Create Customer Session       |    |
+| `partnerReference` | TRUE     | String | The unique reference identifier for the partner |    |
+
+Response Data
+
+| PROPERTY NAMES            | TYPE           | DESCRIPTION                                   |
+| ------------------------- | :------------- | --------------------------------------------- |
+| **`customer_id`**         | String \| null | Imprint identifier for customer               |
+| **`partner_customer_id`** | String \| null | Partner identifier for customer               |
+| **`payment_method_id`**   | String \| null | ID to the payment method of customer          |
+| **`error_code`**          | String \| null | Identifier for the specific issue encountered |
+
+Application States
+
+| ENUM                 | DESCRIPTION                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| **`OFFER_ACCEPTED`** | Application has been approved and credit offer accepted. New cardholder! |
+| **`REJECTED`**       | Application has been rejected by Imprint                                 |
+| **`IN_PROGRESS`**    | Application has been exited, not completed                               |
+| **`ERROR`**          | Invalid request parameters (e.g., invalid token)                         |
+
+
+# Handle rewards event notifications
+Source: https://docs.imprint.co/rewards-event-notifications
+
+Guide on processing rewards event notifications
+
+### Overview
+
+If you already have a loyalty program and your customer are earning rewards,
+you can integrate with Imprints rewards event notification to handle rewards originating from Imprint.
+
+As the loyalty program maintainer, you are responsible for managing the customer's reward balance
+and issuing rewards when required. Imprint track rewards earned by customers from transactions and promotions
+and notifies you when rewards are available or should be issued.
+
+### How it works
+
+1. **Rewards Tracking**
+
+* Customer earns rewards from transactions and promotions.
+* Imprint keeps track of accumulated rewards.
+
+2. **Rewards Issuance Event Notification**
+
+* When it is time for the reward to be available or usable, Imprint post a reward event notification
+  to the endpoint you provided
+
+3. **Handling the Rewards Event Notification**
+
+* Upon receiving the event, you should process the request and issue the reward to the customer.
+* If the reward is successfully issued, respond to the event notification with a 200 status code.
+* If there is an issue with issuing the reward, respond with an appropriate error code.
+* Imprint will retry sending the event with exponential backoff.
+
+### Statement Reward
+
+If your program is configured up to earn statement rewards with Imprint, then you will receive reward events
+when the reward is created and when the reward is available.
+
+**Transaction Reward Processing:**
+
+* When the transaction is `CAPTURED` or `REFUNDED`, a `PENDING` reward is created and you will receive a `PENDING` transactional reward event.
+
+Example of a reward event send after a transaction identified by `fbfe3146-3a72-4edf-a31b-b2773e9153d8` is `CAPTURED`
+
+```json
+{
+  "data": {
+    "amount": 100,
+    "created_at": "2025-02-13T19:08:07.000Z",
+    "customer_id": "1ebb6d73-d132-4c80-9736-dfd5b01f11a4",
+    "reward_id": "c960a701-1eaf-47aa-8f54-c4ca96bba4b3",
+    "transaction_id": "fbfe3146-3a72-4edf-a31b-b2773e9153d8",
+    "type": "TRANSACTIONAL",
+    "status": "PENDING"
+  },
+  "object": "REWARD"
+}
+```
+
+**Offer Reward Processing:**
+
+* When a promotion is satisfied, an offer reward is created and you will receive a `PENDING` offer reward event.
+
+**Statement Closure:**
+
+* When the customer's statement closes, you will receive an `AVAILABLE` reward event for each reward created during the statement cycle.
+
+Example of a reward event send after the customer's statement closes
+
+```json
+{
+  "data": {
+    "amount": 100,
+    "created_at": "2025-02-13T19:08:07.000Z",
+    "customer_id": "1ebb6d73-d132-4c80-9736-dfd5b01f11a4",
+    "reward_id": "c960a701-1eaf-47aa-8f54-c4ca96bba4b3",
+    "transaction_id": "fbfe3146-3a72-4edf-a31b-b2773e9153d8",
+    "type": "TRANSACTIONAL",
+    "status": "AVAILABLE"
+  },
+  "object": "REWARD"
+}
+```
+
+### Examples
+
+**Promotional Reward**
+
+Customer should be issued \$50.00 for satisfying the conditions of a promotion.
+
+```json
+{
+  "data": {
+    "amount": 5000,
+    "created_at": "2025-02-13T19:08:07.000Z",
+    "customer_id": "1ebb6d73-d132-4c80-9736-dfd5b01f11a4",
+    "reward_id": "c960a701-1eaf-47aa-8f54-c4ca96bba4b3",
+    "transaction_id": "",
+    "type": "OFFER",
+    "status": "AVAILABLE"
+  },
+  "object": "REWARD"
+}
+```
+
+**Transactional Reward**
+
+Customer should be issued \$1.00 for making a transaction identified by `transaction_id`
+
+```json
+{
+  "data": {
+    "amount": 100,
+    "created_at": "2025-02-13T19:08:07.000Z",
+    "customer_id": "1ebb6d73-d132-4c80-9736-dfd5b01f11a4",
+    "reward_id": "c960a701-1eaf-47aa-8f54-c4ca96bba4b3",
+    "transaction_id": "fbfe3146-3a72-4edf-a31b-b2773e9153d8",
+    "type": "OFFER",
+    "status": "AVAILABLE"
+  },
+  "object": "REWARD"
+}
+```
+
+**One-time Reward**
+
+Customer should be issued a one-off reward
+
+```json
+{
+  "data": {
+    "amount": 100,
+    "created_at": "2025-02-13T19:08:07.000Z",
+    "customer_id": "1ebb6d73-d132-4c80-9736-dfd5b01f11a4",
+    "reward_id": "c960a701-1eaf-47aa-8f54-c4ca96bba4b3",
+    "transaction_id": "",
+    "type": "ONE_TIME",
+    "status": "AVAILABLE"
+  },
+  "object": "REWARD"
+}
+```
+
+
+# Simulate transaction events
+Source: https://docs.imprint.co/simulate-transaction-events-in-sandbox
+
+How to create transaction events in sandbox environment
+
+For testing purposes, Imprint's sandbox environment is not connected to card networks. This means that the sandbox environment does not receive or process real transaction messages.
+
+Imprint offers a [sandbox endpoint to simulate transaction events](https://docs.imprint.co/api-reference/simulate-transaction-event/simulate-transaction-event-in-sandbox-environment) as though they came through the network (e.g., related to a specific payment method, merchant, etc.). Simulated transactions trigger Imprint's systems, such as transaction event notifications, transaction-based rewards, etc. - so it is a very helpful mirror of the Imprint production environment.&#x20;
+
+Below, we have detailed how to simulate different [common transaction scenarios](https://docs.imprint.co/guide-event-notifications#common-transaction-scenarios):
+
+## Simulate an `APPROVED` transaction&#x20;
+
+* In the request, do not include a `transaction_id` value. The endpoint will create a new `APPROVED` transaction and return the corresponding `transaction_id `and `event_id`
+
+<CodeGroup>
+  ```json REQUEST
+  {
+    "transaction_id": "",
+    "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+    "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+    "status": "APPROVED",
+    "amount": 5000,
+    "currency": "USD",
+    "authorization_code": "645432",
+    "network_transaction_id": "txn-789456",
+    "purchase_method": "CHIP",
+    "merchant": {
+      "network_id": "234923454545",
+      "name": "Target",
+      "category": "Grocery Stores",
+      "category_code": "5411",
+      "address": {
+        "city": "New York",
+        "country": "USA",
+        "postal_code": "10002",
+        "state": "NY",
+        "street_line1": "",
+        "street_line2": ""
+      }
+    }
+  }
+  ```
+
+  ```json RESPONSE
+  {
+    "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+    "event_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+    "status": "APPROVED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+    "object": "TRANSACTION",
+    "data": {
+      "amount": 5000,
+      "authorization_code": "645432",
+      "created_at": "2025-02-27T18:11:32.358Z",
+      "currency": "USD",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "event_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "merchant": {
+        "address": {
+          "city": "New York",
+          "country": "USA",
+          "postal_code": "10002",
+          "state": "NY",
+          "street_line1": "",
+          "street_line2": ""
+        },
+        "category": "Grocery Stores",
+        "category_code": "5411",
+        "network_id": "234923454545",
+        "name": "Target"
+      },
+      "network_transaction_id": "txn-789456",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "purchase_method": "CHIP",
+      "status": "APPROVED",
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496"
+    }
+  }
+  ```
+</CodeGroup>
+
+## Simulate a `VOIDED` transaction
+
+* You can void an `APPROVED` transaction
+
+* The example voids an approved authorization.
+
+<CodeGroup>
+  ```json REQUEST
+  {
+    "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+    "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+    "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+    "status": "VOIDED"
+  }
+  ```
+
+  ```json RESPONSE
+  {
+    "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+    "event_id": "47c7cbfd-ef76-48e7-98fd-4a5bb3e2a82e",
+    "status": "CAPTURED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+    "object": "TRANSACTION",
+    "data": {
+      "amount": 400,
+      "authorization_code": "645432",
+      "created_at": "2025-02-27T18:11:32.358Z",
+      "currency": "USD",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "event_id": "47c7cbfd-ef76-48e7-98fd-4a5bb3e2a82e",
+      "merchant": {
+        "address": {
+          "city": "New York",
+          "country": "USA",
+          "postal_code": "10002",
+          "state": "NY",
+          "street_line1": "",
+          "street_line2": ""
+        },
+        "category": "Grocery Stores",
+        "category_code": "5411",
+        "network_id": "234923454545",
+        "name": "Target"
+      },
+      "network_transaction_id": "txn-789456",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "purchase_method": "CHIP",
+      "status": "VOIDED",
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "updated_at": "2025-02-30T12:00:00.000Z"
+    }
+  }
+  ```
+</CodeGroup>
+
+## Simulate an `UPDATED` transaction
+
+* The request must include an existing `transaction_id` that will be updated
+
+* Below, the example updates an `APPROVED` transaction amount from \$50.00 to \$35.46
+
+<CodeGroup>
+  ```json REQUEST
+  {
+    "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+    "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+    "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+    "status": "UPDATED",
+    "amount": 3456
+  }
+  ```
+
+  ```json RESPONSE
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "event_id": "cc1b6144-27bd-4b77-8c5c-e48977abe9a4",
+      "status": "UPDATED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+    "object": "TRANSACTION",
+    "data": {
+      "amount": 3456,
+      "authorization_code": "645432",
+      "created_at": "2025-02-27T18:11:32.358Z",
+      "currency": "USD",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "event_id": "cc1b6144-27bd-4b77-8c5c-e48977abe9a4",
+      "merchant": {
+        "address": {
+          "city": "New York",
+          "country": "USA",
+          "postal_code": "10002",
+          "state": "NY",
+          "street_line1": "",
+          "street_line2": ""
+        },
+        "category": "Grocery Stores",
+        "category_code": "5411",
+        "network_id": "234923454545",
+        "name": "Target"
+      },
+      "network_transaction_id": "txn-789456",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "purchase_method": "CHIP",
+      "status": "UPDATED",
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "updated_at": "2025-02-28T12:00:00.000Z"
+    }
+  }
+  ```
+</CodeGroup>
+
+## Simulate a `CAPTURED` transaction
+
+* In the request, you can create one or multiple captures against the same `transaction_id` in `APPROVED` or `UPDATED` status.
+
+* The example creates a \$4 capture linked to a previous \$4 approved authorization.
+
+<CodeGroup>
+  ```json REQUEST
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "status": "CAPTURED",
+      "amount": 400
+  }
+  ```
+
+  ```json RESPONSE
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "event_id": "47c7cbfd-ef76-48e7-98fd-4a5bb3e2a82e",
+      "status": "CAPTURED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+      "object": "TRANSACTION",
+      "data": {
+          "amount": 400,
+          "authorization_code": "645432",
+          "created_at": "2025-02-27T18:11:32.358Z",
+          "currency": "USD",
+          "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+          "event_id": "47c7cbfd-ef76-48e7-98fd-4a5bb3e2a82e",
+          "merchant": {
+              "address": {
+                  "city": "New York",
+                  "country": "USA",
+                  "postal_code": "10002",
+                  "state": "NY",
+                  "street_line1": "",
+                  "street_line2": ""
+              },
+              "category": "Grocery Stores",
+              "category_code": "5411",
+              "network_id": "234923454545",
+              "name": "Target"
+          },
+          "network_transaction_id": "txn-789456",
+          "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+          "purchase_method": "CHIP",
+          "status": "CAPTURED",
+          "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+          "updated_at": "2025-02-30T12:00:00.000Z"
+      }
+  }
+  ```
+</CodeGroup>
+
+* Alternatively, you can create a standalone capture (e.g., "force capture") by omitting `transaction_id` from the request.
+
+* The example creates a standalone \$4 capture.
+
+<CodeGroup>
+  ```javascript REQUEST
+  {
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "transaction_id": "",
+      "amount": 400,
+      "status": "CAPTURED"
+  }
+  ```
+
+  ```json RESPONSE
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "event_id": "57d8cbfd-ef76-48e7-98fd-1a5cc3e2a82e",
+      "status": "CAPTURED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+    "object": "TRANSACTION",
+    "data": {
+      "amount": 400,
+      "authorization_code": "645432",
+      "created_at": "2025-02-27T18:11:32.358Z",
+      "currency": "USD",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "event_id": "57d8cbfd-ef76-48e7-98fd-1a5cc3e2a82e",    
+      "merchant": {
+        "address": {
+          "city": "New York",
+          "country": "USA",
+          "postal_code": "10002",
+          "state": "NY",
+          "street_line1": "",
+          "street_line2": ""
+        },
+        "category": "Grocery Stores",
+        "category_code": "5411",
+        "network_id": "234923454545",
+        "name": "Target"
+      },
+      "network_transaction_id": "txn-789456",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "purchase_method": "CHIP",
+      "status": "CAPTURED",
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "updated_at": "2025-02-30T12:00:00.000Z"
+    }
+  }
+  ```
+</CodeGroup>
+
+## Simulate a `REFUNDED` transaction&#x20;
+
+* In the request, you can create one or multiple refunds against the same `transaction_id` in `CAPTURED` status. The API will return an error if the refunded amount exceeds the captured amount for the transaction.
+
+* The example creates a \$4 refund linked to a previous \$4 capture.
+
+<CodeGroup>
+  ```json REQUEST
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "captured_event_id": "47c7cbfd-ef76-48e7-98fd-4a5bb3e2a82e",
+      "amount": 400,
+      "status": "REFUNDED"
+  }
+  ```
+
+  ```json RESPONSE
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "event_id": "c2f3f849-5ee0-46b3-8caa-70016a014126",
+      "status": "REFUNDED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATIONS
+  {
+      "object": "TRANSACTION",
+      "data": {
+          "amount": 400,
+          "authorization_code": "645432",
+          "created_at": "2025-02-27T18:11:32.358Z",
+          "currency": "USD",
+          "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+          "event_id": "c2f3f849-5ee0-46b3-8caa-70016a014126",
+          "merchant": {
+              "address": {
+                  "city": "New York",
+                  "country": "USA",
+                  "postal_code": "10002",
+                  "state": "NY",
+                  "street_line1": "",
+                  "street_line2": ""
+              },
+              "category": "Grocery Stores",
+              "category_code": "5411",
+              "network_id": "234923454545",
+              "name": "Target"
+          },
+          "network_transaction_id": "txn-789456",
+          "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+          "purchase_method": "CHIP",
+          "status": "REFUNDED",
+          "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+          "updated_at": "2025-03-01T12:00:00.000Z"
+      }
+  }
+  ```
+</CodeGroup>
+
+* Alternatively, you can create a standalone refund (e.g., "blind return") by omitting `transaction_id` from the request.&#x20;
+
+* The example creates a standalone \$5 refund.
+
+<CodeGroup>
+  ```json REQUEST
+  {
+      "transaction_id": "",
+      "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+      "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+      "status": "REFUNDED",
+      "amount": 5000,
+      "currency": "USD",
+      "authorization_code": "645432",
+      "network_transaction_id": "txn-789456",
+      "purchase_method": "CHIP",
+      "merchant": {
+          "network_id": "234923454545",
+          "name": "Target",
+          "category": "Grocery Stores",
+          "category_code": "5411",
+          "address": {
+              "city": "New York",
+              "country": "USA",
+              "postal_code": "10002",
+              "state": "NY",
+              "street_line1": "",
+              "street_line2": ""
+          }
+      }
+  }
+  ```
+
+  ```json RESPONSE
+  {
+      "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "event_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+      "status": "REFUNDED"
+  }
+  ```
+
+  ```json TRANSACTION EVENT NOTIFICATION
+  {
+      "object": "TRANSACTION",
+      "data": {
+          "amount": 5000,
+          "authorization_code": "645432",
+          "created_at": "2025-02-27T18:11:32.358Z",
+          "currency": "USD",
+          "customer_id": "e0549550-90e9-4acb-b7e9-2e4738b7def2",
+          "event_id": "e2806932-5f1b-4518-8b15-156d773e9496",
+          "merchant": {
+              "address": {
+                  "city": "New York",
+                  "country": "USA",
+                  "postal_code": "10002",
+                  "state": "NY",
+                  "street_line1": "",
+                  "street_line2": ""
+              },
+              "category": "Grocery Stores",
+              "category_code": "5411",
+              "network_id": "234923454545",
+              "name": "Target"
+          },
+          "network_transaction_id": "txn-789456",
+          "payment_method_id": "7f754378-dd84-4a9a-b1ce-0646bb769c29",
+          "purchase_method": "CHIP",
+          "status": "REFUNDED",
+          "transaction_id": "e2806932-5f1b-4518-8b15-156d773e9496"
+      }
+  }
+  ```
+</CodeGroup>
+
+
+# Tips for sandbox testing
+Source: https://docs.imprint.co/tips-for-sandbox
+
+
+
+## Phone number
+
+Imprint indexes existing payment method applications based on the customer's phone number. For example, if you submit a credit card application using `(111)-111-1111` and exit right before accepting the credit offer - any subsequent credit card application attempt using that phone number will automatically resume at the credit offer stage. If you would like to complete a brand-new application, you will need to enter a phone number that doesn't have any active applications. It's easy to tell when there's an active application as Imprint will immediately recognize the phone number (e.g., `"Looks like you already have an account with Imprint!"`).
+
+## One-time password
+
+Imprint **does not** send SMS or emails in sandbox. Whenever prompted for a one-time password, please enter `888888`. No other values will be accepted!
+
+## Simulating application outcomes
+
+In sandbox, you may specify certain customer Last Names **(case-sensitive!)** to simulate different application outcomes:
+
+| **Last Name**   | **Application State** |
+| --------------- | --------------------- |
+| `approve`       | APPROVED              |
+| `review`        | ACTION\_REQUIRED      |
+| `frozen`        | ACTION\_REQUIRED      |
+| *Anything else* | REJECTED              |
+
+
+# Web
+Source: https://docs.imprint.co/web
+
+Embed the Imprint application experience on your website 
+
+## Installation
+
+<Steps>
+  <Step title="Load the Imprint script">
+    Include the Imprint script either at `index.html` or the page on which you plan on loading the Imprint application. It must always be loaded directly from the URL below, rather than included in a bundle or hosted yourself.
+
+    ```javascript
+    <script src="https://apply.sbx.imprint.co/imprintsdk.js"></script>
+    ```
+  </Step>
+
+  <Step title="Add a container to your page">
+    Create a container for the Imprint application.
+
+    <CodeGroup>
+      ```javascript HTML
+      <div id="imprint-ui" />
+      ```
+
+      ```css CSS
+      #imprint-ui {
+        height: 900px;
+        width: 700px;
+      }
+      ```
+    </CodeGroup>
+
+    <Note>
+      Imprint application requires a minimum width of 375px.
+    </Note>
+  </Step>
+
+  <Step title="Display the card application experience">
+    The script exposes the global `Imprint` object. **`Imprint.create()`** initializes the UI flow and accepts a configuration object with an optional callback function and additional data fields.
+
+    `Imprint.create()` needs to be initialized with a `client_secret ` (generated by [Creating a Customer Session](https://docs.imprint.co/api-reference/customer-sessions/create-a-new-customer-session)) and a `partner_reference` (provided by the Imprint team).
+
+    The configuration object accepts an optional `onCompletion` callback function, which is triggered at the end of the application flow in different scenarios. Please refer to the full list  of `onCompletion` parameter options below.
+
+    *Example Implementation:*
+
+    ```javascript
+    Imprint.create({
+     client_secret: "QzMyNzg4QzgtNEUwOS00QkU4LThDMjEtMkU5OUQ3QzkwRDhGCg==",
+     partner_reference: "S00QkU4NEUwO",
+     selector: "#imprint-ui", // reference to your container
+     onCompletion: (result, data) => {
+       switch (result) {
+         case "OFFER_ACCEPTED":
+           // Implement logic for new approved cardholders
+           console.log("Offer accepted, data:", data);
+           break;
+         case "REJECTED":
+           // Implement logic for rejected applications
+           console.log("Rejected, data:", data);
+           break;
+         case "IN_PROGRESS":
+           // Implement logic for abandoned applications
+           console.log("Abandoned, data:", data);
+           break;
+         case "ERROR":
+           // Implement error handling
+           console.log("Error occurred:", data);
+           break;
+       }
+     }
+    });
+    ```
+  </Step>
+</Steps>
+
+## Reference
+
+`Imprint.create()` \~ Configuration Object Fields:
+
+| PROPERTY NAME           | REQUIRED | TYPE   | DESCRIPTION                                                                                                                                 |
+| ----------------------- | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`client_secret`**     | TRUE     | String | Generated through [Create Customer Session](https://docs.imprint.co/api-reference/customer-sessions/create-a-new-customer-session) endpoint |
+| **`partner_reference`** | TRUE     | String | Unique identifier for the program provided by the Imprint team                                                                              |
+| **`selector`**          | FALSE    | String | DOM element to load the application. If not provided, Imprint will try to find a container with `id="imprint-ui"` (`#imprint-ui` selector)  |
+| **`onCompletion`**      | FALSE    | String | Callback function that accepts a `result` and `data` parameters (see all possible values below)                                             |
+
+`onCompletion` \~ Callback `result` values:
+
+| ENUM                 | DESCRIPTION                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| **`OFFER_ACCEPTED`** | Application has been approved and credit offer accepted. New cardholder! |
+| **`REJECTED`**       | Application has been rejected by Imprint                                 |
+| **`IN_PROGRESS`**    | Application has been exited, not completed                               |
+| **`ERROR`**          | Invalid request parameters (e.g., invalid token)                         |
+
+`onCompletion` \~ Callback `data` object fields:
+
+| PROPERTY NAME             | TYPE           | DESCRIPTION         |
+| ------------------------- | -------------- | ------------------- |
+| **`customer_id`**         | string \| null | Imprint Customer ID |
+| **`payment_method_id`**   | string \| null | Payment Method ID   |
+| **`partner_customer_id`** | string \| null | Partner Customer ID |
+| **`error_code`**          | string \| null | Error Code          |
+
+
+# Welcome
+Source: https://docs.imprint.co/welcome
+
+Imprint makes integration effortless, empowering you to offer perfectly co-branded financial products wherever your customers shop and however they choose to pay. Explore our guides, examples, and resources to find the perfect solution for your business and make your first API call within minutes.
+
+<img alt="Hero Dark" classname="hidden dark:block" src="https://mintlify.s3.us-west-1.amazonaws.com/imprint-b3c5d5af/images/cards.avif" />
+
+### Step 1: Request your sandbox account and API key
+
+Reach out to your Imprint team (or [dev-support@imprint.co](mailto:dev-support@imprint.co) ) to request a sandbox account and API key.
+
+### Step 2: Create your first customer
+
+First, let's start by [creating a customer](api-reference/customers/create-a-customer). Use the Imprint sandbox base URL, include the API key as the basic auth username value, and optionally provide basic information about your test customer in the request body.
+
+### Step 3: Dive into the guides and start building the rest of your experience
+
+Your sandbox is ready to go! Next, [launch the application experience](https://docs.imprint.co/creating-an-application).
+
+

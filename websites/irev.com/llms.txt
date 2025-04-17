@@ -1,0 +1,178 @@
+# Products Wiki
+
+## Partner Platform
+
+- [Partner Platform](https://docs.irev.com/partner-platform)
+- [Affiliate Area](https://docs.irev.com/affiliate-area)
+- [What is an offer?](https://docs.irev.com/offers/what-is-an-offer)
+- [How to create an offer?](https://docs.irev.com/offers/how-to-create-an-offer)
+- [How to invite an affiliate?](https://docs.irev.com/affiliate/how-to-invite-an-affiliate)
+- [How to block an affiliate?](https://docs.irev.com/affiliate/how-to-block-an-affiliate)
+- [Advanced affiliate settings](https://docs.irev.com/affiliate/advanced-affiliate-settings)
+- [Qualifications](https://docs.irev.com/affiliate/advanced-affiliate-settings/qualifications)
+- [Fees](https://docs.irev.com/affiliate/advanced-affiliate-settings/fees)
+- [Targeting](https://docs.irev.com/affiliate/advanced-affiliate-settings/targeting)
+- [Free Parameters](https://docs.irev.com/affiliate/advanced-affiliate-settings/free-parameters)
+- [Payments](https://docs.irev.com/affiliate/advanced-affiliate-settings/payments)
+- [Referrals](https://docs.irev.com/affiliate/advanced-affiliate-settings/referrals)
+- [Other](https://docs.irev.com/affiliate/advanced-affiliate-settings/other)
+- [Advertisers Explanation](https://docs.irev.com/advertisers/advertisers-explanation)
+- [Advertisers Table Page reference](https://docs.irev.com/advertisers/advertisers-table-page-reference)
+- [Advertiser "How To" guides](https://docs.irev.com/advertisers/advertiser-how-to-guides)
+- [Advertiser Creation](https://docs.irev.com/advertisers/advertiser-how-to-guides/advertiser-creation)
+- [Clicks](https://docs.irev.com/traffic-data/clicks)
+- [Conversions](https://docs.irev.com/traffic-data/conversions)
+- [Comparing Analytics](https://docs.irev.com/reporting/comparing-analytics)
+- [Billing Flow](https://docs.irev.com/finance-and-tools/billing-flow)
+- [Earnings](https://docs.irev.com/finance-and-tools/earnings)
+- [Earning List](https://docs.irev.com/finance-and-tools/earnings/earning-list)
+- [How to create an Earning list?](https://docs.irev.com/finance-and-tools/earnings/how-to-create-an-earning-list)
+- [Invoices](https://docs.irev.com/finance-and-tools/invoices)
+- [How to create an invoice?](https://docs.irev.com/finance-and-tools/invoices/how-to-create-an-invoice)
+- [Payments](https://docs.irev.com/finance-and-tools/payments)
+- [How to сreate a payment?](https://docs.irev.com/finance-and-tools/payments/how-to-sreate-a-payment)
+- [Deals History](https://docs.irev.com/finance-and-tools/deals-history)
+- [Deals Updater](https://docs.irev.com/finance-and-tools/deals-updater)
+- [Advanced features](https://docs.irev.com/finance-and-tools/advanced-features)
+- [Affiliate Invoice Consolidation](https://docs.irev.com/finance-and-tools/advanced-features/affiliate-invoice-consolidation)
+- [Multicurrency](https://docs.irev.com/finance-and-tools/advanced-features/multicurrency)
+- [Notifications explanation](https://docs.irev.com/notifications/notifications-explanation)
+- [Notifications Table Page](https://docs.irev.com/notifications/notifications-table-page)
+- [Referral Program](https://docs.irev.com/referral-program/referral-program)
+- [For CRM Managers](https://docs.irev.com/referral-program/referral-program/for-crm-managers)
+- [For Affiliates](https://docs.irev.com/referral-program/referral-program/for-affiliates)
+- [Partner Platform](https://docs.irev.com/changelog/partner-platform)
+- [1.1.24](https://docs.irev.com/changelog/partner-platform/1.1.24): 20.06.2024
+- [1.1.23](https://docs.irev.com/changelog/partner-platform/1.1.23): 18.06.2024
+- [1.1.22](https://docs.irev.com/changelog/partner-platform/1.1.22): 27.05.2024
+- [1.1.21](https://docs.irev.com/changelog/partner-platform/1.1.21): 20.05.2024
+- [1.1.20](https://docs.irev.com/changelog/partner-platform/1.1.20): 08.05.2024
+- [1.1.19](https://docs.irev.com/changelog/partner-platform/1.1.19): 18.04.2024
+- [1.1.18](https://docs.irev.com/changelog/partner-platform/1.1.18): 17.04.2024
+- [1.1.17](https://docs.irev.com/changelog/partner-platform/1.1.17): 21.03.2024
+- [1.1.16](https://docs.irev.com/changelog/partner-platform/1.1.16): 11.03.2024
+- [1.1.15](https://docs.irev.com/changelog/partner-platform/1.1.15): 22.02.2024
+- [1.1.14](https://docs.irev.com/changelog/partner-platform/1.1.14): 24.01.2024
+- [1.1.13](https://docs.irev.com/changelog/partner-platform/1.1.13): 26.12.2023
+- [1.1.12](https://docs.irev.com/changelog/partner-platform/1.1.12): 04.12.2023
+- [1.1.11](https://docs.irev.com/changelog/partner-platform/1.1.11): 26.10.2023
+- [1.1.10](https://docs.irev.com/changelog/partner-platform/1.1.10): 12.10.2023
+- [1.1.9](https://docs.irev.com/changelog/partner-platform/1.1.9): 14.09.2023
+- [1.1.8](https://docs.irev.com/changelog/partner-platform/1.1.8): 28.08.2023
+- [1.1.7](https://docs.irev.com/changelog/partner-platform/1.1.7): 10.08.2023
+- [1.1.6](https://docs.irev.com/changelog/partner-platform/1.1.6): 24.07.2023
+- [1.1.5](https://docs.irev.com/changelog/partner-platform/1.1.5): 03.07.2023
+- [1.1.4](https://docs.irev.com/changelog/partner-platform/1.1.4): 01.06.2023
+- [1.1.3](https://docs.irev.com/changelog/partner-platform/1.1.3): 22.05.2023
+- [1.1.2](https://docs.irev.com/changelog/partner-platform/1.1.2): 15.05.2023
+- [1.1.1](https://docs.irev.com/changelog/partner-platform/1.1.1): 15.05.2023
+- [1.1.0](https://docs.irev.com/changelog/partner-platform/1.1.0): 12.04.23
+- [1.0.13](https://docs.irev.com/changelog/partner-platform/1.0.13): 09.03.23
+- [1.0.12](https://docs.irev.com/changelog/partner-platform/1.0.12): 18.01.2023
+- [1.0.11](https://docs.irev.com/changelog/partner-platform/1.0.11): 30.12.2022
+- [1.0.10](https://docs.irev.com/changelog/partner-platform/1.0.10): 22.12.2022
+- [1.0.9](https://docs.irev.com/changelog/partner-platform/1.0.9): 08.12.2022
+- [1.0.8](https://docs.irev.com/changelog/partner-platform/1.0.8): 28.11.2022
+- [1.0.7](https://docs.irev.com/changelog/partner-platform/1.0.7): 15.11.2022
+- [1.0.6](https://docs.irev.com/changelog/partner-platform/1.0.6): 18.10.2022
+- [Affiliate Area](https://docs.irev.com/changelog/affiliate-area)
+- [0.1.4](https://docs.irev.com/changelog/affiliate-area/0.1.4): 30.12.2022
+- [0.1.3](https://docs.irev.com/changelog/affiliate-area/0.1.3): 08.12.2022
+- [0.1.2](https://docs.irev.com/changelog/affiliate-area/0.1.2): 28.11.2022
+- [0.1.1](https://docs.irev.com/changelog/affiliate-area/0.1.1): 15.11.2022
+- [0.1.0](https://docs.irev.com/changelog/affiliate-area/0.1.0): 18.10.2022
+- [Deals Updater](https://docs.irev.com/how-to-guides/deals-updater)
+- [Payout/Revenue Creation and Tips](https://docs.irev.com/how-to-guides/payout-revenue-creation-and-tips)
+- [Introduction](https://docs.irev.com/api/introduction)
+- [Authentication](https://docs.irev.com/api/authentication)
+- [How to create API tokens?](https://docs.irev.com/api/how-to-create-api-tokens)
+- [Pagination and Order](https://docs.irev.com/api/pagination-and-order)
+- [Affiliate API](https://docs.irev.com/api/affiliate-api)
+- [Affiliate Profile](https://docs.irev.com/api/affiliate-api/affiliate-profile): This page describes API endpoints for viewing and editing Affiliate Profile.
+- [Offers](https://docs.irev.com/api/affiliate-api/offers): This page describes API endpoints for viewing Offers.
+- [Clicks](https://docs.irev.com/api/affiliate-api/clicks): This page describes API endpoints for viewing Clicks.
+- [Conversions](https://docs.irev.com/api/affiliate-api/conversions): This page describes API endpoints for viewing all Conversions.
+- [Affiliate Trackers](https://docs.irev.com/api/affiliate-api/affiliate-trackers): This page describes API endpoints for viewing, editing, and creating Affilaite Trackers.
+- [Global Trackers](https://docs.irev.com/api/affiliate-api/affiliate-trackers/global-trackers): This page describes API endpoints for viewing, editing, and creating Global Trackers.
+- [Default Trackers](https://docs.irev.com/api/affiliate-api/affiliate-trackers/default-trackers): This page describes API endpoints for viewing, editing, and creating Default Trackers.
+- [Smart Links](https://docs.irev.com/api/affiliate-api/smart-links): This page describes API endpoints for viewing, editing, and creating Smart Links.
+- [Groups](https://docs.irev.com/api/affiliate-api/smart-links/groups)
+- [Items](https://docs.irev.com/api/affiliate-api/smart-links/items)
+- [User API](https://docs.irev.com/api/user-api): The section includes the list of endpoints available for API users of the Partner Platform.
+- [Clicks](https://docs.irev.com/api/user-api/clicks): This page describes API endpoints for viewing and creating Clicks.
+- [Affiliates](https://docs.irev.com/api/user-api/affiliates): This page describes API endpoints for viewing, editing, and creating Affiliates.
+- [Targeting](https://docs.irev.com/api/user-api/affiliates/targeting): This page describes API endpoints for viewing, editing, and creating Targeting rules for Affiliates.
+- [Offer Access](https://docs.irev.com/api/user-api/affiliates/offer-access): This page covers all API endpoints used to review, edit and create Access rules of a selected affiliate.
+- [Offers](https://docs.irev.com/api/user-api/offers): This page describes API endpoints for viewing, editing, and creating Offers.
+- [Targeting](https://docs.irev.com/api/user-api/offers/targeting): This page describes API endpoints for viewing, editing, and creating Targeting rules for Offers.
+- [Access](https://docs.irev.com/api/user-api/offers/access): This page describes API endpoints for viewing and editingAccess rules for Offers.
+- [URLs](https://docs.irev.com/api/user-api/offers/urls): This page describes API endpoints for viewing, editing, and creating URLs for Offers.
+- [Links](https://docs.irev.com/api/user-api/offers/links): This page describes API endpoints for viewing, editing, and creating links for tracking Clicks and Conversions of a specific Offer.
+- [Goal Types](https://docs.irev.com/api/user-api/goal-types): This page describes API endpoints for viewing, editing, and creating Goal Types.
+- [Affiliate Trackers](https://docs.irev.com/api/user-api/affiliate-trackers): This page describes API endpoints for viewing, editing, and creating Affilaite Trackers.
+- [Default Trackers](https://docs.irev.com/api/user-api/affiliate-trackers/default-trackers): This page describes API endpoints for viewing, editing, and creating Default Trackers.
+- [Global Trackers](https://docs.irev.com/api/user-api/affiliate-trackers/global-trackers): This page describes API endpoints for viewing, editing, and creating Global Trackers.
+
+## Lead Distribution
+
+- [Lead Distribution](https://docs.irev.com/lead-distribution/readme)
+- [Dashboard](https://docs.irev.com/lead-distribution/dashboard)
+- [Advertisers](https://docs.irev.com/lead-distribution/traffic-distribution/advertisers)
+- [Rotation Control](https://docs.irev.com/lead-distribution/traffic-distribution/rotation-control)
+- [Sale Statuses](https://docs.irev.com/lead-distribution/traffic-distribution/sale-statuses)
+- [Tables overview](https://docs.irev.com/lead-distribution/traffic-data/traffic-data)
+- [Lead page](https://docs.irev.com/lead-distribution/traffic-data/lead-page)
+- [Affiliate Payouts](https://docs.irev.com/lead-distribution/lead-conversions/affiliate-payouts)
+- [Advertisers Revenue](https://docs.irev.com/lead-distribution/lead-conversions/advertisers-revenue)
+- [Conversions](https://docs.irev.com/lead-distribution/lead-conversions/conversions)
+- [Funnels](https://docs.irev.com/lead-distribution/landings/funnels)
+- [Custom Funnel](https://docs.irev.com/lead-distribution/landings/custom-funnel)
+- [Postbacks](https://docs.irev.com/lead-distribution/pixels-and-postbacks/postbacks)
+- [Pixels](https://docs.irev.com/lead-distribution/pixels-and-postbacks/pixels)
+- [Data Exporter](https://docs.irev.com/lead-distribution/reports/data-exporter)
+- [Drilldown Reports](https://docs.irev.com/lead-distribution/reports/drilldown-reports)
+- [Deals Updater](https://docs.irev.com/lead-distribution/finance-and-tools/deals-updater)
+- [Deals History](https://docs.irev.com/lead-distribution/finance-and-tools/deals-history)
+- [Invoices](https://docs.irev.com/lead-distribution/finance-and-tools/invoices)
+- [How to create an advertiser](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-an-advertiser)
+- [How to create a goal](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-goal)
+- [How to create a sale status](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-sale-status)
+- [How to create a Lead Profile item](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-lead-profile-item)
+- [How to create a Data Exporter preset](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-data-exporter-preset)
+- [How to create a Drilldown preset](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-drilldown-preset)
+- [How to create a payout formula](https://docs.irev.com/lead-distribution/how-to-articles/how-to-create-a-payout-formula)
+- [Changelog](https://docs.irev.com/lead-distribution/changelog)
+- [1.1.1](https://docs.irev.com/lead-distribution/changelog/1.1.1): 14.02.2023
+- [1.1.2](https://docs.irev.com/lead-distribution/changelog/1.1.2): 20.04.2023
+- [1.1.3](https://docs.irev.com/lead-distribution/changelog/1.1.3): 01.05.2023
+- [1.1.4](https://docs.irev.com/lead-distribution/changelog/1.1.4): 18.05.2023
+- [1.1.5](https://docs.irev.com/lead-distribution/changelog/1.1.5): 26.05.2023
+- [1.1.6](https://docs.irev.com/lead-distribution/changelog/1.1.6): 14.06.23
+- [1.1.7](https://docs.irev.com/lead-distribution/changelog/1.1.7): 24.06.2023
+- [1.1.8](https://docs.irev.com/lead-distribution/changelog/1.1.8): 10.07.2023
+- [1.1.9](https://docs.irev.com/lead-distribution/changelog/1.1.9): 26.07.2023
+- [1.1.10](https://docs.irev.com/lead-distribution/changelog/1.1.10): 09.08.2023
+- [1.1.11](https://docs.irev.com/lead-distribution/changelog/1.1.11): 18.08.2023
+- [1.1.12](https://docs.irev.com/lead-distribution/changelog/1.1.12): 30.08.2023
+- [1.1.13](https://docs.irev.com/lead-distribution/changelog/1.1.13): 15.09.2023
+- [1.1.14](https://docs.irev.com/lead-distribution/changelog/1.1.14): 03.10.2023
+- [1.1.15](https://docs.irev.com/lead-distribution/changelog/1.1.15): 17.10.2023
+- [1.1.16](https://docs.irev.com/lead-distribution/changelog/1.1.16): 31.10.2023
+- [1.1.17](https://docs.irev.com/lead-distribution/changelog/1.1.17): 15.11.2023
+- [1.1.18](https://docs.irev.com/lead-distribution/changelog/1.1.18): 07.12.2023
+- [1.1.19](https://docs.irev.com/lead-distribution/changelog/1.1.19): 26.12.2023
+- [1.1.20](https://docs.irev.com/lead-distribution/changelog/1.1.20): 18.01.2024
+- [1.1.21](https://docs.irev.com/lead-distribution/changelog/1.1.21): 30.01.2024
+- [1.1.22](https://docs.irev.com/lead-distribution/changelog/1.1.22): 15.02.2024
+- [1.1.23](https://docs.irev.com/lead-distribution/changelog/1.1.23): 05.03.2024
+- [1.1.24](https://docs.irev.com/lead-distribution/changelog/1.1.24): 26.03.2024
+- [1.1.25](https://docs.irev.com/lead-distribution/changelog/1.1.25): 16.04.2024
+- [1.1.26](https://docs.irev.com/lead-distribution/changelog/1.1.26): 30.04.2024
+- [1.1.27](https://docs.irev.com/lead-distribution/changelog/1.1.27): 15.05.2024
+- [1.1.28](https://docs.irev.com/lead-distribution/changelog/1.1.28): 30.05.2024
+- [1.1.29](https://docs.irev.com/lead-distribution/changelog/1.1.29): 13.06.2024
+- [1.1.30](https://docs.irev.com/lead-distribution/changelog/1.1.30): 27.06.2024
+- [1.1.31](https://docs.irev.com/lead-distribution/changelog/1.1.31): 11.07.2024
+- [1.1.32](https://docs.irev.com/lead-distribution/changelog/1.1.32): 25.07.2024
+- [Affiliate API](https://docs.irev.com/lead-distribution/api/affiliate-api)
+- [External API](https://docs.irev.com/lead-distribution/api/external-api)

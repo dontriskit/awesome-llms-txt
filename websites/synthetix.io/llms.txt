@@ -1,0 +1,205 @@
+# Synthetix Docs&#x20;
+
+## User Docs
+
+- [Getting Started](https://docs.synthetix.io/welcome-to-synthetix-user-docs/getting-started)
+- [SNX Staking](https://docs.synthetix.io/welcome-to-synthetix-user-docs/snx-staking): Deposit to the 420 Pool to start earning yield on your SNX
+- [Deposit SNX to The 420 Pool](https://docs.synthetix.io/welcome-to-synthetix-user-docs/snx-staking/deposit-snx-to-the-420-pool): Deposit to the 420 Pool to have your debt wiped clean and be free from liquidation risk.
+- [420 Pool FAQ](https://docs.synthetix.io/welcome-to-synthetix-user-docs/snx-staking/420-pool-faq)
+- [V3 SNX Staking (Deprecated)](https://docs.synthetix.io/welcome-to-synthetix-user-docs/snx-staking/v3-snx-staking-deprecated)
+- [V2 SNX Staking on Optimism (Deprecated)](https://docs.synthetix.io/welcome-to-synthetix-user-docs/snx-staking/v3-snx-staking-deprecated/v2-snx-staking-on-optimism-deprecated)
+- [Provide Liquidity](https://docs.synthetix.io/provide-liquidity)
+- [Fees](https://docs.synthetix.io/provide-liquidity/fees)
+- [Debt](https://docs.synthetix.io/provide-liquidity/debt): Wondering why you have accrued debt in your LP position?
+- [Trade](https://docs.synthetix.io/trade)
+- [Synthetix Exchange](https://docs.synthetix.io/trade/synthetix-exchange)
+- [Synthetix Leveraged Tokens](https://docs.synthetix.io/trade/synthetix-leveraged-tokens)
+- [Integrators](https://docs.synthetix.io/trade/integrators)
+- [Tokens](https://docs.synthetix.io/tokens)
+- [Earn yield on sUSD](https://docs.synthetix.io/tokens/earn-yield-on-susd)
+- [Synthetix V3](https://docs.synthetix.io/synthetix-v3)
+- [Governance](https://docs.synthetix.io/governance)
+- [Build on Synthetix V3](https://docs.synthetix.io/build-on-synthetix-v3)
+- [Security & Risks](https://docs.synthetix.io/security-and-risks)
+- [Brand Assets](https://docs.synthetix.io/brand-assets)
+- [Links](https://docs.synthetix.io/links)
+- [Product Updates](https://docs.synthetix.io/product-updates): Product updates from Synthetix
+
+* [Welcome to Synthetix](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/readme)
+* [The Synthetix Protocol](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/the-synthetix-protocol)
+* [Synthetix Token (SNX)](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/the-synthetix-protocol/synthetix-token-snx)
+* [The Role of Stakers](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/the-synthetix-protocol/the-role-of-stakers): Explaining the importance of stakers within Synthetix
+* [Oracles](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/the-synthetix-protocol/oracles)
+* [Synthetix Litepaper](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/the-synthetix-protocol/synthetix-litepaper): Version: 1.6 (Jan 2023)
+* [Synthetic Assets](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/synthetic-assets)
+* [Perpetual Futures](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/synthetic-assets/perpetual-futures): Synthetic perpetual futures
+* [Spot Synths](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-protocol/synthetic-assets/spot-synths)
+* [Depositing to the 420 Pool](https://docs.synthetix.io/user-docs/v2-user-docs/staking/depositing-to-the-420-pool)
+* [Current Protocol Parameters](https://docs.synthetix.io/user-docs/v2-user-docs/staking/current-protocol-parameters)
+* [Staking Guide (Nearing Deprecation)](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide)
+* [Steps for Staking SNX (via Minting)](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/steps-for-staking-snx)
+* [Steps for Unstaking SNX (via Burning)](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/steps-for-unstaking-snx-via-burning)
+* [Steps for Claiming Rewards](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/steps-for-claiming-rewards)
+* [Automating Staking, Claiming, Burning, and Minting](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/automating-staking-tasks)
+* [Legacy Automated Minting & Claiming](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/automating-staking-tasks/legacy-automated-minting-and-claiming)
+* [Understanding the Collateralization Ratio](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/collateralization-ratio)
+* [Understanding Debt, Minting, and Burning](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/debt-minting-and-burning-explained)
+* [Simplified Debt Hedging](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/debt-hedging-strategies)
+* [Escrow and Vesting](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/escrow-and-vesting)
+* [Liquidations](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-guide/liquidations)
+* [Staking FAQ](https://docs.synthetix.io/user-docs/v2-user-docs/staking/staking-faq)
+* [Bridging sUSD](https://docs.synthetix.io/user-docs/v2-user-docs/staking/bridging-susd): Steps for bridging sUSD between Optimism and Ethereum Mainnet
+* [Governance Framework](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework)
+* [Synthetix Improvement Proposals (SIPs)](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework/synthetix-improvement-proposals-sips)
+* [Synthetix Configuration Change Proposal (SCCPs)](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework/synthetix-configuration-change-proposal-sccps)
+* [Spartan Council](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework/spartan-council)
+* [Core Contributors](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework/core-contributors)
+* [Staker](https://docs.synthetix.io/user-docs/v2-user-docs/dao/governance-framework/staker)
+* [Elections and Voting](https://docs.synthetix.io/user-docs/v2-user-docs/dao/elections-and-voting)
+* [Voting with a Gnosis Safe](https://docs.synthetix.io/user-docs/v2-user-docs/dao/elections-and-voting/voting-with-a-gnosis-safe)
+* [How to write SIP/SCCPs](https://docs.synthetix.io/user-docs/v2-user-docs/dao/how-to-write-sip-sccps)
+* [Synthetix v3](https://docs.synthetix.io/user-docs/v2-user-docs/v3/synthetix-v3): These docs have moved to the v3 repo
+* [Build on v3](https://docs.synthetix.io/user-docs/v2-user-docs/v3/build-on-v3)
+* [Built on Synthetix](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix)
+* [Kwenta - Spot and Perps](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix/kwenta-spot-and-perps)
+* [Decentrex - Perps](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix/decentrex-perps)
+* [Lyra - Options](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix/lyra-options)
+* [Polynomial - Perps and Option Vaults](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix/polynomial-perps-and-option-vaults)
+* [1inch/Curve - Atomic Swaps](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/built-on-synthetix/1inch-curve-atomic-swaps)
+* [Community Infrastructure](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/community-infrastructure): Tooling and data for interacting with the Synthetix ecosystem
+* [Ecosystem Operations](https://docs.synthetix.io/user-docs/v2-user-docs/synthetix-ecosystem/ecosystem-operations): Information for ecosystem partners
+* [Perps Integration Guide](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide): Version: Perps V2
+* [Introduction](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/introduction)
+* [Optimistic Sepolia Testnet Tokens](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/optimistic-sepolia-testnet-tokens): How to mint testnet tokens (sUSD) with sepETH
+* [Technical Integration](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/technical-integration)
+* [Perps Subgraph](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/perps-subgraph)
+* [General FAQ](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/general-faq)
+* [Tracking Codes](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/tracking-codes)
+* [Perps Keeper](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/perps-keeper)
+* [Liquidations](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/liquidations)
+* [Useful Links](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/useful-links): Links for integrators and developers
+* [Migration Guides](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/migration-guides)
+* [PerpsV2 Mintaka -> Almach](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/migration-guides/perpsv2-mintaka-greater-than-almach)
+* [FuturesV1 -> PerpsV2 (Mintaka)](https://docs.synthetix.io/user-docs/v2-user-docs/integrations/perps-integration-guide/migration-guides/futuresv1-greater-than-perpsv2-mintaka): This is the migration guide from FuturesV1 to V2
+* [Design Resources](https://docs.synthetix.io/user-docs/v2-user-docs/brand-assets/design-resources): Design best practices for teams building on Synthetix V3
+
+## Synthetix Exchange
+
+- [Getting Started](https://docs.synthetix.io/exchange/welcome-to-synthetix-exchange/getting-started)
+- [Opening A Synthetix Account](https://docs.synthetix.io/exchange/welcome-to-synthetix-exchange/opening-a-synthetix-account): Synthetix Exchange supports login with email, Google account, or EVM wallet.
+- [Bridging to Synthetix Exchange](https://docs.synthetix.io/exchange/welcome-to-synthetix-exchange/bridging-to-synthetix-exchange): Begin your journey
+- [Perps on Synthetix Exchange](https://docs.synthetix.io/exchange/perps-basics/perps-on-synthetix-exchange): Understand these fundamentals!
+- [Margin Types & Collateral](https://docs.synthetix.io/exchange/perps-basics/margin-types-and-collateral): What & what?
+- [Funding](https://docs.synthetix.io/exchange/perps-basics/funding): Learn about why funding is important
+- [Technical Details](https://docs.synthetix.io/exchange/perps-basics/funding/technical-details)
+- [Maker or Taker?](https://docs.synthetix.io/exchange/perps-basics/maker-or-taker): Learn how these are different on Synthetix Exchange
+- [Leverage & Initial/Maintenance Margin](https://docs.synthetix.io/exchange/perps-basics/leverage-and-initial-maintenance-margin): Leverage, Initial  & Maintenance Margin fundamentals
+- [Account Health & Liquidations](https://docs.synthetix.io/exchange/perps-basics/account-health-and-liquidations): Find out more about managing your risk.
+- [Conditional Orders](https://docs.synthetix.io/exchange/perps-basics/conditional-orders): Learn about conditional order types Stop-Loss (SL) & Take-Profit (TP)
+- [Position Modification](https://docs.synthetix.io/exchange/perps-basics/position-modification): Learn how to modify existing positions using market orders or conditional orders.
+- [Gasless One-Click Trading](https://docs.synthetix.io/exchange/perps-basics/gasless-one-click-trading)
+- [Starting/Stopping 1CT](https://docs.synthetix.io/exchange/perps-basics/gasless-one-click-trading/starting-stopping-1ct): Get started with your seamless trading experience
+- [Delegated Trading](https://docs.synthetix.io/exchange/perps-basics/delegated-trading): Add and manage delegates to trade on your behalf.
+- [Getting started with Delegation](https://docs.synthetix.io/exchange/perps-basics/delegated-trading/getting-started-with-delegation): Set Up delegated access
+- [Accessing Accounts Delegated to You](https://docs.synthetix.io/exchange/perps-basics/delegated-trading/accessing-accounts-delegated-to-you): A guide to help traders who have had trade rights delegated to them from another Synthetix Exchange Smart Margin Account access them.
+- [Managing Delegates](https://docs.synthetix.io/exchange/perps-basics/delegated-trading/managing-delegates)
+- [FAQ](https://docs.synthetix.io/exchange/perps-basics/delegated-trading/faq)
+- [Trading Tutorial](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial)
+- [Connecting a wallet & V3 Account Creation](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/connecting-a-wallet-and-v3-account-creation): Create your Smart Margin Account
+- [Depositing Collateral](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/depositing-collateral)
+- [Swapping and Bridging](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/swapping-and-bridging)
+- [Enabling one-click trading](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/enabling-one-click-trading)
+- [Opening a Position](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/opening-a-position)
+- [Closing a Position](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/closing-a-position)
+- [Withdrawing Collateral](https://docs.synthetix.io/exchange/perps-basics/trading-tutorial/withdrawing-collateral)
+- [Overview](https://docs.synthetix.io/exchange/perps-v3-base/overview)
+- [Multi-collateral Margin](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin)
+- [Collateral Types](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/collateral-types)
+- [What is USDx?](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/what-is-usdx): What is USDx?
+- [The Mechanics of USDx](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/the-mechanics-of-usdx): Minting and Burning
+- [Edge Cases in Liquidation:](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/edge-cases-in-liquidation): Understanding Slippage Scenarios
+- [Settlement of Debt](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/settlement-of-debt)
+- [FAQ's](https://docs.synthetix.io/exchange/perps-v3-base/multi-collateral-margin/faqs)
+- [Introduction (Legacy)](https://docs.synthetix.io/exchange/perps-v2-optimism/introduction-legacy)
+- [Getting Started on Optimism](https://docs.synthetix.io/exchange/perps-v2-optimism/getting-started-on-optimism)
+- [How to get sUSD](https://docs.synthetix.io/exchange/perps-v2-optimism/how-to-get-susd)
+- [Getting Started](https://docs.synthetix.io/exchange/infrastructure-overview/getting-started)
+- [System Overview](https://docs.synthetix.io/exchange/infrastructure-overview/system-overview)
+- [Account Management](https://docs.synthetix.io/exchange/infrastructure-overview/account-management)
+- [Delegate Management](https://docs.synthetix.io/exchange/infrastructure-overview/delegate-management)
+- [Conditional Orders](https://docs.synthetix.io/exchange/infrastructure-overview/conditional-orders)
+- [Oracle Data](https://docs.synthetix.io/exchange/infrastructure-overview/oracle-data)
+- [Audits](https://docs.synthetix.io/exchange/resources/audits)
+
+## Leveraged Tokens
+
+- [Welcome to Synthetix Leverage](https://docs.synthetix.io/leveraged-tokens/welcome-to-synthetix-leverage): The simplest way to trade with leverage
+- [Leveraged Tokens](https://docs.synthetix.io/leveraged-tokens/basics/leveraged-tokens): Constant leveraged exposure without margin management
+- [How Leveraged Tokens Work](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work): The mechanics behind constant leverage
+- [Synthetix Perps Engine](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work/synthetix-perps-engine): Synthetix Leveraged Tokens are backed by perpetual futures on Synthetix.
+- [Rebalancing](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work/rebalancing): Maintaining a constant leverage factor
+- [Keepers](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work/keepers): The keeper network monitors prices and triggers rebalancing events.
+- [ERC-20 compliance](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work/erc-20-compliance): Leveraged exposure paired with flexible tokenization
+- [Effects of rebalancing](https://docs.synthetix.io/leveraged-tokens/basics/how-leveraged-tokens-work/effects-of-rebalancing): A different form of leveraged exposure
+- [Fees](https://docs.synthetix.io/leveraged-tokens/basics/fees)
+- [Guides](https://docs.synthetix.io/leveraged-tokens/basics/guides): How to use SLX
+- [Minting](https://docs.synthetix.io/leveraged-tokens/basics/guides/minting): How to mint a leveraged token
+- [Redeeming](https://docs.synthetix.io/leveraged-tokens/basics/guides/redeeming): How to redeem a leveraged token
+- [Sequential redeeming](https://docs.synthetix.io/leveraged-tokens/basics/guides/sequential-redeeming): How to sequentially redeem a leveraged token
+- [Official Links](https://docs.synthetix.io/leveraged-tokens/more/official-links)
+- [Deployed Contracts](https://docs.synthetix.io/leveraged-tokens/more/deployed-contracts)
+- [Risks & Security](https://docs.synthetix.io/leveraged-tokens/more/risks-and-security)
+- [FAQ](https://docs.synthetix.io/leveraged-tokens/more/faq)
+
+## For Developers
+
+- [Orientation](https://docs.synthetix.io/developer-docs/readme)
+- [Synthetix Overview](https://docs.synthetix.io/developer-docs/readme-1): Synthetix, the derivatives liquidity protocol
+- [Development Progress](https://docs.synthetix.io/developer-docs/development-progress): Progress of major v3 milestones
+- [V3 FAQ](https://docs.synthetix.io/developer-docs/v3-frequently-asked-questions-faq)
+- [Technical Architecture](https://docs.synthetix.io/developer-docs/for-developers/technical-architecture)
+- [Quick Start](https://docs.synthetix.io/developer-docs/for-developers/quick-start)
+- [Base Quickstart](https://docs.synthetix.io/developer-docs/for-developers/quick-start/base-quickstart)
+- [Smart Contracts](https://docs.synthetix.io/developer-docs/for-developers/smart-contracts)
+- [Data Platform](https://docs.synthetix.io/developer-docs/for-developers/data-platform): Learn about the services Synthetix uses to collect, store, aggregate, and visualize data related to activity on Synthetix V3.
+- [Data Dictionary](https://docs.synthetix.io/developer-docs/for-developers/data-dictionary)
+- [Addresses + ABIs](https://docs.synthetix.io/developer-docs/for-developers/addresses-+-abis)
+- [Deployment Info](https://docs.synthetix.io/developer-docs/for-developers/deployment-info)
+- [Mainnet](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/1-main)
+- [Sepolia](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/11155111-main)
+- [Sepolia Carina](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/11155111-carina)
+- [Optimism Mainnet](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/10-main)
+- [Base Mainnet Andromeda](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/8453-andromeda)
+- [Base Sepolia Andromeda](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/84532-andromeda)
+- [Arbitrum Mainnet](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/42161-main)
+- [Arbitrum Sepolia](https://docs.synthetix.io/developer-docs/for-developers/deployment-info/421614-main)
+- [Smart Contract Audits](https://docs.synthetix.io/developer-docs/for-developers/smart-contract-audits)
+- [Perps Market](https://docs.synthetix.io/developer-docs/for-developers/perps-market)
+- [Spot Market](https://docs.synthetix.io/developer-docs/for-developers/spot-market)
+- [Developer FAQ](https://docs.synthetix.io/developer-docs/for-developers/developer-faq): A guide to help developers start interacting with Synthetix V3
+- [101](https://docs.synthetix.io/developer-docs/for-perp-integrators/101)
+- [Perps V3](https://docs.synthetix.io/developer-docs/for-perp-integrators/perps-v3)
+- [L1 Perp (BFP)](https://docs.synthetix.io/developer-docs/for-perp-integrators/l1-perp-bfp)
+- [Base Andromeda](https://docs.synthetix.io/developer-docs/for-perp-integrators/base-andromeda): Reference for Core V3 + Perps V3 on Base
+- [Perps Python SDK](https://docs.synthetix.io/developer-docs/for-perp-integrators/perps-python-sdk)
+- [Perps V3 Keepers](https://docs.synthetix.io/developer-docs/for-perp-integrators/perps-v3-keeper)
+- [Creating Accounts](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/creating-accounts)
+- [Delegating Collateral](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/delegating-collateral)
+- [Liquidity Pools](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/delegating-collateral/liquidity-pools)
+- [Liquidity Positions](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/liquidity-positions)
+- [Minting and Burning snxUSD](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/liquidity-positions/minting-and-burning-snxusd)
+- [Position Liquidations](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/liquidity-positions/position-liquidations)
+- [Base LP Guide](https://docs.synthetix.io/developer-docs/for-liquidity-integrators/base-lp-guide)
+- [Creating and Configuring Pools and Vaults](https://docs.synthetix.io/developer-docs/for-liquidity-pool-managers/creating-and-configuring-pools)
+- [Collateral Vaults](https://docs.synthetix.io/developer-docs/for-liquidity-pool-managers/collateral-vaults)
+- [Vault Liquidations](https://docs.synthetix.io/developer-docs/for-liquidity-pool-managers/collateral-vaults/vault-liquidations)
+- [Rewards Distributors](https://docs.synthetix.io/developer-docs/for-liquidity-pool-managers/rewards-distributors)
+- [Credit and Debt Distribution](https://docs.synthetix.io/developer-docs/for-liquidity-pool-managers/credit-and-debt-distribution)
+- [Build on v3](https://docs.synthetix.io/developer-docs/for-derivatives-market-builders/build-on-v3): What will you build on v3?
+- [Market Development Guide](https://docs.synthetix.io/developer-docs/for-derivatives-market-builders/market-development-guide)
+- [Build on v3 FAQ](https://docs.synthetix.io/developer-docs/for-derivatives-market-builders/build-on-v3-faq): Considerations for creating new products on v3
+- [Operating a Market](https://docs.synthetix.io/developer-docs/for-derivatives-market-builders/integrating-synthetix)
+- [Registering a Market](https://docs.synthetix.io/developer-docs/for-derivatives-market-builders/registering-a-market)
+- [Synthetix Governance](https://docs.synthetix.io/developer-docs/for-governance-participants/synthetix-governance)
+- [Elections](https://docs.synthetix.io/developer-docs/for-governance-participants/elections)
+- [Design Resources](https://docs.synthetix.io/developer-docs/for-designers/design-resources): Design best practices for teams building on Synthetix V3

@@ -1,0 +1,103 @@
+# Kamino Docs
+
+## Hub
+
+- [Kamino Portal](https://docs.kamino.finance/kamino-portal): Automated products powered by secure DeFi primitives
+- [Kamino Lend Litepaper](https://docs.kamino.finance/kamino-lend-litepaper): As published in October 2023
+- [Overview](https://docs.kamino.finance/products/overview)
+- [Multiply](https://docs.kamino.finance/products/multiply)
+- [How It Works](https://docs.kamino.finance/products/multiply/how-it-works)
+- [Opening a Position](https://docs.kamino.finance/products/multiply/opening-a-position)
+- [Managing a Position](https://docs.kamino.finance/products/multiply/managing-a-position)
+- [Unwinding a Position](https://docs.kamino.finance/products/multiply/unwinding-a-position)
+- [Unwinding SOL Multiply](https://docs.kamino.finance/products/multiply/unwinding-a-position/unwinding-sol-multiply)
+- [Unwinding JLP Multiply](https://docs.kamino.finance/products/multiply/unwinding-a-position/unwinding-jlp-multiply)
+- [Risks](https://docs.kamino.finance/products/multiply/risks)
+- [Managing Risk](https://docs.kamino.finance/products/multiply/managing-risk)
+- [Borrow/Lend](https://docs.kamino.finance/products/borrow-lend)
+- [Position Risk & Liquidations](https://docs.kamino.finance/products/borrow-lend/position-risk-and-liquidations)
+- [Position Risk](https://docs.kamino.finance/products/borrow-lend/position-risk-and-liquidations/position-risk)
+- [Borrow Factors](https://docs.kamino.finance/products/borrow-lend/position-risk-and-liquidations/borrow-factors)
+- [Fees](https://docs.kamino.finance/products/borrow-lend/fees): Coming Soon...
+- [Cross & Isolated Modes](https://docs.kamino.finance/products/borrow-lend/cross-and-isolated-modes)
+- [Supplying Assets](https://docs.kamino.finance/products/borrow-lend/supplying-assets)
+- [Borrowing Assets](https://docs.kamino.finance/products/borrow-lend/borrowing-assets)
+- [Long/Short](https://docs.kamino.finance/products/long-short): Coming Soon...
+- [Liquidity](https://docs.kamino.finance/products/liquidity)
+- [Using Squads](https://docs.kamino.finance/products/using-squads)
+- [Token Info](https://docs.kamino.finance/kmno/token-info)
+- [Staking](https://docs.kamino.finance/kmno/staking)
+- [Points](https://docs.kamino.finance/kmno/points)
+- [Rates & Boosts](https://docs.kamino.finance/kmno/points/rates-and-boosts)
+- [Seasons](https://docs.kamino.finance/kmno/points/seasons)
+- [Season 1](https://docs.kamino.finance/kmno/points/seasons/season-1): Welcome to Kamino Points: Season 1
+- [Season 2](https://docs.kamino.finance/kmno/points/seasons/season-2)
+- [SDK & Smart Contracts](https://docs.kamino.finance/build-on-kamino/sdk-and-smart-contracts)
+- [Developer Documentation](https://docs.kamino.finance/build-on-kamino/developer-documentation): Coming Soon...
+- [Bug Bounty](https://docs.kamino.finance/build-on-kamino/bug-bounty)
+- [Brand Assets](https://docs.kamino.finance/build-on-kamino/brand-assets)
+
+## Risk
+
+- [Kamino Lend](https://docs.kamino.finance/risk/kamino-lend)
+- [Oracles](https://docs.kamino.finance/risk/oracles)
+- [LST Oracles](https://docs.kamino.finance/risk/oracles/lst-oracles)
+- [Risk Assessment Framework](https://docs.kamino.finance/risk/risk-assessment-framework)
+- [Introduction](https://docs.kamino.finance/risk/liquidity-risk/introduction)
+- [Interest Rates](https://docs.kamino.finance/risk/liquidity-risk/interest-rates)
+- [Introduction](https://docs.kamino.finance/risk/insolvency-risk/introduction)
+- [Asset Risk Framework](https://docs.kamino.finance/risk/insolvency-risk/asset-risk-framework)
+- [Oracle Pricing](https://docs.kamino.finance/risk/insolvency-risk/asset-risk-framework/oracle-pricing)
+- [Smart Contract Risk](https://docs.kamino.finance/risk/insolvency-risk/asset-risk-framework/smart-contract-risk)
+- [Depeg Risk](https://docs.kamino.finance/risk/insolvency-risk/asset-risk-framework/depeg-risk)
+- [Counterparty Risk](https://docs.kamino.finance/risk/insolvency-risk/asset-risk-framework/counterparty-risk)
+- [Market Risk](https://docs.kamino.finance/risk/insolvency-risk/market-risk)
+- [Token Volatility](https://docs.kamino.finance/risk/insolvency-risk/market-risk/token-volatility)
+- [Token Liquidity](https://docs.kamino.finance/risk/insolvency-risk/market-risk/token-liquidity)
+- [Trading Volumes](https://docs.kamino.finance/risk/insolvency-risk/market-risk/trading-volumes)
+- [Price Impact Analysis](https://docs.kamino.finance/risk/insolvency-risk/market-risk/price-impact-analysis)
+- [Price Resilience Analysis](https://docs.kamino.finance/risk/insolvency-risk/market-risk/price-resilience-analysis)
+- [Market Capitalization](https://docs.kamino.finance/risk/insolvency-risk/market-risk/market-capitalization)
+- [Relation to Other Tokens](https://docs.kamino.finance/risk/insolvency-risk/market-risk/relation-to-other-tokens)
+- [Automated Deleverage](https://docs.kamino.finance/risk/protocol-mechanisms/automated-deleverage)
+- [Daily Caps](https://docs.kamino.finance/risk/protocol-mechanisms/daily-caps)
+- [E-Mode Caps](https://docs.kamino.finance/risk/protocol-mechanisms/e-mode-caps)
+- [Insurance Fund](https://docs.kamino.finance/risk/insurance-fund)
+
+## Automated Liquidity
+
+- [Introduction](https://docs.kamino.finance/automated-liquidity/introduction)
+- [CLMMs and Kamino](https://docs.kamino.finance/automated-liquidity/clmms-and-kamino): CLMMs have changed the DEX landscape by solving the issues of inefficient liquidity.
+- [Liquidity Vault Overview](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/liquidity-vault-overview): Kamino has three automation components that enable a seamless yield experience
+- [Auto-swap](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/liquidity-vault-overview/auto-swap): Automatically swap tokens for seamless deposits and withdrawals
+- [Auto-compound](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/liquidity-vault-overview/auto-compound): Kamino auto-compounds all your DEX earnings right back into your position
+- [Auto-rebalance](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/liquidity-vault-overview/auto-rebalance): Position ranges and management can be complex. Kamino takes care of it.
+- [Yield & APYs](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/yield-and-apys): Kamino produces yield from volume across the Solana ecosystem
+- [Ranges & Rebalancing](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/ranges-and-rebalancing): Ranges in a CLMM can be a tough nut to crack. Kamino does it for you.
+- [Fees](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/fees)
+- [kTokens](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/ktokens)
+- [Vault Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies): Kamino provides a strategy for every market condition and risk profile
+- [SOL-only Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies/sol-only-strategies): Earn dual yield, while maintaining single-sided exposure to the SOL price
+- [Stablecoin Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies/stablecoin-strategies): Stablecoin vaults deliver USD yield via stablecoin trading volume
+- [Mixed Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies/mixed-strategies): Earn degen yields while taking higher market risk on different assets
+- [Volatile - Volatile Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies/mixed-strategies/volatile-volatile-strategies): Earn high yields on volatile pairs that can diverge in price
+- [Volatile - Stable Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/vault-strategies/mixed-strategies/volatile-stable-strategies): Earn high yields by pairing a volatile asset to a stablecoin
+- [Creator Vaults](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults): This page will explain Kamino's permissionless vault primitive.
+- [Step 1: Core Setup](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/step-1-core-setup): This page covers the core setup of your vault
+- [Step 2: Strategy Setup](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/step-2-strategy-setup): This page explores how you can tailor your Creator Vault strategy
+- [Strategy Simulator](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/strategy-simulator): This page covers Kamino's live strategy simulator software
+- [Creator Strategies](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/creator-strategies): Select a strategy and customize it to your liking.
+- [Fixed Range](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/creator-strategies/fixed-range): Market Make with no rebalancing
+- [Tracker](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/creator-strategies/tracker): Always earn fees with automated rebalancing
+- [Rebalancing](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/creator-vaults/rebalancing): Rebalancing process for creator
+- [Private Vaults](https://docs.kamino.finance/automated-liquidity/liquidity-vaults/private-vaults)
+- [Overview](https://docs.kamino.finance/automated-liquidity/farms-and-locked-liquidity/overview)
+- [JTO Liquidity Program](https://docs.kamino.finance/automated-liquidity/farms-and-locked-liquidity/jto-liquidity-program)
+- [bSOL Liquidity Program](https://docs.kamino.finance/automated-liquidity/farms-and-locked-liquidity/bsol-liquidity-program)
+- [Staking Your kTokens](https://docs.kamino.finance/automated-liquidity/farms-and-locked-liquidity/staking-your-ktokens)
+- [Risks & Technical](https://docs.kamino.finance/automated-liquidity/security-and-risks/risks-and-technical)
+- [Impermanent Loss](https://docs.kamino.finance/automated-liquidity/security-and-risks/risks-and-technical/impermanent-loss): The risks of impermanent loss in automated market making
+- [Depeg Events](https://docs.kamino.finance/automated-liquidity/security-and-risks/risks-and-technical/depeg-events): Pegged tokens are meant to remain tied to an underlying value. What happens if it loses that peg?
+- [Oracles](https://docs.kamino.finance/automated-liquidity/security-and-risks/risks-and-technical/oracles): Kamino uses numerous oracle security measures to increase resilience
+- [Deposit & Withdrawal Limits](https://docs.kamino.finance/automated-liquidity/security-and-risks/deposit-and-withdrawal-limits): Limits that protect users from potential bad actors on the platform
+- [Security Audits](https://docs.kamino.finance/automated-liquidity/security-and-risks/security-audits): Kamino takes every precaution available to protect users’ funds. Find our latest audits here.

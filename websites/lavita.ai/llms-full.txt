@@ -1,0 +1,232 @@
+# Get started
+Source: https://docs.lavita.ai/ai-jobs/setup
+
+
+
+To run Lavita AI Jobs, you first need to install the [Theta Edge Node](https://docs.thetatoken.org/docs/setup-theta-edge-node). Once you launch the app, it will automatically create a wallet for new users, while existing users will be connected to their existing wallets. Now, go to **Settings**.
+
+<Frame caption="Edge Node Settings">
+  <img width="550" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/ai-jobs-1.png" />
+</Frame>
+
+Enable **Lavita (AI/ML)**, and save your settings.
+
+<Frame caption="Enabling Lavita (AI/ML) Jobs in Edge Node Settings">
+  <img width="300" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/edge-node-settings.png" />
+</Frame>
+
+Once saved, your device will start receiving AI jobs.
+
+<Frame caption="An AI job has started and is in progress">
+  <img width="550" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/ai-jobs-2.png" />
+</Frame>
+
+Once a job is completed, rewards remain unconfirmed until the job is processed and validated.
+
+<Frame caption="The AI job has successfully finished">
+  <img width="550" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/ai-jobs-3.png" />
+</Frame>
+
+<Note>Each node (wallet address) can run Lavita AI jobs **every five hours**. Payouts are batched and sent during the first week of each month.</Note>
+
+## Rewards Calculation
+
+Your reward amount is based on two key factors:
+
+1. **GPU Usage** – Whether your Edge Node (EN) is utilizing a GPU and the type of GPU in use.
+
+2. **Elite Edge Node (EEN) Status** – If your EN qualifies as an Elite Edge Node (EEN), meaning you’ve staked in this EN, you earn additional rewards.
+
+<Tip>ENs that both **use a GPU** and **qualify as an Elite Edge Node** receive **higher rewards**.</Tip>
+
+
+# Troubleshooting
+Source: https://docs.lavita.ai/ai-jobs/troubleshooting
+
+
+
+If you're not receiving any Lavita AI Jobs, it could be due to a few reasons.
+
+## Check System Specifications
+
+If you're encountering errors or noticing that jobs are not completing, verify that your system meets these minimum requirements.
+
+<Note>
+  A machine with only a **CPU** and at least **16GB of RAM** should be able to receive and run AI Jobs without any issues, assuming there is a minimum amount of disk space (**preferably at least 10GB free**).
+</Note>
+
+## Check Logs
+
+To help us better understand the source of issues with your AI Jobs, in case of failure, find the following two logs:
+
+* **`qa_main.log`**&#x54;his file contains logs for every step of running AI Jobs. You can check this file line by line to see what actually happens when your jobs are running. In case of failure, reviewing this file provides insights into where the issue might be.
+
+* **`qa_progress.log`**&#x54;his file captures system logs, including [`stdout`](https://en.wikipedia.org/wiki/Standard_streams) and [`stderr`](https://en.wikipedia.org/wiki/Standard_streams). It helps display the progress of AI Jobs on the Edge Node UI while also catching error messages or diagnostics.
+
+<Tip>
+  Logs path on **Mac**: `/Users/[your_username]/Library/Application Support/Theta Edge Node/ThetaEdgeNode/lavita/data/models`
+</Tip>
+
+<Tip>
+  Logs path on **Windows**: `C:\Users\[your_username]\AppData\Roaming\Theta Edge Node\ThetaEdgeNode\lavita\data\models`
+</Tip>
+
+The following table includes the log messages in **`qa_main.log`**:
+
+| Log                                            | Explanation                                                      |
+| ---------------------------------------------- | ---------------------------------------------------------------- |
+| Loading dataset                                | Dataset for fine-tuning is being loaded/downloaded               |
+| Failed to load dataset                         | Issue encountered while loading or downloading the dataset       |
+| Start fine-tuning                              | Fine-tuning process has started                                  |
+| Fine-tuning is done. Saving the best model     | Model fine-tuning completed successfully                         |
+| Setting up cloud tools for uploading the model | Preparing cloud environment for model upload                     |
+| Uploading fine-tuned model files to cloud      | Upload process for the fine-tuned model has started              |
+| Uploading model file                           | An individual model file is being uploaded                       |
+| Error in model file uploading                  | An error occurred during model file upload                       |
+| Computing the model hash                       | Generating a unique hash for the model files to ensure integrity |
+| Posting model hash to server                   | Sending the computed model hash to the server for verification   |
+| Posted model hash to server.                   | Model hash was successfully posted to the server                 |
+| Failed to post model hash to server.           | An error occurred while posting the model hash                   |
+| End of Lavita job                              | Indicates completion of the AI job                               |
+
+
+# Welcome to Lavita
+Source: https://docs.lavita.ai/docs/overview
+
+
+
+<Tip>🚀 Check out the [Lavita 2025 Development Roadmap](https://lavita-ai.medium.com/lavita-2025-development-roadmap-353e6ef2c88f) on our blog!</Tip>
+
+LAVITA is a next-generation healthcare platform powered by blockchain and AI, enabling the use of massive biomedical datasets for research while preserving individual privacy and data ownership.
+
+Our vision is to drive a new era of privacy-preserving genomic and health data sharing and analysis, improving the lives of 8 billion people worldwide.
+
+## Get started
+
+<CardGroup cols={2}>
+  <Card title="Medical Evaluation Sphere" icon="sparkles" href="https://docs.lavita.ai/eval-sphere/introduction" />
+
+  <Card title="Lavita AI Jobs" icon="sparkles" href="https://docs.lavita.ai/ai-jobs/setup" />
+</CardGroup>
+
+
+# Introduction
+Source: https://docs.lavita.ai/eval-sphere/introduction
+
+
+
+Lavita AI’s [Medical Evaluation Sphere](https://sphere.lavita.ai/) is the go-to platform for real-time evaluation of foundation models on any medical or clinical task, across any modality, at scale. We’re building a global network of medical professionals alongside a growing community of users to create the most trusted and comprehensive ecosystem for medical AI evaluation.
+
+<Frame caption="Lavita AI’s Medical Evaluation Sphere">
+  <iframe width="700" height="415" src="https://www.youtube.com/embed/TLL_xm2TfJg?si=sNE-t7EA7xBBkqmx&controls=0.5" title="Lavita AI’s Medical Evaluation Sphere" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+</Frame>
+
+## How It Works
+
+<Frame caption="Lavita AI’s Medical Evaluation Sphere">
+  <img width="700" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/eval-sphere-1.png" />
+</Frame>
+
+On the Medical Evaluation Sphere, users can chat with two foundation models and compare their performances. Everything starts with asking a question. Users can engage in either a **single-turn** or **multi-turn** conversation, then compare the responses from both models and vote on one of the following:
+
+1. **Model A is better**
+
+2. **Model B is better**
+
+3. **It’s a tie** (both models performed well)
+
+4. **Neither** (neither model provided a good response)
+
+<Frame caption="Comparing model outputs and voting for the preferred response">
+  <img width="700" alt="Model comparison voting interface" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/eval-sphere-2.png" />
+</Frame>
+
+There are two modes of conversation on the Evaluation Sphere. By default, the models remain **anonymous** to ensure an objective comparison. However, users can choose to uncheck the **“Anonymous Battle”** option and manually select which models to compare—this is called a **non-anonymous battle**. In **anonymous battle mode**, after submitting a vote, the model names will be revealed.
+
+<Note>When reporting results on our **leaderboard**, we only consider votes from anonymous battles. Additionally, while users can ask any type of question, we filter out votes on **non-medical or non-clinical** conversations when aggregating results. Therefore, we encourage users to focus on **medical questions**, as votes on non-medical topics will not be counted.</Note>
+
+<Frame caption="Revealing model names after submitting the vote">
+  <img width="700" alt="Model names revealed post-vote" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/eval-sphere-3.png" />
+</Frame>
+
+
+# Sphere models
+Source: https://docs.lavita.ai/eval-sphere/models
+
+
+
+The Medical Evaluation Sphere features a growing list of models that users can chat with **for free, without limitations**! These models include both **general-purpose** and **medical** foundation models.
+
+<Note>We **actively welcome new models** on our platform. If you have a model—or know of one—that you believe should be included in the Evaluation Sphere, please email us at **[tech@lavita.ai](mailto:tech@lavita.ai)** with a link to the model.</Note>
+
+<Note>We also welcome **partnerships and collaborations** with model providers interested in contributing to the open evaluation of medical and clinical models. Currently, we’re particularly looking for partners who can support the Medical Evaluation Sphere by providing **dedicated or serverless endpoints** for the growing list of models we are adding. If you're interested in partnering with us, please reach out at **[tech@lavita.ai](mailto:tech@lavita.ai)**.</Note>
+
+
+# LAVITA token
+Source: https://docs.lavita.ai/faq/lavita-token
+
+
+
+<AccordionGroup>
+  <Accordion title="Where is my staked LAVITA?" icon="alien-8bit">
+    If you staked Lavita tokens from your Theta Wallet, either web wallet or mobile wallet, and they suddenly disappear consider adding them first, click on **ADD TOKEN** and use the following information:
+
+    <Info>
+      Ticker symbol: **LAVITA**\
+      Decimals: **18**\
+      Token address: **0x46fBF4487fA1B9C70d35BD761c51c360dF9459ed**
+    </Info>
+
+    After that click on **STAKE** again next to Lavita tokens, even if the balance is zero you should be able to see your staked Lavita tokens and rewards.
+  </Accordion>
+
+  <Accordion title="Where is my vLavita?" icon="alien-8bit">
+    If you withdrew vLavita from your Edge Node and you can't find them in your wallet, please follow the next steps:
+
+    <Frame caption="Step 1. Once you sent your vLavita to your Theta wallet, login to your wallet and click on Mainnet on top">
+      <img width="300" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-vLavita-1.png" />
+    </Frame>
+
+    <Frame caption="Step 2. Click on it, choose Lavita and you can see vLavita tokens.">
+      <img width="300" alt="Alt text" src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-vLavita-2.png" />
+    </Frame>
+  </Accordion>
+
+  <Accordion title="How does LAVITA Cross Chain Transfer work?" icon="alien-8bit">
+    If you send Lavita from your Edge Node to your wallet and see zero Lavita, it means the Edge Node sent it to its subchain in your wallet. To view it, you need to go to the Theta `mainnet` and click on **Cross Chain Transfer**.
+
+    <Frame>
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-transfer-1.png" />
+    </Frame>
+
+    From there, follow these steps:
+
+    1. **Select chain:** LAVITA
+    2. **Asset:** TFUEL
+    3. **Amount:** At least **10 TFUEL** (this is the gas fee to send Lavita from its chain to Theta Mainnet)
+
+    <Frame>
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-transfer-2.png" />
+    </Frame>
+
+    Once you've completed this, go to Lavita Mainnet.
+
+    <Frame>
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-transfer-3.png" />
+    </Frame>
+
+    <Frame>
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/lavitaai/images/faq-token-transfer-4.png" />
+    </Frame>
+
+    Then:
+
+    1. Ensure you have **at least 10 TFUEL** for gas fees.
+    2. Click on **Metachain**.
+    3. The **Destination chain** will automatically be set to **Main Chain**.
+    4. **Asset:** vLAVITA
+    5. **Amount:** Any amount you want to transfer. Keep in mind that each transaction requires at least **10 TFUEL + gas fees**.
+  </Accordion>
+</AccordionGroup>
+
+

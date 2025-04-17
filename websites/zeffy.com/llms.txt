@@ -1,0 +1,133 @@
+# Documentation
+
+## EN
+
+- [Welcome to Zeffy (formerly Simplyk)](https://docs.zeffy.com/org/master): Welcome to our documentation. Here, we present the different products offered by Zeffy, and explain the best ways to use them.
+- [Donation forms and campaigns](https://docs.zeffy.com/org/suivi-des-donations)
+- [Create a donation form](https://docs.zeffy.com/org/suivi-des-donations/configurer): Easily create a donation form.
+- [Create a donation campaign](https://docs.zeffy.com/org/suivi-des-donations/campagne-de-dons): Create a donation campaign with a campaign thermometer.
+- [Third party fundraising](https://docs.zeffy.com/org/suivi-des-donations/campagne-de-dons/multi-user-accounts): Using Zeffy (formerly Simplyk) to fundraise on behalf of a charity
+- [Create a peer-to-peer campaign](https://docs.zeffy.com/org/suivi-des-donations/peer-to-peer-campaigns)
+- [Bilingualism](https://docs.zeffy.com/org/suivi-des-donations/bilinguisme): Making your pages and donation forms bilingual.
+- [Sharing forms](https://docs.zeffy.com/org/suivi-des-donations/partager): Integrating your form into your website
+- [Managing offline donations](https://docs.zeffy.com/org/suivi-des-donations/managing-offline-donations): You can add offline donations to your dashboard in order to generate receipts, track your form totals and have all your donor information in one place.
+- [Advanced tips for donations](https://docs.zeffy.com/org/suivi-des-donations/advanced-tips): Check out these tips to amplify your fundraising and get the most out of Zeffy!
+- [Ticketing and Sales](https://docs.zeffy.com/org/billets): A step by step guide to creating your ticketing and membership forms
+- [Ticketing configuration](https://docs.zeffy.com/org/billets/configuration)
+- [Setting up a ticket office](https://docs.zeffy.com/org/billets/configuration/configurer-une-billeterie)
+- [Group Tickets](https://docs.zeffy.com/org/billets/configuration/group-tickets)
+- [Receipts for tax purposes](https://docs.zeffy.com/org/billets/configuration/recus-aux-fins-dimpots)
+- [Creating a discount code](https://docs.zeffy.com/org/billets/configuration/ajouter-un-coupon-de-reduction): Create discount codes and follow the registrants who use your codes.
+- [Bilingualism](https://docs.zeffy.com/org/billets/configuration/bilinguisme)
+- [Memberships](https://docs.zeffy.com/org/billets/managing-memberships-with-ticketing)
+- [Online Raffle](https://docs.zeffy.com/org/billets/online-raffle)
+- [Online Stores](https://docs.zeffy.com/org/billets/online-stores): Everything you need to set up an online store
+- [Sharing your ticketing form](https://docs.zeffy.com/org/billets/partager-la-billetterie)
+- [Advanced tips for Sales](https://docs.zeffy.com/org/billets/advanced-tips-for-sales)
+- [Volunteering](https://docs.zeffy.com/org/benevolat)
+- [For the volunteer](https://docs.zeffy.com/org/benevolat/pour-le-benevole)
+- [Finding a volunteering activity](https://docs.zeffy.com/org/benevolat/pour-le-benevole/trouver-une-activite-de-benevolat)
+- [Modifying my profile](https://docs.zeffy.com/org/benevolat/pour-le-benevole/modifier-mon-profil)
+- [Adding hours for school volunteering as a student](https://docs.zeffy.com/org/benevolat/pour-le-benevole/ajouter-des-heures-pour-son-benevolat-scolaire)
+- [For the non-profit](https://docs.zeffy.com/org/benevolat/pour-lorganisme)
+- [Recruiting volunteers](https://docs.zeffy.com/org/benevolat/pour-lorganisme/mettre-en-ligne-ses-besoins-en-benevoles)
+- [Optimising the recruitment of volunteers](https://docs.zeffy.com/org/benevolat/pour-lorganisme/optimiser-son-recrutement-de-benevoles)
+- [For the teacher](https://docs.zeffy.com/org/benevolat/faire-le-suivi-en-tant-que-professeur)
+- [Track volunteer experiences as a teacher](https://docs.zeffy.com/org/benevolat/faire-le-suivi-en-tant-que-professeur/untitled)
+- [Offer volunteering for my students as a teacher](https://docs.zeffy.com/org/benevolat/faire-le-suivi-en-tant-que-professeur/proposer-du-benevolat-a-mes-eleves)
+- [Frequently asked questions on school volunteering](https://docs.zeffy.com/org/benevolat/faire-le-suivi-en-tant-que-professeur/questions-frequentes-sur-le-benevolat-scolaire)
+- [Contact management](https://docs.zeffy.com/org/contact-management): Our guide to managing your contacts and integrating them with your other favorite tools.
+- [Managing donors](https://docs.zeffy.com/org/contact-management/partage-et-suivi)
+- [Managing sales](https://docs.zeffy.com/org/contact-management/suivi)
+- [Managing admissions the day of the event](https://docs.zeffy.com/org/contact-management/suivi/faire-les-admissions-le-jour-de-levenement)
+- [Database integration](https://docs.zeffy.com/org/contact-management/base-de-donnee): Different integrations and API
+- [Possible actions on Zapier](https://docs.zeffy.com/org/contact-management/base-de-donnee/possible-actions-on-zapier)
+- [Integration to Salesforce](https://docs.zeffy.com/org/contact-management/base-de-donnee/integrations-a-salesforce)
+- [Integration to Hubspot](https://docs.zeffy.com/org/contact-management/base-de-donnee/integration-to-hubspot): Easily integrate in three simple steps
+- [Integration to Google Sheet](https://docs.zeffy.com/org/contact-management/base-de-donnee/integration-a-google-sheet)
+- [Integration to DonorPerfect](https://docs.zeffy.com/org/contact-management/base-de-donnee/integration-a-donorperfect)
+- [Integration to BlackBaud (NXT)](https://docs.zeffy.com/org/contact-management/base-de-donnee/integration-to-blackbaud-nxt)
+- [Other integrations](https://docs.zeffy.com/org/contact-management/base-de-donnee/autres-integrations): (Quickbooks, Access, SQL, AirTable, Gmail, Zoho, etc...)
+- [Data Import](https://docs.zeffy.com/org/contact-management/data-import): We can import your existing data to Zeffy (formerly Simplyk) to have all your donors information centralized.
+- [Security of transactions and banking](https://docs.zeffy.com/org/securite): Sécurité et banque
+- [Free transactions with Stripe](https://docs.zeffy.com/org/securite/transactions-sans-frais): A partner to accept debit and credit cards from 120 countries.
+- [Bank account connection with Zeffy](https://docs.zeffy.com/org/securite/depot-sur-le-compte-en-banque): Connect your bank account to Zeffy (formerly Simplyk) with Stripe
+- [Is Stripe really safe?](https://docs.zeffy.com/org/securite/est-ce-que-stripe-est-vraiment-securitaire)
+- [Zeffy's Financing](https://docs.zeffy.com/org/securite/financement-de-simplyk)
+- [Data security](https://docs.zeffy.com/org/securite/untitled-1)
+- [Zeffy : the trust of more than 4,000 non-profits](https://docs.zeffy.com/org/securite/simplyk-la-confiance-de-plus-de-2000-organismes)
+- [Receipts for tax purposes](https://docs.zeffy.com/org/recus-de-charites): A guide to tax receipts with Zeffy (formerly Simplyk)
+- [Referral Program](https://docs.zeffy.com/org/referral-program)
+- [Frequently asked questions](https://docs.zeffy.com/org/questions-frequentes): Here are the answers to the most frequently asked question by charities and nonprofits using Zeffy (formerly Simplyk).
+- [Frequently asked questions for donors](https://docs.zeffy.com/org/questions-frequentes/frequently-asked-questions-for-donors): Simplyk has a new name and is now Zeffy!
+- [Frequently asked questions for Stripe](https://docs.zeffy.com/org/questions-frequentes/frequently-asked-questions-for-stripe): Simplyk has a new name and is now Zeffy!
+- [How do you know Zeffy's Donor Conversion is 50% above industry average?](https://docs.zeffy.com/org/questions-frequentes/simplyks-donor-conversion-130-above-industry-average)
+- [Contact](https://docs.zeffy.com/org/questions-frequentes/contact): By email, phone, or chat, we're here to answer all of your questions so that you can maximize your resources.
+
+## FR
+
+- [Bienvenue sur Zeffy (anciennement Simplyk)](https://docs.zeffy.com/org/master/master): Bienvenue sur notre documentation. Nous présentons ici les différents produits proposés par Zeffy, et la meilleure manière de les utiliser.
+- [Formulaires et campagnes de dons](https://docs.zeffy.com/org/master/suivi-des-donations)
+- [Créer un formulaire de dons](https://docs.zeffy.com/org/master/suivi-des-donations/configurer): Créer facilement un formulaire de don
+- [Lancer une campagne de dons](https://docs.zeffy.com/org/master/suivi-des-donations/campagne-de-dons): Créer une campagne de dons avec un thermomètre de campagne.
+- [Campagne d'un tiers parti](https://docs.zeffy.com/org/master/suivi-des-donations/campagne-de-dons/compte-a-utilisateurs-multiples): Utiliser Zeffy (anciennement Simplyk) pour une collecte de fonds au nom d'un organisme.
+- [Créer une campagne de dons pair-à-pair](https://docs.zeffy.com/org/master/suivi-des-donations/sous-campagne-de-dons): Utiliser les campagnes pair-à-pair en tant qu'équipe ou par soi-même afin de participer à l'objectif d'une campagne de don.
+- [Reçus aux fins d'impôts](https://docs.zeffy.com/org/master/suivi-des-donations/recus-de-charites): Configuration conforme à l'ARC
+- [Bilinguisme](https://docs.zeffy.com/org/master/suivi-des-donations/bilinguisme): Rendre ses pages et formulaires de dons bilingue
+- [Partage des formulaires](https://docs.zeffy.com/org/master/suivi-des-donations/partager): Intégration de votre formulaire à votre site web
+- [Conseils avancés pour les dons](https://docs.zeffy.com/org/master/suivi-des-donations/conseils-avances-pour-les-dons): Consultez ces conseils pour amplifier votre collecte de fonds et tirer le meilleur parti de Zeffy (anciennement Simplyk) !
+- [Billetterie et ventes](https://docs.zeffy.com/org/master/billets): Zeffy (anciennement Simplyk) permet de configurer des pages de billetteries pour vos événements de levées de fonds, ou pour gérer vos adhésions.
+- [Configuration d'une billetterie](https://docs.zeffy.com/org/master/billets/configuration)
+- [Configurer une billetterie](https://docs.zeffy.com/org/master/billets/configuration/configurer-une-billeterie): Configurer sa billetterie pour un événement
+- [Billet de groupe](https://docs.zeffy.com/org/master/billets/configuration/billet-de-groupe)
+- [Reçus aux fins d'impôts](https://docs.zeffy.com/org/master/billets/configuration/recus-aux-fins-dimpots)
+- [Bilinguisme](https://docs.zeffy.com/org/master/billets/configuration/bilinguisme)
+- [Créer un coupon de réduction](https://docs.zeffy.com/org/master/billets/configuration/ajouter-un-coupon-de-reduction): Créer des coupons de réduction puis suivez les inscrits qui utilisent vos coupons.
+- [Gérer les adhésions des membres avec la billetterie](https://docs.zeffy.com/org/master/billets/gerer-les-adhesions-avec-la-billetterie)
+- [Loterie en ligne](https://docs.zeffy.com/org/master/billets/loterie-en-ligne)
+- [Boutique en ligne](https://docs.zeffy.com/org/master/billets/boutique-en-ligne)
+- [Partager la billetterie](https://docs.zeffy.com/org/master/billets/partager-la-billetterie)
+- [Conseils avancés pour la billetterie](https://docs.zeffy.com/org/master/billets/conseils-avances-pour-la-billetterie)
+- [Bénévolat](https://docs.zeffy.com/org/master/benevolat)
+- [Pour l'organisme](https://docs.zeffy.com/org/master/benevolat/pour-lorganisme)
+- [Recruter des bénévoles](https://docs.zeffy.com/org/master/benevolat/pour-lorganisme/mettre-en-ligne-ses-besoins-en-benevoles)
+- [Optimiser son recrutement de bénévoles](https://docs.zeffy.com/org/master/benevolat/pour-lorganisme/optimiser-son-recrutement-de-benevoles)
+- [Pour le professeur](https://docs.zeffy.com/org/master/benevolat/faire-le-suivi-en-tant-que-professeur)
+- [Faire le suivi des expériences de bénévolat en tant que professeur](https://docs.zeffy.com/org/master/benevolat/faire-le-suivi-en-tant-que-professeur/untitled)
+- [Proposer du bénévolat pour mes élèves en tant que professeur](https://docs.zeffy.com/org/master/benevolat/faire-le-suivi-en-tant-que-professeur/proposer-du-benevolat-a-mes-eleves)
+- [Questions fréquentes sur le bénévolat scolaire](https://docs.zeffy.com/org/master/benevolat/faire-le-suivi-en-tant-que-professeur/questions-frequentes-sur-le-benevolat-scolaire)
+- [Pour le bénévole](https://docs.zeffy.com/org/master/benevolat/pour-le-benevole)
+- [Trouver une activité de bénévolat](https://docs.zeffy.com/org/master/benevolat/pour-le-benevole/trouver-une-activite-de-benevolat)
+- [Modifier mon profil](https://docs.zeffy.com/org/master/benevolat/pour-le-benevole/modifier-mon-profil)
+- [Ajouter des heures pour son bénévolat scolaire en tant qu'élève](https://docs.zeffy.com/org/master/benevolat/pour-le-benevole/ajouter-des-heures-pour-son-benevolat-scolaire)
+- [Gestion des contacts](https://docs.zeffy.com/org/master/gestions-des-contacts): Notre guide pour gérer vos contacts et les intégration à vos autres outils préférés.
+- [Gestions des donateurs](https://docs.zeffy.com/org/master/gestions-des-contacts/partage-et-suivi)
+- [Suivre les donateurs](https://docs.zeffy.com/org/master/gestions-des-contacts/partage-et-suivi/suivre-les-donateurs): Suivre les dons, et exporter les données
+- [Ajouter un don manuellement](https://docs.zeffy.com/org/master/gestions-des-contacts/partage-et-suivi/ajout-manuel-des-dons-aux-formulaires): Vous pouvez ajouter des dons hors ligne à votre tableau de bord afin de générer des reçus, suivre les totaux de vos formulaires et avoir toutes les informations de vos donateurs en un seul endroit.
+- [Pré-remplir les formulaires de dons](https://docs.zeffy.com/org/master/gestions-des-contacts/partage-et-suivi/formulaires-de-dons-pre-remplis)
+- [Gestion des ventes](https://docs.zeffy.com/org/master/gestions-des-contacts/suivi)
+- [Faire les admissions le jour de l'événement](https://docs.zeffy.com/org/master/gestions-des-contacts/suivi/faire-les-admissions-le-jour-de-levenement)
+- [Intégrations de base de données et CRM](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee): Différentes intégrations et API
+- [Actions possibles sur Zapier](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/actions-possibles-sur-zapier)
+- [Intégration à Salesforce](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integrations-a-salesforce)
+- [Intégration à Hubspot](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integration-a-hubspot): Une intégration facile en trois étapes très simple
+- [Intégration à Google Sheet](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integration-a-google-sheet)
+- [Intégration à DonorPerfect](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integration-a-donorperfect)
+- [Intégration à NXT](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integration-a-nxt)
+- [Intégration à Eudonet](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/integration-a-eudonet)
+- [Autres intégrations](https://docs.zeffy.com/org/master/gestions-des-contacts/base-de-donnee/autres-integrations): (Quickbooks, Access, SQL, AirTable, Gmail, Zoho, etc...)
+- [Import de données](https://docs.zeffy.com/org/master/gestions-des-contacts/import-de-donnees): Nous pouvons importer vos données existantes vers Simplyk afin de centraliser toutes vos informations sur les donateurs et les acheteurs.
+- [Sécurité des transactions et banque](https://docs.zeffy.com/org/master/securite): Sécurité et banque
+- [Transactions sans frais avec Stripe](https://docs.zeffy.com/org/master/securite/transactions-sans-frais): Un partenaire pour accepter les cartes de débit et crédit de 120 pays
+- [Connexion du compte en banque à Zeffy](https://docs.zeffy.com/org/master/securite/depot-sur-le-compte-en-banque): Connectez votre banque à Zeffy (anciennement Simplyk) avec Stripe
+- [Est-ce que Stripe est vraiment sécuritaire ?](https://docs.zeffy.com/org/master/securite/est-ce-que-stripe-est-vraiment-securitaire)
+- [Financement de Zeffy](https://docs.zeffy.com/org/master/securite/financement-de-simplyk)
+- [Sécurité des données](https://docs.zeffy.com/org/master/securite/untitled-1)
+- [Zeffy : la confiance de plus de 4000 organismes](https://docs.zeffy.com/org/master/securite/simplyk-la-confiance-de-plus-de-2000-organismes)
+- [Reçus d'impôts](https://docs.zeffy.com/org/master/les-recus-dimpots): Comment générer les reçus d'impôts avec Simplyk
+- [Programme de parrainage](https://docs.zeffy.com/org/master/programme-de-parrainage)
+- [Questions fréquentes](https://docs.zeffy.com/org/master/questions-frequentes): Voici les réponses aux questions les plus fréquemment posées par les organismes de bienfaisance et les ONBLs qui utilisent Zeffy (anciennement Simplyk).
+- [Foire aux questions pour les donateurs](https://docs.zeffy.com/org/master/questions-frequentes/foire-aux-questions-pour-les-donateurs)
+- [Foire aux questions pour Stripe](https://docs.zeffy.com/org/master/questions-frequentes/foire-aux-questions-pour-stripe)
+- [Comment Zeffy obtient un taux de conversion 50% supérieur à la moyenne de l'industrie ?](https://docs.zeffy.com/org/master/questions-frequentes/comment-simplyk-obtient-un-taux-de-conversion-130-superieur-a-la-moyenne-de-lindustrie)
+- [Contacter Zeffy (anciennement Simplyk)](https://docs.zeffy.com/org/master/questions-frequentes/contacter-simplyk): Par courriel, téléphone, ou par clavardage, nous nous assurons que vous ayez toujours une réponse à vos questions, pour vous aider dans votre mission.

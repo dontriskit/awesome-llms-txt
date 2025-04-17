@@ -1,0 +1,1494 @@
+# Welcome to the Metalayer
+Source: https://docs.caldera.xyz/metalayer/about-the-metalayer
+
+Metalayer is Caldera's cross-chain interoperability framework, enabling fast asset onboarding and cross-chain execution for rollups.
+
+## What is the Metalayer?
+
+Welcome to the Metalayer, Caldera's cutting-edge cross-chain interoperability framework. Designed to revolutionize how rollups interact with other chains, the Metalayer provides a seamless, secure, and efficient platform for cross-chain operations.
+
+<CardGroup cols={2}>
+  <Card title="Intents Engine" icon="engine" href="intents/overview">
+    An end to end intents execution engine.
+  </Card>
+
+  <Card title="Message Passing" icon="link" href="message-passing/overview">
+    A secure Hyperlane-based message-passing protocol supporting 1-to-1 message passing and many-to-1 reads.
+  </Card>
+</CardGroup>
+
+### Key Features
+
+* **Intents Engine**: At the heart of the Metalayer is the powerful intents engine, which allows developers to define high-level intents for cross-chain execution. This engine simplifies complex operations, enabling fast asset onboarding and declarative execution across multiple chains.
+
+* **Message Passing Protocol**: Built on Hyperlane, the Metalayer's message-passing protocol supports both 1-to-1 message passing and many-to-1 reads. This ensures reliable and secure communication between chains, facilitating a wide range of cross-chain applications.
+
+* **Security and Composability**: The Metalayer is designed with robust security protocols and composability in mind, allowing developers to build secure and flexible applications that can easily integrate with existing blockchain ecosystems.
+
+### Deployment and Availability
+
+The Metalayer is available on all Caldera chains, providing out-of-the-box interoperability. Additionally, it is deployed on major networks such as Ethereum, Arbitrum One, Base, zkSync Era, and Optimism. Our collaborations with leading protocols like Eco, Across, Relay, and Hyperlane ensure that the Metalayer is equipped with the best tools and technologies for cross-chain interactions.
+
+### Get Involved
+
+We invite developers and blockchain enthusiasts to explore the Metalayer's capabilities. Whether you're developing cross-chain applications or interested in blockchain interoperability, the Metalayer offers a robust platform.
+
+* **Developers**: Utilize our tools and infrastructure to build cross-chain applications. For deployment on your own chain or more information, our team is available to assist.
+
+* **Blockchain Enthusiasts**: Stay informed about the latest in cross-chain technology and the Metalayer's role in its development.
+
+
+# Contract Interfaces
+Source: https://docs.caldera.xyz/metalayer/developers/cross-chain-dapps/contract-interfaces
+
+Protocol developers should utilize these interfaces to send cross-chain messages and initiate cross-chain reads via the Metalayer.
+
+## Building Protocols with the Metalayer
+
+The Metalayer requires that protocol developers implement two contracts - one on the source chain, and another on the destination chain. This pattern
+is the same regardless of if the developer is intending to perform a read or a write.
+
+Both contracts interact with the MetalayerRouter contract on each chain -- and on both sides, the developer should allowlist the specific MetalayerRouter contract
+on the local chain as part of their protocol's configuration.
+
+### Sending the Message on the Source Chain
+
+On the souce chain, the sending contract calls the `dispatch` function on the
+MetalayerRouter contract. This function takes in the destination domain, recipient address, reads, write call data, and a boolean indicating whether or not
+to wait for finality on the source chainbefore relaying the message.
+
+```solidity
+/**
+    * @notice Dispatches a message to the destination domain & recipient with the given reads and write.
+    * @param _destinationDomain Domain of destination chain
+    * @param _recipientAddress Address of recipient on destination chain as bytes32
+    * @param _reads Read operations
+    * @param _writeCallData The raw bytes to be called on the recipient address.
+    * @param _useFinalized Whether or not to wait for finality before relaying the message.
+    */
+function dispatch(
+    uint32 _destinationDomain,
+    address _recipientAddress,
+    ReadOperation[] memory _reads, // can be empty
+    bytes memory _writeCallData,
+    bool _useFinalized
+) external payable;
+
+
+function quoteGasPayment(
+    uint32 _destinationDomain,
+    uint256 _gasLimit
+) public view virtual override returns (uint256);
+```
+
+#### Gas Payment
+
+The `quoteGasPayment` function is used to calculate the amount of gas that will be paid for the message. This function takes in the destination domain and the gas limit, and returns the amount of gas that is needed to relay the message.
+This gas payment covers the cost of relaying the message as well as the gas cost of the message delivery on the destination chain. It also works for relaying messsages to chains with a different gas token than the token on your local chain. The mayment should be included in the value that is sent to the `dispatch` function.
+
+### Receiving the Message on the Destination Chain
+
+On the destination chain, the receiving contract must implement the `IMetalayerRecipient` interface. The `MetalayerRouter` on the destination chain will call the `handle` function on the recipient contract in order to deliver the message.
+
+```solidity
+/**
+ * @notice Struct defining a cross-chain read operation
+ * @param sourceChainId Domain of the chain to read from
+ * @param sourceContract Contract address to read from as address
+ * @param callDataLength Length of the call data
+ * @param callData The encoded function call data
+ */
+struct ReadOperation {
+    uint32 sourceChainId;
+    address sourceContract;
+    bytes callData;
+}
+
+interface IMetalayerRecipient {
+    // Here, _readResults will be the results of every read in the message, in order. This will be input by the relayer.
+    function handle(
+        uint32 _chainId,
+        address _sender,
+        bytes calldata _message, // The body of the Metalayer message, or writeCallData.
+        ReadOperation[] calldata _reads,
+        bytes[] calldata _readResults
+    ) external payable;
+}
+```
+
+
+# Integrating with the Metalayer
+Source: https://docs.caldera.xyz/metalayer/developers/cross-chain-dapps/overview
+
+Protocol developers can utilize the Metalayer to send cross-chain messages and initiate cross-chain reads.
+
+## Key Concepts
+
+### Domains
+
+Each blockchain network is identified by a unique domain number in the Metalayer protocol. This domain identifier is used when specifying the destination chain for cross-chain messages.
+
+### Cross-Chain Operations
+
+Metalayer supports two types of cross-chain operations:
+
+* **Writes**: Send messages and execute functions across chains
+* **Reads**: Query data from contracts on other chains
+
+### Message Components
+
+* **Destination Domain**: The target blockchain network
+* **Recipient Address**: The contract address that will receive the message
+* **Read Operations**: Optional queries to execute on other chains
+* **Write Call Data**: The function call to execute on the destination chain
+* **Finality Flag**: Whether to wait for source chain finality before relay
+
+### Gas Abstraction
+
+Metalayer handles cross-chain gas payments, allowing developers to pay for destination chain execution using the source chain's native token.
+
+## System Architecture
+
+### Component Architecture
+
+The diagram below shows the main components of the Metalayer system and how they interact:
+
+```mermaid
+graph TB
+    subgraph "Source Chain"
+        SC[Protocol Contract]
+        SMR[MetalayerRouter]
+        SC -->|dispatch| SMR
+        SC -->|gas payment| SMR
+    end
+
+    subgraph "Relayer Network"
+        RN[Relayer Network]
+        RQ[Read Queue]
+        RP[Result Processing]
+        RN -->|queue reads| RQ
+        RQ -->|process| RP
+    end
+
+    subgraph "Destination Chain"
+        DMR[MetalayerRouter]
+        DC[Protocol Contract]
+        DMR -->|handle| DC
+    end
+
+    SMR -->|relay message| RN
+    RP -->|deliver message + results| DMR
+
+    style SC fill:#f9f,stroke:#333
+    style DC fill:#f9f,stroke:#333
+    style SMR fill:#bbf,stroke:#333
+    style DMR fill:#bbf,stroke:#333
+    style RN fill:#bfb,stroke:#333
+    style RQ fill:#bfb,stroke:#333
+    style RP fill:#bfb,stroke:#333
+```
+
+### Message Flow
+
+The sequence diagram below illustrates the step-by-step process of sending a cross-chain message:
+
+```mermaid
+sequenceDiagram
+    participant App as Application
+    participant SMR as Source Router
+    participant RN as Relayer Network
+    participant DMR as Dest Router
+    participant Dest as Destination
+
+    App->>SMR: 1. Calculate gas (quoteGasPayment)
+    App->>SMR: 2. dispatch(domain, recipient, reads, writeData)
+    Note over App,SMR: Include gas payment
+    SMR->>RN: 3. Emit message event
+    
+    alt Has read operations
+        RN->>RN: 4a. Execute reads
+        RN->>RN: 4b. Process results
+    end
+    
+    RN->>DMR: 5. Deliver message + read results
+    DMR->>Dest: 6. handle(sender, message, reads, results)
+    Note over DMR,Dest: Execute destination logic
+```
+
+## Integration Requirements
+
+### Source Chain
+
+* Implement a protocol contract that calls the MetalayerRouter
+* Calculate and include appropriate gas payment
+* Properly encode message data and read operations
+
+### Destination Chain
+
+* Implement the IMetalayerRecipient interface
+* Handle incoming messages and read results
+* Process cross-chain operations securely
+
+## Security Considerations
+
+* The MetalayerRouter must be configured to be trusted on the destination chain. Do not allow the `deliver` function in your protocol to be called by any address other than the local MetalayerRouter.
+* Consider finality requirements for your use case. If your contract needs to wait for finality on the source chain before processing a message, set the `_useFinalized` flag to `true` in the `dispatch` function. This significantly reduces the risk of a reorg in your contract.
+
+
+# Testnet Addresses
+Source: https://docs.caldera.xyz/metalayer/developers/cross-chain-dapps/testnet-addresses
+
+Protocol developers should use these addresses on Testnet
+
+## Testnet Deployment Addresses
+
+This page provides the deployment addresses for the MetalayerRouter contract across various testnets. Use these addresses when integrating your protocol with Metalayer on testnet environments.
+
+### MetalayerRouter Deployments
+
+| Chain Name     | Chain ID | Chain Domain | MetalayerRouter Address                      |
+| -------------- | -------- | ------------ | -------------------------------------------- |
+| Zerion Testnet | 4457845  | 4457845      | `0x7d4155BAE49688EEef7951241eb3FD95e89B6F75` |
+| Manta Sepolia  | 3441006  | 3441006      | `0xC41de2A4243e4304813c36Cd8952366DCb36106a` |
+| Curtis         | 33111    | 3441006      | `0xC41de2A4243e4304813c36Cd8952366DCb36106a` |
+
+
+# Typescript SDK
+Source: https://docs.caldera.xyz/metalayer/developers/token-bridging/typescript-sdk
+
+Comprehensive guide to using the MetaRouter TypeScript SDK for cross-chain token bridging.
+
+# MetaRouter TypeScript SDK
+
+The MetaRouter TypeScript SDK provides a powerful and flexible interface for cross-chain token bridging and swaps. It leverages Caldera's Metalayer and the MetaRouter API to offer seamless interoperability across multiple blockchain networks.
+
+## Features
+
+* **Cross-Chain Swaps and Bridges**: Effortlessly swap tokens across different blockchain networks.
+* **Real-Time Price Quotes**: Get accurate and up-to-date price quotes and gas estimates.
+* **WebSocket Streaming**: Stream real-time price updates and transaction statuses.
+* **Type-Safe**: Full TypeScript support ensures type safety and better developer experience.
+* **Middleware Support**: Customize request and response handling with middleware.
+* **Multi-Network Support**: Operate across various blockchain networks with ease.
+
+## Installation
+
+To install the SDK, use your preferred package manager:
+
+```bash
+pnpm add metarouter-sdk
+# or
+npm install metarouter-sdk
+# or
+yarn add metarouter-sdk
+```
+
+## Quick Start
+
+Here's a quick guide to get you started with the MetaRouter SDK:
+
+```typescript
+import { MetaRouter } from 'metarouter-sdk';
+
+// Initialize the SDK
+const router = MetaRouter.init({
+  apiKey: 'your-api-key',
+  environment: 'live',
+  defaultOptions: {
+    slippageTolerance: 0.005, // 0.5%
+    deadline: 20 * 60, // 20 minutes
+    gasSpeed: 'standard',
+  },
+});
+
+// Get a quote for a token swap
+const quote = await router.quote({
+  source: {
+    chain: 1, // Ethereum
+    token: '0x...',
+    amount: '1000000000000000000', // 1 ETH
+  },
+  destination: {
+    chain: 56, // BSC
+    token: '0x...',
+  },
+});
+
+// Execute a swap
+const result = await router.swap({
+  quoteId: quote.id,
+  userAddress: '0x...',
+});
+
+// Stream price updates
+const subscription = router.streams.prices([
+  {
+    baseToken: '0x...',
+    quoteToken: '0x...',
+    chain: 1,
+  },
+]).subscribe({
+  next: (update) => console.log('Price update:', update),
+  error: (error) => console.error('Stream error:', error),
+  complete: () => console.log('Stream completed'),
+});
+```
+
+## API Reference
+
+### MetaRouter
+
+The main class for interacting with the SDK. It provides methods for obtaining quotes, executing swaps, and streaming data.
+
+#### Configuration
+
+```typescript
+interface MetaRouterConfig {
+  apiKey: string;
+  apiUrl?: string;
+  environment: 'live' | 'test';
+  defaultOptions?: {
+    slippageTolerance: number;
+    deadline: number;
+    gasSpeed: 'slow' | 'standard' | 'fast' | 'instant';
+    referralCode?: string;
+  };
+  providers?: {
+    [chainId: number]: Provider;
+  };
+}
+```
+
+#### Methods
+
+* `static init(config: Partial<MetaRouterConfig>): MetaRouter`
+* `swap(params: ExecuteParams): Promise<ExecutionResult>`
+* `bridge(params: ExecuteParams): Promise<ExecutionResult>`
+* `quote(params: QuoteParams): Promise<RouteQuote>`
+
+### Clients
+
+The SDK provides specialized clients for different functionalities:
+
+* **RoutingClient**: Handles route analysis and gas estimation.
+* **ExecutionClient**: Manages transaction execution and approval checks.
+* **StreamingClient**: Provides real-time data streams via WebSocket and provider subscriptions.
+
+## Error Handling
+
+The SDK uses typed errors for better error handling. Ensure to catch and handle errors appropriately in your application.
+
+
+# Aggregation Layer
+Source: https://docs.caldera.xyz/metalayer/intents/aggregation
+
+
+
+The aggregation layer unifies access to our entire bridge network through an API and UI. When developers submit requests through our API or SDK, the system broadcasts these intents to integrated bridges. Our quote aggregator collects and compares responses, automatically selecting optimal routes based on cost, speed, and reliability. In the Metalayer Beta, reducing cost for users is the top priority.
+
+## Architecture
+
+<img className="block" src="https://mintlify.s3.us-west-1.amazonaws.com/metalayer/images/aggregation-layer.svg" alt="Aggregation Layer" />
+
+## UI
+
+The UI for the aggregation layer provides a user-friendly interface for end-users to interact with the Metalayer's bridge network. It allows users to:
+
+* **Explore available routes**: Users can browse through various bridging routes, each with detailed information on costs, speeds, and reliability metrics.
+* **Select preferred routes**: Users can choose routes based on their specific needs, such as prioritizing lower costs or faster transaction times.
+* **Track transaction progress**: Users can monitor the status of their cross-chain transactions in real-time, with access to detailed logs and notifications for any issues or updates.
+* **Personalize settings**: Users can adjust their preferences for route selection, including setting specific thresholds for acceptable cost and speed.
+
+Developers have the ability to fully whitelabel the UI for their own usage, as well as for applications within their ecosystem. This ensures a seamless integration and consistent user experience across different platforms.
+
+The UI is designed to be intuitive, providing a seamless experience for both novice and experienced users.
+
+## Routing API
+
+The Routing API is a powerful tool that enables developers to programmatically access the aggregation layer's functionalities. Key features include:
+
+* **Submit intents**: Developers can submit cross-chain intents through the API, specifying parameters such as source and destination chains, asset types, and desired outcomes.
+* **Retrieve quotes**: The API provides real-time quotes from integrated bridges, allowing developers to compare options based on cost, speed, and reliability.
+* **Execute transactions**: Once a route is selected, the API facilitates the execution of the transaction, ensuring secure and efficient cross-chain transfers.
+* **Receive notifications**: Developers can set up webhooks or callbacks to receive updates on transaction status, ensuring they are informed of any changes or issues.
+
+The Routing API is designed to be flexible and scalable, supporting a wide range of use cases and integration scenarios.
+
+
+# Overview and Architecture
+Source: https://docs.caldera.xyz/metalayer/intents/overview
+
+The Metalayer contains an end-to-end intents execution engine that enables fast asset onboarding and declarative cross-chain execution for rollups.
+
+### Intents-based Cross-Chain Execution
+
+The Metalayer's intents-based execution engine is designed to streamline cross-chain interactions by allowing developers to specify high-level intents rather than low-level transactions. This approach simplifies the process of asset onboarding and cross-chain execution, providing several key benefits:
+
+* **Declarative Execution**: Developers can define what they want to achieve (the intent) without needing to specify how it should be executed across different chains. This abstraction reduces complexity and potential errors in cross-chain operations.
+
+* **Fast Asset Onboarding**: The Metalayer facilitates rapid integration of new assets into the cross-chain ecosystem, enabling developers to quickly expand their applications' reach and functionality.
+
+* **Seamless Interoperability**: By leveraging the Metalayer's infrastructure, intents can be executed across multiple chains with minimal friction, ensuring a smooth user experience and consistent performance.
+
+* **Security and Reliability**: The Metalayer's architecture is built on robust security protocols, ensuring that intents are executed safely and reliably across all supported chains.
+
+* **Flexibility and Scalability**: The system is designed to accommodate a wide range of use cases and can scale to meet the demands of growing applications and user bases.
+
+The Metalayer's intents engine is a powerful tool for developers looking to build sophisticated cross-chain applications, providing the infrastructure needed to execute complex operations with ease and confidence.
+
+
+# Settlement Layer
+Source: https://docs.caldera.xyz/metalayer/intents/settlement-layer
+
+The settlement layer provides secure finality for cross-chain messages and intent execution in the Metalayer ecosystem.
+
+The settlement layer is the security backbone for cross-chain message passing and intent execution. It ensures reliable finality across chains and offers flexible security options tailored to various needs.
+
+## Core Components
+
+### Message Security
+
+* Utilizes Interchain Security Modules (ISMs) for validation and security.
+* Employs a multi-sig finality mechanism to balance security and efficiency, providing a robust framework for message integrity.
+
+### Intent Settlement
+
+* Manages final execution after validation.
+* Ensures atomic settlement across chains, preventing partial execution states and maintaining consistency.
+
+### Bridge Integration
+
+* Integrates with native bridge protocols to optimize settlement paths for higher-value transactions.
+* Leverages existing infrastructure for seamless cross-chain interactions.
+
+## Security Model
+
+<Callout type="info">
+  Security levels are configurable through solver quotes, allowing users to balance cost and security.
+</Callout>
+
+The security model is designed to be highly configurable. Users can select different security levels based on their specific needs, with costs reflected in solver quotes. This flexibility enables informed decisions about trade-offs between cost and security.
+
+The settlement layer leverages native chain security wherever possible, utilizing existing security mechanisms of the underlying blockchain. When native security is insufficient, fallback mechanisms are employed to maintain integrity.
+
+## Settlement Process
+
+1. **Validation**: The settlement layer verifies all preconditions and security requirements, ensuring readiness for execution.
+2. **Execution**: Performs atomic settlement across all involved chains, ensuring simultaneous completion of all transaction parts.
+3. **Confirmation**: Final verification ensures all operations are completed successfully, providing assurance of correct execution.
+
+<Callout type="warning">
+  Solvers factor security costs into their quotes based on chosen security levels.
+</Callout>
+
+## Integration Points
+
+### Message Passing
+
+The settlement layer provides robust support for message passing:
+
+* Validates messages to ensure integrity and security.
+* Finalizes messages to confirm successful delivery, maintaining reliable cross-chain communication.
+
+### Intent Execution
+
+In the context of intent execution, the settlement layer:
+
+* Executes the final settlement of intents.
+* Applies the chosen security configuration to ensure secure operations in accordance with user preferences.
+
+## Future Development
+
+The settlement layer is designed to evolve alongside the network's needs. Future developments will focus on:
+
+* Supporting additional security modules to adapt to new threats and take advantage of new technologies.
+* Integrating stack-native interop options for settlement as they become available.
+* Allowing the settlement of more complex intents, such as those that require multiple cross-chain operations.
+
+
+# null
+Source: https://docs.caldera.xyz/metalayer/intents/third-party-bridges
+
+
+
+### Third-Party Bridge Integration
+
+Third party bridges are encouraged to utilize the Metalayer to prove intent fulfillment across Metalayer-supported chains. This proving process is commonly called settlement, and depends on sending a cross-chain message from the destination chain back to the source chain.
+In most implementations, the reciept of the cross-chain message is used to release the bridged funds from escrow into the solver's wallet.
+
+Bridge developers often face issues when deploying on long-tail or new chains because message passing systems often aren't available and have inconsistent security guarantees across deployments. The Metalayer solves this problem by providing a secure, reliable, and composable message passing system that availabe on all Caldera chains.
+
+Intents protocols and solvers are able to additionally specify finality requirements for their intents to be settled, which are enforced by the Message Passing Layer.
+
+For example, **Eco Routes** has been modified to support Metalayer as an intent settlement option, and will be deployed on all Caldera chains as a part of the Metalayer.
+
+<img className="block" src="https://mintlify.s3.us-west-1.amazonaws.com/metalayer/metalayer/images/eco-routes.svg" alt="Eco Routes Implementation" />
+
+Through this architecture, Metalayer delivers immediate value to existing chains while laying the foundation for future advances in cross-chain technology. The intent-centric design ensures that as new verification methods and bridge protocols emerge, all participants in our ecosystem automatically benefit without requiring changes to their integration.
+
+
+# Message Passing (Writes)
+Source: https://docs.caldera.xyz/metalayer/message-passing/cross-chain-calls
+
+Metalayer allows developers to send arbitrary messages between chains. This is useful for intent settlement, contract coordination, governance execution, and multi-chain applications.
+
+### Overview
+
+Metalayer allows developers to send arbitrary messages between chains. Metalayer message passing is implemented as an extension of Hyperlane’s message-passing protocol.
+
+### How Messages Work in Metalayer
+
+1. A contract on the **source chain** calls `dispatch`, sending a payload to a contract on the **destination chain**.
+2. Hyperlane’s relayers transport the message securely.
+3. The **recipient contract** processes the message by decoding it.
+
+### Example Message Passing
+
+For full developer documentation, see the [Cross-Chain dApps](../developers/cross-chain-dapps) section.
+
+This example demonstrates a simple cross-chain messaging system using Metalayer. We'll create two contracts:
+
+* A sender contract that dispatches messages
+* A receiver contract that counts and stores received messages
+
+#### Hello World Sender
+
+The sender contract needs to:
+
+* Store the router address and destination information
+* Calculate gas fees for message delivery
+* Format and dispatch messages
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+contract HelloSender {
+    // The MetalayerRouter on the local chain
+    IMetalayerRouter public immutable router;
+    // The domain (chain ID) where messages will be sent
+    uint32 public immutable destinationDomain;
+    // Estimated gas needed for message processing
+    uint256 private constant ESTIMATED_GAS_LIMIT = 100000;
+
+    constructor(
+        address _metalayerRouter,
+        uint32 _destinationDomain
+    ) {
+        router = IMetalayerRouter(_metalayerRouter);
+        destinationDomain = _destinationDomain;
+    }
+
+    function sayHello(address recipient, string calldata message) external payable {
+        // Calculate required gas payment
+        uint256 gasPayment = router.quoteGasPayment(
+            destinationDomain,
+            ESTIMATED_GAS_LIMIT
+        );
+        require(msg.value >= gasPayment, "Insufficient gas payment");
+
+        // Format the message data
+        bytes memory callData = abi.encode(message);
+        
+        // Create empty reads array since we're not querying data
+        ReadOperation[] memory reads = new ReadOperation[](0);
+
+        // Send the cross-chain message
+        router.dispatch{value: gasPayment}(
+            destinationDomain,
+            recipient,
+            reads,
+            callData,
+            true // Wait for finality
+        );
+    }
+}
+```
+
+#### Hello World Receiver
+
+The receiver contract must:
+
+* Implement the IMetalayerRecipient interface
+* Store the router address and verify message sources
+* Track received messages
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+contract HelloReceiver is IMetalayerRecipient {
+    // The MetalayerRouter on this chain
+    IMetalayerRouter public immutable router;
+    // The domain (chain ID) where messages come from
+    uint32 public immutable sourceDomain;
+    
+    // Message tracking
+    uint256 public messageCount;
+    mapping(uint256 => string) public messages;
+    mapping(uint256 => address) public senders;
+
+    constructor(
+        address _metalayerRouter,
+        uint32 _sourceDomain
+    ) {
+        router = IMetalayerRouter(_metalayerRouter);
+        sourceDomain = _sourceDomain;
+    }
+
+    function handle(
+        uint32 _originDomain,
+        address _sender,
+        bytes calldata _message,
+        ReadOperation[] calldata _reads,
+        bytes[] calldata _readResults
+    ) external payable {
+        // Verify message comes from our router
+        require(msg.sender == address(router), "Unauthorized router");
+        // Verify message comes from expected chain
+        require(_originDomain == sourceDomain, "Wrong source domain");
+
+        // Decode and store the message
+        string memory helloMessage = abi.decode(_message, (string));
+        messages[messageCount] = helloMessage;
+        senders[messageCount] = _sender;
+        messageCount++;
+    }
+
+    // View functions to read message history
+    function getMessageDetails(uint256 index) external view returns (
+        string memory message,
+        address sender
+    ) {
+        require(index < messageCount, "Message index out of bounds");
+        return (messages[index], senders[index]);
+    }
+}
+```
+
+
+# Overview
+Source: https://docs.caldera.xyz/metalayer/message-passing/overview
+
+The Metalayer is designed to power settlement for intents-based protocols. We’re starting with bridging use cases, but plan to onboard a wider set of these protocols over time.
+
+The Metalayer provides a secure message passing system built on Hyperlane, automatically deployed on every Caldera chain. Messages can optionally include cross-chain state reads from an arbitrary number of chains, enabling real-time data access across the network.
+
+<img className="block" src="https://mintlify.s3.us-west-1.amazonaws.com/metalayer/metalayer/images/message-passing.svg" alt="Metalayer Message Passing" />
+
+## Configurable Finality
+
+Messages in Metalayer support two finality modes, allowing developers to balance speed and security:
+
+Soft Finality (Default):
+
+* \~10 second latency
+* Validators confirm sequencer commitment to include transaction
+* Optimal for most applications needing quick settlement
+* Trust assumption: Validators honestly report sequencer feed data
+
+Finalized Mode:
+
+* Requires batch submission to parent chain and finality on that chain
+* Provides protection against sequencer reorgs
+* Note: Optimistic rollups retain 7-day dispute window
+* Same validator trust model as soft finality, but with additional reorg protection
+* Recommended for high-value transfers or security-critical applications
+
+As rollup stacks evolve to support stack-native interoperability (like Superchain or ZKSync native bridging), Metalayer will automatically upgrade to use these mechanisms. Applications specifying "finalized" mode will seamlessly benefit from improved security guarantees without any code changes. Finalized mode brings the future benefits of this stack-native interop to developers today — without forcing devs to lock into a specific ecosystem.
+
+
+# Cross-Chain Reads
+Source: https://docs.caldera.xyz/metalayer/message-passing/reads
+
+
+
+### Why Use Cross-Chain Reads?
+
+Many decentralized applications rely on **data from multiple chains**. Some key use cases include:
+
+* **Aggregating liquidity across chains** for better DeFi execution.
+* **Fetching token ownership or balances** across chains before execution.
+* **Governance protocols checking votes on multiple chains** before passing a decision.
+
+### How Cross-Chain Reads Work
+
+1. A contract on **one chain** requests data from multiple chains.
+2. The **CCIP Read ISM** validates the read request and forwards it to Hyperlane’s message relayers.
+3. Hyperlane retrieves data from **off-chain RPC nodes**, aggregates it, and relays it back.
+4. The data is returned to the contract that initiated the read.
+
+### Protocol Interface
+
+```solidity
+interface IMetaLayerRead {
+    function fetchCrossChainData(
+        uint32[] calldata sourceChains,
+        address user,
+        bytes calldata queryData
+    ) external view returns (bytes[] memory);
+}
+```
+
+### Explanation of ReadOperation Struct
+
+Each cross-chain read operation is encapsulated in a `ReadOperation` struct:
+
+```solidity
+struct ReadOperation {
+    uint32 sourceChain;
+    address contractAddress;
+    bytes callData;
+}
+```
+
+* **`sourceChain`**: The ID of the chain where data is being queried.
+* **`contractAddress`**: Address of the contract being queried.
+* **`callData`**: Encoded function call to retrieve data.
+
+### Example: Querying Data from 4 Chains
+
+This example demonstrates how a contract queries balances from multiple chains.
+
+#### **Cross-Chain Data Reader**
+
+```solidity
+contract MultiChainReader {
+    IMetaLayerRead public metalayer;
+
+    constructor(address _metalayer) {
+        metalayer = IMetaLayerRead(_metalayer);
+    }
+
+    function getMultiChainData(uint32[] calldata chains, address user, bytes calldata queryData) 
+        external view returns (bytes[] memory) {
+        return metalayer.fetchCrossChainData(chains, user, queryData);
+    }
+}
+```
+
+
+# What are Rollups?
+Source: https://docs.caldera.xyz/rollup-engine/about/about-rollups
+
+
+
+Rollups are a Layer 2 scaling solution designed to enhance the scalability and efficiency of blockchain networks. In short: rollups are blockchains that rely on another layer-one blockchain (especially Ethereum) for settlement, while providing better scalability and performance guarantees compared to the underlying blockchain.
+
+Here's a breakdown:
+
+### Bundling Transactions
+
+Rollups work by aggregating or "rolling up" multiple transactions into a singular transaction or a batch. This process occurs on a separate Layer 2 blockchain, which is a secondary framework built atop the primary (Layer 1) blockchain​.
+
+### Off-chain Execution
+
+The execution of transactions is performed off-chain in rollups, thereby reducing the data that needs to be posted to the main blockchain. This is particularly beneficial in congested blockchain networks where the high volume of transactions can lead to slower processing times and higher fees.
+
+### Posting to Layer 1
+
+Once the transactions have been bundled and executed off-chain, a single transaction or a summary of the batch is posted to the main (Layer 1) blockchain. This action retains the security features of the primary blockchain while significantly reducing the data load, as only the rolled-up transaction is recorded on-chain​.
+
+# Optimistic Rollups
+
+You can deploy [Arbitrum Nitro](/about/nitro) and [OP Stack](/about/bedrock) rollups via Caldera -- both of these stacks are "Optimistic" rollups.
+
+The term "optimistic" in Optimistic Rollups comes from the optimistic assumption that transactions within a rollup are valid. In the "happy path" where the rollup is acting honestly, no on-chain proof of correctness is required. However, if the rollup sequencer acts maliciously or errantly, a "fault proof" can be submitted to the L1 and prevent incorrect execution from occuring.
+
+<Tip>
+  {" "}
+
+  Want to learn more about Optimistic Rollups? View [this article](https://ethereum.org/en/developers/docs/scaling/optimistic-rollups)
+  from ethereum.org
+</Tip>
+
+# Zero-Knowledge Rollups
+
+You can deploy [ZK Stack](/about/zksync) and [Polygon CDK](/about/polygon) rollups via Caldera as well -- both of these stacks are "Zero-Knowledge" (aka ZK) rollups.
+
+In contrast to optimistic rollups, ZK rollup nodes must submit a validity proof for verification to update state.
+The validity proof is a cryptographic assurance that the state-change proposed by the rollup is really the result of executing the given batch of transactions. This means that ZK-rollups only need to provide validity proofs to finalize transactions on Ethereum instead of posting all transaction data on-chain like optimistic rollups.
+
+<Tip>
+  {" "}
+
+  To learn more about ZK Rollups, view [this article](https://ethereum.org/en/developers/docs/scaling/zk-rollups/)
+  from ethereum.org
+</Tip>
+
+
+# Alternative Data Availability
+Source: https://docs.caldera.xyz/rollup-engine/about/alternative-da
+
+
+
+<Tip>
+  {" "}
+
+  This is a beta feature. Want to get started? [Get in touch](https://calendly.com/james_caldera/30min?utm_source=doc).{" "}
+</Tip>
+
+Caldera supports Alternative Data Availability (Alt-DA) via integrations with [Celestia](https://docs.celestia.org/learn/how-celestia-works/data-availability-layer), [Near](https://near.org/data-availability), and [Arbitrum Anytrust](https://arbitrum.io/anytrust)
+
+# Why Alternative DA?
+
+In order to ensure invalid transactions processed can be caught and reverted on a rollup, users need a way to make sure that the rollup's block data is actually published.
+Right now, the vast majority of Ethereum rollups solve this by simply posting all of the rollup blocks onto Ethereum and relying on it for data availability.
+
+But, traditional Ethereum DA can lead to extremely high and volatile costs, as rollups are forced to compete for limited blockspace with all other dApps and users transacting on Ethereum.
+As a result, over 95% of the cost of a rollup transaction today comes from posting data to Ethereum.
+
+# How it Works
+
+<Tip>
+  {" "}
+
+  Check out [our blog post](https://blog.caldera.xyz/alternative-data-availibility-for-approllups/)
+  for an in-depth explanation
+</Tip>
+
+Alternative DA systems use innovative approaches to separate out data availability from a chain's settlement, dramatically lowering associated costs and increasing throughput to significantly improve rollups' long-term scalability.
+
+At the moment, we're proud to offer Celestia and Near as our current Alt-DA solutions for all Caldera Chains (and plan to integrate with other Alt-DA providers in the future), leveraging their novel technologies to save significant costs for the chains in our ecosystem.
+
+![Celestia Diagram](https://docs.celestia.org/img/learn/monolithic-modular.png)
+
+# Build with Alternative DA
+
+We're excited to work with teams exploring rollups with alternative data availability. If you're interested, please [get in touch](https://calendly.com/james_caldera/30min?utm_source=doc)!
+
+
+# Optimism Bedrock
+Source: https://docs.caldera.xyz/rollup-engine/about/bedrock
+
+
+
+<Tip>
+  {" "}
+
+  For a closer look, check out [Optimism's Documentation](https://stack.optimism.io/){" "}
+</Tip>
+
+With Caldera, you can deploy dedicated rollups using the **OP stack** (Optimism Bedrock).
+
+The OP stack is a battle-tested Optimistic Rollup stack. The OP stack powers *Optimism Mainnet* and *Base*, Coinbase's recently-launched L2. Collectively, the OP stack secures over \$3.5 Billion in TVL.
+
+### Benefits
+
+* 10-100x cheaper transactions compared to Ethereum.
+* Ethereum equivalence, with full support for Ethereum smart contracts and developer tooling
+* Fast block times (2s per block)
+* Optional support for further cost reduction via Celestia DA
+* Extremely permissive (MIT) licensing
+* Ability to opt into the [Superchain](https://stack.optimism.io/docs/understand/explainer/), Optimism's future network of chains that share bridging, governance, and interoperability
+
+# The Superchain
+
+<Tip>
+  {" "}
+
+  For more info, view the Superchain explainer [here](https://stack.optimism.io/docs/understand/explainer/){" "}
+</Tip>
+
+The Optimism Superchain is envisioned as a network of interconnected chains on the Optimism protocol, enhancing scalability and interoperability among Layer 2 blockchain networks. The Superchain aims to unify the Optimism Mainnet and other OP stack chains into a single connected network, facilitating shared features like bridging, decentralized governance, and a communication layer. This setup is designed to allow individual chains to operate cohesively, promoting seamless communication and transactions among them.
+
+The Superchain design is still early. We recommend consulting Optimism's documentation for the most up-to-date design.
+
+
+# Guardian Nodes
+Source: https://docs.caldera.xyz/rollup-engine/about/guardian-node
+
+
+
+Caldera’s Guardian Node system introduces the first production-ready system where third parties are able to verify rollup blocks in exchange for rewards. This system introduces a novel “light verifier” for Arbitrum rollups which allows Guardian Node operators to verify Nitro batches on everyday hardware without needing to run a full Arbitrum node.
+By focusing on reducing barriers to verify the network and distributing incentives, Caldera’s Guardian Node system improves the resilience and security of Arbitrum rollups.
+
+## The Benefits
+
+1. **Revenue Source**: A significant go-to-market benefit is that a project can use Guardian Nodes as a source of revenue. HYCHAIN, which launched its Guardian Node system with Caldera’s tooling, sold \~16k node keys within 2 weeks, raising \~2000 ETH. The sale period will continue for a duration of 3 years which will provide a steady revenue stream.
+2. **Decentralization**: EVM rollups have all but solved the scalability problem, with L2s and L3s on Ethereum enabling virtually infinite scale. But previously, there was still no incentive for honest network participants to monitor these rollups. Guardian Nodes allow teams to decentralize their rollups by enabling users to verify blocks and secure the network in exchange for rewards.
+3. **Token Demand**: By enabling more parties to watch over a rollup and identify malicious behavior, the network’s security grows more robust— a crucial step to establishing trust in the chain’s correctness. This in turn generates more demand for a rollup’s native token, which is required for users to participate in validation and helps provide practical cryptoeconomic security for the network.
+
+
+# Native Gas Token
+Source: https://docs.caldera.xyz/rollup-engine/about/native-token
+
+
+
+With Caldera Chains, you can elect to use an ERC20 token as your rollup's native token.
+
+### What tokens can I use?
+
+You can use almost any token as your rollup's native token. This includes your protocol tokens, or stablecoins such as USDC or DAI.
+
+The only tokens that cannot be used as rollup native tokens are [elastic tokens](https://academy.binance.com/en/articles/elastic-supply-tokens-explained) due to their volatile supply. Thankfully, very few tokens employ this type of design.
+
+
+# Arbitrum Nitro
+Source: https://docs.caldera.xyz/rollup-engine/about/nitro
+
+
+
+<Tip>
+  {" "}
+
+  For a closer look, check out [Arbitrum's Documentation](https://docs.arbitrum.io/inside-arbitrum-nitro){" "}
+</Tip>
+
+With Caldera, you can deploy dedicated rollups using the **Arbitrum Nitro** stack.
+
+Arbitrum Nitro is a battle-tested Optimistic Rollup stack. Arbitrum Nitro powers *Arbitrum One*, the flagship Arbitrum chain, and *Arbitrum Nova*, a lower-cost chain targeted towards gaming. Arbitrum Nitro secures over \$6 Billion in TVL across chains in production.
+
+### Benefits
+
+* 10-100x cheaper transactions compared to Ethereum.
+* Ethereum equivalence, with full support for Ethereum smart contracts and developer tooling
+* Faster block times, as fast as 250ms when under high throughput
+* Working fault proofs
+* Optional Support for WASM smart contracts via Stylus
+* Support for further cost reduction via Arbitrum Anytrust or Celestia DA
+* Ability to choose your rollup's native token
+
+# Anytrust
+
+<Tip>
+  {" "}
+
+  For more info, view the Anytrust docs [here](https://docs.arbitrum.io/inside-arbitrum-nitro/#inside-anytrust){" "}
+</Tip>
+
+Arbitrum AnyTrust, a variant of Arbitrum Nitro technology, adopts a mild trust assumption to lower transaction costs. Unlike standard Arbitrum where all nodes require access to every Layer 2 transaction data, AnyTrust relies on a Data Availability Committee (DAC) to store and provide data on demand, assuming at least two members are trustworthy for data availability. It employs Data Availability Certificates (DACerts) to guarantee data availability until a specified expiration time.
+
+With Anytrust, you can achieve a further **10-100x** cost decrease compared to a standard rollup.
+
+This setup allows for more cost-effective transaction processing while ensuring data availability, aiding in creating personal AnyTrust and Rollup chains with an infrastructure capable of significantly higher capacity than Ethereum, yet still leveraging Ethereum's security framework.
+
+# Stylus
+
+<Tip>
+  {" "}
+
+  For more info, view the Stylus docs [here](https://docs.arbitrum.io/stylus/stylus-gentle-introduction){" "}
+</Tip>
+
+Arbitrum Stylus is an advancement to the Arbitrum Nitro technology, introducing a secondary, co-equal WASM virtual machine alongside the existing Ethereum Virtual Machine (EVM) on the Arbitrum chains like Arbitrum One, Arbitrum Nova, and Arbitrum Orbit. This new virtual machine enhances the programming environment, enabling developers to write and deploy smart contracts using languages like Rust, C, or C++.
+
+WASM execution is significantly more performant (Over **10x less gas used**) and allows developers to use battle-tested Rust, C++, and C libraries in their smart contracts.
+
+<Card title="Want inspiration?" icon="github" href="https://github.com/OffchainLabs/awesome-stylus">
+  Check out the OffchainLabs/*Awesome-Stylus* repo on Github for examples of
+  smart contracts with Stylus
+</Card>
+
+
+# Reliability
+Source: https://docs.caldera.xyz/rollup-engine/about/reliability
+
+
+
+### Uptime SLAs
+
+For all mainnet deployments, Caldera offers a 99.99% uptime SLA.
+
+### Industry Standard Best Practices
+
+At Caldera, we employ industry-standard best practices to ensure the reliability and availability of our services. Our Kubernetes configurations are designed with a high availability setup to mitigate service disruptions and maintain a resilient infrastructure. By adhering to recognized standards and best practices, we are able to provide a robust and reliable environment for our operations and, by extension, our partners.
+
+All Caldera infrastructure is hosted in Amazon Web Services, and split across multiple regions. Our Kubernetes configuration is designed with reliability in mind: we auto-failover in the case of sequencers going down, and we autoscale our infra when traffic spikes.
+
+### L1 RPC Fallback
+
+One of the "weak links" in rollup operation is the connection to a layer-one (Ethereum mainnet) full node. If this connection is severed for an extended period of time, the rollup cannot function properly.
+
+To further bolster our reliability, we have established a proxy load-balancing service to derisk potential challenges posed by L1 RPC outages. This proxy service aggregates over multiple top RPC providers, and re-routes our traffic in the event of downtime. This layer of protection helps in maintaining uninterrupted service and ensuring that our systems remain accessible and functional even during external disruptions in the broader network.
+
+### Transparent Status Page
+
+![status page](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/images/betterstack.png)
+
+We believe in full transparency when it comes to system performance and availability. Every mainnet deployment comes with a status page, powered by [Betterstack](https://betterstack.com). Our status page provides real-time updates on each rollup, allowing you to subscribe and stay informed about the operational status of our services.
+
+In the event of downtime, all members of the Caldera engineering team are alerted.
+
+### Response SLAs and Escalation Procedures
+
+Timely response and resolution are crucial for maintaining a high level of service reliability.
+
+We have defined Service Level Agreements (SLAs) to ensure prompt responses to incidents and issues, **24 hours a day, 7 days a week**. Our SLAs outline the expected response times and resolution procedures, providing a clear framework for addressing concerns. Additionally, we have an escalation procedure in place for operational and arbitration scenarios, ensuring that critical issues receive the necessary attention and are resolved expediently.
+
+
+# Security
+Source: https://docs.caldera.xyz/rollup-engine/about/security
+
+
+
+### Multisig Ownership of Mainnet Rollup Contracts
+
+Security is paramount when dealing with blockchain contracts, especially when customer funds are involved. At Caldera, we employ multi-signature (multisig) ownership for our mainnet rollup contracts.
+
+This means that multiple signatures are required to authorize any significant actions, providing an additional layer of security. With multisig ownership, **we ensure that customer funds remain protected, even in the unlikely event that our systems are compromised**.
+
+### Using battle-tested, audited rollup stacks
+
+Caldera only runs the most battle-tested rollup stacks, including Optimism, Arbitrum, and the Polygon CDK. Each of these stacks secures millions to billions of dollars in value, on production mainnets.
+
+### Dual Authorization for Production Infrastructure Access
+
+All Caldera production infrastructure is locked under a dual-authorization scheme. This process mandates that no single individual can access or modify the production environment without a second person from the company signing off on the action. This dual authorization ensures that there are checks and balances in place, significantly reducing the risk of unauthorized or malicious activity within our production infrastructure.
+
+
+# Decentralized Sequencing
+Source: https://docs.caldera.xyz/rollup-engine/about/shared-sequencing
+
+
+
+<Tip>
+  {" "}
+
+  This is a beta feature. Want to get started? [Get in touch](https://calendly.com/james_caldera/30min?utm_source=doc).{" "}
+</Tip>
+
+Caldera supports Decentralized Sequencing via an integration with [Espresso](https://www.espressosys.com/), a premier decentralized sequencing network.
+
+# Why Decentralized Sequencing?
+
+Every rollup relies on a sequencer to order and verify the transactions on the chain. Traditionally, these sequencers have been centralized entities, controlled by a single party or group of parties. The vast majority of rollups currently in production (including Arbitrum One, Optimism mainnet, Base, and zkSync, among others) currently utilize a centralized sequencer.
+
+These rollups are still able to inherit the security properties of their underlying chain via rollup proof systems, but their centralized sequencers still pose several problems:
+
+* Centralized sequencers create a single point of failure in the system. If the sequencer goes down, it can become impossible or prohibitively expensive to submit transactions for inclusion
+
+* The centralized sequencer can arbitrarily censor or delay transactions, or reorder transactions to extract MEV
+
+* Users do not have visibility into how transactions are ordered
+
+The status quo requires users to place some trust in rollup operators: users must trust that the operator will keep the sequencer online, trust that the sequencer orders transactions according to spec, and trust that the operator is not extracting MEV from the chain or arbitrarily censoring transactions.
+
+# How it Works
+
+<Tip>
+  {" "}
+
+  Check out [Espresso's documentation](https://docs.espressosys.com/sequencer/releases/cortado-testnet-release/op-stack-integration)
+  for an in-depth explanation
+</Tip>
+
+At a high level, the Espresso Sequencer network replaces the rollup's mempool implementation. User transactions are sent to the Espresso Sequencer rather than the rollup node itself. Then, rollup nodes query sequenced transactions from Espresso's sequencer node. This eliminates the dependence on a centralized sequencer to act fairly.
+
+![Espresso Sequencer Diagram](https://3457829372-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FBeiHaL4yXVSdD2dUzh9N%2Fuploads%2F6NYf3f60ffI3qN3t8vWO%2Fsequence-gitbook.drawio.svg?alt=media\&token=6b7b36e2-5d69-46c3-8e2b-0caf4066fcaf)
+
+# Integrate with Espresso
+
+We're excited to work with teams exploring rollups with decentralized sequencing. Please [get in touch](https://calendly.com/james_caldera/30min?utm_source=doc)!
+
+
+# Bridged USDC
+Source: https://docs.caldera.xyz/rollup-engine/about/usdc
+
+
+
+Leverage Circle's Bridged USDC Standard for [OP Bedrock](/about/bedrock) and [Arbitrum Nitro](/about/nitro.mdx) rollups with Caldera. Bridged USDC provides benefits for blockchains, developers, and users alike, catalyzing activity on new blockchain networks and simplifying any future transition to native USDC.
+
+## For Blockchains
+
+Get bridged USDC into the hands of developers and users early with the potential for a seamless upgrade to native issuance in the future, thereby avoiding the time-consuming liquidity migration process of educating and incentivizing your ecosystem to move from bridged to native USDC.
+
+## For developers
+
+Build on bridged USDC with a contract address that will persist after an upgrade to native, no code change needed. Provide users a way to store, pay, trade, borrow and lend with bridged USDC that automatically becomes native upon an upgrade. No need to swap to a new asset.
+
+
+# ZK Stack
+Source: https://docs.caldera.xyz/rollup-engine/about/zksync
+
+
+
+{/* <Tip>
+  {" "}
+  For a closer look, check out [Polygon's Documentation](https://wiki.polygon.technology/docs/cdk/){" "}
+  </Tip> */}
+
+<Tip>
+  Full ZK Stack support is here! If you're interested in deploying a ZK Stack hyperchain with Caldera today, [contact us](https://calendly.com/james_caldera/30min?utm_source=docs)!
+</Tip>
+
+The ZK Stack is a modular, open-source framework designed to build custom ZK-powered hyperchains leveraging zkSync infrastructure.
+
+At its core, the ZK Stack offers two key features: sovereignty and seamless connectivity. Each ZK Stack hyperchain operates completely independently, relying solely on Ethereum L1 for their liveness and security, while supporting a shared bridge to facilitate the interconnection of every hyperchain, thereby enabling trustless, fast (within minutes), and inexpensive (cost of a single transaction) interoperability.
+
+### Benefits
+
+* Ultra-low gas fees compared to Ethereum.
+* Ethereum compatibility, with full support for Ethereum smart contracts and developer tooling
+* Native account abstraction
+* Native cross-chain composability via hyperbridges
+* Support for further cost reduction via alternative DA solutions
+* Ability to choose your rollup's native token
+
+# Hyperchains
+
+<Tip>
+  {" "}
+
+  For more info, view zkSync's hyperchain docs [here](https://docs.zksync.io/zk-stack/concepts/hyperchains-hyperscaling.html){" "}
+</Tip>
+
+Hyperchains are fractal-like instances of zkEVM running in parallel and with common settlement on the L1 mainnet. The name Hyperbridge comes from the traditional web, where users can navigate websites seamlessly using hyperlinks. Similarly, ZK Stack rollups are connected seamlessly via Hyperbridges.
+
+Each Hyperchain is powered by the same zkEVM engine available on the ZK Stack (and currently powering the first hyperchain, zkSync Era). All the ZKP circuits thus remain 100% identical, allowing Hyperchains to fully inherit their security from the L1 regardless of deployer, which ensures zero additional trust/security assumptions.
+
+![Hyperchain Diagram](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/hyperchain.png)
+
+
+# Foundry
+Source: https://docs.caldera.xyz/rollup-engine/deploying-contracts/foundry
+
+Deploying Smart Contracts using Foundry
+
+## What is Foundry?
+
+Foundry is a toolset for Ethereum development written in Rust that assists developers in managing dependencies, compiling projects, running tests, deploying contracts, and interacting with blockchains through the command line interface.
+
+Additionally, Foundry can directly communicate with Caldera's Ethereum API, enabling the use of Foundry to deploy smart contracts into the Caldera network.
+
+## Get Started with Foundry
+
+1. Install Foundry
+   * Linux or MaxOS
+     ```
+     curl -L https://foundry.paradigm.xyz | bash
+     foundryup
+     ```
+   * Windows
+     ```
+     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs/ | sh
+     cargo install --git https://github.com/foundry-rs/foundry foundry-cli anvil --bins --locked
+     ```
+2. Create a project
+   ```
+   forge init foundry
+   ```
+3. Navigate to the Source in the project and create your smart contract
+   ```
+   cd src
+   touch MyToken.sol
+   ```
+4. Input your smart contract or use the sample contract below.
+   ```solidity
+   // SPDX-License-Identifier: MIT
+   // compiler version must be greater than or equal to 0.8.17 and less than 0.9.0
+   pragma solidity ^0.8.17;
+
+   contract HelloWorld {
+       string public greet = "Hello World!";
+   }
+   ```
+5. Install OpenZeppelin contracts as a dependency
+   ```
+   forge install OpenZeppelin/openzeppelin-contracts
+   ```
+6. Compile contract
+   ```
+   forge build
+   ```
+
+## Deploying Your Smart Contract
+
+Deploying a contract with Forge is a simple process that can be done with a single command. However, it requires an RPC endpoint, a private key that has funds, and any arguments for the constructor of the contract.
+
+For example, the `MyToken.sol` contract requires an initial supply of tokens to be specified in its constructor, so the command to deploy it on a network will include the argument of 100.
+
+To deploy the `MyToken.sol` contract, use the command that corresponds to the Caldera chain's RPC URL while running the `forge create` command:
+
+```
+forge create --rpc-url "RPC URL" //Insert your RPC URL here
+--constructor-args 100 \
+--private-key YOUR_PRIVATE_KEY \
+src/MyToken.sol:MyToken 
+```
+
+
+# Hardhat
+Source: https://docs.caldera.xyz/rollup-engine/deploying-contracts/hardhat
+
+Deploying Smart Contracts using Hardhat
+
+## What is Hardhat?
+
+Hardhat is a development environment for Ethereum that helps developers manage and automate the common tasks involved in building smart contracts and decentralized applications.
+It can directly interact with Caldera's Ethereum API, allowing for the deployment of smart contracts into the Caldera network.
+
+Additionally, Hardhat is a comprehensive set of tools for creating Ethereum-based software, which includes various components that aid in editing, compiling, debugging, and deploying smart contracts and decentralized applications. All of these components work together to create a complete development environment.
+
+## Creating a Hardhat Project
+
+1. Create a directory for your project:
+   ```
+   mkdir hardhat && cd hardhat
+   ```
+2. Initialize the project, which will create a `package.json` file
+   ```
+   npm init -y
+   ```
+3. Install Hardhat
+   ```
+   npm install hardhat
+   ```
+4. Create a project
+   ```
+   npx hardhat
+   ```
+5. Create an empty `hardhat.config.js` and install the Ethers plugin to use the Ethers.js library to interact with the network.
+   ```
+   npm install @nomiclabs/hardhat-ethers ethers
+   ```
+
+## Creating Your Smart Contract
+
+1. Create a `contracts` directory
+   ```
+   mkdir contracts && cd contracts
+   ```
+2. Create `your_contract.sol` file in `contracts` directory
+   ```
+   touch your_contract.sol
+   ```
+
+## Creating Your Configuration File
+
+Modify the Hardhat configuration file and create a secure file to store your private key in.
+
+1. Create a `secrets.json` file to store your private key
+   ```
+   touch secrets.json
+   ```
+2. Add your private key to `secrets.json`
+   ```
+   {
+       "privateKey": "YOUR-PRIVATE-KEY-HERE"
+   }
+   ```
+3. Add the file to your project's `.gitignore`, and never reveal your private key.
+4. Modify the `hardhat.config.js` file
+   * Import the Ethers.js plugin
+   * Import the `secrets.json` file
+   * Inside the `module.exports` add the Caldera network configuration
+   ```javascript hardhat.config.js
+   require('@nomiclabs/hardhat-ethers');
+   const { privateKey } = require('./secrets.json');
+
+   module.exports = {
+   solidity: "0.8.1",
+   defaultNetwork: "rinkeby",
+   networks: {
+       rinkeby: {
+       url: "https://eth-rinkeby.alchemyapi.io/v2/123abc123abc123abc123abc123abcde",
+       accounts: [privateKey]
+       },
+       caldera: {
+       url: "RPC URL",  // Insert your RPC URL Here
+       }
+   },
+   }
+   ```
+
+## Deploying Your Smart Contract
+
+1. Compile the contract
+   ```
+   npx hardhat compile
+   ```
+2. Create a new directory for the script and name it scripts and add a new file to it called `deploy.js`
+   ```
+   mkdir scripts && cd scripts
+   touch deploy.js
+   ```
+3. Create a deployment script, like the one below
+   ```javascript scripts/deploy.js
+   async function main() {
+   // 1. Get the contract to deploy
+   const Your_Contract = await ethers.getContractFactory('your_contract');
+   console.log('Deploying Your_Contract...');
+
+   // 2. Instantiating a new smart contract
+   const your_contract = await Your_Contract.deploy();
+
+   // 3. Waiting for the deployment to resolve
+   await your_contract.deployed();
+
+   // 4. Use the contract instance to get the contract address
+   console.log('Your_Contract deployed to:', your_contract.address);
+   }
+
+   main()
+   .then(() => process.exit(0))
+   .catch((error) => {
+       console.error(error);
+       process.exit(1);
+   });
+   ```
+4. Deploy `your_contract.sol` using the command below
+   ```
+   npx hardhat run scripts/deploy.js --network caldera
+   ```
+
+
+# Remix
+Source: https://docs.caldera.xyz/rollup-engine/deploying-contracts/remix
+
+Deploying Smart Contracts using Remix
+
+## What is Remix?
+
+Remix Project is a robust set of tools that can be used by individuals of any skill level throughout the entire process of developing contracts, and it also serves as an educational platform for learning and experimenting with Ethereum.
+
+## Getting Started with Remix
+
+1. Visit Remix to get started.
+2. Under **Featured Plugins**, select **Solidity**.
+3. Navigate to the **File Explorer** and click "**+**" to create a Smart Contract
+4. Input your smart contract or use the sample contract below.
+
+```solidity
+// SPDX-License-Identifier: MIT
+// compiler version must be greater than or equal to 0.8.17 and less than 0.9.0
+pragma solidity ^0.8.17;
+
+contract HelloWorld {
+    string public greet = "Hello World!";
+}
+```
+
+5. Navigate to the **Compile** sidebar option and click Compile.
+
+## Deploying Your Smart Contract
+
+Once you have written your Smart Contract in Remix, you can navigate to the sidebar option to Compile your contract.
+
+1. Change the top **ENVIRONMENT** dropdown from "**Javascript**" to "**Injected Web3**"
+2. This will take you MetaMask - Press connect in Metamask to allow Remix access.
+3. Add your network to Metamask using these parameters from your Caldera Chain:
+   * Network
+   * New RPC URL
+   * Chain ID
+   * Currency Symbol
+   * Block Explorer URL
+
+
+# Quickstart
+Source: https://docs.caldera.xyz/rollup-engine/quickstart
+
+Get started deploying a dedicated rollup, hosted by Caldera
+
+## Testnet
+
+To get started with a testnet environment, head to our dashboard and follow these steps:
+
+1. Sign up or log in through the authorization page
+2. Click "Get Started" from the **Manage Rollups** page ![deployment page](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/deploy.png)
+3. Select your rollup framework of choice ([Arbitrum Nitro](/about/nitro), [Optimism Bedrock](./about/bedrock), [zkSync's ZK Stack](./about/zkSync)), and then choose the *Testnet* network type on our **Deploy New Rollup** page ![newdeploy](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/newdeploy.png)
+4. Select a native gas token and set relevant identifiers (Rollup Name, Subdomain, Chain ID)
+5. Click the "Deploy New Rollup" button to launch your testnet rollup!
+
+## Mainnet
+
+1. [Book a demo](https://calendly.com/james_caldera/30min?utm_source=docs) to chat about your project's needs and why you're considering an app-rollup --
+   we'll brainstorm ways that we can help
+2. Caldera will launch a rollup for you with the framework of your choice (Arbitrum Nitro, Optimism Bedrock, ZK Stack), and the parameters of your choice, on the chain of your choice (Ethereum, Polygon, Cronos, Optimism, Arbitrum, etc.)
+3. Integrate your app with Caldera. Usually, it takes less than half an hour to port Ethereum apps to a Caldera chain. We're happy to help with this!
+4. We'll let you know when your production-grade Mainnet rollup goes live!
+
+
+# Block Explorer
+Source: https://docs.caldera.xyz/rollup-engine/tools/block-explorer
+
+
+
+Every Caldera Chain comes equipped with a user-friendly **Block Explorer** that allows for easy viewing of important data such as:
+
+* Address balances
+* Transaction history
+* Verified contracts
+* Smart contract code and execution
+* Network statistics
+* Mining information
+
+Just search for an an address, token symbol, name, transaction hash, or block number to retrieve the on-chain information you're looking for.
+
+Additionally, the block explorer's theme and styling can also be customized (through our integration with [Blockscout](https://www.blockscout.com/)) upon request to better fit the preferences of your users.
+
+![Block Explorer](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/explorer.png)
+
+The explorer provides a valuable tool for both users and developers looking to better understand and interact with a blockchain,
+providing transparency and accessibility to the inner workings of a blockchain. It can be used for a variety of purposes such as tracking transactions, monitoring smart contract execution, and analyzing network activity.
+
+
+# Bridge UI
+Source: https://docs.caldera.xyz/rollup-engine/tools/bridge-ui
+
+
+
+Each Caldera Chain comes automatically deployed with a corresponding web-based **Bridge User Interface** that enables developers and users to deposit and withdraw assets to/from your Caldera Chain.
+
+Our Bridge UI offers:
+
+* Customizable branding, colors, and text copy on a per-rollup basis
+* Seamless transfer of assets between your Caldera Chain and various public blockchains
+* Clear, user-friendly interface
+
+![Bridge UI](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/bridgeUI.png)
+
+## What is a bridge?
+
+A crypto bridge is a mechanism that allows for the transfer of assets between different blockchain networks.
+This user-facing interface allows end-users to easily interact with the bridge and bring liquidity onto your rollup.
+
+
+# Testnet Faucet
+Source: https://docs.caldera.xyz/rollup-engine/tools/faucet
+
+
+
+Caldera Chains come equipped a built-in **Testnet Faucet** that allows users to easily request, acquire, and test with the chain's native cryptocurrency token.
+
+This feature is designed to make it easy for developers, testers, and new users to obtain small amounts of the native token to explore the functionality and features of the blockchain.
+The faucet feature is typically configured to dispense small amounts of cryptocurrency to users who request it, allowing developers to test the functionality of the chain without having to make a purchase
+and incurr any financial risk.
+
+Additionally, faucets can serve as a useful tool for new testnet users to onboard onto your ecosystem and familiarize themselves with the fundamental functionality of your chain.
+
+![Testnet Faucet](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/faucet.png)
+
+
+# Hub Page
+Source: https://docs.caldera.xyz/rollup-engine/tools/hub-page
+
+
+
+Caldera Chains all come with shareable **Hub Page** for both internal and external use, which provides one unified place
+to access all essential user-facing tooling, including:
+
+* Chain Details
+* [Block Explorer](../tools/block-explorer)
+* [Bridge UI](../tools/bridge-ui)
+* [Testnet Faucet](../tools/faucet)
+* Documentation
+
+![Hub Page Image](https://mintlify.s3.us-west-1.amazonaws.com/metalayer/rollup-engine/images/hub.png)
+
+
+# Whitelabel Docs
+Source: https://docs.caldera.xyz/rollup-engine/tools/whitelabel-docs
+
+
+
+Each team building a Caldera Chain can request custom **Whitelabel Documentation**, created and written by us, to empower their developers,
+educate their ecosystem, and support their end-users.
+
+We're flexible with how we can provide this documentation. Some teams might want to closely integrate our app-rollup documentation into their own existing docs,
+while others might want an entirely separate set of docs for their app-rollup.
+
+We offer a set of markdown docs as well as an out-of-the-box frontend, and are happy to work with teams to ensure that their docs
+suit the needs of their ecosystem's developers and community at-large.
+
+

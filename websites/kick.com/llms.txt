@@ -1,0 +1,20 @@
+# Kick Dev
+
+## Kick Dev
+
+- [Welcome](https://docs.kick.com/readme)
+- [App Setup](https://docs.kick.com/getting-started/kick-apps-setup): Walkthrough on creating a Kick App
+- [OAuth 2.1](https://docs.kick.com/getting-started/generating-tokens-oauth2-flow): The Kick OAuth Flow.
+- [Scopes](https://docs.kick.com/getting-started/scopes)
+- [Categories](https://docs.kick.com/apis/categories)
+- [Users](https://docs.kick.com/apis/users)
+- [Channels](https://docs.kick.com/apis/channels)
+- [Chat](https://docs.kick.com/apis/chat)
+- [Livestreams](https://docs.kick.com/apis/livestreams)
+- [Public Key](https://docs.kick.com/apis/public-key)
+- [Introduction](https://docs.kick.com/events/introduction)
+- [Webhooks](https://docs.kick.com/events/webhook-security)
+- [Subscribe to Events](https://docs.kick.com/events/subscribe-to-events)
+- [Webhook Payloads](https://docs.kick.com/events/event-types): Request body payloads for Webhook API requests
+- [Contributing](https://docs.kick.com/how-do-i-contribute/contributing): How to make a contribution to the Kick Dev ecosystem
+- [Community Driven Projects](https://docs.kick.com/how-do-i-contribute/community-projects)

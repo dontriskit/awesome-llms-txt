@@ -1,0 +1,106 @@
+# Aftermath
+
+## Aftermath
+
+- [About Aftermath Finance](https://docs.aftermath.finance/aftermath/readme)
+- [What are we building?](https://docs.aftermath.finance/aftermath/readme/what-are-we-building)
+- [Creating an account](https://docs.aftermath.finance/getting-started/creating-a-sui-account-with-zklogin)
+- [zkLogin](https://docs.aftermath.finance/getting-started/creating-a-sui-account-with-zklogin/zklogin): zkLogin makes onboarding to Sui a breeze
+- [Removing a zkLogin account](https://docs.aftermath.finance/getting-started/creating-a-sui-account-with-zklogin/zklogin/removing-a-zklogin-account)
+- [Sui Metamask Snap](https://docs.aftermath.finance/getting-started/creating-a-sui-account-with-zklogin/sui-metamask-snap): Add Sui Network to your existing Metamask wallet with Snaps
+- [Native Sui wallets](https://docs.aftermath.finance/getting-started/creating-a-sui-account-with-zklogin/native-sui-wallets): Add a Sui wallet extension to your web browser
+- [Dynamic Gas](https://docs.aftermath.finance/getting-started/dynamic-gas): Removing barriers to entry to the Sui Ecosystem
+- [Navigating Aftermath](https://docs.aftermath.finance/getting-started/navigating-aftermath): Where to find our various products and view all of your balances
+- [Interacting with your Wallet](https://docs.aftermath.finance/getting-started/navigating-aftermath/interacting-with-your-wallet)
+- [Viewing your Portfolio](https://docs.aftermath.finance/getting-started/navigating-aftermath/viewing-your-portfolio): Easily keep track of all of your assets and activity
+- [Changing your Settings](https://docs.aftermath.finance/getting-started/navigating-aftermath/changing-your-settings)
+- [Bridge](https://docs.aftermath.finance/getting-started/navigating-aftermath/bridge)
+- [Referrals](https://docs.aftermath.finance/getting-started/navigating-aftermath/referrals): Because sharing is caring
+- [Smart-Order Router](https://docs.aftermath.finance/trade/smart-order-router): Find the best swap prices on Sui across any DEX, all in one place
+- [Agg of Aggs](https://docs.aftermath.finance/trade/smart-order-router/agg-of-aggs): Directly compare multiple DEX aggregators in one place
+- [Making a trade](https://docs.aftermath.finance/trade/smart-order-router/making-a-trade)
+- [Exact Out](https://docs.aftermath.finance/trade/smart-order-router/exact-out): Calculate the best price, in reverse
+- [Fees](https://docs.aftermath.finance/trade/smart-order-router/fees)
+- [DCA](https://docs.aftermath.finance/trade/dca)
+- [Why should I use DCA](https://docs.aftermath.finance/trade/dca/why-should-i-use-dca)
+- [How does DCA work](https://docs.aftermath.finance/trade/dca/how-does-dca-work)
+- [Tutorials](https://docs.aftermath.finance/trade/dca/tutorials)
+- [Creating a DCA order](https://docs.aftermath.finance/trade/dca/tutorials/creating-a-dca-order)
+- [Monitoring DCA progress](https://docs.aftermath.finance/trade/dca/tutorials/monitoring-dca-progress)
+- [Advanced Features](https://docs.aftermath.finance/trade/dca/tutorials/advanced-features)
+- [Fees](https://docs.aftermath.finance/trade/dca/fees)
+- [Contracts](https://docs.aftermath.finance/trade/dca/contracts)
+- [Limit Orders](https://docs.aftermath.finance/limit-orders): Set the exact price you wish your trade to execute at
+- [Contracts](https://docs.aftermath.finance/limit-orders/contracts)
+- [Fees](https://docs.aftermath.finance/limit-orders/fees)
+- [Constant Function Market Maker](https://docs.aftermath.finance/pools/constant-function-market-maker)
+- [Tutorials](https://docs.aftermath.finance/pools/constant-function-market-maker/tutorials)
+- [Depositing](https://docs.aftermath.finance/pools/constant-function-market-maker/tutorials/depositing)
+- [Withdrawing](https://docs.aftermath.finance/pools/constant-function-market-maker/tutorials/withdrawing)
+- [Creating a Pool](https://docs.aftermath.finance/pools/constant-function-market-maker/tutorials/creating-a-pool)
+- [Fees](https://docs.aftermath.finance/pools/constant-function-market-maker/fees)
+- [Contracts](https://docs.aftermath.finance/pools/constant-function-market-maker/contracts)
+- [Afterburner Vaults](https://docs.aftermath.finance/farms/afterburner-vaults)
+- [Tutorials](https://docs.aftermath.finance/farms/afterburner-vaults/tutorials)
+- [Staking into a Farm](https://docs.aftermath.finance/farms/afterburner-vaults/tutorials/staking-into-a-farm)
+- [Claiming Rewards](https://docs.aftermath.finance/farms/afterburner-vaults/tutorials/claiming-rewards)
+- [Unstaking](https://docs.aftermath.finance/farms/afterburner-vaults/tutorials/unstaking)
+- [Creating a Farm](https://docs.aftermath.finance/farms/afterburner-vaults/tutorials/creating-a-farm)
+- [Architecture](https://docs.aftermath.finance/farms/afterburner-vaults/architecture)
+- [Vault](https://docs.aftermath.finance/farms/afterburner-vaults/architecture/vault)
+- [Stake Position](https://docs.aftermath.finance/farms/afterburner-vaults/architecture/stake-position)
+- [Fees](https://docs.aftermath.finance/farms/afterburner-vaults/fees)
+- [FAQs](https://docs.aftermath.finance/farms/afterburner-vaults/faqs)
+- [afSUI](https://docs.aftermath.finance/liquid-staking/afsui): Utilize your staked SUI tokens across DeFI with afSUI
+- [Tutorials](https://docs.aftermath.finance/liquid-staking/afsui/tutorials)
+- [Staking](https://docs.aftermath.finance/liquid-staking/afsui/tutorials/staking)
+- [Unstaking](https://docs.aftermath.finance/liquid-staking/afsui/tutorials/unstaking)
+- [Architecture](https://docs.aftermath.finance/liquid-staking/afsui/architecture)
+- [Packages & Modules](https://docs.aftermath.finance/liquid-staking/afsui/architecture/packages-and-modules)
+- [Entry Points](https://docs.aftermath.finance/liquid-staking/afsui/architecture/entry-points)
+- [Fees](https://docs.aftermath.finance/liquid-staking/afsui/fees)
+- [FAQs](https://docs.aftermath.finance/liquid-staking/afsui/faqs)
+- [Contracts](https://docs.aftermath.finance/liquid-staking/afsui/contracts)
+- [Aftermath Perpetuals](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals)
+- [Tutorials](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials)
+- [Creating an Account](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials/creating-an-account)
+- [Selecting a Market](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials/selecting-a-market)
+- [Creating a Market Order](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials/creating-a-market-order)
+- [Creating a Limit Order](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials/creating-a-limit-order)
+- [Maintaining your Positions](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/tutorials/maintaining-your-positions)
+- [Architecture](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture)
+- [Oracle Prices](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/oracle-prices)
+- [Margin](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/margin)
+- [Account](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/account)
+- [Trading](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/trading)
+- [Funding](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/funding)
+- [Liquidations](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/liquidations)
+- [Fees](https://docs.aftermath.finance/perpetuals/aftermath-perpetuals/architecture/fees)
+- [NFT AMM](https://docs.aftermath.finance/gamefi/nft-amm): Infrastructure to drive Sui GameFi
+- [Architecture](https://docs.aftermath.finance/gamefi/nft-amm/architecture)
+- [Fission Vaults](https://docs.aftermath.finance/gamefi/nft-amm/architecture/fission-vaults)
+- [AMM Pools](https://docs.aftermath.finance/gamefi/nft-amm/architecture/amm-pools)
+- [Tutorials](https://docs.aftermath.finance/gamefi/nft-amm/tutorials)
+- [Buy](https://docs.aftermath.finance/gamefi/nft-amm/tutorials/buy): Purchase NFTs or Fractional NFT coins from the AMM
+- [Sell](https://docs.aftermath.finance/gamefi/nft-amm/tutorials/sell): Sell NFTs or Fractional NFT Coins to the AMM
+- [Deposit](https://docs.aftermath.finance/gamefi/nft-amm/tutorials/deposit): Become a Liquidity Provider to the NFT AMM
+- [Withdraw](https://docs.aftermath.finance/gamefi/nft-amm/tutorials/withdraw): Remove liquidity from the NFT AMM
+- [Sui Overflow](https://docs.aftermath.finance/gamefi/nft-amm/sui-overflow): Build with Aftermath and win a bounty!
+- [About us](https://docs.aftermath.finance/our-validator/about-us): Aftermath Validator
+- [Aftermath TS SDK](https://docs.aftermath.finance/developers/aftermath-ts-sdk): Official Aftermath Finance TypeScript SDK for Sui
+- [Utils](https://docs.aftermath.finance/developers/aftermath-ts-sdk/utils)
+- [Coin](https://docs.aftermath.finance/developers/aftermath-ts-sdk/utils/coin)
+- [Users Data](https://docs.aftermath.finance/developers/aftermath-ts-sdk/utils/users-data): Provider that allows to interact with users data. (E.g. Public key)
+- [Authorization](https://docs.aftermath.finance/developers/aftermath-ts-sdk/utils/authorization): Use increased rate limits with our SDK
+- [Products](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products)
+- [Prices](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/prices)
+- [Router](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/router)
+- [DCA](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/dca): Automated Dollar-Cost Averaging (DCA) strategy to invest steadily over time, minimizing the impact of market volatility and building positions across multiple assets or pools with ease.
+- [Limit Orders](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/limit-orders): Limit Orders allow you to set precise buy or sell conditions, enabling automated trades at your desired price levels. Secure better market entry or exit points and maintain control over your strategy,
+- [Liquid Staking](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/liquid-staking): Stake SUI and receive afSUI to earn a reliable yield, and hold the most decentralized staking derivative on Sui.
+- [Pools](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/pools): AMM pools for both stable and uncorrelated assets of variable weights with up to 8 assets per pool.
+- [Farms](https://docs.aftermath.finance/developers/aftermath-ts-sdk/products/farms)
+- [Aftermath REST API](https://docs.aftermath.finance/developers/aftermath-rest-api)
+- [About Egg](https://docs.aftermath.finance/egg/about-egg)
+- [Terms of Service](https://docs.aftermath.finance/legal/terms-of-service)
+- [Privacy Policy](https://docs.aftermath.finance/legal/privacy-policy)

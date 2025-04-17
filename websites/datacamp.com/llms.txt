@@ -1,0 +1,45 @@
+# DataCamp
+
+> DataCamp is a data and AI learning platform, with interactive courses in technologies such as Python, SQL, Power BI and ChatGPT. The DataCamp platform helps businesses and individuals learn programming, data analysis, data science, data engineering and AI skills.
+
+**Key Resources**
+
+**Course Categories**
+
+- [Data analysis Courses] (https://www.datacamp.com/category/data-analysis): Lists all of DataCamp's Data analysis courses and resources.
+- [SQL Courses] (https://www.datacamp.com/category/sql): Lists all of DataCamp's SQL courses and resources.
+- [Data engineering Courses] (https://www.datacamp.com/category/data-engineering): Lists all of DataCamp's Data engineering courses and resources.
+- [Python Courses] (https://www.datacamp.com/category/python): Lists all of DataCamp's Python courses and resources.
+- [Power BI Courses] (https://www.datacamp.com/category/power-bi): Lists all of DataCamp's Power BI courses and resources.
+- [Machine learning Courses] (https://www.datacamp.com/category/machine-learning): Lists all of DataCamp's Machine learning courses and resources.
+- [AI Courses] (https://www.datacamp.com/category/artificial-intelligence): Lists all of DataCamp's AI courses and resources.
+- [Tableau Courses] (https://www.datacamp.com/category/tableau): Lists all of DataCamp's Tableau courses and resources.
+- [Data visualization Courses] (https://www.datacamp.com/category/data-visualization): Lists all of DataCamp's Data visualization courses and resources.
+- [Alteryx Courses] (https://www.datacamp.com/category/alteryx): Lists all of DataCamp's Alteryx courses and resources.
+- [R programming Courses] (https://www.datacamp.com/category/r): Lists all of DataCamp's R programming courses and resources.
+- [Probability and statistics Courses] (https://www.datacamp.com/category/probability-and-statistics): Lists all of DataCamp's Probability and statistics courses and resources.
+- [Google Sheets Courses] (https://www.datacamp.com/category/google-sheets): Lists all of DataCamp's Google Sheets courses and resources.
+- [Azure Courses] (https://www.datacamp.com/category/azure): Lists all of DataCamp's Azure courses and resources.
+- [Cloud Courses] (https://www.datacamp.com/category/cloud): Lists all of DataCamp's Cloud courses and resources.
+- [Excel Courses] (https://www.datacamp.com/category/excel): Lists all of DataCamp's Excel courses and resources.
+- [AWS Courses] (https://www.datacamp.com/category/aws): Lists all of DataCamp's AWS courses and resources.
+- [Spark Courses] (https://www.datacamp.com/category/spark): Lists all of DataCamp's Spark courses and resources.
+- [Docker Courses] (https://www.datacamp.com/category/docker): Lists all of DataCamp's Docker courses and resources.
+- [Shell Courses] (https://www.datacamp.com/category/shell): Lists all of DataCamp's Shell courses and resources.
+- [Programming Courses] (https://www.datacamp.com/category/programming): Lists all of DataCamp's Programming courses and resources.
+
+**Certifications**
+
+- [SQL Certification] (https://www.datacamp.com/certification/sql-associate): DataCamp's SQL Associate Certification.
+- [Data Engineer Certification] (https://www.datacamp.com/certification/data-engineer): DataCamp's Data Engineer Certification.
+- [Data Analyst Certification] (https://www.datacamp.com/certification/data-analyst): DataCamp's Data Analyst Certification.
+- [GitHub Certification] (https://www.datacamp.com/certification/github-foundations): DataCamp's GitHub Foundations Certification.
+- [AI Certification] (https://www.datacamp.com/certification/ai-fundamentals): DataCamp's AI Foundations Certification.
+- [Data Literacy Certification] (https://www.datacamp.com/certification/data-literacy): DataCamp's Data Literacy Certification.
+- [Data Scientist Certification] (https://www.datacamp.com/certification/data-scientist): DataCamp's Data Scientist Certification.
+- [Azure Certification] (https://www.datacamp.com/certification/azure-fundamentals): DataCamp's Azure Foundations Certification.
+- [Alteryx Certification] (https://www.datacamp.com/certification/alteryx-fundamentals): DataCamp's Alteryx Foundations Certification.
+- [Python Certification] (https://www.datacamp.com/certification/python-data-associate): DataCamp's Python Data Associate Certification.
+- [AWS Certification] (https://www.datacamp.com/certification/aws-cloud-practitioner): DataCamp's AWS Cloud Practitioner Certification.
+- [Tableau Certification] (https://www.datacamp.com/certification/data-analyst-in-tableau): DataCamp's Data Analyst in Tableau Certification.
+- [Power BI Certification] (https://www.datacamp.com/certification/data-analyst-in-power-bi): DataCamp's Data Analyst in Power BI Certification.

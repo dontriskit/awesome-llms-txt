@@ -1,0 +1,1311 @@
+---
+title: Backfilling a job board
+description: Learn why TheirStack is the best job board backfill solution and how to backfill a job board using webhooks
+lastModifiedAt: 2025-03-10
+url: https://theirstack.com/en/docs/backfill-job-board
+---
+## What is backfilling a job board?
+
+Backfilling a job board involves augmenting its own job listings with external postings from various sources. This integration allows job boards to present a broader array of opportunities to their users, helping to attract more traffic, boost user engagement, and ultimately enhance their overall value proposition.
+
+
+## Why TheirStack is the best job board backfill solution
+
+Backfilling job boards is a common use case for our Job data platform and it was built with this in mind:
+
+-  **Original job link to company website** When a job originates from a company's career page, we include the URL (`final_url`) so you can redirect users to the correct source. You can also get only jobs from career pages with the `final_url_exists` filter.
+-   **Standardized job descriptions** Our job descriptions are standardized across all information sources in Markdown format, ensuring consistency.
+-   **Company information** Most of our jobs are enriched with company information, so can use the company `domain`, `industry`, `headcount`, `revenue`, `type`, `location` and technologies used for your company profile page.
+-   **Up-to-date data** The data is up-to-date, with new jobs being added to our database every minute.
+-   **Filters** If you are a niche job board, you can use the `job_title_or` filter to get specific jobs, or the company `industry_id_or` filter to get only jobs from companies in a specific industry or any of our 20+ filters.
+
+- **16k+ job data sources** so you can get a wide range of jobs from all over the world. [Learn more](/en/docs/job-sources)
+
+
+## How to backfill a job board
+
+You have two options:
+
+1. **Webhook (Recommended)**: Set up a webhook to listen for the `new.job` event. By applying the necessary filters, you can ensure that you only receive the job postings that meet your specific criteria. This approach allows you to automatically receive new job listings as soon as they are published.
+
+    - Step 1 - Create a job search with your desired criteria (e.g: location, company, technology, etc). You can create as many as you want.  It's important to create exclusive criteria to avoid receiving duplicate job postings.
+
+    - Step 2 - Set up a webhook to listen for the `new.job` event. [How to set up a webhook](/en/docs/webhooks)
+
+2. **API**: Use our [Jobs API](https://api.theirstack.com) to fetch jobs periodically. Check out our [Fetch jobs periodically](/en/docs/fetch-periodically-jobs) guide for more details.
+
+The API approach is more cumbersome as it involves some extra steps from you, so our recommendation is to use webhooks.
+
+
+
+
+
+
+
+---
+title: Changelog
+description: A list of all the new features we've shipped
+lastModifiedAt: 2025-01-10
+url: https://theirstack.com/en/docs/changelog
+---
+
+import YoutubeIframe from '@/components/youtube-iframe'
+
+## April 15, 2025
+
+-   🆕 **New webhook setting `trigger once per company`**. When enabled, the webhook will fire only once for each company. This is helpful for sales workflows where you want to act on the first job posted (e.g., send an email, add to a CRM) without triggering the workflow for every subsequent job from the same company.
+    -   Example: If active, Company A with 5 jobs → 1 event triggered. If deactivated, Company A with 5 jobs → 5 events triggered.
+    -   If you turn this on for an existing webhook, it will prevent duplicate companies from triggering events going forward. However, companies already sent before enabling the setting won’t be remembered, so their jobs may still trigger events.
+
+<img src="https://theirstack.com/static/generatedcontent/docs/posts/changelog/trigger-once-per-company.png" alt="Trigger once per company" className="center mt-6 " />
+
+-   🆕 **Webhook usage analytics**: Track individual webhook performance and credit consumption with a detailed breakdown chart. View which webhooks are using the most credits on the [usage page](https://app.theirstack.com/settings/usage).
+
+<img src="https://theirstack.com/static/generatedcontent/docs/posts/changelog/webhook-events-chart.png" alt="Webhook events chart" className="center mt-6 " />
+
+-   🆕 **Search experience has been improved**:
+    -   Cleaned up the header of the search page for jobs and companies. Now the search name is only displayed in the breadcrumb.
+    -   New Webhooks button to view the webhooks associated with the current search. It indicates whether the search has an active webhook or not.
+
+## April 4, 2025
+
+-   🆕 **Subscription update process enhancements**:
+    -   Fixed issue where subscription updates created new subscriptions instead of modifying existing ones.
+    -   Added ability to customize credit allocation when updating your subscription plan. You can select any number of credits you want to be added to your account.
+
+## April 2, 2025
+
+-   🐞 **Resolved two issues affecting app users in [company search](https://app.theirstack.com/search/companies)**:
+    -   When filtering by technology category (e.g. "CRM Platforms") not showing a column per technology (e.g. "Salesforce", "Hubspot", "Zoho"...).
+    -   When exporting a list of companies filtering by technology category, there was not a column for each technology of the category.
+    -   When changing the technology filter, the table was filtering by the new technology, but a column was still showing the old technology.
+
+## April 1, 2025
+
+-   🆕 **Auto recharge**: You can now set when to automatically purchase credits when your balance is low in the [billing page](https://app.theirstack.com/settings/billing).
+
+## March 17, 2025
+
+-   🆕 **Webhooks API is publicly available**: You can now use the webhooks API to integrate this feature in your own system or to automate webhook creations. Check out the [webhooks docs](https://api.theirstack.com/#tag/webhooks) for more information.
+
+## March 14, 2025
+
+-   🆕 **Roles and permissions**: We've added roles and permissions to the team. Admins can now add and remove members and receive billing alerts.
+-   🆕 **Export limit increased**: You can export CSV files with more than 100,000 records.
+
+## March 12, 2025
+
+-   🆕 _New version of the dataset endpoint_ [v1/datasets/technographics](https://api.theirstack.com/#tag/datasets/POST/v1/datasets/technographics) offering technographic dataset in parquet format.
+-   🆕 _Improvement of the Requests section in the [Usage page](https://app.theirstack.com/usage)_: You can now see UI requests not only API Requests.
+-   🆕 _New button to open a search from the API request_. You can now open a search from the API request modal by clicking on the "Open search" button.
+
+## March 11, 2025
+
+-   📚 New [webhooks docs](/docs/webhooks)
+-   📚 Improved [Clay docs](/docs/clay)
+-   📚 Enhanced [Backfilling job board](/docs/backfill-job-board) post
+
+## March 10, 2025
+
+-   🆕 **Webhooks Observability**: You can now view the response body and status code for each webhook. Additionally, you can filter events by their status (success or failure) and determine if a failure was due to a timeout.
+-   🆕 **Webhooks Retry Mechanism**: Failed webhooks are now automatically retried every hour for up to 48 hours.
+-   🆕 **New v2.0.0 for the Technographics dataset**. Includes new columns, and renames some existing ones for consistency. Now includes columns for the 3 current sources of technographics data we have:
+    -   Job titles
+    -   Job descriptions
+    -   Job URLs
+
+Here are the columns which name has changed or have been added.
+
+The following columns are renamed:
+
+-   `technology_id` → `keyword_id`
+-   `technology_rank` → `technology_rank_source_jobs`
+-   `technology_rank_180_days` → `technology_rank_180_days_source_jobs`
+-   `rank_1_tie` → `rank_1_tie_source_jobs`
+-   `rank_180_days_tie` → `rank_180_days_tie_source_jobs`
+-   `relative_occurrence_within_category` → `relative_occurrence_within_category_source_jobs`
+-   `jobs_source_final_url` → `jobs_source_url`
+-   `first_date_found_source_final_url` → `first_date_found_source_job_url`
+-   `last_date_found_source_final_url` → `last_date_found_source_job_url`
+
+The following columns are added:
+
+-   `keyword_slug` - Slug identifier for the technology
+-   `subcategory_slug` - Slug identifier for the technology subcategory
+-   `is_recruiting_agency` - Indicates if the company is a recruiting agency
+-   `jobs_source_description_last_180_days` - Number of jobs mentioning this technology in the job description in the last 180 days
+-   `jobs_source_description_last_30_days` - Number of jobs mentioning this technology in the job description in the last 30 days
+-   `jobs_source_description_last_7_days` - Number of jobs mentioning this technology in the job description in the last 7 days
+-   `jobs_source_title` - Number of jobs mentioning this technology in the job title
+-   `jobs_source_title_last_180_days` - Number of jobs mentioning this technology in the job title in the last 180 days
+-   `jobs_source_title_last_30_days` - Number of jobs mentioning this technology in the job title in the last 30 days
+-   `jobs_source_title_last_7_days` - Number of jobs mentioning this technology in the job title in the last 7 days
+-   `jobs_source_url_last_180_days` - Number of jobs mentioning this technology in the ATS URL in the last 180 days
+-   `jobs_source_url_last_30_days` - Number of jobs mentioning this technology in the ATS URL in the last 30 days
+-   `jobs_source_url_last_7_days` - Number of jobs mentioning this technology in the ATS URL in the last 7 days
+-   `first_date_found_source_job_title` - Date when the job title first mentioned the technology
+-   `last_date_found_source_job_title` - Date when the job title last mentioned the technology
+-   `rank_last_date_found_source_job_url` - Rank of the technology within its category based on mentions in job ATS URLs as of the last date found
+-   `relative_occurrence_within_category_180_days_source_jobs` - Measures the relative occurrence of this technology among other technologies in the same category, in jobs by this company over the last 180 days
+
+## March 3, 2025
+
+-   🆕 **Improvements on Dataset page**: You can now download the dictionary of the dataset with all the information about the fields, see the size of the dataset and the number of rows it contains.
+
+## February 26, 2025
+
+-   🆕 **Enhanced ATS URL exists filter**: We've enhanced the ATS URL exists filter to exclude jobs with URLs from 70 major job boards, such as ziprecruiter.com and thehub.io.
+
+## February 25, 2025
+
+-   🆕 **New UI redesign enhancing developer experience**: Managing webhooks, datasets, API keys and reviewing your consumption is now easier than ever.
+
+## February 24, 2025
+
+-   🆕 **Job searches are now ~4x faster** ⚡️
+
+    Performance improvements:
+
+    -   **Average response time**: 6.9s → 1.7s (⬇️ 75%)
+    -   **90th percentile response time**: 12.2s → 3s (⬇️ 75%)
+    -   **95th percentile response time**: 36.7s → 4.9s (⬇️ 87%)
+    -   **99th percentile response time**: 120s → 11s (⬇️ 91%)
+
+## February 18, 2025
+
+-   🆕 **New [datasets page](https://app.theirstack.com/datasets)**. You can now view all available datasets, and download a sample for each one.
+
+-   🆕 **Track company credits consumption**. You can now track the company credits consumption from the [usage page](https://app.theirstack.com/settings/usage).
+
+## February 17, 2025
+
+-   🆕 **New [invoices page](https://app.theirstack.com/settings/invoices)**. You can now view all your invoices, see the consumption for each invoice, and download them in PDF format.
+
+-   🆕 **Webhook executions chart on the [usage page](https://app.theirstack.com/settings/usage)**. You can now monitor the total number of webhook executions across all your webhooks.
+
+-   🆕 **Billing consumption alerts**. You will now get an email notification when your billing consumption exceeds 70% or reaches 100%.
+
+## February 12, 2025
+
+-   🆕 **Refresh your API key**. You can now refresh your API key through the [settings page](https://app.theirstack.com/settings/api-key). This is useful if you want to rotate your API key for security reasons.
+
+-   🆕 **Remove members from your organization**. You can now remove members from your organization through the [settings page](https://app.theirstack.com/settings/organization).
+
+-   🆕 **API Request Observability**. You can now see the status (200 OK, 402 Payment Required, 508 Request Timeout...) of your API request through the [requests page](https://app.theirstack.com/api).
+
+## February 6, 2025
+
+-   🆕 **Webhook Observability**. You can now view a chart displaying the number of webhooks sent and a table detailing each webhook event.
+
+## January 27, 2025
+
+-   🆕 **Webhooks**. You can now subscribe to webhooks to get notified when new jobs are posted. Trigger actions in Make.com, Zapier, Clay or any other tool that supports webhooks when new jobs are posted.
+
+<YoutubeIframe src="https://www.youtube.com/embed/gbd8IMgL-Rw" title="Webhooks" />
+
+## January 20, 2025
+
+-   🆕 **Export data to Clay.com**. You can now export your list of jobs or companies to Clay through our Webhooks integration. Click on the "Export" button in the top right corner of the table and select Webhooks, paste the Webhook URL provided by Clay, and click on "Export". In a few seconds, you will see the data in your Clay table.
+
+<YoutubeIframe src="https://www.youtube.com/embed/cxAOTAQ6Dsk" title="Export data to Clay.com" />
+
+## January 14, 2025
+
+-   🆕 **New filter `job_seniority_or` in our [Jobs API](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search)**. This filter allows you to search for jobs by seniority level.
+
+-   🆕 **Shortened URL detection for new jobs and companies**. Our system now identifies shortened URLs (e.g., `bit.ly`, `tinyurl`, etc.) for newly discovered jobs and companies. Instead of storing the shortened URL in our database, we now retrieve and save the original URL.
+
+-   🐞 **Fixed an issue causing duplicate job postings**. A job is considered a duplicate if the same company posts the same job title within a 30-day window. Previously, the system identified duplicates by checking job postings from the past 30 days, instead of 30 days before and after the posting date. As a result, jobs posted more than 30 days ago were not flagged as duplicates when found again by our system.
+
+-   🐞 **Fixed Make.com button**. The Make.com button, which lets you copy a Make scenario that calls our API, was not authenticating correctly.
+
+## January 10, 2025
+
+-   🆕 **New field and filter `easy_apply` in our [Jobs API](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search)**. This field indicates whether the job application can be submitted directly through the job board (`easy_apply=True`) or requires redirecting to the company's website (`easy_apply=False`). Initially, this field will be populated for new jobs sourced from LinkedIn and Indeed.
+
+---
+title: Clay
+description: In this guide, you'll learn how to add a new column in Clay table with TheirStack data and how to create a new table in Clay with TheirStack data.
+lastModifiedAt: 2025-03-11
+url: https://theirstack.com/en/docs/clay
+---
+
+We're currently in discussions with Clay to establish an official integration. Meanwhile, you can still leverage our data within Clay. Depending on your specific needs, we suggest the following approaches:
+
+-   [New jobs or companies table in Clay](#new-jobs-or-companies-table-in-clay) (live sync or one-time export)
+-   [Adding a new column to Clay table](#adding-a-new-column-to-clay-table) (manual sync)
+
+## New Jobs or Companies Table in Clay
+
+If you aim to create a new table with 
+- A list of jobs posted in the US in the last 30 days that mention a specific keyword. 
+- A list of companies that have posted a job in the last 30 days in New York.
+- A list of companies using specific technologies like Snowflake, Hubspot, Python, etc. 
+- A list of companies employing a category of technologies like AI, Cloud, etc. 
+
+with a live sync or as one-time export, follow these steps:
+1.  Go to the Clay and create a new table and select "monitor webhook" as the source. [Clay Webhook Guide](https://www.clay.com/university/guide/webhook-integration-guide)
+2.  [Setup a webhook in TheirStack](/docs/webhooks)
+
+
+## Adding a New Column to Clay Table
+
+If you have a list of companies in Clay and wish to add a new column with
+
+    -   the number of developer jobs posted by this company in the last 30 days.
+    -   "Yes" / "No" if they are utilizing specific technologies like Snowflake, Hubspot, Python, etc.
+    -   "Yes" / "No" if they are employing a category of technologies like AI, Cloud, etc.
+
+follow these steps:
+
+1.  Go to the Clay table you want to add the column to.
+2.  Click on the "Columns" tab.
+3.  Click on the "Add Column" and select "HTTP API" [Clay HTTP API Guide](https://www.clay.com/university/guide/http-api-integration-overview)
+4.  Review our [API docs](/docs/api)
+
+
+## Frequently asked questions
+
+### Has anyone integrated and used TheirStack with Clay?
+
+We’re in talks with Clay to have an official integration with them but it’s a bit far still. But there are still other ways that customers used TheirStack with Clay. Mostly:
+
+-   Exporting and uploading manually a CSV from TheirStack
+-   Using the [HTTP API](https://docs.clay.com/en/articles/9672489-http-api-with-clay) function from Clay, connecting to our [API](https://api.theirstack.com/)
+
+
+
+
+---
+title: How are you positioning against Builwith?
+description:
+lastModifiedAt: 2025-01-03
+url: https://theirstack.com/en/docs/differences-with-builtwith
+---
+
+Our approach to sourcing tech usage data sets us apart from BuiltWith in a few key ways. First, we offer a broader technology catalog that includes not only web technologies but also CRMs, ERPs, databases, and various internal tools. BuiltWith focuses solely on web technologies.
+
+Additionally, instead of tracking websites, we gather data from job postings. Each month, we collect job listings from millions of companies by monitoring company websites, job boards, and other hiring platforms. When a job listing mentions a specific technology in the title or description, it indicates that the company likely uses that technology. We then assign a Confidence Score (low, medium, high) based on the frequency and context of these mentions to estimate how likely the company is to use that technology.
+
+Our pricing model is also unique. While BuiltWith charges based on technology reports, we base our pricing on the number of companies returned in your search.
+
+---
+title: Does TheirStack provide contact data?
+description: Discover how TheirStack can assist you in obtaining personal contact data through our leading data partners or our hiring manager details
+lastModifiedAt: 2025-01-16
+url: https://theirstack.com/en/docs/does-theirstack-provide-contact-data
+---
+
+We have direct integrations with top-tier third-party contact data providers such as Apollo.io, ContactOut, and LinkedIn ([see this guide for more information](/en/docs/finding-contact-data)).
+
+Additionally, we offer hiring manager information for applicable jobs, including the recruiter's name, position, and LinkedIn profile.
+
+However, we do not supply contact data directly for several reasons:
+
+-   Rather than attempting to cover multiple areas, we focus on excelling in one—helping you identify companies with strong purchasing intent. As a small company, we must choose our priorities wisely.
+
+-   Collecting and distributing personal contact data may not comply with GDPR regulations, despite being a common practice among many contact data providers.
+
+---
+title: How to fetch periodically jobs using Jobs API
+description: This guide will demonstrate how to periodically fetch jobs from the TheirStack API, ensuring fresh data and minimizing API costs.
+lastModifiedAt: 2025-01-11
+url: https://theirstack.com/en/docs/fetch-jobs-periodically
+---
+
+import { Alert, AlertDescription, AlertTitle } from '@/shared/ui/base/alert'
+import { TriangleAlert } from 'lucide-react'
+
+<Alert variant="warning">
+  <TriangleAlert className="h-4 w-4" />
+  <AlertTitle>Important notice</AlertTitle>
+  <AlertDescription>
+    We strongly recommend using our [webhooks](/docs/webhooks) to fetch jobs periodically. Using the Jobs API will make it harder to ensure fresh data and minimize API costs.
+  </AlertDescription>
+</Alert>
+
+
+To integrate TheirStack's job data seamlessly into your application or database, focus on the following:
+
+-   [Ensure fresh data with efficient batching](#ensure-fresh-data-with-efficient-batching).
+-   [Minimize API costs by optimizing your requests](#minimize-api-costs-by-optimizing-your-requests).
+-   [Avoid missing any data during the integration process](#avoid-missing-any-data-during-the-integration-process).
+
+### Ensure fresh data with efficient batching
+
+We continuously monitor company websites and job boards to identify new job postings. To optimize performance, we recommend batching your requests with a maximum frequency of once every hour or two hours, based on your needs, and using the maximum limit of 500 jobs per page.
+
+### Minimize API costs by optimizing your requests
+
+One API Credit is consumed for each record returned from our API endpoints. If you fetch the same job multiple times, you will be charged for each fetch.
+
+The `discovered_at` field in the `job` object indicates the date and time when the job was first identified by TheirStack. To prevent duplicate charges when fetching jobs, you can filter by `discovered_at_gte` in your request to get only new jobs. This parameter will ensure that only jobs discovered after the specified date are fetched.
+
+The `discovered_at_gte` parameter is a timestamp in the format `YYYY-MM-DDTHH:MM:SSZ` and it should be the date and time of the last job you fetched.
+
+```sql
+SELECT MAX(discovered_at) FROM jobs;
+```
+
+Copy the timestamp and use it as the value for `discovered_at_gte` in your request.
+
+```bash
+curl --request POST \
+--url "https://api.theirstack.com/v1/jobs/search" \
+--header "Accept: application/json" \
+--header "Content-Type: application/json" \
+--header "Authorization: Bearer <api_key>" \
+-d '{
+  "offset": 0,
+  "limit": 500,
+  "discovered_at_gte": "2024-12-29T17:32:28Z"
+  "job_title_or": [
+    "Data Engineer"
+  ],
+  "posted_at_max_age_days": 15,
+  "job_country_code_or": [
+    "NG"
+  ],
+
+}'
+
+```
+
+Another option is to use the `job_id_not` filter. You'd need to fetch the IDs of the jobs you already have in your system from us, and pass them to the Job Search Endpoint. This can be useful if you fetch jobs from multiple searches and the same job may appear in the results from more than one search.
+
+### Avoid missing any data during the integration process
+
+If your cron process fails—whether due to system downtime, credit depletion, or connection issues—you can resume from the last processed job using the `discovered_at_gte` parameter. This ensures you fetch only the jobs discovered after the last successful run, preventing any data loss even in periodic integrations.
+
+---
+title: Introduction
+description:
+lastModifiedAt: 2025-03-10
+url: https://theirstack.com/en/docs/introduction
+---
+
+## What is TheirStack?
+
+We are the largest job and technographics database. You can consume our data through our [App](https://app.theirstack.com), our APIs ([Jobs API](https://theirstack.com/en/job-posting-api), [Technographics API](https://theirstack.com/en/technographics-api)) or the full dataset ([Jobs Dataset](https://theirstack.com/en/jobs-dataset), [Technographics DataSet](https://theirstack.com/en/technographics-dataset)).
+
+### Job Data
+
+Get access to millions of job listings aggregated from multiple global sources, including major job boards like Indeed, Linkedin, Workable, Greenhouse, Lever, Infojobs, Otta, StartupJobs... offering a complete view of the job market across 195 countries.
+
+#### The best job data platform
+
+TheirStack goes beyond simple scrapers, we're a sophisticated platform delivering the most precise and current job market information. Our systems continuously collect new job postings across the internet every minute, processing approximately 160,000 new positions daily.
+
+- **16,000+ job data sources** including job boards, company websites, and applicant tracking systems. We excel at standardizing job information, eliminating duplicates between sources, and implementing thorough quality checks to maintain data accuracy and reliability. Data quality and freshness are at the core of what we do.
+
+- **30+ advanced job and company filters** to precisely target your search needs. Beyond standard filters like job title, company, and location, we enable filtering by job description, hiring manager, and company details. Each job listing is enhanced with company information including revenue, industry, size, technology stack, and more.
+
+- **Fast and reliable API** With an average API response time of just 1.5 seconds. We serve enriched data directly from our database without real-time external calls, ensuring consistent, reliable responses that help you deliver excellent user experiences to your customers.
+
+
+### Technographics Data
+
+We infer technology usage from millions of jobs worldwide. Our catalog of more than 21,000 technologies and 5M companies is the largest in the world.
+
+- **Assured Accuracy**. For each technology identified, we assign a [confidence score](/how-we-calculate-our-confidence-score) reflecting its data precision. This score incorporates variables such as the frequency of technology mentions in job listings, the recency of these mentions, the diversity of its usage across companies, and its prevalence within specific categories.
+
+- **Transparency and Validation**. Gain direct access to our data sources. We facilitate verification by [linking directly to the job postings that reference the technology](/how-we-source-tech-stack-data), alongside details about the posting company and the date. This ensures you can trust and validate the data's accuracy.
+
+- **Always Up-to-Date**. Our platform is [refreshed every 24 hours](/data-freshness), guaranteeing that you have access to the most current data available. Stay ahead with real-time updates and insights.
+
+## Start for free
+
+-   [Sign up and get 50 free credits](https://app.theirstack.com/signup)
+-   [Get your API key](https://app.theirstack.com/settings/api-key)
+
+---
+title: Job sources
+description: Our platform aggregates job listings from over 16,000 different websites. Below you'll find a breakdown of our largest job data sources and their contributions.
+lastModifiedAt: 2025-01-08
+url: https://theirstack.com/en/docs/job-sources
+---
+
+import JobDataSourcesTable from '@/components/content/tables/job-data-sources-table'
+
+<JobDataSourcesTable />
+
+---
+title: Cookies Policy
+description: Cookies Policy for TheirStack
+lastModifiedAt: 2025-04-11
+url: https://theirstack.com/en/docs/legal/cookies-policy
+---
+
+TheirStack is the commercial name under which THEIRSTACK SL manages the website [www.TheirStack.com](http://www.theirstack.com/) and all its properties, utilizes cookies to enhance online user experience (just like nearly every other website on the Internet today). Below, you will see detailed information about what types of cookies TheirStack uses, how to disable these cookies, and also how to disable third-party cookies. If you cannot find the specific information that you are looking for or if you have any questions or concerns, please feel free to contact us anytime at the email address hi@theirstack.com
+
+## Who is responsible for the processing of your data?
+
+**Name:** Xoel López Barata
+
+**E-mail:** hi@theirstack.com
+
+## What are cookies and why does TheirStack use them?
+
+Cookies are small text files that are generated by the website that you are viewing, allowing the website to store information as you navigate web pages. These text files contain session data that can be useful to improve your browsing experience.
+
+All of the cookies used by TheirStack are safe for your computer and they only store information that is used by the browser. These cookies cannot execute code and cannot be used to access content on your computer. Many of these cookies are necessary to ensure the proper functioning of the website. They do not contain malware or viruses. Other cookies improve user experience by storing site preferences, language preferences, as well as information about previously viewed content. This information is stored by cookies and used to enhance user experience, such as identifying and resolving errors and navigation problems
+
+## What types of cookies does TheirStack use?
+
+To enhance our understanding of your interaction with our Sites, we may use cookies and an IP tracking code to collect data for statistical purposes, including: date of first visit, number of visits, date of last visit, URL, domain, browser, and screen resolution.
+
+Cookies, by themselves, do not tell us any personally identifiable information other than your IP address, however they may store personal data that you provide us via the web forms. We may use these cookies to recognize you by name, to recognize our registered Application Providers, or to guarantee that users that click out to our partners’ Sites are not counted more than once in a 24 hours period. You may voluntarily de-activate and/or eliminate cookies by following your Internet browser’s instructions.
+
+We may partner with third-party ad networks to either display advertising on our Web site or to manage our advertising on other websites. Our ad network partners use cookies and Web beacons to collect non-personally identifiable information about your activities on this and other Websites to show you targeted advertising based on your interests. We may partner with third-party data providers to match IP addresses with company names and contact names. Our data partners may use cookies and Web beacons for the purpose of matching IP addresses.
+
+## How can a user block or eliminate these cookies?
+
+You can allow, eliminate, or block cookies in your computer's configuration settings according the internet browser you are using. In certain cases, some web services will be blocked when certain cookies are not allowed to operate correctly or when they are blocked by the consumer.
+
+These links explain how to deactivate or block cookies in common web browsers:
+
+-   [Chrome](https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=en)
+
+-   [Microsoft Edge](https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies)
+
+-   [Safari](https://support.apple.com/en-us/HT201265)
+
+-   [Firefox](https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored)
+
+-   [Opera](http://www.opera.com/help/tutorials/security/cookies)
+
+-   [Android](https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DAndroid&hl=en-GB&oco=1)
+
+---
+title: Privacy Policy
+description: Privacy Policy for TheirStack
+lastModifiedAt: 2025-04-11
+url: https://theirstack.com/en/docs/legal/privacy-policy
+---
+
+This is the Privacy Policy of the [TheirStack.com](https://theirstack.com) [](https://asgard.ai/)website and any affiliated software and mobile applications (collectively, the “Platform”), operated by THEIRSTACK SL(together with our affiliates and subsidiaries, “TheirStack”, “we”, “us”, “our” and terms of similar meaning) and our related products and services (collectively, the “Service” or “Services”).
+
+It describes the information that we collect as part of the normal operation of our Platform, and how we use and disclose this information. All of the different forms of data, content, and information described below are collectively referred to as “information.”
+
+## The Information We Collect And Store
+
+### We collect Business Information:
+
+TheirStack creates profiles of business people and companies (”Business Information”) from different data sources that we make available to the users of the Platform.
+
+Business Information that may be provided includes company information that may include company financial data, company business sector, technologies used by the company, ongoing or planned projects in the company, or any information made available to the public by the company. Business Information may also include contact information of the company representatives (name, job title, company department, and LinkedIn URL).
+
+We obtain the data needed to gather this Business Information in several ways:
+(i) by scanning the web and gathering publicly-available information (company website, company press releases, company jobs, company LinkedIn site or any other material made available to the public by the company or its representatives)
+(ii) through market research surveys conducted by our in-house research team
+(iii) by licensing information from other third-party companies
+
+### We may collect and store Customer Information when running our Service:
+
+Information You Provide.  We may collect personal information that can be used to contact or identify you and may include information such as an individual’s name, email address, mailing address, telephone number, and payment or bank account details (“Personal Information”).
+
+When you register an Account, we may collect some Personal Information, such as your name, your phone number, a credit card or other billing information, your email address, and postal addresses.
+
+The Site may allow you to link your Third-Party Accounts. We may use OAuth (as defined below), if available, to access Third-Party Accounts in order to limit our collection of your passwords. “OAuth” is an open protocol for authorization, commonly used as a way for users to log in to sites using their accounts with third-party services, such as Google, but without exposing their third-party-service passwords to such sites. For a Third-Party Account that does not support OAuth, we will ask for your login credentials for such Third-Party Account, which may include your email address and password. In all cases, we may collect your name and email address and the names and email addresses of your email contacts, subject to the terms of this Privacy Policy. If you create an Account using your login credentials from one of your Third-Party Accounts, we may access and collect your name and email address, and other Personal Information that your privacy settings on the Third-Party Account permit us to access, subject to the terms of this Privacy Policy.
+
+When you use the Service, we may automatically record information from your Device, its software, and your activity using the Services. This may include the Device’s Internet Protocol (“IP”) address, browser type, the web page visited before you came to our website, information you select or search for on our website, locale preferences, identification numbers associated with your Devices, your mobile carrier, date and time stamps associated with transactions, system configuration information, metadata concerning your files, and other interactions with the Service.
+
+We also use technologies such as cookies, JavaScript, local storage (as defined below), pixel tags, and scripts to collect information, provide a better user experience, and improve our Services. A cookie is a small data file that we transfer to your Device. We may use “persistent cookies” to save your registration ID and login password for future logins to the Service. We may use “session ID cookies” to enable certain features of the Service, to better understand how you interact with the Service, and to monitor aggregate usage and web traffic routing on the Service. You can instruct your browser, by changing its options, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. If you do not accept cookies, however, you may not be able to use all aspects of the Service. “Local storage” is a way for a website to collect and store information “locally” (e.g., on the user’s device rather than on the website’s server) and then later retrieve it again. Local storage includes “localStorage” and “sessionStorage.” By using local storage, a user’s visits can, for example, be stored on their own computer, counted, and then given to us.
+
+## How We Use Personal Information
+
+Personal Information is or may be used:
+(i) to provide and improve our Service,
+(ii) to administer your use of the Service,
+(iii) to better understand your needs and interests,
+(iv) to personalize and improve your experience, and
+(v) to provide or offer software updates and product announcements.
+
+If you no longer wish to receive communications from us, please follow the “unsubscribe” instructions provided in any of those communications, or update your account settings information.
+
+Analytics. We also collect some information (ourselves or using third-party services) using logging and cookies, such as IP address, which can sometimes be correlated with Personal Information. We use this information for the above purposes and to monitor and analyze the use of the Service, for the Service’s technical administration, to increase our Service’s functionality and user-friendliness, and to verify users have the authorization needed for the Service to process their requests.
+
+## Information Sharing and Disclosure
+
+We may disclose to parties outside TheirStack information that you provide and that we collect when we have a good faith belief that disclosure is reasonably necessary to:
+(a) comply with a law, regulation, or compulsory legal request;
+(b) protect the safety of any person from death or serious bodily injury;
+(c) prevent fraud or abuse of TheirStack or its users; or
+(d) to protect TheirStack property rights.
+
+## Changing or Deleting Your Information
+
+You can access and modify the Personal Information associated with your Account by contacting us at hi@theirstack.com.
+Please note that if you signed up using Third-Party Account, you may have to access and modify the Personal Information associated with your Third-Party Account in order to modify certain of the Personal Information associated with your Account. 
+
+If you want us to delete your Personal Information and your Account, please contact us at hi@theirstack.com with your request. We will take steps to delete your information as soon as is practicable, but some information may remain in archived/backup copies for our records or as otherwise required by law.
+
+## Data Retention
+
+We will retain your information for as long as your Account is active or as needed to provide you the Services.
+
+If you are a User and wish to cancel your account or request that we no longer use your information to provide you Services, you may delete your account.
+
+We may retain and use your information as necessary to comply with our legal obligations, resolve disputes, and enforce our agreements. Consistent with these requirements, we will try to delete your information quickly upon request. Please note, however, that there might be latency in deleting information from our servers and backed-up versions might exist after deletion. Only the User may request that an Account be deleted.
+
+## Security
+
+The security of your information is important to us. We follow generally accepted standards to protect the information submitted to us, both during transmission and once we receive it. No method of electronic transmission or storage is 100% secure, however. Therefore, we cannot guarantee its absolute security. If you have any questions about security on our website, you can contact us at hi@theirstack.com.
+
+## Contacting Us
+
+If you have any questions about this Privacy Policy, please contact us at hi@theirstack.com
+
+## Changes to our Privacy Policy
+
+This Privacy Policy may change from time to time, and the most current version will be posted on our Site, so please check our Site regularly. We may provide notice of changes in other circumstances as well. By continuing to use the Service after those changes become effective, you agree to be bound by the revised Privacy Policy.
+---
+title: Refunds and Cancellations
+description: Refunds and Cancellations Policy for TheirStack
+lastModifiedAt: 2025-04-11
+url: https://theirstack.com/en/docs/legal/refunds-and-cancellations
+---
+
+## Refunds
+
+Our refund policy is designed to be straightforward. Refunds are available under the condition that you have not used our product in any capacity. If you have used the product, you are not eligible for a refund. This policy is in place to help manage the resources that go into the provision of our services.
+
+In the case that you’re eligible, you will be refunded the full money you’ve paid minus the Stripe fees associated with it (around 3%).
+
+To request a refund, please ensure that you have not used the product and email us at hi@theirstack.com. Our team will guide you through the process and provide further instructions on how to proceed with your refund request.
+
+## Cancellations
+
+You have the flexibility to cancel your subscription at any time. To do so, please follow these steps:
+
+1. Log in to your account on [app.theirstack.com](https://app.theirstack.com/).
+2. Navigate to the 'Billing' section.
+3. Click on the Cancel button
+4. Fill out the form to proceed with the cancellation.
+
+Upon cancellation, you will retain access to the product until the end of your current billing period. This means you can continue to use the product without interruption until the cycle concludes.
+
+Please note that cancelling your subscription does not automatically initiate a refund. Refunds are only processed under the conditions stated above.
+
+## Further Assistance
+
+If you have any questions or require assistance with your refund or cancellation, please do not hesitate to contact our customer support team. We are here to help ensure your experience is as smooth and satisfactory as possible.
+
+This policy is subject to changes, which, if made, will be communicated appropriately through our official channels. It is advisable to review our policies periodically to stay informed of any updates.
+
+---
+title: Terms and Conditions
+description: Terms and Conditions for TheirStack
+lastModifiedAt: 2025-04-11
+url: https://theirstack.com/en/docs/legal/terms-and-conditions
+---
+
+TheirStack is an online service that delivers company insights and aggregates jobs collected from publicly available sources. The present conditions expose the rights and obligations of the user and of TheirStack as the provider of the service.
+
+TheirStack will assume that any user who uses the service has read and accepted the conditions of use, and TheirStack reserves the right to update and modify the Terms of Use without any prior notice, which are always available at www.theirstack.com.
+
+TheirStack is the commercial name under which THEIRSTACK SL, with NIF ESB56963697, provides access to the TheirStack Web Site and its related services according to the terms and conditions set forth below.
+
+This agreement will be valid from the date you check the box for acceptance of this agreement that appears at the bottom of this document. New features that could be added to the Services will be subject to the Terms of Use. In case the user continues to make use of the Service after any modification, it will assume their agreement with said modifications.
+
+Failure to comply with any of the Conditions of Use may lead to cancellation of your account.
+
+## 1. Account Terms
+
+To access the service it is essential to be over eighteen (18) years old.
+
+A complete legal name, an email address, and all information required by TheirStack in the account creation process must be provided.
+
+It is the responsibility of the user to provide truthful information, and TheirStack reserves the right to delete any account if it is suspected of its veracity or could breach any of the rules of use of TheirStack.
+
+The user is responsible for maintaining the privacy of his account. TheirStack shall not be liable for any damage or loss that may be the result of user error in protecting your login information.
+
+The parties agree to legally equate the signature of the client with the signature made by any other type of code, code, or element of security identification. Notwithstanding the foregoing, the service provider may require, when deemed necessary, written confirmation to the client. Agreements TheirStack offers a rating system that adapts to the volume of documents that the user performs. The limits of each tariff are specified in the prices section. If the user exceeds any of the limits of his tariff, he will have to increase the rate.
+
+TheirStack reserves the right to modify the rates unilaterally and at any time, without granting such change any right to compensation by the users.
+
+## 2. Payment and Access
+
+A valid bank card is required to make payments. It is not required to create or use a free account. TheirStack will periodically charge you a recurring fee depending on the type of account you have contracted.
+
+The Service is charged each period in advance and is not refundable. There will be no refunds or credits for partial months of the Service, nor will there be refunds in case the user does not use the Service during the period of time the account is open. In no case shall exceptions be made.
+
+The customer agrees that it will not be necessary to confirm receipt of the acceptance of the contract when it has been concluded exclusively by means of electronic communication.
+
+In case the user charges an account level for their volume of documents, a charge will not be made on their card with the new amount until the next billing date. From now on, the next billing will be charged on your card for the new amount, unless the account is canceled.
+
+In case of non-payment or return of the receipt, you will be notified of the default and will automatically lose the ability to access the Service. The data will be deleted within thirty (30) days from the date of default.
+
+No fee includes any taxes or duties required by your governmental authorities. The user is responsible for paying these taxes or obligations. The user decides who has the right to enter his account with the role he deems appropriate.
+
+## 3. Authorized use of licensed materials and TheirStack technology, restrictions
+
+### 3.1 Authorized Users
+
+Licensee shall be entitled to designate persons as Authorized Users up to the number of Authorized Users subscribed as stated in the Ordering Document. If Licensee designates additional persons as Authorized Users beyond the number subscribed, such designation may be deemed by TheirStack, to be confirmed by notice to Licensee, as Licensee's subscription to such additional number of Authorized Users. In the event of such subscription, TheirStack may charge Licensee a corresponding additional Subscription Fee equal to the prevailing per-Authorized User rate multiplied by the period from the date of notice hereunder until the end of the then-current Term. Each Authorized User will be provided a unique username and password. Such usernames and passwords may not be shared and may not under any circumstances be used by anyone who is not an Authorized User. If any Authorized User's login credentials are disclosed to any person who is not an Authorized User but who would satisfy the qualification requirements of Section 3.2 hereof, TheirStack may, upon notice to Licensee, deem such sharing to be Licensee's subscription to the number of additional Authorized Users equal to the number of persons to whom such credentials were disclosed. Licensee shall be responsible for compliance with the terms of this Agreement by all Authorized Users, including, without limitation, the restrictions on use and transfer of Licensed Materials set forth herein. Licensee acknowledges and agrees that Authorized Users must provide TheirStack with certain identifying information, including their name and a business email address, and that Authorized Users may be required to accept an end-user license agreement agreeing to TheirStack's privacy policy and representing that they are authorized to access the Services on Licensee's behalf.
+
+### 3.2 Qualification of Authorized Users
+
+Licensee shall not designate any person as an Authorized User unless such person is: (1) a natural person and (2) an employee of Licensee. Licensee may designate a non-employee (i.e., an independent contractor) as an Authorized User only with prior written notice to TheirStack and provided Licensee takes reasonable steps to ensure such non-employee uses the Services only as permitted under this Agreement. If the employment of any Authorized User that was in effect as of the date such person was designated as an Authorized User terminates, such person's authorization to access the Services shall be revoked automatically without any further action by TheirStack. In the event of a termination, the Licensee shall take all reasonable steps to ensure that such person ceases accessing the Services. Licensee may reassign Authorized User designations at any time subject to the foregoing qualification requirements.
+
+### 3.3 Authorized Uses and Restrictions
+
+Licensee may use the Services for the following purposes:
+
+-   Business-to-business sales, marketing, recruiting, or business development activities
+-   Reposting and redistributing jobs
+-   Reselling TheirStack data through their own platform
+-   Viewing and analyzing Licensed Materials
+-   Communicating with Licensed Materials Contacts in a professional manner
+-   Identifying prospective sales opportunities
+-   Researching existing customers and prospects
+
+Licensee is expressly prohibited from:
+
+-   Creating a direct competitor to TheirStack's core services
+-   Distributing or reselling data in a way that competes with TheirStack's primary business
+-   Sharing login credentials with unauthorized users
+-   Reverse engineering or attempting to derive source code from TheirStack Technology
+
+### 3.4 Platform Integration
+
+Licensee may:
+
+-   Integrate TheirStack data into their own platforms
+-   Resell the data through their own channels
+-   Use the data for business development purposes
+
+Licensee must not:
+
+-   Create a competing job board or recruitment platform
+-   Use TheirStack's technology or interface design
+-   Remove or obscure TheirStack branding
+-   Create derivative works that compete with TheirStack's core offerings
+
+### 3.5 Limitations on Use of the Services
+
+Licensee shall use the Services in a responsible and professional manner consistent with the intended and permissible uses herein and consistent with standard industry practice. Licensee shall not override or circumvent, or attempt to override or circumvent, any security feature, control, or use limits of the TheirStack Technology. Licensee will not use the Licensed Materials or TheirStack Technology for commercial purposes not permitted under this Agreement and shall not designate any person as an Authorized User if Licensee has reason to believe such person is likely to use the Services on behalf of a third party or otherwise in violation of this Agreement. TheirStack may use technological means to place reasonable use limits to prohibit excessive use, including excessive downloads or screen views that indicate a violation of this Agreement, such as sharing with third parties or attempting to circumvent limitations to purchased credits (if applicable). TheirStack has the right to limit the access to the Services, if Licensee does not remedy the breach within fifteen (15) days after receipt of notice in writing, except if TheirStack has to do so for any security reasons.
+
+### 3.6 Identification of Licensed Materials
+
+Licensee shall not integrate Licensed Materials into any CRM, marketing automation, or sales enablement system for the purpose of allowing persons who are not Authorized Users to access or use the Licensed Materials. Any Licensed Materials that are downloaded and/or integrated into any CRM system must be maintained with identifying information indicating that such materials originated with TheirStack by, for example, maintaining a lead source of "TheirStack."
+
+### 3.7 Unauthorized Access and Use
+
+In the event TheirStack has a reasonable belief that Licensee or any Authorized User is engaged in any unauthorized access or use of the Licensed Materials or TheirStack Technology in violation of this Agreement, TheirStack may suspend Licensee's access to the Licensed Materials and/or TheirStack Technology after a prior written notice remained without effect for fifteen (15) days, except if TheirStack has to do so without undue delay for any security reasons or personal data breach. TheirStack will have, in the event of an actual breach of this Agreement, no liability to Licensee for such period of suspension and a suspension shall have no effect on the Term of this Agreement nor on Licensee's obligation to pay the Subscription Fee.
+
+## 4. Service and pricing modifications
+
+TheirStack reserves the right to modify or suspend, temporarily or permanently, the Service at any time for any reason with or without notice if it deems it convenient. TheirStack reserves the right to change monthly fees with a notice of 15 days. Notification of quota changes will be posted on TheirStack's website and in writing.
+
+## 5. Cancelation
+
+The user is responsible for the proper cancellation of his account. You can cancel your account at any time by going to app.theirstack.com/settings/billing. Once your account is canceled, you won't be charged anymore. The user can cancel his account at any time but will be responsible for all the charges made until that moment, including the full monthly charge for the month in which he suspends the service. Thereafter, you will not be charged. TheirStack reserves the right to cancel an account or prevent the use of the Software to those who do not comply with the present conditions of use.
+
+## 6. Copyright and intellectual property
+
+TheirStack owns all the Intellectual Property rights of all and any of the components of the Service that may be protected, including but not limited to the name of the Service, graphic material, all software associated with the Service, and the elements of the user interface contents In the Service, many of the individual characteristics and related documentation. The user undertakes not to copy, adapt, reproduce, distribute, reverse engineer, decompile, or disguise any facet of the Service that TheirStack owns. The user also accepts and agrees not to use robots, spiders, other automated devices, or manual processes to control or copy any content of the Service. TheirStack will not claim rights over the Intellectual Property of the Content that the user uploads or provides to the Service. However, by using the Service to send content, the user accepts that third parties can view and share this content sent by the user.
+
+## 7. General Terms
+
+The user is fully responsible for the access and correct use of TheirStack subject to the current legality, whether national or international, as well as the principles of good faith, morality, good customs, and public order. And specifically, it acquires the commitment to diligently observe the present General Conditions of use. The user agrees not to resell, duplicate, reproduce, or exploit any part of the Service without the express written consent of TheirStack.
+
+TheirStack makes no warranties with respect to its ability to use the Service, its satisfaction with the Service, that the Service is available at all times, uninterruptedly and without errors, the accuracy of the mathematical calculations performed by the Service, and the correction Of the errors of the Service.
+
+Neither TheirStack nor its partners nor its sponsors are liable for any direct, indirect, consequential, special, exemplary, punitive, or other damages arising out of or in any way connected with the use made by the user of the service. The user can only solve his dissatisfaction with the Service by not using it and canceling his account. If any of the conditions described here are invalidated or can not be applied, the application of any of the remaining ones should not be affected in any case. Any questions regarding the Terms of Use should be directed to TheirStack: hi@theirstack.com
+
+The Terms of Use establish an absolute understanding between you and TheirStack regarding the Service and prevail over any prior agreement reached between you and TheirStack. The Terms, and your relationship with TheirStack under these Terms, shall be governed by the laws of Spain. The user and TheirStack agree to submit to the exclusive jurisdiction of the courts of Vigo, Spain to resolve any legal questions regarding the Conditions.
+
+---
+title: Pricing FAQs
+description: Frequently asked questions about our pricing.
+lastModifiedAt: 2025-03-12
+url: https://theirstack.com/en/docs/pricing
+---
+
+
+## Why can't I see a company that was previously unblurred?
+
+When you reveal a company, a company credit is used. This allows you to view all their jobs, technologies, and firmographics, or export that company as many times as you want for 90 days. 
+
+Since collecting new jobs or technologies incurs a cost, it's not feasible to offer unlimited access to new data indefinitely.
+
+However, we are planning an enhancement to offer you a better experience: after 90 days, you will still be able to see the company, but any new jobs or technologies discovered after that period will not be accessible. This ensures you retain the data you've paid for, without receiving updates beyond the initial access period.
+
+
+## How can I cancel my subscription?
+
+You can cancel your subscription at any time. Please go to [this page](https://app.theirstack.com/settings/billing) and click on the "Cancel Subscription" button.
+
+Once you complete the cancellation form, you will see that the status plan will be updated to "Cancelled".
+
+
+## How can I set to auto recharge credits?
+
+You can set to auto recharge credits at any time. Please go to [this page](https://app.theirstack.com/settings/billing) and click on the "Auto Recharge" button.
+
+You can configure to auto-recharge when company credits or api credits are bellow a specific number(eg:1000 credits) and you can select the amount. 
+
+The cost of this credits package auto-charge will be the same credit prices as it was a recurren price. Check the [pricing here](https://www.theirstack.com/en/pricing)
+
+
+
+## How can I update my subscription?
+
+You can update your subscription at any time. Please go to [this page](https://app.theirstack.com/settings/billing) and click on the "Update Subscription" button.
+
+When you update your subscription, the credits for the rest of the billing period won't be prorated. You will need to pay the full amount of the new plan.
+
+
+---
+title: Integration guide for sales intelligence software
+description: This guide provides detailed instructions on integrating TheirStack into your product, including all possible connectors, marketing content and best practices.
+lastModifiedAt: 2024-12-31
+url: https://theirstack.com/en/docs/sales-software-integration-guide
+---
+
+Are you a sales intelligence platform like Clay, Databar, or Trigify? We've compiled everything you need to seamlessly integrate TheirStack as a source of job data and technographics into your product. This is a dynamic, evolving guide that improves with each integration. Your feedback and suggestions are always welcome!
+
+## Introduction
+
+At TheirStack, we are passionate about building long-term partnerships with sales intelligence platforms. Our goal is to become the largest, most reliable, and fastest-responding job and technographics database. Everything we do is driven by this vision. If you're seeking top-quality job and technographic data, we’re the ideal partner for you.
+
+### How API credits work
+
+API credits are used to make API requests. One API Credit is consumed for each record (job or company) returned from our API endpoints.
+
+How API credits work:
+
+-   Credits are only consumed when the API returns data in the response.
+-   Each API call is processed independently - repeated requests for the same data will consume credits each time.
+-   Unused paid credits will roll over and accumulate in your account.
+
+#### Free records count
+
+Get the count of records that match your search criteria is free. This is useful to show a preview to your end users.
+
+#### Preview mode
+
+Our Job Search and Company Search endpoints include a preview mode that does not consume credits. Use this mode to display a preview for your end users by using the `blur_company_data` field.
+
+## Connectors
+
+### Search jobs
+
+#### Content
+
+Short description
+
+```md
+Find job postings across multiple platforms (LinkedIn, Indeed, Workable, etc.) and apply over 25 filters to refine results by job role, company, and tech stack details.
+```
+
+Long description
+
+```md
+**Overview**
+
+Launch a comprehensive search on LinkedIn, Indeed, Glassdoor, and more than 16 other job sites. Maximize your reach and efficiency by targeting a broad spectrum of opportunities from the start. Refine your search with advanced filters:
+
+-   Job filters: job title, keywords in the job description, salary ranges, technology, hiring managers…
+-   Company filters: Industry, size, location, funding, revenue, technology usage, etc.
+
+**Common searches**
+
+Searching for jobs can be used by job seekers, but also many sales and marketing teams use it to find potential customers. Here are some searches that could be done:
+
+-   Search for jobs filtering by the country of the job
+-   Search for jobs filtering by job title
+-   Search for jobs filtering by technologies mentioned in the job
+-   Search for jobs filtering by job description
+-   Search for jobs filtering by company domain
+-   Search for jobs within a specific date range
+
+**Common use cases**
+
+Job posting data use cases are unlimited: lead generation, cross-selling and marketing campaigns.
+
+-   Discover companies hiring. Harness the power of job data to identify potential clients by scanning over 40 million job listings in more than 195 countries. Target companies facing challenges that your offerings can address, turning job market insights into valuable sales opportunities.
+-   Monitor your customers. Stay ahead with real-time notifications when your current or previous clients start hiring again. Leverage this data to spot upsell opportunities and re-engage with past customers, ensuring you maximize lifetime value and maintain strong client relationships.
+-   Target companies hiring specific positions. Boost your sales with targeted LinkedIn advertising campaigns. Focus your ads on individuals at companies actively hiring for positions that match your services. By aligning your marketing efforts with real-time job data, you can ensure your message reaches the right audience, enhancing engagement and conversion rates.
+```
+
+#### Technical details
+
+**Endpoint documentation:**
+[https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search)
+
+**Recommended filters sorted by importance:**
+
+| Order | Filter                       | Description                                                                                          | API Field                                                                         |
+| ----- | ---------------------------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| 1     | Posted date (required)       | Last n days (default 30 days).                                                                       | `posted_at_max_age_days`, `posted_at_gte`, `posted_at_lte`                        |
+| 2     | Job Country                  | Include countries (1 to n values). Exclude countries (1 to n values).                                | `job_country_code_or` (recommended), `job_country_code_not`                       |
+| 3     | Job Title                    | Include any of these keywords in the job title (tags format, 1 to n values). Exclude keywords.       | `job_title_or` (recommended), `job_title_not`                                     |
+| 4     | Job Description              | Include any of these keywords in the job description (tags format, 1 to n values). Exclude keywords. | `job_description_pattern_or`, `job_description_pattern_not`                       |
+| 5     | Job Location                 | Include City. Text match. List of strings. Exclude City. Text match, List of strings.                | `job_location_pattern_or`, `job_location_pattern_not`                             |
+| 6     | Job Technologies             | Include technologies mentioned in the job description. Exclude technologies.                         | `company_technology_slug_or`, `company_technology_slug_and`                       |
+| 7     | Is a remote position         | Yes or no.                                                                                           | N/A                                                                               |
+| 8     | Company Industry             | List of IDs, IDs available with this endpoint.                                                       | [Industry IDs](https://api.theirstack.com/#tag/catalog/GET/v0/catalog/industries) |
+| 9     | Company Headcount            | Look for "employee_count" in the endpoint docs.                                                      | [Employee Count](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search)        |
+| 10    | Company Headquarters Country |                                                                                                      | `company_country_code_or`                                                         |
+
+### Search companies by tech stack
+
+#### Content
+
+Short description
+
+```md
+Find companies by the technology they use.
+```
+
+Long description
+
+```md
+**Overview:**
+Discover companies using any of our 21K technologies, including programming languages, databases, tools, SaaS, CRMs, and ERPs. Our comprehensive tracking allows you to pinpoint organizations by their tech stack, offering a strategic edge in market analysis and outreach. Leveraging job postings as a primary source, we meticulously track and reveal the internal tools that power companies globally, offering an unmatched depth of technographic intelligence.
+
+**Common use cases:**
+Sales and marketing teams often use this endpoint to find potential customers or gather market intelligence. Here are some example searches:
+
+-   Find companies using particular technology: Salesforce, Clickhouse, Salesforce…
+-   Find companies using a technology category: CRM, ERP, Database, Big Data, Cloud…
+
+**The most reliable technology usage source:**
+
+-   Assured Accuracy: For each technology identified, we assign a confidence rating reflecting its data precision. This rating incorporates variables such as the frequency of technology mentions in job listings, the recency of these mentions, the diversity of its usage across companies, and its prevalence within specific categories.
+-   Transparency and Validation: Gain direct access to our data sources. We facilitate verification by linking directly to the job postings that reference the technology, alongside details about the posting company and the date. This ensures you can trust and validate the data's accuracy.
+-   Always Up-to-Date: Our platform is refreshed every 24 hours, guaranteeing that you have access to the most current data available. Stay ahead with real-time updates and insights.
+```
+
+#### Technical details
+
+**Recommended filters sorted by importance:**
+
+| Order | Filter                       | Description                                                                        | API Field                                                                                              |
+| ----- | ---------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 1     | Technologies used            | Show logo, name, short description (one_liner), category, and number of companies. | `company_technology_slug_or`, `company_technology_slug_and`, `company_technology_slug_not`             |
+| 2     | Company headquarters country | Options to include or exclude countries.                                           | `company_country_code_or`, `company_country_code_not`                                                  |
+| 3     | Industry                     | Options to include or exclude industries.                                          | `industry_or`, `industry_not`                                                                          |
+| 4     | Company headcount            | Specify minimum or maximum employee count, with options for null values.           | `min_employee_count`, `max_employee_count`, `min_employee_count_or_null`, `max_employee_count_or_null` |
+| 5     | Company revenue              |                                                                                    | N/A                                                                                                    |
+| 6     | Company type                 |                                                                                    | N/A                                                                                                    |
+| 7     | Company location             |                                                                                    | N/A                                                                                                    |
+| 8     | Company website              |                                                                                    | N/A                                                                                                    |
+
+### Get a company's tech stack
+
+#### Content
+
+Short description
+
+```md
+Lists all technologies used by a company or group of companies. For each technology, it returns the confidence level (low, medium, high), the number of jobs that mention the technology, and the first and last dates it was mentioned.
+```
+
+Long description
+
+```md
+**Overview:**
+Lists all technologies used by a company or group of companies. For each technology, it returns the confidence level (low, medium, high), the number of jobs that mention the technology, and the first and last dates it was mentioned.
+
+**Common use cases:**
+Sales and marketing teams use this endpoint to:
+
+-   Identifying the technologies used by a company or a group of companies
+-   Finding all the technologies that belong to a certain category (such as databases, CRMs, programming languages, etc.) mentioned in the jobs of a company, and identifying the confidence level of the detection to infer the most likely one that is used by the company.
+-   Identifying if a company uses one or several technologies from a list of technologies that you are interested in.
+```
+
+#### Technical details
+
+**Endpoint documentation:**
+[https://api.theirstack.com/#tag/companies/POST/v1/companies/technologies](https://api.theirstack.com/#tag/companies/POST/v1/companies/technologies)
+
+**Recommended filters sorted by importance:**
+
+| Order | Filter            | Description                                                                        | API Field                                                                                  |
+| ----- | ----------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 1     | Company website   | Website of the company you want to get the technology list                         | `company_domain`                                                                           |
+| 2     | Confidence level  | Return only technologies with a confidence level of high, medium or low.           | `confidence_level`                                                                         |
+| 3     | Technologies used | Show logo, name, short description (one_liner), category, and number of companies. | `company_technology_slug_or`, `company_technology_slug_and`, `company_technology_slug_not` |
+
+## Integration page
+
+Most sales intelligence software have a page where they list all data sources they have. This is the content we recommend you to add to this page to help your users understand what TheirStack is and how it can help them.
+
+Title
+
+```md
+TheirStack
+```
+
+Subtitle
+
+```md
+TheirStack helps you find job postings and find companies by tech stack.
+```
+
+Description
+
+```md
+TheirStack is the largest job posting and technographics database, designed to help businesses, recruiters, and sales teams identify opportunities with companies based on their technology stack and hiring needs. With a vast collection of data on which technologies companies use, along with real-time job listings, TheirStack provides a comprehensive platform for discovering leads, qualifying prospects, and strategically targeting outreach efforts.
+
+Through TheirStack's Job Postings data, users can access millions of job listings aggregated from multiple global sources, including major job boards, offering a complete view of the job market across 195 countries. The platform's robust filtering options allow users to refine searches by job role, company, and required technology, giving a nuanced perspective on hiring trends and job quality. This empowers recruiters and business developers to target roles and companies with precision, ensuring outreach is both relevant and impactful.
+
+TheirStack's Technographics data enables users to search for companies by their technology stack, providing detailed insights into tech adoption across industries. This feature supports sales and marketing teams in identifying high-potential leads based on specific technology use, allowing for strategic alignment with each company's tech landscape. Combining job market insights with technographic data, TheirStack delivers a strategic advantage for more informed and effective decision-making.
+```
+
+---
+title: Users and Teams
+description: Learn about users and teams in TheirStack.
+lastModifiedAt: 2025-03-14
+url: https://theirstack.com/en/docs/teams
+---
+
+## What is a team?
+
+A team is a group of users who share the same workspace. They will share the same billing plans, saved searches, company lists, and more.
+
+## Team roles and permissions
+
+There are 2 roles in a team:
+
+-   **Member**: Can do everything except what admins can do.
+-   **Owner**:
+    -   Can add and remove team members.
+    -   Can change other members' roles.
+    -   Receives consumption alerts. Eg: when 75% of the credits are used.
+
+## Faqs
+
+### How do I add a team member?
+
+To add a team member:
+
+1. Go to the [team page](https://app.theirstack.com/settings/team).
+2. Click on the "Invite member" button.
+3. Enter the email address of the person you want to add.
+4. Click on the "Invite" button.
+
+Your new member will receive an email to join the team.
+
+---
+title: TheirStack vs BrightData
+description: BrightData also provides some job scrapers for job boards like LinkedIn or Indeed. In this guide we compare TheirStack and BrightData to help you understand the differences and choose the best option for your needs.
+lastModifiedAt: 2025-01-08
+url: https://theirstack.com/en/docs/theirstack-vs-brightdata
+---
+
+## Quick Decision Guide
+
+**Choose BrightData if**
+
+-   You don't need a real-time solution and are fine waiting 4-5 minutes for each job search.
+-   You're comfortable implementing a complex integration with multiple API calls, retry logic, and snapshot storage.
+-   You don't need extensive filtering capabilities
+-   You’re prepared to manage separate processes for each job board and handle job deduplication yourself.
+
+**Choose TheirStack if**
+
+-   You need a real-time solution that responds in 100ms-2s
+-   You want a fast and easy integration with a single API call
+-   You want to filter by attributes like company countries, industries, company sizes, job description, etc
+-   You want all the jobs from all the job boards in one place and don't want to handle job deduplication.
+
+## Detailed comparison
+
+BrightData is a general purpose web data extraction platform, so jobs per se are not their main focus. On the other hand, jobs is at the core of what we do at TheirStack. So 100% of our effort is in building a high-quality, end-to-end job data platform.
+
+### Development cost and complexity
+
+BrightData's integration is complex:
+
+-   It requires at least two API calls for each search: one to create the search and another to retrieve the results.
+-   You'll need to save in your database the snapshot ID of each search so that you can retrieve the results later.
+-   You'll need to implement retry logic since the data isn't immediately available and can take several minutes to be ready.
+-   There is no pagination so you will likely miss some jobs
+-   If you need to search in multiple job boards,
+    -   you'll need separate API calls for each source
+    -   you'll need to handle job deduplication on your side because job boards share most of their jobs.
+
+TheirStack integration is straightforward with just a single API call needed. You can find our complete documentation [here](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search).
+
+### Response time
+
+When you make a request to TheirStack, we make a search in our database, which already contains millions of jobs scraped from [thousands of job boards and websites](/en/docs/job-sources). The response comes back almost instantly - 90% of our requests finish in less than 2 seconds.
+
+For example, to get the last data analyst jobs posted in NYC in the last 7 days with us you'd make this call:
+
+```bash
+curl --request POST \
+--url "https://api.theirstack.com/v1/jobs/search" \
+--header "Content-Type: application/json" \
+--header "Authorization: Bearer <api_key>" \
+--data '{
+  "posted_at_max_age_days": 7,
+  "job_country_code_or": [
+    "US"
+  ],
+  "job_title_or": [
+    "data analyst"
+  ],
+  "job_location_pattern_or": [
+    "new york",
+    "nyc"
+  ]
+}'
+```
+
+In BrightData, when you make a search they do a live call to their job boards to get the data. This process involves 2 calls and the results not only aren't instant but take **minutes** to come back.
+
+To get the same data as in the previous example, first you'd make a call like this:
+
+```bash
+curl --request POST \
+--url "https://api.brightdata.com/datasets/v3/trigger?dataset_id=gd_lpfll7v5hcqtkxl6l&include_errors=true&type=discover_new&discover_by=keyword&limit_per_input=5" \
+--header "Authorization: Bearer <bearer_token>" \
+--header "Content-Type: application/json" \
+--data '[
+  {
+    "location": "New York",
+    "keyword": "data analyst",
+    "country": "US",
+    "time_range": "Past week",
+    "job_type": "",
+    "experience_level": "",
+    "remote": "",
+    "company": ""
+  }
+]'
+```
+
+The result of this would not be the data directly, but a snapshot ID like this:
+
+```json
+{
+    "snapshot_id": "s_m5o15lt05g12b9s1x"
+}
+```
+
+You'd then need to make a second call to get the data:
+
+```bash
+curl --request GET \
+--url "https://api.brightdata.com/datasets/v3/snapshot/s_m5o15lt0rn12b9s1x?format=json" \
+--header "Authorization: Bearer <bearer_token>"
+```
+
+From our tests, this requests takes 8-10s to complete, and even after 3 or 4 minutes, the data isn't ready yet and we'd get responses like this:
+
+```json
+{
+    "status": "running",
+    "message": "Snapshot is not ready yet, try again in 10s"
+}
+```
+
+This invalidates using BrightData for any real-time use case you might have related to jobs. But not only that.
+
+### Extensive filtering capabilities
+
+BrightData just lets you filter by the limited set of filters LinkedIn supports.
+
+TheirStack lets you filter by many filters that LinkedIn or BrightData don't support and won't support anytime soon. To name a few:
+
+-   **Company filters:** By industry, size, country, revenue, funding, URL, LinkedIn URL or slug, etc.
+-   **Job filters:** By title, description, country, city, remote options, salary, etc. Regular expression filters are supported by many fields like title, description or locations
+
+### Historical data
+
+BrightData only provides access to recent job postings, with limited historical data availability.
+
+TheirStack maintains a comprehensive historical database of jobs dating back to 2019, allowing you to access and analyze job postings across much larger time spans.
+
+### Comprehensive documentation.
+
+BrightData's job scraping API documentation is limited and requires frequent communication with support to understand parameter usage and functionality.
+
+We are an API-first company, so our [Job Search API](https://api.theirstack.com/#tag/jobs/POST/v1/jobs/search) is at the core of what we do and we talk with users daily to make it better and add new filters and features they need. We put great care into the developer experience, and you can tell so by visiting the link above and seeing how well documented our API is, so that you don't have to waste time figuring out how each parameter works or talking to support to get help.
+
+### Job consolidation across multiple job boards
+
+BrightData offers LinkedIn, Indeed and Glassdoor job scrapers. We scrape those and more job boards, having jobs from tens of thousands of domains.
+
+With BrightData you would need to use one individual scraper per each job board, and then consolidate jobs into a central repository.
+
+With TheirStack, we consolidate jobs from all of them into a single database and provide a single API endpoint to access them so that you can get all the jobs you want with a single request, instead of having to make multiple requests to different scrapers.
+
+### Job deduplication
+
+Because BrightData has different endpoints for each job board, they don't handle job deduplication across them. But it happens many times that the same job appears on multiple job boards.
+
+As we offer a single entrypoint for all our job data, we have built our own job deduplication algorithm that lets us identify if the same job has already been scraped. Therefore, you won't get the same job twice and you won't have to worry about handling job deduplication yourself.
+
+---
+title: Webhooks
+description: Learn how to use webhooks to get notified when events occur (new jobs, tech changes, etc) in TheirStack and trigger actions in your external systems like N8N, Zapier, Make, Airtable, etc.
+lastModifiedAt: 2025-03-10
+url: https://theirstack.com/en/docs/webhooks
+---
+
+import YoutubeIframe from '@/components/youtube-iframe'
+
+## What are webhooks?
+
+Webhooks allow you to send data when specific events occur (new jobs, tech changes, etc) to external systems like N8N, Zapier, Make, Airtable, your own webhook endpoint, etc.
+
+For instance, you can configure a webhook to alert you when a new job is listed in a particular location, company, or technology sector.
+
+Webhooks are dependent on a search, which defines the criteria for triggering the webhook.
+
+There are two types of webhooks:
+
+-   **`job.new`**: Triggered when a new job is discovered by TheirsStack.
+-   **`company.new`**: Triggered when a new company is discovered by TheirsStack.
+
+## How to set up a webhook
+
+Follow these steps to set up a webhook:
+
+1. Create a job or company search with the criteria you are interested in.
+2. Click on the "Webhooks" button on the search page.
+3. Click on the "Create Webhook" button.
+4. Enter the webhook URL and click on the "Create" button.
+
+<YoutubeIframe src="https://www.youtube.com/embed/gbd8IMgL-Rw" title="Webhooks" />
+
+## Webhooks Applications
+
+-   Initiate a workflow in an automation tool like Zapier, Make, N8N when a new job is posted or a company adopts a new technology (e.g., Snowflake, Hubspot, Python).
+-   Send a Slack notification to your team when a new job is found or a company adopts a new technology (e.g., Snowflake, Hubspot, Python).
+-   Automatically update a Google Sheet with new job or company data.
+-   Trigger an email alert to a specific distribution list when a new job matches certain criteria.
+-   Create a table in Airtable to store job listings.
+-   Integrate with a CRM system to add new company information as leads.
+
+## Your own webhook endpoint
+
+If you are builing your own webhook endpoint, please take into account the following:
+
+-   Return a 200 status code to indicate that the webhook event was received and processed successfully. Failed webhook events are retried every hour for 48 hours.
+-   Your webhook endpoint has to be prepared to handle at least 2 concurrent requests.
+-   Your webhook endpoint has to be prepared to handle duplicates. Our system is designed to not send the same job twice to your webhook URL. However, this could happen in some edge cases (e.g: you listen to two searches with not exclusive jobs).
+-   When a webhook sends data, it uses an HTTP POST request, with a JSON payload.
+    per
+
+## Settings
+
+Webhooks have the following settings:
+
+-   **`Choose where to start`**: You can choose whether to start listening from this point forward or from the start of the search. If you choose to start from the start of the search, you will receive all events that have occurred since the search was created.
+
+-   **`Trigger once per company`**: When enabled, the webhook will fire only once for each company. This is helpful for sales workflows where you want to act on the first job posted (e.g., send an email, add to a CRM) without triggering the workflow for every subsequent job from the same company. Eg: If active, Company A with 5 jobs → 1 event triggered. If deactivated, Company A with 5 jobs → 5 events triggered.
+
+## Faqs
+
+### What happens to webhook events when I run out of API credits?
+
+When you run out of API credits, webhook event monitoring is temporarily paused. During this period, no new events will appear in your webhook history. Monitoring automatically resumes once you purchase additional API credits.
+
+Whether you miss events during the pause depends on your search criteria. For example, if your webhook tracks jobs posted within the last 60 days and you lack credits for 2 days, you won't miss anything - when credits are restored, all jobs discovered during the pause will still trigger your webhook as they match your search parameters.
+
+### What happens if the webhook event fails?
+
+If the webhook event fails, it will be automatically retried every hour for 48 hours.
+
+### How much cost to run a webhook?
+
+Webhook events are billed at the same rate as API requests. They consume 1 API credit per event.
+
+---
+title: Why do I see a smaller number of job listings on TheirStack compared to platforms like Indeed or LinkedIn?
+description: When you search for a job on Indeed or Linkedin, you may see more results than on TheirStack. This is because Indeed uses broader keyword matching, while TheirStack prioritizes precision.
+lastModifiedAt: '2024-12-31'
+url: https://theirstack.com/en/docs/why-do-i-see-less-jobs-on-theirstack-than-indeed
+---
+
+The difference lies in how job searches are conducted on TheirStack versus platforms like LinkedIn, Indeed, or Glassdoor. Let's focus on Indeed as an example, though the same principles apply to other providers.
+
+## Search methodology
+
+### Keyword matching
+
+Job boards like Indeed use broader keyword matching:
+
+- **Synonyms and Related Jobs**: For example, when you search for "network engineer," Indeed may return jobs that loosely match those terms, even if they don't contain the exact keywords.
+- **Company Name Matching**: For example, when you search for "franchise", LinkedIn may return jobs where the company name contains the word 'franchise'.
+
+On TheirStack, we prioritize precision. Our job title filter is deterministic, meaning it only returns results with an exact match for the keywords you provide. This approach ensures greater accuracy in the search results.
+
+<img src="https://theirstack.com/static/generatedcontent/docs/posts/why-do-i-see-less-jobs-on-theirstack-than-indeed/indeed_job_search.png" alt="Indeed job search" className="center mt-6" />
+
+### Date range
+
+Indeed and LinkedIn typically display jobs that have been posted or reposted within the last 30 days by default, whereas TheirStack does not automatically filter jobs based on their reposted date.
+## How to Increase Results on TheirStack
+
+-   **Add More Keywords**: Broaden your search terms to include additional relevant keywords (see Picture A).
+
+<div className="flex justify-center items-center">
+    <img src="https://theirstack.com/static/generatedcontent/docs/posts/why-do-i-see-less-jobs-on-theirstack-than-indeed/job_titles.png" alt="Job title lists" className="w-64" />
+</div>
+
+-   **Use Regex Patterns**: Leverage regular expressions for more flexible and advanced search queries (see Picture B).
+
+<div className="flex justify-center items-center">
+    <img src="https://theirstack.com/static/generatedcontent/docs/posts/why-do-i-see-less-jobs-on-theirstack-than-indeed/job_titles_regex.png" alt="Regex patterns" className="w-64" />
+</div>
+
+## Upcoming Features
+We're working on 
+    - a new filter that incorporates a synonym dictionary, which will enhance your search capabilities.
+    - a new filter that allows you to filter by reposted date.
+
+## Avoid Filtering by Scraping Source
+
+We scrape jobs from various sources, including company career pages, LinkedIn, and job boards. To avoid duplication, we save only the first instance of a job posting. For example, if a job appears on a company's career page and on Indeed, only the first source is stored.
+
+Filtering by `scraping_source = Indeed` will return only jobs initially found on Indeed, which may reduce the results. We recommend using broader filters for a more comprehensive search.
+
+---
+title: Understanding delays in job discovery
+description: Explore the reasons why jobs are sometimes discovered days after they are posted and the factors influencing this delay.
+lastModifiedAt: 2025-01-03
+url: https://theirstack.com/en/docs/why-some-jobs-are-discovered-days-after-they-are-posted
+---
+
+### Introduction
+
+When analyzing our data, you'll notice that a small percentage of jobs are discovered (`discovered_at`) after the day when they were initially posted (`posted_at`). This delay is common and is influenced by various factors beyond our control.
+
+### Discovery Timeline
+
+To illustrate this, let's examine jobs posted on a specific day (December 14th) and observe when they were discovered by us.
+
+<div className="flex justify-center items-center py-4">
+    <img src="https://theirstack.com/static/generatedcontent/docs/posts/why-some-jobs-are-discovered-days-after-they-are-posted/chart2.png" alt="Jobs posted on December 12th" />
+</div>
+
+| Discovered At | Percentage of Jobs Discovered |
+| ------------- | ----------------------------- |
+| Same Day (0)  | 73%                           |
+| Next Day (1)  | 21%                           |
+| 2 Days Later  | 3%                            |
+| 3 Days Later  | 0.3%                          |
+| 4 Days Later  | 0.2%                          |
+
+As shown, 73% of jobs are found on the same day they are posted. However, there is a significant number of jobs discovered days later. To understand this, it's important to know how we collect our data.
+
+### Factors Contributing to Delays
+
+We scrape job boards, that at the same time scrape other job boards and career pages of companies. They also can get jobs posted directly by companies, or from companies’ ATS systems that sync with these job boards.
+
+While we scrape these job boards constantly, there are many reasons a job posted by a company at a certain date is not available on those job boards instantly, and therefore it’s not possible for us to discover it. To name a few:
+
+-   **ATSs sync delay with job boards**: The ATS that a company uses lets them sync jobs with a major job board, but the recruiter can choose which jobs to push to that job board because they charge for it. They may not initially sync it and do it after a few days to try to get more candidates. But the integration may keep the original date when the job was posted first, and show that in the final job board, instead of the date when the job was pushed. In this case, there will be a gap of a few days.
+
+-   **Job board scrapping delay**: A job board scrapes company career pages periodically, running daily. If a company posts a job at 14h and the job board scraper visits it at 10h every day, that job won’t be available in the job board until the day after. For companies that post many positions, it makes sense for job boards to visit those career pages with a high frequency. But visiting every career page of every company in the world periodically has a cost, so for smaller companies that very ocasionally post jobs, doing it on a weekly basis could help those job boards save money. So imagine they visit one of these companies’ career site every Monday. If they post a job on Tuesday, they won’t visit it again until next Monday, so there will be a 6-day difference between `posted_at` and `discovered_at`
+
+-   **Job board publishing delay**: If someone publishes a job directly on a job board we scrape, this job board may also let them set a custom `posted_at` that is days before the current date. But the job is not available at that job board until the very moment when that person publishes it there, and even if the reported `posted_at` is previous to that, that job wouldn’t have been discovered before because that person hadn’t published it in that job board yet.

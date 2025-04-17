@@ -1,0 +1,23 @@
+# Whitechain
+
+## Whitechain
+
+- [Getting Started](https://docs.whitechain.io/general/getting-started)
+- [Background & Vision](https://docs.whitechain.io/general/background-and-vision)
+- [Architecture](https://docs.whitechain.io/general/architecture)
+- [Wallet Configuration](https://docs.whitechain.io/general/wallet-configuration)
+- [Getting $WBT](https://docs.whitechain.io/usdwbt/getting-usdwbt)
+- [Testnet Faucet](https://docs.whitechain.io/usdwbt/testnet-faucet)
+- [Smart Contracts Deployment](https://docs.whitechain.io/smart-contracts/smart-contracts-deployment)
+- [Smart Contracts Verification](https://docs.whitechain.io/smart-contracts/smart-contracts-verification)
+- [Proxy Contract Verification](https://docs.whitechain.io/smart-contracts/proxy-contract-verification)
+- [Mainnet Node](https://docs.whitechain.io/run-a-node/mainnet-node)
+- [WB Soul Ecosystem](https://docs.whitechain.io/wb-soul/wb-soul-ecosystem)
+- [WB Soul Ecosystem Implementation](https://docs.whitechain.io/wb-soul/wb-soul-ecosystem/wb-soul-ecosystem-implementation)
+- [WB Soul Explained](https://docs.whitechain.io/wb-soul/wb-soul-ecosystem/wb-soul-explained)
+- [WB Soul Features](https://docs.whitechain.io/wb-soul/wb-soul-ecosystem/wb-soul-features)
+- [SoulDrop](https://docs.whitechain.io/wb-soul/souldrop)
+- [The Dynamic Rewards Mechanism: How It Works](https://docs.whitechain.io/wb-soul/souldrop/the-dynamic-rewards-mechanism-how-it-works)
+- [Table with Period Reward Percentage for Each Level](https://docs.whitechain.io/wb-soul/souldrop/table-with-period-reward-percentage-for-each-level)
+- [Reward Calculation and Full Holding Periods](https://docs.whitechain.io/wb-soul/souldrop/reward-calculation-and-full-holding-periods)
+- [SoulDrop: User Manual](https://docs.whitechain.io/wb-soul/souldrop-user-manual)

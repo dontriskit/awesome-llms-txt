@@ -1,0 +1,4148 @@
+# Introduction
+
+> BaseHub is a fast and collaborative Headless CMS.
+
+Welcome to BaseHub Docs. [Throughout this site](https://docs.basehub.com/nextjs-integration/start-here), you’ll find instructions on how to connect BaseHub to your website using our SDKs, and you’ll learn more about our platform and features.
+
+## Popular Sections
+
+Jump straight into one of our most popular sections.
+
+[Next.js Integration(Get started with Next.js)](https://docs.basehub.com/documentation/nextjs-integration/start-here)[API Reference(Know how our APIs work)](https://docs.basehub.com/api-reference)
+
+## Help
+
+Have a specific question or support request? These are our support channels:
+
+*   X: [https://x.com/basehub\_ai](https://x.com/basehub_ai)
+    
+*   Discord: [https://discord.gg/6Gk4qfuqHK](https://discord.gg/6Gk4qfuqHK)
+    
+*   Help Center (live chat): [https://basehub.com/help?chat=true](https://basehub.com/help?chat=true)
+    
+
+# Platform Overview
+
+> Understand the basics of the BaseHub Platform.
+
+BaseHub has three main properties:
+
+1.  The Dashboard, `basehub.com`, where you create teams, repositories, collaborate on content, etc
+    
+2.  The GraphQ: API, `api.basehub.com`, where you interact with your repository programmatically, either to query data in your repo, or to mutate data in your repo
+    
+3.  The SDK, which you install and run within your website: `pnpm i basehub`
+    
+
+As you use BaseHub, you—or your team as a whole—will interact with all of these parts, and that’s why having a good understanding of the whole is important.
+
+![](https://assets.basehub.com/7b31fb4b/wj_i1gS0peoNRJ_wze9ig/cleanshot-2024-05-24-at-16.56.032x.png?width=3840&quality=90&format=auto)
+
+## Creating a Block
+
+Every piece of content you create in BaseHub is a Block. Similar to Lego, Blocks can have different types and functions. You can nest Blocks, reference Blocks, and more.
+
+In the Editor, you’ll create Blocks by typing `/` and choosing one Block type from the Block selector.
+
+Read more about Blocks in our Blocks Reference:
+
+[Blocks Reference(Deep dive into all of the different Blocks that are available in BaseHub.)](https://docs.basehub.com/blocks-reference)
+
+## Committing
+
+A Commit stores a snapshot of your Repo at that specific point in time. Inspired by Git, each commit is immutable, and it’s a core of how version control works in BaseHub.
+
+Once you’re happy with your changes, you can create a Commit. The API will now use the latest commit (the Head Commit) to resolve your queries.
+
+## Exploring the GraphQL API
+
+A great way to explore the GraphQL API is to use the Explorer. You can find it in the Developers Tab:
+
+![](https://assets.basehub.com/7b31fb4b/5abd4deb5171f8df9b4bb848dcc4c20b/cleanshot-2025-01-20-at-19.23.462x.png?width=3840&quality=90&format=auto)
+
+# Start Here
+
+> Learn how to integrate your Next.js App with BaseHub in a couple of steps.
+
+## Set Up `basehub`
+
+Our official JavaScript/TypeScript library exposes a CLI generator that, when run, will generate a type-safe GraphQL client. Check out [our API Reference](https://docs.basehub.com/api-reference/javascript-sdk) for more information.
+
+### Install
+
+Install with your preferred package manager.
+
+npm
+
+```
+npm i basehub
+```
+
+### Add the `BASEHUB_TOKEN` Environment Variable
+
+Get it from your BaseHub Repo’s “Connect to Your App” tab.
+
+.env.local
+
+```
+BASEHUB_TOKEN="<your-token>"
+
+# Remember to also add this ^ env var in your deployment platform
+```
+
+### Configure Node Scripts
+
+In order to generate the BaseHub SDK, we recommend running `basehub dev` in parallel to running the development server, and `basehub` right before building the app.
+
+package.json
+
+```
+"scripts": {
+  "dev": "basehub dev & next dev",
+  "build": "basehub && next build",
+  "start": "next start",
+  "lint": "next lint"
+},
+```
+
+info:
+
+Using Windows? You might need to use something like `concurrently` instead of using the `&` to run a parallel node process. So:
+
+`concurrently \”basehub dev\” \”next dev\”`
+
+### Start the Dev Server
+
+Give it a go to make sure the set up went correctly.
+
+npm
+
+```
+npm run dev
+```
+
+Now, let’s go ahead and query some content!
+
+## Your First Query
+
+The recommended way to query content from BaseHub is with `<Pump />`, a React Server Component that enables a Fast Refresh-like experience.
+
+app/page.tsx
+
+```
+import { Pump } from "basehub/react-pump"
+import { draftMode } from "next/headers"
+
+const Page = () => {
+  return (
+    <Pump
+      queries={[{ _sys: { id: true } }]}
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 30 }}
+    >
+      {async ([data]) => {
+        "use server"
+
+        return (
+          <pre>
+            <code>{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+Notice we’re using Next.js’ `draftMode` and passing it down to Pump. You’ll learn more in the next section, but put briefly: when `draft === true`, Pump will subscribe to changes in real time from your Repo, and so keep your UI up-to-date. This is ideal for previewing content before pushing it to production. When `draft === false`, Pump will hit the Query API directly.
+
+# Querying Basics
+
+> Learn how to build GraphQL queries with the generated client.
+
+When you run `basehub`, you’ll be generating a GraphQL Client. What’s unique about this GraphQL client is that you’ll be defining the queries within your `.{js,ts}` files, instead of within `.graphql` ones. Most importantly, the output of your queries will be fully type safe.
+
+Getting runtime type safety is a huge DX boost.
+
+info:
+
+Under the hood, we use [https://genql.dev/](https://genql.dev/), so make sure you check out that project out. If you want to see how a GraphQL query converts to a GenQL query, you can [check out their converter tool](https://genql.dev/converter).
+
+## `basehub()`
+
+This function let’s you fire off a single, direct query. Because of this, it’s perfect for **querying content that you don’t need to render**, like when defining `generateStaticParams` within a [dynamic Next.js page](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes).
+
+```
+import { basehub } from "basehub"
+
+export const generateStaticParams = async () => {
+  const { posts } = await basehub({ cache: "no-store" }).query({
+    posts: { items: { _slug: true } },
+  })
+
+  return posts.items.map((p) => {
+    return { slug: p._slug }
+  })
+}
+```
+
+## `<Pump />`
+
+Pump can subscribe to realtime changes from your dashboard, and re-compute the JSX so that you can have a Fast Refresh-like experience. Because of this, Pump is ideal for querying content that you’ll want to render—for example, titles, images, rich texts, etc.
+
+```
+import { Pump } from "basehub/react-pump"
+import { draftMode } from "next/headers"
+
+const Page = async () => {
+  return (
+    <Pump
+      queries={[{ _sys: { id: true } }]}
+      draft={(await draftMode()).isEnabled}
+      next={{ revalidate: 30 }}
+    >
+      {async ([data]) => {
+        "use server"
+
+        return (
+          <pre>
+            <code>{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+note:
+
+Under the hood, Pump uses basehub() as its client. You can think of Pump is an abstraction over the more primitive basehub(), that helps you get that realtime editing experience.
+
+With these two ways of querying in mind, let’s explore how to build our queries.
+
+## Anatomy of a Query
+
+Queries are JavaScript objects, where each key represents a key in the GraphQL schema, and the value is a boolean which decides weather you want to retrieve that key or not. Let’s take this query as an example:
+
+```
+import { basehub } from "basehub"
+
+basehub().query({
+  _sys: {
+    id: true,
+  },
+  homepage: {
+    title: true,
+  },
+  posts: {
+    items: {
+      _id: true,
+      _slug: true,
+      _title: true,
+      publishedAt: true,
+    },
+  },
+})
+```
+
+This query above will return the following result:
+
+GraphQL Output
+
+```
+query {
+  _sys {
+    id
+  }
+  homepage {
+    title
+  }
+  posts {
+    items {
+      _id
+      _slug
+      _title
+      publishedAt
+    }
+  }
+}
+```
+
+As you can see, GraphQL and TypeScript are not _that different_, and this is what our client is taking advantage of.
+
+### Passing arguments
+
+You can pass down arguments with `__args`:
+
+```
+import { basehub } from "basehub"
+
+basehub().query({
+  posts: {
+    __args: { 
+      filter: { 
+        _sys_slug: { eq: "my-post-slug" },
+      },
+    },
+    items: {
+      _id: true,
+      _slug: true,
+      _title: true,
+      publishedAt: true,
+    },
+  },
+})
+```
+
+### Fragmenting
+
+Fragments are very useful to define data dependencies inside your application. To define a fragment with our SDK, you’ll use `fragmentOn`:
+
+```
+import { basehub, fragmentOn } from "basehub"
+
+export const PostFragment = fragmentOn("PostItem", {
+  _id: true,
+  _slug: true,
+  _title: true,
+  publishedAt: true,
+})
+
+// you can use it as a type as well
+export type PostFragment = fragmentOn.infer<typeof PostFragment>
+
+basehub().query({
+  posts: {
+    __args: {
+      filter: {
+        _sys_slug: { eq: "my-post-slug" },
+      },
+    },
+    items: {
+      _id: true,
+      _slug: true,
+      _title: true,
+      publishedAt: true,
+      ...PostFragment
+    },
+  },
+})
+```
+
+#### Co-Locating Components with Their Data Dependency
+
+A common pattern we enjoy using revolves around components defining thier own data dependencies. This works great with fragments, as we can easily define a fragment alongside a component and have it all be type safe.
+
+```
+// Let's imagine a Callout component:
+
+import { fragmentOn } from "basehub"
+import { RichText } from "basehub/react-rich-text"
+
+export const CalloutFragment = fragmentOn("CalloutComponent", {
+  _id: true,
+  emoji: true,
+  body: { json: { content: true } },
+})
+
+export const Callout = ({
+  data,
+}: {
+  data: fragmentOn.infer<typeof CalloutFragment>
+}) => {
+  return (
+    <div>
+      <span>{data.emoji}</span>
+      <RichText>{data.body.json.content}</RichText>
+    </div>
+  )
+}
+```
+
+Then you could use this `CalloutFragment` paired with `<Callout />` , all type safe and with the data dependency co-located. If you update your Callout component and require more data from BaseHub, you can update the fragment and you’ll instantly get the data coming via props.
+
+### Not Supported: Aliases
+
+Aliases are a very useful GraphQL feature, which unfortunately is not currently supported. If you need this feature, contact us to help us prioritize.
+
+# Rendering Rich Text
+
+> Fragments let you construct sets of fields, and then include them in queries where you need to.
+
+The GraphQL API can return your Rich Text Blocks’ data in multiple formats:
+
+1.  **Plain Text**, will ignore all formatting, media, and custom components, easy to render.
+    
+2.  **HTML**, will ignore custom components, easy to render.
+    
+3.  **Markdown**, will ignore custom components, needs a markdown to HTML parser to render.
+    
+4.  **JSON**, comes with everything, but needs something that understand and processes it.
+    
+
+In the case of the JSON format, the response will be an AST based on the [TipTap editor spec](https://tiptap.dev/docs/editor/guide/output#option-1-json). Because of the complexities associated with processing this JSON format, we’ve built a React Component called `<RichText />` that will help us render our Rich Text content. This is how it works:
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+
+const Page = async () => {
+  return (
+    <Pump
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 60 }}
+      queries={[
+        {
+          homepage: {
+            subtitle: { 
+              json: { 
+                content: true,
+              },
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return <RichText>{homepage.subtitle.json.content}</RichText>
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+## Component Overrides
+
+When using the `<RichText />` component, you can simply pass the JSON content into it via `children`, and it’ll get rendered. If you want to use a custom handler for a certain HTML node (imagine using Next.js’ `<Image />` to render images), you’d use the `components` prop.
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import Image from "next/image"
+
+const Page = async () => {
+  return (
+    <Pump
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 60 }}
+      queries={[
+        {
+          homepage: {
+            subtitle: {
+              json: {
+                content: true,
+              },
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return (
+          <RichText
+            components={{ 
+              img: (props) => <Image {...props} />,
+            }} 
+          >
+            {homepage.subtitle.json.content}
+          </RichText>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+note:
+
+`<RichText />` will return the HTML for each node of content, without any `<div>` wrapping everything nor any styles. We recommend using something like [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin#installation) for quick prose styling, or of course, writing your own CSS.
+
+## Custom Components
+
+If you are using [Custom Blocks in your Rich Text](https://basehub.com/changelog/instantiate-components-inside-rich-text-blocks), you’ll need to add them to your query, and pass them via the `blocks` prop. Then, you’ll be able to set up the custom renderers for them (in a type-safe manner, by the way):
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import Image from "next/image"
+import { Callout, CodeSnippet } from './path-to/components'
+
+const Page = async () => {
+  return (
+    <Pump
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 60 }}
+      queries={[
+        {
+          homepage: {
+            subtitle: {
+              json: {
+                content: true,
+                blocks: { 
+                  __typename: true,
+                  on_CalloutComponent: { 
+                    _id: true,
+                    intent: true,
+                    text: true,
+                  },
+                  on_CodeSnippetComponent: { 
+                    _id: true,
+                    code: { 
+                      code: true,
+                      language: true,
+                    },
+                    fileName: true,
+                  },
+                } 
+              }
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return (
+          <RichText
+            blocks={homepage.subtitle.json.blocks} 
+            components={{
+              img: (props) => <Image {...props} />,
+              CalloutComponent: (props) => <Callout data={props}>,
+              CodeSnippetComponent: (props) => <CodeSnippet data={props}>,
+            }}
+          >
+            {homepage.subtitle.json.content}
+          </RichText>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+We hope this removes a bit of friction from the sill tough task of rendering Rich Text data.
+
+## Internal Links
+
+Similar to external hyperlinks, internal links in your rich text let you reference other blocks in an easy and type-safe manner.
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import Image from "next/image"
+
+const Page = async () => {
+  return (
+    <Pump
+      queries={[
+        {
+          homepage: {
+            subtitle: {
+              json: {
+                content: true,
+                blocks: { 
+                  __typename: true,
+                  on_PostComponent: { 
+                    _slug: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return (
+          <RichText
+            blocks={homepage.subtitle.json.blocks} 
+            components={{
+              img: (props) => <Image {...props} />,
+              a: ({ internal, ...props }) => { 
+                if (internal) { 
+                  switch (internal.__typename) { 
+                    case "PostComponent": 
+                      return ( 
+                        <a {...props} href={`/blog/${internal._slug}`} /> 
+                      )  
+                    default: 
+                      return null
+                  } 
+                } else return <a {...props} /> 
+              },
+            }}
+          >
+            {homepage.subtitle.json.content}
+          </RichText>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+# Environments & Caching
+
+> Understand the different environments and caching strategies you can leverage to improve your content editing experience.
+
+## Environments
+
+Setting up your application so that it handles all of the environments in a seamless fashion is a very important part of integrating with BaseHub.
+
+### Local Environment
+
+When developing in localhost, you’ll be writing new code and iterating over your content. This means adding new blocks, changing those blocks’ constraints, writing content and more—all at the same time.
+
+In order to _not break your flow_, you’ll want two things:
+
+1.  For the schema in BaseHub to be in sync with your IDE, and
+    
+2.  For the content to update as you write, without needing to commit it yet.
+    
+
+We bundled these two needs into one command:
+
+```
+basehub dev
+```
+
+This command generates the type-safe SDK and keeps it in sync with changes you make in basehub.com (this is called `--watch` mode); and also sets up the SDK so that it queries Draft content from your repository.
+
+This is why we recommend you run it _in parallel_ to `next dev`.
+
+```
+"scripts": {
+  "dev": "basehub dev & next dev",
+  "build": "basehub && next build",
+  "start": "next start",
+  "lint": "next lint"
+},
+```
+
+_Notice the single_ `&`_._
+
+### Preview Environment
+
+Setting up an easy way for editors to preview content before committing it into production is essential. We’ve designed our preview workflow with these three pillars in mind:
+
+1.  Content should render in real time, as you write.
+    
+2.  Preview should be easy for developers to integrate.
+    
+3.  The integration should never degrade production performance _in any way_.
+    
+
+We achieve this is by using a couple of BaseHub components, `<Pump />` and `<Toolbar />`, in combination to Next.js’ `draftMode`. Additionally, to bridge the gap between basehub.com (the dashboard) and your website, you’ll need to set up the “Preview” Button.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Description
+
+Author
+
+`<Pump />`
+
+Queries the API. Receives a `draft` prop that controls weather it’ll hit draft content and subscribe to real time changes, or just hit production.
+
+BaseHub
+
+`draftMode`
+
+Allows you to detect Draft Mode inside a Server Component.
+
+Next.js
+
+`<Toolbar />`
+
+Helper to turn on/off Draft Mode within your site, with zero-config.
+
+BaseHub
+
+Preview Button
+
+Links from a BaseHub block into where that block is being rendered in your website.
+
+BaseHub
+
+This is how a simple code example can look like:
+
+app/layout.tsx
+
+```
+import { Toolbar } from 'basehub/next-toolbar'
+
+export default function RootLayout({
+  children,
+}: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {/* Layout UI */}
+        <main>{children}</main>
+        <Toolbar />
+      </body>
+    </html>
+  )
+}
+```
+
+Finally, we need to set up our Preview Buttons.
+
+See how to set up Preview Buttons, and the whole preview environment really.
+
+### Production Environment
+
+Once we’ve set up Local and Preview environments, most of the hard work is done. The only thing you need to make sure when going to production is for the SDK to be generated before the build step of your application.
+
+```
+"scripts": {
+  "dev": "basehub dev & next dev",
+  "build": "basehub && next build",
+  "start": "next start",
+  "lint": "next lint"
+},
+```
+
+That should be it. You’re ready to deploy your website.
+
+warning:
+
+Using [Turborepo](https://turbo.build/repo) or a similar monorepo manager? You need to add `.basehub` to `turbo.json`'s build outputs, so it can keep track of schema changes.
+
+```
+"tasks": {
+    "build": {
+      "outputs": [".basehub/**"]  
+    },
+  }
+```
+
+## Caching
+
+By default, [Next.js will try to cache all of our requests made with](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#opting-out-of-data-caching) `fetch`—and that includes BaseHub. While this makes subsequent requests to BaseHub much faster, it’ll essentially make your website’s content fully static, instead of reflecting the latest content changes from your BaseHub Repo.
+
+This introduces a new task for the developer, which is to purge that cache when content from BaseHub changes. These are some of the options you have:
+
+### On-Demand Revalidation (Recommended)
+
+The absolute best method of revalidation is “on-demand”. As its name implies, it consists of purging the cached data at the exact moment a change occurs. This provides the best experience for editors, as they won’t need to refresh the website for several seconds to see their content live; and also keeps server costs down, as the server itself won’t need to constantly check with our API to see if something has changed.
+
+BaseHub provides automatic on-demand revalidation in a fine-grained manner.
+
+*   Automatic: without the need of constant developer setup.
+    
+*   Fine-grained: with every query being revalidated individually—in contrast to an “all or nothing” approach.
+    
+
+This is how:
+
+### Mount the <Toolbar /> in `layout.tsx`
+
+This will add a Server Action to revalidate the specific tags `basehub()` will set to each query.
+
+```
+// app/layout.tsx
+import { Toolbar } from "basehub/next-toolbar"
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        {/* Layout UI */}
+        <main>{children}</main>
+        <Toolbar />
+      </body>
+    </html>
+  )
+}
+```
+
+### Fill in the Website URL input in BaseHub
+
+This will help our servers know where to go to to revalidate the queries.
+
+![](https://assets.basehub.com/7b31fb4b/4dc74fb9bbf1a5d52c36b5649b537665/cleanshot-2024-10-12-at-11.04.212x.png?width=3840&quality=90&format=auto)
+
+In the Readme, top right
+
+### Just use it
+
+That should be all! Make sure you don’t pass other cache-related props (such as `revalidate` or `cache`), as that will opt the query out of automatic on-demand revalidation.
+
+As you may notice, we’re also not passing `draftMode().isEnabled` via props, as this is no longer required as of `basehub@7.5.10`—we now automatically infer draft mode for you.
+
+```
+import { Pump } from "basehub/react-pump"
+import { basehub } from "basehub"
+
+const Page = async () => {
+  // works with basehub and with Pump
+  const data = await basehub().query({ __typename: true })
+
+  return (
+    <Pump queries={[{ __typename: true }]}>
+      {async ([data]) => {
+        "use server"
+
+        return <pre>{JSON.stringify(data, null, 2)}</pre>
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+info:
+
+Wondering **how does this all work?** When `basehub().query` is ran, we hash the query being sent and use it as a cache tag. We send this cache tag to our servers (alongside the query itself).
+
+The server now runs the query and computes the response. It will then hash the response, and store the cache tag, the original query, and the response hash in our database.
+
+On commit, we’ll get all of the queries we’ve been collecting and run them again against the newly committed tree of blocks. Now, one by one, we run them, compute the response hash, and compare it against the one we previously returned to the user. If response hashes don’t match, we need to revalidate the query.
+
+To revalidate the query, we spin up a headless browser that navigates to your Website URL and executes the Server Action our `<Toolbar />` created.
+
+Read the [full writeup in our blog](https://basehub.com/blog/automatic-on-demand-revalidation-for-nextjs-how-it-works) to learn more.
+
+### Time-Based Revalidation
+
+Another conventional way to revalidate content is to use Next.js’ [time-based](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#time-based-revalidation) `revalidate` [caching option](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#time-based-revalidation).
+
+```
+import { Pump } from "basehub/react-pump"
+
+const Page = async () => {
+  return (
+    <Pump
+      next={{ revalidate: 30 }} 
+      queries={[{ __typename: true }]}
+    >
+      {async ([data]) => {
+        "use server"
+        // `data` will be stale after 30 seconds
+
+        return <pre>{JSON.stringify(data, null, 2)}</pre>
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+While this is very easy to set up, automatic on-demand revalidation is always better, as editors won’t need to refresh the website for several seconds to see their content live; will keep server costs down, as the server itself won’t need to constantly check with our API to see if something has changed; and will simply remove one task from developers’ hands.
+
+# Search
+
+> Learn how to add instant-search into your website.
+
+BaseHub Search will help you create instant-search experiences _ala_ Algolia inside your website. There are two steps into building an awesome search experience:
+
+1.  Indexing the content
+    
+2.  Building the frontend
+    
+
+BaseHub helps you with both of these tasks.
+
+## Indexing the Content
+
+BaseHub Search supports indexing blocks that are below [Components](https://docs.basehub.com/blocks/layout/component). By default, blocks won’t be indexed. To index a block, you’ll go to over to its Properties Panel and click on the “Index block“ toggle.
+
+warning:
+
+The “Index block” state is set in a Component, and will be inherited by the Instances. Make sure you go to a Component to toggle this state.
+
+### Indexing Happens On Commit
+
+In order for results to appear on your frontend, you’ll need to commit your changes. Toggling the “Index block” state is a “committable change.” Then, as you edit and add new content content, and commit, BaseHub Search will re-index and then your frontend will show the updated results.
+
+## Building the Frontend
+
+There are a couple of ways in which BaseHub helps you build your search frontend. First, you’ll needit exposes a `useSearch` hook to make the queries and manage state. Second, it exposes a `<SearchBox>` component that provides good UX defaults for you to render your search input, your results, and your highlights.
+
+In order for all of this to work, you’ll first need to get a `_searchKey` from the GraphQL API, which is scoped to a specific Collection or Component.
+
+![](https://assets.basehub.com/7b31fb4b/akjRW8Uqoh1mCPovvPzyX/cleanshot-2024-05-22-at-16.13.442x.png?width=3840&quality=90&format=auto)
+
+Simplified graph of how the flow works.
+
+Let’s imagine you have a Posts Collection and you want to build a frontend so search through it.
+
+### Get a `_searchKey`
+
+This is how you’ll get your `_searcKey`:
+
+```
+import { Pump } from "basehub/react-pump"
+import { draftMode } from "next/headers"
+
+const Page = async () => {
+  return (
+    <Pump
+      next={{ revalidate: 30 }}
+      draft={draftMode().isEnabled}
+      queries={[
+        {
+          posts: {
+            _searchKey: true,
+            items: {
+              _id: true,
+              _title: true,
+              // more post stuff...
+            },
+          },
+        },
+      ]}
+    >
+      {async ([data]) => {
+        "use server"
+        return (
+          <>
+            <Search _searchKey={data.posts._searchKey} />
+            ...
+          </>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+### Build your `<Search>` component
+
+You’re now ready to `useSearch` and `<SearchBox>` to build your UI.
+
+```
+'use client'
+import { useSearch, SearchBox } from "basehub/react-search"
+
+export const Search = ({
+  _searchKey,
+}: {
+  _searchKey: string
+}) => {
+  const search = useSearch({
+    _searchKey,
+    queryBy: ["_title", "body", "excerpt"],
+  })
+
+  return (
+    <SearchBox.Root search={search}>
+      <SearchBox.Input />
+
+      <SearchBox.Placeholder>
+        Start typing to search.
+      </SearchBox.Placeholder>
+
+      <SearchBox.Empty>
+        Nothing found for <b>{search.query}</b>
+      </SearchBox.Empty>
+
+      <SearchBox.HitList>
+        {search.result?.hits.map((hit) => {
+          return (
+            <SearchBox.HitItem
+              key={hit._key}
+              hit={hit}
+              href={`/blog/${hit.document._slug}`}
+            >
+              <SearchBox.HitSnippet fieldPath="_title" />
+              <SearchBox.HitSnippet
+                fieldPath="body"
+                fallbackFieldPaths={["excerpt"]}
+              />
+            </SearchBox.HitItem>
+          )
+        })}
+      </SearchBox.HitList>
+    </SearchBox.Root>
+  )
+}
+```
+
+## Examples
+
+1.  Simple, non real-world example
+    
+    *   GitHub Repo: [https://github.com/basehub-ai/nextjs-simple-search-example](https://github.com/basehub-ai/nextjs-simple-search-example/blob/main/app/page.tsx)
+        
+    *   BaseHub Repo: [https://basehub.com/basehub/simple-search-example](https://basehub.com/basehub/simple-search-example)
+        
+2.  Advanced example (the search that powers these docs)
+    
+    *   GitHub Repo: [https://github.com/basehub-ai/nextjs-docs](https://github.com/basehub-ai/nextjs-docs/blob/main/app/_components/header/search/index.tsx)
+        
+    *   BaseHub Repo: [https://basehub.com/basehub/docs](https://basehub.com/basehub/docs)
+        
+
+Watch JB integrate a search experience from scratch
+
+# Analytics
+
+> Learn how to send analytics events from your website.
+
+BaseHub’s [Event Block](https://docs.basehub.com/blocks/primitives/event) provides a powerful way to know more about how your content is performing. The unique thing about it is that Events that occur throughout your website can be tied directly to a Block—therefore keeping it in context.
+
+info:
+
+While this article focuses on analytics, the Event block is versatile and offers much more functionality, including two different layouts and multiple use cases. For a more complex use case, check out [Forms](https://docs.basehub.com/extras/forms).
+
+The Event Block time-series can be used for tracking things like:
+
+*   Page views (internal and user facing)
+    
+*   Button/Link Clicks
+    
+*   Feedback forms
+    
+
+Or anything you want, really.
+
+## Set up an Event Block and start receiving events
+
+First of all, you’ll need to add a new Event Block to your repo.
+
+1.  Create a new event block
+    
+2.  Switch to Time-series layout
+    
+3.  Commit your changes (not necessary if you’re working on draft mode)
+    
+4.  Get your event’s `ingestKey`
+    
+
+note:
+
+### `ingestKey` vs `adminKey`
+
+Keep in mind that the Event block exposes two different keys for different type of actions.
+
+Since sending data is the most common, and at the same time the most safe, action in events, it has a distinctive `ingestKey` that can be safely used client side.
+
+On the other side, update and read access is reserved for the `adminKey` and could be the case that the data stored being sensitive enough to protect that key and only use it server-side.
+
+## Send an Event
+
+In order to send an event, you’ll need to first get the `ingestKey` of an Event Block from the GraphQL API. Let's look at an example that tracks page views on the homepage. Once we get the page data and its `ingestKey`, we’ll `import { sendEvent } from "basehub/events"` and run it on mount:
+
+Get page data
+
+```
+import { Pump } from "basehub/react-pump"
+import { draftMode } from "next/headers"
+
+const Homepage = () => {
+  return (
+    <Pump
+      next={{ revalidate: 30 }}
+      draft={draftMode().isEnabled}
+      queries={[
+        {
+          homepage: {
+            _title: true,
+            pageViews: {
+              ingestKey: true,
+            }
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+
+        return (
+          <div>
+            <PageView ingestKey={homepage.pageViews.ingestKey} />
+            <h1>{homepage._title}</h1>
+          </div>
+        )
+      }}
+    </Pump>
+  )
+}
+```
+
+## Get an Event count
+
+In case you want to show the Event Count in your website—for example, to render a “view count”—, well, you can! Following up from the `<PageView />` component we built previously, we can update it so that it runs `getEvents` and renders it:
+
+```
+"use client"
+import * as React from "react"
+import type { PageViews as PageViewsType } from "~/.basehub/schema"
+import { sendEvent, getEvents } from "basehub/events"
+
+export const PageView = ({
+  ingestKey,
+  adminKey,
+}: {
+  ingestKey: PageViewsType["ingestKey"],
+  adminKey: PageViewsType["adminKey"]
+}) => {
+  const [count, setCount] = React.useState() 
+
+  // On mount, send the event
+  React.useEffect(() => {
+    sendEvent({ ingestKey, name: "page_view" })
+  }, [])
+
+  // We also get the event count so we can render it
+  React.useEffect(() => { 
+    getEvents(key, { 
+      type: 'time-series',
+      range: 'all-time'
+    }).then( 
+      (response) => { 
+        if (response.success) { 
+          setCount(response.data) 
+        } 
+      },
+    ) 
+  }, []) 
+
+  return <div>Views: {count ?? "Loading..."}</div> 
+}
+```
+
+# Forms
+
+> The powerful Event block lets you build a form schema from the dashboard, and consume it in code to build complex forms.
+
+This article goes over how to build and manage Forms via BaseHub. Take a look at our video guides:
+
+*   [Feedback Form](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-feedback-form)
+    
+*   [Newsletter](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-newsletter)
+    
+*   [Form Builder](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-form-builder)
+    
+
+## Create an event block and customize your fields
+
+First things first, you’ll need an Event block to start building your form and to have a space where to display users’ submissions. You can create a new block using the slash command in the dashboard.
+
+## Handle the incoming schema in code
+
+BaseHub SDK lets you fetch the event block schema and handle each field as you want. Completely headless experience.
+
+Easily set up a dynamic form builder using <Pump />
+
+## Start receiving events
+
+Last but not least, you should set up a form action to link users’ submissions to your Event block in BaseHub’s dashboard.
+
+page.tsx
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import { parseFormData, sendEvent } from "basehub/events"
+
+export default function Home() {
+  return (
+    <Pump
+      queries={[
+        {
+          homepage: {
+            title: true,
+            subtitle: {
+              json: {
+                content: true,
+              },
+            },
+            submissions: { 
+              ingestKey: true,
+              schema: true,
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+
+        const ingestKey = homepage.submissions.ingestKey 
+
+        return (
+          <div className="...">
+            <main className="flex flex-col gap-8 row-start-2 items-center">
+              <h1 className="text-3xl sm:text-4xl text-center sm:text-left">
+                {homepage.title}
+              </h1>
+              <div className="text-center sm:text-left">
+                <RichText
+                  content={homepage.subtitle.json.content}
+                />
+              </div>
+              <form
+                className="w-1/2 sm:w-full border rounded-lg p-4 space-y-3"
+                action={async (formData) => { 
+                  "use server"
+                  const parsedSubmission = parseFormData(
+                    ingestKey,
+                    homepage.submissions.schema,
+                    formData,
+                  )
+
+                  if (!parsedSubmission.success) {
+                    // The `parseFormData` return type lets you
+                    // handle parsing errors. Since this is a simple
+                    // example, we're just throwing an error.
+                    throw new Error(
+                      JSON.stringify(parsedSubmission.errors),
+                    )
+                  }
+
+                  sendEvent(ingestKey, parsedSubmission.data)
+                }}
+              >
+                {homepage.submissions.schema.map((field) => (
+                  <label
+                    key={field.id}
+                    className="flex gap-x-2"
+                  >
+                    <span>{field.label}</span>
+                    <input
+                      {...field}
+                      className="border rounded-sm"
+                    />
+                  </label>
+                ))}
+                <button type="submit">Submit</button>
+              </form>
+            </main>
+          </div>
+        )
+      }}
+    </Pump>
+  )
+}
+```
+
+Once this is set up, events will be loaded in real-time in your dashboard.
+
+Safely parse user inputs, send typed form data, and read submissions in real-time
+
+## Extend your forms
+
+Once you have the initial setup, building more complete forms has the same or even less complexity. Here’s how:
+
+Fully customizable forms, in a way you've never seen before.
+
+# Webhooks
+
+> Learn how to use Webhooks to subscribe to changes that happen within BaseHub.
+
+[Workflows](https://docs.basehub.com/blocks/primitives/workflow) allow you to receive event notifications from BaseHub. BaseHub will send a POST request to a URL you specify when certain events happen in a BaseHub Repository.
+
+## Available events
+
+*   A commit happens. – This is a useful notification that can help you set up [on-demand revalidation for your Next.js Apps](https://docs.basehub.com/documentation/nextjs-integration/environments-and-caching#on-demand-revalidation), amongst other things.
+    
+*   Collection Events: Row created, updated or deleted.
+    
+*   New events in Event Block.
+    
+
+## Workflow block
+
+To configure webhooks, you’ll need to create a new Workflow block in your repo. There you can setup the URL that will be requested on new commits. Make sure to commit the block to make it effective.
+
+# Localization
+
+> Learn how to add localization, or i18n, by using the Variants Block.
+
+Localization in BaseHub is enabled by the Variant Block.
+
+### Create the Variants Block
+
+Somewhere in the Editor, press “/variants” and add the block. Name it “Language“. Make sure you create this block below a Document block.
+
+### Add some langauges inside
+
+Add some variants for the languages you’ll support.
+
+![](https://assets.basehub.com/7b31fb4b/a3fad3704809acb484a47b3307083922/cleanshot-2024-11-25-at-21.32.282x.png?width=3840&quality=90&format=auto)
+
+Something like this
+
+### Enable the set on a Document or a Collection
+
+Take a look at this short video to see how we do it.
+
+### Query by variants on GraphQL
+
+After committing your changes, you will be able to apply variants arguments on the blocks that you enabled it, check it out:
+
+```
+{
+  # from this point on, the schema will inherit the variant selected
+  posts(variants: { language: es }) {
+    items {
+      _title
+      excerpt
+      coverImage {
+        url
+      }
+      body {
+        json {
+          content
+        }
+      }
+    }
+  }
+}
+```
+
+info:
+
+Note that variant sets can only live inside Documents. Because of their unique nature, they cannot be replicated by Components and instances behaviors.
+
+## Full Example
+
+*   GitHub: [https://github.com/basehub-ai/localized-blog](https://github.com/basehub-ai/localized-blog)
+    
+*   BaseHub: [https://basehub.com/basehub/localized-blog](https://basehub.com/basehub/localized-blog/explore)
+    
+*   Demo: [https://localized-blog-basehub.vercel.app/en](https://localized-blog-basehub.vercel.app/en)
+    
+
+# Astro
+
+> Get started with Astro and BaseHub.
+
+[Astro](https://astro.build/) is a framework for performant, content-driven websites. With it, you can use almost any UI library you want to (React, Vue, Svelte, etc).
+
+note:
+
+The main difference that the setup Astro has vs Next.js is in the way it exposes environment variables.
+
+While in Next.js, `process.env.BASEHUB_TOKEN` is available for our SDK to use, in Vite-powered frameworks (like Astro), you’ll need to explicitly pass the token via params as you’ll see below.
+
+## Set Up `basehub`
+
+Our official JavaScript/TypeScript library exposes a CLI generator that, when run, will generate a type-safe GraphQL client. Check out [our API Reference](https://docs.basehub.com/api-reference/javascript-sdk) for more information.
+
+### Install
+
+Install with your preferred package manager.
+
+npm
+
+```
+npm i basehub
+```
+
+### Add the `BASEHUB_TOKEN` Environment Variable
+
+Get it from your BaseHub Repo’s “Connect to Your App” tab.
+
+.env
+
+```
+BASEHUB_TOKEN="<your-token>"
+
+# Remember to also add this ^ env var in your deployment platform
+```
+
+### Configure Node Scripts
+
+In order to generate the BaseHub SDK, we recommend running `basehub dev` in parallel to running the development server, and `basehub` right before building the app.
+
+package.json
+
+```
+"scripts": {
+  "dev": "basehub dev & astro dev",
+  "start": "basehub dev & astro dev",
+  "build": "basehub && astro check && astro build",
+  "preview": "astro preview",
+  "astro": "astro"
+},
+```
+
+### Start the Dev Server
+
+Give it a go to make sure the set up went correctly.
+
+npm
+
+```
+npm run dev
+```
+
+## Your First Query
+
+Now, let’s go ahead and query some content!
+
+src/pages/index.astro
+
+```
+---
+import { basehub } from 'basehub'
+
+const data = await basehub({
+	token: import.meta.env.BASEHUB_TOKEN
+}).query({
+	__typename: true,
+	_sys: {
+        id: true
+	}
+})
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<pre><code>{JSON.stringify(data, null, 2)}</code></pre>
+	</body>
+</html>
+```
+
+## Support Table
+
+While you can query BaseHub content from Astro, there are some DX features that are not supported.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Feature
+
+Supported
+
+`basehub()`
+
+✅
+
+`<Pump />`
+
+❌
+
+`<RichText />`
+
+✅ (with React)
+
+Analytics
+
+✅
+
+Search
+
+✅ (with React)
+
+# SvelteKit
+
+> Get started with SvelteKit and BaseHub.
+
+[SvelteKit](https://kit.svelte.dev/docs/introduction) is a framework for rapidly developing robust, performant web applications using [Svelte](https://svelte.dev/).
+
+note:
+
+The main difference that the setup SvelteKit has vs Next.js is in the way it exposes environment variables.
+
+While in Next.js, `process.env.BASEHUB_TOKEN` is available for our SDK to use, in Vite-powered frameworks (like SvelteKit), you’ll need to explicitly pass the token via params as you’ll see below.
+
+## Set Up `basehub`
+
+Our official JavaScript/TypeScript library exposes a CLI generator that, when run, will generate a type-safe GraphQL client. Check out [our API Reference](https://docs.basehub.com/api-reference/javascript-sdk) for more information.
+
+### Install
+
+Install with your preferred package manager.
+
+npm
+
+```
+npm i basehub
+```
+
+### Add the `BASEHUB_TOKEN` Environment Variable
+
+Get it from your BaseHub Repo’s “Connect to Your App” tab.
+
+.env
+
+```
+BASEHUB_TOKEN="<your-token>"
+
+# Remember to also add this ^ env var in your deployment platform
+```
+
+### Configure Node Scripts
+
+In order to generate the BaseHub SDK, we recommend running `basehub dev` in parallel to running the development server, and `basehub` right before building the app.
+
+package.json
+
+```
+"scripts": {
+  "dev": "basehub dev & vite dev",
+  "build": "basehub && vite build",
+  "preview": "vite preview",
+  ... rest scripts
+},
+```
+
+### Start the Dev Server
+
+Give it a go to make sure the set up went correctly.
+
+npm
+
+```
+npm run dev
+```
+
+## Your First Query
+
+Now, let’s go ahead and query some content!
+
++page.server.ts
+
+```
+import type { PageServerLoad } from "./$types"
+import { basehub } from "basehub"
+import { BASEHUB_TOKEN } from "$env/static/private"
+
+export const load: PageServerLoad = async () => {
+  const now = Date.now()
+  const data = await basehub({ token: BASEHUB_TOKEN }).query({
+    __typename: true,
+    _sys: {
+      id: true,
+    },
+  })
+  return data
+}
+```
+
+## Support Table
+
+While you can query BaseHub content from SvelteKit, there are some DX features that are not supported.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Feature
+
+Supported
+
+`basehub()`
+
+✅
+
+`<Pump />`
+
+❌
+
+`<RichText />`
+
+❌
+
+Analytics
+
+✅
+
+Search
+
+✅ (just the client, not the UI helpers)
+
+# CLI
+
+> Generates a type-safe client based on your Repo's schema.
+
+## Generate
+
+```
+basehub generate
+```
+
+This command will get your BaseHub Token from your environment using [dotenv-mono](https://www.npmjs.com/package/dotenv-mono), use that to query the BaseHub API, and generate a type-safe SDK out of its schema.
+
+### Arguments
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Description
+
+Default
+
+Required
+
+`--watch`
+
+Watch mode will listen to schema changes and re-generate the SDK automatically.
+
+`false`
+
+No
+
+`--output`
+
+Specifcy a different location for the generated output.
+
+`.basehub`
+
+No
+
+`--env-prefix`
+
+Specify a different prefix for [relevant environment variables](#relevant-environment-variables).
+
+`BASEHUB_`
+
+No
+
+`--draft`
+
+Draft mode will query draft (non-committed) content from the GraphQL API.
+
+`false`
+
+No
+
+### Aliases
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Command
+
+Description
+
+`basehub`
+
+Same as running `basehub generate [...args]`
+
+`basehub dev`
+
+Same as running `basehub generate --watch --draft [...args]`
+
+### Relevant Environment Variables
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Description
+
+Required
+
+`TOKEN`
+
+A Repo’s read or write token.
+
+Yes
+
+`REF`
+
+Draft mode will query draft (non-committed) content from the GraphQL API.
+
+No
+
+## Dev
+
+```
+basehub dev
+```
+
+The `dev` command is very useful for local development. It basically runs `basehub generate --watch --draft [...args]` (notice how watch and draft mode are both being forced).
+
+# query
+
+> The main method to consume data from your BaseHub repositories.
+
+```
+import { basehub } from 'basehub'
+
+basehub().query({  })
+```
+
+When your token is setup, `basehub.query()` will query the data from the token’s repository. 
+
+Inside the query object, you can pass any parameter that the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) allows. That includes the [Next.js revalidate parameters](https://nextjs.org/docs/app/api-reference/functions/fetch#optionsnextrevalidate).
+
+You can check out its usage in the [GraphiQL Explorer](https://docs.basehub.com/api-reference/graphql-api/explorer) linked to your schema.
+
+Our `<Pump/>` [component](https://docs.basehub.com/api-reference/javascript-sdk/react/pump-component) uses `basehub.query()` behind the scenes to retrieve the data, that’s way its props are so similar. The great advantage `<Pump/>` has it’s that it will stream your updates in real time while on draft mode.
+
+## Examples
+
+Let’s see some common query patterns. Remember, the specific query keys you use will depend on your repository's structure, not on static API definitions.
+
+### Get a document block
+
+```
+basehub().query({
+  homepage: {
+    title: true,
+    description: {
+      json: { content: true },
+    },
+  },
+})
+```
+
+### Get a list of posts
+
+```
+basehub().query({
+  posts: {
+    items: {
+      _id: true,
+      _title: true,
+      _slug: true,
+      // more fields here...
+    },
+  },
+})
+```
+
+### Get the first item in a list
+
+```
+basehub().query({
+  posts: {
+    __args: { first: 1 },
+    items: {
+      _id: true,
+      _title: true,
+      _slug: true,
+      // more fields here...
+    },
+  },
+})
+```
+
+### Filter by `_slug`
+
+```
+basehub().query({
+  posts: {
+    __args: {
+      first: 1,
+      filter: { _sys_slug: "your-post-slug" },
+    },
+    items: {
+      _id: true,
+      _title: true,
+      _slug: true,
+      // more fields here...
+    },
+  },
+})
+```
+
+### Order by created date
+
+```
+basehub().query({
+  posts: {
+    __args: {
+      orderBy: "_sys_createdAt__DESC",
+    },
+    items: {
+      _id: true,
+      _title: true,
+      _slug: true,
+      // more fields here...
+    },
+  },
+})
+```
+
+### Create and use a fragment
+
+```
+import { basehub, fragmentOn } from "basehub"
+
+const buttonFragment = fragmentOn("ButtonComponent", {
+  label: true,
+  href: true,
+  variant: true,
+})
+
+basehub().query({
+  homepage: {
+    title: true,
+    description: {
+      json: { content: true },
+    },
+    cta: buttonFragment,
+  },
+})
+```
+
+### Query a union
+
+```
+basehub().query({
+  dynamicPages: {
+    items: {
+      pathname: true,
+      sections: { 
+        __typename: true, // required
+        on_HeroSectionComponent: {          
+          title: true,
+          subtitle: true,
+          // more fields
+        },
+        on_FeatureSectionComponent: {          
+          title: true,
+          subtitle: true,
+          // more fields
+        },
+      },
+    },
+  },
+})
+```
+
+# mutation
+
+> The SDK method to make updates to your repository via the API.
+
+```
+import { basehub } from 'basehub'
+
+basehub().mutation({  })
+```
+
+The `basehub.mutation()` lets you send GraphQL mutations to the BaseHub API using any JavaScript framework. This is useful for mutating data from your app into your BaseHub Repo.
+
+You can check out its usage in the [GraphiQL Explorer](https://docs.basehub.com/api-reference/graphql-api/explorer) linked to your schema.
+
+## Methods
+
+The `mutation` API works a bit different to the `query` API due to how GraphQL is designed. `basehub().mutation()` has other methods to add data into BaseHub, the most important one being [transaction](https://docs.basehub.com/api-reference/javascript-sdk/basehub-client/mutation/transaction).
+
+# transaction
+
+> The main mutation method, covers most of the modifications that can be done to the schema with three different transaction types: create, update and delete.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Transaction Type
+
+Arguments
+
+Type
+
+Description
+
+Create
+
+`parentId`
+
+`string`
+
+The block ID to target, where the data will be injected
+
+`data`
+
+`Object`
+
+The block values to be inserted, `type` is mandatory and will constraint the object type to the specific block schema
+
+`type`
+
+`”create”`
+
+The transaction type
+
+Delete
+
+`id`
+
+`string`
+
+The block ID to delete
+
+`type`
+
+`”delete”`
+
+The transaction type
+
+Update
+
+`data`
+
+`Object`
+
+Very similar to `create` data, but has an extra mandatory field `id` that maps to the existing block that will be updated
+
+`type`
+
+`”update”`
+
+The transaction type
+
+## Example
+
+Check out our Mutation API Playground for full examples.
+
+*   [Playground](https://mutation-api-playground.vercel.app/).
+    
+*   [Source](https://github.com/basehub-ai/mutations-api-example).
+    
+*   [Content](https://basehub.com/basehub/mutation-api-playground/explore).
+    
+
+## Create
+
+When running the create transaction, you will need to pass two additional parameters: `parentId` and `data`.
+
+The `parentId` is the ID from the block where the creation will be done, could be any block, but that will affect which data structures are valid. In the example above, using that specific `parentId` we cannot insert anything apart from instances, because collection children are always instances (or a component that works as template).
+
+The `data` field is the new block schema and values, including all its children.
+
+## Automatic Commit
+
+The `autoCommit` is an optional field that accepts any `string` as the commit message that will be injected into the repository history. If not provided, the mutation updates will stay as work in progress (you will see them listed in your  Changes Tab).
+
+# transactionAsync
+
+> Same as \`transaction\`, but runs async—as a background job.
+
+This method has the same signature as [transaction](https://docs.basehub.com/api-reference/javascript-sdk/basehub-client/mutation/transaction). It’s useful in the case of a long-running job you don’t want to sit around waiting. You can use `transactionStatus` to get the status of the transaction in another Mutation call.
+
+## Example
+
+Check out our Mutation API Playground for full examples.
+
+*   [Playground](https://mutation-api-playground.vercel.app/).
+    
+*   [Source](https://github.com/basehub-ai/mutations-api-example).
+    
+*   [Content](https://basehub.com/basehub/mutation-api-playground/explore).
+    
+
+# getUploadSignedURL
+
+> A helper to upload assets to our database.
+
+This is useful for example, when we have a PNG on our machine that we want to use in a BaseHub Image block. In order to use it, you should:
+
+### Call the `getUploadSignedURL` mutation
+
+You will need to retrieve both the `signedURL` and the `uploadURL`.
+
+### Do a PUT request to the `signedURL`
+
+The `signedURL` is an authorized endpoint that allows you to send any allowed asset through it. You’ll use it to upload the files you want to use in your BaseHub blocks.
+
+### Consume the uploaded data from `uploadURL`
+
+The `uploadURL` is the path to the uploaded file. After sending the asset data to the `signedURL`, you will be able to see the file in this URL. You will use it in the block value when running a transaction mutation.
+
+## Example
+
+On this example we’re uploading a new image file to BaseHub assets pool.
+
+You can explore the full code for this example in [Github](https://github.com/basehub-ai/mutations-api-example/blob/c4d1ccd2609598f707d58204ade29134fd283d8f/lib/mutate-action.ts#L16-L40).
+
+```
+export const uploadImageToBaseHub = async (imageInput: File) => {
+  const { getUploadSignedURL } = await basehub().mutation({
+    getUploadSignedURL: {
+      __args: {
+        fileName: imageInput.name,
+      },
+      signedURL: true,
+      uploadURL: true,
+    },
+  });
+
+  const uploadStatus = await fetch(getUploadSignedURL.signedURL, {
+    method: "PUT",
+    body: imageInput,
+    headers: {
+      "Content-Type": imageInput.type,
+    },
+  });
+
+  if (uploadStatus.ok) {
+    return getUploadSignedURL.uploadURL;
+  }
+
+  return null;
+};
+```
+
+# transactionStatus
+
+> Gets the current transaction status based on its ID.
+
+## Example
+
+You can explore the full code for this example in [Github](https://github.com/basehub-ai/mutations-api-example/blob/c4d1ccd2609598f707d58204ade29134fd283d8f/lib/mutate-action.ts#L4-L14).
+
+```
+export async function getStatus(id: string) {
+  const response = await basehub().mutation({
+    transactionStatus: {
+      __args: {
+        id,
+      },
+    },
+  });
+
+  return response.transactionStatus;
+}
+```
+
+# <Pump />
+
+> A React Server Component that queries BaseHub and can subcribe to real time changes seamlessly.
+
+```
+import { Pump } from 'basehub/react-pump'
+```
+
+Pump is a React Server Component, meaning, it can only be used within frameworks that support RSC ([Next.js only for now](https://react.dev/learn/start-a-new-react-project#bleeding-edge-react-frameworks)).
+
+The power of Pump comes when you use [Next.js Draft Mode](https://nextjs.org/docs/app/building-your-application/configuring/draft-mode) alongside it. Pump lets developers write their queries and rendering logic in a simple and typesafe way, and get “content fast refresh” (live preview) out of the box, without affecting the website’s performance in any way.
+
+info:
+
+If you’re interested in how this works under the hood, or the reason behind its syntax, you can [read our blog post about it](https://basehub.com/blog/pump).
+
+## Props
+
+These are the props supported by `<Pump />` .
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Type
+
+Description
+
+`queries`
+
+`QueryType[]`
+
+**Required.** An array of BaseHub queries that will be fetched from the BaseHub API asynchronously
+
+`draft`
+
+`boolean`
+
+If enabled, it will fetch from the draft API, what consumes the WIP data.
+
+`token`
+
+`string`
+
+Lets you pass a BaseHub token explicitly. Useful for frameworks in which `process.env.BASEHUB_TOKEN` is not available.
+
+`signal`
+
+`AbortSignal`
+
+Inherited from the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+
+`next`
+
+`NextFetchCache`
+
+[Next.js only](https://nextjs.org/docs/app/api-reference/functions/fetch#optionsnextrevalidate). Let’s you configure the cache.
+
+`cache`
+
+`RequestCache`
+
+Inherited from the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+
+## Example
+
+This query will get `_sys.id` from the API. Most importantly, when Next.js Draft Mode is enabled, it’ll subscribe to content changes in real time.
+
+```
+import { Pump } from "basehub/react-pump"
+import { draftMode } from "next/headers"
+
+const Page = () => {
+  return (
+    <Pump
+      queries={[{ _sys: { id: true } }]}
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 30 }}
+    >
+      {async ([data]) => {
+        "use server"
+
+        return (
+          <pre>
+            <code>{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+# <RichText />
+
+> Our official rich text renderer. Supports passing custom handlers for native html elements and BaseHub components.
+
+```
+import { RichText } from 'basehub/react-rich-text'
+```
+
+A React Component that understands Rich Text Blocks’ data model and helps you render them in your website. If used in frameworks that support server components, it can be used as a RSC and just render the final result in the client without sending all the bundle to the client.
+
+## Props
+
+These are the props supported by `<RichText />`
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Type
+
+Description
+
+`content`
+
+`Node[]`
+
+**Required.** The JSON formatted content from the BaseHub RichText field. Accesible via `…json.content`
+
+`blocks`
+
+`Blocks[]`
+
+The list of blocks present in the content. Accesible via `…json.blocks`
+
+`components`
+
+`Handlers`
+
+Custom handlers for native elements (such as `h1`, `p`, `img`) or custom components.
+
+note:
+
+When you provide the value for the `content` property, the RichText component will retrieve your schema types and give you type-safety and auto-complete for the `components` property.
+
+## Example
+
+```
+import { Code, Heading, Link } from '@radix-ui/themes'
+import NextLink from 'next/link'
+
+export const ArticleBody = (props: ArticleFragment) => {
+  return (
+    <RichText
+      content={props.content?.json.content}
+      blocks={props.content?.json.blocks}
+      components={{
+        // native elements not present in this object will use the default handlers 
+        h1: ({ children }) => (
+          <Heading as="h1" size="3" weight="medium">
+            {children}
+          </Heading>
+        ),
+        h2: ({ children }) => (
+          <Heading as="h2" size="2" weight="medium">
+            {children}
+          </Heading>
+        ),
+        h3: ({ children }) => (
+          <Heading as="h3" size="2" weight="medium">
+            {children}
+          </Heading>
+        ),
+        a: ({ children, ...rest }) => (
+          <Link asChild>
+            <NextLink {...rest}>{children}</NextLink>
+          </Link>
+        ),
+        // Custom component
+        CodeSnippetComponent: ({ children, isInline }) => {
+          if (!isInline) return null
+          return <Code>{children}</Code>
+        },
+      }}
+    />
+  )
+}
+```
+
+## Styling
+
+The `<RichText />` component doesn’t come with styles. It's job is to render the html notes, but you'll need to add the styles yourself. This is intentional, as websites often vary a lot between typographies, colors, and sizes.
+
+there are a couple ways to style a rich text:
+
+1.  Use regular CSS
+    
+2.  Use the [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin (recommended)
+    
+3.  Override each of the nodes with your own components
+    
+
+Moreover, all of these methods can be combined as you please.
+
+### 1\. Just CSS
+
+As an example:
+
+components/post-body.module.css
+
+```
+.post-body > *:first-child {
+  margin-top: 0;
+}
+
+.post-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.post-body p {
+  margin-bottom: 1em;
+}
+
+.post-body h1 {
+  font-size: 2em;
+  margin: 1.5em 0 0.5em;
+}
+
+.post-body h2 {
+  font-size: 1.8em;
+  margin: 1.4em 0 0.4em;
+}
+
+.post-body h3 {
+  font-size: 1.4em;
+  margin: 1.3em 0 0.3em;
+}
+
+.post-body ul, 
+.post-body ol {
+  margin: 0 0 1em 1.5em;
+}
+
+.post-body li {
+  margin-bottom: 0.5em;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 1em 0;
+}
+
+.post-body blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #666;
+}
+
+.post-body pre {
+  background-color: #f4f4f4;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.post-body code {
+  background-color: #f4f4f4;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+```
+
+### 2\. With tailwind-typography (recommended)
+
+Assuming you’re already using tailwind, using the typography plugin is fairly simple.
+
+```
+pnpm i @tailwindcss/typography --save-dev
+```
+
+Then in `tailwind.config.js`
+
+```
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    // ...
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    // ...
+  ],
+}
+```
+
+And finally, you’ll use the `prose` class in the wrapping `<div>`
+
+```
+import { RichText } from "basehub/react-rich-text"
+
+const PostBody = (props) => {
+  return (
+    <div className="prose">
+      <RichText {...props} />
+    </div>
+  )
+}
+```
+
+### 3\. Overriding / Using your own design system
+
+If you already have components to render quotes, headings, paragraphs, etc, you can easily use them like this:
+
+```
+import { RichText } from "basehub/react-rich-text"
+import {
+  Heading,
+  Blockquote,
+  Paragraph,
+} from "@my-design-system"
+
+const PostBody = (props) => {
+  return (
+    <div>
+      <RichText
+        {...props}
+        components={{
+          p: (props) => <Paragraph {...props} />,
+          h1: (props) => <Heading {...props} level={1} />,
+          h2: (props) => <Heading {...props} level={2} />,
+          h3: (props) => <Heading {...props} level={3} />,
+          blockquote: (props) => <Blockquote {...props} />,
+          // rest...
+        }}
+      />
+    </div>
+  )
+}
+```
+
+Example: [https://github.com/basehub-ai/docs-template/blob/main/app/\_components/article/index.tsx#L182](https://github.com/basehub-ai/docs-template/blob/main/app/_components/article/index.tsx#L182)
+
+## Custom Components
+
+If you are using [Custom Blocks in your Rich Text](https://basehub.com/changelog/instantiate-components-inside-rich-text-blocks), you’ll need to add them to your query, and pass them via the `blocks` prop. Then, you’ll be able to set up the custom renderers for them (in a type-safe manner, by the way):
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import Image from "next/image"
+import { Callout, CodeSnippet } from './path-to/components'
+
+const Page = async () => {
+  return (
+    <Pump
+      draft={draftMode().isEnabled}
+      next={{ revalidate: 60 }}
+      queries={[
+        {
+          homepage: {
+            subtitle: {
+              json: {
+                content: true,
+                blocks: { 
+                  __typename: true,
+                  on_CalloutComponent: { 
+                    _id: true,
+                    intent: true,
+                    text: true,
+                  },
+                  on_CodeSnippetComponent: { 
+                    _id: true,
+                    code: { 
+                      code: true,
+                      language: true,
+                    },
+                    fileName: true,
+                  },
+                } 
+              }
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return (
+          <RichText
+            blocks={homepage.subtitle.json.blocks} 
+            components={{
+              img: (props) => <Image {...props} />,
+              CalloutComponent: (props) => <Callout data={props}>,
+              CodeSnippetComponent: (props) => <CodeSnippet data={props}>,
+            }}
+          >
+            {homepage.subtitle.json.content}
+          </RichText>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+## Internal Links
+
+Similar to external hyperlinks, internal links in your rich text let you reference other blocks in an easy and type-safe manner.
+
+```
+import { Pump } from "basehub/react-pump"
+import { RichText } from "basehub/react-rich-text"
+import Image from "next/image"
+
+const Page = async () => {
+  return (
+    <Pump
+      queries={[
+        {
+          homepage: {
+            subtitle: {
+              json: {
+                content: true,
+                blocks: { 
+                  __typename: true,
+                  on_PostComponent: { 
+                    _slug: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      ]}
+    >
+      {async ([{ homepage }]) => {
+        "use server"
+        return (
+          <RichText
+            blocks={homepage.subtitle.json.blocks} 
+            components={{
+              img: (props) => <Image {...props} />,
+              a: ({ internal, ...props }) => { 
+                if (internal) { 
+                  switch (internal.__typename) { 
+                    case "PostComponent": 
+                      return ( 
+                        <a {...props} href={`/blog/${internal._slug}`} /> 
+                      )  
+                    default: 
+                      return null
+                  } 
+                } else return <a {...props} /> 
+              },
+            }}
+          >
+            {homepage.subtitle.json.content}
+          </RichText>
+        )
+      }}
+    </Pump>
+  )
+}
+
+export default Page
+```
+
+# <CodeBlock />
+
+> Easy-to-use component for rendering great code snippets.
+
+```
+import { CodeBlock } from 'basehub/react-code-block'
+```
+
+There are many syntax highlighting libraries in the JavaScript ecosystem. While this is a good thing, it can be exhausting for developers to shop for the right one. Prism, highlight.js, and Shiki are the most popular ones—an, in our opinion, Shiki is the best.
+
+After building multiple websites with syntax highlighting, we’ve found ourselves copy-pasting a bunch of code and needing to re-read documentation over and over again. This is why we’ve built this.
+
+## Props
+
+These are the props supported by `<CodeBlock />`
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Name
+
+Type
+
+Description
+
+`snippets`
+
+`Node[]`
+
+**Required.** The JSON formatted content from the BaseHub RichText field. Accesible via `…json.content`
+
+`theme`
+
+`Blocks[]`
+
+The list of blocks present in the content. Accesible via `…json.blocks`
+
+`childrenTop`
+
+`Handlers`
+
+Custom handlers for native elements (such as `h1`, `p`, `img`) or custom components (using the component API Typename)
+
+## Basic Usage
+
+```
+import { CodeBlock } from 'basehub/react-code-block'
+
+const Post = () => {
+  return (
+    <CodeBlock
+      theme="github-dark"
+      snippets={[{ code: `const hello = "world"`, lang: 'js' }]}
+    />
+  )
+}
+```
+
+## CSS Theme
+
+```
+import { CodeBlock } from 'basehub/react-code-block'
+
+const Post = () => {
+  return (
+    <CodeBlock
+      theme="github-dark"
+      snippets={[{ code: `const hello = "world"`, lang: 'js' }]}
+    />
+  )
+}
+```
+
+## Examples
+
+*   From our docs: [https://github.com/basehub-ai/docs-template/blob/main/app/\_components/article/code-snippet/index.tsx#L21](https://github.com/basehub-ai/docs-template/blob/main/app/_components/article/code-snippet/index.tsx#L21)
+    
+*   From the marketing website template: [https://github.com/basehub-ai/marketing-website-template/blob/main/src/app/\_components/code-snippet/index.tsx](https://github.com/basehub-ai/marketing-website-template/blob/main/src/app/_components/code-snippet/index.tsx)
+    
+
+# useSearch
+
+> A React hook that instantiates your Search Client.
+
+```
+import { useSearch } from 'basehub/react-search'
+```
+
+## Arguments
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`_searchKey`
+
+`string`
+
+**Required.** The search key from the block where you want to do search. The client will have access to all indexed fields under the corresponding block (and its instances in a case of a component).
+
+`queryBy`
+
+`string[]`
+
+**Required.** An array with the field keys you want to search by.
+
+`saveRecentSearches`
+
+`SaveRecentSearches`
+
+An object that accepts a `key` and a `getStorage` callback. Useful when you want to save recent searches into localStorage or similar.
+
+info:
+
+BaseHub Search uses [TypeSense](https://typesense.org/) on the background. **You can check out all the search options on their** [**documentation**](https://typesense.org/docs/26.0/api/search.html#search)**.** Keep in mind that they’re all on _camelCase_ in the `useSearch` hook. E.g: `filter_by` is listed as `filterBy`.
+
+## Examples
+
+*   Documentation: [Step by step](https://docs.basehub.com/extras/search#building-the-frontend)
+    
+*   Also you can check out our search implementation for this Documentation template [on GitHub](https://github.com/basehub-ai/nextjs-docs/blob/main/app/_components/header/search/index.tsx)
+    
+
+# <SearchBox.Root />
+
+> The Search wrapper works as a provider and comes with some optional props that can come in handy.
+
+```
+import { SearchBox } from 'basehub/react-search'
+
+// -> SearchBox.Root
+```
+
+## Props
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`search`
+
+`UseSearchResult`
+
+**Required.** The search client generated with [useSearch](https://docs.basehub.com/api-reference/javascript-sdk/react/search/usesearch).
+
+`onHitSelect`
+
+`(hit: Hit) => void`
+
+Optional callback triggered on any hit selection.
+
+## Examples
+
+*   Documentation: [Step by step](https://docs.basehub.com/extras/search#building-the-frontend)
+    
+*   Also you can check out our search implementation for this Documentation template [on Github](https://github.com/basehub-ai/nextjs-docs/blob/main/app/_components/header/search/index.tsx)
+    
+
+# <SearchBox.Input />
+
+> Extends the native HTML Input and consumes the search context in order to fetch hits from the indexed data.
+
+```
+import { SearchBox } from 'basehub/react-search'
+
+// -> SearchBox.Input
+```
+
+## Props
+
+The `<SearchBox.Input />` extends the native `HTMLInputProps`.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`asChild`
+
+`boolean`
+
+Passes all its configuration to the immediate child. It’s a requirement for this that it has only one children.
+
+## Examples
+
+*   Documentation: [Step by step](https://docs.basehub.com/extras/search#building-the-frontend)
+    
+*   Also you can check out our search implementation for this Documentation template [on Github](https://github.com/basehub-ai/nextjs-docs/blob/main/app/_components/header/search/index.tsx)
+    
+
+# Hit Components
+
+> Use cases and APIReference for HitList, HitItem, HitSnippet
+
+## <SearchBox.HitList /> Props
+
+```
+import { SearchBox } from 'basehub/react-search'
+
+// -> SearchBox.HitList
+```
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`asChild`
+
+`boolean`
+
+Passes all its configuration to the immediate child. It’s a requirement for this that it has only one children.
+
+## <SearchBox.HitItem /> Props
+
+```
+import { SearchBox } from 'basehub/react-search'
+
+// -> SearchBox.HitItem
+```
+
+The `<SearchBox.HitItem />` extends the native `HTMLDivProps`.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`asChild`
+
+`boolean`
+
+Passes all its configuration to the immediate child. It’s a requirement for this that it has only one children.
+
+`hit`
+
+`Hit`
+
+The hit element from the search results.
+
+`href`
+
+`string`
+
+The link to the hit result, can be any string, but most often than not, you will use the hit result to build the final URL.
+
+check:
+
+Both HitList and HitItem provide keyboard navigation out-of-the-box.
+
+## <SearchBox.HitSnippet /> Props
+
+```
+import { SearchBox } from 'basehub/react-search'
+
+// -> SearchBox.HitSnippet
+```
+
+The HitSnippet works as sugar syntax to render specific fields of the hit object with ease.
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`fieldPath`
+
+`string`
+
+**Required.** The specific field name in the hit object. e.g: `_title`
+
+`fallbackFieldPaths`
+
+`string[]`
+
+If the `fieldPath` is `undefined` or doesn’t have a match with the query, you can provide a list of fallback paths to render in its place.
+
+`components`
+
+`{ container, mark, text }`
+
+An optional set of react elements that can be passed to customize the final UI for the snippet.
+
+# sendEvent
+
+> The events method to send data through BaseHub. Flexible, type-safe and scoped by block.
+
+```
+import { sendEvent } from 'basehub/events'
+```
+
+## Parameters
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`ingestKey`
+
+`EventBlock['ingestKey']`
+
+**Required.** The event unique key for ingest actions. It defines which schema is used in the second parameter (or none at all if the schema is empty)
+
+`data`
+
+`Record<string, unknown>`
+
+Dynamically typed based on the `ingestKey` provided.  
+Accepts every field in the schema defined on your Event Block.
+
+## Example
+
+![](https://assets.basehub.com/7b31fb4b/9f8668081556d4ac5971bd493e6be165/screenshot-2024-12-19-at-2.03.45-pm.png?width=3840&quality=90&format=auto)
+
+We create an Event block called "Feedback Events" with a checkbox field
+
+```
+'use client'
+// you'll need to run basehub before importing this type 👇🏼
+import type { FeedbackEvents['ingestKey'] } from '~/.basehub/schema' 
+import { sendEvent } from 'basehub/events'
+import { Card, IconButton } from '@radix-ui/themes'
+import { ThumbsDown, ThumbsUp } from 'lucide-react'
+import * as React from 'react'
+
+export const Feedback = ({
+  ingestKey,
+}: {
+  ingestKey: FeedbackEvents['ingestKey']
+}) => {
+  const [sentFeedback, setSentFeedback] = React.useState<
+    'positive' | 'negative' | null
+  >(null)
+
+  const handleFeedback = (type: 'positive' | 'negative') => {
+    if (sentFeedback === type) return
+    sendEvent(ingestKey, { positive: type === 'positive' }) 
+
+    setSentFeedback(type)
+  }
+
+  return (
+    <Card variant="classic" size="3">
+      <IconButton onClick={() => handleFeedback('negative')}>
+        <ThumbsDown fill={sentFeedback === 'negative' ? 'var(--accent-12)' : 'none'} />
+      </IconButton>
+      <IconButton onClick={() => handleFeedback('positive')}>
+        <ThumbsUp fill={sentFeedback === 'positive' ? 'var(--accent-12)' : 'none'} />
+      </IconButton>
+    </Card>
+  )
+}
+```
+
+![](https://assets.basehub.com/7b31fb4b/ee950463ede06ed84ba1ae9b03d19017/screenshot-2024-12-19-at-2.04.26-pm.png?width=3840&quality=90&format=auto)
+
+Events received will look like this
+
+# getEvents
+
+> A query method to retrieve your events stored in BaseHub.
+
+```
+import { getEvents } from 'basehub/events'
+```
+
+## Parameters
+
+### Table Query
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Parameter
+
+Type
+
+Description
+
+`key`
+
+`EventBlock['adminKey']`
+
+**Required.** The event key that defines the schema and scope of the query
+
+`options`
+
+`object`
+
+**Required.** Query configuration:
+
+`options.type`
+
+`"table"`
+
+Specifies table view format
+
+`options.first`
+
+`number`
+
+Number of items to retrieve
+
+`options.skip`
+
+`number`
+
+Number of items to skip
+
+`options.filter?`
+
+`object`
+
+Optional filters for the query
+
+`options.orderBy?`
+
+`object`
+
+Optional sorting configuration
+
+`options.select?`
+
+`object`
+
+Optional fields selection
+
+### Time-series Query
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Parameter
+
+Type
+
+Description
+
+`key`
+
+`${EventKeys}:${string}`
+
+**Required.** The event key that defines the schema and scope of the query
+
+`options`
+
+`object`
+
+**Required.** Query configuration:
+
+`options.type`
+
+`"time-series"`
+
+Specifies time-series format
+
+`options.range?`
+
+`"day"` | `"week"` | `"month"` | `"year"` | `"all-time"`
+
+Optional time range for aggregation
+
+warning:
+
+Be wary of exposing the `adminKey` in the client. Anyone with this key will be able to read and update existing events from that specific block.
+
+## Examples
+
+```
+import { getEvents } from "basehub/events"
+
+// Table query
+const tableData = await getEvents("analytics:pageviews", {
+  type: "table",
+  first: 10,
+  skip: 0,
+})
+
+// Time-series query
+const timeSeriesData = await getEvents("analytics:pageviews", {
+  type: "time-series",
+  range: "month",
+})
+```
+
+```
+import { getEvents } from "basehub/events"
+import { IncrementViews } from "./increment-views"
+import { unstable_noStore } from "next/cache"
+import { draftMode } from "next/headers"
+import type { PageViews } from "~/.basehub/schema"
+
+export const ViewsFragment = async ({
+  adminKey,
+  ingestKey,
+  increment,
+}: {
+  adminKey: PageViews["adminKey"]
+  ingestKey: PageViews["ingestKey"]
+  increment?: boolean
+}) => {
+  unstable_noStore()
+  const { isEnabled: isDraftMode } = draftMode()
+
+  const { data: views } = await getEvents(adminKey, { 
+    type: "time-series",
+    range: "all-time",
+  }) 
+
+  return (
+    <>
+      {views || "0"}
+      {increment && !isDraftMode && (
+        <IncrementViews ingestKey={ingestKey} />
+      )}
+    </>
+  )
+}
+```
+
+# updateEvent
+
+> Method that allows modifying existing events by their ID.
+
+```
+import { updateEvent } from "basehub/events"
+```
+
+## Parameters
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Parameter
+
+Type
+
+Description
+
+`key`
+
+`EventBlock['adminKey']`
+
+**Required.** The event key that defines the schema and scope
+
+`id`
+
+`string`
+
+**Required.** The unique identifier of the event to update
+
+`data`
+
+`object`
+
+**Required.** Partial object containing the fields to update
+
+## Returns
+
+```
+{ success: true; eventId: string } | { success: false; error: string }
+```
+
+# deleteEvent
+
+> Method that removes one or more events by their IDs.
+
+```
+import { deleteEvent } from "basehub/events"
+```
+
+## Parameters
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Parameter
+
+Type
+
+Description
+
+`key`
+
+`EventBlock['adminKey']`
+
+**Required.** The event key that defines the schema and scope
+
+`ids`
+
+`[string, ...string[]]`
+
+**Required.** Array with at least one event ID to delete
+
+## Returns
+
+```
+{ success: true } | { success: false; error: string }
+```
+
+# search
+
+> Core method to perform a search query.
+
+```
+import { search } from 'basehub/search'
+```
+
+info:
+
+Using React? Check out our [React helpers right here](https://docs.basehub.com/api-reference/javascript-sdk/react/search).
+
+## Arguments
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`_searchKey`
+
+`string | null`
+
+The search key (comes from the GraphQL API).
+
+`query`
+
+`string`
+
+The query (typically comes from user input).
+
+`options`
+
+`SearchOptions`
+
+Stuff like `queryBy`, `filterBy`, and more.
+
+# getClientRaw
+
+> Get the raw search client.
+
+```
+import { getSearchClientRaw } from 'basehub/search'
+```
+
+info:
+
+Using React? Check out our [React helpers right here](https://docs.basehub.com/api-reference/javascript-sdk/react/search).
+
+## Arguments
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`_searchKey`
+
+`string | null`
+
+The search key (comes from the GraphQL API).
+
+# <Toolbar />
+
+> The official BaseHub toolbar to manage draft mode and switch branches in your site previews.
+
+```
+import { Toolbar } from 'basehub/next-toolbar'
+```
+
+The Toolbar takes care of setting and managing the draftMode key without any other configuration or manual fetch to the BaseHub API.
+
+![](https://assets.basehub.com/7b31fb4b/Fd2hLFehKGMaIrJnwsjH5/screenshot-2024-06-11-at-18.56.51.png?width=3840&quality=90&format=auto)
+
+Toolbar - Draft Mode Enabled
+
+![](https://assets.basehub.com/7b31fb4b/KfTDhoUO7Bm2KxDEdB3gY/screenshot-2024-06-11-at-18.57.01.png?width=3840&quality=90&format=auto)
+
+Toolbar - Draft Mode disabled
+
+## Props
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Key
+
+Type
+
+Description
+
+`forceDraft`
+
+`boolean`
+
+Will force the draft mode for the entire site when present.
+
+## Example
+
+```
+import { Toolbar } from 'basehub/next-toolbar'
+
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en">
+      <Toolbar />
+      <body>
+        <ThemeProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+# Version 8
+
+> Learn how to upgrade from v7 to v8.
+
+```
+pnpm i basehub@latest
+```
+
+## New Features
+
+*   `basehub/events`: a new package used to interact with the [Event Block](https://docs.basehub.com/blocks/primitives/event).
+    
+*   `basehub` and `<Pump />` now automatically infer `draftMode` from Next.js.
+    
+*   `<Toolbar />` now includes a Branch Switcher!
+    
+*   Support for internal links in <RichText />
+    
+
+## SDK Breaking Changes
+
+*   `basehub/analytics` has been deprecated in favour of `basehub/events` . They are slightly different things, but Events should be able to cover analytics use cases, and more.
+    
+*   <CodeBlock />: `lang` was renamed to `language` to better match the props of the `pre` handler in <RichText />
+    
+*   <RichText />: The `code` handler before received a prop named `isInline`, but now, it won’t receive that and it will just be used for inline code. The `pre` handler will be used for full code blocks.
+    
+
+## API Breaking Changes
+
+*   Now, if a Reference Block has just one “allowed type”, we won't type it as a GraphQL Union, but rather, just return the end-type directly. this might break queries that did the `... on SomeType` thing.
+    
+
+```
+# before
+{
+ someReference {
+    ... on AuthorComponent {
+      name
+    }
+  }
+}
+```
+
+```
+# after
+{
+ someReference {
+    name
+  }
+}
+```
+
+*   In our Mutation API, we renamed the following:
+    
+    *   `transaction` is now `transactionAsync`
+        
+    *   `transactionAwaitable` is now `transaction`
+        
+
+note:
+
+A bit confusing, yes, but we found that `transactionAwaitable` (which executed the transaction and responded with the result) was much more useful than the old `transaction`, which fired off a job and then it was up to the developer to poll for the `transactionStatus`. The name "transactionAwaitable" was a poorly thought out name, and we've taken the opportunity of a breaking version to fix this.
+
+## Analytics → Events
+
+We’ve renamed the `/analytics` entrypoint to `/events`
+
+```
+import { sendEvent, getEventCount } from 'basehub/analytics'
+import { sendEvent, getEvents } from 'basehub/events'
+```
+
+That should be all!
+
+# Explorer
+
+> Explore the GraphQL API interactively, thanks to the power of GraphiQL.
+
+By default, this Explorer is connected to our [documentation’s repo](https://basehub.com/basehub/docs); but you can enter your repo’s token to explore it’s schema. All credits for this explorer go to [the Graph](https://github.com/graphql/graphiql)[_i_](https://github.com/graphql/graphiql)[QL project](https://github.com/graphql/graphiql).
+
+info:
+
+Due to how dynamic the schema is, we believe the best way to know how it’s structure is to use the explorer and check it out. Open the explorer’s documentation, try out some queries, and you can always [let us know](https://help.basehub.com?chat=true) if you need any help.
+
+# Anatomy of a Block
+
+> You can think of your Repository as a tree of Blocks. Let's explore how this works.
+
+Similar to [Notion’s data model](https://www.notion.so/blog/data-model-behind-notion), every piece of content in BaseHub is a Block. You can think of your Repository as a tree of Blocks. It all starts with the [Root Block](https://docs.basehub.com/blocks/layout/root)—although you won’t see it—, which has nested Blocks within.
+
+We conceptually split Blocks into two categories: Layout, and Primitive Blocks. In the next sections, you’ll read more about them.
+
+Blocks contain schema and content. In contrast to other CMSs, where developers define a schema and then add the content, in BaseHub, this can happen at the same time due to how flexible our data model is.
+
+As you add new Blocks and nest and reorder them, you’ll be altering your Repo’s Schema. That is, the structure that will be then distributed via GraphQL and into your website. Schemas become composable with a special Block called “Component”. Read more about it [here](https://docs.basehub.com/blocks/layout/component).
+
+## UI
+
+This is how Blocks get rendered.
+
+![](https://assets.basehub.com/7b31fb4b/Pa5PZW7gHoOJ3T8Wn6AF3/image.png?width=3840&quality=90&format=auto)
+
+### Zoom into a specific Block
+
+In this case, a [Text Block](https://docs.basehub.com/blocks/primitives/text).
+
+![](https://assets.basehub.com/7b31fb4b/AleUyM7NuRdyzE0LAoDxH/image.png?width=3840&quality=90&format=auto)
+
+### Slash command
+
+To add new blocks.
+
+![](https://assets.basehub.com/7b31fb4b/HshqidfyEVLbPWEjSyTRw/image.png?width=3840&quality=90&format=auto)
+
+### Sidebar
+
+Makes it easy to get around your Repo.
+
+![](https://assets.basehub.com/7b31fb4b/7fsFldGRzzrluJNlW8fQ2/image.png?width=3840&quality=90&format=auto)
+
+### Tabs
+
+Shows active Blocks.
+
+![](https://assets.basehub.com/7b31fb4b/rUXuDVyBoigYmINICI6Dh/image.png?width=3840&quality=90&format=auto)
+
+# Root
+
+> The root of the Tree.
+
+The Root Block is invisible from the editor explorer, but wraps within every other Block in the repository.
+
+Each Commit in BaseHub targets a single root block. This root block wil target nested blocks, and nested blocks can have more nested blocks, thus creating a tree.
+
+# Document
+
+> The most common layout block in BaseHub. Think of them as directories in a file system.
+
+## Features
+
+*   ✅ Ideal for singleton types, such as a “homepage”
+    
+*   ✅ It can have nested blocks
+    
+*   ✅ It can be converted into a [Component](https://docs.basehub.com/blocks/layout/component)
+    
+*   ✅ It can be hidden
+    
+
+## Common Patterns
+
+Although you’re free to structure your Repository however you like, there are some common patterns that can be useful for getting started.
+
+*   Have a “Components” document in which you’ll store common, reusable components, such as “Button”, “Feature Card“, “Tweet“, or similar.
+    
+*   Have a “Collections” document in which you’ll have different collections, such as “People”, “Testimonials”, “Snippets”, or similar.
+    
+*   Have a “Settings” document in which you’ll store general data, such as site-wide metadata, or constants such as social media links.
+    
+
+# Component
+
+> The Component block functions as a modular structure within your repository, that can be reused across your schema.
+
+## Features
+
+*   ✅ Ideal for reusable types, such as a “CTA” or “Article”
+    
+*   ✅ It can have nested blocks
+    
+*   ✅ It can be converted into a [Document](https://docs.basehub.com/blocks/layout/document)
+    
+*   ✅ It can be hidden
+    
+
+Each Component outlines a schema, and the content for each instance is then defined within those parameters. The main difference here with other CMSs is that the Component is a source of content at the same time that defines the schema.
+
+## Component creation
+
+To create a Component, you can start from scratch or transform an existing Document into a Component. To do this, simply click the "Make Component" button found in the Document properties panel. This action changes the block type, enabling its reuse as an instance throughout your project.
+
+## Detaching
+
+If you need to transform a Component back into a Document, or if you wish to convert an instance into a standalone Component, you will need to detach the main Component first. By selecting the “Detach Component” button, you’ll convert that block back into a [Document](https://docs.basehub.com/blocks/layout/document). An Instance will be then converted into a Component with that same structure, thus preserving all of the existing instances as they are. No data will be lost during this transition; however, existing instances will now target this new “promoted” instance.
+
+## Nesting components
+
+Unlike other structures, Components cannot embed Documents within them. If your design calls for a more layered structure with nested layout blocks, you can achieve this by nesting multiple components or instances. To nest components, simply access the slash command within your main component; it will display the option to insert another component right inside it.
+
+## Display Info
+
+You can define some helpful display information for each Component, so that content editors can understand more about how to use it.
+
+You’ll be able to edit Display Info in the Properties Panel (right hand side) of a Component.
+
+This is how it shows in the slash command.
+
+# Instance
+
+> A modular block that reuses the structure from your Components.
+
+## Features
+
+*   ✅ Ideal for reusable types, such as a “CTA” or “Article”
+    
+*   ✅ It can have nested blocks—although it follows the structure of its target component
+    
+*   ✅ It can be hidden
+    
+
+Instances are created from components stored in your repository and can be used in all sorts of ways, fitting into many different scenarios. For example, a component and its instances can be listed in a Document block to structure sections of a landing page. Alternatively, you could create a component in a union block with multiple fields, and create various instances from it.
+
+## What you can do in Instances
+
+Instances have their own values, so you can update its title and fill every child input. That includes rows in a collection, references and any other input.
+
+## What you cannot do in Instances
+
+You cannot modify the schema in any way, you cannot modify constraints or collection columns, allowed types, children titles, etc.
+
+## Special cases
+
+### OG Image
+
+The OG Image block can only be modified in the main component. That’s the case because every change in the OG Image block is a properties change. But that doesn’t mean that every instance will have the exact same OG image, since you can use variables for text and images, so they will automatically update those based on the current instance they’re set in. [Learn more about the OG Image](https://docs.basehub.com/blocks/primitives/og-image).
+
+# Collection
+
+> A powerful list of blocks that can be fully customizable.
+
+## Features
+
+*   ✅ Ideal for repeatable content, such as a list of “Posts“, “Authors“
+    
+*   ✅ It can be searched through (using [BaseHub Search](https://docs.basehub.com/extras/search))
+    
+*   ✅ Updates can be tracked by [Workflow](https://docs.basehub.com/blocks/primitives/workflow) blocks.
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Template
+
+The component that will give structure to the collection
+
+Max rows
+
+A maximum amount of rows required for commit validation to pass
+
+Min rows
+
+A minimum amount of rows required for commit validation to pass
+
+As its name implies, you can make a Collection out of anything in BaseHub. Each new collection starts with an empty "Template" Component, which can be customized or replaced with an existing Component from your schema to serve as its template. When a new row is added to the collection, an empty instance of this template component is automatically appended to the collection’s children list.
+
+Also, you can customize the visibility of collection columns according to the specific needs of different collection types. For instance, if you require a simple image carousel without titles, you have the option to hide the title column, resulting in a cleaner and more streamlined user interface.
+
+## Advanced: recursive collections
+
+If you have a structure in mind in which you have recursion, that is, a block that has nested blocks, that can have more nested blocks (infinitely), you can achieve this via collections.
+
+Let’s take this documentation as an example. As you can see in the sidebar, some articles have nested articles within. This is fully defined by the content editor, as they’re free to nest and nest virtually infinitely. The key here is to have a component that has a child collection that targets the parent component itself ([src](https://basehub.com/basehub/docs/explore/main/GOSCkL1oxXpFlktOiuZY_)).
+
+Something like this.
+
+# Variants
+
+> Lets you create variations of a piece of content. Useful for i18n and A/B testing.
+
+## Features
+
+*   ✅ Ideal for i18n and A/B tests
+    
+*   ✅ It lets you easily create variations of content
+    
+*   ✅ It’s fully type-safe
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Variants
+
+A list of variants/options that the Variant Set will have. For example, for i18n, you’d create a “Language” variants block, and a “English“, “Spanish“, “Italian”… would be the variants.
+
+## Example: i18n
+
+Read our [guide for Localization here](https://docs.basehub.com/extras/localization).
+
+# Text
+
+> The default plain text input in BaseHub. Cannot contain rich text formatting.
+
+## Features
+
+*   ✅ Ideal for plain text headings, links or labels
+    
+*   ✅ It can be search indexed
+    
+*   ✅ Supports AI Chat
+    
+*   ✅ It can be used to filter via GraphQL
+    
+*   🔄 It can be converted to [Rich Text](https://docs.basehub.com/blocks/primitives/rich-text) at any point
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Min length
+
+Sets the minimum number of characters that must be entered in the text block.
+
+Max length
+
+Specifies the maximum number of characters allowed in the text block.
+
+Regex pattern
+
+Determines a specific pattern that the text must match with.
+
+This is useful to validate that a link entry has a valid URL value or a slug doesn’t have spaces for example.
+
+# Number
+
+> The most primitive number input in BaseHub. Allows integer, float, negative and positive numbers.
+
+## Features
+
+*   ✅ It can be search indexed
+    
+*   ✅ It can be used to filter via GraphQL
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Min
+
+Sets the minimum number of characters that must be entered in the text block.
+
+Max
+
+Specifies the maximum number of characters allowed in the text block.
+
+# Boolean
+
+> A primitive flag input. True or false.
+
+## Features
+
+*   ✅ It can be used to filter via GraphQL
+    
+
+## Constraints
+
+It doesn’t have any.
+
+# Date
+
+> A primitive date input, with optional time.
+
+## Features
+
+*   ✅ It can be search indexed
+    
+*   ✅ It can be used to filter via GraphQL
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Include time
+
+Transforms the input into datetime type.
+
+# Rich Text
+
+> A powerful text input that not only supports markdown syntax but also it has the possibility to have many custom components made in BaseHub.
+
+## Introduction
+
+The Rich Text block is the most flexible primitive in BaseHub. Playing with its constraints, you can go from a simple text input with bold, italic and underline formatting to a complex text editor with many custom components present in the repository and integrated in your codebase. It supports Markdown, image copy and pasting, image and video captions, code snippets and more. This tool is particularly effective for those looking to compose articles, blog posts, or any extensive text work that benefits from added visual components and structured formatting.
+
+## Features
+
+*   ✅ Ideal for articles, blog posts or long texts
+    
+*   ✅ It can be search indexed
+    
+*   ✅ Supports AI Chat
+    
+*   🔄 It can be converted into a [Text block](https://docs.basehub.com/blocks/primitives/text), but be ware that it will remove all rich capabilities in the process.
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Formatting
+
+This describes the formatting options available in the editor, such as bold, italic, or underline. If a particular format is turned off, it won't appear in the command menu, and using it will cause a validation error on commit if it's already present in the content.
+
+Component types
+
+Allows the inclusion of specific custom components from the repository into the text content, enabling enhanced customization and functionality in your content.
+
+# Image
+
+> Comes with some constraints that can make your image uploads more reliable.
+
+## Features
+
+*   ✅ Supports JPG, PNG, SVG, WEBP, AVIF, GIF formats
+    
+*   ✅ Supports AI Chat (with image generation)
+    
+*   ✅ Auto generated alt text
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Max size
+
+Limit the max size for the assets that can be uploaded to this block.
+
+Allowed formats
+
+Select from every image format available to limit which ones you will allow.
+
+# Video
+
+> Comes with some constraints that can make your video uploads more reliable.
+
+## Features
+
+*   ✅ Supports MP4, AVI, MOV, MKV, FLV, MPEG, OGV, WEBM formats
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Max size
+
+Limit the max size for the assets that can be uploaded to this block.
+
+Allowed formats
+
+Select from every video format available to limit which ones you will allow.
+
+# Audio
+
+> Comes with some constraints that can make your audio uploads more reliable.
+
+## Features
+
+*   ✅ Supports MP3, ACC, WAV, FLAC, WEBA, OPUS, OGA formats
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Max size
+
+Limit the max size for the assets that can be uploaded to this block.
+
+Allowed formats
+
+Select from every audio format available to limit which ones you will allow.
+
+# File
+
+> Comes with some constraints that can make your file uploads more reliable.
+
+## Features
+
+*   ✅ Supports any kind of file
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Max size
+
+Limit the max size for the assets that can be uploaded to this block.
+
+# Select
+
+> Choose from a pre-defined selection of text options.
+
+## Features
+
+*   ✅ Ideal for fixed length string list, such as “tags” in a post or “variant” in a button component.
+    
+*   ✅ Displays a combobox with options
+    
+*   ✅ Options are type safe in the SDK
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Allowed options
+
+List of allowed options to choose from.
+
+Multiple
+
+Allow a single or multiple selected options.
+
+# Reference
+
+> Choose from a constrained list of component types.
+
+## Features
+
+*   ✅ Ideal for modular sections and programatic pages
+    
+
+*   ✅ Displays an combobox with options
+    
+*   ✅ Options are type safe in the SDK
+    
+*   ✅ Gives you the option choose between different component structures within a single block
+    
+*   ✅ It can have nested blocks
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Is required
+
+Validates the input is filled.
+
+Multiple
+
+Allow a single or multiple selected options.
+
+Can link existing
+
+Allow to reference existing instances or components.
+
+Can create new
+
+Allow to create new instances of allowed components inside the reference block.
+
+Reference types
+
+List of allowed options to choose from.
+
+## Use cases
+
+Apart from the obvious single reference uses, the Reference type is a powerful block that enables you to create a space for a singular or multiple instances of the selected types. Think of it as an “OR” between the allowed types selected. For example, if you have a Reference with allowed types “Code Group” and “Code Snippet”, the union child can be a “Code Group” instance OR a “Code Snippet” instance.
+
+This makes it ideal for a bunch of use cases, including:
+
+1.  Creating a “Sections” union block for your modular, programmatic pages ([see example](https://basehub.com/basehub/marketing-website/explore/main/vtx_SP9e9HHLM-AE17BsA#94706f2563a70962531c4))
+    
+2.  Creating a conditional structure, such as “Section with Media“ in which the media part is a union of “either an image or a video”
+    
+
+# Color
+
+> A primitive color input. Opens a palette, and lets you select every color format.
+
+## Features
+
+*   ✅ Displays a native color picker
+    
+*   ✅ It can be search indexed
+    
+
+## Constraints
+
+It doesn’t have any.
+
+# OG Image
+
+> A lightweight OG Image editor used for social cards. Accepts variables and is fully customizable.
+
+## Features
+
+*   ✅ Uses [@vercel/og](https://www.npmjs.com/package/@vercel/og) under the hood
+    
+*   ✅ Renders a lightweight editor
+    
+*   ✅ Can use block variables (like the [preview button does](https://docs.basehub.com/nextjs-integration/environments-and-caching#preview-environment)) to build the design
+    
+
+## Component/Instance Workflow
+
+When you design an OG Image Block within a Component, you’re defining sort of the “template” that will be used by all of the Instance Blocks targeting it. You won’t be able to edit the OG Image within an Instance. That’s why, you’ll probably want to leverage variablesx, such as the ones the [preview button has](https://docs.basehub.com/nextjs-integration/environments-and-caching#preview-environment).
+
+## Constraints
+
+It doesn’t have any.
+
+# Event
+
+> A unique block that enables type-safe data submissions
+
+## Introduction
+
+The Event block is a unique primitive in BaseHub. Playing with its layout and schema, you can go from a simple page view counter to a complex form submissions table.
+
+The events are tracked in real time, so you will see the incoming events no matter the block’s layout.
+
+## Features
+
+*   ✅ Ideal for tracking analytics events or form submissions
+    
+*   ✅ It can have a type-safe schema, used to render forms or send events through the SDK
+    
+*   ✅ It can be tracked by [Workflow](https://docs.basehub.com/blocks/primitives/workflow) blocks
+    
+*   ✅ Events can be exported as CSV
+    
+
+## Constraints
+
+\[data-radix-scroll-area-viewport\]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}\[data-radix-scroll-area-viewport\]::-webkit-scrollbar{display:none}
+
+Contraint
+
+Description
+
+Layout
+
+Events can be displayed in either a **Table** view, similar to the [Collection](https://docs.basehub.com/blocks/layout/collection) block, or as a **Time-series** visualization that that draws an area chart showing daily (or hourly) event frequency up to today.
+
+Schema
+
+Defines which columns will be displayed on the Table view, and it’s used to create the type that will be exposed on the BaseHub SDK.  
+Useful to correctly ingest events through the SDK. Can also be fetched from the API to render custom [forms](https://docs.basehub.com/extras/forms).
+
+## Examples
+
+*   [Feedback Form](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-feedback-form)
+    
+*   [Newsletter](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-newsletter)
+    
+*   [View Counter](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-view-counter)
+    
+*   [Form Builder](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-form-builder)
+    
+
+# Workflow
+
+> A unique block to automate actions, webhooks and notifications.
+
+## Introduction
+
+The Workflow block acts as a listener for different **triggers** in your repo. You can track new commits, incoming events, or collection row modifications. Each workflow can trigger **multiple actions**, ranging from webhooks to user notifications.
+
+## Features
+
+*   ✅ Ideal for automating notifications, setting up a newsletter or tracking repository updates.
+    
+*   ✅ It can track [collections](https://docs.basehub.com/blocks/layout/collection), [event blocks](https://docs.basehub.com/blocks/primitives/event) and new commits.
+    
+*   ✅ It can setup [webhooks](https://docs.basehub.com/extras/webhooks) with useful payload data.
+    
+*   ✅ It can notify any user in the repo.
+    
+
+## Constraints
+
+It doesn’t have any.
+
+## Examples
+
+*   [Feedback Form](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-feedback-form)
+    
+*   [Newsletter](https://docs.basehub.com/templates-and-examples/examples-and-guides/create-a-newsletter)
+    
+
+# Introduction
+
+> Know more about how templates work in the platform.
+
+Templates are a great way to optimize repeatable workflows. Building a landing page? A blog? A documentation site? Use one of our official templates, or just create one for you and the community to enjoy. They’ll surely give you a head start in your next project.
+
+## How they work
+
+For a template to work, it needs a GitHub Repo and a BaseHub Repo that are connected and understand each other. Users of the template will:
+
+1.  Fork the GitHub Repo, so they’ll own the code.
+    
+2.  Fork the BaseHub Repo, so they’ll own the content.
+    
+3.  Deploy the code to Vercel.
+    
+
+Once deployed, the user should be able to start modifying stuff (content and/or code) as they please.
+
+Example deploying the basehub/marketing-website template.
+
+## Deploy with Vercel flow
+
+As seen in the video above, once you click the Vercel Deploy Button, you’ll be redirected to Vercel. There, you’ll create a GitHub Repository based on the template’s GitHub Repository. Then, you’ll add the BaseHub Integration. In the BaseHub Integration, you’ll create a new BaseHub Repository based on the template’s BaseHub Repository. After doing so, you’ll go back to Vercel to finish up the deploy flow.
+
+At the end of it, you’ll have the code, the content, and the Vercel Project.
+
+# Marketing Website Template
+
+> The perfect way to start your next marketing website.
+
+*   BaseHub Repo: [https://basehub.com/basehub/marketing-website](https://basehub.com/basehub/marketing-website)
+    
+*   GitHub Repo: [https://github.com/basehub-ai/marketing-website-template](https://github.com/basehub-ai/marketing-website-template)
+    
+
+![](https://assets.basehub.com/7b31fb4b/NNTnToWFgYRb89tw0xgT4/image.png?width=3840&quality=90&format=auto)
+
+This template is great for:
+
+*   SaaS companies
+    
+*   AI startups
+    
+*   Indie hackers
+    
+*   … and more!
+    
+
+Once you fork and deploy the template, you’ll own the code and the content. You’ll be able to edit all of its copy, change the logo and accent color, and **add new sections and programmatic pages**.
+
+# Documentation Template
+
+> The template that powers this documentation website.
+
+*   BaseHub Repo: [https://basehub.com/basehub/docs](https://basehub.com/basehub/docs)
+    
+*   GitHub Repo: [https://github.com/basehub-ai/docs-template](https://github.com/basehub-ai/docs-template)
+    
+
+![](https://assets.basehub.com/7b31fb4b/PlL3EMe8yQQHeF9mCB8DI/image.png?width=3840&quality=90&format=auto)
+
+This template is great for:
+
+*   Developer Docs
+    
+*   Company Handbooks
+    
+*   User Manuals
+    
+*   … and more!
+    
+
+Once you fork and deploy the template, you’ll own the code and the content. You’ll be able to edit all of its copy, change the logo and accent color, and **add new sections and articles**.
+
+# Help Center Template
+
+> The template that powers our own Help Center. Full-text search included.
+
+*   BaseHub Repo: [https://basehub.com/basehub/help-center](https://basehub.com/basehub/help-center)
+    
+*   GitHub Repo: [https://github.com/basehub-ai/help-center-template](https://github.com/basehub-ai/help-center-template)
+    
+
+![](https://assets.basehub.com/7b31fb4b/J7p71eHyZAeMMWkEAYuMB/image.png?width=3840&quality=90&format=auto)
+
+This template is great for:
+
+*   Help Centers
+    
+*   FAQs and Knowledge Bases
+    
+*   … and more!
+    
+
+Once you fork and deploy the template, you’ll own the code and the content. You’ll be able to edit all of its copy, change the logo and accent color, and **add new sections and articles**.
+
+# Waitlist Template
+
+> Minim ipsum veniam elit duis veniam consectetur sit.
+
+*   BaseHub Repo: [https://basehub.com/basehub/waitlist-template](https://basehub.com/basehub/waitlist-template)
+    
+*   GitHub Repo: [https://github.com/basehub-ai/nextjs-waitlist](https://github.com/basehub-ai/nextjs-waitlist)
+    
+*   Demo: [https://nextjs-waitlist.basehub.com/](https://nextjs-waitlist.basehub.com/)
+    
+
+![](https://assets.basehub.com/7b31fb4b/9cdbe7533591470ae3976f03f950f541/cleanshot-2025-01-27-at-16.07.452x.png?width=3840&quality=90&format=auto)
+
+# Create a Feedback Form
+
+> A simple "Feedback" form using the Event and the Workflow Blocks.
+
+This example covers: creating the Event Block, hooking it up with the Next.js App, as well as listening for new submissions and posting them to a Discord Channel via a Workflow Block.
+
+# Create a Newsletter
+
+> See how you can build a fully-fledged Newsletter using the Event and Workflow Blocks, plus Resend and React Email.
+
+By pairing a couple of BaseHub Blocks, you can add a newsletter to your website easily. Take a look at the [Marketing Website Template](https://basehub.com/basehub/marketing-website/explore) for a good starting point.
+
+# Create a View Counter
+
+> Track page views with the Event Block, and display them in your site.
+
+*   Demo: [https://www.julianbenegas.com/](https://www.julianbenegas.com/)
+    
+*   Source: [https://github.com/julianbenegas/julianbenegas](https://github.com/julianbenegas/julianbenegas)
+    
+
+# Create a Form Builder
+
+> Programmatic pages and forms using the Reference and Event Blocks.
+
+This is how the [Marketing Website Template](https://basehub.com/basehub/marketing-website/explore) works—you should check it out!

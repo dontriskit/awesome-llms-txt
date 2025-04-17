@@ -1,0 +1,4819 @@
+# LikeC4
+
+
+### What is LikeC4?
+
+LikeC4 is a powerful set of tools and a Domain-Specific Language (DSL) designed to describe your architecture as a single, cohesive model, which is then compiled into multiple diagrams.
+
+Your code is the _**single source of truth**_, and only you own it.   
+Any change, refinement or deprecation is reflected automatically.  
+No more outdated diagrams!  
+And with version control, your history of changes is always at your fingertips.
+
+LikeC4 offers:
+
+- Architecture-as-a-code with [IDE support](/tooling/vscode/)
+- A development server with live reload capabilities
+- Static website generation — check out the <a href="https://template.likec4.dev/view/index/" target="_blank">live demo</a>
+- [React](/tooling/code-generation/react/) and [Web Components](/tooling/code-generation/webcomponent/) for embedding in your website
+- [Vite plugin](/tooling/vite-plugin/) for seamless integration
+- API to traverse your model
+- CI/CD automation via [CLI](/tooling/cli/) and [GitHub Actions](/tooling/github/)
+- [Export](/tooling/cli/#export-to-png) options to multiple formats:
+  - PNG
+  - Mermaid
+  - D2
+  - DOT (Graphviz)
+
+You can use LikeC4 as a standalone solution or integrate it into your existing toolchain.
+
+### Why "like"?
+
+The name "LikeC4" reflects its inspiration from the <a href="https://c4model.com/" target="_blank">C4 Model</a>
+and <a href="https://docs.structurizr.com/" target='_blank'>Structurizr DSL</a>,
+while extending and offering enhanced flexibility and customization.
+
+You can _**use your own ubiquitous language**_, define your terms, and create as many nested levels as needed.
+
+### What does LikeC4 look like?
+
+```likec4
+// You start with defining your terms and ...
+specification {
+  // ... "types" of your elements
+  element actor {
+    style {
+      shape person // how to render
+    }
+  }
+  element system
+  element component
+  // and "typed" relationships (if you need)
+  relationship async
+}
+
+// Here goes your model, the single source of truth
+model {
+  customer = actor 'Customer' {
+    description 'A user of our product with active subscription'
+    -> ui 'opens in browser'
+  }
+
+  cloud = system 'Our SaaS' {
+    backend = component 'Backend' {
+      icon tech:graphql
+      description 'Implements business logic and provides GraphQL API'
+    }
+
+    ui = component 'Frontend' {
+      description 'NextJS application'
+      style {
+        icon tech:nextjs
+        shape browser
+      }
+    }
+
+    ui -[async]-> backend 'requests via HTTPS'
+  }
+}
+
+// And finally, you define what to render
+views {
+  view index {
+    title 'Landscape view'
+    include *, cloud.*
+
+    style cloud.* {
+      color green
+    }
+  }
+}
+```
+
+Run CLI to preview: 
+
+```bash
+likec4 start
+```
+
+And this is rendered (click to explore):
+
+<LikeC4View viewId="index"/>
+
+
+<LinkCard
+  title="Get started"
+  href="/tutorial/"
+  description="How to quickly start with LikeC4 and create your first architecture diagram"
+/>
+
+<FooterIndex/>
+<Styles/>
+
+# Getting Started
+
+
+To start with the tutorial there are two options:
+- Open <a href="https://playground.likec4.dev/w/blank/" target='_blank'>blank playground</a> in a new tab
+- Install [vscode extension](https://marketplace.visualstudio.com/items?itemName=likec4.likec4-vscode) (or <a href="https://open-vsx.org/extension/likec4/likec4-vscode" target="_blank">open-vsx</a>) and create a new file with `.c4` extension
+
+and follow the steps:
+
+<Steps>
+
+1. ##### Prepare specification
+
+    We start with defining kinds of the elements in our architecture.  
+    We need only two - `actor` and `system`:
+
+    ```likec4 copy
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+    }
+    ```
+
+2. ##### Create model
+
+    Start with top-level and define the model:
+
+    ```diff lang="likec4"
+    // tutorial.c4
+     specification {
+       element actor
+       element system
+     }
+
+    + model {
+    +   customer = actor 'Customer'
+    +   saas = system 'Our SaaS'
+    + }
+    ```
+
+    These are the first elements of our architecture model.  
+    Let's add details.
+
+3. ##### Add hierarchy
+
+    Assume our system has two main components - `ui` and `backend`.  
+    We add a new kind to the specification and update the model.
+
+    ```diff lang="likec4" {5,11-12} copy
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+    +  element component
+    }
+
+    model {
+      customer = actor 'Customer'
+      saas = system 'Our SaaS' {
+    +    component ui
+    +    component backend
+      }
+    }
+    ```    
+
+4. ##### Add relationships
+
+    **Any links** between elements (i.e. interactions, calls, delegations, dependencies, flows).
+    You are free to define them as you like.
+
+    In the model:
+
+    ```diff lang="likec4" {14-15,18-19} copy
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer'
+      saas = system 'Our SaaS' {
+        component ui
+        component backend
+
+    +    // UI fetches data from the Backend
+    +    ui -> backend
+      }
+
+    +  // Customer uses the UI
+    +  customer -> ui 'opens in browser'
+    }
+    ```
+
+4. ##### Create first diagram    
+
+    Diagrams are rendered from views, and views are projections of the model defined by predicates (what to include/exclude).  
+
+    Start with bird's eye view (_"Landscape"_):
+
+    ```diff lang="likec4" {23-25} copy
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer'
+      saas = system 'Our SaaS' {
+        component ui
+        component backend
+
+        // UI fetches data from the Backend
+        ui -> backend
+
+        // Customer uses the UI
+        customer -> ui 'opens in browser'
+      }
+    }
+
+    views {
+    +  view index {
+    +    include *
+    +  }
+    }
+    ```    
+
+    We got this:
+
+    ![landscape view](../../assets/getting-started/01.png)
+
+    <Aside title='Wonder why there is a relationship?'>
+    The predicate `include *` includes only "top-level" elements and implies relationships between them from nested elements:
+    > `customer` has a _known relationship_ with nested `saas.ui` element
+
+    that implies:  
+    > `customer` has _some relationship_ with `saas`.  
+
+    </Aside>
+
+
+4. ##### Add more views
+
+    ```diff lang="likec4" {27-29}
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer'
+      saas = system 'Our SaaS' {
+        component ui
+        component backend
+
+        // UI requests data from the Backend
+        ui -> backend
+
+        // Customer uses the UI
+        customer -> ui 'opens in browser'
+      }
+    }
+
+    views {
+      view index {
+        include *
+      }
+
+    +  view of saas {
+    +    include *
+    +  }
+    }
+    ```
+
+    Imagine, we zoom in to `saas` element, and see nested elements and their relationships:
+
+    ![saas view](../../assets/getting-started/02.png)
+
+4. ##### Enrich model
+
+    Let's add descriptions, define the shape of the `ui` and add a label to the relationship `ui -> backend`
+
+    ```diff lang="likec4" {10,15-19,22-25,29,47-49} ins="'fetches via HTTPS'" copy
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer' {
+    +    description 'The regular customer of the system'
+      }
+
+      saas = system 'Our SaaS' {
+        component ui 'Frontend' {
+    +      description 'Nextjs application, hosted on Vercel'
+    +      style {
+    +        icon tech:nextjs  
+    +        shape browser
+    +      }
+        }
+        component backend 'Backend Services' {
+    +      description '
+    +        Implements business logic
+    +        and exposes as REST API
+    +      '
+        }
+
+        // UI fetches data from the Backend
+        ui -> backend 'fetches via HTTPS'
+      }
+
+      // Customer uses the UI
+      customer -> ui 'opens in browser'
+    }
+
+    views {
+
+      view index {
+        title 'Landscape view'
+
+        include *
+      }
+
+      view of saas {
+        include *
+
+    +    style customer {
+    +      color muted
+    +    }
+      }
+
+    }
+    ```
+
+    The `saas` view after changes:
+
+    ![saas view after changes](../../assets/getting-started/03.png)
+
+4. ##### Add changes
+
+    Let's change the description of the `customer` and the label of `customer -> ui`
+
+    ```diff lang="likec4"
+    // tutorial.c4
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer' {
+    -    description 'The regular customer of the system'        
+    +    description 'Our dear customer'
+      }
+
+      saas = system 'Our SaaS' {
+        component ui 'Frontend' {
+          description 'Nextjs application, hosted on Vercel'
+          style {
+            icon tech:nextjs
+            shape browser
+          }
+        }
+        component backend 'Backend Services' {
+          description '
+            Implements business logic
+            and exposes as REST API
+          '
+        }
+
+        // UI requests data from the Backend
+        ui -> backend 'fetches via HTTPS'
+      }
+
+      // Customer uses the UI
+      customer -> ui 'opens in browser'
+    +  customer -> saas 'enjoys our product'
+    }
+
+    views {
+
+      view index {
+        title 'Landscape view'
+
+        include *
+      }
+
+      view of saas {
+        include *
+
+        style customer {
+          color muted
+        }
+      }
+
+    }
+    ```
+
+    View `index`:
+
+    ![landscape view after changes](../../assets/getting-started/04.png)
+
+    View `saas`:
+
+    ![saas view after changes](../../assets/getting-started/05.png)
+
+    :::tip[Did you see?]
+    We changed elements in the model, and all views are updated accordingly.
+    :::
+
+4. ##### Try it yourself
+
+    Play with [this tutorial in playground](https://playground.likec4.dev/w/tutorial/) and try to add the following:
+
+    - change [shape](/dsl/styling/#single-element) of the `customer` element
+    - add a database (with `storage` shape) and tables like `customers` and `orders` (what relationships should be added?)
+    - add an external system, like Stripe, and show how the backend might interact with it
+
+    <LinkCard
+      title="Open playground"
+      description="Play with this tutorial in playground"
+      href="https://playground.likec4.dev/w/tutorial/"
+      target="_blank"
+    />
+
+</Steps>
+
+# Dynamic views
+
+
+
+Dynamic view describes a particular use-case or scenario, with specific elements and interactions, defined only in the view (without polluting the model).
+
+### Dynamic view definition
+
+```likec4 showLineNumbers copy collapse={1-54}
+//dynamic-view.c4
+specification {
+  element actor {
+    style {
+      shape person
+    }
+  }
+  element system
+  element component
+}
+
+model {
+  customer = actor 'Customer' {
+    description 'Customer of Cloud System'
+  }
+
+  cloud = system 'Cloud System' {
+    backend = component 'Backend' {
+      description 'Backend services and API'
+
+      auth = component 'Authentication'
+
+      api = component 'Backend API' {
+        description 'RESTful API'
+      }
+
+      api -> auth 'validates bearer token' 
+    }
+
+    ui = component 'Frontend' {
+      description '
+        All the frontend applications
+        of Cloud System
+      '
+      style {
+        shape browser
+      }
+
+      web = component 'Customer Dashboard' {
+        description 'React Application'
+        style {
+          shape browser
+        }
+      }
+
+      web -> auth
+      web -> api 'requests'
+    }
+  }
+
+  customer -> web 'opens in browser'
+
+}
+
+views {
+  dynamic view example {
+    title 'Dynamic View Example'
+    customer -> web 'opens in browser'
+    web -> auth 'updates bearer token if needed'
+    web -> api 'POST request'
+    api -> auth // title is derived from the model
+    api -> api 'process request' // allow self-call
+
+    // reverse direction, as a response to line 59
+    web <- api 'returns JSON'
+
+    // Include elements, that are not participating
+    include cloud, ui, backend
+
+    style cloud {
+      color muted
+      opacity 0%
+    }
+  }
+}
+```
+
+:::note
+Check this <a href="https://github.com/likec4/likec4/discussions/816" target='_blank'>GitHub discussion</a> for further development.  
+Feel free to share your ideas.
+:::
+
+#### Parallel steps
+
+```likec4 copy
+dynamic view parallelexample {
+  title 'Dynamic View Parallel Example'
+  ui -> api
+  parallel {
+    api -> cache 
+    api -> db
+  }
+  // or
+  par {
+    api -> cache 
+    api -> db
+  }
+}
+```
+
+Nested parallel blocks are not possible - <a href="https://github.com/likec4/likec4/discussions/816#discussioncomment-10015146" target='_blank'>see this discussion</a>
+
+#### Navigation
+
+Control the flow of the walk-through:
+
+```likec4 copy
+dynamic view level1 {
+  title 'Highlevel'
+
+  ui -> api {
+    navigateTo moreDetails
+  }
+}
+
+dynamic view moreDetails {
+  title 'Some details'
+}
+```
+
+#### Notes 
+
+`notes` is for additional comments during walk-through:
+
+```likec4 copy
+dynamic view stepnotes {
+  title 'Dynamic View Parallel Example'
+
+  ui -> api {
+    notes '
+      🏛️ - Requests data using predefined GraphQL queries
+      🤖 - Queries regression on CI
+    '
+  }
+
+  parallel {
+    api -> cache {
+      notes '
+        Requests temporary session-scoped data
+      '
+    }
+    api -> db {
+      notes '
+        Queries persistent data
+      '
+    }
+  }  
+}
+```
+
+### Example
+
+<DynamicLikeC4View viewId="index"/>
+
+<br/>
+<CardGrid>
+  <LinkCard
+    title="Try it online"
+    description="Open this example in LikeC4 playground"
+    href="https://playground.likec4.dev/w/dynamic/"
+    target="_blank"
+  />
+</CardGrid>
+
+# Extending model
+
+
+You extend the model by creating new files and folders.  
+When LikeC4 source files are parsed, they are "_merged_" into a single architecture model.
+
+You are free to organize the workspace as you want.
+
+
+## Example
+
+Assume we have the following workspace:
+
+<FileTree>
+- cloud
+  - service1.c4
+  - service2.c4
+  - ...
+- externals
+  - amazon.c4
+- landscape.c4
+- specs.c4
+</FileTree>
+
+
+<Tabs>
+  <TabItem label="specs.c4">
+    This file defines the specification:
+
+    ```likec4
+    specification {
+      element actor {
+        style {
+          shape person
+        }
+      }
+      element system
+      element service
+    }
+    ```
+  </TabItem>
+  <TabItem label="landscape.c4">
+    This file defines the top-level elements and landscape view:
+
+    ```likec4
+    model {
+      customer = actor 'Customer'
+      cloud = system 'Cloud System'
+    }
+    views {
+      view index of cloud {
+        title "Cloud System - Landscape"
+        include *
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="externals/amazon.c4">
+    We keep definitions of external systems separately, inside the `externals/` folder:
+    
+    ```likec4
+    model {
+      amazon = system 'Amazon Web Services' {
+        rds = service 'Database'
+      }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Extend element
+
+`extend` is a way to enrich the model and define nested elements in a separate file.
+
+
+We don't want to mess up the _landscape.c4_ file with the internals of the `cloud`.  
+In a separate file we extend `cloud` and define `cloud.service1`:
+
+```likec4
+// cloud/service1.c4
+model {
+  // cloud is defined in landscape.c4
+  extend cloud {
+    // extend and define cloud.service1
+    service1 = service 'Service 1'
+  }
+}
+```
+
+The element extension inherits the scope of the target (or better say _**parent**_).  
+For example:
+
+```likec4
+// cloud/service2.c4
+model {
+  // cloud is defined in landscape.c4
+  extend cloud {
+    // extend and define cloud.service2
+    service2 = service 'Some Service 2'
+
+    service2 -> service1 // ✅ service1 is known inside 'cloud'
+  }
+}
+```
+
+<Aside type='caution'>
+Extended element must be referenced by a fully qualified name.  
+
+Example:
+
+```likec4
+model {
+  extend service2       // ⛔️ Error: service2 not found in the global scope
+  extend cloud.service2 // ✅ Resolved by fully qualified name
+}
+```
+</Aside>
+
+### Additional properties
+
+You can extend element with additional tags, links and metadata:
+
+```likec4
+model {
+  extend cloud {
+    // Add tags
+    #additional-tag, #another-tag
+
+    // Add metadata
+    metadata {
+      prop1 'value1'
+    }
+
+    // Add links
+    link ../src/index.ts#L1-L10
+  }
+}
+```
+
+# Introduction
+
+
+LikeC4 is a DSL for describing software architecture.
+
+Source files must have `.likec4` or `.c4` extensions.  
+All sources merged into _a single model_ (explained later in [extending model](/dsl/extend)).
+
+A project may look like this:
+
+<FileTree>
+- backend
+  - service1
+    - model.c4
+    - views.c4
+  - service2
+    - model.c4
+  - ...
+- externals
+  - amazon.c4
+  - ...
+- landscape.c4
+- specs.c4
+</FileTree>
+
+## Top-level statements
+
+Source file should have at least one of these statements:
+
+- `specification` - defines element kinds to be used in the model, like **system**, **app**, **microservice**...
+- `model` - architecture elements, hierarchies, compositions and relationships
+- `views` - visualizations
+- `global` - globally shared predicates (explained later in [Views](/dsl/views/#shared-global-styles))
+
+```likec4
+// example.c4
+specification {
+  //...
+}
+
+global {
+  //...
+}
+
+model {
+  //...  
+}
+
+views {
+  //...
+}
+```
+
+You have multiple statements of the same type: 
+
+```likec4
+// Views group 1
+views {
+}
+
+// Views group 2
+views {
+}
+```
+
+:::tip
+For example, `views` block allows _"local styles"_, that apply to the views in the same block.  
+This way you can group views that have same styles, and avoid boilerplate.  
+Explained later in [Views](/dsl/views/#shared-local-styles).
+:::
+
+# Model
+
+
+The `model` describes architecture as a set of hierarchical elements and any relationships among them.
+
+## Element
+
+Element is a basic building block.  
+It represents a logical or physical part of the architecture.  
+Any element must have a [kind](/dsl/specification#element-kind) and a name (_identifier_):
+
+```likec4
+specification {
+  element actor // define a kind
+  element service
+}
+
+model {
+  // element of kind 'actor' with the name 'customer'
+  actor customer
+  // element of kind 'service' named as 'cloud'
+  service cloud
+
+  // also possible with '=' and the name goes first
+  cloud = service
+}
+```
+
+Element name is required for references.  
+It can contain letters, digits and underscore, but can't start with a digit or contain `.`
+
+| name       |     |
+| :--------- | :-- |
+| api        | ✅  |
+| Api        | ✅  |
+| \_api      | ✅  |
+| \_1api     | ✅  |
+| 1api       | ⛔️ |
+| a.pi       | ⛔️ |
+
+
+### Element Properties
+
+Elements may have properties: _title_, _description_ and _technology_.  
+For example, Structurizr DSL style:
+
+```likec4 copy
+specification {
+  element softwareSystem
+}
+model {
+  // Structurizr DSL style:
+  // <name> = softwareSystem [title] [description] [technology]
+  cloud = softwareSystem 'Cloud' 'Provides services to customers' 'SaaS'
+}
+```
+
+<Aside>
+LikeC4 supports Structurizr DSL syntax ("_partially_") allowing to copy-paste from it.  
+Check the [Big Bank example](/examples/bigbank).
+</Aside>
+
+Element's name is used as a title by default.  
+But you can specify your own:
+
+```likec4
+model {
+  // element of kind 'actor'  with name='customer' and title='customer'
+  actor customer
+  // element of kind 'service' with name='cloud' and title='Cloud Systems'
+  service cloud 'Cloud Systems'
+  
+  // or with '='
+  cloud = service 'Cloud Systems'
+}
+```
+
+These properties may be defined as nested:
+
+```likec4 copy
+model {
+  // Only description inside
+  customer = actor 'Customer' {     
+    description: 'Uses the Mobile Application' // ':' is optional, but if you prefer
+  }
+  // All properties inside
+  mobile = application {
+    title 'Mobile Application'
+    description 'Provides services to customers'
+    technology 'React Native'
+  }
+  // Multiline
+  web = application {
+    title 'Web Application'
+    description '
+      Provides services to customers through
+      the web interface.
+    '
+  }
+}
+```
+
+:::tip
+
+You may define technology in [specification](/dsl/specification#element-kind), if it is common for all of the kind:
+
+```likec4
+specification {
+  element mobileApp {
+    technology 'React Native'
+  }
+}
+```
+:::
+
+### Element Tags
+
+Tags are defined in nested block and before any properties:
+
+```likec4 copy
+model {
+  appV1 = application 'App v1' {
+    #deprecated
+    description 'Old version of the application'
+  }
+
+  // multiple tags
+  appV2 = application {
+    #next, #serverless
+    #team2
+    title 'App v2'
+  }
+
+  appV3 = application {        
+    title 'App v3'
+    #team3 // ⛔️ Error: tags must be defined first
+  }  
+}
+```
+
+### Element Links
+
+Element may have multiple links:
+
+```likec4 copy
+model {
+  bastion = application 'Bastion' {
+    // External link
+    link https://any-external-link.com
+
+    // or any URI
+    link ssh://bastion.internal 'SSH'
+
+    // or relative link to navigate to sources
+    link ../src/index.ts#L1-L10
+  }
+}
+```
+
+### Element Metadata
+
+Element metadata is a set of key-value pairs, defined in a nested block:
+
+```likec4 copy
+model {
+  app = application 'App' {
+    metadata {
+      prop1 'value1'
+      prop2 '
+        apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: app-statefulset
+        spec: {}        
+      '
+    }
+  }
+}
+```
+
+Only string values are allowed, but you can use JSON or YAML format for complex data.
+
+## Structure
+
+Any element is a container and can contain other elements.  
+This way you define the structure and internals of the element.
+
+```likec4 filename="nested-elements.c4"
+model {
+  // service1 has backend and frontend
+  service service1 {
+    component backend {
+      // backend has api
+      component api
+    }
+    component frontend
+  }
+
+  // or use '='
+  service2 = service {
+    backend = component {
+      api = component
+    }
+    frontend = component
+  }
+}
+```
+
+<Aside type="caution">
+Element name must be unique within the container.  
+We learn this in detail with [references](/dsl/references)
+</Aside>
+
+Nested elements are _"namespaced"_, the parent name is used as a prefix.  
+So, the model above has the elements with these fully qualified names:
+
+- `service1`
+- `service1.backend`
+- `service1.backend.api`
+- `service1.frontend`
+
+and:
+
+- `service2`
+- `service2.backend`
+- `service2.backend.api`
+- `service2.frontend`
+
+It is not possible to have elements with the same name on the same hierarchy level.
+
+```likec4 filename="nested-elements.c4"
+model {
+
+  service service1 'Service 1' {
+    component backend
+
+    component backend // ⛔️ Error: 'service1.backend' already defined
+  }
+
+  service service2 'Service 2' {
+    component backend // ✅ This is OK - 'service2.backend'
+
+    component legacy {
+      component backend // ✅ This is OK - 'service2.legacy.backend'
+    }
+  }
+
+  component backend // ✅ This is OK - 'backend'
+}
+```
+
+# View Notations
+
+
+
+<Aside type='caution' title="Experimental" >
+  The implementation is experimental and may change in the future.  
+  The main purpose is to gather feedback, suggestions and ideas.
+</Aside>
+
+<Aside type='caution' title="In progress" >
+  Relationship notations are in progress.
+</Aside>
+
+View notations (or key/legend) provide information about the meanings of shapes and styles.
+It's important to provide a key explaining the difference in colors and shapes.
+
+
+It is possible to define global notations (per element kind) and local (per view).
+
+#### Global notations
+
+As comes from the name, global notations apply to all views, and defined in the `specification` block:
+
+```likec4 copy {4, 12}
+specification {
+
+  element customer {
+    notation "Person, Customer"
+    style {
+      shape person
+      color green
+    }
+  }
+
+  element staff {
+    notation "Person, Staff"
+    style {
+      shape person
+    }
+  } 
+}
+```
+
+Notations will be applied to all views with these elements and displayed as:
+
+<div style="max-width:400px;margin: 1rem auto">
+![notations](../../../assets/notations.png)
+</div>
+
+Live example.  
+Expand the following view and click on help icon in bottom right:
+
+<LikeC4ThemeView viewId="notations_example"/>
+
+#### Local notations
+
+Local notations override global ones and apply to a specific view.
+
+##### With style predicate
+
+When you change the style, you can add a notation to explain the meaning:
+
+```likec4
+view {
+
+  style webApp1, webApp2 {
+    notation "Application under development"
+    color amber
+  }
+
+  style element.tag = #deprecated {
+    notation "Deprecated"
+    color muted
+  }
+
+}
+```
+
+Notations are not merged or grouped, the last one will be applied.
+
+:::tip
+
+You may have same notation for different styles:
+
+```likec4
+view {
+
+  style webApp1 {
+    notation "Web Application"
+    color amber
+  }
+
+  style webApp2 {
+    notation "Web Application"
+    color green
+  }
+}
+```
+:::
+
+
+##### With overrides
+
+Define notation when include elements:
+
+```likec4
+view {
+
+  include *
+    where kind is microservice
+      and tag is #deprecated
+      with {
+        notation "Deprecated microservice"
+        shape rectangle
+        color muted
+      }
+
+}
+```
+
+This notation have higher priority, then global one or defined within style predicates. 
+
+:::note
+Feel free to share your ideas in <a href="https://github.com/likec4/likec4/discussions/" target='_blank'>GitHub discussions</a> how to improve notations, make reusable or more flexible.
+:::
+
+# Multi-projects
+
+
+Sometimes you may want to split your LikeC4 model into multiple ones, based on domains, teams, or any other criteria.
+
+You can do this by creating multiple projects in your workspace and linking them together.  
+You can also use this feature to share your model with other teams or projects.
+
+## Usage
+
+To mark a folder as a project, create a `likec4.config.json` file in the folder:
+
+<FileTree>
+- cloud
+  - likec4.config.json
+  - service1.c4
+  - service2.c4
+  - ...
+- externals
+  - likec4.config.json
+  - amazon.c4
+  - ...
+</FileTree>
+
+The `likec4.config.json` file must have the name of the project and must be unique in the workspace.
+
+
+```json
+{
+  "name": "project-name"
+}
+```
+
+:::tip
+You can use these names for the config file:
+- `.likec4rc`
+- `.likec4.config.json`
+- `likec4.config.json`
+
+LikeC4 interprets any file as JSON5
+:::
+
+## Exclude files
+
+By default, LikeC4 recursively scans in the project folder.  
+You can exclude files by adding an `exclude` array to the config file.
+
+```json
+{
+  "name": "project-name",
+  "exclude": [
+    "**/node_modules/**/*"
+  ]
+}
+```
+
+If no exclude pattern is provided, LikeC4 uses `["**/node_modules/**/*"]` as default.  
+The exclude pattern is the same as the one used by [picomatch](https://github.com/micromatch/picomatch).  
+
+
+## Import elements
+
+You can import elements from other projects by using the `import` keyword.
+
+```likec4
+import { serviceA } from 'projectA'
+
+model {
+  serviceB = service {
+    -> serviceA.api 'calls serviceA'
+  }
+}
+```
+
+<Aside type='caution' title="Limitations">
+At the moment, the following limitations apply:
+- Referenced projects must be loaded in the same workspace
+- Only top-level **model** elements can be imported
+</Aside>
+
+# References
+
+
+LikeC4 uses the lexical scope, with hoisting, almost like in JavaScript.
+
+## Scope
+
+To understand references, we need to understand scopes first.  
+Example:
+
+```likec4
+model {
+  service service1 {
+    component api
+    component frontend
+  }
+}
+```
+
+Every element is unique in the model, so we can add a relationship referencing them, like:
+
+```likec4 'frontend -> api'
+model {
+  service service1 {
+    component api
+    component frontend
+  }
+  frontend -> api
+}
+```
+
+But if we add `service2` with another `api`:
+
+```diff lang="likec4"
+model {
+  service service1 {
+    component api
+    component frontend
+  }
++  service service2 {
++    component api
++  }
+
+  frontend -> api // ⛔️ Error: 'api' not found
+}
+```
+
+The reference is ambiguous, as there are two `api` components in the model.
+
+Every element creates a new scope inside `{...}`, so `api` is unique inside `service1` and `service2`,
+but not in the scope of `model`.
+
+We can resolve by moving the relationship to the scope of `service2`:
+
+```likec4 {9-11}
+model {
+  service service1 {
+    component api
+    component frontend
+  }
+  service service2 {
+    component api
+
+    frontend -> api // ✅ This is OK,
+                    //    'api' is unique in 'service2'
+                    //    'frontend' is unique in 'model'
+  }
+}
+```
+
+## Hoisting
+
+<Aside>
+  **Hoisting** is a mechanism that moves the reference to the top of the scope.
+</Aside>
+
+In LikeC4, the element, besides being hoisted in its scope, also _"bubbles"_ to the upper scopes, if it stays unique.
+
+We may reference something that is not yet declared but will be hoisted later.  
+The relationship on line 8 references `graphql` defined below on line 15:
+
+```likec4 showLineNumbers {8,17} copy
+model {
+
+  service service1 {
+    component api
+    component frontend
+
+    frontend -> api // ✅ This is OK, references to 'api' from 'service1'
+    frontend -> graphql // ✅ This is OK, references to unique 'graphql'
+  }
+
+  frontend -> api // ⛔️ Error: 'api' is ambiguous
+
+  service service2 {
+    component api
+    component graphql
+
+    frontend -> api  // ✅ This is OK, references to 'api' from 'service2'
+  }
+
+}
+```
+
+<Aside>
+Lines 7 and 17 are the same: `frontend -> api`  
+But they reference to different elements:  
+{'-'} Line 7 to `service1.api`  
+{'-'} Line 17 to `service2.api`
+</Aside>
+
+## Fully qualified names
+
+Top-level elements (placed directly in the `model` block) are available globally.  
+
+To reference nested elements we use their fully qualified names (FQN).
+
+Example:
+
+```likec4 {11,12}
+model {
+  service service1 {
+    component api
+    component frontend
+  }
+  service service2 {
+    component api
+  }
+
+  frontend -> api // ⛔️ Error: 'api' not found
+  frontend -> service1.api // ✅ This is OK
+  frontend -> service2.api // ✅ This is OK
+}
+```
+
+Or even:
+
+```likec4 {5}
+model {
+  service service1 {
+    component api
+    component frontend {
+      -> service2.api
+    }
+  }
+  service service2 {
+    component api
+  }
+}
+```
+
+Some parts may be omitted, if FQN stays unique:
+
+```likec4
+model {
+  service service {
+    component backend1  {
+      component api
+    }
+    component backend2  {
+      component api
+      component graphql
+    }
+  }
+
+  frontend -> service.backend1.api // ✅ Non-ambiguous fully qualified name
+
+  frontend -> backend1.api  // ✅ This is OK, 'api' is unique in 'backend1',
+                            //    and 'backend1' is unique in the model
+                            //    We may omit 'service'
+
+  frontend -> backend2.api  // ✅ This is also OK
+
+  frontend -> service.api   // ⛔️ Error: 'api' is ambiguous in 'service'
+
+  frontend -> service.graphql // ✅ This is also OK, we omit 'backend2'
+                              //    as 'graphql' is unique in 'service'
+}
+```
+
+<Aside type='caution'>
+While omitting FQN-parts makes code better looking and references shorter,  
+it may be error-prone when you refactor the model
+
+_Sure, only if you have same-named elements_
+</Aside>
+
+# Relationships
+
+
+Relationships describe the connections, data flows and interactions of the elements,  
+and created with the **`->`** operator:
+
+```likec4
+model {
+  customer = actor 'Customer'
+  cloud = service 'Cloud'
+
+  customer -> cloud
+}
+```
+
+## Relationship kinds
+
+Relationships can be "kinded":
+
+```likec4
+specification {
+  element system
+  // Define relationship kind
+  relationship async
+  relationship uses
+}
+
+model {
+  system1 = system 'System 1'
+  system2 = system 'System 2'
+
+  system1 -[async]-> system2
+
+  // Or prefix with '.' to use the kind
+  system1 .uses system2
+}
+```
+
+This allows us to express and add more semantics to the interactions between the elements,
+for instance, from a technology perspective (REST, GRPC, GraphQL, Sync/Async, etc.)
+or from a business perspective (delegation, inform, accountability, etc.).
+
+It's up to you to define the relationship kinds that make sense for your context.
+
+<Aside type='tip'>
+  With kinds you can customize the styling of the relationships, see [styling](/dsl/styling#relationship)
+</Aside>
+
+## Relationship definition
+
+Relationships may be nested
+
+```likec4
+model {
+  actor customer
+  service cloud {
+    component backend
+    component frontend
+
+    frontend -> backend
+    customer -> frontend
+  }
+}
+```
+
+Use `it` or `this` to refer parent as the source:
+
+```likec4
+model {
+  customer = actor {
+    it -> frontend 'opens in browser'
+    this -> frontend 'opens in browser'
+  }
+}
+```
+
+or to refer as the target:
+
+```likec4
+model {
+  component frontend {
+    customer -> it 'opens in browser'
+    customer -> this 'opens in browser'
+  }
+}
+```
+
+Nested relationships may be _"sourceless"_, then the source is the parent element
+
+```likec4
+specification {
+  relationship graphql
+}
+model {
+  customer = actor {
+    // same as customer -> frontend
+    -> frontend 'opens in browser' 
+  }
+  service cloud {
+    component backend
+    component frontend {
+      // same as frontend -[graphql]-> backend
+      -[graphql]-> backend 'requests data'  
+    }
+  }
+}
+```
+
+:::caution
+
+_"sourceless"_ relationships must be nested:
+
+```likec4
+model {  
+  -> backend // ⛔️ Error: model can't be a source
+}
+```
+:::
+
+## Relationship Properties
+
+### Title
+
+Relationships may have a title (and better to have one):
+
+```likec4 {7-8, 12}
+model {
+  actor customer
+  service cloud {
+    component backend
+    component frontend
+
+    // Title can be inlined
+    frontend -> backend 'requests data to display'
+  }
+
+  customer -> frontend {
+    title 'opens in browser' // or nested
+  }
+}
+```
+
+### Technology
+
+```likec4
+model {
+  customer -> frontend 'opens in browser' {
+    technology 'HTTPS'
+  }
+
+  // Or in a shorter way
+  customer -> frontend 'opens in browser' 'HTTPS'
+}
+```
+
+### Description
+
+```likec4
+model {
+  customer -> frontend 'opens in browser' {
+    description 'Customer opens the frontend in the browser to interact with the system'
+  }
+}
+```
+
+:::caution
+
+Description is not displayed in the diagrams yet  
+In progress
+
+:::
+
+### Metadata
+
+Same as [elements metadata](/dsl/model/#element-metadata):
+
+```likec4
+model {
+  customer -> frontend 'opens in browser' {
+    metadata {
+      prop1 'value1'
+      prop2 'value2'
+    }
+  }
+}
+```
+
+### Tags
+
+Relationships may be tagged
+
+```likec4
+model {
+  // inlined
+  frontend -> backend 'requests data' #graphql #team1
+
+  // or nested
+  customer -> frontend 'opens in browser' {
+    #graphql #team1 
+  }
+}
+```
+
+### Links
+
+Relationships may have multiple links:
+
+```likec4 copy
+model {
+  customer -> frontend 'opens in browser' {
+    // External link
+    link https://any-external-link.com
+
+    // or any URI
+    link ssh://bastion.internal 'SSH'
+
+    // or relative link to navigate to sources
+    link ../src/index.ts#L1-L10
+  }
+}
+```
+
+
+### Navigate To
+
+Relationship may have a `navigateTo` property, which is a link to some [dynamic view](/dsl/dynamic-views).  
+This allows to "zoom-in" and see more details about this relationship.
+
+```likec4 copy
+model {
+  webApp -> backend.api {
+    title 'requests data for the dashboard'
+    navigateTo dashboardRequestFlow
+  }
+  
+}
+```
+
+# Specification
+
+In the `specification` you define your notation.
+
+## Element kind
+
+The `element` defines the kind that can be used across the model.
+
+```likec4 copy
+specification {
+
+  // Define whatever you want
+  element user
+  element cloud
+  element system
+  element application
+  element component
+  element controller
+  element microservice
+  element queue
+  element restapi
+  element graphqlMutation
+  element repository
+  element database
+  element pgTable
+
+}
+```
+
+Element kinds are required for the [model](/dsl/model).
+
+## Relationship
+
+```likec4
+specification {
+  relationship async
+  relationship subscribes
+  relationship is-downstream-of
+}
+```
+
+More in the [relationships](/dsl/relationships/#relationship-kinds)
+
+## Tag
+
+Tags may be used to mark, group, filter elements/relationships/views, or give some additional semantics, like `#deprecated`, `#epic-123` or `#team2`.
+
+```likec4
+specification {
+
+  tag deprecated
+  tag epic-123
+  tag team2
+
+}
+```
+
+## Color
+
+Custom colors could be defined to extend built in themes. Being defined in specification they could be used later along with the theme colors.
+
+```likec4
+specification {
+  color custom-color #808
+  color another-color #440
+
+  element person {
+    style {
+      color custom-color
+    }
+  }
+}
+``` 
+
+{/*
+
+#### Color
+Any color defined in [styling](./styling).
+
+#### Line
+Valid options for `line` are: `solid`, `dashed`, `dotted`.
+
+#### Arrowhead / Arrowtail
+Valid options for `head` and `tail` are: `normal`, `onormal`, `diamond`, `odiamond`, `crow`, `vee`, `open`, `none`.
+Refer to [Graphviz arrowType](https://graphviz.org/docs/attr-types/arrowType/) for visuals.
+ */}
+
+# Generated Views
+
+
+### Relationships browser
+
+### Relationship decomposition
+
+# Styling
+
+
+You can change colors, shapes, and icons of elements and relationships.
+
+### Element
+
+There are multiple ways to style elements:
+- Style all elements of a kind in `specification`
+- Specific for an element in `model`
+- Override styles in `view` (more on this in [next section](/dsl/views/#style-predicates))
+
+#### Elements of a kind
+
+To style all elements of a kind, use the `style` block in `specification`:
+
+```likec4 copy
+specification {
+  element user {
+    style {
+      // every element of 'user' kind
+      shape person // have 'person' shape
+      color amber  // and amber color
+    }
+  }
+
+  element frontend {    
+    style {
+      // every 'frontend' displayed as browser
+      shape: browser // ':' is optional, but if you prefer
+    }
+  }
+}
+```
+
+#### Single element
+
+To style a specific element, use the nested `style` block in `model`.  
+Element styles override the kind ones:
+
+```likec4 copy
+specification {
+  element actor {
+    style {
+      shape person
+      color red
+    }
+  }
+}
+
+model {
+  customer = actor 'Customer' {
+    style {
+      // inherits shape from kind
+      // and overrides color
+      color green                   
+    }
+  }
+}
+```
+
+#### Per view
+
+[Next section](/dsl/views/#style-predicates) clarifies how to customize elements per view.
+
+### Style properties
+
+Every `style` block may contain the following properties:  
+{'-'} shape  
+{'-'} color  
+{'-'} size 
+{'-'} padding
+{'-'} textSize 
+{'-'} icon  
+{'-'} opacity  
+{'-'} border
+{'-'} multiple
+
+#### Shape
+
+Available element shapes:
+
+| shape     | example |
+| :-------- | :-----: |
+| rectangle |   check below    |
+| storage   |   ..    |
+| cylinder  |   (same as storage)    |
+| browser   |   ..    |
+| mobile    |   ..    |
+| person    |   ..    |
+| queue     |   ..    |
+
+If not set, the default shape is `rectangle`.
+
+<LikeC4ThemeView viewId="themecolor_primary"/>
+
+#### Color
+
+| color          |                                                           |
+| :------------- | :-------------------------------------------------------: |
+| primary, blue  |  ...  |
+| secondary, sky |  ...  |
+| muted, slate   |  ...  |
+| amber          |  ...  |
+| gray           |  ...  |
+| green          |  ...  |
+| indigo         |  ...  |
+| red            |  ...  |
+
+If not set, the default color is `primary`.
+
+<LikeC4ThemeView viewId="index"/>
+
+It's also possible to use custom colors defined in [specification](/dsl/specification/#color).
+
+#### Size
+
+Size of an element is controlled by following properties:
+
+| property  | explanation |
+| :-------- | :----- |
+| size      | size of the shape |
+| padding   | space around element's title |
+| textSize  | font size of element's title  |
+
+Every property accepts: `xsmall`, `small`, `medium`, `large`, `xlarge`  
+(or short `xs`, `sm`, `md`, `lg`, `xl`).  
+Default size is `medium`.
+
+When shape size is `xsmall`, only element's title is displayed.
+
+```likec4
+specification {
+  element element {
+    style {
+      size large
+      textSize xl
+    }
+  }
+}
+```
+<LikeC4ThemeView viewId="sizes1_example" interactive={false}/>
+<LikeC4ThemeView viewId="sizes2_example" interactive={false}/>
+
+#### Opacity
+
+If element displayed as a group (like a container), you can set opacity:
+
+```likec4
+specification {
+  element element {
+    style {
+      opacity 10%
+    }
+  }
+}
+```
+
+
+<LikeC4ThemeView viewId="opacity_example" interactive={false}/>
+
+#### Border
+
+If element displayed as a group (like a container), you can change border style:
+
+```likec4
+specification {
+  element element {
+    style {
+      opacity 10%
+      border dotted // or dashed, solid, none
+    }
+  }
+}
+```
+
+<LikeC4ThemeView viewId="border_example" interactive={false}/>
+
+#### Multiple
+
+To display element as multiple instances, set `multiple` to `true`:
+
+```likec4
+specification {
+  element element {
+    style {
+      multiple true
+    }
+  }
+}
+
+```
+
+<LikeC4ThemeView viewId="multiple_example" interactive={false} fitViewPadding={0.2}/>
+
+#### Icon
+
+Elements may have an icon - any browser-supported image and publicly available with `https://`:
+
+```likec4 copy
+model {
+  pg = service 'PostgreSQL' {
+    style {
+      icon https://icons.terrastruct.com/dev%2Fpostgresql.svg
+      size sm
+      textSize lg
+    }
+  }
+}
+```
+
+<LikeC4ThemeView viewId="icon_url_example" interactive={false}/>
+
+<Aside type='tip'>
+  `icon` can be defined as a property and skip `style` block
+
+  ```likec4 copy
+  model {
+    pg = service 'PostgreSQL' {
+      icon https://icons.terrastruct.com/dev%2Fpostgresql.svg
+    }
+  }
+  ```
+</Aside>
+
+:::tip
+Use `none` to unset `icon`
+
+```likec4 copy
+pg = service 'PostgreSQL' {
+  icon none
+}
+```
+:::
+
+#### Bundled icons
+
+LikeC4 includes a set of icons from these packs:
+- `aws:` from <a href="https://aws-icons.com" target='_blank'>aws-icons.com</a>
+- `azure:` from <a href="https://learn.microsoft.com/en-us/azure/architecture/icons/" target='_blank'>microsoft.com</a>
+- `gcp:` from <a href="https://gcpicons.com" target='_blank'>gcpicons.com</a>
+- `tech:` from <a href="https://techicons.dev" target='_blank'>techicons.dev</a>
+
+Example:
+
+```likec4 copy
+model {
+  fn = service 'Lambda Function' {
+    icon aws:lambda
+  }
+  k8s = service 'K8s Service' {
+    icon gcp:google-kubernetes-engine
+  }
+  pg = storage 'PostgreSQL' {
+    icon tech:postgresql
+  }  
+}
+```
+
+<br/>
+
+<LikeC4ThemeView viewId="icons_example" interactive={false}/>
+
+<br/>
+
+<Aside type='tip'>
+  Use VSCode code completion to explore available icons.
+</Aside>
+
+### Relationship
+
+There are multiple ways to style relationships:
+- Style all relationships of a kind in `specification`
+- Specific relationship in `model`
+- Customize per `view` ([explained here](/dsl/views/#relationship-customization))
+
+#### Relationships of a kind
+
+Relationships can be styled in [specification](/dsl/relationships/#relationship-kinds):
+
+```likec4
+specification {
+  relationship async {
+    color amber
+    line dotted
+    head diamond
+    tail vee
+  }
+}
+```
+
+#### Specific Relationship
+
+```likec4
+model {
+  customer -> ui 'opens in browser' {
+    style {
+      line solid
+      color amber
+    }
+  }
+}
+```
+
+#### Relationship per view
+
+[Next section](/dsl/views/#relationship-customization) clarifies how to customize relationships per view.
+
+### Relationship properties
+
+Besides the `color`, relationships may have the following properties:  
+
+#### Line
+
+| line   | example |
+| :----- | :-----: |
+| dashed |   ..    |
+| solid  |   ..    |
+| dotted |   ..    |
+
+By default, the line is `dashed`.
+
+#### Arrow type
+
+The arrow type can be set for the head and the tail of the relationship:
+
+| type      | example |
+| :-------- | :-----: |
+| normal    |   ..    |
+| onormal   |   ..    |
+| diamond   |   ..    |
+| odiamond  |   ..    |
+| crow      |   ..    |
+| vee       |   ..    |
+| open      |   ..    |
+| none      |   ..    |
+
+By default, the head is `normal` and the tail is `none`.
+
+> `onormal` means "outlined normal", i.e. no fill  
+> `odiamond` - "outlined diamond"
+
+```likec4
+model {
+  customer -> ui 'opens in browser' {
+    style {
+      head diamond
+      tail crow
+    }
+  }
+}
+```
+
+# Views
+
+
+LikeC4 is model-based, and views are projections of the model from various perspectives, scopes, and levels of detail, such as:
+
+-	System/service overviews
+-	Component interactions in specific use cases
+-	Data flows and sequence diagrams
+
+LikeC4 does not enforce specific rules, such as a strict number of levels or what should be included; it’s entirely up to you and your context.  
+
+## View definition
+
+Views are defined in `views` section.  
+They can be named (must be unique) or unnamed (can’t be referenced, but still can be exported):
+
+```likec4
+views {
+  // with name
+  view index {
+  }
+  // unnamed
+  view {
+  }
+}
+```
+
+The view’s name is used as an image filename during export and as part of the URL when sharing, so it’s advisable to define one.
+
+<Aside title="Default view">
+  `index` is a special view, and is rendered by default if no view name is specified.  
+  If it is not defined - will be generated and include top-level elements
+</Aside>
+
+Views can have a title, description, tags and links (similar to [model elements](/dsl/model#element)):
+
+```likec4
+views {
+
+  view epic12 {
+    #next, #epic-12
+    title "Cloud System - Changes in Epic-12"
+    description "
+      This diagram shows the high-level
+      components and interactions.
+    "
+
+    link https://my.jira/epic/12 'Epic-12'
+
+  }
+
+}
+```
+
+Properties must be defined before [predicates](#view-predicates).  
+Predicates specify which elements and relationships are visible.
+
+<Aside title="Relationships">
+  Views contain elements and their connections (relationships).  
+  Connections represent merged relationships - direct between elements and/or those derived from their nested elements.
+</Aside>
+
+## Scoped views
+
+A view can be defined for a specific element (`view of ..`).  
+The view will then inherit the [scope](/dsl/references#scope) of that element:
+
+```likec4
+views {
+
+  view {
+    include api // ⛔️ Error: 'api' is not found
+  }
+
+  view of cloud.backend {
+    include api // ✅ This is OK, resolves to 'cloud.backend.api'
+  }
+
+  view of legacy {
+    include api // ✅ This is OK, resolves to 'legacy.api'
+  }
+
+}
+```
+
+Additionally, a scoped view becomes the default for the element:
+
+```likec4
+views {
+
+  view {
+    // on click navigates to 'view1',
+    // because it is default for 'cloud.backend'
+    include cloud.backend
+  }
+
+  view view1 of cloud.backend {
+    include *
+  }
+
+}
+```
+
+You can define multiple views for the same element, with the default determined by their order.
+
+## View predicates
+
+Views are not static, they are generated from the model. Any changes in the model are applied immediately and update views.
+Two types of predicates define what is visible: element and relationship predicates.
+
+#### Element predicates
+
+Element predicates explicitly define which elements are visible. Each included element brings in its relationships with already visible elements.
+
+```likec4
+view {
+  // Only backend is visible
+  include backend
+
+  // Add frontend to the view 
+  // and its relationships with backend
+  include frontend 
+
+  // Add authService to the view 
+  // and its relationships with visible (backend and frontend)
+  include authService
+
+  // Add children of messageBroker,
+  // and their relationships among themselves and visible (backend, frontend and authService)
+  include messageBroker.*
+
+  // Add all descendants of messageBroker,
+  // and their relationships among themselves and visible (backend, frontend and authService)
+  include messageBroker.**
+
+  // Exclude emailsQueue and its relationships
+  exclude messageBroker.emailsQueue
+}
+```
+
+<Aside>
+  Order is significant; predicates are applied as defined within the view.  
+  Excludes apply only to elements/relationships included earlier.
+</Aside>
+
+##### Combining
+
+Predicates can be combined. The following is the same as example above:
+
+```likec4
+view {
+  include
+    backend,
+    frontend,
+    authService,
+    messageBroker.**
+
+  exclude messageBroker.emailsQueue
+}
+```
+
+##### Wildcard
+
+Wildcard predicates can be used to reference "everything" (but it differs for scoped/unscoped views).  
+Consider the following model:
+
+```likec4
+model {
+  actor customer {
+    -> webApp 'uses in browser via HTTPS'
+  }
+  system cloud {
+    container backend {
+      component api    
+    }
+    container ui {
+      component webApp {
+        -> api 'requests data'
+      }
+    }
+  }
+}
+views {
+
+  // Unscoped view - wildcard refers to top-level elements
+  view {
+    include *
+    // Visible top-level elements: customer, cloud
+    // and derived relationship customer -> cloud
+  }
+
+  // Scoped view - wildcard refers to element and its children
+  view of cloud.ui {
+    include *
+    // Visible:
+    // - cloud.ui
+    // - cloud.ui.webApp
+    // - customer
+    // - relationship customer -> cloud.ui.webApp
+    // - cloud.backend
+    // - cloud.ui.webApp -> cloud.backend, derived from cloud.ui.webApp -> cloud.backend.api
+  }
+}
+```
+
+##### With overrides
+
+You can modify element properties specifically for the view:
+
+```likec4
+// Include the element and override its properties
+include cloud.backend with {
+  title 'Backend components'
+  description '...'
+  technology 'Java, Spring'
+  icon tech:java
+  color amber
+  shape browser
+  multiple true
+}
+// Include all nested elements, change color and textSize
+include cloud.* with {
+  color amber
+  textSize small
+}  
+```
+
+`with` may be used only within `include`.
+
+##### With custom navigation
+
+You can define custom navigation and links between views:
+
+```likec4 title="example.c4"
+
+view view2 {
+  include *
+  include cloud.backend with {
+    // navigate to 'view3' on click
+    navigateTo view3
+  }
+}
+
+view view3 {
+  include *
+  include cloud.backend with {
+    // navigate back to 'view2'
+    navigateTo view2
+  }
+}
+```
+
+##### By element kind or tag
+
+```likec4
+// elements by kind
+include element.kind != system
+exclude element.kind = container
+
+// elements by tag
+include element.tag != #V2
+exclude element.tag = #next
+```
+
+:::caution
+These predicates may be deprecated in the future, please consider [`where`](#filter) operator
+:::
+
+#### Element Selectors
+
+##### Children `.*`
+
+The children selector includes element's children and their relationships with visible elements.
+
+```likec4
+include cloud.*
+
+// Same as
+include cloud.backend
+include cloud.ui
+```
+
+##### Descendants `.**`
+
+The descendants selector includes element's descendants **IF** they have a relationship with visible elements.
+
+```likec4
+include cloud.**
+
+// Same as
+include cloud.backend
+include cloud.ui
+include cloud.ui.webApp
+```
+
+##### Expand `._`
+
+The expand selector includes element's children **IF** they have a relationship with visible elements.
+All other children are omitted.
+
+```likec4
+include cloud._
+
+// Same as
+include cloud
+include -> cloud.* ->
+```
+
+#### Relationship predicates
+
+Relationship predicates include elements only if they have relationships that meet the specified predicate conditions.
+
+##### Directed relationships
+
+Include elements if they have **directed** relationships (or their nested elements):
+
+```likec4
+// Include customer and cloud:
+include customer -> cloud
+
+// Include customer and nested elements of cloud (that have relationships):
+include customer -> cloud.*
+```
+
+##### Any relationship
+
+Include elements if they have any relationships:
+
+```likec4
+include customer <-> cloud
+```
+
+##### Incoming
+
+Include elements if they have incoming relationships from already visible elements.  
+Here’s an example based on the model from the [wildcard example](#wildcard):
+
+```likec4 wrap title="incoming predicate.c4"
+view {
+  // visible element
+  include customer
+
+  // include nothing, customer has no relation to backend
+  include -> backend
+
+  // add ui,
+  // because customer has a relationship with nested ui.webApp
+  include -> ui
+
+  // add backend, because visible ui has a relationship to backend
+  // derived from ui.webApp -> backend.api
+  include -> backend
+}
+
+// This view includes customer and ui
+view {
+  include
+    customer,
+    -> cloud.*
+}
+```
+
+:::tip
+Relationship predicates are useful for refining your diagrams, allowing you to narrow the scope and focus on specific parts of the system.
+:::
+
+##### Outgoing
+
+Include elements if only they have outgoing relationships to already visible elements:
+
+```likec4
+include customer ->
+include cloud.* ->
+```
+
+##### In/Out
+
+Include nested elements of `cloud`, that have any relationships with visible elements:
+
+```likec4
+include -> cloud.* ->
+```
+
+##### Relationship customization
+
+Relationships can be customized inside view:
+
+```likec4
+include
+  // Make lines red and solid
+  cloud.* <-> amazon.* with {
+    color red
+    line solid
+  },
+  // or only directed 
+  customer -> cloud.*  with {
+    // Override label
+    title 'Customer uses cloud'
+    navigateTo dynamicview1
+  }, 
+```
+:::tip
+Sometimes, connections may have a title `[...]`. This indicates that the connection has been merged from multiple relationships with different titles, and it was impossible to derive a definitive one.  
+You can change it:
+
+```likec4
+include
+  customer -> cloud  with {
+    // Change [...] to
+    title 'Customer uses cloud'
+  }, 
+```
+:::
+
+:::caution
+It is possible to customize relationships with known endpoints only  
+(i.e. [directed](#directed-relationships) or [any between](#any-relationship)) 
+
+For example, `* -> *` can be customized (in other words, all relationships on the view), but outgoing `cloud.* ->` can not.
+:::
+
+##### Relationship navigation
+
+To customize [navigation](/dsl/relationships/#navigate-to) from relationship:
+
+```likec4
+include
+  webApp -> backend.api with {
+    navigateTo dashboardRequestFlow
+  }
+```
+
+### Filter
+
+`where` operator narrows down results by applying additional conditions:
+
+```likec4
+// include only microservices from nested
+include cloud.*
+  where kind is microservice
+
+// only microservices and not deprecated
+include cloud.*
+  where
+    kind == microservice and // possible to use 'is' or '=='
+    tag != #deprecated       // possible to use 'is not' or '!='
+
+// Use logical operators
+include cloud.*
+  where
+    not (kind is microservice or kind is webapp)
+    and tag is not #legacy
+    and (tag is #v1 or tag is #v2)
+```
+
+<br/>
+
+**Relationship predicates**
+
+When `where` is used with element predicates, it is applied to the elements.    
+When used with relationship predicates - to the relationships.
+
+```likec4
+include
+  // only relationships with tag #messaging
+  cloud.* <-> amazon.*
+    where tag is #messaging,
+
+  // only incoming http-requests
+  -> backend
+    where kind is http-request
+```
+
+It is also possible to filter relations by tag or kind of its endpoints.
+```likec4
+include
+  // only relationships outgoing from elements with with tag #next
+  cloud.* -> amazon.*
+    where source.tag is #next,
+
+  // only incoming relations of elements with kind microservice
+  -> *
+    where target.kind is microservice
+```
+
+<br/>
+
+**Together with `with`**
+
+It is possible to use `where` together with `with`, but `where` should be defined first:
+
+```likec4
+include *
+  where kind is microservice
+  with {
+    color amber
+  }  
+```
+
+<br/>
+
+:::tip
+Less verbose and more satisfying results are achieved with `where` in `exclude` predicates.  
+For example:
+
+```likec4
+
+// only keep elements tagged with #v1
+exclude * where tag is not #v1
+
+// only keep relationships tagged with #commands
+exclude * -> * where tag is not #commands
+
+```
+
+Together with [predicate groups](#global-predicate-groups) you may define a "baseline" (includes everything), and then filter out in inherited views.
+
+:::
+
+### Global predicate groups
+
+If you find yourself repeating the same predicates in multiple views, you can define them as global group:
+
+```likec4
+global {
+  predicateGroup microservices {
+    include cloud.*
+      where kind is microservice
+    exclude *
+      where tag is #deprecated
+  }
+}
+
+views {
+  view of newServices {
+    include cloud.new.*
+    global predicate microservices
+  }
+
+  view of newBackendServices {
+    // Keep in mind that order is significant
+    global predicate microservices
+    include cloud.backend.*
+  }
+}
+```
+
+## Groups
+
+It is possible to group elements, and this is rendered as a boundary around them:
+
+```likec4
+view {
+
+  group {
+    include backend
+  }
+
+  // with title
+  group 'Frontend' {
+    include frontend.*
+  }
+
+  // with style
+  group 'Service Bus' {
+    color amber
+    opacity 20%
+    border solid
+
+    include messageBroker.*
+  }
+}
+```
+
+Groups can be nested:
+
+```likec4
+view {
+  group 'Third-parties' {
+    group 'Integrations' {      
+      group 'Analytics' {}
+      group 'Marketing' {}
+    }  
+    group 'Monitoring' {}
+  }
+}
+```
+:::note
+Order of predicates is significant. 
+<details>
+<summary>How element predicates are grouped?</summary>
+
+For element predicates - element stays in first group it was included.
+
+```likec4
+group {
+  include backend   //wins
+  group {
+    include backend //ignored
+  }
+}
+group {  
+  group {
+    include api //wins
+  }
+  include api   //ignored
+}
+```
+It is possible to change:
+
+```likec4
+group {
+  include backend   
+  group {
+    exclude backend 
+    include backend //wins
+  }
+}
+```
+</details>
+<details>
+<summary>How relationship predicates are grouped?</summary>
+
+For relationship predicates - the last one "wins":
+
+```likec4 
+group {
+  include -> backend  
+  group {
+    include -> backend //wins
+  }
+}
+
+
+group {  
+  group {
+    include -> backend
+  }
+  include -> backend   //wins
+}
+```
+</details> 
+:::
+
+<Aside type="caution" title="Elements hierarchy and Groups">
+  Element is included in the group if only there is no parent in the view.  
+  This might lead to unexpected results.  
+  
+  Example:
+  ```likec4
+  group {
+    include cloud
+    group 'Backend' {
+      include cloud.backend.api // ⛔️ no, will be nested in 'cloud'
+    }
+  }
+
+  group 'Amazon' {    
+    group 'Queues' {
+      include amazon.sqs.queue1 // ⛔️ no, will be nested in 'amazon' from below
+    }
+    include cloud -> amazon
+  }
+  ```  
+</Aside>
+
+## Style predicates
+
+Style predicates define how elements are rendered, and applied in the order they are defined merging with previous ones:
+
+```likec4
+view apiApp of internetBankingSystem.apiApplication {
+
+  include *
+
+  // apply to all elements
+  style * {
+    color muted
+    opacity 10%
+  }
+
+  // apply only to these elements
+  style singlePageApplication, mobileApp {
+    color secondary
+    size xlarge
+  }
+
+  // apply only to nested of apiApplication
+  style apiApplication.* {
+    color primary
+    multiple true
+  }
+
+  // apply to apiApplication and nested
+  style apiApplication._ {
+    color primary
+  }
+
+  // apply only to elements with specific tag
+  style element.tag = #deprecated {
+    color muted
+  }
+
+  // apply to elements not tagged
+  style element.tag != #deprecated {
+    opacity 20%
+  }
+}
+```
+
+:::caution
+[`Group`](#groups) does not support nested `style` predicates (yet).
+:::
+
+### Shared local styles
+
+Styles can be shared within `views` block (_"local styles"_):
+
+```likec4
+views {
+  // apply to all views in this block
+  style * {
+    color muted
+    opacity 10%
+  }
+
+  view of apiApp {
+    include *
+    style cloud.web.* {
+      color green
+    }
+  }
+
+  view of mobileApp {
+    include *
+    style cloud.ui.* {
+      color amber
+    }    
+  }
+}
+
+views {
+  // Styles from previous block are not applied here
+  // ...
+}
+```
+
+<Aside title="Order">
+Styles are applied in the order they are defined.  
+First, local styles from `views` block and then from `view`
+</Aside>
+
+:::caution
+[Overrides](#with-overrides) are always applied last, after all styles
+:::
+
+
+### Shared global styles
+
+Styles can be shared globally.  
+Global styles must be named and defined in `global` block:
+
+```likec4  {4,9,15,25,33-34}
+global {
+  // Format:
+  //  style <name> <targets> { ... }
+  style mute_all * {
+    color muted
+    opacity 10%
+  }
+
+  style applications
+    singlePageApplication._,
+    mobileApp._ {
+      color secondary
+    } 
+
+  style mute_deprecated
+    element.tag = #deprecated {
+      color muted
+    }  
+}
+
+views {
+  view of singlePageApplication {  
+    // Styles are applied in the order they are defined
+    // 1. Apply global style
+    global style mute_all
+
+    // 2. Then this
+    style cloud.* {
+      color green
+    }
+
+    // 3. and 4.
+    global style applications
+    global style mute_deprecated    
+  }  
+}
+```
+
+### Shared style groups
+
+Global styles can be grouped:
+
+```likec4 {3,18}
+global {
+  // Define style group
+  styleGroup common_styles {
+    style singlePageApplication, mobileApp {
+      color secondary
+    }
+    style element.tag = #deprecated {
+      color muted
+    }
+  }
+}
+
+views {  
+  view mobileApp of mobileApp {
+    include *
+
+    // Apply styles from group
+    global style common_styles
+
+    // Override
+    style mobileApp {
+      color primary
+    }
+  }
+}
+```
+
+:::tip
+Global styles and groups can be used as `views`-locals:
+
+```likec4
+global {
+  style mute_all * { color muted }
+  styleGroup theme1 { //...
+  styleGroup theme2 { //...
+}
+
+// All views within this block have styles from 'theme1'
+views {
+  global style theme1
+  view view1 { //... 
+}
+
+// All views have 'mute_all' style and all from 'theme2'
+views {
+  global style mute_all
+  global style theme2
+  view view2 { //... 
+}
+```
+:::
+
+
+## Auto-layout
+
+```likec4
+view {
+  include *
+  autoLayout LeftRight 120 110
+}
+```
+
+Parameters are:
+- direction: possible values are `TopBottom` (default), `BottomTop`, `LeftRight`, `RightLeft`.
+- rank distance: optional, must be a positive number
+- node distance. optional, must be a positive number
+
+<Aside>
+Manual changes are supported in VSCode extension, but functionality is limited.  
+Your <a href="https://github.com/likec4/likec4/discussions/343" target="_blank">feedback</a> is much appreciated.
+</Aside>
+
+
+## Extend views
+
+Views can be extended to avoid duplication, to create a "baseline" or, for example, "slides" for a presentation:
+
+```likec4
+views {
+
+  view view1 {
+    include *
+  }
+
+  view view2 extends view1 {
+    title 'Same as View1, but with more details'
+
+    style * {
+      color muted
+    }
+
+    include some.backend
+  }
+
+  // cascade inheritance
+  view view3 extends view2 {
+    title 'Same as View2, but with more details'
+
+    include * -> some.backend
+  }
+
+}
+```
+
+The predicates and style rules of extended views applied after the ones from ancestors.
+
+Extended view also inherits the scope:
+
+```likec4
+views {
+
+  view view1 of cloud.backend {
+    title 'Backend components'
+  }
+
+  view view2 extends view1 {
+    include api // ✅ This is OK, references 'cloud.backend.api'
+  }
+
+}
+
+# Deploy to GitHub Pages
+
+:::note
+You can check <a href="https://github.com/likec4/template" target='_blank'>likec4/template</a> repository.  
+It builds and deploys static website to GitHub Pages
+:::
+
+# Embed to website
+
+
+<Card title="Soon" icon="warning">
+  This page is under construction.  
+</Card>
+
+# Preview changes in PR
+
+
+<Card title="Soon" icon="warning">
+  This page is under construction.  
+</Card>
+
+# Build a static website
+
+
+<Card title="Soon" icon="warning">
+  This page is under construction.  
+</Card>
+
+<Aside title="Meanwhile">
+  Check  [`build`](/tooling/cli/#build-static-website) command in CLI documentation.
+</Aside>
+
+# LikeC4 CLI
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<p>
+<a href="https://www.npmjs.com/package/likec4" target="_blank">![NPM Version](https://img.shields.io/npm/v/likec4)</a>
+</p>
+
+The `likec4` CLI is a tool for various operations and automation, such as:
+
+- Start development server to preview diagrams (with hot-reload)
+- Build a static website for sharing and embedding diagrams
+- Export to PNG, Mermaid, Dot, D2
+- Generate [source code artifacts](/tooling/code-generation/react/):
+  - React components
+  - Web Components
+  - Typed data
+
+## Install
+
+### Local installation
+
+If you're using it in an npm project, install it as a development dependency:
+
+<PackageManagers
+    pkg="likec4"
+    dev
+    pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+    frame="none"
+  />
+
+You can reference it directly in the `package.json#scripts` object:
+
+```json5
+{
+  scripts: {
+    dev: 'likec4 dev ...',
+    build: 'likec4 build ...'
+  }
+}
+```
+
+### Global installation
+
+To fetch and execute a package binary, without installing it as a dependency:
+
+<PackageManagers
+   type="dlx"
+   pkg="likec4"
+   args="start"
+   pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+   frame="none"
+   />
+
+
+If you want to use it in any arbitrary project without [`npx`](https://docs.npmjs.com/cli/v10/commands/npx), install it globally:
+
+```sh
+npm install --global likec4
+
+# Then, you can call `likec4` directly:
+likec4 [command]
+```                                                     
+
+## Usage
+
+Almost all commands have a `--help` option and provide usage examples.
+
+```sh
+likec4 build -h
+likec4 gen react -h
+```
+
+
+### Preview diagrams
+
+In a folder with LikeC4 sources:
+
+```sh
+likec4 serve
+# Aliases:
+likec4 start
+likec4 dev
+```
+
+This recursively searches for `*.c4`, `*.likec4` files in current folder, parses and serves diagrams via local web server.  
+Any change in the sources triggers hot update in the browser immediately.
+
+:::tip
+You can start the process in a separate terminal window and keep it running while you're editing model in editor, or even serve multiple projects at once.
+:::
+
+<Aside type="caution">
+By default the web server listening localhost (127.0.0.1). If you want it to listen on all network interfaces add `--listen 0.0.0.0` to the serve command.
+</Aside>
+
+### Build static website
+
+Build a single HTML with diagrams, ready to be deployed or embedded into your website.
+When you deployed the website, you can use "Share" button and get a link to a specific diagram.
+
+The resulting website is strictly bound to the given base path (`/` by default).
+A relocatable app can be built with `--base "./"`.
+
+```sh
+likec4 build -o ./dist
+```
+
+| Option                  | Description                                                                                           |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| `--output`              | Output directory                                                                                      |
+| `--base, --base-url`    | Base URL the app is being served from, e.g. "/", "/pages/" or "./" for a relocatable app              |
+| `--use-hash-history`    | Hash-based navigation, e.g. "/#/view" instead of "/view"                                              |
+| `--use-dot`             | Use local binaries of Graphviz ("dot") instead of bundled WASM                                        |
+| `--webcomponent-prefix` | Prefix for web components, e.g. "c4" generates `<c4-view ../>`                                        |
+| `--output-single-file`  | Generates a single self-contained HTML file                                                           |
+
+:::note
+Internally, CLI uses Vite to build the website, and `likec4 build` calls `vite build`.  
+Vite [deploy documentation](https://vitejs.dev/guide/static-deploy.html) may also help you.
+
+Repository [likec4/template](https://github.com/likec4/template) demonstrates how to deploy likec4 website to github pages.
+:::
+
+
+There is also a supplementary command to preview the build:
+
+```sh
+likec4 preview -o ./dist
+```
+
+For example, this command can be used on CI, to compare diagrams with ones from the previous/main build.
+
+### Export to PNG
+
+```sh
+likec4 export png -o ./assets
+```
+
+This command starts local web server and uses Playwright to take screenshots.  
+If you plan to use it on CI, refer to [Playwright documentation](https://playwright.dev/docs/ci) for details
+or consider [LikeC4 GitHub Actions](/tooling/github)
+
+:::note
+Export to PNG requires Playwright.  
+You will be prompted with a command to install if it's not found.
+:::
+
+### Export to JSON
+
+```sh
+likec4 export json -o dump.json
+```
+
+### Generate Mermaid, Dot, D2
+
+Via codegen:
+
+```sh
+likec4 gen mmd
+likec4 gen mermaid
+likec4 gen dot
+likec4 gen d2
+```
+
+<LinkCard
+  title="Generate components"
+  description="Learn how to generate React and Web Components"
+  href="/tooling/code-generation/react/"
+/>
+
+### Validate
+
+```sh
+likec4 validate
+```
+
+This command checks for:
+- syntax errors 
+- layout drift (outdated manual layout)
+
+If any error is found the command ends with non-zero return code.
+
+# GitHub Actions
+
+
+![GitHub release](https://img.shields.io/github/release/likec4/actions.svg)
+
+This action wraps [CLI](/tooling/cli) as a GitHub Action.
+
+### Usage
+
+#### Build website
+
+```yaml
+steps:
+  - uses: actions/checkout@v4
+
+  - name: ⚙️ build
+    uses: likec4/actions@v1
+    with:
+      action: build
+      path: src/likec4
+      output: dist
+      base: /baseurl/
+
+  - name: upload artifacts
+    uses: actions/upload-artifact@v3
+    with:
+      name: likec4
+      path: dist
+```
+
+<Aside type='tip'>
+  Github repository [likec4/template](https://github.com/likec4/template) demonstrates how to deploy to github pages.
+</Aside>
+
+
+#### Export diagrams to PNG
+
+```yaml
+steps:
+  - name: export diagrams
+    uses: likec4/actions@v1
+    with:
+      export: png
+      path: src/likec4
+      output: out/images
+      use-dot-bin: 'true'
+```
+
+#### Code generation
+
+```yaml
+steps:
+  - name: code generation
+    uses: likec4/actions@v1
+    with:
+      codegen: react
+      output: __generated__/likec4.jsx
+```
+
+### Inputs
+
+| Name          | Description                                                                                           |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| `action`      | Action to perform (`build` / `export` / `codegen`)                                                    |
+| `export`      | Can be used instead of `action: export`                                                               |
+| `codegen`     | Can be used instead of `action: codegen`, same values as in [cli](https://likec4.dev/docs/tools/cli/) |
+| `path`        | Path in repository to likec4 sources, root otherwise                                                  |
+| `output`      | Output directory/file                                                                                 |
+| `base`        | Custom baseUrl for website                                                                            |
+| `use-dot-bin` | if `'true'` will use `dot` binary of graphviz                                                         |
+
+> All inputs are optional.  
+> By default CLI builds a website to `dist` directory.
+
+# MCP Server
+
+
+LikeC4 <a href="https://modelcontextprotocol.io" target="_blank">MCP Server</a> provides knowledge of your LikeC4 model to LLMs.  
+This enables you to query your model in natural language:
+
+> _"Lookup LikeC4 model and list all incoming relationships of the backend api"_
+
+> _"What elements from the inside of the 'Backend' have relations with the legacy database"_
+
+> _"List all elements tagged 'legacy' from team1 project"_
+
+> _"What technologies are used for ui (consider all elements with browser shape)"_
+
+## Usage
+
+Two options are available:
+- Use extension's built-in MCP Server (recommended)
+- Use `@likec4/mcp` package
+
+### Using extension
+
+When [LikeC4 extension](/tooling/vscode) is installed, MCP Server can be enabled from the extension <a href="vscode://settings/likec4.mcp.enabled" target="_blank">settings</a>.
+
+To configure MCP Server:
+
+<Tabs syncKey="label">
+  <Tab label='VSCode'>
+    Create `.vscode/mcp.json`:
+
+    ```json
+    {
+      "servers": {
+        "likec4": {
+          "type": "sse",
+          "url": "http://localhost:33335/sse"
+        }
+      }
+    }
+    ```  
+  </Tab>
+  <Tab label='Cursor'>
+    
+    Create `.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "likec4": {
+          "url": "http://localhost:33335/sse"
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab label='Windsurf'>
+
+    See [Windsurf documentation](https://docs.windsurf.com/windsurf/mcp) for details:
+
+    ```json
+    {
+      "mcpServers": {
+        "likec4": {
+          "serverUrl": "http://localhost:33335/sse"      
+        }
+      }
+    }
+    ```    
+  </Tab>
+</Tabs>
+
+You can change port in the settings.
+
+:::note
+MCP Server is unavailable if extension is not active.  
+Extension activates when you open LikeC4 source file.
+:::
+
+### Using package
+
+Example configuration:
+
+```json
+{
+  "mcpServers": {
+    "likec4": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@likec4/mcp"
+      ],
+      "env": {
+        "LIKEC4_WORKSPACE": "${workspaceFolder}"
+      }
+    }
+  }
+}
+```
+<Aside type="caution" title="Limitation">
+Current implementation of `@likec4/mcp` parses LikeC4 model during initialization, keeps snapshot in the memory and does not watch for changes.  
+You need to restart the server to pick up changes.
+
+Extension's built-in MCP Server does not have this limitation, it always provides the current state.
+</Aside>
+
+# LikeC4 API
+
+import { PackageManagers } from 'starlight-package-managers';
+
+You can access and traverse your architecture model programmatically using the LikeC4 Model API.
+
+<Aside type='note'>
+API allows to query and traverse the model from DSL, but not modify or create a new one.
+</Aside>
+
+Ensure you have `likec4` in your dependencies:
+
+<PackageManagers
+    pkg="likec4"
+    pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+    frame="none"
+  />
+
+## Usage
+
+You can initiate LikeC4 API from a directory with source files or from a string with DSL source.
+
+### From workspace
+
+Recursively search and parse source files:
+
+```ts
+import { LikeC4 } from 'likec4'
+
+const likec4 = await LikeC4.fromWorkspace('/path/to/workspace')
+```  
+
+Method also accepts options:
+
+| Property         | Description                                                                                         |
+| -----------------| --------------------------------------------------------------------------------------------------- |
+| `printErrors`    | if model is invalid, errors are reported to the logger (default `true`) |
+| <span style="text-wrap:nowrap">`throwIfInvalid`</span> | return rejected promise if model is invalid  (default `false`) |
+| `logger`         | Whenever to use `default` (console), `vite` logger  or your custom implementation <br/> Disable with `false`  |
+| `graphviz`       | `wasm` (default) or `binary` - use local binaries of Graphviz ("dot") or bundled WASM    |
+
+<Aside type='caution' title="In progress" >
+  Watch mode is not implemented yet  
+  It is possible to notify about changes in the workspace via `likec4.notifyUpdate()` method.
+</Aside>
+
+### From source
+
+Parse from the string:
+
+```ts
+import { LikeC4 } from "likec4"
+
+const likec4 = await LikeC4.fromSource(`
+  specification {
+    element system
+    element user
+  }
+  model {
+    customer = user 'Customer'
+    cloud = system 'System'
+  }
+  views {
+    view index {
+      include *
+    }
+  }
+`)
+```
+
+## API
+
+When the model is initialized, you can use the following methods to query and traverse it.
+
+Two types of model (with similar API):
+
+- **LikeC4Model.Computed** - includes computed views (from predicates), fast, synchronous, enough to traverse but not ready for rendering.
+- **LikeC4Model.Layouted** - extends computed model with layout data (dimensions, positions), that is needed for rendering.
+
+### Example
+
+```ts
+import { LikeC4 } from "likec4"
+
+const likec4 = await LikeC4.fromSource(`....`)
+
+// Validation errors
+console.log(likec4.getErrors())
+
+// Traverse the model
+const model = likec4.computedModel()
+model
+  .element('cloud.backend.api')
+  .incoming() // relationships incoming to the element
+  .filter(r => r.tags.includes('http')) // filter by tags
+  .map(r => r.source) // get source elements
+
+const diagram = await likec4.layoutedModel().view('index')
+
+```  
+
+### LikeC4Model
+
+:::tip
+It is possible to generate Typed API from your model, see [Code generation](/tooling/code-generation/model/)
+:::
+
+Model API provides methods to query and traverse the whole model.
+
+```ts
+interface LikeC4Model {
+  /**
+   * Returns the root elements of the model.
+   */
+  roots(): Element[];
+  /**
+   * Returns all elements in the model.
+   */
+  elements(): Element[];
+  /**
+   * Returns a specific element by its FQN.
+   */
+  element(id: Fqn): Element;
+  /**
+   * Returns all relationships in the model.
+   */
+  relationships(): Relationship[];
+  /**
+   * Returns a specific relationship by its ID.
+   */
+  relationship(id: RelationID): Relationship;
+  /**
+   * Returns all views in the model.
+   */
+  views(): ReadonlyArray<LikeC4ViewModel>;
+  /**
+   * Returns a specific view by its ID.
+   */
+  view(viewId: ViewID): LikeC4ViewModel;
+  /**
+   * Returns the parent element of given element.
+   * @see ancestors
+   */
+  parent(element: ElementOrFqn): Element | null;
+  /**
+   * Get all children of the element (only direct children),
+   * @see descendants
+   */
+  children(element: ElementOrFqn): Element[];
+  /**
+   * Get all sibling (i.e. same parent)
+   */
+  siblings(element: ElementOrFqn): Element[];
+  /**
+   * Get all ancestor elements (i.e. parent, parent’s parent, etc.)
+   * (from closest to root)
+   */
+  ancestors(element: ElementOrFqn): Element[];
+  /**
+   * Get all descendant elements (i.e. children, children’s children, etc.)
+   */
+  descendants(element: ElementOrFqn): Element[];
+  /**
+   * Incoming relationships to the element and its descendants
+   * @see incomers
+   */
+  incoming(element: ElementOrFqn, filter?: 'all' | 'direct' | 'to-descendants'): Relationship[];
+  /**
+   * Source elements of incoming relationships
+   */
+  incomers(element: ElementOrFqn, filter?: 'all' | 'direct' | 'to-descendants'): Element[];
+  /**
+   * Outgoing relationships from the element and its descendants
+   * @see outgoers
+   */
+  outgoing(element: ElementOrFqn, filter?: 'all' | 'direct' | 'from-descendants'): Relationship[];
+  /**
+   * Target elements of outgoing relationships
+   */
+  outgoers(element: ElementOrFqn, filter?: 'all' | 'direct' | 'from-descendants'): Element[];
+  /**
+   * Relationships inside the element, among descendants
+   */
+  internal(element: ElementOrFqn): Relationship[];
+  /**
+   * Resolve siblings of the element and siblings of ancestors
+   *  (from closest to root)
+   */
+  ascendingSiblings(element: ElementOrFqn): Element[];
+  /**
+   * Resolve all views that contain the element
+   */
+  viewsWithElement(element: ElementOrFqn): ViewModel[];
+}
+```
+
+### LikeC4ViewModel
+
+View model API provides methods to query and traverse elements and relationships that are included in the view.
+
+### LikeC4DeploymentModel
+
+API provides methods to query and traverse deployment model.
+
+
+## Model Builder
+
+Type-safe builder available from `@likec4/core/builder`:
+
+```ts
+import { Builder } from "@likec4/core/builder"
+
+const m = Builder
+  .specification({
+    elements: {
+      actor: {
+        style: {
+          shape: 'person',
+        },
+      },
+      system: {},
+      component: {},
+    },
+    relationships: {
+      likes: {},
+    },
+    tags: ['tag1', 'tag2', 'tag1'],
+  })
+  .model(({ actor, system, component, relTo, rel }, _) =>
+    _(
+      actor('alice'),
+      actor('bob'),
+      rel('alice', 'bob', {
+        tags: ['tag1'], // you get code completion for tags
+        kind: 'likes',  // code completion for kind
+      }),
+      system('cloud', { tags: ['tag1', 'tag2'] }).with(
+        component('backend').with(
+          component('api'),
+          component('db'),
+          // code completion for relationships
+          rel('cloud.backend.api', 'cloud.backend.db')
+        ),
+        component('frontend').with(
+          relTo('cloud.backend.api')
+        ),
+      ),
+    )
+  )    
+  .views(({ view, viewOf, $include, $style }, _) =>
+    _(
+      view('index', 'Index').with(
+        $include('cloud.*'),
+      ),
+      viewOf('ui', 'cloud.ui').with(
+        // code completion for predicates
+        $include('* -> cloud.**'),
+        $style('cloud.ui', { color: 'red' }),
+      ),
+    )
+  )
+  .toLikeC4Model()
+```
+
+<Aside type='caution' title="In progress" >
+  Documentation in progress
+
+  Check <a href="https://github.com/likec4/likec4/blob/main/packages/core/src/builder/Builder-style1.spec.ts">Builder-style1</a>
+  and <a href="https://github.com/likec4/likec4/blob/main/packages/core/src/builder/Builder-style2.spec.ts">Builder-style2</a> for examples.
+  
+</Aside>
+
+# LikeC4 Vite Plugin
+
+import { PackageManagers } from 'starlight-package-managers'
+
+<p>
+<a href="https://www.npmjs.com/package/likec4" target="_blank">![NPM Version](https://img.shields.io/npm/v/likec4)</a>
+</p>
+
+LikeC4 Vite Plugin allows you to embed views directly, without any pre-build/generate steps.  
+The plugin automatically generates all the necessary code to render the views in your application, with Hot Module Replacement (HMR) supported.
+
+This is useful for building documentation, tutorials, or any other application where you want to include diagrams.  
+
+## Guide
+
+<br />
+
+<Steps>
+
+1. ### Create Vite project
+
+    To get started, we will need to create a new Vite project using react-ts template.
+
+    <PackageManagers
+       type="create"
+       pkg="vite@latest"
+       args="--template react-ts"
+       comment="create a new project with {PKG}"
+       pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+       frame="none"
+      />
+    <br />      
+    <br />      
+
+2. ### Install LikeC4
+
+    Add `likec4` dependency:
+    
+    <PackageManagers
+       pkg="likec4"
+       dev
+       pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+       frame="none"
+      />
+    <br />
+    <br />
+
+3. ### Configure Vite
+  
+    Add LikeC4 plugin to vite config:
+
+    ```diff lang="ts"
+    // vite.config.ts
+    import { defineConfig } from 'vite'
+    import react from '@vitejs/plugin-react'
+    + import { LikeC4VitePlugin } from 'likec4/vite-plugin'
+
+    export default defineConfig({
+      plugins: [
+        react(),
+    +     LikeC4VitePlugin(),
+      ],
+    })
+    ```
+    <br />
+    <br />
+
+4. ### Add type references
+
+    Add types reference to the `vite-env.d.ts` file  
+    (or create new one, like `src/likec4.d.ts`)
+
+    ```diff lang="ts"
+    // src/vite-env.d.ts
+    /// <reference types="vite/client" />
+    + /// <reference types="likec4/vite-plugin-modules" />
+    ```
+
+    Another option is to add to the `tsconfig.json`:
+
+    ```json
+    // tsconfig.json
+    {
+      "compilerOptions": {
+        "types": [
+          "likec4/vite-plugin-modules"
+        ]
+      }
+    }
+    ```
+    <br />
+    <br />
+
+5. ### Add LikeC4 model
+
+    Create `src/tutorial.c4` and copy the following model from tutorial:
+
+    ```likec4 showLineNumbers copy collapse={14-57}
+    //src/tutorial.c4
+    // Tutorial - https://likec4.dev/tutorial/
+
+    specification {
+      element actor
+      element system
+      element component
+    }
+
+    model {
+      customer = actor 'Customer' {
+        description 'The regular customer of the system'
+      }
+
+      saas = system 'Our SaaS' {
+        component ui 'Frontend' {
+          description 'Nextjs application, hosted on Vercel'
+          style {
+            icon tech:nextjs
+            shape browser
+          }
+        }
+        component backend 'Backend Services' {
+          description '
+            Implements business logic
+            and exposes as REST API
+          '
+        }
+
+        // UI requests data from the Backend
+        ui -> backend 'fetches via HTTPS'
+      }
+
+      // Customer uses the UI
+      customer -> ui 'opens in browser'
+      customer -> saas 'enjoys our product'
+    }
+
+    views {
+
+      view index {
+        title 'Landscape view'
+
+        include *
+      }
+
+      view saas of saas {
+        include *
+
+        style * {
+          opacity 25%
+        }
+        style customer {
+          color muted
+        }
+      }
+
+    }
+    ```
+    <br />
+    <br />
+
+6. ### Use LikeC4 view in your app
+
+    Change the `src/main.tsx` file and import LikeC4 view from the `likec4:react` module:
+
+    ```tsx
+    // src/main.tsx
+    import { createRoot } from 'react-dom/client'
+    import { LikeC4View } from 'likec4:react'
+
+    createRoot(document.getElementById('root')!).render(
+      <LikeC4View viewId='index' />
+    )
+    ```
+    <br />
+    <br />
+
+7. ### Start vite dev server
+
+    <PackageManagers
+       type="run"
+       args="dev"
+       pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+       frame="none"
+      />
+
+    Open the browser and navigate to `http://localhost:5173/`.  
+    You should see the LikeC4 diagram rendered in your app.
+
+</Steps>
+
+## Plugin
+
+### Options
+
+| Option         | Description                                                                                         |
+| -----------------| --------------------------------------------------------------------------------------------------- |
+| `workspace`      | directory with source files (defaults to vite root) |
+| `printErrors`    | if model is invalid, errors are reported to the logger (default `true`) |
+| <span style="text-wrap:nowrap">`throwIfInvalid`</span> | fails with rejected promise if model is invalid  (default `false`) |
+| `graphviz`       | `wasm` (default) or `binary` - use local binaries of Graphviz ("dot") or bundled WASM    |
+
+### Multi-project workspaces
+
+If you have [multiple projects](/dsl/projects/) in your workspace:
+
+```tsx "project-a" "project-b"
+// src/main.tsx
+
+// where `project-a` and `project-b` are the names of your projects
+import { LikeC4View as ProjectA_LikeC4View } from 'likec4:react/project-a'
+import { LikeC4View as ProjectB_LikeC4View } from 'likec4:react/project-b'
+
+const example = () => (
+  <>
+    <ProjectA_LikeC4View viewId='index' />
+    <ProjectB_LikeC4View viewId='index' />
+  </>
+)
+```
+<br />
+
+### Usage with API
+
+It is also possible to initiate using [LikeC4 API](/tooling/model-api):
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { LikeC4 } from 'likec4'
+import { LikeC4VitePlugin } from 'likec4/vite-plugin'
+
+const { languageServices } = await LikeC4.fromSource(`
+  specification {
+    element system
+    element user
+  }
+  model {
+    customer = user 'Customer'
+    cloud = system 'System'
+  }
+  views {
+    view index {
+      include *
+    }
+  }
+`)
+
+export default defineConfig({
+  plugins: [
+    react(),
+    LikeC4VitePlugin({
+      languageServices,
+    }),
+  ],
+})
+```
+<br />
+
+### Virtual modules
+
+Other modules are available to get access to the model:
+
+```tsx
+// For multi-project workspaces
+import { projects } from 'likec4:projects'
+
+// Pick first one (default)
+import { useLikeC4Views, useLikeC4View } from 'likec4:single-project'
+
+// Project by name
+import { useLikeC4Views, useLikeC4View } from 'likec4:model/project-a'
+
+// Other modules
+import { loadDotSources } from 'likec4:dot'
+import { mmdSource } from 'likec4:mmd/project-a'
+```
+
+Complete list - <a href="https://github.com/likec4/likec4/blob/main/packages/likec4/src/vite-plugin/modules.d.ts">vite-plugin/modules.d.ts</a>
+
+
+## Usage 
+
+Here are some examples of how to use the plugin with different frameworks
+
+### With Astro
+
+You can use LikeC4VitePlugin with <a href="https://astro.build/" target='_blank'>Astro</a> and <a href="https://starlight.astro.build/" target='_blank'>Starlight</a> documentation tool as well.  
+Configure Astro:
+
+```js
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+import { LikeC4VitePlugin } from 'likec4/vite-plugin'
+
+export default defineConfig({
+  integrations: [
+    starlight({
+      title: 'Your architecture docs site',
+    }),
+  ],
+  vite: {
+    plugins: [
+      LikeC4VitePlugin({}),
+    ],
+  },  
+});
+```
+
+To use React components, first you need to wrap them in astro components:
+
+```astro
+// src/components/LikeC4View.astro
+---
+import { LikeC4View as ReactLikeC4View, type LikeC4ViewId } from 'likec4:react';
+interface Props {
+  viewId: LikeC4ViewId;
+}
+const { viewId } = Astro.props
+---
+
+<ReactLikeC4View viewId={viewId} client:only="react">
+</ReactLikeC4View>
+```
+
+Then you can use in markdown:
+
+```mdx
+// src/content/docs/example.mdx
+---
+title: Welcome to my docs
+---
+
+import LikeC4View from '../../components/LikeC4View.astro';
+
+## Introduction
+
+This is an example of using LikeC4 in your documentation
+
+<LikeC4View viewId="index" />
+
+```
+<br />
+
+
+### With Next.js
+
+For Next.js (since it does not use Vite), there is a workaround - [library mode](https://vite.dev/guide/build.html#library-mode):  
+Vite will generate a bundled library with likec4 diagrams, that you can import from your Next.js app.  
+
+Export everything from `likec4:react`:
+
+```tsx
+// src/likec4/index.tsx
+export * from 'likec4:react'
+```
+<br />
+
+Configure Vite:
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { LikeC4VitePlugin } from 'likec4/vite-plugin'
+
+export default defineConfig({
+  build: {
+    // Build views to 'lib' directory
+    outDir: 'lib',
+    lib: {
+      entry: 'src/likec4/index.tsx',
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // to avoid code duplication
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        'react-dom/client',
+      ],
+    },
+  },  
+  plugins: [
+    react(),
+    LikeC4VitePlugin(),
+  ],
+})
+```
+
+Run `vite build` and import outputs from your Next.js app:
+
+```tsx
+// pages/index.tsx
+import { LikeC4View } from '../lib'
+
+export default function Home() {
+  return (
+    <LikeC4View viewId="index" />
+  )
+}
+```
+
+You can run `vite build --watch` as a background process to watch for changes in likec4 source files.
+
+<br />
+<br />
+
+:::tip
+You can use LikeC4 with other frameworks as well:
+- via [React code generation](/tooling/code-generation/react/)   
+- For non-react-based documentation tools like Docusaurus, see [Web Components](/tooling/code-generation/webcomponent/)
+:::
+
+# VSCode Extension
+
+
+<div style={{display: 'flex', gap: '10px'}}>
+<a href="https://marketplace.visualstudio.com/items?itemName=likec4.likec4-vscode" target="_blank">![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/likec4.likec4-vscode?label=vscode)</a>
+<a href="https://open-vsx.org/extension/likec4/likec4-vscode" target="_blank">![Open VSX Version](https://img.shields.io/open-vsx/v/likec4/likec4-vscode?color=%23A60EE5)</a>
+</div>
+
+LikeC4 has official [extension for VSCode](https://marketplace.visualstudio.com/items?itemName=likec4.likec4-vscode) - open-source and available on [GitHub](https://github.com/likec4/likec4/tree/main/packages/vscode).  
+The extension provides:
+
+- Validation and error reporting
+- Semantic syntax highlighting
+- Live Previews (and editing)
+- Code completion and navigation 
+- Resolve references (like `find all references`, `go to definition` .. )
+- "Safe" renames
+- Hover information
+
+Extension is universal and can run in the browser.  
+
+Try [example-cloud-system](https://github.dev/likec4/example-cloud-system) with:
+
+<CardGrid>
+<LinkCard
+  title="github.dev"
+  description="Open example project in the browser using github.dev"
+  href="https://github.dev/likec4/example-cloud-system/blob/main/model.c4"
+  target="_blank"
+/>
+
+<LinkCard
+  title="vscode.dev"
+  description="Open example project in the browser using vscode.dev"
+  href="https://vscode.dev/github/likec4/example-cloud-system/blob/main/model.c4"
+  target="_blank"
+/>
+</CardGrid>
+
+# Deployment Model
+
+
+Deployment Model represents another layer, _physical model_ with its own structure and elements (deployment nodes).   
+It references the [logical model](/dsl/model) and inherits its relationships.
+
+## Specification
+
+First, following the [same approach](/dsl/specification/#element-kind), deployment node kinds have to defined within the specification:
+
+```likec4
+specification {
+  deploymentNode environment
+  deploymentNode zone
+  deploymentNode kubernetes {
+    // Nodes have same styling options
+    style {
+      color blue
+      icon tech:kubernetes
+      multiple true
+    }
+  }
+  deploymentNode vm {
+    // Common properties for the kind
+    notation 'Virtual Machine'
+    technology 'VMware'
+  }
+}
+```
+
+You define whatever you need to represent your deployment model and your ubiquitous language.
+
+## Deployment nodes
+
+The deployment model is a set of nodes, organized in a hierarchical structure:
+
+```likec4
+deployment {
+  environment prod {
+    zone eu {
+      zone zone1 {
+        vm vm1
+        vm vm2
+      }
+      // You can also use '=' with the name coming first
+      zone2 = zone {        
+        vm1 = vm
+        vm2 = vm
+      }
+    }  
+  }
+}
+```
+
+Node names must be unique within its container (parent node); same rules as for element names in the logical model.
+
+Nodes can also have titles, descriptions, tags, style, and other properties just like [logical elements](/dsl/model/#element-properties).
+
+```likec4
+deployment {
+  environment prod 'Production' {
+    #live #sla-customer 
+    description 'Production environment'
+    technology 'OpenTofu'
+    link https://likec4.dev
+
+    zone eu {
+      title 'EU Region' 
+      // ...
+    }
+  }
+}
+```
+
+### Extend nodes
+
+As in the logical model, you can [`extend`](/dsl/extend/#extend-element) deployment nodes:
+
+```likec4
+// 'deployments/prod.c4'
+deployment {
+  environment prod
+}
+
+// 'deployments/prod/zone-eu.c4'
+deployment {
+  extend prod {
+    zone eu
+  }
+}
+```
+
+Same [rules](/dsl/extend/#extend-element) apply for extending nodes:
+- extended node must be referenced by a fully qualified name.  
+- define [additional properties](/dsl/extend/#additional-properties).
+
+## Deployed instances
+
+Operator `instanceOf` _“deploys”_ elements from the logical model to deployment nodes:
+
+```likec4
+deployment {
+  environment prod {
+    zone eu {
+      zone zone1 {
+        // 'frontend.ui' is a logical element
+        // by default, instance has same name, 
+        // i.e. it becomes 'prod.eu.zone1.ui'
+        instanceOf frontend.ui
+        // this becomes 'prod.eu.zone1.api'
+        instanceOf backend.api
+      }
+
+      zone zone2 {
+        // or use '=' with the name coming first
+        ui = instanceOf frontend.ui
+
+        // two instances of same element
+        api1 = instanceOf backend.api
+        api2 = instanceOf backend.api
+      }
+
+      // Deploy to any level, not only leaf nodes
+      // Assume database shared between zones
+      db = instanceOf database
+    }    
+  }
+}
+```
+Deployed instance inherits properties and styling from the element.  
+It is possible to override:
+
+```likec4
+deployment {
+  environment prod {
+    zone eu { 
+      db = instanceOf database {
+        title 'Primary DB'
+        technology 'PostgreSQL with streaming replication'
+        icon tech:postgresql
+        style {
+          color red
+        }
+      }
+    }
+  }
+}
+```
+
+
+## Deployment relationships
+
+Deployment model inherits relationships from the logical model.  
+But also allows to define specific ones:
+
+```likec4
+deployment {
+  environment prod {
+    vm vm1 {          
+      db = instanceOf database 'Primary DB'
+    }
+    vm vm2 {
+      db = instanceOf database 'Standby DB'
+    }    
+    vm2.db -> vm1.db 'replicates' 
+  }
+}
+```
+As you see, relationship is between same logical element, but different instances.  
+Assume, we don't need this relationship in our logical model, but it makes sense for deployment.
+
+Deployment relationships can be "kinded", and have [same properties](/dsl/relationships/#relationship-properties) as logical ones:
+
+```likec4
+deployment {
+  environment prod {
+    vm2.db -[streaming]-> vm1.db {
+      #next, #live
+      title 'replicates'
+      description 'Streaming replication'
+    }
+  }
+}
+```
+
+:::tip
+Relationships can be defined for nested elements of deployed instances:
+
+```likec4
+model {
+  component database {
+    component repl_log
+  }
+}
+deployment {
+  vm vm1 {          
+    db = instanceOf database 'Primary DB'
+  }
+  vm vm2 {
+    db = instanceOf database 'Standby DB'
+  } 
+
+  // 'repl_log' is a nested element of deployed instance
+  vm2.db -> vm1.db.repl_log 'replicates'
+}
+```
+:::
+
+:::note
+Check this <a href="https://github.com/likec4/likec4/discussions/1269" target='_blank'>GitHub discussion</a> for further development.  
+Feel free to share your ideas.
+:::
+
+# Deployment views
+
+
+Deployment views allow you to visualize the deployment model, using same approach as [model views](/dsl/views) — predicates.
+
+## View definition
+
+```likec4 {17-23}
+deployment {
+  environment prod {
+    zone eu {
+      zone zone1 {
+        instanceOf frontend.ui
+        instanceOf backend.api
+      }
+      zone zone2 {
+        instanceOf frontend.ui
+        instanceOf backend.api
+      }
+      instanceOf database
+    }    
+  }
+}
+views {
+  deployment view index {
+    title 'Production Deployment'
+    link https://likec4.dev
+
+    include prod.**
+    // ...
+  }
+}
+```
+
+## View predicates
+
+Deployment views are based on same [predicates](/dsl/views/#view-predicates) as model views.  
+But they refer to deployment nodes and instances.
+
+<Aside type='caution' title='In development'>
+  The following features are not supported yet or do not work as expected:
+ 
+  - `with` expressions
+  - Shared styles and predicates
+  - Relationships browser, Element and Relationship Details popups (work with logical model)
+
+  ```likec4
+  deployment view prod {
+    include *                                   // works
+    include * where tag is #next                // works (see details below)
+    include * with { color: red }               // does not work
+
+    include * -> *                              // works
+    include * -> * where tag is #next           // works
+    include * -> * where source.tag is #next    // works (see details below)
+    include * -> * with { color: red }          // does not work
+
+    global style applications                   // does not work    
+  }
+  ```
+</Aside>
+
+### Filtering
+Filtering in deployment views use the same principles as in normal views but takes into account deployment nodes, relations and tags defined in deployment model.
+When condition on element is checked the following rules are applied:
+- For a deployment instances tags are combined from tags defined in model and tags defined in deployment model
+- For a child of deployment instance the tags defined on child in model are used
+- For a deployment node the tags defined in deployment model are used
+- For a deployment instances the kind of the model element is used
+- For a child of deployment instance the kind of this child is used
+- For a deployment node the kind of this deployment node is used
+- Tags are not inherited from parent nodes/elements
+
+```likec4
+model {
+  el cloud {
+    el frontend {
+      #next
+      -> backend "rel1"
+    }
+    el backend {
+      #next
+      -> db "rel2"
+    }
+    el db
+  }
+}
+deployment {
+  environment prod { // Resulting tags: #alpha
+    #alpha
+    zone eu { // Resulting tags: #beta
+      #beta
+      instanceOf frontend { // Resulting tags: #next, #gamma
+          #gamma
+      }
+      instanceOf backend { // Resulting tags: #next, #sigma
+          #sigma
+      }
+      eu -> prod.db "rel3"
+    }
+    instanceOf db { // Resulting tags: #delta
+      #delta
+    }
+  }
+}
+views {
+  deployment view some {
+    include prod.eu.frontend -> prod.eu.backend
+      where source.tag is #next // includes relation "rel1"
+    include prod.eu.frontend -> prod.eu.backend
+      where source.tag is #gamma // includes relation "rel1"
+    include prod.eu -> prod.db
+      where source.tag is #beta // includes relation "rel3"
+    include prod.eu -> prod.db
+      where source.tag is #sigma // does not include any relations
+    include eu.* -> prod.db
+      where source.tag is #sigma // includes relations "rel2"
+  }
+}
+```
+
+<br/>
+<br/>
+  <LinkCard
+    title="Try it online"
+    description="Open deployment example in LikeC4 playground"
+    href="https://playground.likec4.dev/w/deployment/index/"
+    target="_blank"
+  />
+
+# Generate LikeC4Model
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<p>
+<a href="https://www.npmjs.com/package/likec4" target="_blank">![NPM Version](https://img.shields.io/npm/v/likec4)</a>
+</p>
+
+Generate source code artifacts from architecture model.
+
+## Typed Model
+
+<PackageManagers
+   type="dlx"
+   pkg="likec4"
+   args="codegen model --outfile ./likec4-model.ts"
+   pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+   frame="none"
+   />
+
+<Aside type='caution' title="In progress" >
+  Documentation in progress
+</Aside>
+
+# Generate React
+
+import { PackageManagers } from 'starlight-package-managers'
+
+<p>
+<a href="https://www.npmjs.com/package/likec4" target="_blank">![NPM Version](https://img.shields.io/npm/v/likec4)</a>
+</p>
+
+Generate React components with views from your architecture model.
+
+## Install
+
+Ensure you have [`likec4`](https://www.npmjs.com/package/likec4) in your dependencies:
+
+<PackageManagers
+    pkg="likec4"
+    pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+    frame="none"
+  />
+<br />
+
+## React
+
+The following command generates a JavaScript bundle with React Component (and `.d.ts`):
+
+<PackageManagers
+   type="dlx"
+   pkg="likec4"
+   args="codegen react --outfile ./src/likec4.generated.js"
+   pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+   frame="none"
+   />
+
+<br />   
+
+```sh frame="none"
+# Aliases
+npx likec4 generate react -o ./src/likec4.generated.js
+npx likec4 gen react -o ./src/likec4.generated.js
+
+```
+
+:::note
+Check `likec4 codegen react --help` for available options.
+:::
+
+<Aside type='tip' title="Vite plugin" >
+There is also an option to use Vite plugin in library mode and get auto-updates, check this [example](/tooling/vite-plugin/#with-nextjs).
+</Aside >
+
+
+To use the component:
+
+```tsx
+import { LikeC4View } from './likec4.generated'
+
+const App = () => {
+  return (
+    <div>
+      <LikeC4View viewId="index" />
+    </div>
+  )
+}
+```
+
+| Property            | Description                                                                                         |
+| -----------------   | --------------------------------------------------------------------------------------------------- |
+| `viewId`            | Typed enumeration of your views                                                                     |
+| `where`             | Optional, see [filter](#filter) |
+| `injectFontCss`     | Injects CSS with <a href='https://fontsource.org/fonts/ibm-plex-sans' target='_blank'>IBM Plex Sans</a> font from CDN.<br/>Default is `true` |
+
+:::tip
+Check <a href="https://github.com/likec4/likec4/blob/main/packages/diagram/src/bundle/LikeC4View.props.ts#L5-L156" target="_blank">source code</a> for all properties.
+:::
+
+:::caution
+`LikeC4View` does not rehydrate correctly if rendered on the server, prefer client-side.
+:::
+
+### Filter
+
+`where` is same [view predicate](/dsl/views#filter), but applies dynamically and enables to show/hide elements based on the context. For example:
+
+```tsx
+import { LikeC4View } from './likec4.generated'
+
+// Keeps elements and relationships where:
+// - tag is not 'legacy'
+// - and 
+// - tag is 'v1' or 'v2'
+const App = () => {
+  return (
+    <div>
+      <LikeC4View
+        viewId="index"
+        where={{
+          and: [
+            { tag: { neq: 'legacy' } },
+            { 
+              or: [
+                { tag: { eq: 'v1' } },
+                { tag: { eq: 'v2' } }
+              ] 
+            }
+          ]
+        }}/>
+    </div>
+  )
+}
+```
+
+Layout stays the same, i.e. elements are not rearranged.  
+Be aware, `where` applies both to elements and relationships.
+
+## ReactLikeC4
+
+`LikeC4View` renders views from your model, and allows exploring in the popup browser.  
+Component works in most usecases, but if you need more - use `ReactLikeC4`:
+
+```tsx
+import { ReactLikeC4, type LikeC4ViewId } from './likec4.generated'
+
+const App = () => {
+  const [viewId, setViewId] = useState<LikeC4ViewId>('index')
+  return (
+    <ReactLikeC4
+      viewId={viewId}
+      pannable
+      zoomable={false} 
+      keepAspectRatio
+      showNavigationButtons
+      enableDynamicViewWalkthrough={false}
+      enableElementDetails
+      enableRelationshipDetails
+      showDiagramTitle={false}
+      onNavigateTo={setViewId}
+      onNodeClick={...}
+    />
+  )
+}
+```
+
+`ReactLikeC4` is a low-level component, giving you more control and allowing react to the events. 
+Check <a href="https://github.com/likec4/likec4/blob/main/packages/diagram/src/LikeC4Diagram.props.ts" target="_blank">source code</a> for available options.
+
+Feel free to share your ideas or ask questions in <a href="https://github.com/likec4/likec4/discussions/" target='_blank'>GitHub discussions</a>.
+
+<Aside type='tip' title="Generic version" >
+Code generation prepares component, which is already "bound" to your model.  
+But it is possible to use a generic from the library:
+
+```tsx
+import { ReactLikeC4, LikeC4ModelProvider } from 'likec4/react'
+import { RenderIcon, likeC4Model } from './likec4.generated'
+
+const App = () => {
+  return (
+    <LikeC4ModelProvider likec4model={likeC4Model}>
+      <ReactLikeC4
+        viewId={"index"}
+        renderIcon={RenderIcon} // Optional, used for bundled icons
+        onEdgeClick={...}
+      />
+    </LikeC4ModelProvider>
+  )
+}
+```
+
+</Aside>
+
+## Styling
+
+<Aside type='caution' title="In progress" >
+  TODO: Document styling and theming with PandaCSS
+</Aside>
+
+# Generate Web Components
+
+import { PackageManagers } from 'starlight-package-managers'
+
+<p>
+<a href="https://www.npmjs.com/package/likec4" target="_blank">![NPM Version](https://img.shields.io/npm/v/likec4)</a>
+</p>
+
+
+## Install
+
+Ensure you have [`likec4`](https://www.npmjs.com/package/likec4) in your dependencies:
+
+<PackageManagers
+    pkg="likec4"
+    pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+    frame="none"
+  />
+<br />
+
+
+## Web Component
+
+Generate javascript bundle with web component:
+
+<PackageManagers
+   type="dlx"
+   pkg="likec4"
+   args="codegen webcomponent -o ./src/likec4-webcomponent.js"
+   pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+   frame="none"
+   />
+
+<br />   
+
+Use it:
+
+```html
+<script src="./src/likec4-webcomponent.js"></script>
+<likec4-view view-id="index"></likec4-view>
+```
+
+By default, cli generates a `likec4-view` web component.  
+You can change the `likec4` prefix by `-w, --webcomponent-prefix`.
+
+For example:
+
+<PackageManagers
+   type="dlx"
+   pkg="likec4"
+   args="codegen webcomponent -w custom-c4 -o ./src/likec4-webcomponent.js"
+   pkgManagers={['npm', 'pnpm', 'yarn', 'bun']}
+   frame="none"
+   />
+
+And in HTML:
+
+```html
+<custom-c4-view view-id="index" browser="true"></custom-c4-view>
+```
+
+:::note
+CLI command [build](/tooling/cli/#build-static-website) always generates javascript with web components.  
+Check `Share` button on the top at <a href="https://template.likec4.dev/view/index" target="_blank">this example</a>
+:::
+

@@ -1,0 +1,10 @@
+# FAQ
+
+## FAQ
+
+- [Introduction to Arpeggi Studio](https://arpeggi.gitbook.io/faq/introduction-to-arpeggi-studio)
+- [Making Music with Arpeggi](https://arpeggi.gitbook.io/faq/making-music-with-arpeggi)
+- [Arpeggi Studio Tutorial](https://arpeggi.gitbook.io/faq/arpeggi-studio-tutorial)
+- [Build on Arpeggi](https://arpeggi.gitbook.io/faq/build-on-arpeggi)
+- [Getting Started in Web3](https://arpeggi.gitbook.io/faq/getting-started-in-web3)
+- [Sample Pack with Commercial License](https://arpeggi.gitbook.io/faq/sample-pack-with-commercial-license): FAQs about what it means to hold an Arpeggi Sample pack with a commercial license.

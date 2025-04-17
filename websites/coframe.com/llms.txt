@@ -1,0 +1,21 @@
+# Coframe
+
+## Docs
+
+- [Ad-to-Page Optimization](https://docs.coframe.com/advanced-features/ad-to-page-optimization.md): Optimizing landing pages based on ad campaigns
+- [Audience Segments](https://docs.coframe.com/editor/audience-segments.md): Learn how to define and manage audience segments in Coframe's editor
+- [Manual Editing](https://docs.coframe.com/editor/manual-editing.md): Learn how to manually edit elements in Coframe's editor using the right panel
+- [Metrics and Goals](https://docs.coframe.com/editor/metrics-and-goals.md): Selecting metrics to optimize for
+- [Variant Creation](https://docs.coframe.com/editor/variant-creation.md): Learn how to use Coframe's editor to create and manage AI-driven variants for your website
+- [Website Viewer](https://docs.coframe.com/editor/website-viewer.md): Learn how to use Coframe's website viewer, including the iframe, grid view, mobile view, and DOM inspector
+- [Business Intelligence](https://docs.coframe.com/getting-started/business-intelligence.md): Providing brand context for better AI-generated content
+- [Setting Up Your First Optimizer](https://docs.coframe.com/getting-started/first-optimizer.md): 10 steps to take you from zero to hero
+- [Introduction to Coframe](https://docs.coframe.com/introduction.md): Drive more growth with continuous, AI-powered website optimization
+- [Coffee ☕](https://docs.coframe.com/labs/coffee.md): Build and iterate on your UI 10x faster with AI – right from your own IDE!
+- [Living Images (Deprecated)](https://docs.coframe.com/labs/living-images.md): Let your images optimize themselves with generative AI
+- [Optimizer Methodology](https://docs.coframe.com/optimization/optimizer-methodology.md): Understanding Coframe's Optimizer Algorithm
+- [Optimizer View](https://docs.coframe.com/optimization/optimizer-view.md): Understanding and Utilizing the Optimizer View in Coframe
+- [Page View](https://docs.coframe.com/optimization/page-view.md): Managing and Analyzing Your Pages in Coframe
+- [Segmentation](https://docs.coframe.com/optimization/segmentation.md): Creating and Managing Audience Segments in Coframe
+- [Managing SEO](https://docs.coframe.com/seo-and-performance/managing-seo.md): Handling search engine bots and SEO considerations with Coframe
+- [Performance Concerns](https://docs.coframe.com/seo-and-performance/performance-concerns.md): Learn how Coframe ensures minimal impact on your website's performance

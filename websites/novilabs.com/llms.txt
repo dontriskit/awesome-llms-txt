@@ -1,0 +1,101 @@
+# novilabs.com llms.txt
+
+- [Energy Research Insights](https://novilabs.com/resource-type/research/): Offers in-depth research reports and analyses in the energy sector.
+- [Oil & Gas Forecasting Tool](https://novilabs.com/energy-analytics/forecast-engine/): Offers a machine learning-based forecasting tool for optimal oil and gas asset management and development planning.
+- [Webinar Resources](https://novilabs.com/resource-type/webinar/): Showcase upcoming and past webinars related to energy analytics and insights.
+- [Novi Labs Product Updates](https://novilabs.com/whats-new/): To inform readers about recent product updates and enhancements at Novi Labs.
+- [Dallas Fed Energy Insights](https://novilabs.com/blog/dallas-fed-survey-says-activity-is-essentially-flat-quarter-on-quarter/): Analyzes the Dallas Fed's Energy Survey findings on industry activity and price forecasts in the oil and gas sector.
+- [Uinta Basin Insights](https://novilabs.com/uinta-basin/): Provides comprehensive insights and data about the Uinta Basin's oil and gas industry for informed decision-making.
+- [Eagle Ford Basin Insights](https://novilabs.com/eagle-ford-basin/): Provides comprehensive data and insights about the Eagle Ford Basin's oil and gas production.
+- [Target Formations Insights](https://novilabs.com/well-data/target-formations/): Provide detailed data and insights on target formations in the oil and gas industry for improved operational efficiency.
+- [Novi Insight Engine Walkthrough](https://novilabs.com/resources/novis-insight-engine-product-walkthrough/): Showcases a video walkthrough of Novi's Insight Engine for oil and gas data analysis.
+- [Completion Stages Insights](https://novilabs.com/well-data/completion-stages/): Provide insights and analysis on completion stages in hydraulic fracturing for optimizing oil and gas production.
+- [Energy Insights Webinars](https://novilabs.com/resource-library/webinar/): Access on-demand webinars for insights in energy and data analytics.
+- [Forecasting Solutions Overview](https://novilabs.com/teams/planning-forecasting/): Promote advanced forecasting tools for reservoir engineering using machine learning to enhance decision-making and accuracy.
+- [Bakken Basin Insights](https://novilabs.com/bakken-basin/): Provides comprehensive information and insights on the Bakken Basin's oil and gas industry.
+- [Data Analytics for E&P](https://novilabs.com/industries/exploration-and-production/): Novi Labs offers data analytics solutions to optimize decision-making for exploration and production in the oil and gas sector.
+- [Well Economics Dashboard](https://novilabs.com/dashboards/well-economics/): Evaluate economic performance of oil and gas wells using advanced analytics and financial metrics.
+- [Oil & Gas Cluster Data](https://novilabs.com/well-data/cluster/): Provides insights and data on well cluster spacing for optimizing energy production.
+- [Demo Request Page](https://novilabs.com/request-a-demo/): Facilitate requests for product demonstrations of Novi Labs' energy analytics solutions.
+- [Oil & Gas Insights](https://novilabs.com/dashboards/oil-gas-terminal-decline-rates/): To provide insights on oil and gas terminal decline rates for informed decision-making.
+- [Subsurface Oil & Gas Data](https://novilabs.com/well-data/subsurface-oil-gas/): Offers detailed subsurface oil and gas data for analysis and decision-making in the energy industry.
+- [Optimizing Development Density](https://novilabs.com/use-cases/evaluating-development-density-options/): The page outlines advanced machine learning solutions for optimizing development density and spacing strategies in oil and gas production.
+- [Haynesville Basin Insights](https://novilabs.com/haynesville-basin/): Offers comprehensive data and insights about the Haynesville Basin in the oil and gas industry.
+- [Novi Labs Experts](https://novilabs.com/experts/): Showcase the expert team at Novi Labs and their industry knowledge.
+- [Delaware Basin Insights](https://novilabs.com/delaware-basin/): To provide comprehensive data and insights on the Delaware Basin for the oil and gas industry.
+- [Novi Labs Careers](https://novilabs.com/careers/): Highlight job opportunities and benefits at Novi Labs to attract potential candidates.
+- [Novi Podcasts Library](https://novilabs.com/resource-library/podcast/): Showcases podcasts focusing on advancements in oil and gas analytics and technology.
+- [Acquisitions and Divestitures Insights](https://novilabs.com/teams/acquisitions-and-divestitures/): This page highlights advanced analytics for acquisitions and divestitures in the energy sector.
+- [Oil & Gas Productivity Dashboard](https://novilabs.com/dashboards/productivity-over-time/): Display and analyze oil and gas productivity metrics over time for informed decision-making.
+- [Production Allocation Insights](https://novilabs.com/well-data/well-production-allocation/): Facilitates accurate lease-to-well production allocation analysis for the oil and gas industry.
+- [Privacy Policy Overview](https://novilabs.com/privacy-policy/): Outlines Novi Labs' privacy practices and user data management policies.
+- [Machine Learning Insights](https://novilabs.com/machine-learning-oil-and-gas/): Exploring machine learning applications in the oil and gas sector through informative blog posts.
+- [Appalachia Basin Insights](https://novilabs.com/appalachia-basin/): This page offers comprehensive data and insights about the Appalachia Basin's oil and gas production and history.
+- [Powder River Basin Insights](https://novilabs.com/powder-river-basin/): This webpage offers comprehensive data and insights about the Powder River Basin's oil and gas production.
+- [Reservoir Engineering Solutions](https://novilabs.com/teams/asset-development/): Novi Labs offers analytics solutions for reservoir engineers to enhance asset development and forecasting accuracy.
+- [Oil and Gas Dashboards](https://novilabs.com/dashboards/): Offers interactive dashboards for data analysis in the oil and gas industry.
+- [Well Production Dashboard](https://novilabs.com/dashboards/peak-rate_map/): Visualize well production data to inform oil and gas decision-making.
+- [Novi Labs Comparison](https://novilabs.com/enverus-drillinginfo-alternatives-competitors/): To compare and promote Novi Labs as an alternative to Enverus (DrillingInfo) for energy data solutions.
+- [Oil & Gas Insights](https://novilabs.com/dashboards/lateral-lengths-proppants/): Provide insights into lateral lengths and proppants for oil and gas completion designs and trends.
+- [Forecasting Well Performance](https://novilabs.com/blog/forecasting-pads-with-spacing-variation-standard-vs-causal-models/): This blog compares causal and standard models in forecasting well performance based on spacing variations in the Delaware Basin.
+- [Energy Analytics Solutions](https://novilabs.com/industries/): Showcases Novi Labs' energy analytics solutions for various industries including oil and gas, minerals, and financial services.
+- [Energy Analytics Solutions](https://novilabs.com): Empowering energy sector decision-makers with advanced analytics and data-driven insights for better investment evaluations.
+- [Financial Services Data Solutions](https://novilabs.com/industries/financial-services/): Offers data analytics solutions for financial services in the oil and gas sector to optimize investment decisions.
+- [Oil & Gas Dashboard](https://novilabs.com/dashboards/oil-gas-cumulative-production-ranking/): Showcases an oil and gas production dashboard with cumulative production rankings and analytics capabilities.
+- [Oil and Gas Resources](https://novilabs.com/resource-library/): A resource hub for oil and gas research, insights, and analytics.
+- [Permian Basin Insights](https://novilabs.com/category/shale-oil-gas-insights/permian/): Discussing the latest updates and insights on Permian Basin shale oil production.
+- [Technical Papers Collection](https://novilabs.com/resource-library/technical-papers/): Access technical papers on machine learning and data science advancements in the oil and gas industry.
+- [Contact Novi Labs](https://novilabs.com/contact/): Facilitates contact and connects users with Novi Labs for inquiries and support.
+- [Midland Basin Overview](https://novilabs.com/midland-basin/): This page provides detailed information and insights about the Midland Basin in the oil and gas sector.
+- [Oil & Gas Operator Insights](https://novilabs.com/operators/): Provides insights and data on U.S. oil and gas operators for industry stakeholders.
+- [Improving Forecast Accuracy](https://novilabs.com/blog/expanding-machine-learning-models-for-better-production-forecasting-in-emerging-shale-basins/): Explains how enhancing machine learning models can improve production forecasting in shale basins.
+- [Valuing Undrilled Potential](https://novilabs.com/use-cases/valuing-undrilled-potential/): Evaluate and forecast the potential value of undrilled oil and gas acreage using advanced predictive analytics.
+- [Denver-Julesburg Basin Insights](https://novilabs.com/denver-julesburg-basin/): The page offers comprehensive insights, data, and resources about the Denver-Julesburg Basin in the oil and gas industry.
+- [Oil & Gas Production Data](https://novilabs.com/well-data/production-data/): Provide accurate and comprehensive oil and gas well production data for informed decision-making and performance analysis.
+- [Anadarko Basin Overview](https://novilabs.com/anadarko-basin/): Provides detailed information and data about the Anadarko Basin's oil and gas production and history.
+- [Diamondback TRP Asset Analysis](https://novilabs.com/resources/diamondback-trp-asset-swap/): Analyzing Diamondback's asset swap with TRP Energy, focusing on financial and operational impacts.
+- [Energy Research Repository](https://novilabs.com/resource-library/research/): Provides in-depth research papers and market insights for the energy sector, particularly oil and gas.
+- [Permian Basin Overview](https://novilabs.com/permian-basin/): This page offers comprehensive information and data about the Permian Basin, a major oil-producing region in the U.S.
+- [Upstream Energy Data Insights](https://novilabs.com/energy-analytics/upstream-data/): Delivers accurate upstream energy data and analytics for smarter investment decisions in the oil and gas sector.
+- [Well Header Data Insights](https://novilabs.com/well-data/well-header/): Provide comprehensive well header data for the oil and gas industry to enhance decision-making and operational efficiency.
+- [Top Permian Basin Operators](https://novilabs.com/permian-basin/top-operators/): Display information about leading oil and gas operators in the Permian Basin.
+- [Optimizing Oil & Gas Operations](https://novilabs.com/well-data/landing-zone-oil-gas/): To offer detailed insights and tools for optimizing oil and gas landing zones and production analysis.
+- [Novi Labs Newsroom](https://novilabs.com/newsroom/): Updates on company news, press releases, and media coverage regarding Novi Labs.
+- [Novi Labs Events](https://novilabs.com/events/): To inform about upcoming and past events organized by Novi Labs in the oil and gas industry.
+- [Well Permit Data Insights](https://novilabs.com/well-data/well-permits/): Provides well permit data for operators and investors to monitor and analyze drilling activities and market trends.
+- [Directional Survey Data](https://novilabs.com/well-data/directional-survey/): Offering detailed directional survey data for oil and gas drilling operations to improve accuracy and efficiency.
+- [Proppant Data Insights](https://novilabs.com/well-data/proppant/): Provides detailed proppant data for optimizing hydraulic fracturing in the oil and gas industry.
+- [Well Productivity Dashboard](https://novilabs.com/dashboards/wells-productivity-ranking/): Analyze and rank oil and gas wells based on productivity metrics to inform investment decisions.
+- [Product Video Resources](https://novilabs.com/resource-library/product-videos/): Showcases educational videos for users to learn about Novi Labs' analytics products.
+- [Oilfield Analytics Solutions](https://novilabs.com/industries/oilfield-services/): Promote oilfield analytics services to help companies track production trends and identify business opportunities.
+- [About Novi Labs](https://novilabs.com/about/): To showcase Novi Labs' innovative approach to energy analytics and its impact on investment decisions in the oil and gas sector.
+- [Energy Data Analytics Tool](https://novilabs.com/energy-analytics/insight-engine/): Provide advanced energy data analytics tools for evaluating oil and gas investment opportunities and performance.
+- [Well Spacing Optimization](https://novilabs.com/well-data/well-spacing/): To provide well spacing data and analysis tools for optimizing oil and gas production.
+- [M&A Analysis Insights](https://novilabs.com/use-cases/energy-assets-mergers-acquisitions-analysis/): Provide data-driven insights for M&A decisions in the energy sector through advanced analytics and proprietary data.
+- [Permian Basin Update](https://novilabs.com/blog/permian-update-through-jan-2024-2/): The page updates on oil and gas production data in the Permian Basin, emphasizing trends and analytics.
+- [Energy Survey Insights](https://novilabs.com/resources/dallas-federal-reserve-energy-survey-q3/): To provide insights from the Dallas Federal Reserve Energy Survey on operators' perspectives in the energy sector.
+- [Self-Service ML for Energy](https://novilabs.com/energy-analytics/model-engine/): Promoting a self-service machine learning tool for oil and gas forecasting.
+- [San Juan Basin Insights](https://novilabs.com/san-juan-basin/): Provides detailed information and data about the San Juan Basin's oil and gas resources.
+- [Modeling Spacing in Wells](https://novilabs.com/blog/how-do-we-inform-a-model-about-a-wells-surroundings/): Discusses methods to inform machine learning models about well spacing for improved production forecasting.
+- [Equity Investing Analytics](https://novilabs.com/teams/equity-Investing): Promote Novi's analytics for equity investing in the energy sector, emphasizing data quality and predictive insights.
+- [Oil & Gas Newsletter](https://novilabs.com/oil-gas-newsletter/): Subscribe to receive updates and insights about the US upstream oil and gas industry.
+- [Coterra Acquisition Analysis](https://novilabs.com/resources/coterra-acquires-avant-resources-franklin-mountain-energy/): Analyzes Coterra's acquisition of Avant Resources and Franklin Mountain Energy in the context of market dynamics.
+- [Data Preparation Solutions](https://novilabs.com/energy-analytics/data-engine/): Facilitate streamlined data preparation for energy analytics in the oil and gas sector.
+- [Webinar on Insight Engine](https://novilabs.com/resources/webinar-introducing-the-next-gen-novis-insight-engine/): Showcase a webinar about the launch of Novi's Insight Engine for improving upstream data analysis.
+- [Oil & Gas Insights](https://novilabs.com/shale-oil-and-gas-insights-blog/): Provide updates and insights on developments in major tight oil and gas basins.
+- [Flared Gas Insights](https://novilabs.com/dashboards/flared-gas/): Provides insights on flared gas production and trends for oil and gas professionals.
+- [Mineral Owners Analytics](https://novilabs.com/industries/mineral-owners/): To assist mineral owners in optimizing oil and gas investments through data analytics and insights.
+- [Oil & Gas Glossary](https://novilabs.com/glossary/): Provide easy-to-understand definitions for terms related to the oil and gas industry.
+- [Haynesville Insights](https://novilabs.com/category/shale-oil-gas-insights/haynesville/): Provides insights and updates on the Haynesville shale oil and gas sector.
+- [Industry Reports Overview](https://novilabs.com/resource-library/novi-industry-reports/): Offers industry reports analyzing US tight oil basins and related energy insights.
+- [Tellurian Asset Sale Analysis](https://novilabs.com/blog/tellurian-upstream-sale-on-to-greener-pastures/): Analyzes Tellurian's asset sale and its implications for future projects and market dynamics.
+- [Machine Learning Insights](https://novilabs.com/category/machine-learning-oil-and-gas/): Explore applications of machine learning in the oil and gas industry for improved forecasting and data analysis.
+- [Machine Learning Insights](https://novilabs.com/blog/): Showcases machine learning advancements and insights in oil and gas production forecasting.
+- [Proprietary Energy Insights](https://novilabs.com/energy-analytics/novi-data-network/): Offers proprietary energy data to improve oil and gas investment and forecasting accuracy.
+- [Energy Analytics Solutions](https://novilabs.com/energy-analytics/): Offer innovative energy analytics solutions for informed decision-making in the oil and gas sector.
+- [Proprietary Energy Data Access](https://novilabs.com/energy-analytics/data-sharing/): Facilitates access to proprietary energy data for enhanced decision-making and performance analysis in oil and gas investments.
+- [Machine Learning in Oil & Gas](https://novilabs.com/machine-learning-in-oil-and-gas-industry/): This page explains the role of machine learning in optimizing operations within the oil and gas industry.
+- [Acreage Maps and Data](https://novilabs.com/well-data/acreage-maps/): Provides comprehensive acreage maps and data analytics for the oil and gas industry to support investment and analysis.
+- [Completions Optimization Solutions](https://novilabs.com/use-cases/completions-optimization/): Novi Labs offers solutions for optimizing oil and gas well completions through advanced analytics and machine learning.
+- [Central Basin Resource Overview](https://novilabs.com/central-basin/): To provide comprehensive information and data on the Central Basin in the context of oil and gas production.
+- [Production Distribution Dashboard](https://novilabs.com/dashboards/productivity-distribution/): To provide an interactive dashboard analyzing oil and gas production distribution for informed decision-making.

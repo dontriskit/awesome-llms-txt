@@ -1,0 +1,47 @@
+# BotTalk Docs
+
+## BotTalk Docs
+
+- [BotTalk Documentation](https://docs.bottalk.io/docs/bottalk-documentation): Welcome to BotTalk Documentation!
+- [Video Tutorials](https://docs.bottalk.io/docs/video-tutorials): If you are a visual learner, these video tutorials can help you learn how to use BotTalk in minutes.
+- [Create BotTalk Account](https://docs.bottalk.io/docs/onboarding/create-bottalk-account): Create your BotTalk account to manage your projects!
+- [Create an Organization](https://docs.bottalk.io/docs/onboarding/create-an-organization): Create a workspace to manage your projects with your team.
+- [Create a Project](https://docs.bottalk.io/docs/onboarding/create-a-project): A text-to-speech project is the central piece of BotTalk Audio CMS.
+- [Configure your Project](https://docs.bottalk.io/docs/text-to-speech/configure-your-project): A text-to-speech project is the central piece of BotTalk Audio CMS.
+- [Organization Access Settings](https://docs.bottalk.io/docs/text-to-speech/configure-your-project/organization-access-settings): Add your project to an Organization
+- [Voice Selection](https://docs.bottalk.io/docs/text-to-speech/configure-your-project/voice-selection): Change the language and voice of your project
+- [Parser Settings](https://docs.bottalk.io/docs/text-to-speech/configure-your-project/parser-settings): Parse your articles automatically. Set up specific rules for how BotTalk should parse your articles.
+- [Extractor Rules](https://docs.bottalk.io/docs/text-to-speech/configure-your-project/extractor-rules): Add specific rules to control how BotTalk will extract text from your articles.
+- [Integrate Web Player](https://docs.bottalk.io/docs/text-to-speech/integrate-web-player)
+- [Create a Web Player](https://docs.bottalk.io/docs/text-to-speech/integrate-web-player/create-a-web-player)
+- [Configure your Web Player](https://docs.bottalk.io/docs/text-to-speech/integrate-web-player/configure-your-web-player): Configure a player's look and feel
+- [Integrate Web Player into your website](https://docs.bottalk.io/docs/text-to-speech/integrate-web-player/integrate-web-player-into-your-website)
+- [Automation Rules](https://docs.bottalk.io/docs/text-to-speech/automation-rules): Define unique rules to select, which content should be audified
+- [Create Custom Rule](https://docs.bottalk.io/docs/text-to-speech/automation-rules/create-custom-rule): Individualize your content selection
+- [Analytics](https://docs.bottalk.io/docs/text-to-speech/analytics): See how listeners are engaging with your audio content.
+- [Reporting](https://docs.bottalk.io/docs/text-to-speech/reporting): Stay up to date about your performance
+- [Dictionaries](https://docs.bottalk.io/docs/features/dictionaries): To improve pronunciation of your selected voice
+- [SSML-Tags](https://docs.bottalk.io/docs/features/dictionaries/ssml-tags)
+- [Regular Expressions](https://docs.bottalk.io/docs/features/dictionaries/regular-expressions)
+- [Contextual Preview](https://docs.bottalk.io/docs/features/dictionaries/contextual-preview)
+- [Playlist Player](https://docs.bottalk.io/docs/features/playlist-player): Increase the dwell time with our playlist player
+- [Set up a Playlist](https://docs.bottalk.io/docs/features/playlist-player/set-up-a-playlist)
+- [Create a Playlist Player](https://docs.bottalk.io/docs/features/playlist-player/create-a-playlist-player)
+- [Configure your Playlist Player](https://docs.bottalk.io/docs/features/playlist-player/configure-your-playlist-player)
+- [Integrate Playlist Player into your website](https://docs.bottalk.io/docs/features/playlist-player/integrate-playlist-player-into-your-website)
+- [Paywall Integration](https://docs.bottalk.io/docs/monetization/paywall-integration): Increase your Free-Premium-Conversion
+- [Audio Advertising](https://docs.bottalk.io/docs/monetization/audio-advertising): Monetize your audio content by including short pre-rolls in your articles.
+- [Create a Custom Voice](https://docs.bottalk.io/docs/custom-voice/create-a-custom-voice): Give your content a branded and individual voice
+- [Preparation of recordings](https://docs.bottalk.io/docs/custom-voice/preparation-of-recordings)
+- [Recording platform](https://docs.bottalk.io/docs/custom-voice/recording-platform)
+- [Technical guidelines](https://docs.bottalk.io/docs/custom-voice/technical-guidelines)
+- [BotTalk API](https://docs.bottalk.io/docs/integration/bottalk-api): written by developers to developers with 💙
+- [Authorization](https://docs.bottalk.io/docs/integration/bottalk-api/authorization)
+- [Error Handling](https://docs.bottalk.io/docs/integration/bottalk-api/error-handling)
+- [Webhooks](https://docs.bottalk.io/docs/integration/bottalk-api/webhooks)
+- [API Reference](https://docs.bottalk.io/docs/integration/api-reference)
+- [Articles](https://docs.bottalk.io/docs/integration/api-reference/articles)
+- [Reports](https://docs.bottalk.io/docs/integration/api-reference/reports): Retrieve statistics on audio articles usage programmatically
+- [FAQs](https://docs.bottalk.io/docs/help/faqs): Frequently asked questions on different topics.
+- [General](https://docs.bottalk.io/docs/help/faqs/general)
+- [Billing](https://docs.bottalk.io/docs/help/faqs/billing)

@@ -1,0 +1,15 @@
+# VOOI
+
+## VOOI docs
+
+- [VOOI:intro](https://docs.vooi.io/vooi-intro): Explore VOOI, a perpetual DEX aggregator that enhances DeFi trading with a focus on chain and account abstraction to simplify leveraged trading across chains.
+- [VOOI:roadmap](https://docs.vooi.io/vooi-roadmap)
+- [VOOI:unifiedTradingTerminal](https://docs.vooi.io/vooi-unifiedtradingterminal)
+- [VOOI:rebateProgram](https://docs.vooi.io/vooi-rebateprogram)
+- [VOOI:referralProgram](https://docs.vooi.io/vooi-referralprogram)
+- [VOOI:operationalGuidelines](https://docs.vooi.io/vooi-operationalguidelines)
+- [VOOI:positionTypes](https://docs.vooi.io/vooi-operationalguidelines/vooi-positiontypes)
+- [VOOI:orderTypes](https://docs.vooi.io/vooi-operationalguidelines/vooi-ordertypes)
+- [VOOI:ConnectingHOTWallet](https://docs.vooi.io/vooi-connectinghotwallet)
+- [VOOI:signalBotGuide](https://docs.vooi.io/vooi-signalbotguide)
+- [VOOI:releaseNotes](https://docs.vooi.io/vooi-releasenotes)

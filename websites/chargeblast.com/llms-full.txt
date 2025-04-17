@@ -1,0 +1,388 @@
+# Fetch Alerts
+Source: https://docs.chargeblast.com/api-reference/alerts/fetch-alerts
+
+get /api/v2/alerts
+Get all the alerts from your chargeblast account.
+
+
+
+# Fetch an Alert
+Source: https://docs.chargeblast.com/api-reference/alerts/fetch-an-alert
+
+get /api/v2/alert/{id}
+Get a specific alert.
+
+
+
+# Update Alert
+Source: https://docs.chargeblast.com/api-reference/alerts/update-alert
+
+post /api/v2/alerts/update/{id}
+Update the state of an alert to properly inform the banks of whether or not a refund will be issued. If an alert is left unactioned for 72 hours it will be automatically declined. For best results mark alerts as resolved within 24 hours of receiving them (some smaller banks will escalate quarantined transactions as soon as 24 hours within propogating an alert). If you attempt to update an already actioned alert, the request will fail.
+
+
+
+# Create Credit Request
+Source: https://docs.chargeblast.com/api-reference/credit-requests/create
+
+post /api/v2/credit-request/create
+Creates a credit request for a rejected alert. Will fail if requesting credit from resolved alert or alert with an existing credit request, otherwise will simply return 200 response code.
+
+
+
+# Enroll Merchant
+Source: https://docs.chargeblast.com/api-reference/enrollment/enroll-merchant
+
+post /api/enroll_merchant
+Enroll the merchant in a various alert program. If no merchant_id is specified a new merchant object will be automatically generated. For each alert program various info is required. For example, for Ethoca, only descriptors are. To see which info is required see [here](https://docs.chargeblast.io/reference/enrollment-criteria)
+
+
+
+# Fetch Descriptors
+Source: https://docs.chargeblast.com/api-reference/enrollment/fetch-descriptors
+
+get /api/descriptors
+Fetch all the descriptors for your merchants.
+
+
+
+# Fetch Merchant
+Source: https://docs.chargeblast.com/api-reference/enrollment/fetch-merchant
+
+get /api/merchant
+Get an individual merchant from your chargeblast account.
+
+
+
+# Fetch Merchants
+Source: https://docs.chargeblast.com/api-reference/enrollment/fetch-merchants
+
+get /api/merchants
+Get all the merchants from your chargeblast account.
+
+
+
+# Unenroll Merchant
+Source: https://docs.chargeblast.com/api-reference/enrollment/unenroll-merchant
+
+post /api/unenroll
+Pass in a given descriptor_id to unenroll merchant's descriptor. Ethoca alerts take 48 hours to confirm unenrollment, RDR ~2 weeks, CDRN ~24 hours.
+
+
+
+# API Overview
+Source: https://docs.chargeblast.com/api-reference/getting-started/guide
+
+
+
+There are multiple ways to programmatically integrate Chargeblast. This guide is intended for resellers, SaaS tools, payment aggregators, and other merchant of merchant businesses. If you are a merchant yourself, please see our [webhooks](/reference/webhooks), which should be sufficient for most use cases.
+
+If you are using only payment processors that are supported via our [integration directory ](https://www.chargeblast.com/integrations)you can integrate directly via our integrations page and use our workflow builder to set up refund rules.
+
+The integration path depends on whether you'd like to use our matching algorithm, or handle alert to transaction matching yourself.
+
+### Step 1. Handling of the alerts
+
+#### Client-side matching
+
+* Implement [webhook](/reference/webhooks) to receive alert
+* Perform alert to transaction matching internally, refunding cardholder if desired and then update the alert via the [/update/alert](/reference/alerts-update) endpoint
+
+#### Chargeblast matching
+
+* Implement `/orders/upload`endpoint to push order data to Chargeblast
+  * Optionally, [if using PSPs we support](https://www.chargeblast.com/integrations), integrate account via our integrations directory.
+* Expose [your-domain.com/chargeblast/refund](/reference/refund-endpoint) endpoint to Chargeblast to implement refunds & subscription cancellations
+
+### Step 2. Passing down costs to your customer
+
+* Poll `/alerts` endpoint (or receive alerts via webhook) and associate each alert with a merchant in our system.
+* Bill your merchant accordingly
+
+
+# Refund Endpoint
+Source: https://docs.chargeblast.com/api-reference/getting-started/refund-endpoint
+
+
+
+## Overview
+
+One method for integrating with our system, is to expose a refund endpoint which returns a structured response. This endpoint will be used to action alerts, and it must respond with the specific structure defined below. The API key will be passed as a query parameter in the URL. Prior to implementing this endpoint, we recommend implementing the `/orders/upload` [endpoint](/reference/sync-data/orders-upload), which will be used to perform the transaction matching logic.
+
+This endpoint is designed for FinTechs that have multiple processors. If you're a merchant using a single processor, instead request an integration build.
+
+#### Endpoint Requirements
+
+**HTTP Method:** POST\
+**Query Parameter:** api\_key (Your unique API key)
+
+Your endpoint should accept a POST request with the API key included in the query string like this:\
+`https://your-domain.com/your-endpoint?api_key={{YOUR_API_KEY}}`
+
+You can set this URL in your account under developer settings:
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/chargeblast/images/reference/cb73ad3a066492daf730885b57a0a3c1c25a89f5a94e270984699d0c7ca2a9da-Screenshot_2024-10-03_at_8.50.20_PM.png)
+
+#### Request Body
+
+The request body will include the necessary details for processing a refund. This will be in JSON format (details of the request structure can be provided based on your specific requirements).
+
+Here's an example request body:
+
+```json
+{
+  "charge_id": "ch_xxxxxxxx", // corresponds to charge object in your database
+  "alert_id": "al_xxxxxxxx"
+}
+```
+
+#### Response
+
+Your endpoint must return a response that conforms to the following payload:
+
+```json
+{
+  "code": "Resolved"
+}
+```
+
+The potential responses are:
+
+* Resolved - the alert was used to successfully refund a cardholder.
+* AlreadyChargeback - the transaction was already a dispute.
+* AlreadyRefunded - the transaction was already refunded prior to the alert being transmitted.
+* UnmatchedGeneral - a catch-all rejection code for alerts rejected for various other reasons.
+
+If there's any issue with the request (e.g., missing API key or invalid data), appropriate HTTP status codes should be returned along with a message explaining the issue.
+
+
+# null
+Source: https://docs.chargeblast.com/api-reference/introduction/authorization
+
+
+
+## Base URL
+
+The Chargeblast API is built on **REST** principles. We enforce **HTTPS** in every request to improve data security, integrity, and privacy. The API does not support **HTTP**.
+
+All requests contain the following base URL:
+
+```
+https://api.chargeblast.com
+```
+
+## Authentication
+
+To authenticate you need to add an [API key](https://app.chargeblast.com/settings/developer) as a *query parameter* in each request, like so:
+
+```
+https://api.chargeblast.com/health?api_key=phkey_123456789
+```
+
+<AccordionGroup>
+  <Accordion title="How does pagination work?">
+    For endpoints that are paginated, you can simply pass in `?per=100&page=0` as
+    query string parameters (where the page starts at index = 0).
+  </Accordion>
+
+  <Accordion title="How do you handle versioning?">
+    Versioning is done in the route of the endpoint itself. We are currently on
+    version 2 of our API, and all our routes will be prefixed by v2. For example
+    `/api/v2/alerts`.
+  </Accordion>
+</AccordionGroup>
+
+
+# Fetch Orders
+Source: https://docs.chargeblast.com/api-reference/sync-data/get-orders
+
+get /api/v2/orders
+Get all the orders from your chargeblast account. Receipt info is omitted from this endpoint.
+
+
+
+# Upload Orders
+Source: https://docs.chargeblast.com/api-reference/sync-data/upload-orders
+
+post /api/v2/orders/upload
+Upload orders to the chargeblast system. This will allow you to match disputes and chargebacks to the orders you have uploaded. Amount should be in cents, e.g. $19.99 => amount = 1999. This endpoint is rate limited to 100 requests every 10 seconds.
+
+
+
+# Webhooks
+Source: https://docs.chargeblast.com/api-reference/webhooks/setup
+
+https://yourwebsite.com/webhook/endpoint
+This page will help you get started with our webhooks.
+
+### Headers
+
+<ParamField header="svix-id" type="string" placeholder="msg_2oElGfSBDxbSP6x924Uv8j72nG8" />
+
+<ParamField header="svix-timestamp" type="string" placeholder="1730411936" />
+
+<ParamField header="svix-signature" type="string" placeholder="112a1b6b284216816f375bf905798617908b016990e3e1a902b844a1a7aa5723" />
+
+<ParamField header="X-Event-Type" type="string" placeholder="alert.created" />
+
+### Body
+
+<Expandable title="properties">
+  <ResponseField name="alertId" type="string" placeholder="al_4xUCdBXVs23u03i51cpQBJ" />
+
+  <ResponseField name="alertType" type="string" placeholder="FRAUD" />
+
+  <ResponseField name="amount" type="float" placeholder="100.65" />
+
+  <ResponseField name="arn" type="string" placeholder="821335542740000055890525" />
+
+  <ResponseField name="authCode" type="string" placeholder="021413" />
+
+  <ResponseField name="card" type="string" placeholder="512025******9493" />
+
+  <ResponseField name="cardBrand" type="string" placeholder="Mastercard" />
+
+  <ResponseField name="createdAt" type="string" placeholder="2024-10-31 21:57:23.601000Z" />
+
+  <ResponseField name="creditAppealed" type="bool" placeholder="false" />
+
+  <ResponseField name="creditStatus" type="string" placeholder="None" />
+
+  <ResponseField name="currency" type="string" placeholder="USD" />
+
+  <ResponseField name="customerEmail" type="string" placeholder="jason@gmail.com" />
+
+  <ResponseField name="customerId" type="string" placeholder="cus_QwfeH401taw9dr" />
+
+  <ResponseField name="descriptor" type="string" placeholder="CHARGEBLASST" />
+
+  <ResponseField name="externalOrder" type="string" placeholder="ch_0ab931c9139b0c8519c" />
+
+  <ResponseField name="externalUrl" type="string" placeholder="https://dashboard.stripe.com/charges/ch_0ab931c9139b0c8519c" />
+
+  <ResponseField name="id" type="string" placeholder="al_4xUCdBXVs23u03i51cpQBJ" />
+
+  <ResponseField name="issuer" type="string" placeholder="Capital One, National Association" />
+
+  <ResponseField name="merchantId" type="string" placeholder="cb_Gu5xtoaxk10tGT9Nyb1Thf" />
+
+  <ResponseField name="provider" type="string" placeholder="ethoca" />
+
+  <ResponseField name="reasonCode" type="string" placeholder="Resolved" />
+
+  <ResponseField name="responseAction" type="string" placeholder="Accepted" />
+
+  <ResponseField name="site" type="string" placeholder="" />
+
+  <ResponseField name="subprovider" type="string" placeholder="Ethoca" />
+
+  <ResponseField name="transactionDate" type="string" placeholder="2024-09-30 00:00:00.000000Z" />
+</Expandable>
+
+<ResponseExample>
+  ```json
+  {
+      "alertId": "al_genericId123",
+      "alertType": "FRAUD",
+      "amount": 500.00,
+      "arn": "12345678901234567890123",
+      "authCode": "ABC123",
+      "card": "123456xxxxxxx7890",
+      "cardBrand": "visa",
+      "createdAt": "2024-10-31 21:57:23.601000Z",
+      "creditAppealed": false,
+      "creditStatus": "None",
+      "currency": "usd",
+      "customerEmail": "customer@example.com",
+      "customerId": "cus_genericId456",
+      "descriptor": "GENERIC TXN12345",
+      "externalOrder": "ch_genericOrder789",
+      "externalUrl": "https://example.com/charges/ch_genericOrder789",
+      "id": "al_genericId123",
+      "issuer": "Generic Bank, Inc.",
+      "merchantId": "cb_genericMerchantId",
+      "provider": "exampleProvider",
+      "reasonCode": "Resolved",
+      "responseAction": "Accepted",
+      "site": "example.com",
+      "subprovider": "Ethoca",
+      "transactionDate": "2024-09-30 00:00:00.000000Z"
+  }
+  ```
+</ResponseExample>
+
+***
+
+First set up your webhook URL in the Chargeblast dashboard in the settings tab.
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/chargeblast/images/reference/webhooksetup.png)
+
+Chargeblast will begin emitting events to your webhook URL with the following schema. These events will be fired anytime a new alert is generated.
+
+<Note>
+  The `externalOrder` field is not available in the `alert.created` event.
+  Please use the `alert.updated` event if you require this field.
+</Note>
+
+### Authentication
+
+To authenticate the integrity of incoming webhooks, a header is passed into the post request to your endpoint under the header name `svix-signature`. The value in this header is an HMAC-SHA256 encoded string using the payload of the request with the webhook secret as key.
+
+In order to authenticate the request, you perform a HMAC-SHA256 encoding using a concat of webhook request body, `svix_timestamp` and `svix_id` and your webhook secret (whsec\_xxxxxxxxxxxx) and ensure these strings match. Then input string to SHA256 HMAC will look like:
+
+`signedContent = "${svix_id}.${svix_timestamp}.${body}"`
+
+This is a common method for ensuring that the webhook messages you receive in your server are from a trusted source and haven't been tampered with.
+
+```Javascript
+const crypto = require('crypto');
+
+const signedContent = `${svix_id}.${svix_timestamp}.${body}`;
+const secret = "whsec_xxxxxxxx";
+
+// Need to base64 decode the secret
+const secretBytes = Buffer.from(secret.split('\_')[1], "base64");
+const signature = crypto
+.createHmac('sha256', secretBytes)
+.update(signedContent)
+.digest('base64');
+
+console.log(signature);
+```
+
+The svix-signature header is composed of a list of space delimited signatures and their corresponding version identifiers. The signature list is most commonly of length one. Though there could be any number of signatures. For example:
+v1,bm9ldHUjKzFob2VudXRob2VodWUzMjRvdWVvdW9ldQo= v2,MzJsNDk4MzI0K2VvdSMjMTEjQEBAQDEyMzMzMzEyMwo=
+
+Make sure to remove the version prefix and delimiter (e.g. v1,) before verifying the signature. Use v1. In this example, you'd compare your signature against `bm9ldHUjKzFob2VudXRob2VodWUzMjRvdWVvdW9ldQo=`.
+
+### Types
+
+There is currently the following webhook types:
+
+* `alert.created`: transmitted when an alert is first created.
+* `alert.updated`: transmitted when an alert's status is updated. Use this if you require `externalOrder` the field.
+* `alert.refunded`: transmitted when an alert triggers a transaction to be refunded.
+
+
+# Welcome to Chargeblast
+Source: https://docs.chargeblast.com/reference/welcome-to-chargeblast
+
+You're on your way to eliminating chargebacks!
+
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/Fi_uRopa1Qw?si=15NWSQlFg4u1LGpP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+
+## <Icon icon="file-pen" iconType="solid" size="24" /> Types of Alerts
+
+We offer 3 types of alerts: Ethoca (Mastercard), CDRN (Visa) and RDR (Visa). You can sign up for all 3 alert types, however depending on your merchant risk level, this may be overkill.
+
+* **Ethoca:** Ethoca is the premier alert offered and has the best coverage of all the alert types. This Mastercard service also front runs VISA's products, so if multiple alert products are used, the Ethoca alerts will come in first. Ethoca will cover both Mastercard and VISA transactions, though focuses mostly on Mastercard transactions (around 95% coverage for MC, and 30% for VISA). Ethoca alerts require merchant-side refunding. With additional configs, the Ethoca feed can be deployed on Amex/Discover transactions.
+* **CDRN:** CDRN is a legacy product offered by VISA, however, is still in operation. CDRN focuses on VISA related transactions and requires merchant-side refunding. They are also the most expensive alert.
+* **RDR:** RDR is the more modern dispute resolution product offered by VISA. Unlike CDRN and Ethoca, RDR is an issuer side product, meaning the acquirer (for example Stripe) will be responsible for refunding the transactions. No action is acquired by the merchant for RDR.
+
+Our recommendation for the highest risk merchants is to subscribe to all three products, wherein you will get the best coverage, and be able to accept the widest range of payments. For medium risk merchants, our recommendation would be to use RDR and Ethoca.
+
+It's worth noting, since Ethoca is deployed at the consumer bank level, and RDR at the acquiring bank level, for a merchant that is refunding all their Ethoca alerts, they will receive no duplicate RDR alerts, since the Ethoca feed front runs the RDR feed by about 7 days.
+
+For Ethoca alerts on Visa cards that are rejected, they will turn into disputes or hit RDR. For this reason, for merchant being very selective about what transactions are refunded (namely resolve rates of \<50%) it is not advised to run both Ethoca & RDR, however this is a very niche use case.
+
+

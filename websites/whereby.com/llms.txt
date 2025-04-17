@@ -1,0 +1,94 @@
+# Whereby
+
+## Embedded developer resources
+
+- [Create Your Video Experience](https://docs.whereby.com/whereby-101/readme)
+- [Get started in 3 steps](https://docs.whereby.com/whereby-101/readme/get-started-in-3-steps): With Whereby Embedded and our browser SDK, you can add video calls and video conferencing to your website in three easy steps.
+- [Embedding Whereby in a web app](https://docs.whereby.com/whereby-101/readme/in-a-web-page): Whether you're building your own web app or using a third party framework, embedding Whereby rooms in your service is a simple and hassle-free process.
+- [Using Whereby's Web Component & Pre-built UI](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-the-whereby-embed-element): Our web component allows you to embed a Whereby room in any webpage. It provides a simple readable integration and exposes local client events that are sent from the component to your platform.
+- [Script Tags](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-the-whereby-embed-element/script-tags): In some more light weight or static projects, a bundler may not be required or sensible. Using a script tag is a great way to utilize the Whereby Web Component.
+- [With Low Code](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-the-whereby-embed-element/with-low-code): If you want to embed video rooms in a website using HTML or a framework that supports HTML elements like React.js, a great option for doing this is by using a simple iframe.
+- [Embedding in Squarespace or Wordpress](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-the-whereby-embed-element/with-low-code/embedding-in-squarespace-or-wordpress): Most website builders offer some way of adding blocks containing content hosted elsewhere. Here we look at two popular options, SquareSpace and WordPress.
+- [No code video conferencing in Bubble](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-the-whereby-embed-element/with-low-code/no-code-video-conferencing-in-bubble): Planet No Code has built a tutorial to help create the video conferencing app of your dreams!
+- [Using Whereby's Browser SDK with React Hooks for a fully custom UI](https://docs.whereby.com/whereby-101/readme/in-a-web-page/using-whereby-react-hooks-build-a-telehealth-app)
+- [Embedding Whereby in a mobile app](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app): It's important to meet your users where they are. We offer solutions and implementation suggestions for both Android and iOS so that your users can access meetings wherever life takes them.
+- [Embedding Whereby in iOS](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-ios-apps): Below are the recommended approaches to embed Whereby in a native iOS app using a WebView.
+- [Using Whereby's Native iOS SDK](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-ios-apps/using-wherebys-native-sdk)
+- [Embedding Whereby in Android](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-android-apps): Learn how to embed Whereby rooms in your native Android app using the WebView class.
+- [Using Whereby's Native SDK](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-android-apps/using-wherebys-native-sdk)
+- [Using Flutter](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-flutter): Flutter is Google's free and open-source UI framework for creating native mobile applications.
+- [Using React Native](https://docs.whereby.com/whereby-101/readme/in-a-mobile-app/in-react-native): If you’re using React Native, you can embed Whereby rooms with just a few simple steps as laid out in this guide.
+- [Github SDK Examples](https://docs.whereby.com/whereby-101/readme/examples): Looking for code examples? We've got some Github repos showing how to use the Whereby Embedded API to create and embed Whereby rooms in your own app/website.
+- [Meeting scheduling with Cronofy](https://docs.whereby.com/whereby-101/readme/meeting-scheduling-with-cronofy)
+- [Generating Room URLs](https://docs.whereby.com/whereby-101/using-the-rest-api): Rooms are where video calls (sessions) take place. Create or delete Whereby rooms programmatically using a simple API request. Rooms can be created on demand, or ahead of time for scheduled meetings.
+- [Name prefixes](https://docs.whereby.com/whereby-101/using-the-rest-api/name-prefixes): When creating rooms using the REST API, you can send an extra identifier as part of your API request. This identifier will become part of the room URL, acting as a tag to enable further analysis.
+- [Using “Create a room”](https://docs.whereby.com/whereby-101/using-the-rest-api/using-create-a-room): Easily create Whereby rooms using a straightforward 4-step UI flow without the need to generate an API key.
+- [Using Postman](https://docs.whereby.com/whereby-101/using-the-rest-api/using-postman): The Whereby Postman collection offers a quick and easy way of creating and managing rooms and lets you explore the API without needing to set up anything in your project first.
+- [Customize Your Video Experience](https://docs.whereby.com/whereby-101/customizing-rooms): Whereby offers you the ability to customize the meeting experience and control the features that are available to your participants.
+- [During room creation](https://docs.whereby.com/whereby-101/customizing-rooms/on-creation): Some key properties of your rooms should be set when the room is created using the API or Create a room flow.
+- [Using Attributes/URL Params](https://docs.whereby.com/whereby-101/customizing-rooms/using-url-parameters): With Attributes or URL Parameters you can customize the meeting experience for each individual user after the room has been created.
+- [Global preferences](https://docs.whereby.com/whereby-101/customizing-rooms/dashboard-preferences): Some preferences can be enabled or disabled globally in the customer portal and therefore apply to all rooms and sessions.
+- [Branding elements](https://docs.whereby.com/whereby-101/customizing-rooms/branding-elements): Make your Whereby rooms truly yours by setting a custom logo, background and other branding elements. You can do this using the branding tools in the Embedded dashboard, or via the API.
+- [Dial-In](https://docs.whereby.com/whereby-101/customizing-rooms/dial-in)
+- [File sharing](https://docs.whereby.com/whereby-101/customizing-rooms/file-sharing): File sharing allows meeting participants to exchange small files with each other, during the session, through the chat.
+- [Breakout Groups with Embedded](https://docs.whereby.com/whereby-101/customizing-rooms/breakout-groups-with-embedded): More than ever, workshops, lectures and conferences are happening online. So it's never been more important to combine bigger (often one-way) meetings with smaller, collaborative sessions.
+- [Waiting Rooms](https://docs.whereby.com/whereby-101/customizing-rooms/waiting-rooms)
+- [User roles & Meeting Permissions](https://docs.whereby.com/whereby-101/user-roles-and-privileges): Whereby allows your participants to join a video meeting without creating accounts or logins. If you want some users to have altered privileges in the meeting, you can use different URL types
+- [FAQ](https://docs.whereby.com/whereby-101/faq-and-troubleshooting): We've compiled some of the most common questions and tips we receive about Whereby.
+- [Accessibility](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/accessibility): When accessing Whereby via the pre-built UI, the experience is WCAG 2.1 Level AA compliant
+- [Whereby Words](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/whereby-words): Terms that are used within Whereby, and what they mean
+- [Firewall & Security](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/firewall-and-security)
+- [HIPAA compliant setup](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/hipaa-compliant-setup): A HIPAA compliant setup comes at no additional cost for customers on an annual plan. This page describes how to set up your meeting rooms in a compliant manner.
+- [Allowed Domains & Localhost](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/allowed-domains-and-localhost): The allowed domains feature lets you control which domains can be used for embedding your room and is also required in order to enable some specific features.
+- [Whereby Embedded Feature Comparison](https://docs.whereby.com/whereby-101/faq-and-troubleshooting/whereby-embedded-feature-comparison): An exhaustive list of the features and capabilities available within our implementation options
+- [Recording](https://docs.whereby.com/meeting-content-and-quality/recording-with-embedded): Recording allows for you or your hosts to capture a recording of a meeting as it appears within the Whereby room. We offer options for recording locally in the browser or using a cloud-based solution.
+- [Cloud Recording](https://docs.whereby.com/meeting-content-and-quality/recording-with-embedded/cloud-recording): Cloud recording is a feature of our paid Embedded plans and allows you to record meetings that are saved to a storage bucket accessible by you.
+- [Local Recording](https://docs.whereby.com/meeting-content-and-quality/recording-with-embedded/local-recording): Local Recording is handled completely locally in the host's browser and browser cache.
+- [Transcribing](https://docs.whereby.com/meeting-content-and-quality/transcribing): Transcribing allows you to get a text transcript of what was said in your meeting rooms. You can get a transcript directly from the session, or from processing a recording.
+- [Session Transcription](https://docs.whereby.com/meeting-content-and-quality/transcribing/session-transcription): Session Transcription allows you to produce a transcript directly from the live session, without the need to record it. Full transcript is available right after the session is finished.
+- [Recording Transcription](https://docs.whereby.com/meeting-content-and-quality/transcribing/recording-transcriptions): Recording Transcription allows you to get a transcript of any session recording stored in Whereby-provided storage
+- [Live Captions](https://docs.whereby.com/meeting-content-and-quality/live-captions): Live captions provide AI-powered, real-time text representation of spoken content during events within a meeting room, such as presentations, meetings, or videos.
+- [Session summaries](https://docs.whereby.com/meeting-content-and-quality/transcribing-sessions-1): Turn the content of Whereby sessions into meeting notes, clinical documentation and educational material with the power of AI.
+- [Live streaming RTMP](https://docs.whereby.com/meeting-content-and-quality/streaming-with-embedded): Our Live Streaming feature allows for you to share your meeting feed to an external service like YouTube or Twitch via RTMP.
+- [Quality Insights](https://docs.whereby.com/meeting-content-and-quality/insights-suite-and-api): The Insights suite is available from the Embedded dashboard, and is the easiest way to access your usage data at a glance. You can also access insights data through the Whereby REST API.
+- [Real-time troubleshooting](https://docs.whereby.com/meeting-content-and-quality/insights-suite-and-api/real-time-troubleshooting): Enhance users’ experience when issues arise with real-time monitoring and troubleshooting tools. These tools are free to use and by default switched on for all embedded customers.
+- [Using the Insights dashboard](https://docs.whereby.com/meeting-content-and-quality/insights-suite-and-api/using-the-insights-dashboard)
+- [Improving call quality](https://docs.whereby.com/meeting-content-and-quality/insights-suite-and-api/improving-call-quality)
+- [Tracking room events with Webhooks](https://docs.whereby.com/meeting-content-and-quality/insights-suite-and-api/webhooks): With Webhooks you can set up user-defined callbacks triggered by meeting events. These are a great way to programmatically keep track of some of the events and actions happening around your meetings.
+- [End User Support Guides](https://docs.whereby.com/end-user/end-user-support-guides)
+- [Supported Browsers & Devices](https://docs.whereby.com/end-user/end-user-support-guides/supported-browsers-and-devices)
+- [Screen Sharing Setup & Usage](https://docs.whereby.com/end-user/end-user-support-guides/screen-sharing)
+- [Using Breakout Groups](https://docs.whereby.com/end-user/end-user-support-guides/using-breakout-groups)
+- [Troubleshooting & Basics](https://docs.whereby.com/end-user/end-user-support-guides/end-user-documentation): Use the below information with your Support, Success, and Product teams to better assist your customers. Feel free to add as much or as little of this information to your own documentation!
+- [Quickly deploy Whereby to your domain](https://docs.whereby.com/developer-guides/quickly-deploy-whereby-to-your-domain)
+- [Tracking Customer Usage](https://docs.whereby.com/developer-guides/tracking-customer-usage)
+- [Migrating from Twilio](https://docs.whereby.com/developer-guides/migrate-twilio): A compilation of guides to help you migrate from Twilio to Whereby
+- [Twilio JS SDK Quick Migration](https://docs.whereby.com/developer-guides/migrate-twilio/twilio-js-sdk-quick-migration)
+- [Twilio JS SDK Direct Migration](https://docs.whereby.com/developer-guides/migrate-twilio/twilio-js-sdk-direct-migration): This guide will walk you through migrating from Twilio's Programmable Video platform to Whereby's Browser SDK.
+- [REST API Reference](https://docs.whereby.com/reference/whereby-rest-api-reference)
+- [/meetings](https://docs.whereby.com/reference/whereby-rest-api-reference/meetings)
+- [/insights](https://docs.whereby.com/reference/whereby-rest-api-reference/insights)
+- [/recordings](https://docs.whereby.com/reference/whereby-rest-api-reference/recordings)
+- [/transcriptions](https://docs.whereby.com/reference/whereby-rest-api-reference/transcriptions)
+- [/summaries](https://docs.whereby.com/reference/whereby-rest-api-reference/summaries)
+- [/rooms](https://docs.whereby.com/reference/whereby-rest-api-reference/rooms)
+- [Web Component Reference](https://docs.whereby.com/reference/using-the-whereby-embed-element): Our web component allows you to embed Whereby's pre-built UI on any webpage. It provides a simple readable integration and exposes local client events and commands between our platform and yours.
+- [React Hooks Reference](https://docs.whereby.com/reference/react-hooks-reference): The Whereby browser SDK includes React hooks and components which allow integrating a fully custom video experience into your web application.
+- [Quick Start](https://docs.whereby.com/reference/react-hooks-reference/quick-start)
+- [Getting started with the Browser SDK](https://docs.whereby.com/reference/react-hooks-reference/quick-start/getting-started-with-the-browser-sdk): The Whereby Browser SDK lets you add video calling to your web application, customizing layout and features to fit your use case and brand.
+- [Guides & Tutorials](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts)
+- [Migrate from version 2.x to 3](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts/migrate-from-version-2.x-to-3)
+- [Grid logic](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts/grid-logic)
+- [Custom Video Tiles with React](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts/custom-video-tiles-with-react): Discover how to customize the video tiles in a Whereby call using the Browser SDK with React hooks.
+- [Usage with Next.js](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts/usage-with-next.js)
+- [How to customize the toolbar](https://docs.whereby.com/reference/react-hooks-reference/guides-and-concepts/how-to-customize-the-toolbar)
+- [API Reference](https://docs.whereby.com/reference/react-hooks-reference/api-reference)
+- [WherebyProvider](https://docs.whereby.com/reference/react-hooks-reference/api-reference/wherebyprovider)
+- [VideoView](https://docs.whereby.com/reference/react-hooks-reference/api-reference/videoview)
+- [VideoGrid](https://docs.whereby.com/reference/react-hooks-reference/api-reference/videogrid)
+- [useLocalMedia](https://docs.whereby.com/reference/react-hooks-reference/api-reference/uselocalmedia)
+- [useRoomConnection](https://docs.whereby.com/reference/react-hooks-reference/api-reference/useroomconnection)
+- [Types](https://docs.whereby.com/reference/react-hooks-reference/types)
+- [React Native Reference](https://docs.whereby.com/reference/react-native-reference)
+- [Quick Start](https://docs.whereby.com/reference/react-native-reference/quick-start)
+- [WherebyEmbed](https://docs.whereby.com/reference/react-native-reference/wherebyembed)

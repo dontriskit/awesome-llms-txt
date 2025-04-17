@@ -1,0 +1,26 @@
+# Chargeblast
+
+## Docs
+
+- [Fetch Alerts](https://docs.chargeblast.com/api-reference/alerts/fetch-alerts.md): Get all the alerts from your chargeblast account.
+- [Fetch an Alert](https://docs.chargeblast.com/api-reference/alerts/fetch-an-alert.md): Get a specific alert.
+- [Update Alert](https://docs.chargeblast.com/api-reference/alerts/update-alert.md): Update the state of an alert to properly inform the banks of whether or not a refund will be issued. If an alert is left unactioned for 72 hours it will be automatically declined. For best results mark alerts as resolved within 24 hours of receiving them (some smaller banks will escalate quarantined transactions as soon as 24 hours within propogating an alert). If you attempt to update an already actioned alert, the request will fail.
+- [Create Credit Request](https://docs.chargeblast.com/api-reference/credit-requests/create.md): Creates a credit request for a rejected alert. Will fail if requesting credit from resolved alert or alert with an existing credit request, otherwise will simply return 200 response code.
+- [Enroll Merchant](https://docs.chargeblast.com/api-reference/enrollment/enroll-merchant.md): Enroll the merchant in a various alert program. If no merchant_id is specified a new merchant object will be automatically generated. For each alert program various info is required. For example, for Ethoca, only descriptors are. To see which info is required see [here](https://docs.chargeblast.io/reference/enrollment-criteria)
+- [Fetch Descriptors](https://docs.chargeblast.com/api-reference/enrollment/fetch-descriptors.md): Fetch all the descriptors for your merchants.
+- [Fetch Merchant](https://docs.chargeblast.com/api-reference/enrollment/fetch-merchant.md): Get an individual merchant from your chargeblast account.
+- [Fetch Merchants](https://docs.chargeblast.com/api-reference/enrollment/fetch-merchants.md): Get all the merchants from your chargeblast account.
+- [Unenroll Merchant](https://docs.chargeblast.com/api-reference/enrollment/unenroll-merchant.md): Pass in a given descriptor_id to unenroll merchant's descriptor. Ethoca alerts take 48 hours to confirm unenrollment, RDR ~2 weeks, CDRN ~24 hours.
+- [API Overview](https://docs.chargeblast.com/api-reference/getting-started/guide.md)
+- [Refund Endpoint](https://docs.chargeblast.com/api-reference/getting-started/refund-endpoint.md)
+- [null](https://docs.chargeblast.com/api-reference/introduction/authorization.md)
+- [Fetch Orders](https://docs.chargeblast.com/api-reference/sync-data/get-orders.md): Get all the orders from your chargeblast account. Receipt info is omitted from this endpoint.
+- [Upload Orders](https://docs.chargeblast.com/api-reference/sync-data/upload-orders.md): Upload orders to the chargeblast system. This will allow you to match disputes and chargebacks to the orders you have uploaded. Amount should be in cents, e.g. $19.99 => amount = 1999. This endpoint is rate limited to 100 requests every 10 seconds.
+- [Webhooks](https://docs.chargeblast.com/api-reference/webhooks/setup.md): This page will help you get started with our webhooks.
+- [Welcome to Chargeblast](https://docs.chargeblast.com/reference/welcome-to-chargeblast.md): You're on your way to eliminating chargebacks!
+
+
+## Optional
+
+- [Help Center](https://help.chargeblast.com/)
+- [Blog](https://www.chargeblast.com/blog)

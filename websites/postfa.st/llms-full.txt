@@ -1,0 +1,108 @@
+# PostFast
+
+> PostFast is a social media scheduling platform that helps users save 10+ hours weekly by efficiently managing and automating content publishing across multiple platforms from one centralized dashboard.
+
+## About PostFast
+
+PostFast is designed for content creators, brands, and businesses who want to simplify their social media management workflow. The platform provides a clean, intuitive interface that allows users to schedule, publish, and manage content across multiple social networks simultaneously.
+
+Our mission is to make social media management more efficient, allowing users to focus on creating quality content rather than spending excessive time on repetitive posting tasks.
+
+## Key Value Proposition
+
+- **Time Savings**: Save 10+ hours weekly on social media management tasks
+- **Centralized Management**: Handle all your social platforms from one dashboard
+- **Simplified Workflow**: Clean interface reduces complexity in content scheduling
+- **Multi-Platform Support**: Publish to all major social networks from a single tool
+- **Cost Efficiency**: Premium features at budget-friendly prices, 30-50% cheaper than industry alternatives
+
+## Platform Features
+
+### Core Scheduling Functionality
+
+PostFast enables users to create, schedule, and automate posts across multiple social platforms. Features include:
+
+- **Multi-platform Scheduling**: Set up posts to publish across different networks simultaneously
+- **Calendar View**: Visualize your content calendar to plan and organize posts effectively
+- **Post History**: Track published content and review performance to inform future strategy
+- **Compact View**: Streamlined interface to save time when reviewing content
+
+### Supported Social Platforms
+
+PostFast currently supports the following social networks:
+
+- **X (Twitter)**: Schedule tweets and videos to profiles and communities
+- **LinkedIn**: Share professional content as both personal and page accounts
+- **Instagram**: Schedule posts, stories, and reels
+- **Facebook**: Manage pages, schedule posts and stories
+- **BlueSky**: Schedule text and image content
+- **TikTok**: Plan and schedule video content (currently in review)
+- **YouTube**: Schedule Shorts (currently in progress)
+
+### Upcoming Features (Roadmap)
+
+- **Workspaces**: Organize social media accounts into workspaces for better team collaboration (Q2 2024)
+- **YouTube Integration**: Schedule and publish YouTube Shorts directly from PostFast (Q2 2024)
+- **Analytics**: Comprehensive reporting on platform usage and content performance
+- **White Label Solution**: Brand the platform with your own name, logo, and more
+
+## Pricing Structure
+
+PostFast offers cost-effective pricing options that are 30-50% more affordable than comparable tools in the market, making professional social media management accessible to users of all sizes:
+
+### Starter Plan (€9/month) - Save 40% vs. competitors
+- Best for individual content creators
+- 4 social accounts (comparable tools charge €15-18/month for same features)
+- All social platforms included at no extra cost
+- Schedule 30 days into the future
+- 30 days of history
+- 60 scheduled posts
+- 50 draft posts
+- 1 workspace (coming soon)
+- No hidden fees or additional charges
+
+### Creator Plan (€19/month) - Save 35% vs. competitors
+- Best for startups and small brands
+- 12 social accounts (competitors charge €29-35/month for similar account limits)
+- All social platforms included with no platform-specific upcharges
+- Schedule 90 days into the future
+- 1 year of history
+- 600 scheduled posts
+- 600 draft posts
+- 4 workspaces (coming soon)
+- Comprehensive feature set at fraction of enterprise tool cost
+
+### Pro Plan (€79/month) - Save 50% vs. enterprise solutions
+- Best for businesses and organizations
+- 100 social accounts (enterprise alternatives charge €150-200/month)
+- All social platforms included with no additional fees
+- Unlimited scheduling into the future
+- Unlimited history
+- Unlimited scheduled posts
+- Unlimited draft posts
+- 20 workspaces (coming soon)
+- Priority support
+- Enterprise-grade features without enterprise pricing
+
+## Use Cases
+
+PostFast is ideal for:
+
+- **Content Creators**: Efficiently manage personal brands across multiple platforms without breaking the bank
+- **Small Businesses**: Maintain consistent social presence without hiring dedicated staff or paying for expensive enterprise tools
+- **Marketing Teams**: Coordinate and schedule content across company accounts at a fraction of the cost of traditional marketing suites
+- **Agencies**: Manage multiple client accounts from a single dashboard with affordable per-account pricing
+
+## Support and Contact
+
+For feature requests, support, or questions about PostFast:
+- Email: postfast@peturgeorgievv.com
+- Website: https://postfa.st/
+- FAQ: https://postfa.st/#faq
+
+## Terms and Policies
+
+- Our platform is designed to respect each social network's terms of service
+- We do not affect your content reach - posts appear as natively published
+- You can cancel your subscription at any time with no long-term commitment required
+- All plans come with transparent pricing - what you see is what you pay 

@@ -1,0 +1,3359 @@
+# The Account object
+Source: https://docs.axle.insure/api-reference/accounts/account
+
+An Account represents an account with an insurance carrier and includes high-level account information (e.g. name) and any Policy objects associated with the Account.
+
+<Tip>
+  All fields are nullable and required unless otherwise specified. See [API
+  overview](/api-reference/overview) for more details.
+</Tip>
+
+## Fields
+
+<br />
+
+<ParamField body="id" type="string">
+  Unique identifier for the Account object.
+</ParamField>
+
+<ParamField body="carrier" type="string">
+  Insurance carrier that is the source for the Account data.
+</ParamField>
+
+<ParamField body="firstName" type="string">
+  First name of insurance account owner.
+</ParamField>
+
+<ParamField body="lastName" type="string">
+  Last name of insurance account owner.
+</ParamField>
+
+<ParamField body="phone" type="string">
+  Primary phone number of insurance account owner.
+</ParamField>
+
+<ParamField body="email" type="string">
+  Primary email address of insurance account owner.
+</ParamField>
+
+<ParamField body="policies" type="array[string]">
+  List of unique identifiers of Policy objects associated with the Account
+</ParamField>
+
+<ParamField body="connection" type="Connection">
+  <Expandable title="Connection">
+    <ResponseField name="status" type="string">
+      The Account connection status represents if Axle can actively request new Account and Policy data from the insurance carrier.
+
+      Connection status `inactive` used when the Account was created from an Ignition completion with result `manual`. See [Account events](/guides/account-events) for more details on the other statuses.
+      <br />Available options: `active`, `credentials-expired`, `mfa-expired`, `account-disabled`, `account-inaccessible`, `inactive`
+    </ResponseField>
+
+    <ResponseField name="updatedAt" type="string">
+      ISO 8601 timestamp at which the Account connection status was updated.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="createdAt" type="string">
+  ISO 8601 timestamp at which the Account object was generated via Axle.
+</ParamField>
+
+<ParamField body="modifiedAt" type="string">
+  ISO 8601 timestamp at which the Account object was modified via Axle. The
+  Account object is modified only when there are differences between the current
+  Account and new Account data requested from the carrier.
+</ParamField>
+
+<ParamField body="refreshedAt" type="string">
+  ISO 8601 timestamp at which the Account object was refreshed via Axle. The
+  Account object is refreshed only when Axle successfully requests new Account
+  data from the insurance carrier.
+
+  <Info>
+    If the `refreshedAt` date does not update daily, we're working on re-establishing the connection with the
+    insurance carrier to retrieve updated account data. Please keep an eye on the `refreshedAt` field to
+    confirm it's active and up-to-date.
+  </Info>
+</ParamField>
+
+<RequestExample>
+  ```json The Account object
+  {
+    "id": "acc_gM2wn_gaqUv76ZljeVXOv",
+    "carrier": "state-farm",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john.smith@grr.la",
+    "policies": ["pol_CbxGmGWnp9bGAFCC-eod2"],
+    "connection": {
+      "status": "active",
+      "updatedAt": "2022-01-01T00:00:00.000Z"
+    },
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "modifiedAt": "2022-01-01T00:00:00.000Z",
+    "refreshedAt": "2022-01-01T00:00:00.000Z"
+  }
+  ```
+</RequestExample>
+
+
+# Get Account
+Source: https://docs.axle.insure/api-reference/accounts/get-account
+
+GET /accounts/{id}
+The Get Account endpoint will return an Account object including high-level account information (e.g., connection status) and any children objects (e.g., Policies) associated with the Account.
+Please note that this endpoint will NOT refresh the Account object with new data from the insurance carrier.
+
+
+
+# Get Carrier
+Source: https://docs.axle.insure/api-reference/carriers/get-carrier
+
+GET /carriers/{id}
+The Get Carrier endpoint returns a Carrier object that include additional details about an Axle-supported insurance carrier.
+
+
+
+# Get Carriers
+Source: https://docs.axle.insure/api-reference/carriers/get-carriers
+
+GET /carriers
+The Get Carriers endpoint returns an array of Carrier objects which include additional details about Axle-supported insurance carriers.
+
+
+
+# Start Ignition
+Source: https://docs.axle.insure/api-reference/ignition/start-ignition
+
+POST /ignition
+Generate an Ignition session. Returns an ignitionToken and ignitionUri to direct the user to share their insurance information. The ignition session will never expire.
+
+
+
+# Overview
+Source: https://docs.axle.insure/api-reference/overview
+
+Learn about the Axle API
+
+## API basics
+
+* The Axle API is built on RESTful principles.
+* The API operates over HTTPS to ensure the security of data being transferred.
+* All requests and responses are sent in JSON.
+
+### Environments
+
+<CodeGroup>
+  ```bash Production
+  https://api.axle.insure
+  ```
+
+  ```bash Sandbox
+  https://sandbox.axle.insure
+  ```
+</CodeGroup>
+
+### Authentication
+
+Axle API requests are authenticated using an client-id and client-secret (API key) pairing sent in the request headers.
+
+* x-client-id — unique identifier for client
+* x-client-secret — api key for client (sensitive)
+* x-destination-client-id — unique identifier for the destination client (optional field used by platform integrations on select endpoints)
+
+<Check>Contact the Axle team to acquire these keys.</Check>
+
+When making API requests, API keys must match the base URL for the intended environment (see above); otherwise, the endpoint will return a `401 Unauthorized`.
+
+### Rate limiting
+
+In order to keep systems secure and prevent misuse, all Axle API endpoints have protective rate limiting. The limits should not impact any expected use of the service, but if you are experiencing issues, please reach out to to the Axle team.
+
+If rate limiting does occur, instead of the expected response, the endpoint will return `429 Too Many Requests`.
+
+### Null or undefined values
+
+Within the Account or Policy objects, individual fields may return `null` values when the carrier data source supports the field, but no information is present or Axle has determined the information to be incorrect.
+
+Certain fields are *optional*, such as `Policy.coverages["BI"].property` or `Policy.coverages["UMPD"].deductible`. These fields may return `null` or `undefined`:
+
+* `null`: The carrier data source supports the field, but no information is present for the selected Account or Policy.
+* `undefined`: The carrier data source supports the field, and data is available that specifies that the field
+  does not exist on or does not apply to the Account or Policy.
+
+```json Example Policy
+{
+	"...",
+	"policyNumber": "123456789",
+	"isActive": true,
+	"effectiveDate": null, // No information was available from carrier data source
+	"expirationDate": "2023-10-22T04:00:00.000Z",
+	"address": {
+		"addressLine1": "123 Main St.",
+		"addressLine2": null,
+		"city": "New York",
+		"state": "NY",
+		"postalCode": "10014",
+		"country": "US",
+	},
+	"coverages": [
+		{
+			"code": "PD",
+			"label": "Property Damage",
+			"limitPerAccident": null, // No information was available from carrier data source
+			"deductible": undefined, // The carrier data source specifies that there is no deductible present for this coverage
+			"property": undefined // The carrier data source specifies that there is coverage does not apply to a single property on the policy
+    	},
+		{
+			"code": "COLL",
+			"label": "Collision",
+			"deductible": null, // No information was available from carrier data source
+			"property": "prp_83sD63h82bbeu2Dgn"
+    	},
+		"..."
+	],
+	"..."
+}
+```
+
+## Objects and Endpoints
+
+Get started with Axle's core endpoints:
+
+<CardGroup cols={2}>
+  <Snippet file="core-endpoints.mdx" />
+</CardGroup>
+
+
+# Create Client
+Source: https://docs.axle.insure/api-reference/platform/create-client
+
+POST /platform/clients
+Create a destination client associated with your platform client and secret. This request will return a destination client `id` that you can use to make requests to the Axle API on behalf of your destination clients.
+
+See the [Axle for Platforms](/guides/platform-integration) guide for more information on how to use this endpoint and the destination client `id`.
+
+
+
+# Get Clients
+Source: https://docs.axle.insure/api-reference/platform/get-clients
+
+GET /platform/clients
+Get a list of destination clients associated with your platform client and secret. This request will return a list of destination client `id`s that you can use to make requests to the Axle API on behalf of your destination clients.
+
+See the [Axle for Platforms](/guides/platform-integration) guide for more information on how to use this endpoint and the destination client `id`.
+
+
+
+# Coverages
+Source: https://docs.axle.insure/api-reference/policies/coverages
+
+This page provides additional detail about the Axle Schema's insurance coverage types and highlights key rules and checks used to ensure accurate data. Coverages are provided through the `coverages` array in Policy objects.
+
+
+Rules applied to all coverages:
+
+1. If both the `limitPerAccident` and `limitPerPerson` values are provided for a coverage, the `limitPerAccident` value must be greater than the `limitPerPerson` value.
+2. If a specified coverage is afforded to all properties on the policy, the `property` field will be `undefined`.
+
+<Tip>
+  For standardization purposes, Axle performs opinionated data transformation of insurance carriers' data into the Axle Schema. As a result, Axle makes certain carrier enumeration inferences to map carrier data into the Axle Schema.
+</Tip>
+
+## Auto Policy Coverage Types
+
+<Accordion title="Bodily Injury" icon="crutch">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $100,000”`, the first value represents `limitPerPerson` and the second value represents `limitPerAccident`. If there is only a single limit returned, the limit will be recorded as `limitPerAccident`.
+  2. If the policy returns a combined single limit (CSL) for Bodily Injury and Property Damage, the limit will be set as `limitPerAccident` for both Bodily Injury and Property Damage coverages.
+
+  Suppression checks:
+
+  1. `limitPerAccident`, `limitPerPerson`, and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    BI
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Bodily Injury
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="limitPerPerson" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Property Damage" icon="car-burst">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $500”`, the first value represents `limitPerAccident` and the second value represents the `deductible`.
+  2. If the policy returns a combined single limit (CSL) for Bodily Injury and Property Damage, the limit will be set as `limitPerAccident` for both Bodily Injury and Property Damage coverages.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    PD
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Property Damage
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Uninsured Motorists Bodily Injury" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $100,000”`, the first value represents `limitPerPerson` and the second value represents `limitPerAccident`. If there is only a single limit returned, the limit will be recorded as `limitPerAccident`.
+  2. If the policy returns a combined single limit (CSL) for Uninsured Motorists Bodily Injury and Uninsured Motorists Property Damage, the limit will be set as `limitPerAccident` for both Uninsured Motorists Bodily Injury and Uninsured Motorists Property Damage coverages and `limitPerPerson` will be `undefined`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `limitPerPerson` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UMBI
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Uninsured Motorists Bodily Injury
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" required />
+
+  <ResponseField name="limitPerPerson" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Uninsured Motorists Property Damage" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $500”`, the first value represents `limitPerAccident` and the second value represents the `deductible`.
+  2. If the policy returns a combined single limit (CSL) for Uninsured Motorists Bodily Injury and Uninsured Motorists Property Damage, the limit will be set as `limitPerAccident` for both Uninsured Motorists Bodily Injury and Uninsured Motorists Property Damage coverages and `limitPerPerson` will be `undefined`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UMPD
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Uninsured Motorists Property Damage
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Underinsured Motorists Bodily Injury" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $100,000”`, the first value represents `limitPerPerson` and the second value represents `limitPerAccident`. If there is only a single limit returned, the limit will be recorded as `limitPerAccident`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `limitPerPerson` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UIMBI
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Underinsured Motorists Bodily Injury
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" required />
+
+  <ResponseField name="limitPerPerson" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Underinsured Motorists Property Damage" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $500”`, the first value represents `limitPerAccident` and the second value represents the `deductible`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UIMPD
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Underinsured Motorists Property Damage
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Uninsured & Underinsured Motorists Bodily Injury" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $100,000”`, the first value represents `limitPerPerson` and the second value represents `limitPerAccident`. If there is only a single limit returned, the limit will be recorded as `limitPerAccident`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `limitPerPerson` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UUIMBI
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Uninsured & Underinsured Motorists Bodily Injury
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" required />
+
+  <ResponseField name="limitPerPerson" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Uninsured & Underinsured Motorists Property Damage" icon="motorcycle">
+  Rules applied:
+
+  1. If the carrier returns limits combined as `“$50,000 / $500”`, the first value represents `limitPerAccident` and the second value represents the `deductible`.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    UUIMPD
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Uninsured & Underinsured Motorists Property Damage
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Collision" icon="car-burst">
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    COLL
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Collision
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null (optional)" />
+
+  <ResponseField name="deductible" type="number or null" />
+
+  <ResponseField name="property" type="string or null" />
+</Accordion>
+
+<Accordion title="Comprehensive" icon="car-burst">
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    COMP
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Comprehensive
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null (optional)" />
+
+  <ResponseField name="deductible" type="number or null" />
+
+  <ResponseField name="property" type="string or null" />
+</Accordion>
+
+## Home Policy Coverage Types
+
+<Accordion title="Dwelling" icon="house">
+  Rules applied:
+
+  1. When the deductible is listed differently based on the type of claim, the deductible associated with covered perils will be returned. This deductible value is often represented as “All Perils”, “All Covered Perils”, or “Other Covered Perils”.
+
+  Suppression checks:
+
+  1. If both the policy `premium` and Dwelling coverage `limitPerAccident` values are defined, the Axle Service will ensure that the premium-to-Dwelling-limitPerAccident ratio falls within our set bounds of reasonability. If this ratio is greater than our upper bound, both the policy `premium` and Dwelling coverage `limitPerAccident` values will be conservatively set to `null`. If a `premium` value exists but no Dwelling `limitPerAccident` value is present, then the `premium` will be conservatively set to `null`.
+  2. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    DW
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Dwelling
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null" />
+</Accordion>
+
+<Accordion title="Other Structures" icon="warehouse">
+  Rules applied:
+
+  1. When the deductible is listed differently based on the type of claim, the deductible associated with covered perils will be returned. This deductible value is often represented as “All Perils”, “All Covered Perils”, or “Other Covered Perils”.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    OS
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Other Structures
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null" />
+</Accordion>
+
+<Accordion title="Personal Property" icon="bag-shopping">
+  Rules applied:
+
+  1. When the deductible is listed differently based on the type of claim, the deductible associated with covered perils will be returned. This deductible value is often represented as “All Perils”, “All Covered Perils”, or “Other Covered Perils”.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    PP
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Personal Property
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null" />
+</Accordion>
+
+<Accordion title="Loss of Use" icon="x">
+  Rules applied:
+
+  1. When the deductible is listed differently based on the type of claim, the deductible associated with covered perils will be returned. This deductible value is often represented as “All Perils”, “All Covered Perils”, or “Other Covered Perils”.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    LOU
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Loss of Use
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+
+  <ResponseField name="deductible" type="number or null (optional)" />
+</Accordion>
+
+<Accordion title="Personal Liability" icon="user-injured">
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    PL
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Personal Liability
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number or null" />
+</Accordion>
+
+<Accordion title="Medical Expenses" icon="house-chimney-medical">
+  Rules applied:
+
+  1. Only a `limitPerAccident` or `limitPerPerson` value can exist on this coverage but not both.
+
+  Suppression checks:
+
+  1. `limitPerAccident` and `deductible` fields contain certain min / max value thresholds used to suppress inaccurate or nonsensical data.
+
+  ### Fields
+
+  <ResponseField name="code" type="string" required>
+    MED
+  </ResponseField>
+
+  <ResponseField name="label" type="string" required>
+    Medical Expenses
+  </ResponseField>
+
+  <ResponseField name="limitPerAccident" type="number" />
+
+  <ResponseField name="limitPerPerson" type="number" />
+</Accordion>
+
+
+# Get Policy
+Source: https://docs.axle.insure/api-reference/policies/get-policy
+
+GET /policies/{id}
+The Get Policy endpoint returns a Policy object. Please refer to the [Policy](/api-reference/policies/policy) object for a detailed description of each field.
+Please note that this endpoint will NOT refresh the Policy object with new data from the insurance carrier.
+
+
+
+# Get Policy Report
+Source: https://docs.axle.insure/api-reference/policies/get-policy-report
+
+GET /policies/{id}/report
+The Get Policy Report endpoint returns a PDF or image report of the requested Policy object. Please refer to the [Policy](/api-reference/policies/policy) object for a detailed description of each field.
+
+
+
+# The Policy object
+Source: https://docs.axle.insure/api-reference/policies/policy
+
+A Policy represents a specific policy associated with an Account and includes high-level policy information (e.g. policy number) and any children objects (e.g., coverages) associated with the policy.
+
+<Tip>
+  All fields are nullable when not available and present unless otherwise
+  specified. See [API overview](/api-reference/overview) for more details.
+</Tip>
+
+## Fields
+
+<br />
+
+<ParamField body="id" type="string">
+  Unique identifier for the Policy object.
+</ParamField>
+
+<ParamField body="account" type="string">
+  Unique identifier for the Account object associated with the Policy.
+</ParamField>
+
+<ParamField body="type" type="string">
+  Type of insurance policy that the Policy object represents.
+
+  Available options:
+
+  `auto` `motorcycle` `home` `condo` `flood`
+
+  Rules applied:
+
+  1. `auto` includes non-owned auto insurance policies but does not include commercial or business auto insurance policies.
+  2. `home` includes HO-1, HO-2, HO-3, HO-5, HO-7, and HO-8 homeowners insurance policies. It also includes landlord and specialty fire policies. It does not include HO-4 (i.e. renter’s policies).
+  3. `condo` is equivalent to an HO-6 insurance policy.
+</ParamField>
+
+<ParamField body="carrier" type="string">
+  Insurance carrier that is the source for the Policy data.
+</ParamField>
+
+<ParamField body="policyNumber" type="string or null">
+  Identifier of the policy, as specified by the insurance carrier.
+</ParamField>
+
+<ParamField body="isActive" type="boolean or null (optional)">
+  Active status of the policy, as specified by the insurance carrier. If an
+  Ignition session is completed with result: `manual`, this field will be
+  undefined.
+
+  Rules applied:
+
+  1. isActive `true` includes policies that are specified as active but may also include policies in pre-effective or pending cancellation statuses that are marked as active by the carrier.
+  2. isActive `null` indicates that the insurance carrier did not specify if the policy is active.
+</ParamField>
+
+<ParamField body="effectiveDate" type="string or null">
+  ISO 8601 timestamp of current term effective date of the policy, as specified
+  by the insurance carrier. The effective date may be in the future for policies
+  that renew early.
+</ParamField>
+
+<ParamField body="expirationDate" type="string or null">
+  ISO 8601 timestamp of current term expiration date of the policy, as specified
+  by the insurance carrier.
+</ParamField>
+
+<ParamField body="premium" type="number or null">
+  Policy term premium, as specified by the insurance carrier. This value is
+  inclusive of discounts and fees but may exclude certain fees due to variation
+  in carrier reporting or additional surcharges placed via state policies.
+</ParamField>
+
+<ParamField body="address" type="Address">
+  Primary address associated with the policy.
+
+  <Expandable title="Address">
+    <ResponseField name="addressLine1" type="string or null">
+      First line of the street address, typically including the house number and street name.
+    </ResponseField>
+
+    <ResponseField name="addressLine2" type="string or null">
+      Additional address details, such as an apartment, suite, or unit number.
+    </ResponseField>
+
+    <ResponseField name="city" type="string or null">
+      City name of the address.
+    </ResponseField>
+
+    <ResponseField name="state" type="string or null">
+      State of the address.
+    </ResponseField>
+
+    <ResponseField name="postalCode" type="string or null">
+      ZIP or postal code of the address.
+    </ResponseField>
+
+    <ResponseField name="country" type="string or null">
+      Country of the address.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="properties" type="array[Property]">
+  List of properties (such as a vehicle or dwelling) afforded coverage by the policy.
+
+  <Expandable title="Property">
+    <ResponseField name="id" type="string">
+      Unique identifier for the Property object.
+    </ResponseField>
+
+    <ResponseField name="type" type="string">
+      The type of the insured property.
+
+      Available options:
+
+      `vehicle` - Represents a motor vehicle (e.g., car, truck, motorcycle, trailer) insured under the policy.
+
+      `dwelling` - Refers to a residential property (e.g., house, apartment) insured under the policy.
+    </ResponseField>
+
+    <ResponseField name="data" type="Vehicle or Dwelling">
+      Contains specific details related to the insured property.
+
+      <Expandable title="Vehicle">
+        <ResponseField name="vin" type="string">
+          The Vehicle Identification Number (VIN), a unique code used to identify individual motor vehicles.
+        </ResponseField>
+
+        <ResponseField name="model" type="string or null">
+          The specific model name of the vehicle, indicating the manufacturer’s designation.
+        </ResponseField>
+
+        <ResponseField name="year" type="string or null">
+          The model year of the vehicle, representing the year it was manufactured.
+        </ResponseField>
+
+        <ResponseField name="make" type="string or null">
+          The manufacturer or brand name of the vehicle.
+        </ResponseField>
+
+        <ResponseField name="use" type="string or null">
+          The “vehicle use” or “primary use” of the vehicle, indicating how the vehicle is predominantly used by the insured.
+
+          Available options:
+
+          1. `pleasure` - Includes cases when the vehicle use falls under multiple options, such as in "Pleasure/Commute" or "To Work, School or Pleasure". This also includes use related to artisan and collector cars.
+          2. `commute` - Includes all vehicle use designations related to work (e.g. "Work 5-10") as well as when mileage is specified (e.g. "10 Miles")
+          3. `business` - Includes all designations related to business.
+          4. `farm` - Includes all designations related to farming.
+        </ResponseField>
+
+        <ResponseField name="bodyStyle" type="string or null (optional)">
+          The style of the vehicle's body (e.g., sedan, SUV, coupe), which describes its design and configuration.
+        </ResponseField>
+      </Expandable>
+
+      <Expandable title="Dwelling">
+        <ResponseField name="addressLine1" type="string or null">
+          The primary address line of the dwelling, typically including the street number and name.
+        </ResponseField>
+
+        <ResponseField name="addressLine2" type="string or null">
+          An optional secondary address line for additional information (e.g., apartment number or suite).
+        </ResponseField>
+
+        <ResponseField name="city" type="string or null">
+          The city where the dwelling is located.
+        </ResponseField>
+
+        <ResponseField name="state" type="string or null">
+          The state where the dwelling is situated.
+        </ResponseField>
+
+        <ResponseField name="postalCode" type="string or null">
+          The postal code for the dwelling's address.
+        </ResponseField>
+
+        <ResponseField name="country" type="string or null">
+          The country where the dwelling is located.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="coverages" type="array[Coverage]">
+  List of coverage types and levels offered by the policy. Refer to [Coverages](/api-reference/policies/coverages) for additional detail about the supported coverage types.
+
+  <Expandable title="Coverage">
+    <ResponseField name="code" type="string" required>
+      A coverage code for the type of insurance coverage present. Each code corresponds to a human-readable label.
+
+      Available options for an `auto` or `motorcycle` insurance policy:
+
+      1. `BI` - Bodily Injury
+      2. `PD` - Property Damage
+      3. `UMBI` - Uninsured Motorists Bodily Injury
+      4. `UMPD` - Uninsured Motorists Property Damage
+      5. `UIMBI` - Underinsured Motorists Bodily Injury
+      6. `UIMPD` - Underinsured Motorists Property Damage
+      7. `UUIMBI` - Uninsured & Underinsured Motorists Bodily Injury
+      8. `UUIMPD` - Uninsured & Underinsured Motorists Property Damage
+      9. `COLL` - Collision
+      10. `COMP` - Comprehensive
+
+      Available options for a `home` or `condo` insurance policy:
+
+      1. `DW` - Dwelling
+      2. `OS` - Other Structures
+      3. `PP` - Personal Property
+      4. `LOU` - Loss of Use
+      5. `PL` - Personal Liability
+      6. `MED` - Medical Expenses
+    </ResponseField>
+
+    <ResponseField name="label" type="string" required>
+      A human-readable name describing the type of insurance coverage provided by the policy. The labels are provided above next to each corresponding coverage code.
+    </ResponseField>
+
+    <ResponseField name="limitPerPerson" type="number or null (optional)">
+      The maximum amount the insurance policy will pay for bodily injury or damages sustained by an individual in a covered incident.
+    </ResponseField>
+
+    <ResponseField name="limitPerAccident" type="number or null (optional)">
+      The maximum amount the insurance policy will pay for a single accident or claim.
+    </ResponseField>
+
+    <ResponseField name="deductible" type="number or null (optional)">
+      The amount the policyholder must pay out-of-pocket toward a claim before the insurance coverage begins to pay.
+    </ResponseField>
+
+    <ResponseField name="property" type="string or null (optional)">
+      Unique identifier of Property afforded coverage. If specified coverage is afforded to all properties on the policy, `property` will be `undefined`.
+    </ResponseField>
+
+    <Info>
+      Within a Policy object, there will only be a single Coverage object per
+      coverage `code` per `property`.
+    </Info>
+  </Expandable>
+</ParamField>
+
+<ParamField body="insured" type="array[Insured]">
+  List of entities (such as an individuals or businesses) afforded direct coverage by the policy.
+
+  Rules applied:
+
+  1. Excluded drivers are removed from Insureds list for `auto` and `motorcycle` insurance policies.
+  2. Entities listed as Additional Insureds are not included within the list of Insureds but are included under the list of Third Parties as an "interest".
+
+  <Expandable title="Insured">
+    <ResponseField name="firstName" type="string or null">
+      The first name of the insured individual.
+    </ResponseField>
+
+    <ResponseField name="lastName" type="string or null">
+      The last name of the insured individual.
+    </ResponseField>
+
+    <Tip>
+      Insurance carriers may represent `firstName` and `lastName` in different ways (such as including middle name in `firstName` or dropping special characters such as `-`).
+
+      If your application requires matching your users against policy insureds, it is recommended to combine `firstName` and `lastName` into a single value and using a "fuzzy" matching algorithm with a strict threshold.
+    </Tip>
+
+    <ResponseField name="type" type="string">
+      The role of the insured individual, indicating whether they are the primary policyholder / user or a secondary insured party. Note that this field is in continued development and is subject to modification.
+
+      Available options:
+
+      `primary` - The policyholder or primary user of the insured property.
+
+      `secondary` - An additional person insured under the policy, such as an additional driver.
+    </ResponseField>
+
+    <ResponseField name="dateOfBirthYear" type="string or null">
+      The birth year of the insured individual. **Note:** This field is only available for select carriers.
+    </ResponseField>
+
+    <ResponseField name="licenseNo" type="string or null">
+      The driver's license number of the insured individual. **Note:** This field is only available for select carriers.
+    </ResponseField>
+
+    <ResponseField name="licenseState" type="string or null">
+      The state that issued the insured individual's driver's license. **Note:** This field is only available for select carriers.
+    </ResponseField>
+
+    <ResponseField name="dateOfBirth" type="string or null">
+      The insured individual's date of birth in a standard date format. **Note:** This field is only available for select carriers.
+    </ResponseField>
+
+    <ResponseField name="property" type="string or null (optional)">
+      Unique identifier of Property afforded coverage for specified Insured. If Insured is afforded coverage across all properties on the policy, `property` will be `undefined`.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="thirdParties" type="array[ThirdParty]">
+  List of external parties with interest in the policy.
+
+  <Expandable title="ThirdParty">
+    <ResponseField name="type" type="string" default="interest">
+      The role of the Third Party associated with the insured property. **Note:** this field is in continued development and is subject to modification.
+
+      The Axle Schema currently supports the following Third Party options. See below for details on Axle's standardization of Third Party type based on data provided by the insurance carrier.
+
+      Available options:
+
+      `lienholder` - A financial institution or individual that holds a legal claim on the insured property. This includes mortgagees.
+
+      `lessor` - The owner or leasing company that leases the insured property to the policyholder under a lease agreement. This includes loss payees if the Third Party is also assessed as an Additional Insured.
+
+      `interest` - Any Third Party with a financial interest in the insured property. This option serves as the conservative default used in the following cases:
+
+      1. The Third Party is specifically listed as an "additional interest".
+      2. The Third Party falls across options (e.g. a Third Party that is both an additional insured and an additional interest).
+      3. The specific role of the Third Party is uncertain or not clearly defined.
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      The name of the Third Party.
+    </ResponseField>
+
+    <ResponseField name="address" type="Address">
+      The address of the Third Party. **Note:** This field may not be available for all carriers.
+    </ResponseField>
+
+    <ResponseField name="property" type="string or null">
+      Unique identifier of Property for which the specified Third Party is afforded coverage through this policy.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="documents" type="array[Document]">
+  List of documents (such as declaration pages and policy agreements) associated with the policy. Note that the insurance carrier may not always update documents on the policy to reflect policy changes or term renewals.
+
+  Rules applied:
+
+  1. Only the most recently effective or issued document of each document type will be present in the document list.
+  2. There will only be at most one document of each type listed in the documents list.
+
+  <Expandable title="Document">
+    <ResponseField name="id" type="string">
+      Unique identifier (formatted as filename) for the document.
+    </ResponseField>
+
+    <ResponseField name="source" type="string">
+      The origin of the document.
+
+      Available options:
+
+      `carrier` - Indicates that the document originated from the insurance carrier.
+
+      `user` - Indicates that the document was uploaded by the user.
+
+      <Tip>
+        User-provided documents are not verified by Axle.
+      </Tip>
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      The name of the document.
+    </ResponseField>
+
+    <ResponseField name="type" type="array[string]">
+      The type of information contained in the document, as specified by carrier or user. A document may have multiple types.
+
+      Available options:
+
+      `declaration-page` - A summary document that outlines the key details of the insurance policy, including coverage limits, premiums, and insured parties. This includes renewal policy documents, amended policy documents, and new business documents.
+
+      `policy-agreement` - The formal contract between the insurer and the policyholder that specifies the terms and conditions of the insurance coverage. This includes insurance policy contract documents. Note that this type of document may not always be available.
+
+      `id-card` - An identification card issued by the insurer that serves as proof of insurance coverage and includes relevant policy information for the insured vehicle. This document type is generally only found for auto insurance policies.
+    </ResponseField>
+
+    <ResponseField name="url" type="string">
+      Pre-signed url to access document.
+
+      <Tip>
+        For security, document urls have an expiry of 60 minutes.
+      </Tip>
+    </ResponseField>
+
+    <ResponseField name="issuedDate" type="string or null">
+      If available, ISO 8601 timestamp at which the document was generated or issued by the carrier.
+    </ResponseField>
+
+    <ResponseField name="effectiveDate" type="string or null">
+      If available, ISO 8601 timestamp at which the document becomes active or goes into effect.
+    </ResponseField>
+
+    <ResponseField name="createdAt" type="string">
+      ISO 8601 timestamp at which the document was fetched or shared via Axle.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="createdAt" type="string">
+  ISO 8601 timestamp at which the Policy object was generated via Axle.
+</ParamField>
+
+<ParamField body="modifiedAt" type="string">
+  ISO 8601 timestamp at which the Policy object was modified via Axle. The
+  Policy object is modified only when there are differences between the current
+  Policy and new Policy data requested from the carrier.
+</ParamField>
+
+<ParamField body="refreshedAt" type="string">
+  ISO 8601 timestamp at which the Policy object was refreshed via Axle. The
+  Policy object is refreshed only when Axle successfully requests new Policy
+  data from the carrier.
+
+  <Info>
+    If the `refreshedAt` date does not update daily, we're working on re-establishing the connection with the
+    insurance carrier to retrieve updated policy data. Please keep an eye on the `refreshedAt` and `connection` fields to
+    confirm they're active and up-to-date.
+  </Info>
+</ParamField>
+
+<RequestExample>
+  ```json Auto Insurance Policy Object
+  {
+    "id": "pol_CbxGmGWnp9bGAFCC-eod2",
+    "account": "acc_gM2wn_gaqUv76ZljeVXOv",
+    "type": "auto",
+    "carrier": "state-farm",
+    "policyNumber": "123456789",
+    "isActive": true,
+    "effectiveDate": "2021-10-22T04:00:00.000Z",
+    "expirationDate": "2022-10-22T04:00:00.000Z",
+    "premium": null,
+    "address": {
+      "addressLine1": "123 Main St.",
+      "addressLine2": "Unit 456",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "postalCode": "30315",
+      "country": "USA"
+    },
+    "properties": [
+      {
+        "id": "prp_uSdzLVpi8c76H7kl6AQ-F",
+        "type": "vehicle",
+        "data": {
+          "bodyStyle": "sedan",
+          "vin": "WDDWJ8EB4KF776265",
+          "model": "C 300",
+          "year": "2019",
+          "make": "Mercedes-Benz",
+          "use": "commute"
+        }
+      },
+      {
+        "id": "prp_tmGUxLpgHjmW9r6M6WjhS",
+        "type": "vehicle",
+        "data": {
+          "bodyStyle": "minivan",
+          "vin": "5FNRL38209B014050",
+          "model": "Odyssey",
+          "year": "2009",
+          "make": "Honda",
+          "use": "pleasure"
+        }
+      }
+    ],
+    "coverages": [
+      { 
+        "code": "BI",
+        "label": "Bodily Injury",
+        "limitPerPerson": 250000,
+        "limitPerAccident": 500000
+      },
+      {
+        "code": "PD",
+        "label": "Property Damage",
+        "limitPerAccident": 100000
+      },
+      {
+        "code": "UMBI",
+        "label": "Uninsured Bodily Injury",
+        "limitPerPerson": 100000,
+        "limitPerAccident": 300000, 
+      },
+      {
+        "code": "COMP",
+        "label": "Comprehensive",
+        "deductible": 375,
+        "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+      },
+      {
+        "code": "COLL",
+        "label": "Collision",
+        "deductible": 375,
+        "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+      }
+    ],
+    "insureds": [
+      {
+        "type": "primary",
+        "firstName": "John",
+        "lastName": "Smith",
+        "dateOfBirthYear": "1990",
+        "licenseNo": "•••••1234",
+      },
+      {
+        "type": "primary",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirthYear": "1992",
+        "licenseNo": "•••••5678",
+      }
+    ],
+    "thirdParties": [
+      {
+        "property": "prp_tmGUxLpgHjmW9r6M6WjhS",
+        "type": "lessor",
+        "name": "Super Leasing Trust",
+        "address": {
+          "addressLine1": "PO Box 123456",
+          "country": null,
+          "addressLine2": null,
+          "state": "GA",
+          "city": "Atlanta",
+          "postalCode": "30348-5245"
+        }
+      },
+    ],
+    "documents": [
+      {
+        "id": "doc_jd73dw6fn02sj28.pdf",
+        "source": "carrier",
+        "name": "Declaration Page",
+        "type": ["declaration-page"],
+        "url": "<signed-url>",
+        "issuedDate": "2022-01-01T00:00:00.000Z",
+        "effectiveDate": "2022-01-02T00:00:00.000Z",
+        "createdAt": "2022-01-01T00:00:00.000Z"
+      }
+    ],
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "modifiedAt": "2022-01-01T00:00:00.000Z",
+    "refreshedAt": "2022-01-01T00:00:00.000Z"
+  }
+  ```
+
+  ```json Home Insurance Policy Object
+  {
+    "id": "pol_AbcIkNEnp9bFUIee-oir1",
+    "account": "acc_gM2wn_gaqUv76ZljeVXOv",
+    "type": "home",
+    "carrier": "state-farm",
+    "policyNumber": "123456789",
+    "isActive": true,
+    "effectiveDate": "2022-10-22T04:00:00.000Z",
+    "expirationDate": "2023-10-22T04:00:00.000Z",
+    "premium": 999.99,
+    "address": {
+      "addressLine1": "123 Main St.",
+      "addressLine2": "Unit 456",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "postalCode": "30315",
+      "country": "USA"
+    },
+    "properties": [
+      {
+        "id": "prp_tmGUxLpgHjmW9r6M6WjhS",
+        "type": "dwelling",
+        "data": {
+          "addressLine1": "456 Main St.",
+          "addressLine2": "Unit 789",
+          "city": "Atlanta",
+          "state": "Georgia",
+          "postalCode": "30315",
+          "country": "USA"
+        }
+      }
+    ],
+    "coverages": [
+      { 
+        "code": "DW",
+        "label": "Dwelling",
+        "limitPerAccident": 45000,
+        "deductible": 1000
+      },
+      {
+        "code": "OS",
+        "label": "Other Structures",
+        "limitPerAccident": 100000,
+        "deductible": 1000
+      },
+      {
+        "code": "PL",
+        "label": "Personal Liability",
+        "limitPerAccident": 100000
+      },
+      {
+        "code": "MED",
+        "label": "Medical Expenses",
+        "limitPerAccident": 50000
+      }
+    ],
+    "insureds": [
+      {
+        "type": "primary",
+        "firstName": "John",
+        "lastName": "Smith",
+        "dateOfBirthYear": "1990",
+        "licenseNo": "•••••1234",
+      },
+      {
+        "type": "secondary",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirthYear": "1992",
+        "licenseNo": "•••••5678",
+      }
+    ],
+    "thirdParties": [
+      {
+        "property": "prp_tmGUxLpgHjmW9r6M6WjhS",
+        "type": "lienholder",
+        "name": "Super Credit Union",
+        "address": {
+          "addressLine1": "PO Box 123456",
+          "country": null,
+          "addressLine2": null,
+          "state": "GA",
+          "city": "Atlanta",
+          "postalCode": "30348-5245"
+        }
+      }
+    ],
+    "documents": [
+      {
+        "id": "doc_jd73dw6fn02sj28.pdf",
+        "source": "carrier",
+        "name": "Declaration Page",
+        "type": ["declaration-page"],
+        "url": "<signed-url>",
+        "issuedDate": "2022-01-01T00:00:00.000Z",
+        "effectiveDate": "2022-01-02T00:00:00.000Z",
+        "createdAt": "2022-01-01T00:00:00.000Z"
+      },
+    ],
+    "createdAt": "2022-01-01T00:00:00.000Z",
+    "modifiedAt": "2022-01-01T00:00:00.000Z",
+    "refreshedAt": "2022-01-01T00:00:00.000Z"
+  }
+  ```
+</RequestExample>
+
+
+# Validate Policy
+Source: https://docs.axle.insure/api-reference/policies/validate-policy
+
+POST /policies/{id}/validate
+The Validate Policy endpoint returns the result of a evaluating a series of Rules against the requested policy object. For details about each Rule and their return types, see the [Policy Validation Guide](/guides/policy-validation).
+
+
+
+# Trigger Account event
+Source: https://docs.axle.insure/api-reference/sandbox/trigger-account-event
+
+POST /sandbox/accounts/{id}/event
+The Account event will be sent to the `webhookUri` specified when generating an Ignition token. 
+
+Refer to the [Sandbox](/guides/sandbox) guide for more details.
+
+
+
+# Trigger Policy event
+Source: https://docs.axle.insure/api-reference/sandbox/trigger-policy-event
+
+POST /sandbox/policies/{id}/event
+The Policy event will be sent to the `webhookUri` specified when generating an Ignition token. 
+
+Refer to the [Sandbox](/guides/sandbox) guide for more details.
+
+
+
+# Descope Token
+Source: https://docs.axle.insure/api-reference/tokens/descope-token
+
+POST /token/descope
+Reduce scope for a specified access token. For example, de-scoping `monitoring` will disable Axle monitoring and you will no longer receive notifiations on Account or Policy events.
+
+
+
+# Exchange Token
+Source: https://docs.axle.insure/api-reference/tokens/exchange-token
+
+POST /token/exchange
+Exchange an authorization code returned by an `ignition.completed` event for an access token. Follow the [Quickstart](/guides/quickstart) or see [Ignition Events](/guides/ignition-events) for more details.
+
+Auth codes are single-use and expire after 10 minutes, while accessTokens do not expire.
+
+
+
+# Account events
+Source: https://docs.axle.insure/guides/account-events
+
+This guide will walk you through the various Account events that may occur when monitoring an insurance account.
+
+Once an insurance account is connected through an Ignition session, Axle can monitor that account for updates. These updates will trigger events that are sent from Axle to your systems via webhook or to your organization via communication channels such as email.
+
+<Info>
+  Account events are only sent for insurance accounts connected through Axle
+  Ignition sessions that are configured with `monitoring` enabled. Please
+  contact the Axle team if you would like to enable this feature!
+</Info>
+
+## Webhooks
+
+<Tip>
+  You must specify a `webhookUri` when generating an Ignition token to receive
+  webhook events. See [Start Ignition](/api-reference/ignition/start-ignition)
+  for more details.
+
+  <Snippet file="custom-webhooks.mdx" />
+</Tip>
+
+A `POST` request will be sent to the `webhookUri` with the following payload. All events will include `client`, `ref` (Account object identifier), `user` (optionally specified when generating Ignition token), and `metadata` (optionally specified when generating Ignition token).
+
+```json Example webhook payload
+{
+  "id": "<event_id>",
+  "type": "account.modified",
+  "data": {
+    "client": "<client-id>",
+    "ref": "acc_Z4ni-JHBvkn9PlKJHPEwk",
+    "user": {},
+    "metadata": {},
+    ...{ parameters }
+  },
+  "createdAt": "2022-10-05T14:48:00.000Z"
+}
+```
+
+### account.modified
+
+This event type indicates details on the Account changed. Refer to [Account](/api-reference/accounts/account) for more details on the fields that can be modified.
+
+### account.disconnected
+
+This event type indicates the Account `connection.status` is no longer "active", meaning Axle is no longer able to monitor the policies present on the account.
+
+```json Additional data parameters (example)
+{
+  "status": "credentials-expired | mfa-expired | account-disabled | account-inaccessible"
+}
+```
+
+<Card title="credentials-expired">
+  <Tabs>
+    <Tab title="Common causes">
+      The user has changed their login credentials or their insurance account
+      requires a periodic update of their login credentials.
+    </Tab>
+
+    <Tab title="Recommended messaging">
+      Your insurance account cannot be access by Axle due to expired or changed
+      credentials. Please complete Axle via \[Ignition URI] to reconnect your
+      account.
+    </Tab>
+  </Tabs>
+</Card>
+
+<Card title="mfa-expired">
+  <Tabs>
+    <Tab title="Common causes">
+      The user's insurance account is has re-triggered multi-factor
+      authentication, requiring additional authentication for Axle to regain
+      access.
+    </Tab>
+
+    <Tab title="Recommended messaging">
+      Your insurance account requires additional multi-factor authentication
+      (MFA). Please complete Axle via \[Ignition URI] to reconnect your account.
+    </Tab>
+  </Tabs>
+</Card>
+
+<Card title="account-disabled">
+  <Tabs>
+    <Tab title="Common causes">
+      The user's insurance account has been disabled by the insurance carrier
+      due to inactivity or policy expiration.
+    </Tab>
+
+    <Tab title="Recommended messaging">
+      Your insurance account is no longer available. Please complete Axle via
+      \[Ignition URI] after re-enabling your account or to connect a different
+      account.
+    </Tab>
+  </Tabs>
+</Card>
+
+<Card title="account-inaccessible">
+  <Tabs>
+    <Tab title="Common causes">
+      The user's insurance account unexpectedly cannot be accessed by Axle,
+      despite multiple attempts to reach the insurance carrier. The Axle team
+      has been notified and will immediately escalate for resolution. It is
+      recommended to reach out to the user to reconnect their account.
+    </Tab>
+
+    <Tab title="Recommended messaging">
+      Your insurance account can no longer be accessed by Axle. Please retry
+      connecting your account through Axle via \[Ignition URI].
+    </Tab>
+  </Tabs>
+</Card>
+
+
+# Events
+Source: https://docs.axle.insure/guides/ignition-events
+
+This guide will walk you through the various events that occur during an Ignition session.
+
+import CustomWebhooks from "/snippets/custom-webhooks.mdx";
+
+Axle’s Ignition session is the main interface that allows your users to connect to their insurance accounts and authorize access to scoped data from their insurance policies.
+
+Please first review the [Quickstart](/guides/quickstart) guide and API docs on how to start an Ignition session, if you have not already.
+
+## Configure an Ignition session for event handling
+
+Your `POST` request to `/ignition` can include the following request
+body:
+
+* `redirectUri` (optional) - the URL Axle Ignition will redirect the user to upon completion, exit, or error outcomes of the Ignition session, defaults to no redirect
+* `webhookUri` (optional) - the URL Axle will send events to as the user proceeds through the Ignition session, defaults to no webhook events
+* `user` (required) - user to attach. Please refer to [startIgnition](/api-reference/ignition/start-ignition) for more details.
+* `metadata` (optional) - optional Ignition session metadata, please refer to [startIgnition](/api-reference/ignition/start-ignition) for more details
+
+```bash Request Sample
+curl --request POST \
+  --url https://api.axle.insure/ignition \
+  --header 'Content-Type: application/json' \
+  --header 'x-client-id: cli_mZj6YGXhQyQnccN97aXbq' \
+  --header 'x-client-secret: RZM-5BErZuChKqycbCS1O' \
+  --data '{
+  "redirectUri": "https://example.com/insurance/redirect",
+  "webhookUri": "https://example.com/insurance/webhook",
+  "user": {"id": "usr_123456789"}
+  }'
+```
+
+<Note>
+  You can also receive Ignition status updates through the browser Window
+  interface. This is most useful when initializing an Ignition session in an
+  `iframe` element in your application.
+
+  If you would like to receive
+  `MessageEvent` messages to your main application Window from Ignition, you must specify an `origin`
+  as a URL parameter when initalizing Ignition. The origin should not include any path, just the base domain as a URI.
+
+  Example: `https://ignition.axle.insure/?origin=http://example.com`
+</Note>
+
+## Redirect and Window MessageEvent parameters
+
+On Ignition status change, the following parameters will be shared via URL to the `redirectUri` provided and in the Window `MessageEvent`.
+
+`status`: String
+
+* complete
+* exit
+* error
+
+**Additional parameters** *(dependent on status, see below)*
+
+* `authCode`: String - authorization code that can be exchange for accessToken for scoped access to connected account and/or policy
+* `client`: String - the client ID associated with the session. This is primarily useful for platforms who have multiple clients. See the [Axle for Platforms](/guides/platform-integration) guide for more information about platforms.
+* `result`: String - "link" (account connection was made and policy is available) OR "basic" (account connection was made but policy details are not available) OR "manual" (policy details were entered through manual collection form)
+* `step`: String - the step where the Ignition session was exited
+* `message`: String - additional information about the Ignition session error
+
+```text Redirect sample URL
+  https://example.com/insurance/redirect?status=complete&authCode=cod_LwPJhgxnjinMEPfGYc-XV&client=cli_mZj6YGXhQyQnccN97aXbq&result=link
+```
+
+### onComplete
+
+When the user successfully connects to their carrier account and shares authorized access to a selected policy, OR when the user submits their policy information and/or documentation through Axle's manual collection form.
+
+```json
+{
+  "status": "complete",
+  "authCode": "<authCode>",
+  "client": "<client-id>",
+  "result": "link" || "basic" || "manual"
+}
+```
+
+### onExit
+
+When the user opts out of connecting to their carrier account and/or selecting a policy, OR when the user opts out of sharing the requested policy information and/or documentation.
+
+```json
+{
+  "status": "exit",
+  "step": "<step-name>",
+  "client": "<client-id>"
+}
+```
+
+### onError
+
+When Axle is unable to retrieve account or policy information from a selected carrier, OR when Axle is unable to collect policy information and/or documentation from the user.
+
+```json
+{
+  "status": "error",
+  "message": "<message-body>",
+  "client": "<client-id>"
+}
+```
+
+<Warning>
+  Never send requests from your client to the Axle API. The client should only
+  be used to handle Ignition status through redirect or Window MessageEvent.
+</Warning>
+
+## Webhooks
+
+If an optional `webhookUri` is provided, a `POST` request will be sent to the `webhookUri` with the following payload. The individual parameters included within `data` are the same as those listed above for the corresponding status, with the addition of `user` and `metadata` shared via the Ignition request body:
+
+```json Example webhook payload
+{
+  "id": "<event_id>",
+  "type": "ignition.completed",
+  "data": {
+    "client": "<client-id>",
+    "token": "ign_Z4ni-JHBvkn9PlKJHPEwk",
+    ...{ parameters }
+  },
+  "createdAt": "2022-10-05T14:48:00.000Z"
+}
+```
+
+| Type               | Data                                                                                                |
+| ------------------ | --------------------------------------------------------------------------------------------------- |
+| ignition.created   | client : String, token : String, user: Object, metadata: Object                                     |
+| ignition.completed | client : String, token : String, user: Object, metadata: Object, authCode : String, result : String |
+| ignition.opened    | client : String, token : String, user: Object, metadata: Object                                     |
+| ignition.exited    | client : String, token : String, user: Object, metadata: Object, step : String                      |
+| ignition.errored   | client : String, token : String, user: Object, metadata: Object, message : String                   |
+
+<Note>
+  <Snippet file="custom-webhooks.mdx" />
+</Note>
+
+
+# Initialize
+Source: https://docs.axle.insure/guides/initialize-ignition
+
+This guide will help you understand how to display Axle's Ignition session to your users.
+
+Once you have generated an Ignition token, you can guide the user to complete Axle's Ignition session for the user to share their insurance information.
+
+<Tip>
+  Using a clear call to action alongside a description of why you are requesting
+  a user's insurance information will increase the open rate of Ignition. It is
+  also recommended to include a link to Axle's
+  [consumers](https://www.axle.insure/consumers) page in case your users have
+  additional questions. Reach out to the Axle team for any guidance on how to
+  design the best experience. We would love to help!
+</Tip>
+
+### Open Ignition in new window
+
+<Steps>
+  <Step title="Open Ignition in new window">
+    Add link to the the constructed `ignitionUri` using an anchor tag or
+    other mechanism.
+
+    ```HTML
+    <a
+      href="https://ignition.axle.insure/?token={ignitionToken}"
+      target="_blank"
+    >
+      Share your insurance via Axle
+    </a>
+    ```
+  </Step>
+
+  <Step title="Process Ignition completion">Once a user completes the Ignition session, capture the `authCode` by either handling the parameters after Ignition redirects back to your application using the specified `redirectUri` or processing the `ignition.completed` webhook event.</Step>
+</Steps>
+
+<Tip>
+  This method is best used for **asynchronous** user interactions such as via
+  email, SMS, push notification, etc. that do not require immediate user action
+  after insurance verification.
+</Tip>
+
+### Web: Display Ignition in iframe
+
+<Steps>
+  <Step title="Open iframe">
+    Initialize the constructed `ignitionUri` within an iframe modal.
+
+    <Note>
+      If you would like to receive `MessageEvent` messages to your main application Window from Ignition, you must specify an `origin` as a URL parameter when initalizing Ignition. The origin should not include any path, just the base domain as a URI.
+
+      Example: `https://ignition.axle.insure/?origin=http://example.com`
+    </Note>
+
+    <Tip>
+      Axle recommends setting up an iframe in your application's client that is full viewport width and height, as Ignition is optimized for responsiveness across all viewports.
+
+      For the best experience, you can set the background color and opacity (allowing a peek at your application's views or components) of Ignition. Contact the Axle team to enable this configuration!
+    </Tip>
+  </Step>
+
+  <Step title="Listen for MessageEvent">Implement `window.addEventListener` to listen for Window `MessageEvent`. For added security, verify the origin of the message is the Axle Ignition base domain (e.g., `https://ignition.axle.insure`)</Step>
+
+  <Step title="Process Ignition event">
+    Process each Ignition event in your application's client. For example, when a user completes Ignition, process the event with `status=complete` by sending the `authCode` to your application's protected
+    services to be exchanged for an `accessToken`.
+  </Step>
+</Steps>
+
+```HTML Page with iframe and eventListener (example)
+<html>
+  <head>
+    <script>
+      window.addEventListener("message", (message) => {
+        if (event.origin === "https://ignition.axle.insure") {
+          switch (message.data.status) {
+            case "complete":
+              console.log("Received completed message from Axle Ignition...", message.data);
+              onCompleted(message.data.authCode);
+              break;
+            case "exit":
+              console.log("Received exited message from Axle Ignition...", message.data);
+              onExited(message.data.step);
+              break;
+            case "error":
+              console.log("Received errored message from Axle Ignition...", message.data);
+              onErrored(message.data.message);
+              break;
+            default:
+              console.log("Received unknown message from Axle Ignition...");
+              break;
+          }
+        } else {
+          // Ignore or handle messages from other origins
+        }
+      });
+    </script>
+    <style>
+      .ignition {
+        z-index: 999; /* Bring modal to front of page */
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      src="https://ignition.axle.insure/?token=ign_GZQkqPDF7JSY8vJnSU9LP&origin=http://example.com"
+      class="ignition"
+    ></iframe>
+  </body>
+</html>
+```
+
+### Mobile: Display Ignition in native view
+
+<Steps>
+  <Step title="Open webview">
+    * On iOS, open the constructed `ignitionUri` within the natively supported
+      `ASWebAuthentication` session ([full
+      documentation](https://developer.apple.com/documentation/authenticationservices/authenticating_a_user_through_a_web_service)).
+    * On Android, open the constructed `ignitionUri` within `Chrome Custom Tabs`
+      ([full
+      documentation](https://developer.chrome.com/docs/android/custom-tabs/integration-guide/))
+      to create an in-app session and Android App Links ([full
+      documentation](https://developer.android.com/training/app-links)) to
+      deep-link back into your application.
+  </Step>
+
+  <Step title="Process Ignition event">
+    Process each Ignition event that is returned to your application's client.
+    For example, when a user completes Ignition, process the event with
+    `status=complete` by sending the `authCode` to your application's protected
+    services to be exchanged for an `accessToken`.
+  </Step>
+</Steps>
+
+<Check>
+  **Congrats!**
+
+  At this stage the user will now be able to securely connect their insurance account
+  via Axle 🎉.
+</Check>
+
+
+# Overview
+Source: https://docs.axle.insure/guides/monitoring
+
+Receive proactive notifications for updates to an insurance policy, such as policy cancellation or change in coverages.
+
+<Warning>
+  Monitoring is not enabled by default. It requires user consent and must be
+  enabled for your client to receive account and policy events. Please contact
+  the Axle team if you would like to enable this feature!
+</Warning>
+
+<Steps>
+  <Step title="Configure Ignition to receive webhooks" titleSize="h3">
+    Ensure that the request made to generate an Ignition token includes the webhook URL where you would like to receive notifications.
+
+    <Note>
+      <Snippet file="custom-webhooks.mdx" />
+    </Note>
+
+    ```bash Request Sample: cURL
+    curl --request POST \
+      --url https://api.axle.insure/ignition \
+      --header 'Content-Type: application/json' \
+      --header 'x-client-id: cli_mZj6YGXhQyQnccN97aXbq' \
+      --header 'x-client-secret: RZM-5BErZuChKqycbCS1O' \
+      --data '{
+        "webhookUri": "https://example.com/webhook",
+        "user": {
+          "id": "usr_xyz"
+        }
+      }'
+    ```
+
+    <Tip>
+      Notifications can also be sent to your organization via other communication
+      channels such as email or Slack. Please contact the Axle team to configure
+      which events should be sent to each channel. All events will be sent via
+      webhook if a `webhookUri` is provided.
+    </Tip>
+  </Step>
+
+  <Step title="Store `accessToken` for future access">
+    The `accessToken` and `account` or `policy` you received via [Exchange Token](/api-reference/tokens/exchange-token) must be stored by your application to access updated Account or Policy objects.
+
+    <Tip>
+      It is recommended to store the `accessToken` alongside your application's user identifier. All Account and Policy events return the `user.id` specified when generating an Ignition token, so this will improve retrievability.
+    </Tip>
+  </Step>
+
+  <Step title="Process Account and Policy events" titleSize="h3">
+    Notifications will be triggered by the following events and will need to be processed by your application.
+
+    * [Account events](/guides/account-events)
+      * `account.modified`: Updates made to identifying details for the insurance account (e.g., name, email, phone)
+      * `account.disconnected`: The account and any connected policies are no longer being monitored by Axle
+    * [Policy events](/guides/policy-events)
+      * `policy.modified`: Updates made to insurance policy, such as policy cancellation or change in coverages
+  </Step>
+
+  <Step title="Retrieve Account or Policy object" titleSize="h3">
+    For security, Account and Policy events do not include the entire Account and Policy objects, but include a `ref` to identify which Account or Policy is impacted by this event. You can retrieve the object via this identifier and the `accessToken` stored in your application.
+
+    <Info>
+      Axle will continue refreshing the Account and Policy objects even if these
+      events are not triggered. Refer to the `refreshedAt` date on the Account and
+      Policy to determine when the data was last successfully retrieved from the
+      insurance carrier.
+    </Info>
+  </Step>
+
+  <Step title="Validate against requirements and contact user if action is required" titleSize="h3">
+    `policy.modified`: Validate updated Policy against your application's requirements. If policy does not meet requirements, ask user to complete new Axle Ignition session.
+
+    `account.disconnected`: Ask user to complete new Axle Ignition session. See [Account events](/guides/account-events) for additional guidance on messaging.
+
+    Key considerations:
+
+    * If the user reconnects the same insurance account and policy, Axle will merge the updated information with any existing Account or Policy objects.
+    * If your application only requires a single insurance policy to be monitored per user, you can specify an `accessToken` when generating a new Ignition token (see [Start Ignition](/api-reference/ignition/start-ignition) for more details), which will trigger Axle to automatically stop monitoring on the current insurance account if the user connects a new account.
+  </Step>
+
+  <Step title="If needed, stop monitoring for user's `accessToken`" titleSize="h3">
+    When monitoring is no longer required for a specific user, such as when a loan is no longer being tracked or a driver is offboarded from a platform, you can de-scope monitoring from the `accessToken` stored for that user. See [Descope Token](/api-reference/tokens/descope-token) for more details.
+  </Step>
+</Steps>
+
+
+# Axle for Platforms
+Source: https://docs.axle.insure/guides/platform-integration
+
+Integrate Axle's API into your platform, to provide instant insurance verification solutions for your customers.
+
+## What is a platform?
+
+* Our platform partners are typically software providers that provide many services to their customers, and want to offer Axle as a feature or add-on  of their platform.
+* For example, a dealership management system might be a platform with many dealerships as customers.
+  * These dealerships want to use Axle to verify insurance information for their own users, but may not want to setup Axle themselves.
+  * As they are already accustomed to using certain systems, it will be easier for them to use Axle if it is embedded into those systems.
+
+## How does a platform use Axle?
+
+In the Axle system, a platform's customers are referred to as `destination clients`.
+The platform is responsible for onboarding destination clients to Axle, and then can make requests to Axle's APIs on behalf of the destination client.
+
+Platforms can configure a new destination client using the [`POST /platform/clients`](/api-reference/platform/create-client) endpoint.
+This will return a unique `id` for your new destination client, which the platform should store in their database alongside their internal unique identifier for the destination client,
+because it will be used to authorize requests to Axle's APIs on behalf of the destination client.
+
+Platforms should integrate Axle into their product or service using the process outlined in Axle's [Quickstart](/guides/quickstart) guide.
+The only major difference is that in addition to providing the `x-client-id` and `x-client-secret` headers to authorize each request,
+the platform should also provide the destination client `id` in the additional `x-destination-client-id` header.
+
+<Tip>
+  If you have not been sent your `x-client-id` and `x-client-secret`, please
+  reach out to the Axle team!
+</Tip>
+
+## Onboarding a destination client
+
+### Capture interest in Axle
+
+Setup a landing page or self-service mechanism to capture interest in instant insurance verification through Axle by your customers, partners, or any other dependent services.
+
+### Register a destination client with Axle
+
+Once a service has expressed interest in leveraging Axle, use the [`POST /platform/clients`](/api-reference/platform/create-client) endpoint to register it as a new destination client.
+
+When registering a new client, you'll be asked for the following information:
+
+* `displayName`: A human-friendly name for the destination client. This will be used in Ignition and in the Axle dashboard.
+* `entity`: A url-friendly name for the destination client. These must be unique in the Axle system, so it is recommended to use a combination of your platform's name and the destination client's name.
+
+<Info>
+  Your new destination client will inherit the Ignition and notification
+  configurations present on your platform client. Please reach out to the Axle
+  team if you would like to modify this base configuration or change a
+  configuration for a specific destination client.
+</Info>
+
+Store the destination client's `id` in your database alongside your internal unique identifier for the destination client. This will be used to authorize requests to Axle's APIs on behalf of the destination client.
+
+If you do happen to lose the destination client `id`, you can retrieve it using the [`GET /platform/clients`](/api-reference/platform/get-clients) endpoint to get a list of all destination clients registered with your platform.
+
+### Make requests on behalf of destination client
+
+You can now authorize requests to Axle's core APIs on behalf of this destination client by providing the `x-destination-client-id` header. The following endpoints can be authorized on behalf of the destination client:
+
+<CardGroup cols={2}>
+  <Snippet file="core-endpoints.mdx" />
+</CardGroup>
+
+For more details and advice about how to integrate these API calls with your service, please see the [Quickstart](/guides/quickstart) guide.
+
+### Handle redirect, Window MessageEvent, or webhook Ignition events
+
+All events include a `client` parameter with the destination client `id`, so you can easily associate an event with the correct destination client. Please refer to the guides on [Ignition events](/guides/ignition-events) and [Account](/guides/account-events) or [Policy](/guides/policy-events) events for more details.
+
+<Check>
+  **Well Done!**
+
+  Now that you have setup Axle in your platform, be sure to visit the full [📖 API Reference](/api-reference/overview) to see all the data fields that are available.
+</Check>
+
+
+# Policy events
+Source: https://docs.axle.insure/guides/policy-events
+
+This guide will walk you through the various Policy events that may occur when monitoring an insurance policy.
+
+Once an insurance policy is connected through an Ignition session, Axle can monitor that policy for updates. These updates will trigger events that are sent from Axle to your systems via webhook or to your organization via communication channels such as email.
+
+<Info>
+  Policy events are only sent for insurance policies connected through Axle
+  Ignition sessions that are configured with `monitoring` enabled. Please
+  contact the Axle team if you would like to enable this feature!
+</Info>
+
+## Webhooks
+
+<Tip>
+  You must specify a `webhookUri` when generating an Ignition token to receive
+  webhook events. See [Start Ignition](/api-reference/ignition/start-ignition)
+  for more details.
+
+  <Snippet file="custom-webhooks.mdx" />
+</Tip>
+
+A `POST` request will be sent to the `webhookUri` with the following payload. All events will include `client`, `account`, `ref` (Policy object identifier), `user` (optionally specified when generating Ignition token), and `metadata` (optionally specified when generating Ignition token).
+
+```json Example webhook payload
+{
+  "id": "<event_id>",
+  "type": "policy.modified",
+  "data": {
+    "client": "<client-id>",
+    "account": "<account-id>",
+    "ref": "pol_Z4ni-JHBvkn9PlKJHPEwk",
+    "user": {},
+    "metadata": {},
+    ...{ parameters }
+  },
+  "createdAt": "2022-10-05T14:48:00.000Z"
+}
+```
+
+### policy.modified
+
+This event type indicates details on the Policy changed. Refer to [Policy](/api-reference/policies/policy) for more details on the fields that can be modified.
+
+<Note>
+  {" "}
+
+  Axle performs safety checks on policy modifications before sending a `policy.modified`
+  event. This may cause a short delay between when policy information was refreshed
+  from the carrier and when you receive notification of the event.{" "}
+</Note>
+
+#### Special Policy Changes
+
+<AccordionGroup>
+  <Accordion title="Policy isActive changes to null">
+    If a `policy.modified` [event](/guides/policy-events) indicates that a policy’s `isActive` field has changed to `null`, then
+    the policy may have been removed from the account. It is recommended to reach out to the user to re-connect the policy for the existing
+    account or link a new account.
+  </Accordion>
+</AccordionGroup>
+
+
+# Policy Validation (Beta)
+Source: https://docs.axle.insure/guides/policy-validation
+
+Evaluate a set of Rules against a policy to determine if your application's requirements are met.
+
+## Overview
+
+When embedding insurance verification into your application, you may want to evaluate whether a shared insurance policy meets your business' requirements. Each supported Rule is an individual check evaluated against the [Policy](/api-reference/policies/policy) object to determine if the Policy meets a certain requirement or set of requirements.
+
+For example, the `policy-active` Rule checks if the policy is currently active, evaluating to `pass` if the `isActive` field of the policy is `true` and `fail` if it is `false`. If `isActive` is `null` (not provided by the insurance carrier), this Rule will resolve to `unknown`.
+
+Some Rules are more complex, providing additional insight not found on the Policy object. For example, the `rental-covered-for-collision` Rule provides guidance on whether a policy affords coverage for collision damage when an insured is driving a rental vehicle.
+
+Some Rules require additional input to be evaluated. For example, the `expiration-date-comparison` Rule requires an input date to compare against the policy's expiration date. For more details on the additional inputs that a Rule may require, refer to [Supported Rules](/guides/policy-validation#supported-rules).
+
+Each Rule evaluates to one of the following statuses:
+
+| Status    | Description                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------- |
+| `pass`    | The policy meets all requirements of the Rule                                                             |
+| `fail`    | The policy does not meet all the requirements of the Rule                                                 |
+| `caution` | The policy only partially meets the requirements of the Rule or the Rule returns an inconclusive outcome. |
+| `unknown` | Not enough data was available to determine the outcome of the Rule                                        |
+
+## Requesting Evaluation Rules
+
+You can request that a Policy be evaluated against a specified set of Rules through the [Validate Policy](/api-reference/policies/validate-policy) endpoint. Each Rule you requested will be run, and you'll receive a response with an overall status determination of either `pass`, `fail`, or `caution`.
+
+* `pass` means that the policy succeded in passing against all of the specified Rules.
+* `fail` means that one or more specified Rules evaluated to a status of `fail`.
+* `caution` means that one or more specified Rules evaluated to a status of `caution`. In most cases, it is recommended to complete a manual review of the policy.
+
+The response also contains two other fields:
+
+* `summary` - An object containing the names of all Rules on the policy and their resolved statuses.
+* `rules` - An object containing the names of each Rules and their run details.
+
+<CodeGroup>
+  ```json Overall Status: Pass
+  {
+    "status": "pass",
+    "summary": {
+      "policy-active": "pass",
+      "rental-covered-for-collision": "pass",
+    },
+    "rules": {
+      "policy-active":{
+        "status": "pass",
+        "metadata": {...},
+      },
+      "rental-covered-for-collision": {
+        "status": "pass",
+        "breakdown": {...},
+        "metadata": {...}
+      }
+    }
+  }
+  ```
+
+  ```json Overall Status: Fail
+  {
+    "status": "fail",
+    "summary": {
+      "policy-active": "pass",
+      "rental-covered-for-collision": "fail",
+    },
+    "rules": {
+      "policy-active":{
+        "status": "pass",
+        "metadata": {...},
+      },
+      "rental-covered-for-collision": {
+        "status": "fail",
+        "breakdown": {...},
+        "metadata": {...}
+      }
+    }
+  }
+  ```
+</CodeGroup>
+
+## Supported Rules
+
+<Info>
+  The Axle team is actively working on adding additional supported Rules. Please
+  reach out with any suggestions!
+</Info>
+
+<AccordionGroup>
+  <Accordion title="Policy is Active">
+    ### `policy-active`
+
+    Evaluates whether the policy is currently active.
+
+    | Status    | Cause                                                                                                 |
+    | --------- | ----------------------------------------------------------------------------------------------------- |
+    | `pass`    | The policy is currently active                                                                        |
+    | `fail`    | The policy is not currently active                                                                    |
+    | `caution` | The `isActive` field is `null`, meaning Axle could not confirm the `isActive` status with the carrier |
+    | `unknown` | The `isActive` field is `undefined`, meaning it's a manual policy                                     |
+
+    ```typescript Example Rule
+    "policy-active": {
+      "status": "pass",
+      "metadata": {
+        "isActive": true
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Rental Vehicle is Covered For Collision Damage">
+    ### `rental-covered-for-collision`
+
+    Evaluates the likelihood that the policy provides coverage for collision damage when an insured is driving a rental vehicle, based on the collision coverage available on the policy and the policy terms of insurance agreements similar to the one used by this policy.
+
+    There are three ways that a user’s auto insurance policy may cover collision damage to a rental vehicle.
+
+    1. Their policy includes collision coverage and personal collision coverage extends to a rental vehicle.
+    2. Their policy is registered in a state in which policies are required to cover collision damage to a rental vehicle under property damage liability terms.
+    3. Their policy is registered in a state in which policies are required to cover collision damage to a rental vehicle under an endorsement.
+
+    If any of these are true, then the `rental-covered-for-collision` Rule resolves to `pass`.
+
+    #### Rental Coverage Validation AI
+
+    In order to determine if a policy meets these criteria, Axle's Validation AI matches the auto policy to a repository of up-to-date policy agreements (also known as forms) as well as any relevant state regulations, and then synthesizes these resources into a recommendation.
+
+    <Warning>
+      The `rental-covered-for-collision` recommendation may not apply the following scenarios:
+
+      * long term rentals (greater than 30 days)
+      * rental of medium or heavy duty vehicles (above 10,000 lbs)
+      * use of temporary substitute vehicles (such as replacement or loaner vehicle)
+      * use of rental vehicle for TNC, DNC, or other auto business
+      * rentals outside of the continental United States
+
+      The recommendation made by the Rental Coverage Validation AI should not be treated as legal advice. It is made on a "best-effort" basis. When messaging the recommendation to your application's user,
+    </Warning>
+
+    | Status    | Cause                                                                                                                                                                  |
+    | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `pass`    | The policy is likely to cover an insured for collision damage to their rental vehicle either because of their personal collision coverage or due to state regulations. |
+    | `fail`    | The policy is unlikely to provide coverage for collision damage to a rental vehicle.                                                                                   |
+    | `caution` | The Rental Coverage Validation AI is not confident in its recommendation.                                                                                              |
+    | `unknown` | The policy cannot be matched to the required resources to make a recommendation.                                                                                       |
+
+    This Validation also returns a message and message code, which can be used to explain to the user why the policy is or is not likely to cover collision damage to a rental vehicle.
+
+    | Message Code                        | Evaluation Status | Message                                                                                                                                                     |
+    | ----------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | coll-extends-to-rental              | `pass`            | The policy has collision coverage and the matching policy agreements indicate that collision coverage extends to rental vehicles.                           |
+    | pd-covers-rental-collision          | `pass`            | The policy is underwritten in a state in which policies are required to cover collision damage under property damage liability terms.                       |
+    | endorsement-covers-rental-collision | `pass`            | The policy is underwritten in a state in which policies are required to cover collision damage under an endorsement.                                        |
+    | coll-extends-to-rental-with-caution | `caution`         | The policy has collision coverage, but the matching policy agreements have conflicting answers about whether collision coverage extends to rental vehicles. |
+    | coll-extends-to-rental-with-unknown | `unknown`         | The policy has collision coverage, but there is not enough information to determine if the policy extends collision coverage to rental vehicles.            |
+    | coll-does-not-extend-to-rental      | `fail`            | The policy has collision coverage, but the matching policy agreements indicate that collision coverage does not extend to rental vehicles.                  |
+    | coll-not-present                    | `fail`            | The policy does not have collision coverage, and therefore cannot extend collision coverage to rental vehicles.                                             |
+    | coll-presence-unknown               | `unknown`         | It is unknown if the policy has collision coverage, and therefore it is unknown if the policy extends collision coverage to rental vehicles.                |
+
+    ```typescript Example Rule
+    "rental-covered-for-collision": {
+      "status": "pass",
+      "message": {
+        "code": "...",
+        "displayText": "..."
+      }
+      "breakdown": {
+        "collision-exists": {
+          "value": "pass",
+          "metadata": {
+            "coverages": [
+              {
+                "code": "COLL",
+                "label": "Collision",
+                "deductible": 375,
+                "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+              },
+              ...
+            ]
+          }
+          "collision-coverage-extends-to-rental": {
+            "status": "pass",
+            "metadata": {
+              "carrier": "state-farm",
+              "state": "NY"
+            }
+          },
+          "property-damage-covers-rental-collision": {
+            "status": "pass",
+            "metadata": {
+              "coverages": [
+                {
+                  "code": "PD",
+                  "label": "Property Damage",
+                  "limitPerAccident": 50000,
+                  "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+                }
+              ],
+              "state": "NY"
+            }
+          },
+          "endorsement-covers-rental-collision": {
+            "status": "pass",
+            "metadata": {
+              "state": "NY"
+            }
+          }
+        }
+      },
+      "metadata": {
+      }
+    }
+    ```
+
+    #### Testing in Sandbox
+
+    All sandbox `Auto` policies currently support policy validation testing, but we've also curated a special set of test policies specifically to provide options for testing the various outcomes of the `rental-covered-for-collision` Rule.
+
+    Enter the following credentials into an ignition session, and then select the policy labeled with the message code you would like to test. The message codes and their explanations are listed in the table above.
+
+    ```
+    username: user-rental-cover
+    password: pass-rental-cover
+    ```
+  </Accordion>
+
+  <Accordion title="Policy Expiration Date is After Provided Date">
+    ### `expiration-date-comparison`
+
+    Given an input date, evaluates whether the policy's expiration date is greater than or equal to (on or after) the input date.
+
+    | Status    | Cause                                                                |
+    | --------- | -------------------------------------------------------------------- |
+    | `pass`    | The policy's expiration date is on or after the provided input date. |
+    | `fail`    | The policy's expiration date is before the provided input date.      |
+    | `unknown` | The policy's expiration date is `null`.                              |
+
+    This Rule requires additional input to be evaluated. Specifically, the `input` must include a `date` property as an ISO 8601 string, representing the date to compare against the policy's expiration date.
+
+    For example, valid input dates could be `2025-01-01` or `2025-01-01T00:00:00.000Z`. If an invalid `date` is provided, this Rule will return a `400` response code.
+
+    ```typescript
+    {
+      "rule": "expiration-date-comparison",
+      "input": {
+        "date": "2025-01-01"
+      }
+    }
+    ```
+
+    The returned evaluation will include
+
+    * The policy's expiration date.
+    * The input date that was provided.
+
+    ```typescript
+    "expiration-date-comparison": {
+      "status": "pass",
+      "metadata": {
+        "policyExpirationDate": "2025-02-01",
+        "input": {
+          "date": "2025-01-01"
+        }
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Collision Coverage Meets Requirements">
+    ### `collision-coverage-meets-requirements`
+
+    Evaluates whether the policy has collision coverage and if the coverage meets specific deductible requirements. This rule can evaluate coverage requirements for a specific vehicle (using VIN) or for the entire policy.
+
+    **Input Parameters**
+
+    * `vin` (optional): The Vehicle Identification Number to check for collision coverage specific to a vehicle.
+    * `deductible` (optional): A specific collision deductible amount you want to verify against the policy.
+
+    **Evaluation Criteria**
+
+    The Rule is evaluated based on the following two criteria. Both of these criteria must be true for the `collision-coverage-meets-requirements` Rule to resolve to `pass`.
+
+    1. `collision-exists`: Determines if collision coverage is present on the policy for any vehicle or, if a `vin` is provided, for a specified vehicle.
+
+    2. `collision-deductible-comparison` (optional): Verifies if the provided `deductible` is less than or equal to the deductible specified in the collision coverage of the policy. This criteria will only run if `collision-exists` results in a `pass` and the optional `deductible` is provided.
+       * If no `vin` is provided, the provided `deductible` will be verified against all collision coverages listed on the policy.
+       * If a `vin` is provided, the provided `deductible` will be verified against only the collision coverage listed for the specified vehicle.
+
+    | Status    | Cause                                                                                                          |
+    | --------- | -------------------------------------------------------------------------------------------------------------- |
+    | `pass`    | The policy has collision coverage and meets all specified requirements (`deductible` and/or `vin` if provided) |
+    | `fail`    | The policy either lacks collision coverage or doesn't meet the specified deductible requirements               |
+    | `unknown` | Not enough information was available to evaluate the coverage requirements                                     |
+
+    This Rule also returns a message and message code, which can be used to explain to the user why the Rule failed to result in a `pass`.
+
+    | Message Code                    | Evaluation Status | Message                                                                                                                     |
+    | ------------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
+    | coll-exists                     | `pass`            | The COLL coverage exists on this policy.                                                                                    |
+    | coll-exists-for-vin             | `pass`            | The COLL coverage exists on this policy for the specified vehicle.                                                          |
+    | coll-valid-deductible           | `pass`            | The COLL coverage(s) on this policy have deductible(s) less than or equal to \[inputDeductible].                            |
+    | coll-valid-deductible-for-vin   | `pass`            | The COLL coverage(s) on this policy for this specified vehicle have deductible(s) less than or equal to \[inputDeductible]. |
+    | coll-does-not-exist             | `fail`            | The COLL coverage does not exist on this policy.                                                                            |
+    | coll-does-not-exist-for-vin     | `fail`            | The COLL coverage does not exist on this policy for the specified vehicle.                                                  |
+    | coll-invalid-deductible         | `fail`            | The COLL coverage(s) on this policy all have deductibles greater than \[inputDeductible].                                   |
+    | coll-invalid-deductible-for-vin | `fail`            | The COLL coverage(s) on this policy for this specified vehicle all have deductibles greater than \[inputDeductible].        |
+    | coll-unknown-deductible         | `unknown`         | The COLL coverage(s) on this policy have unknown deductibles.                                                               |
+    | coll-unknown-vin                | `unknown`         | The Axle Policy has incomplete property VIN data. Validation cannot be performed.                                           |
+
+    **Example Usage**
+
+    This example Rule will verify if the policy contains collision coverage for the vehicle with the given `vin` and that the `deductible` for that coverage is less than or equal to \$1,000.
+
+    ```typescript Example Rule Request
+    {
+      rule: "collision-coverage-meets-requirements",
+      input: {
+        vin: "5FNRL38209B014050",
+        deductible: 1000
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "collision-coverage-meets-requirements": {
+          status: "pass",
+          metadata: {
+            input: {
+              vin: "5FNRL38209B014050",
+              deductible: 1000
+            }
+          },
+          breakdown: {
+            "collision-exists": {
+              status: "pass",
+              metadata: {
+                coverages: [
+                  {
+                    code: "COLL",
+                    label: "Collision",
+                    deductible: 500,
+                    property: "prp_tmGUxLpgHjmW9r6M6WjhS",
+                  },
+                ],
+                input: {
+                  coverageCode: "COLL",
+                  vin: "5FNRL38209B014050",
+                }
+              },
+            },
+            "collision-deductible-comparison": {
+              status: "pass",
+              metadata: {
+                coverages: [
+                  {
+                    code: "COLL",
+                    label: "Collision",
+                    deductible: 500,
+                    property: "prp_tmGUxLpgHjmW9r6M6WjhS",
+                  },
+                ],
+                input: { deductible: 1000, vin: "5FNRL38209B014050" },
+              },
+            },
+          },
+          message: {
+            code: "coll-valid-deductible-for-vin",
+            displayText:
+              "The COLL coverage(s) on this policy for this specified vehicle have deductible(s) less than or equal to $1000.",
+          },
+        }
+    ```
+  </Accordion>
+
+  <Accordion title="Comprehensive Coverage Meets Requirements">
+    ### `comprehensive-coverage-meets-requirements`
+
+    Evaluates whether the policy has comprehensive coverage and if the coverage meets specific deductible requirements. This rule can evaluate coverage requirements for a specific vehicle (using VIN) or for the entire policy.
+
+    **Input Parameters**
+
+    * `vin` (optional): The Vehicle Identification Number to check for comprehensive coverage specific to a vehicle.
+    * `deductible` (optional): A specific comprehensive deductible amount you want to verify against the policy.
+
+    **Evaluation Criteria**
+
+    The Rule is evaluated based on the following two criteria. Both of these criteria must be true for the `comprehensive-coverage-meets-requirements` Rule to resolve to `pass`.
+
+    1. `comprehensive-exists`: Determines if comprehensive coverage is present on the policy for any vehicle or, if a `vin` is provided, for a specified vehicle.
+
+    2. `comprehensive-deductible-comparison` (optional): Verifies if the provided `deductible` is less than or equal to the deductible specified in the comprehensive coverage of the policy. This criteria will only run if `comprehensive-exists` results in a `pass` and the optional `deductible` is provided.
+
+    * If no `vin` is provided, the provided `deductible` will be verified against all comprehensive coverages listed on the policy.
+    * If a `vin` is provided, the provided `deductible` will be verified against only the comprehensive coverage listed for the specified vehicle.
+
+    | Status    | Cause                                                                                                              |
+    | --------- | ------------------------------------------------------------------------------------------------------------------ |
+    | `pass`    | The policy has comprehensive coverage and meets all specified requirements (`deductible` and/or `vin` if provided) |
+    | `fail`    | The policy either lacks comprehensive coverage or doesn't meet the specified deductible requirements               |
+    | `unknown` | Not enough information was available to evaluate the coverage requirements                                         |
+
+    This Rule also returns a message and message code, which can be used to explain to the user why the Rule failed to result in a `pass`.
+
+    | Message Code                    | Evaluation Status | Message                                                                                                                     |
+    | ------------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
+    | comp-exists                     | `pass`            | The COMP coverage exists on this policy.                                                                                    |
+    | comp-exists-for-vin             | `pass`            | The COMP coverage exists on this policy for the specified vehicle.                                                          |
+    | comp-valid-deductible           | `pass`            | The COMP coverage(s) on this policy have deductible(s) less than or equal to \[inputDeductible].                            |
+    | comp-valid-deductible-for-vin   | `pass`            | The COMP coverage(s) on this policy for this specified vehicle have deductible(s) less than or equal to \[inputDeductible]. |
+    | comp-does-not-exist             | `fail`            | The COMP coverage does not exist on this policy.                                                                            |
+    | comp-does-not-exist-for-vin     | `fail`            | The COMP coverage does not exist on this policy for the specified vehicle.                                                  |
+    | comp-invalid-deductible         | `fail`            | The COMP coverage(s) on this policy all have deductibles greater than \[inputDeductible].                                   |
+    | comp-invalid-deductible-for-vin | `fail`            | The COMP coverage(s) on this policy for this specified vehicle all have deductibles greater than \[inputDeductible].        |
+    | comp-unknown-deductible         | `unknown`         | The COMP coverage(s) on this policy have unknown deductibles.                                                               |
+    | comp-unknown-vin                | `unknown`         | The Axle Policy has incomplete property VIN data. Validation cannot be performed.                                           |
+
+    **Example Usage**
+
+    This example Rule will verify if the policy contains comprehensive coverage for the vehicle with the given `vin` and that the `deductible` for that coverage is less than or equal to \$1,000.
+
+    ```typescript Example Rule Request
+    {
+      rule: "comprehensive-coverage-meets-requirements",
+      input: {
+        vin: "5FNRL38209B014050",
+        deductible: 1000
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "comprehensive-coverage-meets-requirements": {
+      status: "pass",
+      metadata: {
+        input: {
+            vin: "5FNRL38209B014050",
+            deductible: 1000
+          }
+      },
+      breakdown: {
+        "comprehensive-exists": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "COMP",
+                label: "Comprehensive",
+                deductible: 500,
+                property: "prp_tmGUxLpgHjmW9r6M6WjhS",
+              },
+            ],
+            input: {
+              coverageCode: "COMP",
+              vin: "5FNRL38209B014050",
+            }
+          },
+        },
+        "comprehensive-deductible-comparison": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "COMP",
+                label: "Comprehensive",
+                deductible: 500,
+                property: "prp_tmGUxLpgHjmW9r6M6WjhS",
+              },
+            ],
+            input: { deductible: 1000, vin: "5FNRL38209B014050" },
+          },
+        },
+      },
+      message: {
+        code: "comp-valid-deductible-for-vin",
+        displayText:
+          "The COMP coverage(s) on this policy for this specified vehicle have deductible(s) less than or equal to $1000.",
+      },
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Bodily Injury Coverage Meets Requirements">
+    ### `bodily-injury-coverage-meets-requirements`
+
+    Evaluates whether the policy has bodily injury coverage and if the coverage meets specific limit requirements.
+
+    **Input Parameters**
+
+    * `limitPerPerson` (optional): The limitPerPerson amount you want to verify against the policy.
+    * `limitPerAccident` (optional): The limitPerAccident amount you want to verify against the policy.
+
+    **Evaluation Criteria**
+
+    The Rule is evaluated based on the following criteria, depending on if any limit was passed in. If no limits are passed in, then the Rule is evaluated based off if bodily injury coverage exists on the policy.
+
+    1. `bodily-injury-exists`: Determines if bodily injury coverage is present on the policy.
+
+    2. `bodily-injury-limit-per-person-comparison` (if applicable): Determines if the `limitPerPerson` specified on the policy's bodily injury coverage is greater than or equal to the provided `limitPerPerson`.
+
+    3. `bodily-injury-limit-per-accident-comparison` (if applicable): Determines if the `limitPerAccident` specified on the policy's bodily injury coverage is greater than or equal to the provided `limitPerAccident`.
+
+    | Status    | Cause                                                                                           |
+    | --------- | ----------------------------------------------------------------------------------------------- |
+    | `pass`    | The policy has bodily injury coverage and meets all specified limit requirements                |
+    | `fail`    | The policy either lacks bodily injury coverage or doesn't meet the specified limit requirements |
+    | `unknown` | Not enough information was available to evaluate the coverage requirements                      |
+
+    This Rule also returns a message and message code which can be used to explain to the user why the Rule failed to result in a `pass`.
+
+    | Message Code                             | Evaluation Status | Message                                                                                                                                         |
+    | ---------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+    | bodily-injury-exists                     | `pass`            | The BI coverage exists on this policy.                                                                                                          |
+    | bodily-injury-valid-limit-per-person     | `pass`            | The BI coverage on this policy has a `limitPerPerson` greater than or equal to \[inputLimitPerPerson].                                          |
+    | bodily-injury-valid-limit-per-accident   | `pass`            | The BI coverage on this policy has a `limitPerAccident` greater than or equal to \[inputLimitPerAccident].                                      |
+    | bodily-injury-valid-limits               | `pass`            | The BI coverage on this policy has limits greater than or equal to \[inputLimitPerPerson] per person and \[inputLimitPerAccident] per accident. |
+    | bodily-injury-invalid-limit-per-person   | `fail`            | The BI coverage on this policy has a `limitPerPerson` less than to \[inputLimitPerPerson].                                                      |
+    | bodily-injury-invalid-limit-per-accident | `fail`            | The BI coverage on this policy has a `limitPerAccident` less than to \[inputLimitPerAccident].                                                  |
+    | bodily-injury-invalid-limits             | `fail`            | The BI coverage on this policy has limits less than to \[inputLimitPerPerson] per person and \[inputLimitPerAccident] per accident.             |
+    | bodily-injury-unknown-limit-per-person   | `unknown`         | The BI coverage on this policy has a `limitPerPerson` that is unknown.                                                                          |
+    | bodily-injury-unknown-limit-per-accident | `unknown`         | The BI coverage on this policy has a `limitPerAccident` that is unknown.                                                                        |
+    | bodily-injury-unknown-limits             | `unknown`         | The BI coverage on this policy has unknown limits.                                                                                              |
+
+    **Example Usage**
+
+    This example Rule will verify if the policy has bodily injury coverage and if the limitPerPerson on the coverage is greater than or equal to \$200,000.
+
+    ```typescript Example Rule Request
+    {
+      rule: "bodily-injury-coverage-meets-requirements",
+      input: {
+        limitPerPerson: 200000
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "bodily-injury-coverage-meets-requirements": {
+      status: "pass",
+      metadata: {
+        input: {
+          limitPerPerson: 200000,
+          limitPerAccident: undefined
+        }
+      },
+      breakdown: {
+        "bodily-injury-exists": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "BI",
+                label: "Bodily Injury",
+                limitPerPerson: 250000,
+                limitPerAccident: 500000
+              },
+            ],
+            input: {
+              coverageCode: "BI"
+            }
+          }
+        },
+        "bodily-injury-limit-per-person-comparison": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "BI",
+                label: "Bodily Injury",
+                limitPerPerson: 250000,
+                limitPerAccident: 500000,
+              },
+            ],
+            input: {
+              limitPerPerson: 200000,
+            },
+          },
+        },
+      },
+      message: {
+        code: "bodily-injury-valid-limit-per-person",
+        displayText: "The BI coverage on this policy has a limitPerPerson greater than or equal to $200000.",
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Property Damage Coverage Meets Requirements">
+    ### `property-damage-meets-requirements`
+
+    Evaluates whether the policy has property damage coverage and if the coverage meets specific limit requirements.
+
+    **Input Parameters**
+
+    * `limitPerAccident` (optional): The limitPerAccident amount you want to verify against the policy.
+
+    **Evaluation Criteria**
+
+    The Rule is evaluated based on the following criteria. If no limits are specified in the input, the Rule evaluates solely on the presence of property damage coverage on the policy.
+
+    1. `property-damage-exists`: Determines if property damage coverage is present on the policy.
+
+    2. `property-damage-limit-per-accident-comparison` (if applicable): Determines if the `limitPerAccident` specified on the policy's property damage coverage is greater than or equal to the provided `limitPerAccident`.
+
+    | Status    | Cause                                                                                              |
+    | --------- | -------------------------------------------------------------------------------------------------- |
+    | `pass`    | The policy has property damage coverage and meets all specified limit requirements.                |
+    | `fail`    | The policy either lacks property damage coverage or doesn't meet the specified limit requirements. |
+    | `unknown` | Not enough information was available to evaluate the coverage requirements.                        |
+
+    This Rule also returns a message and message code which can be used to explain to the user why the Rule failed to result in a `pass`.
+
+    | Message Code                               | Evaluation Status | Message                                                                                                    |
+    | ------------------------------------------ | ----------------- | ---------------------------------------------------------------------------------------------------------- |
+    | property-damage-exists                     | `pass`            | The PD coverage exists on this policy.                                                                     |
+    | property-damage-valid-limit-per-accident   | `pass`            | The PD coverage on this policy has a `limitPerAccident` greater than or equal to \[inputLimitPerAccident]. |
+    | property-damage-invalid-limit-per-accident | `fail`            | The PD coverage on this policy has a `limitPerAccident` less than to \[inputLimitPerAccident].             |
+    | property-damage-unknown-limit-per-accident | `unknown`         | The PD coverage on this policy has a `limitPerAccident` that is unknown.                                   |
+
+    **Example Usage**
+
+    This example Rule validates that the policy has property damage coverage and that the coverage's `limitPerAccident` is greater than or equal to \$50,000.
+
+    ```typescript Example Rule Request
+    {
+      rule: "property-damage-coverage-meets-requirements",
+      input: {
+        limitPerAccident: 50000
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "property-damage-coverage-meets-requirements": {
+      status: "pass",
+      metadata: {
+        input: {
+          limitPerAccident: 50000
+        }
+      },
+      breakdown: {
+        "property-damage-exists": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "PD",
+                label: "Property Damage",
+                limitPerAccident: 100000,
+              },
+            ],
+            input: {
+              coverageCode: "PD"
+            }
+          }
+        },
+        "property-damage-limit-per-accident-comparison": {
+          status: "pass",
+          metadata: {
+            coverages: [
+              {
+                code: "PD",
+                label: "Property Damage",
+                limitPerAccident: 100000,
+              },
+            ],
+            input: {
+              limitPerAccident: 50000
+            }
+          }
+        }
+      },
+      message: {
+        code: "property-damage-valid-limit-per-accident",
+        displayText: `The PD coverage on this policy has a limitPerAccident greater than or equal to $50000.`,
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Insureds Match">
+    ### `insureds-match`
+
+    Evaluates whether all of the input insured names are listed on the Axle policy.
+
+    | Status    | Cause                                                                                                                                                                                                                  |
+    | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `pass`    | All of the input insured names are listed on the Axle policy.                                                                                                                                                          |
+    | `caution` | One or more of the input insured names passed a fuzzy match. This occurs when either the input name or Axle policy name is missing an additional first name or middle name (e.g. "John Tracy Smith" vs. "John Smith"). |
+    | `fail`    | One or more of the input insured names were not listed on the Axle policy.                                                                                                                                             |
+    | `unknown` | An error occurred during validation.                                                                                                                                                                                   |
+
+    **Input Parameters**
+
+    * `insuredNames`: An array of full names provided as strings. Each name should be provided in the format `"firstName middleName lastName suffix"`
+
+    <Info>
+      This Rule currently does not support nickname matching. Please contact the Axle team if this is a feature of interest.
+
+      Additionally, it is unlikely that insureds across households will be present on a single insurance policy. Please ensure that the input only contains insured names you expect to be on the policy.
+    </Info>
+
+    **Example Usage**
+
+    ```typescript Example Rule Request
+    {
+      "rule": "insureds-match",
+      "input": {
+        "insuredNames": ["John Tracy Smith", "Alex Jacob Smith", "Jane Doe"]
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "insureds-match": {
+      "status": "fail",
+      "metadata": {
+        "pass": ["John Tracy Smith", "Alex Jacob Smith"],
+        "fail": ["Jane Doe"],
+        "caution": [],
+        "unknown": [],
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Address Match">
+    ### `address-match`
+
+    Evaluates whether input address matches the address that is listed on the Axle policy.
+
+    | Status    | Cause                                                                               |
+    | --------- | ----------------------------------------------------------------------------------- |
+    | `pass`    | Input address matches Axle Policy address                                           |
+    | `caution` | Input and Axle policy `addressLine2` do not match                                   |
+    | `fail`    | Input address does not match Axle Policy address                                    |
+    | `unknown` | There is insufficient information to compare input address and Axle Policy address. |
+
+    **Input Parameters**
+
+    * `address`: Full address provided as a `string` that includes both Address Line 1 and 2 along with city, postal code, and state.
+
+    **Example Usage**
+
+    ```typescript Example Rule Request
+    {
+      "rule": "address-match",
+      "input": {
+        "address": "123 Axle St. NE, Apartment 111, Atlanta, GA 30303"
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "address-match": {
+      "status": "pass",
+      "metadata": {
+        "address" : {
+            "addressLine1": "123 Axle Street NE",
+            "addressLine2": "APT 111",
+            "city": "Atlanta",
+            "state": "GA",
+            "postalCode": "30303",
+            "country": "US"
+        },
+        "input": {
+            "addressLine1": "123 Axle Street NE",
+            "addressLine2": "APT 111",
+            "city": "Atlanta",
+            "state": "GA",
+            "postalCode": "30303",
+            "country": "US"
+        }
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Required Policy Information is Present">
+    ### `required-policy-information-is-present`
+
+    Evaluates if the policy either has (1) certain required fields present OR (2) at least one declarations page. If either sub-rule passes, the overall Rule resolves to `pass`. Otherwise, it resolves to `fail`.
+
+    This Rule combines two separate sub-rules:
+
+    1. `fields-exist` – Verifies that all fields specified by your `requiredFields` input are present on the policy. If every requested field is found, this Rule resolves to `pass`; otherwise, it resolves to `fail` and includes a `missingFields` list in the metadata.
+    2. `declarations-page-exists` – Checks whether the policy has at least one document classified by Axle as a declaration page.
+
+    | Status | Cause                                                                                 |
+    | ------ | ------------------------------------------------------------------------------------- |
+    | `pass` | The policy has all required fields, or there is a declarations page (or both).        |
+    | `fail` | Neither the required fields nor a declarations page could be confirmed on the policy. |
+
+    **Input Parameters**
+
+    * `requiredFields`: An object used to specify which fields must exist on the policy. Each key maps to a boolean (or nested object / array structure) indicating whether that particular field is required. The shape of the object mirrors the Axle Policy Schema.
+
+    Below is an example request specifying the required fields. If either the required fields or the declarations page check is satisfied, the Rule evaluates to `pass`.
+
+    ```typescript Example Rule Request
+    {
+      "rule": "required-policy-information-is-present",
+      "input": {
+         "requiredFields": {
+            "carrier": true,
+            "isActive": true,
+            "policyNumber": true,
+            "expirationDate": true,
+            "properties": [
+              {
+                "data": {
+                  "vin": true
+                }
+              }
+            ],
+            "insureds":[
+              {
+                "firstName": true,
+                "lastName": true
+              }
+            ]
+        }
+      }
+    }
+    ```
+
+    ```typescript Example Rule Response
+    "required-policy-information-is-present": {
+        "status": "pass",
+        "summary": {
+            "required-policy-information-is-present": "pass"
+        },
+        "rules": {
+            "required-policy-information-is-present": {
+                "status": "pass",
+                "breakdown": {
+                    "fields-exist": {
+                        "status": "pass",
+                        "metadata": {
+                            "missingFields": []
+                        }
+                    },
+                    "declarations-page-exists": {
+                        "status": "pass",
+                        "metadata": {
+                            "documents": [
+                                {
+                                    "createdAt": "2025-01-10T16:28:07.089Z",
+                                    "issuedDate": "2024-12-24T00:00:00.000Z",
+                                    "name": "Auto Policy Document Amended",
+                                    "source": "carrier",
+                                    "type": [
+                                        "policy-agreement",
+                                        "declaration-page"
+                                    ],
+                                    "key": "doc_FqDyv9F2b6x5eZ_jokGWU.pdf",
+                                    "effectiveDate": null
+                                }
+                            ]
+                        }
+                    }
+                },
+                "metadata": {}
+            }
+        }
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+
+# Quickstart
+Source: https://docs.axle.insure/guides/quickstart
+
+Axle's powerful API makes it easy for you to quickly retrieve detailed information from your users' insurance policies. Here at Axle, we're champions for consumer data control and privacy, so you'll need to gain consent from the user to access their information.
+
+This is where Ignition - Axle's consumer facing consent widget - comes into
+play. This guide will walk you through setting up Ignition, obtaining access
+tokens, and making requests against the Axle API.
+
+#### How it works
+
+Axle provides a consistent, single point integration to connect
+your users' insurance accounts to your application. To do so, Axle closely
+follows the OAuth 2.0 Authorization Code flow which begins when your user wants
+to connect their insurance account to your application.
+
+<Warning>
+  **Never send requests from your application's client to the Axle API.**
+  Instead, make requests from your application's protected services to avoid
+  exposing your sensitive Axle API credentials.
+</Warning>
+
+### Step 1: Generate an Ignition token
+
+Make a `POST` request to `/ignition`. In return, you'll retrieve an ignitionToken which
+you'll need to pass to your application's client. This token will be used to initialize
+Ignition and allows us to create secure, trackable session with your user. Ignition tokens do not expire.
+
+```bash Request Sample: cURL
+curl --request POST \
+  --url https://api.axle.insure/ignition \
+  --header 'Content-Type: application/json' \
+  --header 'x-client-id: cli_mZj6YGXhQyQnccN97aXbq' \
+  --header 'x-client-secret: RZM-5BErZuChKqycbCS1O' \
+  --data '{
+  "redirectUri": "https://example.com/insurance/success",
+  "webhookUri": "https://example.com/webhook",
+  "user": {"id": "usr_123456789"}
+  }'
+```
+
+<Info>
+  You can specify fields when generating an Ignition token to handle Ignition
+  events (see the guide on [Ignition events](/guides/ignition-events) for more
+  details) as well as attach user information or other metadata (see [Start
+  Ignition](/api-reference/ignition/start-ignition) for more details).
+</Info>
+
+```json Response Example
+{
+  "success": true,
+  "data": {
+    "ignitionToken": "ign_ur7EPeAa0km4wRlDrPJ4Z",
+    "ignitionUri": "https://ignition.axle.insure/?token=ign_ur7EPeAa0km4wRlDrPJ4Z"
+  }
+}
+```
+
+### Step 2: Initialize Ignition and process Ignition events
+
+Here are some common ways you can present Ignition to your application's users:
+
+* **Recommended:** display Ignition at the right step within your application's user experience (such as before booking a rental or closing a loan application) via an iframe or webview
+* Send Ignition URL in an asychronous user communication (such as email or push notification)
+
+<Tip>
+  For guidance on specific implementations based on your application's
+  requirements, refer to the [Initialize Ignition](/guides/initialize-ignition)
+  guide.
+</Tip>
+
+Then, process events generated during the course of the Ignition session. See the [Ignition events](/guides/ignition-events) guide for each Ignition event.
+
+### Step 3: Exchange tokens
+
+Once the user successfully connects their account, you'll receive an authorization
+code (`authCode`) as an Ignition event via redirect parameters, Window MessageEvent, or webhook.
+
+However, for additional security (particularly if the Ignition event is delivered to your application's client), you'll need to exchange the short-lived `authCode` for a long-lived `accessToken` in your application's protected services.
+
+<Note>
+  Each `authCode` expires after 10 minutes so be sure you're exchanging codes in
+  real time.
+</Note>
+
+To do so, make a `POST` request with your `authCode` to `token/exchange`. In
+return you'll receive an `accessToken`, `account` identifier, and list of `policy` identifiers.
+
+```bash Request Sample: cURL
+curl --request POST \
+--url https://api.axle.insure/token/exchange \
+--header 'Content-Type: application/json' \
+--header 'x-client-id: cli_mZj6YGXhQyQnccN97aXbq' \
+--header 'x-client-secret: RZM-5BErZuChKqycbCS1O' \
+--data '{
+"authCode": "cod_LGUgD5ZnqWy3pThdOLUsT"
+}'
+```
+
+```json Response Example
+{
+  "success": true,
+  "data": {
+    "account": "acc_gM2wn_gaqUv76ZljeVXOv",
+    "policies": ["pol_CbxGmGWnp9bGAFCC-eod2"],
+    "accessToken": "tok_IwShXCT_JPr6rmtiCVxcQ"
+  }
+}
+```
+
+### Step 4: Store access credentials
+
+Store the `accessToken`, `account` identifier, and list of `policy` identifiers received in step 4 in your database - these values will be used to access account and policy information for the user going forward.
+
+<Check>
+  **Congrats!**
+
+  You have now received an `accessToken` that represents consent from the user and
+  can now leverage the Axle API to access their insurance data 🎉🎉!
+</Check>
+
+### Step 5: Retrieve the Policy
+
+Now that you have an `accessToken`, you can retrieve the [Policy](/api-reference/policies/policy) object that was shared by the user by making a `GET` request to `policies/{id}` with
+the `accessToken` passed in the `x-access-token` header.
+
+```bash Request Sample: cURL
+curl --request GET \
+  --url https://api.axle.insure/policies/pol_CbxGmGWnp9bGAFCC-eod2 \
+  --header 'Content-Type: application/json' \
+  --header 'x-access-token: tok_IwShXCT_JPr6rmtiCVxcQ' \
+  --header 'x-client-id: cli_mZj6YGXhQyQnccN97aXbq' \
+  --header 'x-client-secret: RZM-5BErZuChKqycbCS1O'
+```
+
+```json Response Example
+{
+  "success": true,
+  "data": {
+    "id": "pol_CbxGmGWnp9bGAFCC-eod2",
+    "accountId": "acc_gM2wn_gaqUv76ZljeVXOv",
+    "type": "auto",
+    "carrier": "state-farm",
+    "policyNumber": "123456789",
+    "isActive": true,
+    "effectiveDate": "2023-10-22T04:00:00.000Z",
+    "expirationDate": "2024-10-22T04:00:00.000Z",
+    "premium": "543.23",
+    "address": {
+      "addressLine1": "123 Fake St.",
+      "addressLine2": "Unit 456",
+      "city": "Atlanta",
+      "state": "Georgia",
+      "postalCode": "30315",
+      "country": "USA"
+    },
+    "properties": [
+      {
+        "id": "prp_uSdzLVpi8c76H7kl6AQ-F",
+        "type": "vehicle",
+        "data": {
+          "bodyStyle": "sedan",
+          "vin": "WDDWJ8EB4KF776265",
+          "model": "C 300",
+          "year": "2019",
+          "make": "Mercedes-Benz"
+          "use": "commute"
+        }
+      }
+    ],
+    "coverages": [
+      {
+        "code": "BI",
+        "label": "Bodily Injury",
+        "limitPerPerson": 250000,
+        "limitPerAccident": 500000
+      },
+      {
+        "code": "PD",
+        "label": "Property Damage",
+        "limitPerAccident": 100000
+      },
+      {
+        "code": "UMBI",
+        "label": "Uninsured Bodily Injury",
+        "limitPerPerson": 100000,
+        "limitPerAccident": 300000
+      },
+      {
+        "code": "COMP",
+        "label": "Comprehensive",
+        "deductible": 500,
+        "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+      },
+      {
+        "code": "COLL",
+        "label": "Collision",
+        "deductible": 500,
+        "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+      }
+    ],
+    "insureds": [
+      {
+        "firstName": "John",
+        "lastName": "Smith",
+        "dateOfBirthYear": "1990",
+        "licenseNo": "•••••1234",
+        "licenseState": "GA",
+        "type": "primary"
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirthYear": "1992",
+        "licenseNo": "•••••5678",
+        "licenseState": "GA",
+        "type": "secondary"
+      }
+    ],
+    "thirdParties": [
+      {
+        "name": "Super Leasing Trust",
+        "type": "lessor",
+        "address": {
+          "addressLine1": "Po Box 105205",
+          "addressLine2": null,
+          "city": "Atlanta",
+          "state": "GA",
+          "postalCode": "30348"
+        },
+        "property": "prp_uSdzLVpi8c76H7kl6AQ-F"
+      }
+    ],
+    "documents": [
+      {
+        "source": "carrier",
+        "name": "Declaration Page",
+        "type": ["declaration-page"],
+        "url": "<signed-url>",
+        "id": "doc_jd73dw6fn02sj28.pdf",
+        "issuedDate": "2023-12-31T00:00:00.000Z",
+        "effectiveDate": "2024-01-02T00:00:00.000Z",
+        "createdAt": "2024-01-01T00:00:00.000Z"
+      }
+    ],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "modifiedAt": "2024-01-01T00:00:00.000Z",
+    "refreshedAt": "2024-01-01T00:00:00.000Z"
+  }
+}
+```
+
+<Check>
+  **Well Done!**
+
+  Be sure to visit the full [📖 API Reference](/api-reference) to learn more about each endpoint and resource!
+</Check>
+
+
+# Sandbox
+Source: https://docs.axle.insure/guides/sandbox
+
+The Axle sandbox can be used to test your integration of Axle's API in your application or platform. All Axle API endpoints can access the sandbox environment.
+
+<Info>
+  If you have not received access to the Axle sandbox, please reach out to the
+  Axle team!
+</Info>
+
+## Accessing the sandbox
+
+```bash Sandbox API
+https://sandbox.axle.insure
+```
+
+```bash Ignition
+https://ignition.sandbox.axle.insure
+```
+
+```bash Dashboard
+https://dashboard.sandbox.axle.insure
+```
+
+## Testing Ignition completions in the sandbox
+
+### Result: `link`
+
+#### Using test credentials to complete Login
+
+1. Once an `Ignition` session has been generated ([more details can be found here](/api-reference/ignition/start-ignition)), select one of the test credentials based on which Axle scenario you would like to test. These credentials can be used for any carrier listed.
+2. Input credentials into login page to simulate connecting to an insurance account for the selected carrier.
+3. If applicable, complete the Ignition session by selecting a policy that you would like to test against.
+
+Congrats! Now you can access sample [Account](/api-reference/accounts/account) or [Policy](/api-reference/policies/policy) objects after exchanging the generated `authCode` for an `accessToken`. See the [Quickstart](/guides/quickstart) guide for more details.
+
+#### Test credentials
+
+**Simple `auto`**
+
+The following credentials will connect to an account with several active `auto` policies.
+
+```
+username: username
+password: password
+```
+
+**Minimum `auto`**
+
+The following credentials will connect to an account with several `auto` policies, one of which has **inactive** status and one which satisfies only the minimum required policy coverage in most states.
+
+```
+username: user-auto-state-minimum
+password: pass-auto-state-minimum
+```
+
+**Simple `home`**
+
+The following credentials will connect to an account with several active `home` policies.
+
+```
+username: user-home
+password: pass-home
+```
+
+**Error**
+
+The following credentials will fail to connect to the Axle service, resulting in an `errored` status for the Ignition session.
+
+```
+username: user-error
+password: pass-error
+```
+
+#### Using test inputs to complete Policy Lookup
+
+1. After generating an `Ignition` session, select one of the below test inputs based on which Axle scenario you would like to test. These inputs can only be used for carriers that support Policy Lookup.
+2. Navigate to a carrier which supports Policy Lookup.
+3. Click on "Search your policy number" to arrive at the Policy Lookup page.
+4. Type in the test inputs and click on "Search" to simulate searching for policy details from the selected carrier.
+
+After seeing the Success page, you can now access sample [Account](/api-reference/accounts/account) or [Policy](/api-reference/policies/policy) objects after exchanging the generated `authCode` for an `accessToken`. See the [Quickstart](/guides/quickstart) guide for more details.
+
+#### Test credentials
+
+**`auto`**
+
+The following test inputs will connect to a sample `auto` policy.
+
+```
+Policy number: A123456789
+Last 5 of your VIN: any 5 digit input (e.g. 12345)
+```
+
+**Error**
+
+The following inputs will fail to connect to the Axle service, resulting in an `errored` status for the Ignition session.
+
+```
+Policy number: error
+Last 5 of your VIN: any 5 digit input (e.g. 12345)
+```
+
+### Result: `manual`
+
+You can complete Ignition sessions manually by selecting "My carrier is not listed" on the carrier selection page and then uploading any document of the allowed types (defaults to `pdf`, `jpg`, `jpeg`, `png`).
+
+<Tip>
+  Your Axle `client` will be configured in the sandbox to mirror what will be
+  used by your application's production environment. Contact the Axle team if
+  you would like to make any changes, such as enabling "manual" Ignition
+  completions.
+</Tip>
+
+#### Sending test documents through Axle's Document AI
+
+If your Axle `client` is configured to used Document AI, you can use the following test documents to complete Ignition sessions and receive the expected Policy response.
+
+<Tabs>
+  <Tab title="Auto policy">
+    <Card title="Identification (ID) card" icon="file" href="https://axle-labs-assets.s3.amazonaws.com/docs/id-card.png" />
+
+    <Card title="Declarations page" icon="file" href="https://axle-labs-assets.s3.amazonaws.com/docs/declarations-page.pdf" />
+  </Tab>
+
+  <Tab title="Home policy">
+    <Info>
+      The Axle team is currently working on providing the right sandbox
+      experience to test Document AI for home policies. You can continue testing
+      via the existing manual process, but stay tuned for updates!
+    </Info>
+  </Tab>
+</Tabs>
+
+## Testing monitoring notifications in the sandbox
+
+After completing an Ignition session and exchanging the `authCode` for an `accessToken`, you can trigger an Account event through [`POST /sandbox/account/{accountId}/event`](/api-reference/sandbox/trigger-account-event) or Policy event through [`POST /sandbox/policies/{policyId}/event`](/api-reference/sandbox/trigger-policy-event).
+
+<Tip>
+  You can also test notifications sent to other communication channels such as
+  email or Slack by making a request to the same Axle API endpoints. Reach out
+  to the Axle team to ensure your `client` is properly configured!
+</Tip>
+
+The following [Account events](/guides/account-events) and [Policy events](guides/policy-events) are supported:
+
+**account.modified**
+
+You can modify Account fields to simulate an `account.modified` event. The following example will change `email`, `firstName`, and `phone` fields on an existing Account.
+
+```
+{
+  "email": "updatedEmail@axle.insure",
+  "firstName": "Jane",
+  "phone" "+14041230101"
+}
+```
+
+**account.disconnected**
+
+You can test `account.disconnected` event by setting the connection status to one of the "inactive" states. Refer to Account object for all the available [cases](/api-reference/accounts/account).
+
+```
+{
+  "connection": {
+      "status": "credentials-expired"
+  }
+}
+```
+
+<Info>
+  When account has been set as `disconnected`, your user will need to complete
+  an Axle Ignition session to reconnect it. If the user reconnects the same
+  insurance account and policy, Axle will merge the updated information with any
+  existing Account or Policy objects. More info on `account.disconnected` can be
+  found [here](/guides/account-events#account-disconnected).
+</Info>
+
+**policy.modified**
+
+You can modify Policy fields to simulate a `policy.modified` event. The following example will set Policy as inactive (e.g., the policy has been cancelled) as well as update the Policy address.
+
+```
+{
+  "isActive": false,
+  "address": {
+      "addressLine1": "New Street",
+      "addressLine2": "New Apt",
+      "city": "Atlanta",
+      "postalCode": "30315",
+      "state": "GA",
+      "country: "USA"
+  }
+}
+```
+
+
+# Security
+Source: https://docs.axle.insure/security
+
+At Axle, security and privacy are at the forefront of everything we do. We leverage the latest in cloud infrastructure and weave secure-by-design and privacy-by-design principles into our engineering DNA.
+
+## Security practices
+
+Security affects everything we do at Axle. We are SOC 2 Type 2 certified and we:
+
+* Force HTTPS on all connections, so data in-transit is encrypted with TLS 1.2.
+* Encrypt all database data at-rest with AES-256.
+* Host all servers in the US, in data centers that are SOC 1, SOC 2 and ISO 27001 certified. Our data centers have round-the-clock security, fully redundant power systems, two-factor authentication and physical audit logs.
+* Regularly conduct external penetration tests from third-party vendors.
+* Regularly conduct security awareness training sessions with all employees.
+* Maintain detailed audit logs of all internal systems.
+
+## Reporting security bugs or concerns
+
+Please contact Axle's security team, via email at security\[at]axle.insure. We welcome reports from end users, security researchers, and anyone else!
+
+
+# Welcome
+Source: https://docs.axle.insure/welcome
+
+Axle is a universal API for insurance data. With Axle, companies can instantly verify insurance and monitor ongoing coverage, helping them create a frictionless experience for their users and reduce operational risk through better-informed decisions. Axle is backed by leading investors including Google and Y Combinator.
+
+<Card title="Quickstart" icon="rocket-launch" href="/guides/quickstart">
+  Initialize Ignition and retrieve insurance information.
+</Card>
+
+<Card title="API Reference" icon="code" href="/api-reference/overview">
+  View and experiment with the Axle API.
+</Card>
+
+

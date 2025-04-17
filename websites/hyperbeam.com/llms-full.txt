@@ -1,0 +1,2950 @@
+# Examples
+Source: https://docs.hyperbeam.com/client-sdk/javascript/examples
+
+
+
+## ⚡ Loading a virtual browser
+
+`Hyperbeam(container: HTMLDivElement | HTMLIFrameElement, embedURL: string, opts?: HyperbeamOptions): Promise<HyperbeamClient>`
+
+Creates a new Hyperbeam client. The container can be either a `div` or an `iframe` element, though it is highly advised to use a `div`. The `embedURL` is retrieved from the [REST API](/rest-api).
+
+```js JavaScript
+// The embedURL is retrieved from the REST API
+// Documentation for the REST API can be found here:
+// docs.hyperbeam.com/rest-api
+const embedURL = "https://abc.hyperbeam.com/foo?token=bar"
+const container = document.getElementById("container-id")
+
+const hb = await Hyperbeam(container, embedURL, {
+	// Number of milliseconds until the request to the virtual browser times out.
+	// If the request times out, the returned promise will be rejected.
+	timeout: 5000, // default = 2000
+
+	// An admin token returned from the REST API that will grant this user
+	// access to managing user permissions and programmatic navigation.
+	adminToken: "admin_token_from_rest_api_response",
+
+	// Starting volume of the virtual browser
+	volume: 0.2,         // default = 1.0
+
+	// Starting video pause state of the virtual browser
+	videoPaused: false,  // default = false
+
+	// delegate global keyboard events to the embed
+	delegateKeyboard: true, // default = true
+
+				// Callback called with the virtual computer's video frame data
+	// For Chromium-based browsers, its type is ImageBitmap
+	// For other browsers, it's a HTMLVideoElement
+	// Most frameworks like Three.js and Babylon.js can handle both types automatically
+	frameCb: (frame) => {},
+
+	// Callback called with an MediaStreamTrack of the virtual computer's audio stream
+	audioTrackCb: (track) => {},
+
+	// Data to be provided to your webhook endpoint if you're using webhook authentication
+	webhookUserdata: {myAppData: {user: "your-app-user-id"}},
+
+	// Callback called when another user moves their mouse cursor on top of the virtual browser
+	// Useful for implementing multiplayer cursors
+	onCursor({ x, y, userId }) => {},
+
+	// Callback called when the user disconnects from the virtual browser
+	// type is an enum with one of the following values:
+	//   "request"  -> virtual browser was manually shut down
+	//   "inactive" -> inactive timeout was triggered
+	//   "absolute" -> absolute timeout was triggered
+	//   "kick"     -> user was kicked from the session
+	onDisconnect({ type }) => {},
+
+	// Callback called when a timeout either surpasses the warning threshold,
+	// or has been reset and is no longer passed the warning threshold.
+	//
+	// type is an enum that refers to the timeout's type tied to the event
+	// possible values are "inactive" and "absolute"
+	//
+	// deadline = null | { delay: number, closeDate: string }
+	// If deadline is null, then the timeout was reset and is no longer
+	// passed the warning threshold. If deadline is set, deadline.delay
+	// is the number of milliseconds until the timeout is triggered,
+	// and closeDate is an RFC3339 formatted string of when the timeout will occur
+	onCloseWarning: ({ type, deadline }) => {},
+
+	// Callback called when the connection state of the video stream has changed
+	// state = "connecting" | "playing" | "reconnecting"
+	//
+	// You can use this to show custom reconnecting UI, and detecting if a user
+	// has a sub-optimal connection to the virtual browser
+	onConnectionStateChange: ({ state }) => {}
+})
+```
+
+The promise returned by the `Hyperbeam` function might be rejected. See example below:
+
+```js JavaScript
+import Hyperbeam, { TimedOutError, SessionTerminatedError } from "Hyperbeam";
+
+async function main() {
+  let hb;
+  try {
+    hb = await Hyperbeam(container, embedURL, options);
+  } catch (e) {
+    switch (e.name) {
+      case "TimedOutError":
+        console.log("Request to load the embed URL timed out", e.message);
+        break;
+      case "TypeError":
+        console.log(
+          "Invalid options passed into the Hyperbeam constructor",
+          e.message
+        );
+        break;
+      case "SessionTerminatedError":
+        console.log("Session has already been terminated", e.message);
+        break;
+    }
+    // Alternatively, if you can use instanceof
+    // e.g. if (e instanceof TimedOutError) { ... }
+  }
+}
+
+main();
+```
+
+***
+
+## 💣 Destroying the embed
+
+`hb.destroy()`
+
+Tears down network connections and browser events. Always call this *before* removing the container element from the page.
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL)
+
+// destroy on clicking button
+disconnectBtn.addEventListener("click", () => {
+	hb.destroy()
+})
+
+// React
+componentWillUnmount() {
+	this.hb.destroy()
+}
+
+// Vue
+beforeUnmount() {
+	this.hb.destroy()
+}
+```
+
+***
+
+## 🔉 Setting video volume
+
+`hb.volume = 0.5`
+
+Sets the volume for the virtual browser *locally*. Volume changes only apply to the local user. This setting is *not* persisted on refreshing the page.
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL);
+// Valid values range from 0.0 to 1.0
+hb.volume = 0.5; // default = 1.0
+console.log(hb.volume); // Get the local volume value
+```
+
+***
+
+## 🆔 Getting user ID
+
+`hb.userId: string`
+
+Gets the client's user ID. A "user" is defined as a single connection to the virtual browser. If a person has multiple tabs connected to the virtual browser, each tab with an active connection will be assigned a different user ID.
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL);
+console.log(hb.userId); // A unique string identifying the user
+```
+
+***
+
+## ⏸️ Pausing video stream
+
+`hb.videoPaused = true`
+
+Pauses/resumes the video stream for the virtual browser *locally*. Useful if only the audio component is of interest and you want to minimize CPU usage.
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL);
+hb.videoPaused = true; // Pause the video stream
+hb.videoPaused = false; // Resume the video stream
+console.log(hb.videoPaused); // Get the video stream pause state
+```
+
+***
+
+## 👑 Setting admin token
+
+`hb.adminToken = "adminToken"`
+
+Sets the client's admin token. The client must have an admin token set to manage user permissions and control the tabs programmatically.
+
+```js JavaScript
+// You can provide the admin token during initialization
+const hb = await Hyperbeam(container, embedURL, {
+  adminToken: "admin_token_from_rest_api_response",
+});
+
+// In some situations, you may want to promote the user to
+// an admin after initialization. For example, promoting a "user" to a "moderator".
+const hb = await Hyperbeam(container, embedURL);
+hb.adminToken = "admin_token_from_rest_api_response";
+```
+
+***
+
+## 🔐 Setting permissions
+
+`hb.setPermission(userId: string, permissionData: PermissionData): Promise<void>`
+
+Sets the permission of a user by their ID. The client must have an admin token set to manage user permissions.
+
+```js JavaScript
+// You can provide the admin token during initialization
+const hb = await Hyperbeam(container, embedURL, {
+  adminToken: "admin_token_from_rest_api_response",
+});
+
+const targetUserId = "a_user_id";
+
+// All keys can be omitted: if the key is omitted, then the existing value will be unchanged
+const permissions = {
+  // Higher value = higher priority
+  // Users with a higher priority will preempt the control of lower priority users.
+  priority: 2, // default = 0
+
+  // Number of milliseconds until a user is considered "idle". Once a user is considered
+  // idle, they no longer preempt lower priority users until they interact with the
+  // virtual browser again.
+  idle_timeout: 3000, // default = 0
+
+  // If control_disabled = true, all control input (mouse movements, keyboard presses)
+  // will be ignored. Note that disabling control does not restrict access to any
+  // APIs that require admin tokens.
+  control_disabled: true, // default = control_disable_default (see REST API)
+};
+
+hb.setPermissions(targetUserId, permissions);
+```
+
+***
+
+## 🔄 Manual reconnection
+
+`hb.reconnect(): void`
+
+In situations where you need to troubleshoot the browser disconnecting, adding a manual reconnect button may help for debugging.
+
+```js JavaScript
+manualReconnectBtn.addEventListener("click", () => {
+  hb.reconnect();
+});
+```
+
+***
+
+## 📐 Resizing the browser
+
+`hb.resize(width: number, height: number): Promise`
+
+Resizes the virtual browser to the specified width and height, in pixels.
+
+The arguments must meet the following conditions, otherwise the function will throw a `RangeError`: `width * height` cannot be greater than `hb.maxArea`.
+
+`hb.maxArea` is the maximum area that can be allocated in pixels.
+
+```js JavaScript
+if (width * height > hb.maxArea) {
+  console.log(`width * height must be less than ${hb.maxArea}`);
+} else {
+  hb.resize(width, height);
+}
+```
+
+You can retrieve the current width and height by reading `hb.width` and `hb.height`.
+
+***
+
+## 📡 Send events programmatically
+
+`hb.sendEvent(event: KeyEvent | MouseEvent | WheelEvent): void`
+
+Sends a keyboard, mouse, or mouse wheel event to the Hyperbeam browser.
+
+```js JavaScript
+const keyEvent = {
+	type: "keydown", // type can be set to "keydown" and "keyup"
+	// String denoting which key is pressed.
+	// See https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+	key: "A",
+	ctrlKey: true // Boolean indicating if the Ctrl key is pressed. Default is false.
+	metaKey: false // Boolean indicating if the Meta key is pressed. Default is false.
+}
+
+const mouseEvent = {
+	type: "mousedown" // type can be set to "mousemove", "mousedown", and "mouseup"
+	x: 0.5, // The mouse's X position as a ratio, with a range of [0, 1]
+	y: 0.5, // The mouse's Y position as a ratio, with a range of [0, 1]
+	// Number that indicates which button was pressed on the mouse. Default is 0.
+	// See https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+	button: 2
+}
+
+const wheelEvent = {
+	type: "wheel", // Mouse wheel event, used for scrolling up or down
+	deltaY: 20 // Positive value signifies scrolling down
+}
+
+hb.sendEvent(keyEvent) // Send CTRL+A keystroke
+hb.sendEvent(mouseEvent) // Right-click the center of the screen (0.5, 0.5)
+hb.sendEvent(wheelEvent) // Scroll down
+```
+
+***
+
+## ⌨️ Tighter control over keyboard events
+
+By default, the Hyperbeam client forwards global `keydown` and `keyup` events into the embed when an input element is not in focus *outside* the embed. In some cases, you may want to customize this functionality:
+
+*   Your app has key bindings which conflict with Hyperbeam
+*   You have UI flows such as overlays and tabs which hide the Hyperbeam embed from view
+
+You can have the Hyperbeam client disregard these events by setting the `delegateKeyboard` option to `false`. Input fields *inside* the embed (e.g. address bar, form fields) will continue to receive input when they are focused.
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL, {
+  delegateKeyboard: false,
+});
+```
+
+Moreover, you can combine this with [sending keyboard events programmatically](#send-events-programmatically) to selectively forward keyboard events:
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL, {
+  delegateKeyboard: false,
+});
+
+function onKeyEvent(e) {
+  const { activeElement } = document;
+  if (
+    // by default, events are ignored if an input element is in focus
+    (!activeElement ||
+      (activeElement.nodeName !== "INPUT" &&
+        activeElement.nodeName !== "TEXTAREA" &&
+        !activeElement.isContentEditable)) &&
+    // your custom checks go here, for example
+    (e.key === " " || e.key === "Enter")
+  ) {
+    hb.sendEvent({
+      type: e.type,
+      key: e.key,
+      ctrlKey: e.ctrlKey,
+      metaKey: e.metaKey,
+    });
+  }
+}
+window.addEventListener("keydown", onKeyEvent);
+window.addEventListener("keyup", onKeyEvent);
+```
+
+***
+
+## 🎛️ Control tabs programmatically
+
+Hyperbeam's tab API mirrors Chrome extension tab API, found [here](https://developer.chrome.com/docs/extensions/reference/tabs/#method).
+
+Rather than calling `chrome.tabs.create({ active: true })`, you will would call `hb.tabs.create({ active: true })`.
+
+<Warning>
+  We do not support callbacks for accessing return values — tab methods return a `Promise`
+</Warning>
+
+We support the following methods:
+
+*   [tabs.create](https://developer.chrome.com/docs/extensions/reference/tabs/#method-create)
+*   [tabs.detectLanguage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-detectLanguage)
+*   [tabs.discard](https://developer.chrome.com/docs/extensions/reference/tabs/#method-discard)
+*   [tabs.duplicate](https://developer.chrome.com/docs/extensions/reference/tabs/#method-duplicate)
+*   [tabs.get](https://developer.chrome.com/docs/extensions/reference/tabs/#method-get)
+*   [tabs.getZoom](https://developer.chrome.com/docs/extensions/reference/tabs/#method-getZoom)
+*   [tabs.getZoomSettings](https://developer.chrome.com/docs/extensions/reference/tabs/#method-getZoomSettings)
+*   [tabs.goBack](https://developer.chrome.com/docs/extensions/reference/tabs/#method-goBack)
+*   [tabs.goForward](https://developer.chrome.com/docs/extensions/reference/tabs/#method-goForward)
+*   [tabs.group](https://developer.chrome.com/docs/extensions/reference/tabs/#method-group)
+*   [tabs.highlight](https://developer.chrome.com/docs/extensions/reference/tabs/#method-highlight)
+*   [tabs.move](https://developer.chrome.com/docs/extensions/reference/tabs/#method-move)
+*   [tabs.query](https://developer.chrome.com/docs/extensions/reference/tabs/#method-query)
+*   [tabs.reload](https://developer.chrome.com/docs/extensions/reference/tabs/#method-reload)
+*   [tabs.remove](https://developer.chrome.com/docs/extensions/reference/tabs/#method-remove)
+*   [tabs.setZoom](https://developer.chrome.com/docs/extensions/reference/tabs/#method-setZoom)
+*   [tabs.setZoomSettings](https://developer.chrome.com/docs/extensions/reference/tabs/#method-setZoomSettings)
+*   [tabs.ungroup](https://developer.chrome.com/docs/extensions/reference/tabs/#method-ungroup)
+*   [tabs.update](https://developer.chrome.com/docs/extensions/reference/tabs/#method-update)
+
+```html HTML
+<div style="font-family: Arial">
+	<button id="reload">Reload</button>
+	<button id="back">Go Back</button>
+	<button id="forward">Go Forward</button>
+	<button id="youtube">Open Youtube.com</button>
+	Volume: <input type="range" min="0" max="100" value="100" id="range">
+	<p>User ID: <span id="userId"></span></p>
+	<p>Current website: <span id="currentSite"></p>
+</div>
+<div id="container" style="height:720px;width:1280px"></div>
+<script type="module">
+import Hyperbeam from "https://unpkg.com/@hyperbeam/web@latest/dist/index.js"
+// TODO: Set the embedURL variable
+const embedURL = "<your-embed-url>"
+const hb = await Hyperbeam(container, embedURL)
+userId.innerText = hb.userId
+hb.tabs.onUpdated.addListener((tabId, changeInfo) => {
+	if (changeInfo.title) {
+		currentSite.innerText = changeInfo.title
+	}
+})
+// Create a tab
+const tab = await hb.tabs.create({ active: true })
+// Duplicate a tab
+const tab2 = await hb.tabs.duplicate(tab.id)
+// Set the URL of the active tab
+const updatedTab = await hb.tabs.update({url: "https://hyperbeam.dev/"})
+
+// Button click handlers
+reload.addEventListener("click", () => {
+	hb.tabs.reload()
+})
+back.addEventListener("click", () => {
+	hb.tabs.goBack()
+})
+forward.addEventListener("click", () => {
+	hb.tabs.goForward()
+})
+youtube.addEventListener("click", () => {
+	hb.tabs.update({ url: "https://youtube.com" })
+})
+range.addEventListener("change", (e) => {
+	hb.volume = e.target.value / 100
+})
+</script>
+```
+
+***
+
+## 👂 Listen to tab events
+
+Hyperbeam's tab event listener API mirrors Chrome extension tab API, found [here](https://developer.chrome.com/docs/extensions/reference/tabs/#event).
+
+Rather than calling `chrome.tabs.onCreated.addListener((tab) => {})`, you will would call `hb.tabs.onCreated.addListener((tab) => {})`.
+
+We support the following events:
+
+*   [tabs.onActivated](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onActivated)
+*   [tabs.onCreated](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onCreated)
+*   [tabs.onHighlighted](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onHighlighted)
+*   [tabs.onMoved](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onMoved)
+*   [tabs.onRemoved](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onRemoved)
+*   [tabs.onReplaced](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onReplaced)
+*   [tabs.onUpdated](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onUpdated)
+*   [tabs.onZoomChange](https://developer.chrome.com/docs/extensions/reference/tabs/#event-onZoomChange)
+
+```js JavaScript
+const hb = await Hyperbeam(container, embedURL);
+
+function onTabCreated(tab) {
+  console.log(tab.id);
+}
+
+// Listen for when a new tab is created
+hb.tabs.onCreated.addListener(onTabCreated);
+
+// Create a new tab
+await hb.tabs.create({ active: true });
+
+// Remove the event listener
+hb.tabs.onCreated.removeListener(onTabCreated);
+```
+
+***
+
+## 🗺️ Optimize server location
+
+To create a session with the optimal server location, you first need to use `getRegionInfo()` on the client to retrieve the optimal region information.
+
+From there, you need to send the HyperbeamRegionInfo object's `region` value to your backend, and use it as the argument for the `region` parameter when [creating a session](/rest-api/dispatch/start-chromium-session) and generating an `embed_url`.
+
+<Tip>
+  You may also want to cache the region preference in localStorage, since
+  `getRegionInfo()` fires off a web request.
+</Tip>
+
+**Example**
+
+```js JavaScript
+import Hyperbeam, { getRegionInfo } from "@hyperbeam/web";
+
+async function createHyperbeam(container) {
+  const regionInfo = await getRegionInfo();
+  // Pass region code to backend to be used during session creation
+  const embedURL = await fetch(`/myapi?region=${regionInfo.region}`, {
+    method: "POST",
+  });
+  const hb = Hyperbeam(container, embedURL);
+  return hb;
+}
+```
+
+
+# Overview
+Source: https://docs.hyperbeam.com/client-sdk/javascript/overview
+
+
+
+Among other things, the Hyperbeam client-side JavaScript SDK allows you to:
+
+*   Connect to a virtual browser
+*   Control the virtual browser navigation programmatically
+*   Query the virtual browser state and listen to events
+*   Manage user control permissions
+*   Resize the browser
+*   Set local virtual browser volume
+
+The library is published on [npm as @hyperbeam/web](https://www.npmjs.com/package/@hyperbeam/web).
+
+## Installation
+
+**Using npm:**
+
+```bash Terminal
+$ npm install @hyperbeam/web --save
+```
+
+**Using UNPKG:**
+
+```js JavaScript
+<script type="module">
+  import Hyperbeam from "https://unpkg.com/@hyperbeam/web@latest/dist/index.js"
+  // ...
+</script>
+```
+
+## SDK Reference
+
+<CardGroup cols={2}>
+  <Card title="Initializing the SDK" icon="square-plus" color="#a888ff" href="/client-sdk/javascript/reference#initializing-the-sdk">
+    Create an instance of the HyperbeamClient object.
+  </Card>
+
+  <Card title="The HyperbeamClient Object" icon="window" color="#a888ff" href="/client-sdk/javascript/reference#the-hyperbeamclient-object">
+    Control the virtual browser, manage user permissions, and debug connection
+    issues.
+  </Card>
+</CardGroup>
+
+## Examples
+
+<CardGroup cols={2}>
+  <Card title="Loading a virtual browser" icon={<div>⚡</div>} color="#a888ff" href="/client-sdk/javascript/examples#loading-a-virtual-browser">
+    How to create an instance of the HyperbeamClient object.
+  </Card>
+
+  <Card title="Destroying the embed" icon={<div>💣</div>} color="#a888ff" href="/client-sdk/javascript/examples#destroying-the-embed">
+    How to tear down network connections and browser events.
+  </Card>
+
+  <Card title="Setting video volume" icon={<div>🔉</div>} color="#a888ff" href="/client-sdk/javascript/examples#setting-video-volume">
+    How to set the local volume for the virtual browser.
+  </Card>
+
+  <Card title="Getting user ID" icon={<div>🆔</div>} color="#a888ff" href="/client-sdk/javascript/examples#getting-user-id">
+    How to get the client's user ID.
+  </Card>
+
+  <Card title="Pausing video stream" icon={<div>⏸️</div>} color="#a888ff" href="/client-sdk/javascript/examples#pausing-video-stream">
+    How to pause/resume the local virtual browser video stream.
+  </Card>
+
+  <Card title="Setting admin token" icon={<div>👑</div>} color="#a888ff" href="/client-sdk/javascript/examples#setting-admin-token">
+    How to set the client's admin token.
+  </Card>
+
+  <Card title="Setting permissions" icon={<div>🔐</div>} color="#a888ff" href="/client-sdk/javascript/examples#setting-permissions">
+    How to set user permissions based on a user's ID.
+  </Card>
+
+  <Card title="Manual reconnection" icon={<div>🔄</div>} color="#a888ff" href="/client-sdk/javascript/examples#manual-reconnection">
+    How to manually reconnect.
+  </Card>
+
+  <Card title="Resizing the browser" icon={<div> 📐</div>} color="#a888ff" href="/client-sdk/javascript/examples#resizing-the-browser">
+    How to resize the virtual browser to a specific width and height.
+  </Card>
+
+  <Card title="Send events programmatically" icon={<div>📡</div>} color="#a888ff" href="/client-sdk/javascript/examples#send-events-programmatically">
+    How to send keyboard, mouse, and wheel events to the virtual browser.
+  </Card>
+
+  <Card title="Tighter control over keyboard events" icon={<div>⌨️</div>} color="#a888ff" href="/client-sdk/javascript/examples#tighter-control-over-keyboard-events">
+    How to customize keyboard events sent the virtual browser.
+  </Card>
+
+  <Card title="Control tabs programmatically" icon={<div>🎛️</div>} color="#a888ff" href="/client-sdk/javascript/examples#control-tabs-programmatically">
+    How to use Hyperbeam's tab API.
+  </Card>
+
+  <Card title="Listen to tab events" icon={<div>👂</div>} color="#a888ff" href="/client-sdk/javascript/examples#listen-to-tab-events">
+    How to listen to tab events.
+  </Card>
+
+  <Card title="Optimize server location" icon={<div>🗺️</div>} color="#a888ff" href="/client-sdk/javascript/examples#optimize-server-location">
+    How to create a session with the optimal server location.
+  </Card>
+</CardGroup>
+
+
+# Reference
+Source: https://docs.hyperbeam.com/client-sdk/javascript/reference
+
+
+
+## Initializing the SDK
+
+`Hyperbeam(container, embedURL, options?): Promise<HyperbeamClient>`
+
+Use `Hyperbeam(container, embedURL, options?)` to create an instance of the [HyperbeamClient](/client-sdk/javascript/reference#the-hyperbeamclient-object) object. The HyperbeamClient object is your entrypoint to the rest of the Hyperbeam JavaScript SDK.
+
+```js JavaScript
+import Hyperbeam from "@hyperbeam/web"
+...
+const hb = await Hyperbeam(container, embedURL, options)
+```
+
+### Method Parameters
+
+<br />
+
+<ParamField body="container" type="HTMLDivElement | HTMLIFrameElement">
+  The container can be either a `div` or an `iframe` element, though it is
+  highly advised to use a `div`.
+</ParamField>
+
+<ParamField body="embedURL" type="string">
+  The embedURL is retrieved from the [REST API](/rest-api).
+</ParamField>
+
+<ParamField body="options" optional type="HyperbeamOptions Object">
+  Initialization options. All properties are optional.
+
+  <Expandable>
+    <ParamField body="adminToken" type="string">
+      An admin token returned from the REST API that will grant this user access to managing user permissions and programmatic navigation.
+    </ParamField>
+
+    <ParamField body="timeout" type="number" default="2000">
+      Number of milliseconds until the request to the virtual browser times out. If the request times out, the returned promise will be rejected.
+    </ParamField>
+
+    <ParamField body="volume" type="number" default="1.0">
+      Starting volume of the virtual browser.
+    </ParamField>
+
+    <ParamField body="videoPaused" type="boolean" default="false">
+      Starting video pause state of the virtual browser.
+    </ParamField>
+
+    <ParamField body="hb.playoutDelay" type="boolean" default="false">
+      Starting playout delay state of the virtual browser. When `playoutDelay` = `true`, input lag increases but smoothness is improved and frame drops are reduced.
+    </ParamField>
+
+    <ParamField body="delegateKeyboard" type="boolean" default="true">
+      Delegate global keyboard events to the embed.
+    </ParamField>
+
+    <ParamField body="webhookUserdata" type="JSONValue">
+      Data to be provided to your webhook endpoint if you're using webhook authentication.
+    </ParamField>
+
+    <ParamField body="frameCb" type="(frame: ImageBitmap | HTMLVideoElement) => void">
+      Callback called with the virtual computer's video frame data. For Chromium-based browsers, its type is `ImageBitmap`. For other browsers, it's an `HTMLVideoElement`. Most frameworks like Three.js and Babylon.js can handle both types automatically.
+    </ParamField>
+
+    <ParamField body="audioTrackCb" type="(track: MediaStreamTrack) => void">
+      Callback called with a `MediaStreamTrack` of the virtual computer's audio stream.
+    </ParamField>
+
+    <ParamField body="onCursor" type="(e: PeerMouseEvent) => void">
+      Callback called when another user moves their mouse cursor on top of the virtual browser. Useful for implementing multiplayer cursors.
+    </ParamField>
+
+    <ParamField body="onDisconnect" type="(e: DisconnectEvent) => void">
+      Callback called when the user disconnects from the virtual browser. `e.type` is an enum with one of the following values:
+      `"request"`  -> virtual browser was manually shut down.
+      `"inactive"` -> inactive timeout was triggered.
+      `"absolute"` -> absolute timeout was triggered.
+      `"kick"`     -> user was kicked from the session.
+    </ParamField>
+
+    <ParamField body="onCloseWarning" type="(e: CloseWarningEvent) => void">
+      Callback called when a timeout either surpasses the warning threshold, or has been reset and is no longer passed the warning threshold.
+      `e.type` is an enum that refers to the timeout's type tied to the event. Possible values are `"inactive"` and `"absolute"`.
+      `e.deadline` = `null | { delay: number, closeDate: string }`. If `e.deadline` is `null`, then the timeout was reset and is no longer passed the warning threshold. If `e.deadline` is set, `e.deadline.delay`
+      is the number of milliseconds until the timeout is triggered, and `e.deadline.closeDate` is an RFC3339 formatted string of when the timeout will occur.
+    </ParamField>
+
+    <ParamField body="onConnectionStateChange" type="(e: ConnectionStateEvent) => void">
+      Callback called when the connection state of the video stream has changed. `e.state` = `"connecting" | "playing" | "reconnecting"`.
+      You can use this to show custom reconnecting UI, and detecting if a user has a sub-optimal connection to the virtual browser.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+[See initialization example.](/client-sdk/javascript/examples#loading-a-virtual-browser)
+
+***
+
+## The HyperbeamClient object
+
+The HyperbeamClient object allows you to programmatically control the virtual browser, set user permissions, and debug connection issues among other things.
+
+```js JavaScript
+const hb: Promise<HyperbeamClient> = await Hyperbeam(
+  container,
+  embedURL,
+  options
+);
+```
+
+### Properties
+
+<br />
+
+<ParamField body="hb.userId" type="string">
+  The client's user ID. [See
+  example.](/client-sdk/javascript/examples#getting-user-id)
+</ParamField>
+
+<ParamField body="hb.adminToken" type="string">
+  The client’s admin token. [See
+  example.](/client-sdk/javascript/examples#setting-admin-token)
+</ParamField>
+
+<ParamField body="hb.volume" type="number">
+  The local volume of the virtual browser. [See
+  example.](/client-sdk/javascript/examples#setting-video-volume)
+</ParamField>
+
+<ParamField body="hb.width" type="number">
+  The width of the virtual browser in pixels. [See
+  example.](/client-sdk/javascript/examples#resizing-the-browser)
+</ParamField>
+
+<ParamField body="hb.height" type="number">
+  The height of the virtual browser in pixels. [See
+  example.](/client-sdk/javascript/examples#resizing-the-browser)
+</ParamField>
+
+<ParamField body="hb.maxArea" type="number">
+  The maximum virtual browser area that can be allocated in pixels. [See
+  example.](//client-sdk/javascript/examples#resizing-the-browser)
+</ParamField>
+
+<ParamField body="hb.videoPaused" type="boolean">
+  Pauses the video stream of the virtual browser locally. [See
+  example.](/client-sdk/javascript/examples#pausing-video-stream)
+</ParamField>
+
+<ParamField body="hb.playoutDelay" type="boolean">
+  When `playoutDelay` = `true`, input lag increases but smoothness is improved
+  and frame drops are reduced.
+</ParamField>
+
+<ParamField body="hb.tabs" type="Tabs Object">
+  The virtual browser Tabs object. [See
+  example.](/client-sdk/javascript/examples#control-tabs-programmatically)
+</ParamField>
+
+### Methods
+
+***
+
+#### <Heading hidden>reconnect</Heading>
+
+`hb.reconnect(): void`
+
+Useful in situations where you need to troubleshoot the browser disconnecting. [See example.](/client-sdk/javascript/examples#manual-reconnection)
+
+***
+
+#### <Heading hidden>destroy</Heading>
+
+`hb.destroy(): void`
+
+Tears down network connections and browser events. Always call this *before* removing the container element from the page. [See example.](/client-sdk/javascript/examples#destroying-the-embed)
+
+***
+
+#### <Heading hidden>setPermissions</Heading>
+
+`hb.setPermissions(userId, permissionData): Promise<void>`
+
+Sets the permission of a user by their ID. The client must have an admin token set to manage user permissions. [See example.](/client-sdk/javascript/examples#setting-permissions)
+
+**Method parameters**
+
+<ParamField body="userId" type="string">
+  The user ID to set permissions for.
+</ParamField>
+
+<ParamField body="permissionData" type="object">
+  All keys can be omitted: if the key is omitted, then the existing value will
+  be unchanged.
+
+  <Expandable>
+    <ParamField body="priority" type="number" default="0">
+      Higher value = higher priority. Users with a higher priority will preempt
+      the control of lower priority users.
+    </ParamField>
+
+    <ParamField body="idle_timeout" type="number">
+      Number of milliseconds until a user is considered "idle". Once a user is
+      considered idle, they no longer preempt lower priority users until they
+      interact with the virtual browser again.
+    </ParamField>
+
+    <ParamField body="control_disabled" type="boolean" default="<control_disable_default>">
+      If control\_disabled = true, all control input (mouse movements, keyboard
+      presses) will be ignored. Note that disabling control does not restrict
+      access to any APIs that require admin tokens.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+***
+
+#### <Heading hidden>sendEvent</Heading>
+
+`hb.sendEvent(event): void`
+
+Sends a keyboard, mouse, or mouse wheel event to the Hyperbeam browser. [See example.](/client-sdk/javascript/examples#send-events-programmatically)
+
+**Method parameters**
+
+<ParamField body="event" type="KeyEvent | MouseEvent | WheelEvent" />
+
+***
+
+#### <Heading hidden>resize</Heading>
+
+`hb.resize(width, height): void`
+
+Resizes the virtual browser to the specified width and height, in pixels. The arguments must meet the following conditions, otherwise the function will throw a `RangeError: width * height cannot be greater than hb.maxArea`.
+
+`hb.maxArea` is the maximum area that can be allocated in pixels.
+
+[See example.](/client-sdk/javascript/examples#resizing-the-browser)
+
+**Method parameters**
+
+<ParamField body="width" type="number">
+  The width of the virtual browser in pixels.
+</ParamField>
+
+<ParamField body="height" type="number">
+  The height of the virtual browser in pixels.
+</ParamField>
+
+***
+
+#### <Heading hidden>ping</Heading>
+
+`hb.ping(): void`
+
+Resets the `inactive` timeout. Useful for situations where the user is not interacting with the Hyperbeam browser, but is performing actions on other parts of your application.
+
+***
+
+## getRegionInfo
+
+`getRegionInfo(): Promise<HyperbeamRegionInfo>`
+
+The Hyperbeam Web SDK provides a function called `getRegionInfo()` that returns a [HyperbeamRegionInfo](/client-sdk/javascript/reference#hyperbeamregioninfo) object. This object refers to the optimal region to spin up a virtual computer based on the client’s location.
+
+```js JavaScript
+import {getRegionInfo} from "@hyperbeam/web"
+...
+const regionInfo = await getRegionInfo()
+```
+
+[How to use getRegionInfo to optimize server location.](/client-sdk/javascript/examples#optimize-server-location)
+
+### HyperbeamRegionInfo
+
+#### Properties
+
+<br />
+
+<ParamField body="region" type="string">
+  Two-letter region code.
+</ParamField>
+
+<ParamField body="country" type="string" optional>
+  Country code.
+</ParamField>
+
+
+# Unity Desktop Application SDK
+Source: https://docs.hyperbeam.com/client-sdk/unity/unity-desktop-sdk
+
+
+
+The Hyperbeam client-side SDK for Unity desktop applications is currently in development.
+
+If you would like early access, please [let us know here.](https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform)
+
+
+# Hyperbeam.cs
+Source: https://docs.hyperbeam.com/client-sdk/unity/webgl/hyperbeam
+
+
+
+The top level object for the Hyperbeam API. This is responsible for calling into the Hyperbeam JSLib and controlling the browser.
+It is not recommended to instantiate this directly, instead it is preferable to call [HyperbeamController.StartHyperbeamStream](/client-sdk/unity/webgl/hyperbeam-controller#starthyperbeamstream) and then access these methods using it's Instance property.
+
+## Properties
+
+<ParamField body="Volume" type="float">
+  Sets the stream's volume in a range of \[0, 1]
+</ParamField>
+
+## Methods
+
+***
+
+### <Heading hidden>GetHyperbeamTexture</Heading>
+
+`IEnumerator GetHyperbeamTexture(Action<Texture2D> callback)`
+
+A coroutine to be invoked by `MonoBehaviour.StartCoroutine` it will check once
+every frame for a texture to be available. When one is found, or if one already exists, calls `callback`
+
+**Method Params**
+
+<ParamField body="callback" type="Action<Texture2D>">A callback to be invoked that takes a Texture2D parameter</ParamField>
+
+***
+
+### <Heading hidden>GetTexttureWidth</Heading>
+
+`int GetTextureWidth()`
+
+Gets the virtual browser's width in pixels.
+
+***
+
+### <Heading hidden>GetTextureHeight</Heading>
+
+`int GetTextureHeight()`
+
+Gets the virtual browser's height in pixels.
+
+***
+
+### <Heading hidden>SendKeyDown</Heading>
+
+`void SendKeyDown(char Key, bool Ctrl, bool Meta)`
+
+Sends a keydown event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="Key" type="char">The Key to send this event for.</ParamField>
+<ParamField body="Ctrl" type="bool">Whether or not ctrl should be sent with the key.</ParamField>
+<ParamField body="Alt" type="bool">Whether or not alt should be sent with the key.</ParamField>
+
+***
+
+### <Heading hidden>SendKeyUp</Heading>
+
+`void SendKeyUp(char Key, bool Ctrl, bool Meta)`
+
+Sends a keyup event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="Key" type="char">The Key to send this event for.</ParamField>
+<ParamField body="Ctrl" type="bool">Whether or not ctrl should be sent with the key.</ParamField>
+<ParamField body="Alt" type="bool">Whether or not alt should be sent with the key.</ParamField>
+
+***
+
+### <Heading hidden>SendMouseDown</Heading>
+
+`void SendMouseDown(float X, float Y,  PointerEventData.InputButton button)`
+
+Sends a mousedown event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="x" type="float">The X coordinate in the range \[0, 1] where 0 is the left edge.</ParamField>
+<ParamField body="y" type="float">The Y coordinate in the range \[0, 1] where 0 is the top edge.</ParamField>
+<ParamField body="button" type="PointerEventData.InputButton">Which mouse button to send the event for.</ParamField>
+
+***
+
+### <Heading hidden>SendMouseUp</Heading>
+
+`void SendMouseUp(float X, float Y,  PointerEventData.InputButton button)`
+
+Sends a mouseup event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="x" type="float">The X coordinate in the range \[0, 1] where 0 is the left edge.</ParamField>
+<ParamField body="y" type="float">The Y coordinate in the range \[0, 1] where 0 is the top edge.</ParamField>
+<ParamField body="button" type="PointerEventData.InputButton">Which mouse button to send the event for.</ParamField>
+
+***
+
+### <Heading hidden>SendMouseMove</Heading>
+
+`void SendMouseMove(float X, float Y)`
+
+Sends a mousemove event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="x" type="float">The X coordinate in the range \[0, 1] where 0 is the left edge.</ParamField>
+<ParamField body="y" type="float">The Y coordinate in the range \[0, 1] where 0 is the top edge.</ParamField>
+
+***
+
+### <Heading hidden>SendWheel</Heading>
+
+`void SendWheel(float DeltaY)`
+
+Sends a mouse wheel event to the virtual browser.
+
+**Method Params**
+
+<ParamField body="DeltaY" type="float">The scroll wheel's delta</ParamField>
+
+***
+
+### <Heading hidden>SetVideoPause</Heading>
+
+`void SetVideoPause(bool pause)`
+
+Pauses or unpauses the video stream. While the video stream is paused it is not sending any data, saving on CPU and Bandwidth.
+Prefer to use [HyperbeamController.Paused](/client-sdk/unity/webgl/hyperbeam-controller#properties) where you can as it can be queried easier.
+
+**Method Params**
+
+<ParamField body="pause" type="bool">Whether to pause or unpause the video stream.</ParamField>
+
+***
+
+### <Heading hidden>GiveHyperbeamControl</Heading>
+
+`void GiveHyperbeamControl(string closeKey, bool ctrl, bool meta, bool alt, bool shift)`
+
+This will inform hyperbeam it has 'control' of the browser and make it register event listeners for keypresses.
+Prefer to use [HyperbeamController.PassControlToBrowser](/client-sdk/unity/webgl/hyperbeam-controller#passcontroltobrowser)
+because it first tells unity to stop listening and will avoid registering multiple listeners.
+
+**Method Parameters**
+
+<ParamField body="closeKey" type="string">The Keydown that will trigger unity regaining control</ParamField>
+<ParamField body="ctrl" type="bool">Whether or not the ctrl key must be held down to regain control</ParamField>
+<ParamField body="meta" type="bool">Whether or not the meta key must be held down to regain control</ParamField>
+<ParamField body="alt" type="bool">Whether or not the alt key must be held down to regain control</ParamField>
+<ParamField body="shift" type="bool">Whether or not the shift key must be held down to regain control</ParamField>
+
+***
+
+### <Heading hidden>TakeBackControl</Heading>
+
+`void TakeBackControl()`
+
+Forcibly takes control back from the browser and unregisters any event listeners that may have been registered by Hyperbeam.
+
+***
+
+
+# HyperbeamController.cs
+Source: https://docs.hyperbeam.com/client-sdk/unity/webgl/hyperbeam-controller
+
+
+
+This is the main point of control for the Hyperbeam API in WebGL. It provides important methods to the JSLib and is REQUIRED in order for the API to function properly.
+Attach this script directly to a game object and call [StartHyperbeamStream](/client-sdk/unity/webgl/hyperbeam-controller#starthyperbeamstream) to use.
+
+<br />
+
+## Events
+
+***
+
+### <Heading hidden>OnHyperbeamStart</Heading>
+
+`UnityEvent OnHyperbeamStart`
+
+Will notify any registered handlers when the Instance property is usable. It is eventually called by [StartHyperbeamStream](/client-sdk/unity/webgl/hyperbeam-controller#StartHyperbeamStream) usually before [OnTextureReady](/client-sdk/unity/webgl/hyperbeam-controller#ontextureready) is invoked.
+
+***
+
+### <Heading hidden>OnTextureReady</Heading>
+
+`Action<Texture2D> OnTextureReady`
+
+Will notify any registered handlers when the Hyperbeam Stream's texture is ready. It is eventually called after [StartHyperbeamStream](/client-sdk/unity/webgl/hyperbeam-controller#starthyperbeamstream)
+
+***
+
+### <Heading hidden>OnControlReturned</Heading>
+
+`UnityEvent OnControlReturned`
+
+Will notify any registered handlers when control is returned to unity after being handed off by [PassControlToBrowser](/client-sdk/unity/webgl/hyperbeam-controller#passcontroltobrowser)
+
+***
+
+## Properties
+
+<ParamField body="Instance" type="Hyperbeam">
+  The instance of the core Hyperbeam object associated with this controller.
+  Allows access to many of the control methods for interacting with the virtual browser. [See Hyperbeam for more info](/client-sdk/unity/webgl/hyperbeam)
+</ParamField>
+
+<ParamField body="Volume" type="float">
+  Sets the stream's volume. A convience accessor for [Instance.Volume](/client-sdk/unity/webgl/hyperbeam#properties)
+</ParamField>
+
+<ParamField body="Paused" type="bool">
+  Pauses the video stream, but not the audio stream. A convience accessor for [Instance.SetVideoPause(value)](/client-sdk/unity/webgl/hyperbeam#properties)
+</ParamField>
+
+## Methods
+
+***
+
+### <Heading hidden>StartHyperbeamStream</Heading>
+
+`void StartHyperbeamStream(string embedUrl)`
+
+Bootstraps the hyperbeam browser. This will hand off execution the web browsers Javascript runtime in order to setup the stream.
+
+**Method Parameters**
+
+<ParamField body="embedUrl" type="string">A URL provided by the [Hyperbeam REST API](/rest-api)</ParamField>
+
+***
+
+### <Heading hidden>PassControlToBrowser</Heading>
+
+`void PassControlToBrowser(string closeKey, bool ctrl, bool meta, bool alt, bool shift)`
+
+Stops unity from intercepting keyboard events and will start sending them to the virtual browser.
+It will listen for the closeKey along with any modifiers and when pressed will return control back to unity, which can be detected via [OnControlReturned](/client-sdk/unity/webgl/hyperbeam-controller#oncontrolreturned)
+
+**Method Parameters**
+
+<ParamField body="closeKey" type="string">The Keydown that will trigger unity regaining control</ParamField>
+<ParamField body="ctrl" type="bool">Whether or not the ctrl key must be held down to regain control</ParamField>
+<ParamField body="meta" type="bool">Whether or not the meta key must be held down to regain control</ParamField>
+<ParamField body="alt" type="bool">Whether or not the alt key must be held down to regain control</ParamField>
+<ParamField body="shift" type="bool">Whether or not the shift key must be held down to regain control</ParamField>
+
+***
+
+### <Heading hidden>TakeBackControlFromBrowser</Heading>
+
+`void TakeBackControlFromBrowser()`
+
+Forcibly takes control back from the attached Hyperbeam Instance if [PassControlToBrowser](/client-sdk/unity/webgl/hyperbeam-controller#passcontroltobrowser) was called on it.
+It will unregister any event handlers currently registered.
+
+
+# WebGL Overview
+Source: https://docs.hyperbeam.com/client-sdk/unity/webgl/overview
+
+
+
+The Hyperbeam client-side SDK for Unity WebGL.
+
+<Info>
+  Looking for the Unity *Desktop Application* SDK? [Request access
+  here.](https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url\&entry.126298931=Unity+SDK)
+</Info>
+
+## Demo
+
+[https://unity-example.hyperbeam.com](https://unity-example.hyperbeam.com)
+
+## SDK
+
+[https://github.com/hyperbeam/packages/tree/master/unity-webgl-sdk](https://github.com/hyperbeam/packages/tree/master/unity-webgl-sdk)
+
+## Example
+
+[https://github.com/hyperbeam/unity-example](https://github.com/hyperbeam/unity-example)
+
+## Required Setup
+
+In order to setup the WebGL SDK you will need a custom [WebGL Template](https://docs.unity3d.com/Manual/webgl-templates.html) in unity.
+We provide an example one in our API download under `Assets/WebGLTemplates/HyperbeamTemplate` you can either modify that or copy the steps below into your own template.
+
+### Custom Template
+
+In `index.html` add the folling section.
+
+```js JavaScript
+<script>
+  import Hyperbeam from "./Hyperbeam.js"
+  window.Hyperbeam = Hyperbeam
+</script>
+```
+
+after the call to `createUnityInstance` make sure to set the Unity Instance to a variable called unityInstance
+
+```js JavaScript
+createUnityInstance(canvas, config).then((gameInstance) => {
+  unityInstance = gameInstance
+})
+```
+
+## Starting up the Hyperbeam Stream
+
+To start the hyperbeam stream in untiy attach the `HyperbeamController` script to an object. Then call
+`HyperbeamController.StartHyperbeamStream(embedUrl)` to learn how to display the stream please look at `HyperbeamVideoSource`
+
+
+# Authenticating Participants
+Source: https://docs.hyperbeam.com/guides/authenticating-participants
+
+Granting access to cloud computers
+
+When a user attempts to connect to a cloud computer, we need to identify the user and determine whether they should be granted access.
+
+## Authentication Strategies
+
+### Token Authentication
+
+*   This is the default authentication strategy
+*   No additional code is needed
+
+### Webhook Authentication
+
+*   You need to create an endpoint on your backend (i.e. a webhook)
+*   The virtual computer will hit your endpoint when a new user tries to connect
+*   Your backend's webhook response controls whether the user is granted access
+*   To set the authentication strategy, you provide an authentication object when starting a cloud computer session:
+
+### Setting the Authentication Strategy
+
+To set the authentication strategy, you provide an authentication object when starting a cloud computer session:
+
+**Token Authentication (Default)**
+
+```json
+{
+  "auth": {
+    "type": "token"
+  }
+}
+```
+
+**Webhook Authentication**
+
+```json
+{
+    "auth": {
+    "type": "webhook",
+    "value": {
+      "url": "https://yourwebsite.com/webhook/hyperbeam/auth"
+      "bearer": "<cryptographic-key>"
+    }
+  }
+}
+```
+
+#### Request Body
+
+| Property            | Type   | Description                                                                                    |
+| ------------------- | ------ | ---------------------------------------------------------------------------------------------- |
+| `auth.type`         | string | The authentication strategy type. Valid values are `webhook` and `token`.                      |
+| `auth.value.url`    | string | The endpoint of your webhook for webhook-based authentication.                                 |
+| `auth.value.bearer` | string | A secret cryptographic key you provide to verify the webhook request is coming from Hyperbeam. |
+
+## In-Depth
+
+### Token Authentication
+
+When using token authentication, a token is added as a query parameter to the cloud computer’s embed URL. This ensures only users that were provided the embed URL have access to the cloud computer—malicious actors cannot gain access via the session ID or brute force.
+
+### Webhook Authentication
+
+Start a cloud computer session with webhook authentication
+
+```bash
+curl -X POST -H 'Authorization: Bearer <your-api-key>' \
+    https://engine.hyperbeam.com/v0/vm \
+    -d '{
+      "auth": {
+        "type": "webhook",
+        "value": {
+          "url": "https://yourwebsite.com/webhook/hyperbeam/auth",
+          "bearer": "<secret-key>"
+        }
+      }
+    }'
+```
+
+You will need to create an endpoint on your backend. The cloud computer will send a request to the endpoint you provided to determine if a user is allowed to connect.
+
+Our request will:
+
+*   Set the `Authorization` header to `Authorization: Bearer <bearer-token>`
+    *   `<bearer-token>` is the token you provided in the authentication object
+*   Set the `HB-User-Agent` header to the client's user agent
+*   Set the `HB-Connection-IP` header to the client's IP address
+*   Send a `POST` request with a JSON request body
+    *   `user_id` is the user's [Hyperbeam identifier](/client-sdk/javascript/examples#getting-user-id)
+    *   `userdata` is the `webhookUserdata` object passed into the Hyperbeam [JavaScript SDK](/client-sdk/javascript/overview)
+
+```json
+{
+  "user_id": "7411d16b-9451-415e-bb65-7d5ff3202249",
+  "userdata": {}
+}
+```
+
+TL;DR: our request will look like this:
+
+```bash
+curl -X POST -H 'Authorization: Bearer <bearer-token>' \
+    -H 'Content-Type: application/json' \
+    -H 'HB-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36' \
+    -H 'HB-Connection-IP: 203.0.113.195' \
+    https://yourwebsite.com/webhook/hyperbeam/auth \
+    -d '{"user_id": "7411d16b-9451-415e-bb65-7d5ff3202249", "userdata": {"my_data": "foo"}}'
+```
+
+Testing webhooks is difficult when running your backend locally (e.g. our cloud computers cannot reach `localhost:8080`). We recommend using [ngrok](https://ngrok.com/) to expose your endpoint for testing.
+
+Your webhook must:
+
+*   Check that the bearer token in the Authorization header matches the token you provided
+
+*   Parse the request body and determine if the user should be granted access
+
+    *   You can use the `user_id` and userdata fields to identify the user
+
+*   Send back a `200` status with a JSON response body
+    *   To grant user access, send back `{"authorized": true}`
+    *   To deny user access, send back `{"authorized": false}`
+    *   Any response that doesn't have a 200 status code will deny user access
+    *   If the "authorized" key is not set, the user will be denied
+    *   You can provide a permissions object in the response to atomically set the [permission values](/client-sdk/javascript/examples#setting-permissions) of the user
+
+
+# Install Custom Chrome Extension
+Source: https://docs.hyperbeam.com/guides/install-chrome-extension
+
+
+
+## Overview
+
+You can create a custom [Chrome extension](https://chrome.google.com/webstore/category/extensions) and install it on the virtual browser.
+
+To load your extension in Hyperbeam, create an unpacked `zip` or `crx` file. Then, make a request and upload the file using a multipart form. For a full example, check out our [Chrome extension example](https://github.com/hyperbeam/examples/tree/master/load-custom-chrome-extension).
+
+<CodeGroup>
+  ```js JavaScript
+  function buildForm(extPath, vmConfig) {
+    const formData = new FormData();
+    formData.append("ex", fs.createReadStream(extPath));
+    formData.append("body", JSON.stringify(vmConfig));
+    return formData;
+  }
+
+  const zipPath = path.resolve(\_\_dirname, "./path/to/my/ext.zip");
+  const formData = buildForm(zipPath, {
+  extension: {
+  field: "ex"
+  }
+  });
+
+  const headers = formData.getHeaders();
+  headers["Authorization"] = `Bearer ${process.env.HB_API_KEY}`;
+  const resp = axios.post('https://engine.hyperbeam.com/v0/vm', formData, {headers});
+
+  ```
+
+  ```bash Bash
+  curl -X POST \
+    -H 'Authorization: Bearer <your-api-key>' \
+    -H 'Content-Type: multipart/form-data' \
+    https://engine.hyperbeam.com/v0/vm \
+    --form 'body={"extension":{"field":"ex"}}' \
+    --form 'ex=@/tmp/ext.zip;type=application/zip'
+    # If using crx rather than zip, make sure to change the MIME-type to x-chrome-extension
+    # --form 'ex=@/tmp/ext.crx;type=application/x-chrome-extension'
+  ```
+</CodeGroup>
+
+## References
+
+For more information on creating `zip` Chrome extensions, refer to the [Publish your extension](https://developer.chrome.com/docs/webstore/publish/#create-your-items-zip-file) guide on the Chrome Developers website.
+
+To learn more about the `crx` format, see [Installing extensions on Linux](https://developer.chrome.com/docs/extensions/mv3/linux_hosting/#packaging). We recommend creating building `crx` extensions with an [unofficial CLI on NPM](https://www.npmjs.com/package/crx#cli-api).
+
+## Manifest V2
+
+Hyperbeam supports both Manifest V2 and V3. Manifest V2 is deprecated, and we anticipate Chromium will no longer support V2 in 2025. You can learn more about the MV2 phase-out plan on the [Developer Chrome website](https://developer.chrome.com/docs/extensions/migrating/mv2-sunset/).
+
+If backwards compatibility is a requirement for your project, please contact us at [founders@hyperbeam.com](mailto:founders@hyperbeam.com).
+
+## Troubleshooting
+
+<Warning>Do **not** put the `manifest.json` file in a subfolder</Warning>
+
+If your extension is not loading in Hyperbeam, *please* double-check that:
+
+*   The `manifest.json` file is a well-formed JSON
+*   The `manifest.json` file is in the root directory
+
+The contents of the `zip` file should look like this:
+
+```
+hello.html
+hello_extensions.png
+manifest.json
+popup.js
+```
+
+The following file structure is invalid, **do not do this**:
+
+```
+extension/
+├─ hello.html
+├─ hello_extensions.png
+├─ manifest.json
+└─ popup.js
+```
+
+
+# Persist Session State
+Source: https://docs.hyperbeam.com/guides/persist-session-state
+
+
+
+The Hyperbeam profile API allows you to persist session state including bookmarks, history,
+passwords, and cookies which can be loaded into another session at a later time. This
+allows you to resume sessions without requiring the user to open up web pages or
+authenticate again.
+
+<Note>
+  Want to jump into the code? See our [persistence
+  example.](https://github.com/hyperbeam/examples/tree/master/persistence)
+</Note>
+
+## Basic Usage
+
+In order to save a session, the `profile` parameter must be set to `true` when
+[starting a Chromium session](/rest-api/dispatch/start-chromium-session).
+
+#### Example Request
+
+```curl
+curl --request POST \
+     --url https://engine.hyperbeam.com/v0/vm \
+     --header 'Authorization: Bearer AUTH_VALUE' \
+     --header 'Content-Type: application/json' \
+     --data '{
+ "profile": true
+}'
+```
+
+After the session is created, the response object will contain a `session_id` property that you must save
+in order to load the session state again afterwards.
+
+#### Example Response
+
+```json
+{
+  "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+  "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+  "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+}
+```
+
+In order to load and update a previous session, the `profile` parameter must be set to the `session_id` you would like to resume
+when [starting a Chromium session](/rest-api/dispatch/start-chromium-session).
+
+```curl
+curl --request POST \
+     --url https://engine.hyperbeam.com/v0/vm \
+     --header 'Authorization: Bearer AUTH_VALUE' \
+     --header 'Content-Type: application/json' \
+     --data '{
+ "profile": <session_id>
+}'
+```
+
+This will load the profile associated with `<session_id>` and update its contents when the new session is terminated. Below is a code snippet that showcases a simple profile integration:
+
+```js
+app.get("/computer", async (req, res) => {
+  // Get the session ID from a query parameter
+  // In a real application you want to authenticate the user retrieve the session ID from your database
+  let { session_id } = req.query; 
+  let profile = true; // profile = true will create a new profile
+  if (session_id) {
+    try {
+      await db.get(session_id);
+      profile = session_id; // if session_id is valid, load and update the profile tied to that id
+    } catch (e) {
+      res.status(400);
+      return;
+    }
+  }
+  const settings = {
+    profile,
+    timeout: {
+      offline: 10,
+    },
+    ublock: true,
+  };
+  const headers = {
+    Authorization: `Bearer ${process.env.HB_API_KEY}`,
+  };
+  let resp;
+  try {
+    resp = await axios.post("https://engine.hyperbeam.com/v0/vm", settings, {
+      headers,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(501);
+    res.send({ message: e.message });
+    return;
+  }
+  const computer = resp.data;
+  // if session_id was not defined, then a new profile was created and we want to store the session id tied to the new profile
+  // otherwise use the old session id
+  session_id = session_id || computer.session_id; 
+  await db.put(session_id, {
+    session_id,
+    sites: [],
+  });
+  res.send(computer);
+});
+```
+
+## Advanced Usage
+
+For more granular control, you can specify separate profiles to load and overwrite. This is useful if you wish to create a new profile from an existing profile, without altering the original.
+
+```curl
+curl --request POST \
+     --url https://engine.hyperbeam.com/v0/vm \
+     --header 'Authorization: Bearer AUTH_VALUE' \
+     --header 'Content-Type: application/json' \
+     --data '{
+ "profile": {
+  "save": <session_id_1>,
+  "load": <session_id_2>
+ }
+}'
+```
+
+## How Do We Persist Sessions?
+
+When `profile` is set to `true`, we encrypt and store the Chrome profile of the session in Amazon S3.
+
+This Chrome profile is associated with the `session_id` that was returned to you on session creation.
+
+When `profile` is set to a session ID, we look for a stored Chrome profile that corresponds to that `session_id`, and decrypt and
+load the Chrome profile if there is a match.
+
+This results in bookmarks, history, cookies, and passwords being persisted.
+
+<Note>
+  Looking for more detailed examples? See our [persistence
+  example.](https://github.com/hyperbeam/examples/tree/master/persistence)
+</Note>
+
+
+# Resize Browser Window
+Source: https://docs.hyperbeam.com/guides/resize-browser-window
+
+Learn how to set and resize the dimensions of the browser window dynamically.
+
+<a href="https://github.com/hyperbeam/examples/tree/master/resize" target="_blank">
+  <video src="https://i.imgur.com/0E0qKNn.mp4" autoplay="true" muted="true" crossorigin="true" loop="true" />
+</a>
+
+<Note>
+  Want to jump into the code? See our [resize
+  example.](https://github.com/hyperbeam/examples/tree/master/resize)
+</Note>
+
+## Server
+
+For a resizable browser window, you need to specify the following properties when [creating a new browser instance](/rest-api/dispatch/start-chromium-session).
+
+<ParamField body="width" type="number" default="1280">
+  The initial width of the browser window in pixels.
+</ParamField>
+
+<ParamField body="height" type="number" default="720">
+  The initial height of the browser window in pixels.
+</ParamField>
+
+<ParamField body="max_area" type="number" default="1280*720">
+  The maximum browser window area in pixels. <br /> This limits the browser
+  window size when resizing the window.
+</ParamField>
+
+## Client
+
+To resize the browser window, call the [resize](#hb-resize-width-height) function with the desired width and height.
+
+<Warning>
+  Instead of calling the [resize](#hb-resize-width-height) function on a
+  [drag](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event)
+  event, call it on the
+  [dragend](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event),
+  [mouseup](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event),
+  or
+  [touchend](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event)
+  events. <br />
+  This will prevent unnecessary calls to the server and improve performance.
+</Warning>
+
+### hb.resize(width, height)
+
+The `resize` method on the [Hyperbeam client](/client-sdk/javascript/reference#the-hyperbeamclient-object) allows you to resize and reposition the browser window dynamically. This can be useful for creating a custom sized browser window for your app or adapting to different screen sizes.
+
+<ParamField body="width" type="number" required>
+  The width of the browser window in pixels.
+</ParamField>
+
+<ParamField body="height" type="number" required>
+  The height of the browser window in pixels.
+</ParamField>
+
+### hb.maxArea
+
+The `maxArea` property on the [Hyperbeam client](/client-sdk/javascript/reference#the-hyperbeamclient-object) stores the maximum browser window area in pixels. This is the maximum area that the browser window can be resized to, and is set by the `max_area` property when creating a new browser instance.
+
+```js
+console.log(hb.maxArea); // 921600 (1280 * 720)
+```
+
+#### What if I want to resize the browser window to a larger size?
+
+Though you cannot change the maximum browser window area once set, you can still achieve a closer approximation to the desired dimensions by resizing the browser window to the closest allowed dimensions and then scaling the browser window to the desired dimensions while maintaining the same aspect ratio.
+
+```js
+// Desired dimensions (4:3 aspect ratio)
+const desiredWidth = 1600;
+const desiredHeight = 1200;
+
+// Get the maximum area that the browser window can be resized to
+// min(1600 * 1200, 1280 * 720)
+const pixels = Math.min(desiredWidth * desiredHeight, hb.maxArea);
+
+// Calculate the new dimensions with the same aspect ratio
+const aspectRatio = desiredWidth / desiredHeight; // 4:3
+const height = Math.floor(Math.sqrt(pixels / aspectRatio)); // 831
+const width = Math.floor(height * aspectRatio); // 1108
+
+// Resize the browser window to closest allowed dimensions
+hb.resize(width, height); // 1108 * 831
+
+// Scale the browser window to the desired dimensions
+target.style.width = desiredWidth; // 1600
+target.style.height = desiredHeight; // 1200
+```
+
+<Note>
+  Want to jump into the code? See our [resize
+  example.](https://github.com/hyperbeam/examples/tree/master/resize)
+</Note>
+
+
+# Timeouts
+Source: https://docs.hyperbeam.com/guides/timeouts
+
+
+
+Timeouts determine when a session will be automatically terminated.
+They can be used to prevent excessive usage, terminate inactive sessions,
+add paywalls, and more.
+
+<Note>
+  Want to jump into the code? See our [timeout
+  example.](https://github.com/hyperbeam/examples/tree/master/timeout)
+</Note>
+
+## Types of Timeouts
+
+There are three types of timeouts:
+
+1.  Absolute timeout
+2.  Offline timeout
+3.  Inactive timeout
+
+### 🛑 Absolute Timeout
+
+The absolute timeout is the amount of time (in seconds) after
+session creation before the virtual browser is automatically terminated.
+It is primarily used to enforce hard limits on session time.
+
+### 💤 Offline Timeout
+
+The offline timeout is the amount of time (in seconds) that no users
+have been connected, after which the virtual browser is automatically
+terminated. It is used to terminate sessions where all users have disconnected.
+
+### 👻 Inactive Timeout
+
+The inactive timeout is the amount of time (in seconds) since the
+last user input, after which the virtual browser is automatically
+terminated. It is used to terminate sessions where users remain connected
+but are not necessarily using the virtual browser.
+
+You can programmatically reset the inactive timeout using
+[`hb.ping()`](https://docs.hyperbeam.com/client-sdk/javascript/reference#ping).
+
+## Default Values
+
+| Timeout  | Default Value (in seconds) |
+| -------- | -------------------------- |
+| Offline  | 3600                       |
+| Inactive | null                       |
+| Absolute | null                       |
+
+## ⚠️ Warning Value
+
+You can provide a callback, `onCloseWarning`,
+which can be used used to notify the user of an upcoming timeout.
+
+```js
+const hb = await Hyperbeam(hbContainer, computer.embed_url, {
+  onCloseWarning(e) {
+    if (e.deadline) {
+      showCloseWarning(e.type, e.deadline.delay);
+    } else {
+      hideCloseWarning(e.type);
+    }
+  }
+});
+```
+
+The warning value is the amount of time (in seconds) between
+`onCloseWarning` being called and the session being terminated.
+Its default value is `60`.
+
+## How to Set Timeout Values
+
+You can set timeout values during [session creation](/rest-api/dispatch/start-chromium-session) by setting the `timeout`
+object parameter.
+
+```curl
+curl --request POST \
+     --url https://engine.hyperbeam.com/v0/vm \
+     --header 'Authorization: Bearer AUTH_VALUE' \
+     --header 'Content-Type: application/json' \
+     --data '{
+ "timeout": {
+  "absolute": 1000,
+  "inactive": 100,
+  "offline": 3600,
+  "warning": 60,
+  "webhook": {
+   "url": "<webhook url>",
+   "bearer": "<webhook auth>""
+  }
+ },
+}'
+```
+
+### Webhooks
+
+The Hyperbeam timeout system allows you to send webhook events when a timeout is triggered. To use webhooks, add the `webhook.url` and `webhook.bearer` parameters to the request when [starting a session](https://docs.hyperbeam.com/rest-api/dispatch/start-chromium-session) (see example above).
+
+## Updating Timeouts for Active Sessions
+
+You can update timeouts for active sessions by hitting the `<base_url>/timeout` endpoint, and passing in new timeout values.
+
+<Note>
+  When you update the timeouts, the timeout counters are reset e.g. absolute
+  timeout will calculate the amount of time from the timeout update (instead of
+  session creation) before the session is terminated. To prevent the timeout
+  counters from being reset, you must set the `reset` parameter to `false` (see
+  example request).
+</Note>
+
+### Example Request
+
+```curl
+curl --request POST \
+     --url <base_url>/timeout \
+     --header 'Authorization: Bearer AUTH_VALUE' \
+     --header 'Content-Type: application/json' \
+     --data '{
+  "absolute": 1000,
+  "inactive": 100,
+  "offline": 3600,
+  "warning": 60,
+  "reset": false
+}'
+```
+
+<Note>
+  Looking for more detailed examples? See our [timeout
+  example.](https://github.com/hyperbeam/examples/tree/master/timeout)
+</Note>
+
+
+# Examples
+Source: https://docs.hyperbeam.com/home/examples
+
+Open source examples
+
+## General
+
+<CardGroup cols={2}>
+  <Card title="Timeouts" icon="timer" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/timeout">
+    Bring down costs and add paywalls using timeouts.
+  </Card>
+
+  <Card title="Multi Cursor" icon="arrow-pointer" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/multicursor">
+    Handle multiple users controlling the browser simultaneously.
+  </Card>
+
+  <Card title="Persistence" icon="floppy-disk" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/persistence">
+    Save and access browser data across multiple sessions.
+  </Card>
+
+  <Card title="Field Masking" icon="eye-slash" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/field-masking">
+    Hide contents of input fields.
+  </Card>
+
+  <Card title="Resize" icon="up-right-and-down-left-from-center" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/resize">
+    Resize and reposition the browser window dynamically.
+  </Card>
+
+  <Card title="Zoom" icon="magnifying-glass" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/zoom">
+    Zoom in and out of all tabs or individual ones.
+  </Card>
+
+  <Card title="Troubleshooting" icon="wifi-exclamation" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/troubleshooting">
+    Learn how to detect and debug connection issues.
+  </Card>
+</CardGroup>
+
+## Audio
+
+<CardGroup cols={2}>
+  <Card title="Audio Context" icon="square-sliders-vertical" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/audio-context">
+    Customize the browser's audio output with the AudioContext API.
+  </Card>
+
+  <Card title="Audio Visualization" icon="waveform-lines" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/audio-visualization">
+    Visualize audio frequency data with the WebAudio API.
+  </Card>
+</CardGroup>
+
+## Authentication
+
+<CardGroup>
+  <Card title="Content Security Policy" icon="shield-check" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/content-security-policy">
+    Initialize a virtual computer with CSP enabled.
+  </Card>
+
+  <Card title="Webhook Authentication" icon="key" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/webhook-auth">
+    Control virtual computer access with webhook authentication.
+  </Card>
+</CardGroup>
+
+## Chrome Extensions
+
+<CardGroup cols={2}>
+  <Card title="Upload Custom Chrome Extension" icon="cloud-arrow-up" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/load-custom-chrome-extension">
+    Upload and use a custom Chrome extension in the virtual browser.
+  </Card>
+
+  <Card title="Embed in Chrome Extension" icon="chrome" color="#a888ff" href="https://github.com/hyperbeam/examples/tree/master/embed-in-chrome-extension">
+    Learn how to embed Hyperbeam in your Chrome Extension.
+  </Card>
+</CardGroup>
+
+## 3D Libraries and Frameworks
+
+Special thanks to [NSTCG](https://github.com/NSTCG) for the Wonderland Engine example.
+
+<CardGroup cols={2}>
+  <Card
+    title="Three.js Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/threejs-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/threejs-example"
+  />
+
+  <Card
+    title="A-Frame Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/aframe-logo.png" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/aframe-example"
+  />
+
+  <Card
+    title="React Three Fiber Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/react-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/react-three-fiber-example"
+  />
+
+  <Card
+    title="Babylon.js Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/babylonjs-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/babylonjs-example"
+  />
+
+  <Card
+    title="Wonderland Engine Example"
+    icon={
+     <div>
+       <img className="block dark:hidden" src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/wonderland-logo.png" />
+       <img className="hidden dark:block" src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/wonderland-logo-dark.png" />
+     </div>
+    }
+    color="#a888ff"
+    href="https://github.com/NSTCG/wle-hyperbeam"
+  />
+</CardGroup>
+
+
+# FAQ
+Source: https://docs.hyperbeam.com/home/faq
+
+Frequently asked questions from the Hyperbeam community
+
+## API
+
+<AccordionGroup>
+  <Accordion title="How do I make the browser behave as a mobile browser?">
+    When creating the browser, set the `user_agent` field to a mobile preset,
+    such as `{"user_agent": "chrome_android"}`.
+  </Accordion>
+</AccordionGroup>
+
+## Streaming
+
+<AccordionGroup>
+  <Accordion title="Bandwidth requirements">
+    To ensure optimal performance of Hyperbeam virtual computers, it is
+    recommended that your users meet the following bandwidth requirements. Even
+    though users who have less bandwidth available can still stream virtual
+    computers, the image quality or framerate may be suboptimal.
+
+    ```html
+    | Resolution | Framerate | Bandwidth Required |
+    | ---------- | --------- | ------------------ |
+    | 720p       | 24fps     | 5mbps              |
+    | 720p       | 30fps     | 6.3mbps            |
+    | 900p       | 24fps     | 7.8mbps            |
+    | 900p       | 30fps     | 9.8mbps            |
+    | 1080p      | 24fps     | 11.3mbps           |
+    | 1080p      | 30fps     | 14.1mbps           |
+    ```
+
+    <Warning>
+      Enabling **sharp mode** triples these bandwidth requirements.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Why do I need to click a 'play' button to start the stream?">
+    When playing back audio on the web, the user must interact with the website
+    (e.g., by clicking, pressing keys, etc.) before playing audio content.
+    Otherwise, the content will be blocked.
+
+    For more information, see the
+    [Autoplay Guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide).
+    If there has been no page interaction before the `Hyperbeam` function has been called,
+    a play button will be displayed on the Hyperbeam browser.
+  </Accordion>
+</AccordionGroup>
+
+## Monitoring
+
+<AccordionGroup>
+  <Accordion title="Can I detect when a user changes the URL in the virtual browser?">
+    Yes, you can detect when a user changes the virtual browser URL by using
+    [Hyperbeam’s tab event listener
+    API](/client-sdk/javascript/examples#listen-to-tab-events) available in our
+    Web SDK. We do not currently provide a way to directly detect this action
+    server-side.
+  </Accordion>
+</AccordionGroup>
+
+## Proxies
+
+<AccordionGroup>
+  <Accordion title="Is there an IP range I can use to whitelist Hyperbeam servers?">
+    Not at the moment. Hyperbeam uses a variety of server providers which makes it difficult to whitelist Hyperbeam servers based on IP. You can use username/password authentication to ensure traffic originates from Hyperbeam.
+  </Accordion>
+
+  <Accordion title="Where do I put the credentials in FindProxyForURL?">
+    ```json
+    {
+      "http_proxy": {
+        "pac": "function FindProxyForURL(url, host) {return {'PROXY 255.255.255.255:12345'}",
+        "username": "<username>",
+        "password": "<password>"
+      }
+    }
+    ```
+
+    Relevant MDN docs: [Proxy Auto-Configuration (PAC) file](https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_PAC_file)
+
+    <Warning>
+      Caveats:
+
+      *   Only HTTP traffic is sent through the proxy server. WebRTC traffic is excluded. Hence, there is no functional difference between the use of SOCKS, HTTP or HTTPS protocol on the proxy server.
+      *   Authentication is not supported for SOCKS protocol. This is due to it not being implemented by Chrome.
+      *   Due to these reasons, we recommend the usage of HTTPS to authenticate and secure communication between Hyperbeam and the proxy server: [HTTPS Proxy Scheme.](https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md#HTTPS-proxy-scheme)
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="My API request fails due to CORS">
+    Requests to the Hyperbeam API should not be made from the client as doing so
+    exposes your API key to users which can easily be abused. Instead, API
+    requests should only be made from a backend such as Vercel, Netlify or
+    Cloudflare.
+  </Accordion>
+</AccordionGroup>
+
+
+# Features
+Source: https://docs.hyperbeam.com/home/features
+
+What you can do with Hyperbeam
+
+## Kiosk Mode
+
+Kiosk mode lets you hide the Chromium navigation UI
+
+## Region Selection
+
+Select the network location that the virtual computers's network should access
+
+## Manage User Permissions
+
+Configure which users can connect to a virtual computer and what they can access
+
+## Control Applications Programmatically
+
+Control actions such as browser navigation using the API
+
+## Query Application State & Listen To Events
+
+Get the condition of the virtual computer and get notified when something changes
+
+
+# Getting Started
+Source: https://docs.hyperbeam.com/home/getting-started
+
+Create a virtual computer
+
+## Using the Command Line
+
+Run the following commands in the terminal to start a virtual computer session running Chromium
+
+```bash Terminal
+curl -X POST -H 'Authorization: Bearer <your-api-key>' \
+    https://engine.hyperbeam.com/v0/vm
+```
+
+You will get a response similar to the one below.
+
+```json
+{
+  "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+  "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+  "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+}
+```
+
+You can visit the **embed\_url** in your browser to access the virtual computer.
+
+To manage the session, you can [end a virtual computer](/rest-api/dispatch/ending-session) session or [list all active sessions](/rest-api/dispatch/get-sessions).
+
+***
+
+## Creating a Simple Application
+
+Below is a simple application featuring a NodeJS backend that hits the REST API to start the virtual computer, and a frontend that leverages the [NPM package](https://www.npmjs.com/package/@hyperbeam/web) to programmatically control it.
+
+Check out our [hello-world example on GitHub](https://github.com/hyperbeam/hello-world) for the full example.
+
+### Server-Side Code
+
+```js Node.JS
+const express = require("express");
+const axios = require("axios");
+const app = express();
+let computer;
+
+// Get a virtual computer object. If no object exists, create it.
+app.get("/computer", async (req, res) => {
+  if (computer) {
+    res.send(computer);
+    return;
+  }
+  const resp = await axios.post(
+    "https://engine.hyperbeam.com/v0/vm",
+    {},
+    {
+      headers: { Authorization: `Bearer ${process.env.HB_API_KEY}` },
+    }
+  );
+  computer = resp.data;
+  res.send(computer);
+});
+app.listen(8080, () => console.log("Server start at http://localhost:8080"));
+```
+
+### Client-Side Code
+
+```html HTML
+<div style="font-family: sans-serif">
+  <button id="gotoYouTubeBtn">Open Youtube.com</button>
+  <p>Current website: <span id="currentSite"></p>
+</div>
+<div id="virtualComputerDiv" style="height:720px;width:1280px"></div>
+<script type="module">
+  import Hyperbeam from "https://unpkg.com/@hyperbeam/web@latest/dist/index.js"
+  const resp = await fetch("/computer")
+  const data = await resp.json()
+  const hb = await Hyperbeam(virtualComputerDiv, data.embed_url)
+  gotoYouTubeBtn.addEventListener("click", () => {
+    hb.tabs.update({ url: "https://youtube.com" }) // Programmatic navigation
+  })
+  hb.tabs.onUpdated.addListener((tabId, changeInfo) => {
+    if (changeInfo.title)
+      currentSite.innerText = changeInfo.title // Listen to tab changes
+  })
+</script>
+```
+
+
+# Introduction
+Source: https://docs.hyperbeam.com/home/introduction
+
+Welcome to Hyperbeam's documentation portal 👋
+
+## What is Hyperbeam?
+
+Hyperbeam allows you to embed virtual computers within your website in minutes.
+
+Open any third-party website or application, synchronize audio and video flawlessly among multiple participants, and add multi-user control with just a few lines of code.
+
+Watch our API demo video below:
+
+<Example resizable>
+  <video class="w-full aspect-video rounded-lg shadow-lg" src="https://hbdev-vids.hyperbeam.com/hb_api2.mp4" controls autoplay />
+</Example>
+
+### Run various applications:
+
+*   Chromium (virtual browser)
+*   Android emulator (<a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url&entry.126298931=Android+emulation" target="_blank" rel="noopener noreferrer">Request access</a>)
+*   NES emulator (<a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer">Request access</a>)
+*   Want to run something else? Let us know at [founders@hyperbeam.com](mailto:founders@hyperbeam.com) or <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer">request it here</a>
+
+## Supported 3D JS Libraries
+
+<CardGroup cols={2}>
+  <Card
+    title="Three.js Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/threejs-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/threejs-example"
+  />
+
+  <Card
+    title="A-Frame Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/aframe-logo.png" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/aframe-example"
+  />
+
+  <Card
+    title="React Three Fiber Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/react-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/react-three-fiber-example"
+  />
+
+  <Card
+    title="Babylon.js Example"
+    icon={
+     <img src="https://mintlify.s3-us-west-1.amazonaws.com/hyperbeam/assets/babylonjs-logo.svg" />
+    }
+    color="#a888ff"
+    href="https://github.com/hyperbeam/babylonjs-example"
+  />
+</CardGroup>
+
+## Client SDKs
+
+<CardGroup cols={3}>
+  <Card title="JavaScript SDK" icon="js" color="#a888ff" href="/client-sdk/javascript" />
+
+  <Card title="Unity SDK (WebGL)" icon="unity" color="#a888ff" href="/client-sdk/unity/unity-webgl-sdk" />
+
+  <Card title="Unity SDK (Desktop)" icon="unity" color="#a888ff" href="/client-sdk/unity/unity-desktop-sdk" />
+</CardGroup>
+
+## Other Resources
+
+<CardGroup cols={2}>
+  <Card title="REST API" icon="window" color="#a888ff" href="/rest-api/dispatch">
+    Create and manage virtual computer sessions server-side.
+  </Card>
+
+  <Card title="Open Source Examples" icon="square-plus" color="#a888ff" href="/home/examples">
+    A collection of open source examples that use the Hyperbeam API.
+  </Card>
+</CardGroup>
+
+Have questions? Contact us at [founders@hyperbeam.com](mailto:founders@hyperbeam.com) and we'll be happy to help.
+
+
+# Dispatch Endpoints
+Source: https://docs.hyperbeam.com/rest-api/dispatch/dispatch-overview
+
+Initiate a virtual machine instance
+
+## Endpoint
+
+Use the following endpoint for testing and production.
+
+```bash
+https://engine.hyperbeam.com/v0
+```
+
+## Authentication
+
+Please contact us via Discord or email for an API key.
+
+To authenticate, provide your API as a bearer token in the Authorization header. For example, `Authorization: Bearer BImPtQWrCnb7aceCdlGQ-qniBJFNH2-1tVv7OjoHuQA`
+
+### Simple Authentication Request
+
+```bash Terminal
+curl -X POST \
+    -H 'Authorization: Bearer BImPtQWrCnb7aceCdlGQ-qniBJFNH2-1tVv7OjoHuQA' \
+    https://engine.hyperbeam.com/v0/vm
+```
+
+## Start a Session
+
+### Available Applications
+
+Hyperbeam virtual computers can run numerous applications:
+
+*   Chromium (virtual browser)
+*   Android emulator (<a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url&entry.126298931=Android+emulation" target="_blank" rel="noopener noreferrer">Request access</a>)
+*   NES emulator (<a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer">Request access</a>)
+*   Want to run something else? Let us know at [founders@hyperbeam.com](mailto:founders@hyperbeam.com) or <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer">request it here</a>
+
+<Example>
+  <div class="flex items-center justify-center">
+    <div class="flex-1 flex justify-center">
+      <img class="h-12 w-12" src="https://upload.wikimedia.org/wikipedia/commons/2/28/Chromium_Logo.svg" />
+    </div>
+
+    <div class="flex-1 flex justify-center">
+      <img class="h-12 w-12" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg" />
+    </div>
+
+    <div class="flex-1 flex justify-center">
+      <img class="h-12" src="https://static.wikia.nocookie.net/logopedia/images/0/0d/NES_logo.svg" />
+    </div>
+  </div>
+</Example>
+
+
+# Ending a Session
+Source: https://docs.hyperbeam.com/rest-api/dispatch/ending-session
+
+DELETE https://engine.hyperbeam.com/v0/vm/{session_id}
+
+## Parameters
+
+<ParamField path="session_id" type="string">
+  The ID of the session to terminate.
+</ParamField>
+
+## Response
+
+<ResponseField path="session_id" type="string">
+  The ID of the session that was terminated.
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL
+  curl -X DELETE -H 'Authorization: Bearer <your-api-key>' \
+      https://engine.hyperbeam.com/v0/vm/{session_id}
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54"
+  }
+  ```
+</ResponseExample>
+
+
+# Get Single Session
+Source: https://docs.hyperbeam.com/rest-api/dispatch/get-session
+
+GET https://engine.hyperbeam.com/v0/vm/{session_id}
+
+## Parameters
+
+<ParamField path="session_id">The ID of the cloud computer session</ParamField>
+
+## Response
+
+<ResponseField name="session_id" type="string">
+  The ID of the cloud computer session
+</ResponseField>
+
+<ResponseField name="embed_url" type="string">
+  A URL you can load into the [web client](/client-sdk/javascript) on your
+  website
+</ResponseField>
+
+<ResponseField name="admin_token" type="string">
+  A token that grants access to the cloud computer API and an exclusive subset
+  of the client-side web API. Needed for setting permissions and programmatic
+  control.
+</ResponseField>
+
+<ResponseField name="termination_date" type="string or null">
+  The termination time of the cloud computer session. Formatted according to
+  [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) (e.g.
+  2006-01-02T15:04:05Z07:00). null if the session hasn't terminated yet.
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL
+  curl -H 'Authorization: Bearer <your-api-key>' \
+      https://engine.hyperbeam.com/v0/vm/<session_id>
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "session_id": "c5772689-2255-4e59-8cea-b846cda7ad4e",
+    "embed_url": "https://96xljbfypmn3ibra366yqapci.hyperbeam.com/AAEjQFOIRnyeb81XbBsHMw?token=VTWsp1KGn4lLySRkUCmmAhsCcqJrPdhTXNS0Y-KPwHU",
+    "admin_token": "DrXWd9QguPRSXwhQn4yJ66sExpoV0BZtAfZsseYECKo",
+    "termination_date": null
+  }
+  ```
+</ResponseExample>
+
+
+# Get Active Sessions
+Source: https://docs.hyperbeam.com/rest-api/dispatch/get-sessions
+
+GET https://engine.hyperbeam.com/v0/vm
+
+## Parameters
+
+<ParamField query="after_id" type="string">
+  Optional query parameter. Maximum number of results per request is fixed to
+  100\.
+</ParamField>
+
+## Response
+
+<ResponseField name="results" type="object">
+  <Expandable>
+    <ResponseField name="creation_date" type="string">
+      The start time of the cloud computer session. Formatted according to RFC3339
+      (e.g. 2006-01-02T15:04:05Z07:00)
+    </ResponseField>
+
+    <ResponseField name="id" type="string">
+      The ID of the cloud com session
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="next" type="string">
+  The value after\_id should be set to for pagination
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL
+  curl -H 'Authorization: Bearer <your-api-key>' \
+      https://engine.hyperbeam.com/v0/vm
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "results": [
+      {
+        "id": "1bd96bee-088e-4ec5-ae55-7fec00b73efa",
+        "creation_date": "2006-01-02T15:04:05Z07:00"
+      },
+      {
+        "id": "c5772689-2255-4e59-8cea-b846cda7ad4e",
+        "creation_date": "2006-01-03T15:04:05Z07:00"
+      }
+    ],
+    "next": "c5772689-2255-4e59-8cea-b846cda7ad4e"
+  }
+  ```
+</ResponseExample>
+
+
+# Get Usage
+Source: https://docs.hyperbeam.com/rest-api/dispatch/get-usage
+
+GET https://engine.hyperbeam.com/v0/vm/usage
+
+## Parameters
+
+<ParamField query="tenant_id" type="string">
+  Optional query parameter. Returns all usage associated with provided `tenant_id`
+</ParamField>
+
+## Response
+
+<ResponseField name="usage" type="object">
+  <Expandable>
+    <ResponseField name="date" type="string">
+      The first date of a month grouping. Formatted according to RFC3339
+      (e.g. 2006-01-02T15:04:05Z07:00)
+    </ResponseField>
+
+    <ResponseField name="seconds" type="number">
+      The number of seconds of total usage for the given month.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```bash cURL
+  curl -H 'Authorization: Bearer <your-api-key>' \
+      https://engine.hyperbeam.com/v0/vm/usage
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "usage": [
+      {
+        "date": "2024-02-01T00:00:00Z",
+        "seconds": 2323
+      },
+      {
+        "date": "2024-01-01T00:00:00Z",
+        "seconds": 23232452
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# Starting a Android Emulator
+Source: https://docs.hyperbeam.com/rest-api/dispatch/start-android-emulator-session
+
+POST https://engine.hyperbeam.com/v0/android
+Initiate a Android Emulator using Hyperbeam
+
+## Request Access
+
+This feature is currently in private beta. <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url&entry.126298931=Android+emulation" target="_blank" rel="noopener noreferrer">Request access here.</a>
+
+## Parameters
+
+<ParamField body="app_id" type="string">
+  The Google playstore application ID. If app\_id is not set, then the home
+  screen will be loaded.
+</ParamField>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+    "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+    "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+  }
+  ```
+</ResponseExample>
+
+## Response
+
+<ResponseField name="session_id" type="string">
+  The ID of the cloud computer session
+</ResponseField>
+
+<ResponseField name="embed_url" type="string">
+  A URL you can load into the [web client](/client-sdk/javascript) on your
+  website
+</ResponseField>
+
+<ResponseField name="admin_token" type="string">
+  A token that grants access to an exclusive subset of the client-side
+  JavaScript SDK. Needed for setting permissions and programmatic navigation
+</ResponseField>
+
+
+# Starting a Chromium Session
+Source: https://docs.hyperbeam.com/rest-api/dispatch/start-chromium-session
+
+POST https://engine.hyperbeam.com/v0/vm
+Initiate a Chromium browser using Hyperbeam
+
+## Parameters
+
+<ParamField body="start_url" type="string" default="about:blank">
+  The initial URL that is set in the browser. If unset, and a profile is loaded,
+  tabs from the profile are restored
+</ParamField>
+
+<ParamField body="kiosk" type="boolean" default={false}>
+  Flag to enable kiosk mode, which hides the browser navigation UI
+</ParamField>
+
+<ParamField body="timeout" type="object">
+  Timeouts determine when a session will be automatically terminated.
+  Also, when a timeout (or timeout warning) is triggered, a webhook event will be sent to the URL specified by the `webhook` timeout parameter.
+
+  <Tip>
+    You can reset these values for live sessions by hitting the \<embed\_url>/timeout endpoint. [See example.](https://github.com/hyperbeam/examples/tree/master/timeout)
+  </Tip>
+
+  <Expandable>
+    <ParamField body="absolute" type="number">
+      The amount of time (in seconds) since creation, after which the session will terminate.
+    </ParamField>
+
+    <ParamField body="inactive" type="number">
+      The amount of time (in seconds) since the last user input, after which the session will terminate.
+    </ParamField>
+
+    <ParamField body="offline" type="number" default={3600}>
+      The amount of time (in seconds) that no users are connected, after which the session will terminate. Resets when a user connects.
+    </ParamField>
+
+    <ParamField body="warning" type="number" default={60}>
+      The amount of time (in seconds) before the session is terminated due to another timeout.
+    </ParamField>
+
+    <ParamField body="webhook" type="object">
+      <Expandable>
+        <ParamField body="url" type="string">
+          The URL to send the timeout webhook event to.
+        </ParamField>
+
+        <ParamField body="bearer" type="string">
+          The Bearer Token to send with the webhook.
+        </ParamField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="touch_gestures" type="object">
+  Enables touch gestures, such as pinch to zoom for touch screen devices
+
+  <Expandable>
+    <ParamField body="swipe" type="boolean" default={false}>
+      Enables switch gestures, which enables features such as swipe left or right for browser history navigation.
+    </ParamField>
+
+    <ParamField body="pinch" type="boolean" default={false}>
+      Enables the pinch gestures, which enables features such as pinch to zoom. The zoom can be reset on desktop by pressing the `Escape` key or refreshing the browser page.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="tenant_id" type="string">
+  Custom ID provided for keeping track of usage on a per-tenant basis. See [Get Usage](/rest-api/dispatch/get-usage) for more information.
+</ParamField>
+
+<ParamField body="control_disable_default" type="boolean" default={false}>
+  If true, users cannot control the browser by default, and need to be manually
+  granted access by an admin user
+</ParamField>
+
+<ParamField body="region" type="string" default="NA">
+  The server region: `NA` → North America, `EU` → Europe, `AS` → Asia
+</ParamField>
+
+<ParamField body="profile" type="boolean | string | object">
+  Used to save and load Chrome profiles including bookmarks, history, passwords,
+  cookies etc. `true` will create a new profile, while passing in a session ID
+  of an existing profile will load and update the profile. For advanced usage,
+  you can provide an object that specifies the session IDs of the profile you
+  wish to load and the profile you wish to overwrite:
+
+  <Expandable>
+    <ParamField body="load" type="string">
+      ID of the session you want to load in the cloud browser (a profile is
+      encrypted browser state from a previous session, with the profile ID being
+      its `session_id`, see [response body](#response)).
+    </ParamField>
+
+    <ParamField body="save" type="boolean | string" default="false">
+      `save` = `true` creates a new persisted profile you can load from. If a
+      session ID is provided, then the profile associated with the session ID
+      will be overwritten.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="adblock" type="boolean" default={false}>
+  Flag to install an adblock extension on the cloud browser
+</ParamField>
+
+<ParamField body="ublock" type="boolean" default={false} deprecated={true}>
+  Deprecated. See the `adblock` flag. Flag to install an adblock extension on the cloud browser
+</ParamField>
+
+<ParamField body="draw" type="boolean" default={false}>
+  Flag to install a drawing and annotation extension on the cloud browser
+</ParamField>
+
+<ParamField body="extension" type="object">
+  Used to [install custom Chrome extensions.](/guides/install-chrome-extension)
+  (Max Size 1MB).
+
+  <Expandable>
+    <ParamField body="field" type="string">
+      Contains the path to your custom Chrome extension.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="webgl" type="boolean" default={false}>
+  Enables WebGL. Some games and interactive activities require WebGL
+</ParamField>
+
+<ParamField body="width" type="number" default={1280}>
+  Width of the browser in pixels. If set, height must be set as well.
+
+  The max number of pixels (width height) is capped at 1920\*1080.
+</ParamField>
+
+<ParamField body="height" type="number" default={720}>
+  Height of the browser in pixels. If set, width must be set as well.
+
+  The max number of pixels (width height) is capped at 1920\*1080.
+</ParamField>
+
+<ParamField body="fps" type="number" default={24}>
+  Integer frame rate of the browser. Must be in the range \[24, 60]
+</ParamField>
+
+<ParamField body="hide_cursor" type="boolean" default={false}>
+  Hides the system cursor. Useful if you want to implement a multi-cursor user
+  interface.
+</ParamField>
+
+<ParamField body="search_engine" type="string | object" default={"duckduckgo"}>
+  Sets the default search engine that Chromium uses: `“duckduckgo”` | `“ecosia”` | `“google”` | `“startpage”` | `“brave”`
+
+  <Accordion title="How to use custom search engine">
+    You can use a custom search engine by passing in an object as follows:
+    `{
+            “name”: “foo”,
+            “keyword”: “f”,
+            “url”: “https://foo.com/search?q={searchTerms}”,
+            “suggestions_url”: “https://foo.com/suggest?q={searchTerms}”
+          }`
+  </Accordion>
+</ParamField>
+
+<ParamField body="user_agent" type="string">
+  Sets the user agent to a preset value. Currently only `"chrome_android"` is supported.
+</ParamField>
+
+<ParamField body="dark" type="boolean" default={false}>
+  Enables dark mode
+</ParamField>
+
+<ParamField body="tag" type="string">
+  The `tag` property enforces uniqueness. If a session with tag `"A"` is already
+  running and you attempt to make another session with tag `"A"`, the endpoint
+  will not create a new instance and will instead return the `session_id` and
+  `embed_url` of the existing session.
+</ParamField>
+
+<ParamField body="quality" type="object">
+  Used to toggle between **sharp**, **smooth**, and **blocky** quality modes.
+  Sharp mode is ideal for situations where reading small text is important.
+  Smooth mode is ideal for anything involving movement (e.g. videos, dynamic activities).
+  Blocky mode is ideal for clients with poor internet connectivity.
+
+  <Expandable>
+    <ParamField body="mode" type="string" default="smooth">
+      Possible values are `"sharp"`, `"smooth"`, and `"blocky"`.
+      <Warning>Enabling sharp mode triples the required bandwidth. You can view our bandwidth recommendations in the [Streaming FAQ](/home/faq#streaming).</Warning>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="locale" type="object">
+  Set the browser's locale and country.
+
+  <Expandable>
+    <ParamField body="language" type="string">A comma-delimited list of languages, see the [Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) header.</ParamField>
+    <ParamField body="country" type="string">The [ISO 3166 A-2](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) country code, e.g. US for the United States, CA for Canada. You can retrieve the user's country by using an IP database like [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data).</ParamField>
+  </Expandable>
+</ParamField>
+
+<ResponseExample>
+  ```json Example response
+  {
+    "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+    "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+    "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+  }
+  ```
+</ResponseExample>
+
+## Response
+
+<ResponseField name="session_id" type="string">
+  The ID of the cloud computer session
+</ResponseField>
+
+<ResponseField name="embed_url" type="string">
+  A URL you can load into the [web client](/client-sdk/javascript) on your
+  website
+</ResponseField>
+
+<ResponseField name="admin_token" type="string">
+  A token that grants access to an exclusive subset of the client-side web SDK.
+  Needed for setting permissions and programmatic navigation
+</ResponseField>
+
+
+# Starting a Console Emulator
+Source: https://docs.hyperbeam.com/rest-api/dispatch/start-console-emulator-session
+
+POST https://engine.hyperbeam.com/console
+Initiate a Console Emulator using Hyperbeam
+
+## Request Access
+
+This feature is currently in private beta. <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsVFZ4cQ4Q2nHNRhwb6SvmJIekv7fuQVa27zWnk_r5F48B5w/viewform?usp=pp_url" target="_blank" rel="noopener noreferrer">Request access here.</a>
+
+## Parameters
+
+<ParamField body="type" type="string" default="''" required>
+  The console type. nes, snes, n64, and ps1 are supported.
+</ParamField>
+
+<ParamField body="room_url" type="string" default="''" required>
+  URL to a legal ROM file, which will be downloaded and loaded into the
+  emulator.
+</ParamField>
+
+<ParamField body="auth" type="object" default="&#x22;auth&#x22;: {&#x22;type&#x22;: &#x22;token&#x22;}}">
+  The authentication system for the cloud computer. See the “cloud computer
+  authentication” section for more info.
+</ParamField>
+
+<ResponseExample>
+  ```json Response Example
+  {
+    "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+    "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+    "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+  }
+  ```
+</ResponseExample>
+
+## Response
+
+<ResponseField name="session_id" type="string">
+  The ID of the cloud computer session
+</ResponseField>
+
+<ResponseField name="embed_url" type="string">
+  A URL you can load into the [web client](/client-sdk/javascript) on your
+  website
+</ResponseField>
+
+<ResponseField name="admin_token" type="string">
+  A token that grants access to an exclusive subset of the client-side
+  JavaScript SDK. Needed for setting permissions and programmatic navigation
+</ResponseField>
+
+
+# Set Bookmarks
+Source: https://docs.hyperbeam.com/rest-api/session/bookmarks
+
+
+
+<RequestExample>
+  ```bash cURL
+  curl --request POST \
+      --url <base_url>/bookmarks \
+      --header 'Authorization: Bearer AUTH_VALUE' \
+      --header 'Content-Type: text/html' \
+      --data '@bookmarks.html'
+  ```
+</RequestExample>
+
+The body needs to be an **HTML file** in the [Netscape Bookmark file format](https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa753582\(v=vs.85\)) exported from a web browser like Chrome or Firefox.
+
+<Warning>
+  This request does not *overwrite* existing bookmarks. Instead, it *appends*
+  the bookmarks provided in the HTML file to the existing bookmarks.
+</Warning>
+
+
+# Removing Users
+Source: https://docs.hyperbeam.com/rest-api/session/removing-users
+
+DELETE https://engine.hyperbeam.com/users/{user_id}
+
+## Parameters
+
+<ParamField path="user_id" type="string" required>
+  The ID of the user
+</ParamField>
+
+<RequestExample>
+  ```bash cURL
+  curl -X DELETE -H 'Authorization: Bearer <your-admin-token>' \
+      <base_url>/users/<user_id>
+  ```
+</RequestExample>
+
+Removing a user will disconnect the user from the cloud computer session. To ensure the user is unable to return, use webhook authentication and deny access if the user attempts to reconnect.
+
+
+# Session Endpoints
+Source: https://docs.hyperbeam.com/rest-api/session/session-overview
+
+Programmatically control a cloud computer session from your backend
+
+Check out the [JavaScript SDK](/client-sdk/javascript) if you wish to control the session from the frontend.
+
+## Base URL
+
+The base URL (referred to as `base_url` in examples) is the session’s embed URL with the query parameters removed. For example, given this response from POST /vm:
+
+```json
+{
+  "session_id": "52f968cb-6739-4197-83d7-2305fe5d6f54",
+  "embed_url": "https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA?token=c8iw3SmQglOU0ugfLr3dWY2LalSKI_WOGUldEt8knbw",
+  "admin_token": "51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U"
+}
+```
+
+The `base_url` value would be:
+
+```bash
+https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA
+```
+
+## Authentication
+
+To authenticate, provide the session's admin token as a bearer token in the `Authorization` header.
+
+For example:
+
+```bash
+curl -X POST \
+    -H 'Authorization: Bearer 51JOZEEcMp4trCwbpTS3jjQc0lSmeAZpPfxioDqe73U' \
+    https://vwdrccwgpv181powg61ggyvy.hyperbeam.com/Uvloy2c5QZeD1yMF_l1vVA/tabs.update
+    -d '[1, {"active": true}]'
+```
+
+
+# Set User Permissions
+Source: https://docs.hyperbeam.com/rest-api/session/set-user-permission
+
+POST https://engine.hyperbeam.com/setPermissions
+
+## Parameters
+
+<ParamField body="priority" type="integer" default={0}>
+  Higher value = higher priority. Users with a higher priority will preempt the
+  control of lower priority users.
+</ParamField>
+
+<ParamField body="idle_timeout" type="integer" default={0}>
+  Number of milliseconds until a user is considered "idle". Once a user is
+  considered idle, they no longer preempt lower priority users until they
+  interact with the virtual browser again.
+</ParamField>
+
+<ParamField body="control_disabled" type="boolean" default="{control_disable_default}">
+  If control\_disabled = true, all control input (mouse movements, keyboard
+  presses) will be ignored. Note that disabling control does not restrict access
+  to any APIs that require admin tokens.
+</ParamField>
+
+<RequestExample>
+  ```bash cURL
+  curl -X POST -H 'Authorization: Bearer <your-api-key>' \
+      <base_url>/setPermissions -d '["<user_id>", {"control_disabled": false, "control_exclusive": true}]'
+  ```
+</RequestExample>
+
+The request body mirrors the function signature of setPermissions(userId, permissions) from the [JavaScript SDK.](/client-sdk/javascript)
+
+

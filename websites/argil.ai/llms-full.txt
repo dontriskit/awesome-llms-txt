@@ -1,0 +1,2186 @@
+# Get an Asset by id
+Source: https://docs.argil.ai/api-reference/endpoint/assets.get
+
+get /assets/{id}
+Returns a single Asset identified by its id
+
+Returns an asset identified by its id from your library that can be used in your videos.
+
+## Audio Assets
+
+Audio assets from this endpoint can be used as background music in your videos. When creating a video, you can reference an audio asset's ID in the `backgroundMusic` parameter to add it as background music. See the [Create Video endpoint](/api-reference/endpoint/videos.create) for more details.
+
+***
+
+
+# List Assets
+Source: https://docs.argil.ai/api-reference/endpoint/assets.list
+
+get /assets
+Get a list of available assets from your library
+
+Returns an array of assets from your library that can be used in your videos.
+
+## Audio Assets
+
+Audio assets from this endpoint can be used as background music in your videos. When creating a video, you can reference an audio asset's ID in the `backgroundMusic` parameter to add it as background music. See the [Create Video endpoint](/api-reference/endpoint/videos.create) for more details.
+
+***
+
+
+# Create a new Avatar
+Source: https://docs.argil.ai/api-reference/endpoint/avatars.create
+
+post /avatars
+Creates a new Avatar by uploading source videos and launches training. The process is asynchronous - the avatar will initially be created with 'NOT_TRAINED' status and will transition to 'TRAINING' then 'IDLE' once ready.
+
+
+
+# Get an Avatar by id
+Source: https://docs.argil.ai/api-reference/endpoint/avatars.get
+
+get /avatars/{id}
+Returns a single Avatar identified by its id
+
+
+
+# List all avatars
+Source: https://docs.argil.ai/api-reference/endpoint/avatars.list
+
+get /avatars
+Returns an array of Avatar objects available for the user
+
+
+
+# Create a new Video
+Source: https://docs.argil.ai/api-reference/endpoint/videos.create
+
+post /videos
+Creates a new Video with the specified details
+
+
+
+# Delete a Video by id
+Source: https://docs.argil.ai/api-reference/endpoint/videos.delete
+
+delete /videos/{id}
+Delete a single Video identified by its id
+
+
+
+# Get a Video by id
+Source: https://docs.argil.ai/api-reference/endpoint/videos.get
+
+get /videos/{id}
+Returns a single Video identified by its id
+
+
+
+# Paginated list of Videos
+Source: https://docs.argil.ai/api-reference/endpoint/videos.list
+
+get /videos
+Returns a paginated array of Videos
+
+
+
+# Render a Video by id
+Source: https://docs.argil.ai/api-reference/endpoint/videos.render
+
+post /videos/{id}/render
+Returns a single Video object, with its updated status and information
+
+
+
+# Get a Voice by id
+Source: https://docs.argil.ai/api-reference/endpoint/voices.get
+
+get /voices/{id}
+Returns a single Voice identified by its id
+
+
+
+# List all voices
+Source: https://docs.argil.ai/api-reference/endpoint/voices.list
+
+get /voices
+Returns an array of Voice objects available for the user
+
+
+
+# Create a new webhook
+Source: https://docs.argil.ai/api-reference/endpoint/webhooks.create
+
+post /webhooks
+Creates a new webhook with the specified details.
+
+
+
+# Delete a webhook
+Source: https://docs.argil.ai/api-reference/endpoint/webhooks.delete
+
+delete /webhooks/{id}
+Deletes a single webhook identified by its ID.
+
+
+
+# Retrieve all webhooks
+Source: https://docs.argil.ai/api-reference/endpoint/webhooks.list
+
+get /webhooks
+Retrieves all webhooks for the authenticated user.
+
+
+
+# Update a webhook
+Source: https://docs.argil.ai/api-reference/endpoint/webhooks.update
+
+PUT /webhooks/{id}
+Updates the specified details of an existing webhook.
+
+
+
+# API Credentials
+Source: https://docs.argil.ai/pages/get-started/credentials
+
+Create, manage and safely store your Argil's credentials
+
+<Info>
+  `Prerequisite` You should have access to Argil's app with a paid plan to
+  complete this step.
+</Info>
+
+<Steps>
+  <Step title="Go to the API integration page from the app">
+    Manage your API keys by clicking [here](https://app.argil.ai/developers) or
+    directly from the app's sidebar.
+  </Step>
+
+  <Step title="Create your API Key">
+    From the UI, click on `New API key` and follow the process.
+
+    <Frame>
+      <img src="https://mintlify.s3.us-west-1.amazonaws.com/argil/images/api-key.png" style={{ borderRadius: "0.5rem" }} />
+    </Frame>
+  </Step>
+
+  <Step title="Use it in your request headers">
+    Authenticate your requests by including your API key in the `x-api-key`
+    header. \`\`\`http x-api-key: YOUR\_API\_KEY. \`\`\`\`
+  </Step>
+
+  <Step title="Implementing Best Practices for Storage and API Key Usage">
+    It is essential to adhere to best practices regarding the storage and usage
+    of your API key. This information is sensitive and crucial for maintaining
+    the security of your services.
+
+    <Tip>
+      If any doubt about the corruption of your key, delete it and create a new
+      one.
+    </Tip>
+
+    <Warning>
+      Don't share your credentials with anyone. This API key enables video
+      generation featuring your avatar, which may occur without your explicit
+      authorization.
+    </Warning>
+
+    <Warning>Please note that Argil cannot be held responsible for any misuse of this functionality. Always ensure that your API key is handled securely to prevent unauthorized access.</Warning>
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+Here's how to solve some common problems when working around your credentials setup.
+
+<AccordionGroup>
+  <Accordion title="Having troubles with your credentials setup?">
+    Let us assist by [Mail](mailto:brivael@argil.ai) or
+    [Discord](https://discord.gg/Xy5NEqUv).
+  </Accordion>
+</AccordionGroup>
+
+
+# Introduction
+Source: https://docs.argil.ai/pages/get-started/introduction
+
+Welcome to Argil's API documentation
+
+<Frame>
+  <img className="block dark:hidden" src="https://mintlify.s3.us-west-1.amazonaws.com/argil/images/hero-light.svg" style={{borderRadius: '8px'}} alt="Hero Light" />
+
+  <img className="hidden dark:block" src="https://mintlify.s3.us-west-1.amazonaws.com/argil/images/hero-dark.svg" style={{borderRadius: '8px'}} alt="Hero Dark" />
+</Frame>
+
+This service allows content creators to seamlessly integrate video generation capabilities into their workflow, leveraging their AI Clone for personalized videos creation. Whether you're looking to enhance your social media presence, boost user engagement, or offer personalized content, Argil makes it simple and efficient.
+
+## Setting Up
+
+Get started with Argil's API by setting up your credentials and generate your first avatar video using our API service.
+
+<CardGroup cols={2}>
+  <Card title="Manage API Keys" icon="key" href="/pages/get-started/credentials">
+    Create, manage and safely store your Argil's credentials
+  </Card>
+
+  <Card title="Quickstart" icon="flag-checkered" href="/pages/get-started/quickstart">
+    Jump straight into video creation with our quick start guide
+  </Card>
+</CardGroup>
+
+## Build something on top of Argil
+
+Elaborate complex infrastructures with on-demand avatar video generation capabilities using our `Public API` and `Webhooks`.
+
+<CardGroup>
+  <Card title="Reference APIs" icon="square-code" href="/api-reference">
+    Integrate your on-demand avatar anywhere.
+  </Card>
+
+  <Card title="Webhooks" icon="webhook" href="/pages/webhook-events">
+    Subscribe to events and get notified on generation success and other events
+  </Card>
+</CardGroup>
+
+
+# Quickstart
+Source: https://docs.argil.ai/pages/get-started/quickstart
+
+Start automating your content creation workflow
+
+<Info>
+  `Prerequisite` You should be all setup with your [API Credentials](/pages/get-started/credentials) before starting this tutorial.
+</Info>
+
+<Info>
+  `Prerequisite` You should have successfully trained at least one [Avatar](https://app.argil.ai/avatars) from the app.
+</Info>
+
+<Steps>
+  <Step icon="magnifying-glass" title="Get a look at your avatar and voice resources">
+    In order to generate your first video through our API, you'll need to know which avatar and voice you want to use.
+
+    <Note>
+      Not finding your Avatar? It might not be ready yet. Check at your [Avatars](https://app.argil.ai/avatars) page for updates.
+    </Note>
+
+    <AccordionGroup>
+      <Accordion icon="user" title="Check your available avatars">
+        Get your avatars list by running a GET request on the `/avatars` route.
+
+        <Tip>
+          Check the [Avatars API Reference](/api-reference/endpoint/avatars.list) to run the request using an interactive UI.
+        </Tip>
+      </Accordion>
+
+      <Accordion icon="microphone" title="Check your available voices">
+        Get your voices list by running a GET request on the `/voices` route.
+
+        <Tip>
+          Check the [Voices API Reference](/api-reference/endpoint/voices.list) to run the request using an interactive UI.
+        </Tip>
+      </Accordion>
+    </AccordionGroup>
+
+    <Check>
+      You are done with this step if you have the id of the avatar and and the id of the voice you want to use for the next steps.
+    </Check>
+  </Step>
+
+  <Step icon="square-plus" title="Create a video">
+    Create a video by running a POST request on the `/videos` route.
+
+    <Tip>
+      Check the [Video creation API Reference](/api-reference/endpoint/videos.create) to run the request using an interactive UI.
+    </Tip>
+
+    To create a `Video` resource, you'll need:
+
+    * A `name` for the video
+    * A list of `Moment` objects, representing segments of your final video. For each moment, you will be able to choose the `avatar`, the `voice` and the `transcript` to be used.
+
+    <Tip>
+      For each moment, you can also optionally specify:
+
+      * An audioUrl to be used as voice for the moment. This audio will override our voice generation.
+      * A gestureSlug to select which gesture from the avatar should be used for the moment.
+    </Tip>
+
+    ```mermaid
+    flowchart TB
+        subgraph video["Video {name}"]
+            direction LR
+              subgraph subgraph1["Moment 1"]
+                  direction LR
+                  item1{{avatar}}
+                  item2{{voice}}
+                  item3{{transcript}}
+                  item4{{optional - gestureSlug}}
+                  item5{{optional - audioUrl}}
+              end
+              subgraph subgraph2["Moment n"]
+                  direction LR
+                  item6{{avatar}}
+                  item7{{voice}}
+                  item8{{transcript}}
+                  item9{{optional - gestureSlug}}
+                  item10{{optional - audioUrl}}
+              end
+              subgraph subgraph3["Moment n+1"]
+                  direction LR
+                  item11{{avatar}}
+                  item12{{voice}}
+                  item13{{transcript}}
+                  item14{{optional - gestureSlug}}
+                  item15{{optional - audioUrl}}
+              end
+              subgraph1 --> subgraph2
+              subgraph2 --> subgraph3
+        end
+    ```
+
+    <Check>
+      You are done with this step if the request returned a status 201 and a Video object as body.
+      <br />Note the `Video id` for the next step.
+    </Check>
+  </Step>
+
+  <Step icon="video" title="Render the video you have created">
+    Render a video by running a POST request on the `/videos/{video_id}/render` route.
+
+    <Tip>
+      Check the [Render API Reference](/api-reference/endpoint/videos.render) to run the request using an interactive UI.
+    </Tip>
+
+    <Check>
+      You are done with this step if the route returned a Video object, with its status set to `GENERATING_AUDIO` or `GENERATING_VIDEO`.
+    </Check>
+  </Step>
+
+  <Step icon="badge-check" title="Check for updates until your avatar's video generation is finished">
+    Get your video's updates by running a GET request on the `/videos/[id]` route.
+
+    <Tip>
+      Check the [Videos API Reference](/api-reference/endpoint/videos.get) to run the request using an interactive UI.
+    </Tip>
+
+    <Check>
+      You are done with this step once the route returns a `Video` object with status set to `DONE`.
+    </Check>
+  </Step>
+
+  <Step icon="share-nodes" title="Retrieve your avatar's video">
+    From the Video object you obtains in the previous step, retrieve the `videoUrl` field.
+
+    <Tip>
+      Use this url anywhere to download / share / publish your video and automate your workflow.
+    </Tip>
+  </Step>
+</Steps>
+
+
+# Avatar Training Failed Webhook
+Source: https://docs.argil.ai/pages/webhook-events/avatar-training-failed
+
+Get notified when an avatar training failed
+
+## About the Avatar Training Failed Event
+
+The `AVATAR_GENERATION_FAILED` event is triggered when an avatar training process fails in Argil. This webhook event provides your service with a payload containing detailed information about the failed generation.
+
+## Payload Details
+
+When this event triggers, the following data is sent to your callback URL:
+
+```json
+{
+  "event": "AVATAR_TRAINING_FAILED",
+  "data": {
+    "avatarId": "<avatar_id>",
+    "avatarName": "<avatar_name>",
+    "extras": "<additional_key-value_data_related_to_the_avatar>"
+  }
+}
+```
+
+<Note>
+  For detailed instructions on setting up this webhook event, visit our [Webhooks API Reference](/pages/api-reference/endpoint/webhooks.create).
+</Note>
+
+
+# Avatar Training Success Webhook
+Source: https://docs.argil.ai/pages/webhook-events/avatar-training-success
+
+Get notified when an avatar training completed successfully
+
+## About the Avatar Training Success Event
+
+The `AVATAR_TRAINING_SUCCESS` event is triggered when an avatar training process completes successfully in Argil. This webhook event provides your service with a payload containing detailed information about the successful avatar training.
+
+## Payload Details
+
+When this event triggers, the following data is sent to your callback URL:
+
+```json
+{
+  "event": "AVATAR_TRAINING_SUCCESS",
+  "data": {
+    "avatarId": "<avatar_id>",
+    "voiceId": "<voice_id>",
+    "avatarName": "<avatar_name>",
+    "extras": "<additional_key-value_data_related_to_the_avatar>"
+  }
+}
+```
+
+<Note>
+  For detailed instructions on setting up this webhook event, visit our [Webhooks API Reference](/pages/api-reference/endpoint/webhooks.create).
+</Note>
+
+
+# Introduction to Argil's Webhook Events
+Source: https://docs.argil.ai/pages/webhook-events/introduction
+
+Learn what webhooks are, how they work, and how to set them up with Argil through our API.
+
+## What are Webhooks?
+
+Webhooks are automated messages sent from apps when something happens. In the context of Argil, webhooks allow you to receive real-time notifications about various events occurring within your environment, such as video generation successes and failures or avatar training successes and failures.
+
+## How Webhooks Work
+
+Webhooks in Argil send a POST request to your specified callback URL whenever subscribed events occur. This enables your applications to respond immediately to events within Argil as they happen.
+
+### Available Events for subscription
+
+<AccordionGroup>
+  <Accordion title="Video Generation Success">
+    This event is triggered when an avatar video generation is successful.<br />
+    Check our [VIDEO\_GENERATION\_SUCCESS Event Documentation](/pages/webhook-events/video-generation-success) for more information about this event.
+  </Accordion>
+
+  <Accordion title="Video Generation Failed">
+    This event is triggered when an avatar video generation is failed.<br />
+    Check our [VIDEO\_GENERATION\_FAILED Event Documentation](/pages/webhook-events/video-generation-failed) for more information about this event.
+  </Accordion>
+
+  <Accordion title="Avatar Training Success">
+    This event is triggered when an avatar training is successful.<br />
+    Check our [AVATAR\_TRAINING\_SUCCESS Event Documentation](/pages/webhook-events/avatar-training-success) for more information about this event.
+  </Accordion>
+
+  <Accordion title="Avatar Training Failed">
+    This event is triggered when an avatar training is failed.<br />
+    Check our [AVATAR\_TRAINING\_FAILED Event Documentation](/pages/webhook-events/avatar-training-failed) for more information about this event.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  A single webhook can subscribe to multiple events.
+</Tip>
+
+## Managing Webhooks via API
+
+You can manage your webhooks entirely through API calls, which allows you to programmatically list, register, edit, and unregister webhooks. Below are the primary actions you can perform with our API:
+
+<AccordionGroup>
+  <Accordion title="List All Webhooks">
+    Retrieve a list of all your registered webhook.<br />
+    [API Reference for Listing Webhooks](/api-reference/endpoint/webhooks.list)
+  </Accordion>
+
+  <Accordion title="Register to a Webhook">
+    Learn how to register a webhook by specifying a callback URL and the events you are interested in.<br />
+    [API Reference for Creating Webhooks](/api-reference/endpoint/webhooks.create)
+  </Accordion>
+
+  <Accordion title="Unregister a Webhook">
+    Unregister a webhook when it's no longer needed.<br />
+    [API Reference for Deleting Webhooks](/api-reference/endpoint/webhooks.delete)
+  </Accordion>
+
+  <Accordion title="Edit a Webhook">
+    Update your webhook settings, such as changing the callback URL or events.<br />
+    [API Reference for Editing Webhooks](/api-reference/endpoint/webhooks.update)
+  </Accordion>
+</AccordionGroup>
+
+
+# Video Generation Failed Webhook
+Source: https://docs.argil.ai/pages/webhook-events/video-generation-failed
+
+Get notified when an avatar video generation failed
+
+## About the Video Generation Failed Event
+
+The `VIDEO_GENERATION_FAILED` event is triggered when a video generation process fails in Argil. This webhook event provides your service with a payload containing detailed information about the failed generation.
+
+## Payload Details
+
+When this event triggers, the following data is sent to your callback URL:
+
+```json
+{
+  "event": "VIDEO_GENERATION_FAILED",
+  "data": {
+    "videoId": "<video_id>",
+    "videoName": "<video_name>",
+    "videoUrl": "<public_url_to_access_video>",
+    "extras": "<additional_key-value_data_related_to_the_video>"
+  }
+}
+```
+
+<Note>
+  For detailed instructions on setting up this webhook event, visit our [Webhooks API Reference](/pages/api-reference/endpoint/webhooks.create).
+</Note>
+
+
+# Video Generation Success Webhook
+Source: https://docs.argil.ai/pages/webhook-events/video-generation-success
+
+Get notified when an avatar video generation completed successfully
+
+## About the Video Generation Success Event
+
+The `VIDEO_GENERATION_SUCCESS` event is triggered when a video generation process completes successfully in Argil. This webhook event provides your service with a payload containing detailed information about the successful video generation.
+
+## Payload Details
+
+When this event triggers, the following data is sent to your callback URL:
+
+```json
+{
+  "event": "VIDEO_GENERATION_SUCCESS",
+  "data": {
+    "videoId": "<video_id>",
+    "videoName": "<video_name>",
+    "videoUrl": "<public_url_to_access_video>",
+    "extras": "<additional_key-value_data_related_to_the_video>"
+  }
+}
+```
+
+<Note>
+  For detailed instructions on setting up this webhook event, visit our [Webhooks API Reference](/pages/api-reference/endpoint/webhooks.create).
+</Note>
+
+
+# Account settings
+Source: https://docs.argil.ai/resources/account-settings
+
+
+
+### Account Merger
+
+<Warning>
+  If you see a merger prompt during login, **click on "continue"** to proceed.
+</Warning>
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-03a%CC%8000.17.22.png)
+It means that you created your account with Google then via normal email for a second account but with the same address. This creates two different accounts that you need to merge.&#x20;
+
+### Password Reset
+
+<Steps>
+  <Step title="Log out">
+    Sign out of your current account
+  </Step>
+
+  <Step title="Reset password">
+    Click on "Forgot password?" and follow the instructions
+  </Step>
+</Steps>
+
+### Workspaces
+
+<Card title="Coming Soon" icon="users" style={{width: "200px"}}>
+  Workspaces will allow multiple team members with different emails to collaborate in the same studio.
+
+  Need early access? Contact us at [support@argil.ai](mailto:support@argil.ai)
+</Card>
+
+
+# Affiliate Program
+Source: https://docs.argil.ai/resources/affiliates
+
+Earn money by referring users to Argil
+
+### Join Our Affiliate Program
+
+<CardGroup cols="1">
+  <Card title="Start Earning Now" icon="rocket" href="https://argil.getrewardful.com/signup">
+    Click here to join the Argil Affiliate Program and start earning up to €5k/month
+  </Card>
+</CardGroup>
+
+### How it works
+
+Get 30% of your affiliates' generated revenue for 12 months by sharing your unique referral link. You get paid 30 days after a referral - no minimum payout.
+
+### Getting started
+
+1. Click the signup button above to create your account
+
+2. Fill out the required information
+
+3. Receive your unique referral link
+
+4. Share your link with your network
+
+5. [Track earnings in your dashboard](https://argil.getrewardful.com/)
+
+### Earnings
+
+<CardGroup cols="2">
+  <Card title="Revenue Share" icon="money-bill">
+    30% commission per referral with potential earnings up to €5k/month
+  </Card>
+
+  <Card title="Duration" icon="clock">
+    Valid for 12 months from signup
+  </Card>
+
+  <Card title="Tracking" icon="chart-line">
+    Real-time dashboard analytics
+  </Card>
+</CardGroup>
+
+### Managing your account
+
+1. Access dashboard at argil.getrewardful.com
+
+2. View revenue overview with filters
+
+3. Track referred users and earnings
+
+4. Monitor payment status
+
+### Success story
+
+<Note>
+  "I've earned \$4,500 in three months by simply referring others to their AI video platform" - Othmane Khadri, CEO of Earleads
+</Note>
+
+<Warning>
+  Always disclose your affiliate relationship when promoting Argil
+</Warning>
+
+
+# AI actions - Special B-rolls
+Source: https://docs.argil.ai/resources/ai-influencer-actions
+
+How to create influencer alive in different scenes with consistency
+
+<Note>
+  This will ONLY work when you select an avatar created with the builder
+</Note>
+
+### What is it?
+
+When you pick an avatar made thanks to the builder, you can make it do all sorts of actions as B-rolls. While your avatar is talking about its day, you can illustrate each one of them with a specific video.
+
+We automatically generate images based on your script, no need to prompt it.
+
+<Note>
+  The actions are videos but **you can only preview an image**. Each image is the first frame of the video. The video will be visible after clicking on generate on the top right (10-15 minutes).
+</Note>
+
+<Steps>
+  <Step title="Paste a script and pick &#x22;AI actions&#x22; as B-rolls">
+    ![Captured’écran2025 04 02à19 21 26 Pn](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-04-02a%CC%8019.21.26.png)
+  </Step>
+
+  <Step title="Add new B-rolls">
+    If you want to illustrate a clip with no B-roll, simply pick "AI action" in the B-roll options and shuffle through the option. Then click "generate". \
+    If that clip already has a B-roll selected, you can click on the "bin" symbol to regenerate new options.
+
+    ![Captured’écran2025 04 03à16 14 26 Pn](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-04-03a%CC%8016.14.26.png)
+  </Step>
+</Steps>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vwaFgRZJXoM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+<Card title="Questions on the avatar builder?" icon="page" color="#c06aeb" horizontal href="https://docs.argil.ai/resources/ai-influencer-builder" cta="Visit this page">
+  Visit this page
+</Card>
+
+Any questions? Ask [support@argil.ai](mailto:support@argil.ai) or [join our Discord](https://discord.gg/E4E3WFVzTw).
+
+
+# AI influencer builder
+Source: https://docs.argil.ai/resources/ai-influencer-builder
+
+Best practices to create a good AI avatar
+
+<Note>
+  You can **only create one** AI avatar with this builder so pick wisely.
+</Note>
+
+### How it works
+
+We try to keep the way your avatar looks like so once your are happy with his face, body and clothes, you can play around with the other options without affecting the previous ones.
+
+<Steps>
+  <Step title="Pick among hundreds of options to personnalize your avatar.  ">
+    From hair to background and even writting your own brand name on a neon or a shirt.
+  </Step>
+
+  <Step title="Generate preview">
+    Preview the results to your generation. \
+    Just be careful: changing gender or ethnicity will completely change the way your avatar looks whereas .
+  </Step>
+
+  <Step title="Happy with the result? Click &#x22;save&#x22;">
+    Click save on the top right > Name it > Click on "Yes, Create"
+  </Step>
+
+  <Step title="Unhappy? Click on the &#x22;reset&#x22; button">
+    You can reset on the top right to go create new base traits for your avatar.
+  </Step>
+</Steps>
+
+That's it. Your avatar will be ready within 48 hours.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Vu-UJgqcEvk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+<Card title="Questions on the avatar actions? " icon="page" color="#9831ef" horizontal href="https://docs.argil.ai/resources/ai-influencer-actions" cta="Visit this page">
+  Visit this page
+</Card>
+
+Any questions? Ask [support@argil.ai](mailto:support@argil.ai) or [join our Discord](https://discord.gg/E4E3WFVzTw).
+
+
+# API - Pricing
+Source: https://docs.argil.ai/resources/api-pricings
+
+Here are the pricings for the API
+
+###
+
+All prices below apply to all clients that are on a **Classic plan or above.**
+
+**1 API credit = \$1**
+
+<Warning>
+  If you **are an entreprise client** (over **1000 minutes/month** or requiring **specific support**), please [contact us here](mailto:enterprise@argil.ai).
+</Warning>
+
+| Feature                                           | Pricing per unit   |
+| ------------------------------------------------- | ------------------ |
+| Avatar training (for any avatar, style or camera) | \$40/avatar        |
+| Video                                             | 0.7 credits/minute |
+| Voice                                             | 0.2 credits/minute |
+| Royalty (Argil's avatars only)                    | 0.2 credits/video  |
+| B-roll (AI image)                                 | 0.05 credit/b-roll |
+| B-roll (stock video)                              | 0.25 credit/b-roll |
+
+<Note>
+  For a 30 second video with 3 b-rolls and Argil avatar, the cost will be $0.35 (video) + $
+
+  0.1 (voice) + $0.2 (royalty) + $
+
+  0.09 (b-rolls) = \$0.74
+</Note>
+
+### Frequently asked questions
+
+<Note>
+  Avatar Royalties only apply to Argil's avatars - if you train your own avatar, you will not pay for it
+</Note>
+
+<AccordionGroup>
+  <Accordion title="Can I avoid paying for voice?" defaultOpen="false">
+    Yes, we have a partnership with [Elevenlabs](https://elevenlabs.io/) for voice. If you have an account there with your voices, you can link your Elevenlabs account to Argil (see how here) and you will not pay for voice using the API.
+  </Accordion>
+
+  <Accordion title="What is the &#x22;avatar royalty&#x22;?" defaultOpen="false">
+    At Argil, we are commited to give our actors (generic avatars) their fair share - we thus have a royalty system in place with them. By measure of transparency and since it may evolve, we're adding it as a separate pricing for awareness.
+  </Accordion>
+
+  <Accordion title="Why do I need to subscribe to a plan for the API?" defaultOpen="false">
+    We make it simpler for clients to use any of our products by sharing their credits regardless of what platform they use - we thus require to create an account to use our API.
+  </Accordion>
+
+  <Accordion title="(to finish) How to buy credits?" defaultOpen="false">
+    To buy credits, just go to
+  </Accordion>
+</AccordionGroup>
+
+
+# Article to video
+Source: https://docs.argil.ai/resources/article-to-video
+
+
+
+<Note>
+  Some links may not work - in this case, please reach out to [support@argil.ai](mailto:support@argil.ai)
+</Note>
+
+Transforming article into videos yields <u>major benefits</u> and is extremely simple. It allows:
+
+* Better SEO rankings&#x20;
+
+* Social-media ready video content on a video that ha
+
+* Monetizing the video if you have the ability to
+
+### How to transform an article into a video
+
+<Steps>
+  <Step title="Click new video > Article to video" />
+
+  <Step title="Paste the link of your article and choose the format">
+    You can choose a social media format (with a social media tone) or a more classic format to embed in your articles, that will produce a longer video. ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at16.03.12.png)
+  </Step>
+
+  <Step title="Pick the avatar of your choice" />
+
+  <Step title="Review the generated script and media">
+    A script is automatically created for your video, but we also pull the images & videos we found in the original article. Remove those that you do not want, and pick the other options (see our editing tips (**add link)** for that).
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/image.png)
+  </Step>
+
+  <Step title="Click generate to arrive in the studio">
+    From there, just follow the editing tips (add link) to get the best possible video.
+  </Step>
+</Steps>
+
+### Frequently asked questions
+
+<Accordion title="Can I use Article to video via API?" defaultOpen={false}>
+  Yes you can! See our API documentation
+</Accordion>
+
+
+# Upload audio and voice-transformation
+Source: https://docs.argil.ai/resources/audio-and-voicetovoice
+
+Get more control on the dynamism of your voice. 
+
+Two ways to use audio instead of text to generate a video:
+
+<Warning>
+  Supported audio formats are **mp3, wav, m4a** with a maximum size of **50mb**.
+</Warning>
+
+<CardGroup cols="2">
+  <Card title="Upload audio file" icon="upload" style={{width: "200px"}}>
+    Upload your pre-recorded audio file and let our AI transcribe it automatically
+  </Card>
+
+  <Card title="Record on Argil" icon="microphone" style={{width: "200px"}}>
+    Use our built-in recorder to capture your voice with perfect audio quality
+  </Card>
+</CardGroup>
+
+### Voice transformation guarantees amazing results
+
+<Tip>
+  After uploading, our AI will transcribe your audio and let you transform your voice while preserving emotions and tone.
+</Tip>
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-02a%CC%8023.42.08.png)
+
+
+# Body language
+Source: https://docs.argil.ai/resources/body-language
+
+Add natural movements and gestures to your avatar
+
+## Managing Gestures
+
+<CardGroup cols={2}>
+  <Card title="View gestures" icon="list" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Your gestures appear chronologically in the Body Language section
+  </Card>
+
+  <Card title="Create clips" icon="plus" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Press Enter to create a new clip
+  </Card>
+
+  <Card title="Apply gestures" icon="hand" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Choose one gesture per clip for maximum impact
+  </Card>
+</CardGroup>
+
+## Adjusting Timing
+
+* Offset helps you put the exact frame on the right word. 0.5 seconds amounts to approximately offsetting 15 frames.
+
+* If the gesture happens too late, after what the avatar says, then click on the arrow on the right. >
+
+* If the gesture happens too early, before what the avatar says, then click on the arrow on the left \<&#x20;
+
+
+# B-roll & medias
+Source: https://docs.argil.ai/resources/brolls
+
+
+
+### Adding B-rolls or medias to a clip
+
+To enrich your videos, you can add image or video B-rolls to your video - they can be placed automatically by our algorithm or you can place them yourself on a specific clip. You can also upload your own media.&#x20;
+
+<Tip>
+  Toggling "Auto b-rolls" in the script screen will automatically populate your video with B-rolls in places that our AI magic editing finds the most relevant&#x20;
+</Tip>
+
+### There are 4 types of B-rolls&#x20;
+
+<Warning>
+  Supported formats for uploads are **jpg, png, mov, mp4** with a maximum size of **50mb.**
+  You can use websites such as [freeconvert](https://www.freeconvert.com/) if your image/video is in the wrong format or too heavy.
+</Warning>
+
+<CardGroup cols="2">
+  <Card title="AI image" icon="image">
+    This will generate an AI image in a style fitting the script, for that specific moment. It will take into account the whole video and the other B-rolls in order to place the most accurate one.&#x20;
+  </Card>
+
+  <Card title="Stock video" icon="video">
+    This will find a small stock video of the right format and place it on your video
+  </Card>
+
+  <Card title="Google images" icon="google">
+    This will search google for the most relevant image to add to this moment
+  </Card>
+
+  <Card title="Upload image/video" icon="upload">
+    In case you wish to add your own image or video. Supported formats are jpg, png mp4 mov
+  </Card>
+</CardGroup>
+
+### Adding a B-roll or media to a clip
+
+<Tip>
+  A B-roll or media
+</Tip>
+
+<Steps>
+  <Step title="Click on the right clip">
+    Choose the clip you want to add the B-roll to and click on it. A small box will appear with a media icon. Click on it.
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2024-12-31at11.18.05.png)
+  </Step>
+
+  <Step title="Choose the type of B-roll you want to add">
+    At the top, pick the type of B-roll you wish to add.
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2024-12-31at11.23.13.png)
+  </Step>
+
+  <Step title="Shuffle until satisfied">
+    If the first image isn't satisfactory, press the shuffle (left icon) until you like the results. Each B-roll can be shuffled 3 times.
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2024-12-31at11.38.46.png)
+  </Step>
+
+  <Step title="Adjust settings">
+    You can pick 2 settings: display and length
+
+    1. Display: this will either display the image **in front of your avatar** or **behind your avatar**. Very convenient when you wish to have yourself speaking
+
+    2. Length: if the moment is too long
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2024-12-31at11.41.10.png)
+  </Step>
+
+  <Step title="Add media">
+    When you're happy with the preview, don't forget to click "Add media" to add the b-roll to this clip! You can then preview the video.
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2024-12-31at11.38.46.png)
+  </Step>
+</Steps>
+
+### B-roll options
+
+<AccordionGroup>
+  <Accordion title="Display (placing b-roll behind avatar)" defaultOpen={false}>
+    Sometimes, you may want your avatar to be visible and speaking while showing the media - in order to do this, the **display** option is available.&#x20;
+
+    1. Display "front" will place the image **in front** of your avatar, thus hiding it
+
+    2. Display "back" will place the image **behind** your avatar, showing it speaking while the image is playing
+  </Accordion>
+
+  <Accordion title="Length" defaultOpen={false}>
+    If the clip is too long, you may wish that the b-roll doesn't display for its full length. For this, an option exists to **cut the b-roll in half** of its duration. Just click on "Length: 1/2". We will add more options in the future.
+
+    Note that for dynamic and engaging videos, we advise to avoid making specific clips too long - see our editing tips below&#x20;
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Editing tips" icon="bolt" horizontal={1}>
+  Check out our editing tips to make your video the most engaging possible
+</Card>
+
+### **Deleting a B-roll**
+
+To remove the B-roll from this clip, simply click on the b-roll to open the popup then press the 🗑️ trash icon in the popup.&#x20;
+
+
+# Camera angles
+Source: https://docs.argil.ai/resources/cameras-angles
+
+Master dynamic camera angles for engaging videos
+
+## Understanding Camera Angles
+
+<CardGroup cols={2}>
+  <Card title="Camera Types" icon="camera" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Some avatars have both face and side cameras for dynamic shots
+  </Card>
+
+  <Card title="Dynamic Switching" icon="arrows-rotate" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Camera angles switch between clips for engaging videos
+  </Card>
+</CardGroup>
+
+## Managing Cameras
+
+<CardGroup cols={2}>
+  <Card title="Change Angles" icon="camera-rotate" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Click camera in top right of studio to change clip angles
+  </Card>
+
+  <Card title="Personal Avatar Setup" icon="user-gear" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Record front view and 30° side angle in same conditions
+  </Card>
+
+  <Card title="Camera Connection" icon="link" color="purple" style={{flexDirection: 'row', alignItems: 'center', width: '200px'}}>
+    Connect multiple camera angles for seamless transitions
+  </Card>
+</CardGroup>
+
+## Technical Details
+
+<Card title="Algorithm" icon="microchip" color="purple" horizontal={1}>
+  Camera changes automatically between video segments (1 out of 2)
+</Card>
+
+
+# Captions
+Source: https://docs.argil.ai/resources/captions
+
+
+
+Captions are a crucial part of a video - among other topics, it allows viewers to watch them on mobile without sound or understand the video better.&#x20;
+
+### Adding captions from a script
+
+<Tip>
+  Make sure to enable "Auto-captions" on the script page before generating the preview to avoid generating them later
+</Tip>
+
+<Steps>
+  <Step title="Toggle the captions in the right sidebar">
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.47.30.png)
+  </Step>
+
+  <Step title="Pick style, size and position">
+    Click on the "CC" icon to open the styling page and pick your preferences.&#x20;
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.48.34.png)
+  </Step>
+
+  <Step title="Preview the results">
+    Preview the results by clicking play and make sure the results work well
+  </Step>
+
+  <Step title="Re-generate captions if you edit text">
+    If you changed the text after generating captions, note that a new icon appears with 2 blue arrows. Click on it to <u>re-generate captions</u> after editing text.
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.55.59.png)
+  </Step>
+</Steps>
+
+### Editing captions for Audio-to-video
+
+If you uploaded an audio instead of typing a script, we use a different way to generate captions <u>since we don't have an original text to pull from</u>. As such, this method contains more error.
+
+<Steps>
+  <Step title="Preview the captions to see if there are typos">
+    Depending on the
+  </Step>
+
+  <Step title="Click on the audio segment that has inaccurate captions">
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.53.10.png)
+  </Step>
+
+  <Step title="Click on the word you wish to fix, correct it, then save">
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.54.34.png)
+  </Step>
+
+  <Step title="Don't forget to re-generate captions!">
+    Click on the 2 blue arrows that appeared to regenerate captions with the new text
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at15.55.59.png)
+  </Step>
+</Steps>
+
+### Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I fix a typo in captions?" defaultOpen={false}>
+    If the captions are not working, you're probably using a video input and our algorithm got the transcript wrong - just click "edit text" on the right segment, change the incorrect words, save, then re-generate captions.
+  </Accordion>
+
+  <Accordion title="Do captions work in any language?" defaultOpen={false}>
+    Yes, captions work in any language
+  </Accordion>
+</AccordionGroup>
+
+
+# Contact Support & Community
+Source: https://docs.argil.ai/resources/contactsupport
+
+
+
+<Card title="Get personalized support via Typeform" icon="bolt" color="purple" horizontal={200} href="https://pdquqq8bz5k.typeform.com/to/WxepPisB?utm_source=xxxxx">
+  This is how you get the most complete and quick support
+</Card>
+
+<div data-tf-live="01JGXDX8VPGNCBWGMMQ75DDKPV" />
+
+<div data-tf-live="01JGXDX8VPGNCBWGMMQ75DDKPV" />
+
+<script src="//embed.typeform.com/next/embed.js" />
+
+<script src="//embed.typeform.com/next/embed.js" />
+
+<Card title="Join our community on Discord!" icon="robot" color="purple" horizontal={200} href="https://discord.gg/E4E3WFVzTw">
+  Learn from our hundreds of other users and use cases&#x20;
+</Card>
+
+<Card title="Send us an email" icon="inbox" color="purple" horizontal={200} href="mailto:support@argil.ai">
+  Click on here to send us an email ([support@argil.ai](mailto:support@argil.ai))&#x20;
+</Card>
+
+
+# Create a video
+Source: https://docs.argil.ai/resources/create-a-video
+
+You can create a video from scratch or start with one of your templates. 
+
+<Steps>
+  <Step title="Chose your avatar">
+    Chose among our classic Masterclass avatars (horizontal and vertical format) and UGC avatars (vertical content only). And of course, you can pick your own!
+
+    ![200](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-02a%CC%8016.54.40.png)
+  </Step>
+
+  <Step title="Enter your text or audio">
+    Type in your script, upload an audio or record yourself directly on the platform
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-02a%CC%8016.55.01.png)
+  </Step>
+
+  <Step title="Magic editing: pick your options" stepNumber="1">
+    You can chose to toggle captions, B-rolls and a background music to have a pre-edited video rapidly. You can modify all of those in the studio.&#x20;
+  </Step>
+
+  <Step title="Preview and edit your video">
+    You can press the "Play" button to preview the video. You can edit your script, B-rolls, captions, background, voice, music and body language.&#x20;
+    **Note that lipsync hasn't been generated yet, hence the blur of the preview.**&#x20;
+  </Step>
+
+  <Step title="Generate the video">
+    This is when you spend some of your credits to generate the lipsync of the avatar. This process takes between 6 and 12 minutes depending on the length of the video.&#x20;
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-02a%CC%8016.57.25.png)
+  </Step>
+</Steps>
+
+
+# Create an avatar from an AI image
+Source: https://docs.argil.ai/resources/create-avatar-from-image
+
+Complete tutorial on creating avatars from AI-generated images
+
+<CardGroup cols={1}>
+  <Info>
+    [**This is an old tutorial.** To create an AI influencer from the builder, click here. ](https://docs.argil.ai/resources/ai-influencer-builder)
+  </Info>
+
+  <Card title="Required Tools" icon="check">
+    * AI image generator
+    * RunwayML
+    * Argil Studio
+  </Card>
+
+  <Card title="Optional Tools" icon="plus">
+    * Magnific (for enhancement)
+  </Card>
+</CardGroup>
+
+### Tutorial Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ylrIyH5UfKI" title="Create an avatar from an AI image" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+# Create body language on your avatar 
+Source: https://docs.argil.ai/resources/create-body-language
+
+How to create more engaging avatars
+
+<Note>
+  Our model requires pre-recorded gestures - all body language must be shot in the training video following the process below.
+</Note>
+
+### Recording your training video
+
+<Steps>
+  <Step title="Choose your gestures">
+    Select up to 6 gestures or expressions you want to add to your avatar.
+  </Step>
+
+  <Step title="Record each gesture (30 seconds each)">
+    1. Perform the gesture once clearly (e.g., waving hello)
+
+    2. Return hands to neutral position
+
+    3. Continue speaking naturally until the 30-second mark
+
+    [Watch an example gesture recording](https://youtu.be/doC1cvNgp5c)
+  </Step>
+
+  <Step title="Create the full training video">
+    1. Record a 2-minute base video of natural talking
+
+    2. Add your 30-second gesture segments after the base video
+
+    3. Each gesture should appear at 30-second intervals after the 2-minute mark
+
+    [Watch an example training video](https://youtu.be/_MltcxXAADw)
+  </Step>
+
+  <Step title="Upload for training">
+    Navigate to Avatars -> Create a new avatar -> Generic avatars and follow the training steps.
+  </Step>
+</Steps>
+
+### Labeling gestures
+
+<Tip>
+  Label your gestures immediately after training to make them available in the studio. Use the left/right arrows to adjust the exact timing of each gesture.
+</Tip>
+
+<Steps>
+  <Step title="Open avatar settings">
+    1. Go to Avatars
+
+    2. Select your avatar
+
+    3. Click "..." then "Edit" on the right camera
+  </Step>
+
+  <Step title="Add gesture labels">
+    1. Play the video until your first gesture (around 2-minute mark)
+
+    2. Click "Add gesture"
+
+    3. Name your gesture (e.g., "Waving")
+
+    4. Repeat for each gesture in the video
+  </Step>
+</Steps>
+
+### Using gestures in the studio
+
+<Note>
+  Your labeled gestures will appear in the "Body language" tab when creating videos. Select different gestures for each clip as needed.
+</Note>
+
+### Recommended gestures
+
+[Watch our complete training video](https://youtu.be/ul7ZyA0iR2w) for examples.
+
+<CardGroup cols={2}>
+  <Card title="Basic gestures" icon="hand" style={{color: "#741FFF"}}>
+    1. Waving to camera
+
+    2. Pointing to self
+
+    3. Pointing directions (below/above)
+
+    4. Counting (one/two/three fingers)
+  </Card>
+
+  <Card title="Expressions" icon="face-smile" style={{color: "#741FFF"}}>
+    1. Assertive
+
+    2. Disappointed
+
+    3. Victorious
+
+    4. Sad
+  </Card>
+</CardGroup>
+
+<Card title="Next Steps" icon="arrow-right" href="https://docs.argil.ai/resources/styles-and-cameras" style={{ height: '180px', color: "#741FFF" }}>
+  Learn how to add styles and camera angles to your avatar.
+</Card>
+
+
+# Deleting your account
+Source: https://docs.argil.ai/resources/delete-account
+
+Description of your new file.
+
+<Warning>
+  Deleting your account will delete **all projects, videos, drafts, and avatars you have trained**. If you create a new account, you will have to **use up a new avatar training** to train every avatar.&#x20;
+</Warning>
+
+If you are 100% sure that you want to delete your account and never come back to your avatars & videos in the future, please contact us at [support@argil.ai](mailto:support@argil.ai) and mention your account email address. We will delete it in under 48 hours.&#x20;
+
+
+# Editing tips
+Source: https://docs.argil.ai/resources/editingtips
+
+
+
+Editing will transform a boring video into a really engaging one. Thankfully, you can use our many features to **very quickly** make a video more engaging.
+
+<Tip>
+  Cutting your sentences in 2 clips and playing with zooms & B-rolls is the easiest way to add dynamism to your video - and increase engagement metrics
+</Tip>
+
+### Use zooms wisely
+
+Zooms add heavy emphasis to anything you say. We <u>advise to cut your sentences in 2 to add zooms</u>. Think of it as the video version of adding underlining or bold to a part of your sentence to make it more impactful.&#x20;
+
+Instead of this:
+
+```
+And at the end of his conquest, he was named king
+```
+
+Prefer a much more dynamic and heavy
+
+```
+And at the end of his conquest
+[zoom in] He was named king
+```
+
+### Make shorter clips&#x20;
+
+In the TikTok era, we are used to dynamic editing - an avatar speaking for 20 seconds with nothing else on screen will have the viewer bored.&#x20;
+
+Prefer <u>cutting your scripts in short sentences</u>, or even cutting the sentences in 2 to add a zoom, a camera angles or a B-roll.&#x20;
+
+### Add more B-rolls
+
+B-rolls and media will enrich the purpose of your video - thankfully, <u>you don't need to prompt to add a B-roll</u> on Argil. Simply click the "shuffle" button to rotate until you find a good one.&#x20;
+
+<Note>
+  B-rolls will take the length of the clip you append it to. If it is too long, toggle the "1/2" button on it to make it shorter&#x20;
+</Note>
+
+### Create an avatar with body language
+
+Your AI avatar will be <u>much more engaging</u> if it can convey more expressivity through expressions and movement. Thankfully, our Pro clients can add body language & expressivity segments to their avatars.
+
+<Card title="Create an avatar with body language" icon="bolt" color="purple" horizontal={1}>
+  Your AI avatar will be <u>much more engaging</u> if it can convey more expressivity through expressions and movement. Thankfully, our Pro clients can add body language & expressivity segments to their avatars.
+</Card>
+
+<Card title="Use a &#x22;Pro voice&#x22;" icon="robot" color="purple" horizontal={1}>
+  To have a voice <u>that respects your tone and emotion</u>, we advise recording a "pro voice" and linking it to your avatar.
+</Card>
+
+<Card title="Record your voice instead of typing text" icon="volume" color="purple" horizontal={1}>
+  It is much easier to record your voice than to film yourself, and <u>voice to video gives the best results</u>. You can <u>transform your voice into any avatar's voice</u>, and our "AI cleanup" will remove background noises and echo.&#x20;
+</Card>
+
+<Card title="Add music" icon="music" color="purple" horizontal={1}>
+  Music is the final touch of your masterpiece. It will add intensity and emotions to the message you convey.&#x20;
+</Card>
+
+
+# Getting started with Argil
+Source: https://docs.argil.ai/resources/introduction
+
+Here's how to start leveraging video avatars to reach your goals
+
+Welcome to Argil! Argil is your content creator sidekick that uses AI avatars to generate engaging videos in a few clicks.
+
+<Note>
+  For high-volume API licenses, please pick a [call slot here](https://calendly.com/laodis-argil/15min) - otherwise check the [API pricings here](https://docs.argil.ai/resources/api-pricings)
+</Note>
+
+## Getting Started
+
+<Card title="Create your account" icon="user" color="purple" href="https://app.argil.ai/">
+  Create a free account to start generating AI videos
+</Card>
+
+## Setup Your Account
+
+<CardGroup>
+  <Card title="Sign up and sign in" icon="user-plus" color="purple" href="/resources/sign-up-sign-in">
+    Create your account and sign in to access all features
+  </Card>
+
+  <Card title="Choose your plan" icon="credit-card" color="purple" href="/resources/subscription-and-plans">
+    Select a subscription plan that fits your needs
+  </Card>
+</CardGroup>
+
+## Create Your First Video
+
+<CardGroup>
+  <Card title="Create a video" icon="video" color="purple" href="/resources/create-a-video">
+    Start creating your first AI-powered video
+  </Card>
+
+  <Card title="Write your script" icon="pen" color="purple" href="/resources/create-a-video#writing-script">
+    Create your first text script for the video
+  </Card>
+
+  <Card title="Record your voice" icon="microphone" color="purple" href="/resources/audio-and-voicetovoice">
+    Record and transform your voice into any avatar's voice
+  </Card>
+
+  <Card title="Production settings" icon="sliders" color="purple" href="/resources/create-a-video#production-settings">
+    Configure your video production settings
+  </Card>
+
+  <Card title="Use templates" icon="copy" color="purple" href="/resources/article-to-video">
+    Generate a video quickly by pasting an article link
+  </Card>
+</CardGroup>
+
+## Control Your Avatar
+
+<CardGroup>
+  <Card title="Body language" icon="person-walking" color="purple" href="/resources/body-language">
+    Add natural movements and gestures to your avatar
+  </Card>
+
+  <Card title="Camera control" icon="camera" color="purple" href="/resources/cameras-angles">
+    Master camera angles and zoom effects
+  </Card>
+</CardGroup>
+
+## Make Your Video Dynamic
+
+<CardGroup>
+  <Card title="Add media" icon="photo-film" color="purple" href="/resources/brolls">
+    Enhance your video with B-rolls and media
+  </Card>
+
+  <Card title="Add captions" icon="closed-captioning" color="purple" href="/resources/captions">
+    Make your content accessible with captions
+  </Card>
+
+  <Card title="Add music" icon="music" color="purple" href="/resources/music">
+    Set the mood with background music
+  </Card>
+
+  <Card title="Editing tips" icon="wand-magic-sparkles" color="purple" href="/resources/editingtips">
+    Learn pro editing techniques
+  </Card>
+</CardGroup>
+
+## Train Your Avatar
+
+<CardGroup>
+  <Card title="Create avatar" icon="user-plus" color="purple" href="/resources/create-avatar-from-image">
+    Create a custom avatar from scratch
+  </Card>
+
+  <Card title="Training tips" icon="graduation-cap" color="purple" href="/resources/training-tips">
+    Learn best practices for avatar training
+  </Card>
+
+  <Card title="Style & camera" icon="camera-retro" color="purple" href="/resources/styles-and-cameras">
+    Add custom styles and camera angles
+  </Card>
+
+  <Card title="Body language" icon="person-rays" color="purple" href="/resources/create-body-language">
+    Add expressive movements to your avatar
+  </Card>
+
+  <Card title="Voice setup" icon="microphone-lines" color="purple" href="/resources/link-a-voice">
+    Link and customize your avatar's voice
+  </Card>
+</CardGroup>
+
+## Manage Your Account
+
+<CardGroup>
+  <Card title="Account settings" icon="gear" color="purple" href="/resources/account-settings">
+    Configure your account preferences
+  </Card>
+
+  <Card title="Affiliate program" icon="handshake" color="purple" href="/resources/affiliates">
+    Join our affiliate program
+  </Card>
+</CardGroup>
+
+## Developers
+
+<Card title="API Documentation" icon="code" color="purple" href="/resources/api-pricings">
+  Access our API documentation and pricing
+</Card>
+
+
+# Link a new voice to your avatar
+Source: https://docs.argil.ai/resources/link-a-voice
+
+Change the default voice of your avatar
+
+<Steps>
+  <Step title="Access avatar settings">
+    Click on your avatar to open styles panel
+  </Step>
+
+  <Step title="Open individual settings">
+    Click again to access individual avatar settings
+  </Step>
+
+  <Step title="Change voice">
+    Under the name section, locate and modify "linked voice"
+  </Step>
+</Steps>
+
+<Card title="Learn More About Voices" icon="microphone" href="/resources/voices-and-provoices" style={{width: "200px", color: "#741FFF", display: "flex", alignItems: "center"}}>
+  Discover voice settings and pro voices
+</Card>
+
+
+# Moderated content
+Source: https://docs.argil.ai/resources/moderated-content
+
+Here are the current rules we apply to the content we moderate. 
+
+<Info>
+  Note that content restrictions only apply to Argil’s avatars. If you wish to generate content outside of our restrictions, please train your own avatar ([see how](https://docs.argil.ai/resources/training-tips))
+</Info>
+
+On Argil, to protect our customers and to comply with our “safe synthetic content guidelines”, we prevent some content to be generated. There are 2 scenarios:
+
+* Video generated with **your** avatar: no content is restricted
+
+* Video generated with **Argil’s avatars**: submitted to content restrictions (see below)
+
+***
+
+### Here’s an exhaustive list of content that is restricted:
+
+You will not use the Platform to generate, upload, or share any content that is obscene, pornographic, offensive, hateful, violent, or otherwise objectionable, including but not limited to content that falls in the following categories:
+
+### **Finance**
+
+* Anything that invites people to earn more money with a product or service described in the content (includes crypto and gambling).
+
+**Banned:** Content is flagged when it makes unverified promises of financial gain, promotes get-rich-quick schemes, or markets financial products deceptively. Claims like "double your income overnight" or "risk-free investments" are explicitly prohibited.
+
+**Allowed**: General discussions of financial products or markets that do not promote specific services or methods for profit. Describing the perks of a product (nice banking cards, easy user interface, etc.) not related to the ability to make more money.
+
+### Illicit promotion
+
+* Promotion of cryptocurrencies
+
+* Promotion of gambling sites
+
+**Banned:** Content is flagged when it encourages risky financial behavior, such as investing in cryptocurrencies without disclaimers or promoting gambling platforms. Misleading claims of easy profits or exaggerated benefits are also prohibited.
+
+**Allowed**: General discussions of financial products or markets that do not promote specific services or methods for profit. Promoting the characteristics of your product (card
+
+### Criminal / Illegal activies
+
+* Pedo-criminality
+
+* Promotion of illegal activities
+
+* Human trafficking
+
+* Drug use or abuse
+
+* Malware or phishing
+
+**Banned**: Content is banned when it provides explicit instructions, encourages, or normalizes illegal acts. For example, sharing methods for hacking, promoting drug sales, or justifying exploitation falls into this category. Any attempt to glorify such activities is strictly prohibited.
+
+### Violence and harm
+
+* Blood, gore, self harm
+
+* Extreme violence, graphic violence, incitement to violence
+
+* Terrorism
+
+**Banned**: Content that portrays graphic depictions of physical harm, promotes violent behavior, or incites others to harm themselves or others is not allowed. This includes highly descriptive language or imagery that glorifies violence or presents it as a solution.
+
+### Hate speech and discrimination
+
+* Racism, sexism, misogyny, misandry, homophobia, transphobia
+
+* Hate speech, defamation or slander
+
+* Discrimination
+
+* Explicit or offensive language
+
+**Banned**: Hate speech is banned when it directly attacks or dehumanizes individuals or groups based on their identity. Content encouraging segregation, using slurs, or promoting ideologies of hate (e.g., white supremacy) is prohibited. Defamation targeting specific individuals also falls under this category.
+
+### **Privacy and Intellectual Property**
+
+* Intellectual property infringement
+
+* Invasion of privacy
+
+**Banned:** Content that encourages removing watermarks, using pirated software, or disclosing private information without consent is disallowed. This includes sharing unauthorized personal details or methods to bypass intellectual property protections.
+
+### **Nudity and sexual content**
+
+**Banned:** Sexual content is banned when it contains graphic descriptions of acts, uses explicit language, or is intended to arouse rather than inform or educate. Depictions of non-consensual or illegal sexual acts are strictly forbidden.
+
+### **Harassment**
+
+**Banned:** Harassment includes targeted attacks, threats, or content meant to humiliate an individual. Persistent, unwanted commentary or personal attacks against a specific person also fall under this banned category.
+
+### **Misinformation** and fake news
+
+**Banned:** Misinformation is flagged when it spreads false narratives as facts, especially on topics like health, science, or current events. Conspiracy theories or fabricated claims that could mislead or harm the audience are strictly not allowed.
+
+### **Sensitive Political Topics**
+
+**Banned:** Content is banned when it incites unrest, promotes illegal political actions, or glorifies controversial figures without nuance. Content that polarizes communities or compromises public safety through biased narratives is flagged.
+
+**Allowed:** Balanced discussions on political issues, provided they are neutral, educational, and avoid inflammatory language.
+
+###
+
+**Why do we restrict content?**&#x20;
+
+We have very strong contracts in place with our actors that are used as Argil’s avatars.
+
+If you think that a video has been wrongly flagged, please send an email to [support@argil.ai](mailto:support@argil.ai) (**and ideally include the transcript of said video**).
+
+*Please note that Argil created a feature on the platform to automatically filter the generation of prohibited content, but this feature can be too strict and in some cases doesn’t work.*
+
+### Users that violate these guidelines may see the immediate termination of their access to the Platform and a permanent ban from future use.
+
+
+# Music
+Source: https://docs.argil.ai/resources/music
+
+
+
+Music is a great way to add more emotion to your video and is extremely simple to add.&#x20;
+
+### How to add music&#x20;
+
+<Steps>
+  <Step title="Step 1">
+    On the side bar, click on "None" under "Music"&#x20;
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at11.40.38.png)
+  </Step>
+
+  <Step title="Step 2">
+    Preview musics by pressing the play button and setting the volume
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at11.43.44.png)
+  </Step>
+
+  <Step title="Step 3">
+    When you found the perfect symphony for your video, click on it and click the "back" button to the main menu ; you can then preview the video with your Music&#x20;
+
+    ![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-02at11.41.26.png)
+  </Step>
+</Steps>
+
+### Can I add my own music?
+
+Not yet - we will be adding this feature shortly.&#x20;
+
+
+# Argil pay-as-you-go credit pricings
+Source: https://docs.argil.ai/resources/pay-as-you-go-pricings
+
+Description of your new file.
+
+<Tip>
+  You can purchase as much Pay-as-you-go credits as you wish. **They never expire.**
+</Tip>
+
+### For videos:
+
+| Feature                        | For 1 Argil Credit |
+| ------------------------------ | ------------------ |
+| Video                          | 1 min              |
+| Voice                          | 3 min              |
+| B-rolls                        | 6 B-rolls          |
+| Royalties (Argil avatars only) | 3 vidéos           |
+
+### For avatars:
+
+| Feature                                                   | Price |
+| --------------------------------------------------------- | ----- |
+| Avatar training (also counts for camera angles or styles) | \$60  |
+
+
+# Remove background
+Source: https://docs.argil.ai/resources/remove-bg
+
+On all the avatars available, including your own. 
+
+<CardGroup cols={2}>
+  <Card title="Image Background" icon="image" style={{width: "200px", display: "flex", alignItems: "center"}}>
+    Upload jpg, jpeg, or png files
+  </Card>
+
+  <Card title="Video Background" icon="video" style={{width: "200px", display: "flex", alignItems: "center"}}>
+    Upload mp4 or mov files
+  </Card>
+</CardGroup>
+
+<Warning>
+  Maximum file size: 50 MB
+</Warning>
+
+<Steps>
+  <Step title="Open background panel">
+    Access the background options in the studio
+  </Step>
+
+  <Step title="Upload media">
+    Choose your image or video file
+  </Step>
+
+  <Step title="Apply to specific clip">
+    Select clip, upload media, and choose "back" display option
+  </Step>
+</Steps>
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/argil/images/Captured%E2%80%99e%CC%81cran2025-01-02a%CC%8013.45.10.png)
+
+
+# Sign up & sign in
+Source: https://docs.argil.ai/resources/sign-up-sign-in
+
+Create and access your Argil account
+
+### Getting Started
+
+Choose your preferred sign-up method to create your Argil account.
+
+<CardGroup cols="2">
+  <Card title="Email Sign Up" icon="envelope">
+    Create an account using your email address and password.
+  </Card>
+
+  <Card title="Google Sign Up" icon="google">
+    Quick sign up using your Google account credentials.
+  </Card>
+</CardGroup>
+
+### Create Your Account
+
+<Steps>
+  <Step title="Go to Argil">
+    Visit [app.argil.ai](https://app.argil.ai) and click "Sign Up"
+  </Step>
+
+  <Step title="Choose Sign Up Method">
+    Select "Email" or "Continue with Google"
+  </Step>
+
+  <Step title="Complete Registration">
+    Enter your details or select your Google account
+  </Step>
+
+  <Step title="Verify Email">
+    Click the verification link sent to your inbox
+  </Step>
+</Steps>
+
+<Tip>
+  Enterprise users can use SSO (Single Sign-On). Contact your organization admin for access.
+</Tip>
+
+### Sign In to Your Account
+
+<Steps>
+  <Step title="Access Sign In">
+    Go to [app.argil.ai](https://app.argil.ai) and click "Sign In"
+  </Step>
+
+  <Step title="Enter Credentials">
+    Use email/password or click "Continue with Google"
+  </Step>
+</Steps>
+
+### Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Gmail Issues" defaultOpen={false}>
+    * Check email validity
+
+    * Verify permissions
+
+    * Clear browser cache
+  </Accordion>
+
+  <Accordion title="Password Reset" defaultOpen={false}>
+    Click "Forgot Password?" and follow email instructions
+  </Accordion>
+
+  <Accordion title="Account Verification" defaultOpen={false}>
+    Check spam folder or click "Resend Verification Email"
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  Never share your login credentials. Always sign out on shared devices.
+</Warning>
+
+### Need Support?
+
+Contact us through [support@argil.ai](mailto:support@argil.ai) or join our [Discord](https://discord.gg/CnqyRA3bHg)
+
+
+# Add styles and camera angles to your avatar
+Source: https://docs.argil.ai/resources/styles-and-cameras
+
+Learn how to create styles and add camera angles to your Argil avatar
+
+<Warning>
+  For now, it isn't possible to link together pre-existing cameras or styles. Those can only be created during the avatar training phase.
+</Warning>
+
+### Adding Styles
+
+1. Click on "Create an avatar"
+2. Choose if your new avatar is the first one of a style category or if it should be linked to a pre-existing style category
+3. Start your avatar training
+
+<div style={{position: 'relative', paddingBottom: '55.13016845329249%', height: '0'}}>
+  <iframe src="https://www.loom.com/embed/a3478e22ab324a619f39719d2ae7eb14?sid=d1a9919e-31c8-46a2-ba87-88ff0b6c7988" frameBorder="0" webkitallowfullscreen mozallowfullscreen allowFullScreen style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}} />
+</div>
+
+### Adding Camera Angles
+
+1. Click on the avatar that needs another camera angle
+2. Click on "Add a camera"
+3. Train the new camera angle
+
+<div style={{position: 'relative', paddingBottom: '55.13016845329249%', height: '0'}}>
+  <iframe src="https://www.loom.com/embed/b287dace391041b4a96e2aef110ea40b?sid=c934a73e-ad06-43c3-9489-e736b1447787" frameBorder="0" webkitallowfullscreen mozallowfullscreen allowFullScreen style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}} />
+</div>
+
+<Tip>
+  Your videos will be automatically pre-edited with switches between the different angles available on the different clips.
+</Tip>
+
+
+# Subscription and plans
+Source: https://docs.argil.ai/resources/subscription-and-plans
+
+What are the different plans available, how to upgrade, downgrade and cancel a subscription.
+
+<Note>
+  Choose the plan that best fits your needs. You can upgrade or downgrade at any time.
+</Note>
+
+## Available Plans
+
+<CardGroup>
+  <Card title="Classic Plan - $39/month" horizontal={200} style={{minHeight: "320px"}} href="https://app.argil.ai">
+    ### Features
+
+    * 25 minutes of video per month
+
+    * 3 avatar trainings (in total)
+
+    * Magic editing
+  </Card>
+
+  <Card title="Pro Plan - $149/month" horizontal={200} href="https://app.argil.ai">
+    ### Features
+
+    * 100 minutes of video per month
+
+    * 10 avatar trainings (in total)
+
+    * Magic editing
+
+    * API access
+
+    * Pro avatars
+
+    * Priority support
+  </Card>
+
+  <Card title="Enterprise Plan" horizontal={200} href="mailto:enterprise@argil.ai">
+    ### Features
+
+    * Unlimited video minutes
+
+    * Unlimited avatar trainings
+
+    * Custom avatar development
+
+    * Dedicated support team
+
+    * Custom integrations
+
+    * Talk to us for pricing
+  </Card>
+</CardGroup>
+
+## Managing Your Subscription
+
+### How to upgrade?
+
+<Steps>
+  <Step title="Open subscription settings">
+    Navigate to the bottom left corner of your screen
+  </Step>
+
+  <Step title="Upgrade your plan">
+    Click the "upgrade" button
+  </Step>
+</Steps>
+
+### How to downgrade?
+
+<Steps>
+  <Step title="Access plan management">
+    Click "manage plan" at the bottom left corner
+  </Step>
+
+  <Step title="Request management link">
+    Click "Send email"
+  </Step>
+
+  <Step title="Open management page">
+    Check your email and click the link you received
+  </Step>
+
+  <Step title="Update subscription">
+    Click "Manage subscription" and select your new plan
+  </Step>
+</Steps>
+
+### How to cancel?
+
+1. Go to "my workspace"
+
+2. Go to Settings
+
+3. Go to Manage subscription
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What happens when I upgrade my plan?" defaultOpen={false}>
+    When you upgrade to the Pro plan, you'll immediately get access to all Pro features including increased video minutes, more avatar trainings, API access, pro avatars, and priority support. Your billing will be adjusted accordingly.
+  </Accordion>
+
+  <Accordion title="Can I switch plans at any time?" defaultOpen={false}>
+    Yes, you can upgrade or downgrade your plan at any time. For upgrades, the change is immediate. For downgrades, follow the steps in the downgrade section above.
+  </Accordion>
+
+  <Accordion title="Will I lose my existing content when changing plans?" defaultOpen={false}>
+    No, your existing content will remain intact when changing plans. However, if you downgrade, you won't be able to create new content using Pro-only features.
+  </Accordion>
+</AccordionGroup>
+
+
+# Training your avatar
+Source: https://docs.argil.ai/resources/training-tips
+
+The basics to train a good avatar
+
+<Tip>
+  Recording a short video to train your avatar is simple! Follow these tips for great results.
+</Tip>
+
+<Warning>
+  The most important aspect is lighting. Recording yourself facing a window in daylight will usually yield great results.
+</Warning>
+
+### How to create a video training for your avatar
+
+<Tip>
+  For body language tips, check our [guide on creating body language](/resources/create-body-language).
+</Tip>
+
+<Steps>
+  <Step title="Setup your recording space">
+    Position yourself with good lighting and a simple background. We recommend sitting at a desk for better body control.
+  </Step>
+
+  <Step title="Prepare audio">
+    Use the best microphone available - even a \$20 wireless lavalier will improve quality significantly.
+  </Step>
+
+  <Step title="Position camera">
+    Place camera at eye level with your head about 20-30% from frame top. Stay centered.
+  </Step>
+
+  <Step title="Record">
+    Capture 3 minutes of natural speech. Keep arms still but maintain facial expressions.
+  </Step>
+
+  <Step title="Upload">
+    Submit the unedited video without cuts or black frames.
+  </Step>
+</Steps>
+
+![](https://mintlify.s3.us-west-1.amazonaws.com/argil/Screenshot2025-01-03at11.07.42.png)
+
+<CardGroup cols={2}>
+  <Card title="Camera Setup" icon="video" style={{color: "#741FFF"}}>
+    Center yourself with head 20% from top
+  </Card>
+
+  <Card title="Lighting" icon="sun" style={{color: "#741FFF"}}>
+    Face window or light source
+  </Card>
+
+  <Card title="Audio" icon="microphone" style={{color: "#741FFF"}}>
+    Use quality microphone
+  </Card>
+
+  <Card title="Movement" icon="person" style={{color: "#741FFF"}}>
+    Keep arms static, natural expressions
+  </Card>
+</CardGroup>
+
+<Tip>
+  Want different angles? Record the same sequence from the side view and upload both!
+
+  [Learn about multiple camera angles](https://argil.mintlify.app/resources/styles-and-cameras)
+</Tip>
+
+### Important Guidelines
+
+<Warning>
+  For custom backgrounds, you can:
+
+  1. Film with green screen and edit background
+
+  2. Use our built-in background removal
+</Warning>
+
+1. Keep microphones and accessories away from your mouth
+
+2. Avoid black frames or video cuts
+
+3. Ensure no one else appears in frame
+
+### Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What is the minimum video duration?">
+    We recommend 2 minutes minimum for optimal results.
+  </Accordion>
+
+  <Accordion title="What video formats and sizes are accepted?">
+    You can upload videos up to X GB (to be updated).
+  </Accordion>
+
+  <Accordion title="Can I train with AI-generated avatars?">
+    Yes! Follow our [guide to create avatars from AI images](/resources/create-avatar-from-image).
+  </Accordion>
+
+  <Accordion title="Can I record specific activities?">
+    Yes! As long as you follow the main guidelines:
+
+    * Face the camera
+
+    * Maintain consistent distance
+
+    * Ensure good lighting and audio
+
+    * Minimize arm movement
+
+    * Keep frame clear of others
+  </Accordion>
+</AccordionGroup>
+
+### Activity Ideas
+
+<CardGroup cols={3}>
+  <Card title="Fitness" icon="dumbbell" style={{color: "#741FFF"}}>
+    1. Yoga mat poses
+
+    2. Indoor cycling
+
+    3. Weight training
+  </Card>
+
+  <Card title="Daily Activities" icon="house" style={{color: "#741FFF"}}>
+    1. Kitchen demos
+
+    2. Desk work
+
+    3. Restaurant setting
+  </Card>
+
+  <Card title="Transport" icon="car" style={{color: "#741FFF"}}>
+    Stationary car recording (no driving!)
+  </Card>
+</CardGroup>
+
+
+# Voice Settings
+Source: https://docs.argil.ai/resources/voices-and-provoices
+
+Configure voice settings and set up pro voices for your avatars
+
+## Voice Settings
+
+<Note>
+  We use ElevenLabs for voice generation. For detailed voice settings guidelines, visit the [ElevenLabs documentation](https://elevenlabs.io/docs/speech-synthesis/voice-settings).
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Standard Voices" icon="microphone" color="purple">
+    * Stability: 50-80
+    * Similarity: 60-100
+    * Style: Varies by voice tone
+  </Card>
+
+  <Card title="Pro Voices" icon="microphone-lines" color="purple">
+    * Stability: 70-100
+    * Similarity: 80-100
+    * Style: Varies by voice tone
+  </Card>
+</CardGroup>
+
+## Connect ElevenLabs
+
+1. Add desired voices to your ElevenLabs account
+2. Create an API key
+3. Paste API key in "voices" > "ElevenLabs" on Argil
+4. Click "synchronize" after adding new voices
+
+<Card title="Link Your Voice" icon="link" color="purple" href="/resources/link-a-voice">
+  Learn how to link voices to your avatar
+</Card>
+
+## Create Pro Voice
+
+Pro voices offer hyper-realistic voice cloning for maximum authenticity.
+
+1. Subscribe to ElevenLabs creator plan
+2. Record 30 minutes of clean audio (no pauses/noise)
+3. Create and paste API key in "voices" > "ElevenLabs"
+4. Edit avatar to link your Pro voice
+
+<Frame>
+  <iframe src="https://www.loom.com/embed/f083b2f5b86f4971851d158009d60772?sid=bc9df527-2dba-45c1-bee7-dc81870770c7" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen style={{ width: '100%', height: '400px' }} />
+</Frame>
+
+<Card title="Voice Transformation" icon="wand-magic-sparkles" color="purple" href="/resources/audio-and-voicetovoice">
+  Learn about voice transformation features
+</Card>
+
+

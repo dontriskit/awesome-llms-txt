@@ -1,0 +1,104 @@
+# Abstract
+
+## Docs
+
+- [deployContract](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/deployContract.md): Function to deploy a smart contract from the connected Abstract Global Wallet.
+- [sendTransaction](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/sendTransaction.md): Function to send a transaction using the connected Abstract Global Wallet.
+- [sendTransactionBatch](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/sendTransactionBatch.md): Function to send a batch of transactions in a single call using the connected Abstract Global Wallet.
+- [signMessage](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/signMessage.md): Function to sign messages using the connected Abstract Global Wallet.
+- [signTransaction](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/signTransaction.md): Function to sign a transaction using the connected Abstract Global Wallet.
+- [writeContract](https://docs.abs.xyz/abstract-global-wallet/agw-client/actions/writeContract.md): Function to call functions on a smart contract using the connected Abstract Global Wallet.
+- [getSmartAccountAddress FromInitialSigner](https://docs.abs.xyz/abstract-global-wallet/agw-client/getSmartAccountAddressFromInitialSigner.md): Function to deterministically derive the deployed Abstract Global Wallet smart account address from the initial signer account.
+- [createSession](https://docs.abs.xyz/abstract-global-wallet/agw-client/session-keys/createSession.md): Function to create a session key for the connected Abstract Global Wallet.
+- [createSessionClient](https://docs.abs.xyz/abstract-global-wallet/agw-client/session-keys/createSessionClient.md): Function to create a new SessionClient without an existing AbstractClient.
+- [getSessionStatus](https://docs.abs.xyz/abstract-global-wallet/agw-client/session-keys/getSessionStatus.md): Function to check the current status of a session key from the validator contract.
+- [revokeSessions](https://docs.abs.xyz/abstract-global-wallet/agw-client/session-keys/revokeSessions.md): Function to revoke session keys from the connected Abstract Global Wallet.
+- [toSessionClient](https://docs.abs.xyz/abstract-global-wallet/agw-client/session-keys/toSessionClient.md): Function to create an AbstractClient using a session key.
+- [transformEIP1193Provider](https://docs.abs.xyz/abstract-global-wallet/agw-client/transformEIP1193Provider.md): Function to transform an EIP1193 provider into an Abstract Global Wallet client.
+- [getLinkedAccounts](https://docs.abs.xyz/abstract-global-wallet/agw-client/wallet-linking/getLinkedAccounts.md): Function to get all Ethereum wallets linked to an Abstract Global Wallet.
+- [getLinkedAgw](https://docs.abs.xyz/abstract-global-wallet/agw-client/wallet-linking/getLinkedAgw.md): Function to get the linked Abstract Global Wallet for an Ethereum Mainnet address.
+- [linkToAgw](https://docs.abs.xyz/abstract-global-wallet/agw-client/wallet-linking/linkToAgw.md): Function to link an Ethereum Mainnet wallet to an Abstract Global Wallet.
+- [Wallet Linking](https://docs.abs.xyz/abstract-global-wallet/agw-client/wallet-linking/overview.md): Link wallets from Ethereum Mainnet to the Abstract Global Wallet.
+- [Reading Wallet Links in Solidity](https://docs.abs.xyz/abstract-global-wallet/agw-client/wallet-linking/reading-links-in-solidity.md): How to read links between Ethereum wallets and Abstract Global Wallets in Solidity.
+- [AbstractWalletProvider](https://docs.abs.xyz/abstract-global-wallet/agw-react/AbstractWalletProvider.md): The AbstractWalletProvider component is a wrapper component that provides the Abstract Global Wallet context to your application, allowing you to use hooks and components.
+- [useAbstractClient](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useAbstractClient.md): Hook for creating and managing an Abstract client instance.
+- [useCreateSession](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useCreateSession.md): Hook for creating a session key.
+- [useGlobalWalletSignerAccount](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useGlobalWalletSignerAccount.md): Hook to get the approved signer of the connected Abstract Global Wallet.
+- [useGlobalWalletSignerClient](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useGlobalWalletSignerClient.md): Hook to get a wallet client instance of the approved signer of the connected Abstract Global Wallet.
+- [useLoginWithAbstract](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useLoginWithAbstract.md): Hook for signing in and signing out users with Abstract Global Wallet.
+- [useRevokeSessions](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useRevokeSessions.md): Hook for revoking session keys.
+- [useWriteContractSponsored](https://docs.abs.xyz/abstract-global-wallet/agw-react/hooks/useWriteContractSponsored.md): Hook for interacting with smart contracts using paymasters to cover gas fees.
+- [ConnectKit](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-connectkit.md): Learn how to integrate Abstract Global Wallet with ConnectKit.
+- [Dynamic](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-dynamic.md): Learn how to integrate Abstract Global Wallet with Dynamic.
+- [Privy](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-privy.md): Learn how to integrate Abstract Global Wallet into an existing Privy application
+- [RainbowKit](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-rainbowkit.md): Learn how to integrate Abstract Global Wallet with RainbowKit.
+- [Thirdweb](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-thirdweb.md): Learn how to integrate Abstract Global Wallet with Thirdweb.
+- [WalletConnect](https://docs.abs.xyz/abstract-global-wallet/agw-react/integrating-with-walletconnect.md): Learn how to integrate Abstract Global Wallet with WalletConnect.
+- [Native Integration](https://docs.abs.xyz/abstract-global-wallet/agw-react/native-integration.md): Learn how to integrate Abstract Global Wallet with React.
+- [How It Works](https://docs.abs.xyz/abstract-global-wallet/architecture.md): Learn more about how Abstract Global Wallet works under the hood.
+- [Frequently Asked Questions](https://docs.abs.xyz/abstract-global-wallet/frequently-asked-questions.md): Answers to common questions about Abstract Global Wallet.
+- [Getting Started](https://docs.abs.xyz/abstract-global-wallet/getting-started.md): Learn how to integrate Abstract Global Wallet into your application.
+- [Abstract Global Wallet](https://docs.abs.xyz/abstract-global-wallet/overview.md): Discover Abstract Global Wallet, the smart contract wallet powering the Abstract ecosystem.
+- [Going to Production](https://docs.abs.xyz/abstract-global-wallet/session-keys/going-to-production.md): Learn how to use session keys in production on Abstract Mainnet.
+- [Session keys](https://docs.abs.xyz/abstract-global-wallet/session-keys/overview.md): Explore session keys, how to create them, and how to use them with the Abstract Global Wallet.
+- [Ethers](https://docs.abs.xyz/build-on-abstract/applications/ethers.md): Learn how to use zksync-ethers to build applications on Abstract.
+- [Thirdweb](https://docs.abs.xyz/build-on-abstract/applications/thirdweb.md): Learn how to use thirdweb to build applications on Abstract.
+- [Viem](https://docs.abs.xyz/build-on-abstract/applications/viem.md): Learn how to use the Viem library to build applications on Abstract.
+- [Getting Started](https://docs.abs.xyz/build-on-abstract/getting-started.md): Learn how to start developing smart contracts and applications on Abstract.
+- [Foundry - Compiling Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/compiling-contracts.md): Learn how to compile your smart contracts using Foundry on Abstract.
+- [Foundry - Deploying Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/deploying-contracts.md): Learn how to deploy smart contracts on Abstract using Foundry.
+- [Foundry - Get Started](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/get-started.md): Get started with Abstract by deploying your first smart contract using Foundry.
+- [Foundry - Installation](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/installation.md): Learn how to setup a new Foundry project on Abstract using foundry-zksync.
+- [Foundry - Testing Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/testing-contracts.md): Learn how to test your smart contracts using Foundry.
+- [Foundry - Verifying Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/foundry/verifying-contracts.md): Learn how to verify smart contracts on Abstract using Foundry.
+- [Hardhat - Compiling Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/compiling-contracts.md): Learn how to compile your smart contracts using Hardhat on Abstract.
+- [Hardhat - Deploying Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/deploying-contracts.md): Learn how to deploy smart contracts on Abstract using Hardhat.
+- [Hardhat - Get Started](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/get-started.md): Get started with Abstract by deploying your first smart contract using Hardhat.
+- [Hardhat - Installation](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/installation.md): Learn how to setup a new Hardhat project on Abstract using hardhat-zksync.
+- [Hardhat - Testing Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/testing-contracts.md): Learn how to test your smart contracts using Hardhat.
+- [Hardhat - Verifying Contracts](https://docs.abs.xyz/build-on-abstract/smart-contracts/hardhat/verifying-contracts.md): Learn how to verify smart contracts on Abstract using Hardhat.
+- [ZKsync CLI](https://docs.abs.xyz/build-on-abstract/zksync-cli.md): Learn how to use the ZKsync CLI to interact with Abstract or a local Abstract node.
+- [Connect to Abstract](https://docs.abs.xyz/connect-to-abstract.md): Add Abstract to your wallet or development environment to get started.
+- [Automation](https://docs.abs.xyz/ecosystem/automation.md): View the automation solutions available on Abstract.
+- [Bridges](https://docs.abs.xyz/ecosystem/bridges.md): Move funds from other chains to Abstract and vice versa.
+- [Data & Indexing](https://docs.abs.xyz/ecosystem/indexers.md): View the indexers and APIs available on Abstract.
+- [Interoperability](https://docs.abs.xyz/ecosystem/interoperability.md): Discover the interoperability solutions available on Abstract.
+- [Multi-Sig Wallets](https://docs.abs.xyz/ecosystem/multi-sig-wallets.md): Use multi-signature (multi-sig) wallets on Abstract
+- [Oracles](https://docs.abs.xyz/ecosystem/oracles.md): Discover the Oracle and VRF services available on Abstract.
+- [Paymasters](https://docs.abs.xyz/ecosystem/paymasters.md): Discover the paymasters solutions available on Abstract.
+- [Relayers](https://docs.abs.xyz/ecosystem/relayers.md): Discover the relayer solutions available on Abstract.
+- [RPC Providers](https://docs.abs.xyz/ecosystem/rpc-providers.md): Discover the RPC providers available on Abstract.
+- [Token Distribution](https://docs.abs.xyz/ecosystem/token-distribution.md): Discover providers for Token Distribution available on Abstract.
+- [L1 Rollup Contracts](https://docs.abs.xyz/how-abstract-works/architecture/components/l1-rollup-contracts.md): Learn more about the smart contracts deployed on L1 that enable Abstract to inherit the security properties of Ethereum.
+- [Prover & Verifier](https://docs.abs.xyz/how-abstract-works/architecture/components/prover-and-verifier.md): Learn more about the prover and verifier components of Abstract.
+- [Sequencer](https://docs.abs.xyz/how-abstract-works/architecture/components/sequencer.md): Learn more about the sequencer component of Abstract.
+- [Layer 2s](https://docs.abs.xyz/how-abstract-works/architecture/layer-2s.md): Learn what a layer 2 is and how Abstract is built as a layer 2 blockchain to inherit the security properties of Ethereum.
+- [Transaction Lifecycle](https://docs.abs.xyz/how-abstract-works/architecture/transaction-lifecycle.md): Learn how transactions are processed on Abstract and finalized on Ethereum.
+- [Best Practices](https://docs.abs.xyz/how-abstract-works/evm-differences/best-practices.md): Learn the best practices for building smart contracts on Abstract.
+- [Contract Deployment](https://docs.abs.xyz/how-abstract-works/evm-differences/contract-deployment.md): Learn how to deploy smart contracts on Abstract.
+- [EVM Opcodes](https://docs.abs.xyz/how-abstract-works/evm-differences/evm-opcodes.md): Learn how Abstract differs from Ethereum's EVM opcodes.
+- [Gas Fees](https://docs.abs.xyz/how-abstract-works/evm-differences/gas-fees.md): Learn how Abstract differs from Ethereum's EVM opcodes.
+- [Libraries](https://docs.abs.xyz/how-abstract-works/evm-differences/libraries.md): Learn the differences between Abstract and Ethereum libraries.
+- [Nonces](https://docs.abs.xyz/how-abstract-works/evm-differences/nonces.md): Learn how Abstract differs from Ethereum's nonces.
+- [EVM Differences](https://docs.abs.xyz/how-abstract-works/evm-differences/overview.md): Learn the differences between Abstract and Ethereum.
+- [Precompiles](https://docs.abs.xyz/how-abstract-works/evm-differences/precompiles.md): Learn how Abstract differs from Ethereum's precompiled smart contracts.
+- [Handling Nonces](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/handling-nonces.md): Learn the best practices for handling nonces when building smart contract accounts on Abstract.
+- [Native Account Abstraction](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/overview.md): Learn how native account abstraction works on Abstract.
+- [Paymasters](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/paymasters.md): Learn how paymasters are built following the IPaymaster standard on Abstract.
+- [Signature Validation](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/signature-validation.md): Learn the best practices for signature validation when building smart contract accounts on Abstract.
+- [Smart Contract Wallets](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/smart-contract-wallets.md): Learn how smart contract wallets are built following the IAccount standard on Abstract.
+- [Transaction Flow](https://docs.abs.xyz/how-abstract-works/native-account-abstraction/transaction-flow.md): Learn how Abstract processes transactions step-by-step using native account abstraction.
+- [Bootloader](https://docs.abs.xyz/how-abstract-works/system-contracts/bootloader.md): Learn more about the Bootloader that processes all transactions on Abstract.
+- [List of System Contracts](https://docs.abs.xyz/how-abstract-works/system-contracts/list-of-system-contracts.md): Explore all of the system contracts that Abstract implements.
+- [System Contracts](https://docs.abs.xyz/how-abstract-works/system-contracts/overview.md): Learn how Abstract implements system contracts with special privileges to support some EVM opcodes.
+- [Using System Contracts](https://docs.abs.xyz/how-abstract-works/system-contracts/using-system-contracts.md): Understand how to best use system contracts on Abstract.
+- [Components](https://docs.abs.xyz/infrastructure/nodes/components.md): Learn the components of an Abstract node and how they work together.
+- [Introduction](https://docs.abs.xyz/infrastructure/nodes/introduction.md): Learn how Abstract Nodes work at a high level.
+- [Running a node](https://docs.abs.xyz/infrastructure/nodes/running-a-node.md): Learn how to run your own Abstract node.
+- [Introduction](https://docs.abs.xyz/overview.md): Welcome to the Abstract documentation. Dive into our resources to learn more about the blockchain leading the next generation of consumer crypto.
+- [Portal](https://docs.abs.xyz/portal/overview.md): Discover the Abstract Portal - your gateway to onchain discovery.
+- [Block Explorers](https://docs.abs.xyz/tooling/block-explorers.md): Learn how to view transactions, blocks, batches, and more on Abstract block explorers.
+- [Bridges](https://docs.abs.xyz/tooling/bridges.md): Learn how to bridge assets between Abstract and Ethereum.
+- [Deployed Contracts](https://docs.abs.xyz/tooling/deployed-contracts.md): Discover a list of commonly used contracts deployed on Abstract.
+- [Faucets](https://docs.abs.xyz/tooling/faucets.md): Learn how to easily get testnet funds for development on Abstract.
+- [What is Abstract?](https://docs.abs.xyz/what-is-abstract.md): A high-level overview of what Abstract is and how it works.

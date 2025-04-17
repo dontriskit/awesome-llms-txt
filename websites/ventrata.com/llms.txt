@@ -1,0 +1,40 @@
+# Ventrata OCTO API
+
+## Ventrata OCTO API
+
+- [Welcome](https://docs.ventrata.com/welcome)
+- [Steps to Integrate](https://docs.ventrata.com/getting-started/steps-to-integrate): Quick & easy process to integrate with Ventrata's OCTO API for Resellers
+- [Glossary of Terms](https://docs.ventrata.com/getting-started/glossary-of-terms)
+- [Authentication](https://docs.ventrata.com/getting-started/getting-started)
+- [Test Credentials](https://docs.ventrata.com/getting-started/test-credentials)
+- [Headers](https://docs.ventrata.com/getting-started/headers)
+- [Errors](https://docs.ventrata.com/getting-started/errors)
+- [Localization](https://docs.ventrata.com/getting-started/localization): Content available for multiple languages
+- [Endpoints & Capabilities](https://docs.ventrata.com/request-capabilities)
+- [Suppliers](https://docs.ventrata.com/octo-core/suppliers)
+- [Products](https://docs.ventrata.com/octo-core/products): List available products for purchase
+- [Availability](https://docs.ventrata.com/octo-core/availability): Getting availability for a product
+- [Bookings](https://docs.ventrata.com/octo-core/bookings): Reserving availability an making a booking
+- [Pricing](https://docs.ventrata.com/capabilities/pricing): Provides pricing information to various endpoints
+- [Content](https://docs.ventrata.com/capabilities/content): Adds extra content fields to products, options and units.
+- [Pickups](https://docs.ventrata.com/capabilities/pickups): Adds hotel pickup functionality to the API
+- [Webhooks](https://docs.ventrata.com/capabilities/webhooks): Get notifications sent to you when availability or booking changes
+- [Self-Service Mapping](https://docs.ventrata.com/capabilities/mappings): Send a list of listings to get the supplier to map them themselves
+- [Promotions / Offers](https://docs.ventrata.com/capabilities/offers): Adds the ability to use offer codes and have combination discounts
+- [Custom Questions](https://docs.ventrata.com/capabilities/questions): Adds the ability to ask custom questions on a booking or unit item
+- [Extras](https://docs.ventrata.com/capabilities/extras): Extras are up-sell items that can be added to unit items
+- [Price Adjustments](https://docs.ventrata.com/capabilities/adjustments): Allows you to adjust the retail rate of a booking
+- [Multi-Booking Cart](https://docs.ventrata.com/capabilities/cart): Sell more than one booking together in a cart
+- [Card Payments](https://docs.ventrata.com/capabilities/card-payments): Take card payments through the API
+- [Resources](https://docs.ventrata.com/capabilities/resources): Adds the ability to see and edit resource allocations
+- [Packages](https://docs.ventrata.com/capabilities/packages): Adds package information showing sub-products within a booking
+- [Gift Vouchers](https://docs.ventrata.com/capabilities/gift-vouchers): Allows you to sell and redeem gift vouchers
+- [Redemption](https://docs.ventrata.com/capabilities/redemption): Redeem tickets and bookings by reference or barcode
+- [Online Check-in](https://docs.ventrata.com/capabilities/online-check-in): Just like with an airline, except for tours and activities
+- [Identities](https://docs.ventrata.com/capabilities/identities): Link customer profiles between Ventrata and external systems
+- [Memberships](https://docs.ventrata.com/capabilities/memberships): Exposes Ventrata membership capabilities to OCTO.
+- [Rentals](https://docs.ventrata.com/capabilities/rentals): Allows for rental features to be accessible via API
+- [Ventrata Clients](https://docs.ventrata.com/additional-resources/ventrata-clients)
+- [Other OCTO Implementations](https://docs.ventrata.com/additional-resources/other-octo-implementations)
+- [Support](https://docs.ventrata.com/additional-resources/support)
+- [FAQs](https://docs.ventrata.com/additional-resources/faqs)

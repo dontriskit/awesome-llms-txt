@@ -1,0 +1,287 @@
+# Anytype Docs
+
+## English
+
+- [Welcome](https://doc.anytype.io/anytype-docs/getting-started/readme): Tools for thought, freedom & trust
+- [Mission](https://doc.anytype.io/anytype-docs/getting-started/readme/mission)
+- [Install & Setup](https://doc.anytype.io/anytype-docs/getting-started/install-and-setup)
+- [Mobile](https://doc.anytype.io/anytype-docs/getting-started/install-and-setup/mobile)
+- [Vault](https://doc.anytype.io/anytype-docs/getting-started/install-and-setup/vault-and-key)
+- [Key](https://doc.anytype.io/anytype-docs/getting-started/install-and-setup/key): To protect everything you create and your connections with others, you have an encryption key that only you control
+- [Spaces](https://doc.anytype.io/anytype-docs/getting-started/install-and-setup/space)
+- [Objects](https://doc.anytype.io/anytype-docs/getting-started/object-editor): Let's discover what Objects are, and how to use them to optimize your work.
+- [Blocks](https://doc.anytype.io/anytype-docs/getting-started/object-editor/blocks): Understanding blocks, editing, and customizing to your preference.
+- [Links](https://doc.anytype.io/anytype-docs/getting-started/object-editor/linking-objects)
+- [Types](https://doc.anytype.io/anytype-docs/getting-started/types): Types are the classification system we use to categorize Objects
+- [Properties](https://doc.anytype.io/anytype-docs/getting-started/types/relations)
+- [Templates](https://doc.anytype.io/anytype-docs/getting-started/types/templates): Building & using templates through types.
+- [Queries](https://doc.anytype.io/anytype-docs/getting-started/sets): A live search of all Objects which share a common Type or Property
+- [Collections](https://doc.anytype.io/anytype-docs/getting-started/sets/collections): A folder-like structure where you can visualize and batch edit objects of any type
+- [Widgets](https://doc.anytype.io/anytype-docs/getting-started/customize-and-edit-the-sidebar): How do we customize and edit?
+- [All Objects](https://doc.anytype.io/anytype-docs/getting-started/customize-and-edit-the-sidebar/anytype-library)
+- [Collaboration](https://doc.anytype.io/anytype-docs/getting-started/collaboration)
+- [Web Publish](https://doc.anytype.io/anytype-docs/web-publish)
+- [PARA Method](https://doc.anytype.io/anytype-docs/use-cases/para-method-for-note-taking): We tested Tiago Forte's popular method for note taking and building a second brain.
+- [Daily Notes](https://doc.anytype.io/anytype-docs/use-cases/anytype-editor): 95% of our thoughts are repetitive. Cultivate a practice of daily journaling to start noticing thought patterns and develop new ideas.
+- [Study Notes](https://doc.anytype.io/anytype-docs/use-cases/study-notes): One place to keep your course schedule, syllabus, study notes, assignments, and tasks. Link it all together in the graph for richer insights.
+- [Movie Database](https://doc.anytype.io/anytype-docs/use-cases/movie-database): Let your inner hobbyist run wild and create an encyclopaedia of everything you love. Use it for documenting knowledge you collect over the years.
+- [Travel Wiki](https://doc.anytype.io/anytype-docs/use-cases/travel-wiki): Travel with half the hassle. Put everything you need in one place, so you don't need to fuss over wifi while traveling.
+- [Language Flashcards](https://doc.anytype.io/anytype-docs/use-cases/language-flashcards): Make your language learning process more productive, with the help of improvised flash-cards & translation spoilers
+- [Recipe Book & Meal Planner](https://doc.anytype.io/anytype-docs/use-cases/meal-planner-recipe-book): Good food, good mood. Categorize recipes based on your personal needs and create meal plans that suit your time, taste, and dietary preferences
+- [Memberships](https://doc.anytype.io/anytype-docs/advanced/monetization): All about memberships & pricing for the Anytype Network
+- [Features](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform)
+- [Raycast Extension (macOS)](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform/raycast-extension-macos)
+- [Custom CSS](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform/custom-css)
+- [Dates](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform/dates)
+- [Graph](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform/graph): Finally a dive into your graph of objects.
+- [Other Features](https://doc.anytype.io/anytype-docs/advanced/feature-list-by-platform/other-features)
+- [Data & Security](https://doc.anytype.io/anytype-docs/advanced/data-and-security)
+- [Import & Export](https://doc.anytype.io/anytype-docs/advanced/data-and-security/import-export)
+- [Migrate from Notion](https://doc.anytype.io/anytype-docs/advanced/data-and-security/import-export/migrate-from-notion)
+- [Migrate from Evernote](https://doc.anytype.io/anytype-docs/advanced/data-and-security/import-export/migrate-from-evernote)
+- [Privacy & Encryption](https://doc.anytype.io/anytype-docs/advanced/data-and-security/how-we-keep-your-data-safe)
+- [Networks & Backup](https://doc.anytype.io/anytype-docs/advanced/data-and-security/self-hosting)
+- [Local-only](https://doc.anytype.io/anytype-docs/advanced/data-and-security/self-hosting/local-only)
+- [Self-hosted](https://doc.anytype.io/anytype-docs/advanced/data-and-security/self-hosting/self-hosted)
+- [Storage & Deletion](https://doc.anytype.io/anytype-docs/advanced/data-and-security/data-storage-and-deletion)
+- [Bin](https://doc.anytype.io/anytype-docs/advanced/data-and-security/data-storage-and-deletion/finding-your-objects)
+- [Data Erasure](https://doc.anytype.io/anytype-docs/advanced/data-and-security/delete-or-reset-your-account)
+- [Analytics & Tracking](https://doc.anytype.io/anytype-docs/advanced/data-and-security/analytics-and-tracking)
+- [Settings](https://doc.anytype.io/anytype-docs/advanced/settings)
+- [Vault Settings](https://doc.anytype.io/anytype-docs/advanced/settings/account-and-data): Customize your profile, set up additional security, or delete your vault
+- [Space Settings](https://doc.anytype.io/anytype-docs/advanced/settings/space-settings)
+- [Keyboard Shortcuts](https://doc.anytype.io/anytype-docs/advanced/settings/keyboard-shortcuts)
+- [Community](https://doc.anytype.io/anytype-docs/advanced/community)
+- [Forum](https://doc.anytype.io/anytype-docs/advanced/community/community-forum): A special space just for Anytypers!
+- [Open Any Initiative](https://doc.anytype.io/anytype-docs/advanced/community/join-the-open-source-project)
+- [ANY Experience Gallery](https://doc.anytype.io/anytype-docs/advanced/community/any-experience-gallery)
+- [Nightly Ops](https://doc.anytype.io/anytype-docs/advanced/community/nightly-ops)
+- [Product Workflow](https://doc.anytype.io/anytype-docs/advanced/community/product-workflow)
+- [Help](https://doc.anytype.io/anytype-docs/advanced/help)
+- [FAQs](https://doc.anytype.io/anytype-docs/advanced/help/faqs)
+- [Any Timeline](https://doc.anytype.io/anytype-docs/advanced/help/faqs/any-timeline)
+- [Troubleshooting](https://doc.anytype.io/anytype-docs/advanced/help/troubleshooting)
+- [AnySync Netcheck Tool](https://doc.anytype.io/anytype-docs/advanced/help/troubleshooting/anysync-netcheck-tool)
+- [Beta Migration](https://doc.anytype.io/anytype-docs/advanced/help/migration-from-the-legacy-app): Instructions for our Alpha testers
+- [Connect](https://doc.anytype.io/anytype-docs/advanced/connect): We'd love to keep in touch!
+
+## 中文（简体）
+
+- [文档](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/readme): Here you'll find guides, glossaries, and tutorials to help you on your Anytype journey.
+- [入门](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/readme/onboarding)
+- [联系我们](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/connect-with-us): We'd love to keep in touch. Find us online to stay updated with the latest happenings in the Anyverse:
+- [设置你的账户](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile): Let's get started using Anytype! Find out what you can customize in this chapter.
+- [账户设置](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile/account-and-data): Customize your profile, set up additional security, or delete your account
+- [空间设置](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile/space-settings): Customize your space
+- [侧边栏 & 小部件](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile/customize-and-edit-the-sidebar): How do we customize and edit?
+- [简洁的仪表板](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile/customize-and-edit-the-sidebar/simple-dashboard): Set up your Anytype to easily navigate to frequently-used pages for work, life, or school.
+- [其他导航](https://doc.anytype.io/anytype-docs/documentation_cn/jian-jie/setting-up-your-profile/installation)
+- [概览](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/glossary): Working your way through the anytype primitives
+- [空间](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/space)
+- [对象（Objects）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/object-editor): Let's discover what Objects are, and how to use them to optimize your work.
+- [块（Blocks）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/object-editor/blocks): Understanding blocks, editing, and customizing to your preference.
+- [如何创建对象](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/object-editor/create-an-object): How do you create an object?
+- [定位你的对象](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/object-editor/finding-your-objects)
+- [类型（Types）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/types): Types are the classification system we use to categorize Objects
+- [创建新类型](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/types/create-a-new-type): How to create new types from the library and your editor
+- [布局（Layouts）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/types/layouts)
+- [模板（Templates）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/types/templates): Building & using templated through types.
+- [深入探讨：模板](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/types/templates/deep-dive-templates)
+- [关联（Relations）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/relations)
+- [添加新的关联](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/relations/create-a-new-relation)
+- [创建新的关联](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/relations/create-a-new-relation-1): How to create new relations from the library and your editor
+- [反向链接](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/relations/backlinks)
+- [资料库（Library）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/anytype-library)
+- [类型库](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/anytype-library/types)
+- [关联库](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/anytype-library/relations)
+- [链接](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/linking-objects)
+- [关联图谱（Graph）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/graph): Finally a dive into your graph of objects.
+- [对象集合（Sets）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/sets): A live search of all Objects which share a common Type or Relation
+- [创建对象集合](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/sets/creating-sets)
+- [关联、排序和筛选的自定义](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/sets/customizing-with-relations-sort-and-filters)
+- [深入探讨：对象集](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/sets/deep-dive-sets): Short demo on how to use Sets to quickly access and manage Objects in Anytype.
+- [集锦（Collections）](https://doc.anytype.io/anytype-docs/documentation_cn/ji-chu/collections): A folder-like structure where where you can visualize and batch edit objects of any type
+- [每日笔记](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/anytype-editor): 95% of our thoughts are repetitive. Cultivate a practice of daily journaling to start noticing thought patterns and develop new ideas.
+- [旅行 Wiki](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/travel-wiki): Travel with half the hassle. Put everything you need in one place, so you don't need to fuss over wifi while traveling.
+- [学习笔记](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/study-notes): One place to keep your course schedule, syllabus, study notes, assignments, and tasks. Link it all together in the graph for richer insights.
+- [电影数据库](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/movie-database): Let your inner hobbyist run wild and create an encyclopaedia of everything you love. Use it for documenting knowledge you collect over the years.
+- [食谱 & 膳食计划](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/meal-planner-recipe-book): Good food, good mood. Categorize recipes based on your personal needs and create meal plans that suit your time, taste, and dietary preferences
+- [PARA 笔记法](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/para-method-for-note-taking): We tested Tiago Forte's popular method for note taking and building a second brain.
+- [语言闪卡](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/language-flashcards): Make your language learning process more productive, with the help of improvised flash-cards & translation spoilers
+- [来自用户 Roland 的使用介绍](https://doc.anytype.io/anytype-docs/documentation_cn/yong-li/contributed-intro-by-user-roland): Contributed by our user Roland
+- [功能 & 对比](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/feature-list-by-platform): Anytype is available on Mac, Windows, Linux, iOS, and Android.
+- [故障排除](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/troubleshooting)
+- [键盘快捷键](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/keyboard-shortcuts): Anytype supports keyboard shortcuts for quicker navigation.
+- [主要命令](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/keyboard-shortcuts/main-commands)
+- [导航](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/keyboard-shortcuts/navigation)
+- [Markdown 类](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/keyboard-shortcuts/markdown)
+- [命令类](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/keyboard-shortcuts/commands)
+- [技术类术语表](https://doc.anytype.io/anytype-docs/documentation_cn/za-xiang/glossary-1)
+- [恢复短语（Recovery Phrase）](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/what-is-a-recovery-phrase): There are no passwords in Anytype - only your recovery phrase.
+- [隐私与加密](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/how-we-keep-your-data-safe)
+- [存储与删除](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/data-storage-and-deletion)
+- [网络与备份](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/self-hosting)
+- [数据擦除](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/delete-or-reset-your-account)
+- [分析与追踪](https://doc.anytype.io/anytype-docs/documentation_cn/shu-ju-an-quan/analytics-and-tracking)
+- [货币化（Monetization）](https://doc.anytype.io/anytype-docs/documentation_cn/huo-bi-hua-monetization/monetization)
+- [社区论坛](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/community-forum): A special space just for Anytypers!
+- [报告 Bug](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/community-forum/report-bugs)
+- [提交功能需求与投票](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/community-forum/request-a-feature-and-vote)
+- [向社区寻求帮助](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/community-forum/get-help-from-the-community)
+- [分享你的反馈](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/community-forum/share-your-feedback)
+- [“开源一切”倡议](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/join-the-open-source-project)
+- [ANY 经验画廊（Experience Gallery）](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/join-the-open-source-project/any-experience-gallery)
+- [Any 时间线](https://doc.anytype.io/anytype-docs/documentation_cn/she-qu/any-timeline)
+- [从旧版应用（Legacy）迁移](https://doc.anytype.io/anytype-docs/documentation_cn/qian-yi/migration-from-the-legacy-app): Instructions for our Alpha testers
+
+## Español
+
+- [Anytype te da la bienvenida](https://doc.anytype.io/anytype-docs/espanol/introduccion/readme): Herramientas para el pensamiento, la libertad y la confianza
+- [Obtén la aplicación](https://doc.anytype.io/anytype-docs/espanol/introduccion/get-the-app)
+- [Ponte en contacto](https://doc.anytype.io/anytype-docs/espanol/introduccion/connect-with-us): Nos gusta estar en contacto. Búscanos en línea para estar al día de lo que se cuece en el Anyverso.
+- [Arca y clave](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/vault-and-key): Para proteger todo lo que creas y tus relaciones con los demás, tienes una clave de cifrado que solo controlas tú.
+- [Espacio](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/space)
+- [Objetos](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/object-editor): Vamos a ver qué son los objetos y cómo usarlos para optimizar tu trabajo.
+- [Los bloques y el editor](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/object-editor/blocks): Funcionamiento de los bloques y la edición según tus preferencias.
+- [Maneras de crear objetos](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/object-editor/create-an-object): ¿Cómo se crea un objeto?
+- [Tipos](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/types): Los tipos son el sistema de clasificación que utilizamos para categorizar objetos
+- [Plantillas](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/types/templates): Crear plantillas y usarlas con los tipos.
+- [Relaciones](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/relations)
+- [Conjuntos y colecciones](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/sets-and-collections)
+- [Vistas](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/sets-and-collections/views)
+- [Biblioteca](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/anytype-library)
+- [Enlaces](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/linking-objects)
+- [Gráfico](https://doc.anytype.io/anytype-docs/espanol/nociones-basicas/graph): Una inmersión gráfica en tus objetos
+- [En profundidad: Plantillas](https://doc.anytype.io/anytype-docs/espanol/casos-de-uso/deep-dive-templates)
+- [Foro de la comunidad](https://doc.anytype.io/anytype-docs/espanol/comunidad/community-forum): ¡Un lugar especial solo para Anytypers!
+
+## Magyar
+
+- [Üdvözlünk az Anytype-nál!](https://doc.anytype.io/anytype-docs/magyar/bevezetes/readme): Kulcs a szabad gondolatok biztonságos megosztásához
+- [Az alkalmazás letöltése](https://doc.anytype.io/anytype-docs/magyar/bevezetes/get-the-app)
+- [Kapcsolat](https://doc.anytype.io/anytype-docs/magyar/bevezetes/connect-with-us): Maradjunk kapcsolatban! Keress minket az alábbi csatornákon és maradj naprakész az Anyverse világában:
+- [Széf és kulcs](https://doc.anytype.io/anytype-docs/magyar/alapok/vault-and-key): Az általad létrehozott tartalmakat és kapcsolataidat a biztonsági kulcs védi. Ez csak a Tiéd!
+- [Előkészítés](https://doc.anytype.io/anytype-docs/magyar/alapok/vault-and-key/setting-up-your-profile): Kezdjük el használni az Anytype-ot!
+- [Széf testreszabása](https://doc.anytype.io/anytype-docs/magyar/alapok/vault-and-key/account-and-data): Szabd testre a profilod, növeld a biztonságot, vagy töröld a széfet az adataiddal együtt
+- [Oldalsáv és widgetek](https://doc.anytype.io/anytype-docs/magyar/alapok/vault-and-key/customize-and-edit-the-sidebar): Testreszabás és szerkesztés egyszerűen
+- [Kulcs](https://doc.anytype.io/anytype-docs/magyar/alapok/vault-and-key/what-is-a-recovery-phrase): Az Anytype-ban nincs szükség jelszavakra - kizárólag a kulcsodra
+- [Tér](https://doc.anytype.io/anytype-docs/magyar/alapok/ter)
+- [A tér személyre szabása](https://doc.anytype.io/anytype-docs/magyar/alapok/ter/a-ter-szemelyre-szabasa)
+- [Együttműködés másokkal](https://doc.anytype.io/anytype-docs/magyar/alapok/ter/egyuttmukodes-masokkal)
+- [Objektumok](https://doc.anytype.io/anytype-docs/magyar/alapok/objektumok)
+- [Blokkok és szerkesztő](https://doc.anytype.io/anytype-docs/magyar/alapok/objektumok/blokkok-es-szerkeszto)
+- [Objektumok létrehozása](https://doc.anytype.io/anytype-docs/magyar/alapok/objektumok/objektumok-letrehozasa)
+- [Objektumok keresése](https://doc.anytype.io/anytype-docs/magyar/alapok/objektumok/objektumok-keresese)
+- [Típusok](https://doc.anytype.io/anytype-docs/magyar/alapok/tipusok)
+- [Új típus készítése](https://doc.anytype.io/anytype-docs/magyar/alapok/tipusok/uj-tipus-keszitese)
+- [Elrendezések](https://doc.anytype.io/anytype-docs/magyar/alapok/tipusok/elrendezesek)
+- [Sablonok](https://doc.anytype.io/anytype-docs/magyar/alapok/tipusok/sablonok)
+- [Kapcsolatok](https://doc.anytype.io/anytype-docs/magyar/alapok/kapcsolatok)
+- [Kapcsolat hozzáadása](https://doc.anytype.io/anytype-docs/magyar/alapok/kapcsolatok/kapcsolat-hozzaadasa)
+- [Új kapcsolat készítése](https://doc.anytype.io/anytype-docs/magyar/alapok/kapcsolatok/uj-kapcsolat-keszitese)
+- [Készletek és gyűjtemények](https://doc.anytype.io/anytype-docs/magyar/alapok/keszletek-es-gyujtemenyek)
+- [Készletek](https://doc.anytype.io/anytype-docs/magyar/alapok/keszletek-es-gyujtemenyek/keszletek)
+- [Gyűjtemények](https://doc.anytype.io/anytype-docs/magyar/alapok/keszletek-es-gyujtemenyek/gyujtemenyek)
+- [Elrendezésnézetek](https://doc.anytype.io/anytype-docs/magyar/alapok/keszletek-es-gyujtemenyek/views)
+- [Könyvtár](https://doc.anytype.io/anytype-docs/magyar/alapok/konyvtar)
+- [Hivatkozások](https://doc.anytype.io/anytype-docs/magyar/alapok/hivatkozasok)
+- [Gráf](https://doc.anytype.io/anytype-docs/magyar/alapok/graf)
+- [ANY Experience Gallery](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/any-experience-gallery)
+- [Egyszerű irányítópult](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/simple-dashboard): Állítsd be ás alakítsd az Anytype-ot a használati szokásaidnak megfelelően, hogy a személyes, munkahelyi, vagy iskolai projekjeidben egyaránt produktív maradhass!
+- [Készletek bemutatása](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/deep-dive-sets): A készletekkel villámgyorsan elérheted és - mintegy dinamikus lekérdezésszerűen - kezelheted az Anytype-ban létrehozott objektumokat az általad megadott feltételek alapján.
+- [Sablonok bemutatása](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/deep-dive-templates): Az egyes objektumtípusokon belül létrehozott sablonok segítségével az igazán fontos dolgokra fókuszálhatsz - az egyes objektumokat az általad előre megadott szempontok alapján hozhatod létre.
+- [PARA-módszer](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/para-method-for-note-taking): Tiago Forte népszerű módszerét teszteltük jegyzetek készítésére és a \_második\_agy\_ felépítésére. PARA-mdszer az Anytype-ban!
+- [Napi jegyzetek](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/anytype-editor): Gondolataink 95%-a ismétlődő. Fejleszd tökélyre a mindennapi naplóírás gyakorlatát, térképezd fel saját gondolati mintáidat és fejlessz új ötleteket a még nagyobb hatékonyságért.
+- [Filmadatbázis](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/movie-database): Engedd szabadjára a benned rejlő kreativitást, és hozz létre enciklopédiákat mindenről, amiket csak szeretsz. Használd őket bátran az évek során gyűjtött tudás dokumentálására! Ebben a példában egy fi
+- [Jegyzetek tanuláshoz](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/study-notes): Tárold egy helyen az órarendedet, tananyagodat, jegyzeteidet és teendőidet. Kösd össze őket a gráfban, hogy gazdagabb betekintést nyerj az előtted álló feladatokba.
+- [Utazási kisokos](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/travel-wiki): Szóljon az utazás több élményről és kevesebb aggodalomról! Tartsd útiterveidet, listáidat és a tervezett látnivalókat egy helyen, így utazás közben sem kell a Wi-Fi miatt aggódnod.
+- [Receptkönyv és menütervező](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/meal-planner-recipe-book): Jó ételek, jó hangulat! Hozd létre saját receptkönyvedet és készíts személyre szabott, az idődhöz, az ízlésedhez és étkezési szokásaidhoz illeszkedő menüterveket.
+- [Szókártyák nyelvtanuláshoz](https://doc.anytype.io/anytype-docs/magyar/sokszinu-hasznalat/language-flashcards): A nyelvtanulás szórakoztató is lehet! Légy még produktívabb a rögtönzött szókártyákkal és felugró fordítási segédletekkel.
+- [Adatvédelem és titkosítás](https://doc.anytype.io/anytype-docs/magyar/biztonsag/adatvedelem-es-titkositas)
+- [Tárolás és törlés](https://doc.anytype.io/anytype-docs/magyar/biztonsag/tarolas-es-torles)
+- [Hálózat és biztonsági mentés](https://doc.anytype.io/anytype-docs/magyar/biztonsag/halozat-es-biztonsagi-mentes)
+- [Helyi hálózat](https://doc.anytype.io/anytype-docs/magyar/biztonsag/halozat-es-biztonsagi-mentes/helyi-halozat)
+- [Egyéni hálózati konfiguráció](https://doc.anytype.io/anytype-docs/magyar/biztonsag/halozat-es-biztonsagi-mentes/egyeni-halozati-konfiguracio)
+- [A széf megsemmisítése](https://doc.anytype.io/anytype-docs/magyar/biztonsag/a-szef-megsemmisitese)
+- [Analitika és követés](https://doc.anytype.io/anytype-docs/magyar/biztonsag/analitika-es-kovetes)
+- [Csomagok és árak](https://doc.anytype.io/anytype-docs/magyar/elofizetes/csomagok-es-arak)
+- [Multiplayer és csomagok: GYIK](https://doc.anytype.io/anytype-docs/magyar/elofizetes/csomagok-es-arak/multiplayer-es-csomagok-gyik)
+- [Közösségi fórum](https://doc.anytype.io/anytype-docs/magyar/kozosseg/community-forum): Anytyperek, ide gyűljetek!
+- [Hibajelentés](https://doc.anytype.io/anytype-docs/magyar/kozosseg/community-forum/hibajelentes)
+- [Funkció kérése és szavazás](https://doc.anytype.io/anytype-docs/magyar/kozosseg/community-forum/funkcio-kerese-es-szavazas)
+- [Segítség kérése a közösségtől](https://doc.anytype.io/anytype-docs/magyar/kozosseg/community-forum/segitseg-kerese-a-kozossegtol)
+- [Visszajelzés küldése](https://doc.anytype.io/anytype-docs/magyar/kozosseg/community-forum/visszajelzes-kuldese)
+- [Open Any Initiative](https://doc.anytype.io/anytype-docs/magyar/kozosseg/join-the-open-source-project)
+- [Az Any fejlesztési idővonala](https://doc.anytype.io/anytype-docs/magyar/kozosseg/az-any-fejlesztesi-idovonala)
+- [Fejlesztési filozófiánk](https://doc.anytype.io/anytype-docs/magyar/kozosseg/fejlesztesi-filozofiank)
+- [Egyéni CSS használata](https://doc.anytype.io/anytype-docs/magyar/kozosseg/egyeni-css-hasznalata)
+- [GYIK](https://doc.anytype.io/anytype-docs/magyar/hasznos-tudnivalok/gyik)
+- [Funkciók](https://doc.anytype.io/anytype-docs/magyar/hasznos-tudnivalok/funkciok)
+- [Hibaelhárítás](https://doc.anytype.io/anytype-docs/magyar/hasznos-tudnivalok/hibaelharitas)
+- [Váltás béta verzióra](https://doc.anytype.io/anytype-docs/magyar/hasznos-tudnivalok/valtas-beta-verziora)
+
+## Русский
+
+- [Добро пожаловать в Anytype](https://doc.anytype.io/anytype-docs/russian/vvedenie/readme)
+- [Скачать приложение](https://doc.anytype.io/anytype-docs/russian/vvedenie/get-the-app)
+- [Свяжитесь с нами](https://doc.anytype.io/anytype-docs/russian/vvedenie/connect-with-us): Мы будем рады поддерживать связь. Найдите нас в интернете, чтобы быть в курсе последних событий в Anyverse:
+- [Хранилище и ключ](https://doc.anytype.io/anytype-docs/russian/osnovy/vault-and-key): Чтобы защитить все, что вы создаете, и ваши связи с другими людьми, у вас есть ключ шифрования, который контролируете только вы.
+- [Настройка вашего хранилища](https://doc.anytype.io/anytype-docs/russian/osnovy/vault-and-key/setting-up-your-profile): Давайте начнем использовать Anytype!
+- [Настройки хранилища](https://doc.anytype.io/anytype-docs/russian/osnovy/vault-and-key/account-and-data): Настройте профиль, установите дополнительную безопасность или удалите хранилище
+- [Боковая панель и виджеты](https://doc.anytype.io/anytype-docs/russian/osnovy/vault-and-key/customize-and-edit-the-sidebar): Как настроить и редактировать?
+- [Ключ](https://doc.anytype.io/anytype-docs/russian/osnovy/vault-and-key/what-is-a-recovery-phrase): В Anytype нет паролей — только ваш ключ
+- [Пространство](https://doc.anytype.io/anytype-docs/russian/osnovy/space)
+- [Настройка пространства](https://doc.anytype.io/anytype-docs/russian/osnovy/space/space-settings)
+- [Сотрудничество с другими](https://doc.anytype.io/anytype-docs/russian/osnovy/space/collaboration)
+- [Объекты](https://doc.anytype.io/anytype-docs/russian/osnovy/object-editor): Давайте узнаем, что такое Объекты и как использовать их для оптимизации вашей работы.
+- [Блоки и редактор](https://doc.anytype.io/anytype-docs/russian/osnovy/object-editor/blocks): Понимание блоков, их редактирование и настройка по вашему предпочтению.
+- [Способы создания объектов](https://doc.anytype.io/anytype-docs/russian/osnovy/object-editor/create-an-object): Как создать объект?
+- [Поиск ваших объектов](https://doc.anytype.io/anytype-docs/russian/osnovy/object-editor/finding-your-objects)
+- [Типы](https://doc.anytype.io/anytype-docs/russian/osnovy/types): Типы — это система классификации, которую мы используем для категоризации Объектов.
+- [Создание нового типа](https://doc.anytype.io/anytype-docs/russian/osnovy/types/create-a-new-type): Как создать новые типы из библиотеки и вашего редактора
+- [Макеты](https://doc.anytype.io/anytype-docs/russian/osnovy/types/layouts)
+- [Шаблоны](https://doc.anytype.io/anytype-docs/russian/osnovy/types/templates): Создание и использование шаблонов через типы.
+- [Связи](https://doc.anytype.io/anytype-docs/russian/osnovy/relations)
+- [Добавление новой связи](https://doc.anytype.io/anytype-docs/russian/osnovy/relations/create-a-new-relation)
+- [Создание новой связи](https://doc.anytype.io/anytype-docs/russian/osnovy/relations/create-a-new-relation-1): Как создавать новые связи из библиотеки и вашего редактора
+- [Наборы и коллекции](https://doc.anytype.io/anytype-docs/russian/osnovy/sets-and-collections)
+- [Наборы](https://doc.anytype.io/anytype-docs/russian/osnovy/sets-and-collections/sets): Живой поиск всех Объектов, которые имеют общий Тип или Связь
+- [Коллекции](https://doc.anytype.io/anytype-docs/russian/osnovy/sets-and-collections/collections): Структура, похожая на папку, где вы можете визуализировать и пакетно редактировать объекты любого типа
+- [Представления](https://doc.anytype.io/anytype-docs/russian/osnovy/sets-and-collections/views)
+- [Библиотека](https://doc.anytype.io/anytype-docs/russian/osnovy/anytype-library): Здесь вы найдете как предустановленные, так и системные Типы, которые помогут вам начать работу!
+- [Ссылки](https://doc.anytype.io/anytype-docs/russian/osnovy/linking-objects)
+- [Граф](https://doc.anytype.io/anytype-docs/russian/osnovy/graph): Наконец-то погружение в ваш граф объектов.
+- [Импорт и экспорт](https://doc.anytype.io/anytype-docs/russian/osnovy/import-export)
+- [Галерея опыта ANY](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/any-experience-gallery)
+- [Простой дашборд](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/simple-dashboard): Настройте Anytype для удобной навигации по часто используемым страницам для работы, жизни или учебы.
+- [Глубокое погружение: Наборы](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/deep-dive-sets): Краткая демонстрация использования наборов для быстрого доступа и управления объектами в Anytype.
+- [Глубокое погружение: Шаблоны](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/deep-dive-templates)
+- [Метод PARA](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/para-method-for-note-taking): Мы протестировали популярный метод Тиаго Фортеса для ведения заметок и создания второго мозга.
+- [Ежедневные заметки](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/anytype-editor): 95% наших мыслей повторяются. Воспитайте привычку вести ежедневные заметки, чтобы начать замечать мыслительные паттерны и развивать новые идеи.
+- [База данных фильмов](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/movie-database): Позвольте своему внутреннему энтузиасту разгуляться и создайте энциклопедию всего, что вы любите. Используйте её для документирования знаний, которые вы собираете на протяжении многих лет.
+- [Учебные заметки](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/study-notes): Одно место для хранения вашего расписания курсов, учебных планов, конспектов, заданий и задач. Свяжите все это в графе для более глубокого анализа.
+- [Путеводитель](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/travel-wiki): Путешествуйте с меньшими хлопотами. Соберите все необходимое в одном месте, чтобы не беспокоиться о Wi-Fi во время поездок.
+- [Книга рецептов и планировщик питания](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/meal-planner-recipe-book): Хорошая еда, хорошее настроение. Классифицируйте рецепты в соответствии с вашими личными потребностями и создавайте планы питания, которые соответствуют вашему времени, вкусу и диетическим предпочтени
+- [Языковые карточки](https://doc.anytype.io/anytype-docs/russian/primery-ispolzovaniya/language-flashcards): Сделайте процесс изучения языка более продуктивным с помощью импровизированных карточек и переводов-спойлеров.
+- [Конфиденциальность и шифрование](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/how-we-keep-your-data-safe)
+- [Хранение данных и удаление](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/data-storage-and-deletion)
+- [Сети и резервное копирование](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/self-hosting)
+- [Только локально](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/self-hosting/local-only)
+- [Самостоятельный хостинг](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/self-hosting/self-hosted)
+- [Удаление данных](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/delete-or-reset-your-account)
+- [Аналитика и отслеживание](https://doc.anytype.io/anytype-docs/russian/dannye-i-bezopasnost/analytics-and-tracking)
+- [Планы подписки](https://doc.anytype.io/anytype-docs/russian/podpiski/monetization): Все о членствах и ценах для сети Anytype
+- [ЧaВО по многопользовательскому режиму и подпискам](https://doc.anytype.io/anytype-docs/russian/podpiski/monetization/multiplayer-and-membership-faqs): Подробности о планах членства, многопользовательском режиме и оплатах
+- [Форум сообщества](https://doc.anytype.io/anytype-docs/russian/podpiski/community-forum): Особое пространство для пользователей Anytype!
+- [Сообщить об ошибках](https://doc.anytype.io/anytype-docs/russian/podpiski/community-forum/report-bugs)
+- [Запросить функцию и проголосовать](https://doc.anytype.io/anytype-docs/russian/podpiski/community-forum/request-a-feature-and-vote)
+- [Получить помощь от сообщества](https://doc.anytype.io/anytype-docs/russian/podpiski/community-forum/get-help-from-the-community)
+- [Поделитесь своими отзывами](https://doc.anytype.io/anytype-docs/russian/podpiski/community-forum/share-your-feedback)
+- [Открытая инициатива Any](https://doc.anytype.io/anytype-docs/russian/podpiski/join-the-open-source-project)
+- [Хронология Any](https://doc.anytype.io/anytype-docs/russian/podpiski/any-timeline)
+- [Рабочий процесс продукта](https://doc.anytype.io/anytype-docs/russian/podpiski/product-workflow)
+- [Руководство по пользовательскому CSS](https://doc.anytype.io/anytype-docs/russian/podpiski/custom-css)
+- [Часто задаваемые вопросы](https://doc.anytype.io/anytype-docs/russian/raznoe/faqs)
+- [Функции](https://doc.anytype.io/anytype-docs/russian/raznoe/feature-list-by-platform): Anytype доступен на Mac, Windows, Linux, iOS и Android.
+- [Устранение неполадок](https://doc.anytype.io/anytype-docs/russian/raznoe/troubleshooting)
+- [Миграция с бета-версии](https://doc.anytype.io/anytype-docs/russian/raznoe/migration-from-the-legacy-app): Инструкции для наших альфа-тестеров

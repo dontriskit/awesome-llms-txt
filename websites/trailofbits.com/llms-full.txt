@@ -1,0 +1,1742 @@
+# Trail of Bits
+
+> Since 2012, Trail of Bits has helped secure some of the world's most targeted organizations and products. We combine high-end security research with a real-world attacker mentality to reduce risk and fortify code. We don't just fix bugs, we fix software. Trail of Bits provides comprehensive security services through four primary areas of expertise: application security, blockchain, cryptography, and AI/ML. Our approach emphasizes discovering root causes of security weaknesses and providing actionable recommendations that enhance overall system resilience.
+
+For historical content and publications prior to 2022, please refer to our [GitHub repository](https://github.com/trailofbits/publications).
+
+## Software assurance services
+
+- [AI/ML Security](https://www.trailofbits.com/services/software-assurance/ai-ml/): Comprehensive security reviews of AI systems including model assessment, deployment security, and privacy analysis
+AI/ML Security Services
+1. Security & Safety Training
+   * Comprehensive security training for AI-based system risks
+   * Coverage of AI failure modes and adversarial attacks
+   * Training on AI safety principles
+   * Data provenance and pipeline threats analysis
+   * Risk mitigation strategy development
+   * Custom training solutions based on client needs
+
+2. ML-Ops and Pipeline Assessment
+   * Complete AI/ML pipeline evaluation
+   * Software architecture components
+   * ML architecture review (PyTorch, etc.)
+   * CI/CD processes assessment
+   * Data provenance verification
+   * Hardware stacks evaluation (GPUs)
+   * Novel attack vector identification
+
+3. AI Risk Assessment
+   * Threat modeling for AI systems
+   * Operational design domain application
+   * Scenario analysis for functional risks
+   * Assessment of existing risk frameworks
+   * AI adoption risk evaluation
+
+4. Model Capabilities Evaluation
+   * Assessment of first and third-party AI models
+   * Offensive and defensive cyber capabilities testing
+   * Performance benchmarking against experts
+   * State-of-the-art tool comparison
+   * AI red teaming expertise
+   * Integration guidance for security processes
+
+
+- [Application Security](https://www.trailofbits.com/services/software-assurance/appsec/): Full-spectrum application security services including architecture review
+1. Design Assessment
+   * One to two-week focused security analysis
+   * Early system design phase evaluation
+   * Security architecture review
+   * Design goals and proactive risk mitigation
+   * Business strategy alignment assessment
+   * Custom development guidance
+   * Codebase forking evaluation
+
+2. Threat Modeling
+   * Data*centric threat models development
+   * Security controls maturity evaluation using traffic*light protocol
+   * Component and trust zone identification
+   * System element classification
+   * Threat actor path analysis
+   * Detailed system diagramming
+   * Security control assessment
+
+3. Cloud/Infrastructure Assessment 
+   * Cloud*hosted applications evaluation
+   * Infrastructure deployment analysis
+   * Automated analysis using specialized tools:
+     * Terrascan
+     * Kubediff
+     * ScoutSuite
+     * tfsec
+   * Custom rule development
+   * Container and orchestration security
+   * CI/CD pipeline assessment
+
+4. Comprehensive Code Assessment
+   * Hybrid approach combining:
+     * Manual assessment
+     * Static analysis (CodeQL, Semgrep)
+     * Dynamic analysis
+   * High-risk component evaluation across:
+     * Core project code
+     * Infrastructure code
+     * Front end and back end
+     * APIs and SDKs
+   * Code resilience enhancement
+   * Strategic security guidance
+
+- [Blockchain Security](https://www.trailofbits.com/services/software-assurance/blockchain/): Advanced blockchain security covering smart contracts, protocols, and cryptographic implementations
+1. Design Assessment
+   * System architecture analysis
+   * Component specifications review
+   * Strategic solution analysis
+   * Component*level recommendations
+   * Advanced testing techniques guidance
+   * Customized client solutions
+   * Risk mitigation strategies
+   * Security tool integration guidance
+
+2. Early Stage Assessment
+   * Guidance for early SDLC projects
+   * Lightweight code review
+   * Architecture recommendations
+   * Risk mitigation planning
+   * Security gap identification
+   * Codebase maturity evaluation
+   * Documentation and testing review
+   * Access control evaluation
+
+3. Invariant Testing & Development
+   * Invariant identification and development
+   * System*level invariant specification
+   * Fuzzing initialization and setup
+   * Testing integration services
+   * Developer training and guidance
+   * Cloud infrastructure setup
+   * Long*term fuzzing campaign support
+
+4. Comprehensive Code Assessment
+   * Smart contract analysis
+   * Business logic evaluation
+   * L1/L2 node review
+   * Bridge security assessment
+   * Off-chain component review
+   * Code maturity analysis
+   * Automated tools integration
+   * Long-term security recommendations
+
+- [Cryptography](https://www.trailofbits.com/services/software-assurance/cryptography/): Expert cryptographic review and implementation security assessment
+1. Cryptographic Design Assessment
+   * Protocol and algorithm security review
+   * Initial manual assessment
+   * Design clarification and improvement
+   * Standard practices evaluation
+   * Threat model development
+   * Automated analysis with specialized tools:
+     * Verifpal
+     * ProVerif
+     * CryptoVerif
+     * Tamarin
+
+2. Cryptographic Code Assessment
+   * Standard cryptography evaluation
+   * Zero*knowledge proof systems review
+   * Threshold signature schemes analysis
+   * Multi*party computation assessment
+   * E2EE protocol review
+   * Cloud cryptography evaluation
+   * Hardware*based cryptography assessment
+   * Rust and Go cryptography expertise
+
+3. Cryptographic Engineering
+   * Secure cryptographic solution development
+   * Detailed specification creation
+   * Implementation security
+   * Comprehensive documentation
+   * Safe API development
+   * Thorough testing procedures
+   * Four service variants:
+     * New design and engineering
+     * Existing design implementation
+     * Legacy system enhancement
+     * Design specification development
+
+
+## Security Reviews
+
+### AI/ML Reviews
+- [YOLOv7 Threat Model and Code Review](https://github.com/WongKinYiu/yolov7/): In-depth security assessment of popular vision model
+- [EleutherAI, Hugging Face, & Stability AI SafeTensors](https://github.com/huggingface/safetensors): Security review of ML model serialization format
+- [Hugging Face Gradio](https://huggingface.co/gradio): Security assessment of ML GUI framework
+
+### Recent Academic Papers
+- [A Broad Comparative Evaluation of Software Debloater Tools](https://www.usenix.org/conference/usenixsecurity24): USENIX Security 2024
+- [PolyTracker: Whole-Input Dynamic Information Flow Tracing](https://conf.researchr.org/details/issta-ecoop-2024/issta-ecoop-2024-tool-demonstrations/7/PolyTracker-Whole-Input-Dynamic-Information-Flow-Tracing): ISSTA 2024
+- [Endokernel: A Thread Safe Monitor](https://www.usenix.org/conference/usenixsecurity24/presentation/yang-fangfei): USENIX Security 2024
+- [Design and Implementation of a Coverage-Guided Ruby Fuzzer](https://cset24.isi.edu/): CSET 24
+- [Test Harness Mutilation](https://conf.researchr.org/home/icst-2024/mutation-2024): Mutation 2024
+- [VAST: MLIR compiler for C/C++](https://llvm.swoogo.com/2024eurollvm): EuroLLVM 2024
+- [Careful with MAc-then-SIGn](https://www.ieee-security.org/TC/EuroSP2023/index.html): Euro S&P 2023 
+- [Weak Fiat-Shamir Attacks](https://eprint.iacr.org/2023/691): IEEE S&P 2023
+- [Endoprocess: Programmable Subprocess Isolation](https://www.nspw.org/2023/program): NSPW 2023
+- [CIVSCOPE: Analyzing Memory Corruption](https://dl.acm.org/doi/abs/10.1145/3625275.3625399): SOSP KISV 2023
+- [Detecting variability bugs](https://langsec.org/spw23/papers.html#variability): LangSec 2023
+- [Blind Spots: Detecting Ignored Inputs](https://arxiv.org/abs/2301.08700): LangSec 2023
+
+### Cryptography Reviews
+- [Aligned](https://www.alignedlayer.com/): Security analysis of Layer 2 scaling solution
+- [Lit Protocol Cait-Sith](https://www.litprotocol.com/): Threshold cryptography review
+- [Discord DAVE Protocol](https://discord.com/): Protocol security assessment
+- [Scroll zstd Compression](https://scroll.io/): Compression security review
+- [Iron Fish FishHash](https://ironfish.network/): Hash function security analysis
+- [Scroll ZkEVM 4844 Blob](https://scroll.io/): ZK-proof system review
+- [Ockam](https://docs.ockam.io): Cryptographic design review
+- [Aleo snarkVM](https://www.aleo.org/): Zero-knowledge proof system analysis
+- [Microsoft/Verasion Go-COSE](https://github.com/veraison): COSE implementation review
+
+### Technology Product Reviews
+- [RubyGems.org](https://www.rubygems.org): Package registry security assessment
+- [Kraken Wallet Series](https://www.kraken.com/wallet): Multiple wallet security reviews
+- [Hugging Face Gradio](https://huggingface.co/gradio): ML framework security audit
+- [Eclipse Temurin](https://adoptium.net/temurin/): Java runtime security review
+- [Arch Linux Pacman](https://archlinux.org/pacman/): Package manager security audit
+- [cURL HTTP3](https://curl.se/): Protocol implementation review
+- [Lisk SDK Series](https://lisk.com/): Blockchain platform security reviews
+- [DragonFly2](https://d7y.io/): Distributed system security assessment
+- [Eclipse JKube](https://eclipse.dev/jkube/): Container tooling security review
+
+### Cloud-native Reviews
+- [KEDA](https://keda.sh/): Kubernetes autoscaling security assessment
+- [Terraform Enterprise](https://developer.hashicorp.com/terraform/enterprise): Infrastructure security review
+- [Nomad Enterprise](https://www.nomadproject.io/): Container orchestration security audit
+- [HashiCorp Cloud](https://cloud.hashicorp.com/): Cloud platform security review
+- [Tekton](https://tekton.dev/): CI/CD security assessment
+- [Linkerd](https://linkerd.io/): Service mesh security review
+- [CoreDNS](https://coredns.io/): DNS server security audit
+
+### Invariant Testing and Development
+- [Panoptic](https://panoptic.xyz/): Protocol invariant testing
+- [Curvance](https://www.curvance.com/): Smart contract invariant development
+- [ParaSpace](https://para.space/): DeFi protocol testing
+- [Lindylabs](https://lindylabs.net): Financial protocol testing
+
+### Blockchain Reviews
+- [Wallet Reviews](https://github.com/trailofbits/publications?tab=readme-ov-file#wallet-reviews): Comprehensive crypto wallet assessments
+- [Algorand Reviews](https://github.com/trailofbits/publications?tab=readme-ov-file#algorand): Protocol and smart contract audits
+- [Avalanche Reviews](https://github.com/trailofbits/publications?tab=readme-ov-file#avalanche): Platform security assessments
+- [Bitcoin & Derivatives](https://github.com/trailofbits/publications?tab=readme-ov-file#bitcoin--derivatives): Protocol security reviews
+- [Ethereum/EVM](https://github.com/trailofbits/publications?tab=readme-ov-file#ethereumevm): Smart contract and protocol audits
+- [NervOS](https://github.com/trailofbits/publications?tab=readme-ov-file#nervos): Blockchain platform reviews
+- [Starknet](https://github.com/trailofbits/publications?tab=readme-ov-file#starknet): Layer 2 solution assessments
+- [Solana](https://github.com/trailofbits/publications?tab=readme-ov-file#solana): Platform and protocol reviews
+- [Substrate](https://github.com/trailofbits/publications?tab=readme-ov-file#substrate): Framework security audits
+- [Tendermint/Cosmos](https://github.com/trailofbits/publications?tab=readme-ov-file#tendermintcosmos): Ecosystem security reviews
+- [Tezos](https://github.com/trailofbits/publications?tab=readme-ov-file#tezos): Protocol and smart contract assessments
+- [TON](https://github.com/trailofbits/publications?tab=readme-ov-file#ton): Blockchain platform reviews
+
+## Resources
+
+- [Academic papers](https://github.com/trailofbits/publications?tab=readme-ov-file#academic-papers): Latest research publications
+- [Conference presentations](https://github.com/trailofbits/publications?tab=readme-ov-file#conference-presentations): Technical talks
+- [Guides and Handbooks](https://github.com/trailofbits/publications?tab=readme-ov-file#guides-and-handbooks): Security documentation
+- [Datasets](https://github.com/trailofbits/publications?tab=readme-ov-file#datasets): Research datasets
+- [Podcasts](https://github.com/trailofbits/publications?tab=readme-ov-file#podcasts): Security discussions
+- [Public comments](https://github.com/trailofbits/publications?tab=readme-ov-file#public-comments): Industry submissions
+- [Disclosures](https://github.com/trailofbits/publications?tab=readme-ov-file#disclosures): Vulnerability reports
+- [Workshops](https://github.com/trailofbits/publications?tab=readme-ov-file#workshops): Training materials
+- [Research reports](https://github.com/trailofbits/publications?tab=readme-ov-file#research-reports): Security analysis
+- [Application security testing handbook](https://appsec.guide/): Testing guide
+- [Building Secure Contracts handbook](https://secure-contracts.com/not-so-smart-contracts/cosmos/): Smart contract security
+- [ZKdocs](https://www.zkdocs.com/): Zero-knowledge documentation
+
+## Popular blockchain tools
+
+- [Slither](https://github.com/trailofbits/publications?tab=readme-ov-file#academic-papers): Solidity analysis framework
+- [Medusa](https://github.com/crytic/medusa): Blockchain fuzzing platform
+- [Attacknet](https://github.com/crytic/attacknet): Security testing framework
+
+## Popular cryptography tools
+
+- [Decree](https://github.com/trailofbits/decree): Cryptographic protocol analysis
+
+## Popular AI/ML tools
+
+- [PrivacyRaven](https://github.com/trailofbits/PrivacyRaven): ML privacy testing framework
+- [Fickling](https://github.com/trailofbits/fickling): Pickle security scanner
+
+## Popular application security tools and rules
+
+- [Semgrep rules](https://github.com/trailofbits/semgrep-rules): Security pattern matching
+- [Ruzzy](https://github.com/trailofbits/ruzzy): Ruby fuzzing framework
+
+## Other popular tools
+
+- [WeAudit](https://marketplace.visualstudio.com/items?itemName=trailofbits.weaudit): VSCode security extension
+- [SARIF Explorer](https://marketplace.visualstudio.com/items?itemName=trailofbits.sarif-explorer): Report visualization
+
+## Recent blogs
+- [Key Derivation Best Practices](https://blog.trailofbits.com/2025/01/28/best-practices-for-key-derivation/): Essential guidance for proper key derivation implementation in cryptographic applications
+- [Open Source Contributions 2024](https://blog.trailofbits.com/2025/01/23/celebrating-our-2024-open-source-contributions/): Overview of 750+ merged pull requests improving security across 80 open-source projects
+- [RubyGems.org Security Assessment](https://blog.trailofbits.com/2024/12/11/auditing-the-ruby-ecosystems-central-package-repository/): Comprehensive security audit findings from reviewing Ruby's critical package infrastructure
+- [Advanced Semgrep Rules](https://blog.trailofbits.com/2024/12/09/35-more-semgrep-rules-infrastructure-supply-chain-and-ruby/): New collection of 115 public rules for infrastructure and supply chain security
+- [AI for Solidity Development](https://blog.trailofbits.com/2024/11/19/evaluating-solidity-support-in-ai-coding-assistants/): Detailed evaluation of AI coding assistants for Solidity development
+- [PyPI Security Attestations](https://blog.trailofbits.com/2024/11/14/attestations-a-new-generation-of-signatures-on-pypi/): Implementation details of new digital attestation system for Python packages
+- [Filecoin Vulnerability Analysis](https://blog.trailofbits.com/2024/11/13/killing-filecoin-nodes/): Technical breakdown of critical node vulnerability discovery in Filecoin network
+- [Barcode Security Research](https://blog.trailofbits.com/2024/10/31/fuzzing-between-the-lines-in-popular-barcode-software/): Fuzzing research revealing critical vulnerabilities in ZBar library
+- [Linux Memory Protection](https://blog.trailofbits.com/2024/10/25/a-deep-dive-into-linuxs-new-mseal-syscall/): Analysis of new mseal syscall memory protection features
+- [AWS Enclave Security](https://blog.trailofbits.com/2024/09/24/notes-on-aws-nitro-enclaves-attack-surface/): Comprehensive security guidance for AWS Nitro Enclaves deployments
+
+## Rust Libraries
+
+- [cargo-unmaintained](https://github.com/trailofbits/cargo-unmaintained): Identifies unmaintained Rust packages
+- [dylint](https://github.com/trailofbits/dylint): Dynamic Rust linting tool
+- [necessist](https://github.com/trailofbits/necessist): Test improvement tool
+- [siderophile](https://github.com/trailofbits/siderophile): Finds unsafe Rust functions
+- [test-fuzz](https://github.com/trailofbits/test-fuzz): AFL.rs front-end
+- [weggli-native](https://github.com/trailofbits/weggli-native): C API for weggli
+- [reverie](https://github.com/trailofbits/reverie): MPC-in-the-head NIZKPoK implementation
+- [mcircuit](https://github.com/trailofbits/mcircuit): Boolean & arithmetic circuits library
+
+## Go Libraries
+
+- [go-fuzz-utils](https://github.com/trailofbits/go-fuzz-utils): Go fuzzing helper package
+- [on-edge](https://github.com/trailofbits/on-edge): Defer/Panic/Recover pattern detector
+- [not-going-anywhere](https://github.com/trailofbits/not-going-anywhere): Vulnerable Go programs
+- [go-mutexasserts](https://github.com/trailofbits/go-mutexasserts): Mutex verification library
+
+## Symbolic Execution
+
+- [Manticore](https://github.com/trailofbits/manticore): Symbolic execution for binaries and smart contracts
+- [ManticoreUI](https://github.com/trailofbits/ManticoreUI): GUI for Manticore
+- [ManticoreUI-Ghidra](https://github.com/trailofbits/ManticoreUI-Ghidra): Ghidra integration for Manticore
+- [sandshrew](https://github.com/trailofbits/sandshrew): Cryptographic verification tool
+- [maat](https://github.com/trailofbits/maat): Dynamic symbolic execution framework
+
+## C++ Tools
+
+- [cxx-common](https://github.com/trailofbits/cxx-common): Shared C++ dependencies
+- [gap](https://github.com/lifting-bits/gap): LLVM-MLIR bridge
+- [sqlite_wrapper](https://github.com/trailofbits/sqlite_wrapper): SQLite C++ wrapper
+- [pasta](https://github.com/trailofbits/pasta): Clang toolchain abstraction
+- [vast](https://github.com/trailofbits/vast): Program analysis library
+- [constexpr-everything](https://github.com/trailofbits/constexpr-everything): Constexpr code rewriter
+- [RaceSanitizer](https://github.com/trailofbits/RaceSanitizer): Data race detector
+
+## Cryptography
+
+- [mpc-learning](https://github.com/trailofbits/mpc-learning): Multi-party computation for ML
+- [indurative](https://github.com/trailofbits/indurative): Authenticated data structures
+- [zkdocs](https://github.com/trailofbits/zkdocs): Zero-knowledge proof documentation
+- [sholva](https://github.com/trailofbits/sholva): Program execution ZK proofs
+- [circomspect](https://github.com/trailofbits/circomspect): Circom analyzer and linter
+
+## Experimental Tools
+
+- [magnifier](https://github.com/trailofbits/magnifier): Reverse engineering UI
+- [umberto](https://github.com/trailofbits/umberto): Structured data mutation
+- [honeybee](https://github.com/trailofbits/honeybee): Intel Processor Trace tools
+- [sinter](https://github.com/trailofbits/sinter): macOS security agent
+- [binrec-tob](https://github.com/trailofbits/binrec-tob): Binary lifter
+- [microx](https://github.com/lifting-bits/microx): Instruction execution framework
+- [anselm](https://github.com/trailofbits/anselm): Function behavior pattern detector
+- [essence](https://github.com/trailofbits/essence): LLVM function extractor
+
+## Fuzzing Tools
+
+- [zfuzz](https://github.com/trailofbits/zfuzz): Snapshot fuzzer
+- [grr](https://github.com/lifting-bits/grr): Binary translator for fuzzing
+- [ceo](https://github.com/trailofbits/ceo): Vulnerability discovery guide
+- [sienna-locomotive](https://github.com/trailofbits/sienna-locomotive): User-friendly fuzzer
+- [krf](https://github.com/trailofbits/krf): Kernel fault injection
+- [deepstate](https://github.com/trailofbits/deepstate): Unified fuzzing framework
+- [protofuzz](https://github.com/trailofbits/protofuzz): Protocol Buffers fuzzer
+- [mishegos](https://github.com/trailofbits/Mishegos): x86 decoder fuzzer
+
+## Challenges & Data Sets
+
+- [cb-multios](https://github.com/trailofbits/cb-multios): DARPA CGC Challenge Binaries
+- [AnghaBench](https://github.com/lifting-bits/AnghaBench): C program repository
+- [pegoat](https://github.com/trailofbits/pegoat): Windows security test binaries
+- [ctf-challenges](https://github.com/trailofbits/ctf-challenges): CTF challenge collection
+
+## Parsers and Analysis
+
+- [graphtage](https://github.com/trailofbits/graphtage): Tree-like structure comparison
+- [polyfile](https://github.com/trailofbits/polyfile): File format analyzer
+- [polytracker](https://github.com/trailofbits/polytracker): Data flow analyzer
+
+## Windows Utilities
+
+- [uthenticode](https://github.com/trailofbits/uthenticode): Authenticode verifier
+- [winchecksec](https://github.com/trailofbits/winchecksec): PE security feature detector
+- [pe-parse](https://github.com/trailofbits/pe-parse): PE file parser
+- [RpcInvestigator](https://github.com/trailofbits/RpcInvestigator): RPC endpoint analyzer
+- [windows-ctl](https://github.com/trailofbits/windows-ctl): Certificate Trust List tools
+- [windows-acl](https://github.com/trailofbits/windows-acl): ACL operations library
+
+
+## Core Tools
+
+- [Slither](https://github.com/crytic/slither): Solidity static analysis framework
+- [Manticore](https://github.com/trailofbits/manticore): Symbolic execution platform for analysis of smart contracts and binaries
+- [Algo VPN](https://github.com/trailofbits/algo): Simplified personal VPN server setup
+- [DeepState](https://github.com/trailofbits/deepstate): Unified testing framework for C/C++
+- [Remill](https://github.com/lifting-bits/remill): Machine code to LLVM bitcode lifter
+- [PrivacyRaven](https://github.com/trailofbits/PrivacyRaven): Privacy testing for deep learning systems
+
+## eBPF Tools
+
+- [linuxevents](https://github.com/trailofbits/linuxevents): Linux event monitoring without kernel headers
+- [ebpfpub](https://github.com/trailofbits/ebpfpub): System call monitoring across kernel versions
+- [ebpf-common](https://github.com/trailofbits/ebpf-common): eBPF code generation utilities
+- [btfparse](https://github.com/trailofbits/btfparse): Linux kernel BTF data parser
+- [ebpfault](https://github.com/trailofbits/ebpfault): System-wide fault injector
+- [ebpf-verifier](https://github.com/trailofbits/ebpf-verifier): External eBPF program verifier
+
+## Binary Analysis
+
+- [McSema](https://github.com/lifting-bits/mcsema): Binary to LLVM lifter
+- [Anvill](https://github.com/lifting-bits/anvill): Machine code lifting primitives
+- [VMill](https://github.com/lifting-bits/vmill): Snapshot-based process emulator
+- [Rellic](https://github.com/trailofbits/rellic): LLVM to C decompiler
+- [Codex Decompiler](https://github.com/trailofbits/codex-decompiler): AI-assisted Ghidra decompiler
+- [blight](https://github.com/trailofbits/blight): Build tool instrumentation framework
+
+## Ethereum Security
+
+- [eth-security-toolbox](https://github.com/trailofbits/eth-security-toolbox): Docker toolbox for Ethereum security tools
+- [Echidna](https://github.com/crytic/echidna): Smart contract fuzzer
+- [Etheno](https://github.com/crytic/etheno): Ethereum testing tool
+- [Crytic-compile](https://github.com/crytic/crytic-compile): Smart contract compilation
+- [Building Secure Contracts](https://github.com/crytic/building-secure-contracts): Smart contract security guide
+- [Rattle](https://github.com/crytic/rattle): EVM binary analyzer
+- [pyevmasm](https://github.com/crytic/pyevmasm): EVM assembler/disassembler
+
+## Python Libraries
+
+- [cvedb](https://github.com/trailofbits/cvedb): CVE database library and utility
+- [mimid](https://github.com/trailofbits/mimid): Standalone Mimid algorithm implementation
+- [abi3audit](https://github.com/trailofbits/abi3audit): Python extension ABI violation scanner
+- [fickling](https://github.com/trailofbits/fickling): Python pickle decompiler and analyzer
+
+## SIEVE Tools
+
+- [sv_circuit](https://github.com/trailofbits/sv_circuit): DARPA SIEVE project circuit compositor
+- [clash-silicon-tinytapeout](https://github.com/trailofbits/clash-silicon-tinytapeout): Synthesized CPU in Clash
+- [verilog_tools](https://github.com/trailofbits/verilog_tools): Yosys wrappers for circuit compilation
+- [mcircuit](https://github.com/trailofbits/mcircuit): Boolean & arithmetic circuits library
+
+## Guides and Tutorials
+
+- [CTF Field Guide](https://github.com/trailofbits/ctf): CTF competition guide
+- [Not Slithering Anywhere](https://github.com/trailofbits/not-slithering-anywhere): Vulnerable Python application
+- [LLVM Sanitizer Tutorial](https://github.com/trailofbits/llvm-sanitizer-tutorial): Guide to building LLVM sanitizers
+- [Building Secure Contracts](https://github.com/crytic/building-secure-contracts): Smart contract security guide
+- [ZKDocs](https://github.com/trailofbits/zkdocs): Zero-knowledge proof documentation
+- [Awesome Ethereum Security](https://github.com/crytic/awesome-ethereum-security): Ethereum security resources
+
+## Osquery Tools
+
+- [osquery-logger](https://github.com/trailofbits/osquery-logger): Osquery debug listener
+- [osquery-extensions](https://github.com/trailofbits/osquery-extensions): Osquery extension collection
+
+## Semgrep and CodeQL
+
+- [itergator](https://github.com/trailofbits/itergator): Iterator invalidation detector
+- [divergent-representations](https://github.com/trailofbits/divergent-representations): Variable implementation analyzer
+- [semgrep-rules](https://github.com/trailofbits/semgrep-rules): Custom Semgrep rules collection
+- [codeql-queries](https://github.com/trailofbits/codeql-queries): Custom CodeQL queries
+
+## Miscellaneous Tools
+
+- [algo](https://github.com/trailofbits/algo): WireGuard/IPsec VPN setup tool
+- [cast2gif](https://github.com/trailofbits/cast2gif): Terminal recording renderer
+- [nginx-json-kss](https://github.com/trailofbits/nginx-json-kss): Nginx JSON logger
+- [sixtyfour](https://github.com/trailofbits/sixtyfour): 64-bit integer experiment
+- [twa](https://github.com/trailofbits/twa): Web auditor
+- [wasm-tob](https://github.com/trail-of-forks/wasm-tob): WebAssembly module analyzer
+- [it-depends](https://github.com/trailofbits/it-depends): Dependency graph generator
+
+## AI/ML Tools
+
+- [PrivacyRaven](https://github.com/trailofbits/PrivacyRaven): Privacy testing for deep learning
+- [Codex-Decompiler](https://github.com/trailofbits/Codex-Decompiler): AI-assisted Ghidra decompiler
+
+## Networking Tools
+
+- [onesixtyone](https://github.com/trailofbits/onesixtyone): Fast SNMP scanner
+- [eatmynetwork](https://github.com/trailofbits/eatmynetwork): Network sandboxing script
+
+
+## Contact and socials
+
+- [Contact Us](https://www.trailofbits.com/contact/): Security consulting
+- [Blog](https://blog.trailofbits.com/): Research insights
+- [Twitter](https://twitter.com/trailofbits): Updates
+- [LinkedIn](https://www.linkedin.com/company/trail-of-bits): Professional network
+- [GitHub](https://github.com/trailofbits/): Open source projects
+- [Community Forum](https://slack.empirehacking.nyc/): Discussion platform
+
+## Optional
+
+- [Careers](https://www.trailofbits.com/careers/): Join our team
+- [Resources](https://www.trailofbits.com/resources/): Additional materials
+- [Built In Best Places](https://www.trailofbits.com/): Recognition
+- [Forrester Recognition](https://www.trailofbits.com/forrester/): Industry analysis
+
+# Trail of Bits
+
+> Trail of Bits is a premier cybersecurity research and consulting firm founded in 2012, specializing in security assessments, deep technical research, and advanced tool development. We combine high-end security research with a real-world attacker mentality to reduce risk and fortify code across application security, blockchain systems, cryptographic implementations, and AI/ML technologies. Our team of world-class security researchers routinely identifies novel vulnerabilities, develops cutting-edge security tools like Slither, Echidna, Manticore, and Crytic, and publishes groundbreaking research. We serve Fortune 500 companies, technology giants, blockchain projects, government agencies, and security-conscious organizations worldwide, providing deep security insights beyond conventional penetration testing.
+
+Trail of Bits conducts comprehensive security assessments across a wide range of domains, including smart contracts on platforms like Ethereum, Solana, and Cosmos; cryptographic implementations; AI/ML models and systems; and low-level systems including firmware, kernels, and drivers. We are recognized for our technical depth, research-driven approach, and ability to find vulnerabilities that others miss. Unlike typical security firms, we don't just find bugs—we fix entire classes of vulnerabilities through improved architectures, custom tools, and knowledge transfer to development teams.
+
+## Software Assurance Services
+
+### AI/ML Security Services
+
+Trail of Bits provides comprehensive security assessments for artificial intelligence and machine learning systems, addressing the unique security and safety challenges of these technologies.
+
+- [AI/ML Security Services Overview](https://www.trailofbits.com/services/software-assurance/ai-ml/): Our dedicated practice for AI/ML security and safety assessments
+
+#### Core AI/ML Security Services
+- **AI/ML Threat Modeling and Design Review**: Identifying potential attack vectors, security weaknesses, and privacy risks in AI/ML system architectures before implementation
+- **AI Model Security Assessment**: Evaluating model robustness against adversarial attacks, backdoors, and model extraction attempts
+- **MLOps and Pipeline Security**: Analyzing the entire ML pipeline from data collection to deployment for security vulnerabilities and integrity issues
+- **Training Data Security and Privacy**: Assessing potential data poisoning vectors, privacy leakage risks, and data provenance issues
+- **LLM Security and Prompt Engineering**: Evaluating large language models for prompt injection vulnerabilities, jailbreaking resistance, and output validation
+- **Model Deployment Security**: Reviewing secure serving infrastructures, inference endpoints, and runtime protection mechanisms
+- **Safety Risk Analysis**: Comprehensive evaluation of AI system safety risks, failure modes, and alignment properties
+
+#### Specialized AI/ML Security Capabilities
+- **Red Team Exercises for AI Systems**: Simulating real-world attacks against AI systems to test defenses
+- **Adversarial ML Testing**: Using state-of-the-art techniques to test model robustness against adversarial examples and poisoning
+- **Privacy Analysis**: Evaluating membership inference, model inversion, and data extraction risks
+- **Guardrail and Safety Mechanism Review**: Assessing the effectiveness of implemented safety mechanisms and guardrails
+- **Custom Tool Development**: Creating specialized tools for testing and securing AI/ML systems
+- **Foundation Model Security Review**: In-depth analysis of large foundation models for security risks specific to their size and capabilities
+- **Supply Chain Security for AI Assets**: Evaluating the security of model distribution, weights, and other AI artifacts
+
+#### AI/ML Security Engagements
+- [YOLOv7 Threat Model and Code Review](https://github.com/WongKinYiu/yolov7/): Comprehensive security assessment of a widely-used computer vision model
+- [Hugging Face SafeTensors](https://github.com/huggingface/safetensors): Security evaluation of ML model serialization format designed to prevent supply chain attacks
+- [Hugging Face Gradio](https://huggingface.co/gradio): Security assessment of a popular ML GUI framework for model deployment
+- [Assessing YOLOv7 Security Posture](https://blog.trailofbits.com/2023/11/15/assessing-the-security-posture-of-a-widely-used-vision-model-yolov7/): In-depth security evaluation of the YOLOv7 computer vision model
+
+#### AI/ML Security Tools and Research
+- [PrivacyRaven](https://github.com/trailofbits/PrivacyRaven): Open-source framework for testing and analyzing privacy vulnerabilities in machine learning models
+- [Fickling](https://github.com/trailofbits/fickling): Security tool for analyzing and addressing vulnerabilities in Python pickle files commonly used in ML pipelines
+- [ML Model Pickle Attack Research](https://blog.trailofbits.com/2024/06/11/exploiting-ml-models-with-pickle-file-attacks-part-1/): Research on exploiting ML models through malicious pickle files
+- [LeftoverLocals](https://blog.trailofbits.com/2024/01/16/leftoverlocals-listening-to-llm-responses-through-leaked-gpu-local-memory/): Vulnerability discovery and analysis showing how GPU memory leaks could compromise LLM outputs
+
+### Application Security Services
+
+Trail of Bits delivers thorough application security assessments that go beyond standard penetration testing, employing a comprehensive approach to identify and remediate vulnerabilities across the entire software stack.
+
+- [Application Security Services Overview](https://www.trailofbits.com/services/software-assurance/appsec/): Our full-spectrum approach to application security
+
+#### Core Application Security Services
+- **Architecture and Design Review**: Evaluating system architecture for security weaknesses, scalability issues, and potential improvements before implementation
+- **Secure Code Review**: In-depth manual review complemented by automated static analysis to identify vulnerabilities, logic flaws, and implementation errors
+- **Cloud Security Assessment**: Comprehensive evaluation of cloud infrastructure (AWS, GCP, Azure) for misconfigurations, access control issues, and security risks
+- **Container and Kubernetes Security**: Reviewing container images, orchestration setups, and runtime environments for security best practices
+- **CI/CD Pipeline Security**: Analyzing build and deployment pipelines for injection risks, secret management issues, and supply chain vulnerabilities
+- **Threat Modeling**: Structured approach to identifying potential threats, attack vectors, and security controls for critical systems
+- **Mobile Application Security**: Specialized assessments for iOS and Android applications, focusing on platform-specific security concerns
+- **Web Application Security**: In-depth security testing for web applications, APIs, and client-side components
+
+#### Specialized Application Security Capabilities
+- **Supply Chain Security**: Identifying risks in dependency management, build processes, and third-party components
+- **Low-Level Systems Security**: Analyzing firmware, device drivers, kernels, hypervisors, and embedded systems for vulnerabilities
+- **Network Protocol Analysis**: Evaluating custom protocols for security flaws, race conditions, and robustness issues
+- **Fuzzing and Dynamic Analysis**: Employing advanced fuzzing techniques, memory corruption detectors, and dynamic analysis to find bugs
+- **Reverse Engineering**: Analyzing closed-source components, proprietary software, and third-party libraries for security issues
+- **Binary Analysis**: Examining compiled code for security flaws using static and dynamic techniques
+- **Security Tool Development**: Creating custom tools to address specific security testing needs for unique environments
+- **DevSecOps Integration**: Helping teams integrate security into their development lifecycle with automation and tooling
+
+#### Application Security Engagements
+- [RubyGems.org Security Audit](https://blog.trailofbits.com/2024/12/11/auditing-the-ruby-ecosystems-central-package-repository/): Comprehensive security assessment of the Ruby ecosystem's package repository
+- [PyPI Security Assessment](https://blog.trailofbits.com/2023/11/14/our-audit-of-pypi/): In-depth security audit of the Python Package Index
+- [Homebrew Security Audit](https://blog.trailofbits.com/2024/07/30/our-audit-of-homebrew/): Security evaluation of the popular macOS package manager
+- [Eclipse Temurin Security Review](https://adoptium.net/temurin/): Security assessment of Java runtime environment
+- [cURL HTTP3 Implementation Review](https://curl.se/): Protocol implementation security analysis
+
+#### Application Security Tools and Research
+- [Semgrep Rules Collection](https://github.com/trailofbits/semgrep-rules): Extensive library of custom static analysis rules for detecting security vulnerabilities
+- [WeAudit VSCode Extension](https://marketplace.visualstudio.com/items?itemName=trailofbits.weaudit): Tool to enhance manual code review process during security audits
+- [SARIF Explorer](https://marketplace.visualstudio.com/items?itemName=trailofbits.sarif-explorer): Visualization tool for static analysis results
+- [Ruzzy](https://github.com/trailofbits/ruzzy): Coverage-guided fuzzer specifically designed for Ruby C extensions
+- [CTF Field Guide](https://github.com/trailofbits/ctf): Educational resource for learning security through capture-the-flag competitions
+- [Continuous Trail Methodology](https://blog.trailofbits.com/2025/03/03/continuous-trail/): Approach for integrating security throughout the software development lifecycle
+- [Trail of Bits Threat Modeling Framework](https://blog.trailofbits.com/2025/02/28/threat-modeling-the-trail-of-bits-way/): Structured threat modeling methodology developed by Trail of Bits
+
+### Blockchain Security Services
+
+Trail of Bits delivers comprehensive blockchain security assessments across multiple ecosystems, leveraging specialized tools and methodologies to identify vulnerabilities in smart contracts, protocols, and infrastructure.
+
+- [Blockchain Security Services Overview](https://www.trailofbits.com/services/software-assurance/blockchain/): Our specialized services for blockchain and distributed ledger technologies
+
+#### Core Blockchain Security Services
+- **Smart Contract Audits**: Rigorous code review of smart contracts across multiple languages (Solidity, Vyper, Cairo, Move, Rust, etc.) to identify vulnerabilities, logic flaws, and potential attacks
+- **Protocol Security Assessment**: Comprehensive review of blockchain protocol design, including consensus mechanisms, governance models, and cross-chain interactions
+- **DeFi Security Reviews**: Specialized analysis of decentralized finance applications, focusing on economic security, composability risks, and attack vectors
+- **Tokenomics and Mechanism Design**: Evaluating token systems, incentive structures, and economic mechanisms for security weaknesses and adverse scenarios
+- **Bridge Security Assessment**: In-depth review of cross-chain bridges, a critical and frequently exploited component of blockchain ecosystems
+- **Blockchain Infrastructure Security**: Analyzing node implementations, validator security, and networking components for vulnerabilities
+- **Wallet and Custody Solution Review**: Evaluating the security of cryptocurrency storage and transaction signing solutions
+
+#### Specialized Blockchain Security Capabilities
+- **Invariant Testing and Development**: Defining and verifying critical system invariants to prevent catastrophic failures
+- **Blockchain Fuzzing**: Employing specialized fuzzing techniques to find vulnerabilities in smart contracts and protocol implementations
+- **Formal Verification**: Applying mathematical methods to prove the correctness of critical smart contract functions
+- **Symbolic Execution**: Using advanced symbolic execution tools to explore multiple execution paths and edge cases
+- **Blockchain Threat Modeling**: Developing comprehensive threat models specific to blockchain systems and their unique attack surfaces
+- **Gas Optimization and Analysis**: Evaluating gas usage patterns for potential DoS vectors and efficiency improvements
+- **Upgradeability Review**: Assessing the security of contract upgradeability mechanisms and governance controls
+- **Custom Tool Development**: Creating specialized tools for analyzing and testing blockchain-specific security properties
+
+#### Blockchain Security Across Ecosystems
+- **Ethereum/EVM**: Security reviews for the Ethereum ecosystem and EVM-compatible chains
+- **Solana**: Specialized assessments for Solana's unique programming model and performance characteristics
+- **Cosmos**: Security audits for Cosmos SDK modules, IBC protocol implementations, and Cosmos-based applications
+- **Aptos/Sui/Move**: Reviews of Move-based smart contracts and protocols
+- **Starknet/Cairo**: Security assessments for StarkNet's Cairo programming language
+- **Substrate/Polkadot**: Specialized audits for Substrate-based parachains and pallets
+- **TON**: Security reviews for TON blockchain smart contracts and applications
+- **Algorand**: Assessments for Algorand smart contracts and applications
+- **Tezos**: Security audits for Tezos smart contracts
+
+#### Blockchain Security Engagements
+- [Aligned Layer 2 Assessment](https://www.alignedlayer.com/): Security analysis of Ethereum scaling solution
+- [Panoptic Protocol Invariant Testing](https://panoptic.xyz/): Implementation of robust invariant testing for DeFi protocol
+- [Curvance Invariant Development](https://www.curvance.com/): Smart contract invariant creation and testing
+- [TON Foundation Partnership](https://blog.trailofbits.com/2025/02/13/were-partnering-to-strengthen-tons-defi-ecosystem/): Comprehensive security initiative for TON's DeFi ecosystem
+
+#### Blockchain Security Tools and Research
+- [Slither](https://github.com/crytic/slither): Industry-standard static analysis framework for Solidity smart contracts
+- [Echidna](https://github.com/crytic/echidna): Powerful, property-based fuzzer for Ethereum smart contracts
+- [Medusa](https://github.com/crytic/medusa): High-performance, parallelized fuzzer for smart contracts
+- [AttackNet](https://github.com/crytic/attacknet): Chaos testing framework for finding bugs in blockchain nodes
+- [Secure Contracts Repository](https://secure-contracts.com/): Comprehensive collection of security guidance for smart contract development
+- [Manticore](https://github.com/trailofbits/manticore): Symbolic execution tool for EVM bytecode and binaries
+- [Crytic](https://crytic.io/): Continuous assurance platform for smart contracts
+- [Not So Smart Contracts](https://github.com/crytic/not-so-smart-contracts): Collection of common smart contract vulnerabilities with examples
+
+### Cryptography Services
+
+Trail of Bits delivers expert cryptographic reviews and assessments, evaluating both the design and implementation of cryptographic systems to ensure security, correctness, and performance.
+
+- [Cryptography Services Overview](https://www.trailofbits.com/services/software-assurance/cryptography/): Our specialized services for cryptographic system assessment
+
+#### Core Cryptography Services
+- **Cryptographic Design Assessment**: Evaluating cryptographic protocol designs for security properties, edge cases, and theoretical weaknesses
+- **Cryptographic Implementation Review**: Analyzing implementations of cryptographic algorithms and protocols for correctness, side-channel resistance, and robustness
+- **Zero-Knowledge Proof System Audits**: Specialized assessment of ZK-SNARK, ZK-STARK, and other zero-knowledge proof implementations
+- **Post-Quantum Cryptography Readiness**: Evaluating systems for quantum-resistant capabilities and transition readiness
+- **Cryptographic Protocol Design**: Developing secure cryptographic protocols tailored to specific application requirements
+- **Hardware Security Module Review**: Assessing HSM integration, usage patterns, and key management practices
+- **Key Management System Assessment**: Evaluating key generation, storage, rotation, and access control mechanisms
+
+#### Specialized Cryptography Capabilities
+- **Threshold Signature Schemes (TSS)**: Reviewing distributed key generation and signing protocols
+- **Multi-Party Computation (MPC)**: Assessing secure multi-party computation implementations
+- **End-to-End Encryption (E2EE)**: Evaluating messaging and data security protocols
+- **Secure Random Number Generation**: Analyzing entropy sources and PRNG implementations
+- **Side-Channel Attack Analysis**: Identifying potential timing, power, cache, and other side-channel vulnerabilities
+- **Cryptographic Library Audits**: Reviewing cryptographic library implementations for correctness and security
+- **Custom Cryptography Assessment**: Evaluating novel or specialized cryptographic constructions
+- **Formal Verification of Cryptographic Protocols**: Applying formal methods to verify security properties
+
+#### Cryptography Engagements
+- [Lit Protocol Cait-Sith Review](https://www.litprotocol.com/): Assessment of threshold cryptography implementation
+- [Discord DAVE Protocol](https://discord.com/): Protocol security evaluation
+- [Iron Fish FishHash Analysis](https://ironfish.network/): Hash function security review
+- [Scroll ZkEVM Proof System](https://scroll.io/): Zero-knowledge proof system verification
+- [Ockam Cryptographic Design Review](https://docs.ockam.io): Comprehensive assessment of cryptographic architecture
+
+#### Cryptography Tools and Research
+- [ZKDocs](https://www.zkdocs.com/): Comprehensive documentation resource for zero-knowledge proof systems
+- [Decree](https://github.com/trailofbits/decree): Framework for cryptographic protocol analysis and verification
+- [Circomspect](https://github.com/trailofbits/circomspect): Static analyzer for Circom zero-knowledge circuit language
+- [FSHarm](https://blog.trailofbits.com/2024/06/24/disarming-fiat-shamir-footguns/): Tool for detecting errors in Fiat-Shamir transformation implementations
+- [AES-GEM Research](https://blog.trailofbits.com/2024/07/12/announcing-aes-gem-aes-with-galois-extended-mode/): Novel authenticated encryption mode development
+- [Frozen Heart Vulnerability Disclosure](https://blog.trailofbits.com/2022/04/13/part-1-coordinated-disclosure-of-vulnerabilities-affecting-girault-bulletproofs-and-plonk/): Identification of critical vulnerabilities in multiple zero-knowledge proof systems
+- [Key Derivation Best Practices](https://blog.trailofbits.com/2025/01/28/best-practices-for-key-derivation/): Guidance on secure key derivation implementation
+
+## Security Engineering and Tool Development
+
+Trail of Bits excels in building security tools, infrastructure, and custom solutions to address complex security challenges. Our engineering team develops both internal and open-source tools that power our security assessments and contribute to the broader security community.
+
+### Open Source Security Tools
+
+Trail of Bits maintains numerous open-source security tools that are widely used by the security community:
+
+#### Blockchain Security Tools
+- [Slither](https://github.com/crytic/slither): Static analysis framework for Solidity that has become the industry standard tool for smart contract security
+  - Detects common vulnerability patterns
+  - Provides actionable information about contract structure
+  - Features printing utilities that help in understanding contract behavior
+  - Supports custom analyses through a Python API
+  - Used by major blockchain projects and security firms worldwide
+  
+- [Echidna](https://github.com/crytic/echidna): Powerful property-based fuzzer for Ethereum smart contracts
+  - Tests smart contracts against user-defined invariants
+  - Employs advanced coverage-guided fuzzing techniques
+  - Detects property violations and security issues
+  - Supports custom test configurations and optimization modes
+  - Multiple testing modes: assertion, property, exploration
+  
+- [Medusa](https://github.com/crytic/medusa): High-performance smart contract fuzzer with parallelization capabilities
+  - Significantly faster than Echidna with parallel fuzzing capabilities
+  - Integrates with Slither for enhanced coverage
+  - Supports function and system level invariants
+  - Includes advanced corpus management
+  - Uses compiler insights for targeted fuzzing
+  
+- [AttackNet](https://github.com/crytic/attacknet): Framework for finding bugs in blockchain nodes using chaos testing
+  - Simulates adverse network conditions to identify robustness issues
+  - Creates reproducible test cases for complex network scenarios
+  - Helps identify consensus failures and network partition bugs
+  - Targets blockchain node implementations specifically
+
+#### Symbolic Execution and Binary Analysis
+- [Manticore](https://github.com/trailofbits/manticore): Symbolic execution tool for analyzing binaries and smart contracts
+  - Provides a Python API for program analysis
+  - Supports x86, x86_64, ARM, and EVM architectures
+  - Includes comprehensive memory modeling
+  - Features powerful constraint solving capabilities
+  - Enables automated vulnerability discovery
+  
+- [McSema](https://github.com/lifting-bits/mcsema): Framework for lifting x86, x86_64, and aarch64 binaries to LLVM bitcode
+  - Enables advanced program analysis on binary programs
+  - Supports multiple architectures and operating systems
+  - Converts native code to LLVM IR for deep analysis
+  - Facilitates code transformation and instrumentation
+  - Enables cross-architecture analysis
+  
+- [Maat](https://github.com/trailofbits/maat): Symbolic execution framework designed for usability
+  - High-level Python interface for symbolic execution
+  - Built on Manticore with enhanced usability features
+  - Simplified API for common analysis tasks
+  - Powerful program exploration capabilities
+
+#### Static Analysis Tools
+- [Semgrep Rules](https://github.com/trailofbits/semgrep-rules): Extensive library of custom static analysis rules
+  - Rules for detecting security vulnerabilities across languages
+  - Coverage for language-specific security issues
+  - Infrastructure-as-code security checks
+  - Supply chain security rules
+  - Machine learning security patterns
+  
+- [CodeQL Queries](https://github.com/trailofbits/codeql-queries): Custom queries for the CodeQL semantic code analysis engine
+  - Specialized queries for finding security vulnerabilities
+  - Language-specific security checks
+  - Novel vulnerability pattern detection
+  - Integration with continuous integration workflows
+
+#### Fuzzing and Dynamic Analysis
+- [DeepState](https://github.com/trailofbits/deepstate): Unified fuzzing framework for C/C++
+  - Combines multiple fuzzing engines (libFuzzer, AFL, etc.)
+  - Provides a Google Test-like API for property-based testing
+  - Enables sophisticated test generation and crash reproduction
+  - Supports both directed and coverage-guided fuzzing
+  
+- [Ruzzy](https://github.com/trailofbits/ruzzy): Coverage-guided fuzzer for Ruby C extensions
+  - First dedicated fuzzer for Ruby ecosystem
+  - Identifies memory corruption bugs in Ruby C extensions
+  - Supports continuous fuzzing in CI environments
+  - Enables corpus management and crash reproduction
+
+#### Cryptography and Privacy Tools
+- [ZKDocs](https://www.zkdocs.com/): Comprehensive documentation for zero-knowledge protocols
+  - Detailed explanations of ZK proof systems
+  - Common security pitfalls and best practices
+  - Protocol specifications and security properties
+  - Implementation guidance and verification frameworks
+  
+- [Circomspect](https://github.com/trailofbits/circomspect): Static analyzer for Circom zero-knowledge circuit language
+  - Identifies security issues in ZK circuit implementations
+  - Detects common vulnerability patterns
+  - Provides actionable remediation guidance
+  - Supports continuous security testing of ZK circuits
+
+#### AI/ML Security Tools
+- [PrivacyRaven](https://github.com/trailofbits/PrivacyRaven): Testing suite for model privacy vulnerabilities
+  - Implements model inversion and extraction attacks
+  - Tests for membership inference vulnerabilities
+  - Evaluates model robustness against adversarial examples
+  - Provides metrics for privacy risk assessment
+  
+- [Fickling](https://github.com/trailofbits/fickling): Tool for analyzing and securing Python pickle files
+  - Detects malicious payload patterns in pickle files
+  - Performs static and dynamic analysis of serialized data
+  - Provides decompilation capabilities for pickle inspection
+  - Implements sanitization for safer pickle handling
+
+#### Practical Security Tools
+- [Algo VPN](https://github.com/trailofbits/algo): Simplified personal VPN server deployment
+  - Easy-to-use scripts for setting up a personal VPN
+  - Strong security defaults with modern protocols
+  - Supports major cloud providers and self-hosted options
+  - Thousands of stars on GitHub and widely adopted
+  
+- [WeAudit](https://marketplace.visualstudio.com/items?itemName=trailofbits.weaudit): VSCode extension for security code reviews
+  - Enhances manual code review workflow
+  - Supports tagging, commenting, and collaboration
+  - Integrated with security assessment process
+  - Streamlines the audit documentation process
+  
+- [SARIF Explorer](https://marketplace.visualstudio.com/items?itemName=trailofbits.sarif-explorer): Tool for visualizing static analysis results
+  - Interactive visualization of static analysis findings
+  - Filtering and prioritization capabilities
+  - Integration with popular static analysis tools
+  - Supports the SARIF standard for analysis results
+
+### Custom Security Engineering
+
+Trail of Bits develops custom security solutions for clients with unique requirements:
+
+#### Security Infrastructure Development
+- Building secure CI/CD pipelines with integrated security testing
+- Developing custom security monitoring and alerting systems
+- Creating specialized security testing environments for sensitive applications
+- Implementing secure deployment pipelines for high-assurance systems
+
+#### Specialized Security Tools
+- Developing targeted fuzzing harnesses for specific applications
+- Creating custom static analysis rules for proprietary frameworks
+- Building security instrumentation for performance-critical systems
+- Implementing secure communications protocols for specialized environments
+
+#### Security Automation
+- Automating vulnerability scanning and remediation workflows
+- Developing security policy enforcement tools
+- Creating automated security testing frameworks
+- Building continuous security validation systems
+
+## Security Research and Thought Leadership
+
+Trail of Bits is at the forefront of security research, regularly publishing groundbreaking findings, developing new methodologies, and advancing the state of the art in security analysis.
+
+### Research Areas
+
+#### Application Security Research
+- Memory safety and exploitation techniques
+- Static and dynamic analysis methodologies
+- Fuzzing optimization and coverage strategies
+- Programming language security features
+- Operating system security mechanisms
+- Container and virtualization security
+- Supply chain security approaches
+
+#### Blockchain Security Research
+- Smart contract vulnerability patterns
+- Consensus protocol security
+- Cross-chain communication risks
+- DeFi security and economic attacks
+- Blockchain privacy mechanisms
+- Formal verification techniques for blockchain
+- Layer 2 scaling security
+
+#### Cryptography Research
+- Post-quantum cryptography readiness
+- Zero-knowledge proof systems
+- Threshold cryptography protocols
+- Side-channel attack mitigation
+- Formal verification of cryptographic implementations
+- New cryptographic primitives and constructions
+- Secure multi-party computation
+
+#### AI/ML Security Research
+- Adversarial machine learning techniques
+- Privacy-preserving machine learning
+- Model extraction defenses
+- Training data security
+- LLM prompt injection mitigations
+- Secure model deployment architectures
+- AI safety alignment techniques
+
+### Academic Contributions
+
+Trail of Bits regularly publishes research papers at top security conferences:
+
+- **USENIX Security**: Research on software debloating, control flow integrity, and dynamic information flow tracking
+- **IEEE S&P (Oakland)**: Papers on cryptographic vulnerabilities, binary analysis techniques, and supply chain security
+- **CCS (ACM Conference on Computer and Communications Security)**: Work on smart contract security, formal verification, and symbolic execution
+- **NDSS (Network and Distributed System Security Symposium)**: Research on fuzzing techniques, binary lifting, and protocol security
+- **Real World Crypto**: Presentations on practical cryptographic vulnerabilities and implementation guidance
+- **Euro S&P**: Research on cryptographic protocol weaknesses and secure implementations
+
+### Industry Reports and White Papers
+
+Trail of Bits produces in-depth reports on critical security topics:
+
+- **Blockchain Decentralization Analysis**: Research examining the actual degree of decentralization in popular blockchain systems
+- **AI Security Framework Evaluations**: Analysis of frameworks and approaches for securing AI systems
+- **Cryptographic Implementation Surveys**: Studies of cryptographic implementation practices and common vulnerabilities
+- **Security Tool Effectiveness Benchmarks**: Comparative analysis of security tools and methodologies
+- **Vulnerability Trend Analysis**: Reports on changing vulnerability landscapes and emerging attack patterns
+
+### Blog and Educational Content
+
+The Trail of Bits blog is a valuable resource for security professionals:
+
+- [Trail of Bits Blog](https://blog.trailofbits.com/): Regular publications on security research, methodologies, and tool announcements
+- [Testing Handbook](https://appsec.guide/): Comprehensive guide to security testing methodologies and tools
+- [Secure Contracts](https://secure-contracts.com/): Educational resources for smart contract security
+- [ZKDocs](https://www.zkdocs.com/): In-depth documentation of zero-knowledge proof systems
+
+## Specialized Security Services
+
+Beyond our core services, Trail of Bits offers specialized security capabilities for unique requirements:
+
+### Low-Level Systems Security
+
+Trail of Bits excels at analyzing security-critical low-level software components that form the foundation of modern computing systems.
+
+#### Operating System Security
+- **Kernel Security Assessment**: Analyzing kernel code for vulnerabilities, race conditions, and security bypass vectors
+- **System Call Interface Analysis**: Evaluating the security of OS system call implementations and interfaces
+- **Access Control Mechanism Review**: Assessing the implementation and effectiveness of OS-level access controls
+- **Process Isolation Verification**: Testing the strength of process isolation and privilege separation mechanisms
+- **OS Extension Security**: Reviewing security of kernel extensions, modules, and drivers
+
+#### Hypervisor and Virtualization Security
+- **Hypervisor Security Review**: Analyzing hypervisor implementations for isolation bypasses and privilege escalation
+- **VM Escape Vulnerability Assessment**: Identifying potential virtual machine escape vulnerabilities
+- **Container Security Analysis**: Evaluating container runtime security and isolation effectiveness
+- **Virtual Device Implementation Review**: Assessing security of virtualized device implementations
+- **Hardware Virtualization Feature Analysis**: Reviewing the usage and configuration of CPU virtualization features
+
+#### Firmware and Boot Security
+- **UEFI/BIOS Security Assessment**: Analyzing firmware for vulnerabilities and secure boot implementation flaws
+- **Bootloader Security Review**: Evaluating bootloader code for security weaknesses and trust chain issues
+- **Secure Boot Implementation Validation**: Verifying the implementation of secure boot mechanisms
+- **Firmware Update Process Analysis**: Assessing the security of firmware update mechanisms and authenticity verification
+- **Hardware Root of Trust Evaluation**: Reviewing the implementation and usage of hardware security features
+
+#### Driver and Device Security
+- **Device Driver Security Review**: Analyzing driver code for memory corruption, race conditions, and privilege escalation
+- **Hardware Interaction Analysis**: Evaluating the security of software interfaces to hardware components
+- **DMA Security Assessment**: Reviewing Direct Memory Access implementations for security weaknesses
+- **Peripheral Security Analysis**: Assessing the security posture of peripheral devices and their interactions
+- **Embedded System Security**: Evaluating security of embedded device firmware and software
+
+### Mobile Security Services
+
+Trail of Bits provides specialized security services for mobile platforms, addressing the unique challenges of iOS and Android environments.
+
+#### iOS Security
+- **iOS Application Assessment**: Comprehensive security review of iOS applications for vulnerabilities
+- **Swift/Objective-C Code Review**: Specialized code review focusing on iOS-specific security patterns
+- **iOS Security Framework Analysis**: Evaluating the usage of iOS security frameworks (Keychain, App Transport Security, etc.)
+- **Jailbreak Detection Mechanisms**: Reviewing the effectiveness of jailbreak detection implementations
+- **iOS Extension Security**: Assessing security of app extensions, widgets, and service implementations
+
+#### Android Security
+- **Android Application Assessment**: Thorough security testing of Android applications
+- **Java/Kotlin Code Review**: Code-level security analysis of Android application codebases
+- **Android IPC Security**: Evaluating the security of inter-component communication mechanisms
+- **Permission Usage Analysis**: Reviewing the implementation and usage of Android permissions
+- **Native Code Security**: Assessing security of NDK components and native libraries
+
+#### Mobile Security Tools
+- **iVerify**: Mobile security toolkit for iPhone users to detect device compromises
+- **Mobile Reverse Engineering**: Specialized tools and techniques for analyzing mobile application binaries
+- **Custom Testing Frameworks**: Development of specialized testing tools for mobile environments
+
+### Cloud Security Services
+
+Trail of Bits delivers comprehensive security assessments for cloud environments, covering infrastructure, configuration, and cloud-native applications.
+
+#### Cloud Infrastructure Security
+- **AWS Security Assessment**: Comprehensive review of AWS environments for security misconfigurations and risks
+- **GCP Security Review**: Evaluation of Google Cloud Platform configurations and security controls
+- **Azure Security Analysis**: Assessment of Microsoft Azure deployments for security weaknesses
+- **Multi-Cloud Security Strategy**: Developing cohesive security approaches for multi-cloud environments
+- **Cloud Architecture Security Review**: Evaluating the security architecture of cloud-based systems
+
+#### Cloud-Native Application Security
+- **Kubernetes Security Assessment**: Reviewing Kubernetes clusters for security misconfigurations and vulnerabilities
+- **Container Security Analysis**: Evaluating Docker containers and container orchestration for security issues
+- **Serverless Security Review**: Assessing security of serverless functions and architectures
+- **Service Mesh Security**: Analyzing service mesh implementations for security weaknesses
+- **Microservices Security Assessment**: Evaluating microservice-based architectures for security gaps
+
+#### Infrastructure as Code Security
+- **Terraform Security Review**: Analyzing Terraform configurations for security issues
+- **CloudFormation Assessment**: Evaluating AWS CloudFormation templates for secure configuration
+- **Ansible Security Analysis**: Reviewing Ansible playbooks for security best practices
+- **Pulumi Code Review**: Assessing Pulumi infrastructure code for security weaknesses
+- **Custom IaC Tool Assessment**: Evaluating proprietary infrastructure automation tools
+
+#### DevSecOps Integration
+- **CI/CD Pipeline Security**: Reviewing continuous integration and deployment pipelines for security weaknesses
+- **Security Automation Consulting**: Developing security automation strategies and implementations
+- **Security Testing Integration**: Implementing security testing within development workflows
+- **Security Monitoring Design**: Creating effective security monitoring approaches for cloud environments
+- **Incident Response Automation**: Developing automated response capabilities for cloud security incidents
+
+## Security Assessment Methodology
+
+Trail of Bits employs a comprehensive, research-driven approach to security assessments that goes beyond standard penetration testing methodologies. Our process is designed to identify not just individual vulnerabilities but entire classes of issues and systemic weaknesses.
+
+### Discovery Phase
+
+During the initial phase, we develop a thorough understanding of the target system:
+
+#### Documentation Review
+- Analyzing architecture diagrams and design documents
+- Reviewing existing security documentation and threat models
+- Understanding business requirements and constraints
+- Examining previous security assessments and known issues
+- Reviewing development practices and security controls
+
+#### Threat Modeling
+- Identifying critical assets and security boundaries
+- Mapping potential attack surfaces and vectors
+- Developing system-specific threat scenarios
+- Prioritizing security risks based on impact and likelihood
+- Creating a focused testing strategy based on threat model
+
+#### Scope Refinement
+- Defining clear assessment boundaries
+- Identifying critical components for deep analysis
+- Establishing testing priorities based on risk
+- Setting up appropriate testing environments
+- Gathering necessary access and documentation
+
+### Comprehensive Analysis
+
+Our core analysis phase employs multiple complementary techniques:
+
+#### Manual Review
+- Expert code review by domain specialists
+- Architecture and design pattern analysis
+- Logic flaw identification
+- Security control evaluation
+- Authorization and authentication review
+- Cryptographic implementation assessment
+- Integration security analysis
+
+#### Static Analysis
+- Custom static analysis rule development
+- Deep semantic code analysis with CodeQL
+- Pattern-based vulnerability detection with Semgrep
+- Domain-specific analyzers (Slither for Solidity, etc.)
+- Control and data flow analysis
+- Type and memory safety verification
+- Taint tracking for input validation
+
+#### Dynamic Analysis
+- Specialized fuzzing with custom harnesses
+- Property-based testing for invariant verification
+- Symbolic execution for path exploration
+- Concolic execution combining concrete and symbolic testing
+- Memory corruption detection
+- Race condition analysis
+- Side-channel vulnerability assessment
+
+#### Advanced Testing Techniques
+- Formal verification of critical properties
+- Differential testing comparing implementations
+- Chaos testing for resilience verification
+- Red team simulations for critical systems
+- Protocol state machine analysis
+- Cryptographic algorithm verification
+- Custom tool development for unique testing needs
+
+### Findings and Remediation
+
+Our deliverables focus on providing actionable information:
+
+#### Vulnerability Assessment
+- Severity and impact analysis
+- Exploitability evaluation
+- Root cause identification
+- Affected component mapping
+- Real-world risk contextualization
+- Attack chain analysis
+- Vulnerability categorization
+
+#### Remediation Guidance
+- Concrete fix recommendations
+- Alternative solution options
+- Architectural improvement suggestions
+- Security control recommendations
+- Implementation guidance
+- Verification procedures
+- Regression testing approaches
+
+#### Knowledge Transfer
+- Detailed technical findings briefings
+- Developer education sessions
+- Security pattern workshops
+- Tool usage training
+- Secure coding practices guidance
+- Continuous security integration advice
+
+#### Verification
+- Fix verification testing
+- Follow-up security assessment
+- Regression testing for security issues
+- Long-term security strategy development
+- Security monitoring recommendations
+
+## Industry-Specific Security Expertise
+
+Trail of Bits has deep experience in securing systems across various industries, each with unique security requirements and compliance considerations.
+
+### Financial Services Security
+
+Our expertise in financial systems security spans traditional finance and decentralized financial technologies:
+
+#### Banking and Payment Systems
+- Core banking system security
+- Payment processing security
+- Financial API security
+- Mobile banking application security
+- Financial regulatory compliance (PCI DSS, etc.)
+
+#### Trading and Exchange Platforms
+- Trading system security
+- Exchange platform architecture security
+- High-frequency trading security
+- Financial data protection
+- Market data system security
+
+#### Cryptocurrency and DeFi
+- Exchange security architecture
+- Custody solution security
+- DeFi protocol security
+- Stablecoin implementation security
+- Cross-chain bridge security
+- Tokenomics and economic security
+
+### Government and Defense
+
+Trail of Bits works with government agencies to secure critical systems:
+
+#### Government Systems
+- Critical infrastructure security
+- Government application security
+- Secure communication systems
+- Data classification and handling
+- Public sector compliance requirements
+
+#### Defense Systems
+- Defense system security architecture
+- Secure communication protocols
+- Zero-trust implementation for sensitive systems
+- Supply chain security for defense software
+- Security research for defense applications
+
+### Technology and Software
+
+We help technology companies build secure products and platforms:
+
+#### Cloud Service Providers
+- Cloud infrastructure security
+- Multi-tenant security architecture
+- Virtualization security
+- Container orchestration security
+- Cloud API security
+
+#### Software Development Companies
+- Secure SDLC implementation
+- DevSecOps integration
+- Secure by design architecture
+- Third-party component security
+- Software supply chain security
+
+#### Hardware and IoT
+- IoT platform security
+- Embedded system security
+- Hardware-software interface security
+- Secure firmware update mechanisms
+- IoT data security and privacy
+
+## Blog Highlights by Category
+
+The Trail of Bits blog features in-depth technical content across various security domains. Here are some highlights organized by topic:
+
+### Application Security
+
+- [Continuous Trail for Application Security](https://blog.trailofbits.com/2025/03/03/continuous-trail/): Our approach to integrating security throughout the software development lifecycle
+  - Introduces the concept of continuous security assessment
+  - Explains how to integrate security at each development stage
+  - Describes automated and manual security testing balance
+  - Outlines metrics for security progress tracking
+  - Provides implementation guidance for development teams
+
+- [Threat Modeling the Trail of Bits Way](https://blog.trailofbits.com/2025/02/28/threat-modeling-the-trail-of-bits-way/): Our structured approach to identifying security risks
+  - Details our methodology for threat identification
+  - Provides a framework for risk prioritization
+  - Explains how to derive security requirements from threats
+  - Connects threat modeling to security testing activities
+  - Includes real-world examples and case studies
+
+- [RubyGems.org Security Audit](https://blog.trailofbits.com/2024/12/11/auditing-the-ruby-ecosystems-central-package-repository/): Comprehensive assessment of the Ruby ecosystem's package repository
+  - Reviews the security architecture of RubyGems.org
+  - Identifies infrastructure and application vulnerabilities
+  - Analyzes supply chain security mechanisms
+  - Provides recommendations for ecosystem-wide improvements
+  - Discusses package registry security best practices
+
+- [PyPI Attestations Security](https://blog.trailofbits.com/2024/11/14/attestations-a-new-generation-of-signatures-on-pypi/): Deep dive into PyPI's new digital attestation system
+  - Explains the Sigstore-based attestation system
+  - Compares to traditional GPG signatures
+  - Details the implementation and security benefits
+  - Provides guidance for package maintainers
+  - Discusses future directions for supply chain security
+
+- [Deep Dive into Linux's mseal Syscall](https://blog.trailofbits.com/2024/10/25/a-deep-dive-into-linuxs-new-mseal-syscall/): Technical analysis of new Linux memory protection features
+  - Examines the design and implementation of mseal
+  - Explains memory sealing concepts and security benefits
+  - Provides usage examples and performance considerations
+  - Compares to other memory protection mechanisms
+  - Discusses potential security applications
+
+- [Barcode Library Vulnerabilities](https://blog.trailofbits.com/2024/10/31/fuzzing-between-the-lines-in-popular-barcode-software/): Findings from fuzzing campaign targeting barcode scanning libraries
+  - Details vulnerabilities in ZBar and other libraries
+  - Explains fuzzing methodology and coverage strategies
+  - Provides vulnerability case studies and exploitation examples
+  - Discusses impact on applications using these libraries
+  - Offers remediation guidance for developers
+
+- [Cloud Cryptography: AWS & GCP](https://blog.trailofbits.com/2024/02/14/cloud-cryptography-demystified-amazon-web-services/): Evaluation of cloud cryptographic services
+  - Compares cryptographic offerings across major cloud providers
+  - Analyzes security models and trust assumptions
+  - Provides implementation best practices
+  - Discusses compliance considerations
+  - Includes practical usage guidance
+
+### AI/ML Security
+
+- [Evaluating Solidity Support in AI Coding Assistants](https://blog.trailofbits.com/2024/11/19/evaluating-solidity-support-in-ai-coding-assistants/): Assessment of AI tools for secure code generation
+  - Tests GitHub Copilot and other AI coding assistants
+  - Evaluates security awareness in generated Solidity code
+  - Identifies common security pitfalls in AI suggestions
+  - Provides guidance for secure AI-assisted development
+  - Discusses implications for smart contract security
+
+- [Auditing Gradio 5, Hugging Face's ML Framework](https://blog.trailofbits.com/2024/10/10/auditing-gradio-5-hugging-faces-ml-gui-framework/): Security findings from ML framework assessment
+  - Details the security architecture of the Gradio framework
+  - Identifies key vulnerabilities and security risks
+  - Provides remediation recommendations
+  - Discusses security considerations for ML user interfaces
+  - Offers best practices for secure ML deployment
+
+- [Exploiting ML Models with Pickle File Attacks](https://blog.trailofbits.com/2024/06/11/exploiting-ml-models-with-pickle-file-attacks-part-1/): Deep dive into ML supply chain vulnerabilities
+  - Explains the security risks of Python's pickle format
+  - Demonstrates practical exploit techniques
+  - Discusses impact on ML workflows and pipelines
+  - Provides detection and prevention methods
+  - Offers safer alternatives for model serialization
+
+- [Understanding Apple's Foundation Model Release](https://blog.trailofbits.com/2024/06/14/understanding-apples-on-device-and-server-foundations-model-release/): Analysis of Apple's ML infrastructure
+  - Examines Apple's Private Cloud Compute architecture
+  - Analyzes security and privacy claims
+  - Discusses on-device vs. server model tradeoffs
+  - Evaluates potential security implications
+  - Compares to other foundation model approaches
+
+- [LeftoverLocals: LLM Memory Leakage](https://blog.trailofbits.com/2024/01/16/leftoverlocals-listening-to-llm-responses-through-leaked-gpu-local-memory/): Novel GPU memory vulnerability affecting LLMs
+  - Details the discovered vulnerability mechanism
+  - Demonstrates practical exploitation techniques
+  - Analyzes impact on large language model deployments
+  - Provides mitigation strategies for GPU workloads
+  - Discusses broader implications for ML infrastructure
+
+- [Assessing YOLOv7 Security](https://blog.trailofbits.com/2023/11/15/assessing-the-security-posture-of-a-widely-used-vision-model-yolov7/): Comprehensive security analysis of computer vision model
+  - Evaluates adversarial example resistance
+  - Assesses model extraction risks
+  - Analyzes deployment security considerations
+  - Provides best practices for vision model security
+  - Discusses broader implications for ML security
+
+### Blockchain Security
+
+- [How Threat Modeling Could Have Prevented the $1.5B Bybit Hack](https://blog.trailofbits.com/2025/02/25/how-threat-modeling-could-have-prevented-the-1.5b-bybit-hack/): Analysis of major crypto exchange hack
+  - Deconstructs the attack vector and exploitation path
+  - Identifies key operational security failures
+  - Shows how threat modeling could have revealed weaknesses
+  - Provides guidance for cryptocurrency exchange security
+  - Offers lessons learned for the broader blockchain industry
+
+- [Unleashing Medusa for Smart Contract Fuzzing](https://blog.trailofbits.com/2025/02/14/unleashing-medusa-fast-and-scalable-smart-contract-fuzzing/): Introduction to high-performance smart contract fuzzer
+  - Explains the architecture and capabilities of Medusa
+  - Compares performance with other fuzzers like Echidna
+  - Demonstrates practical fuzzing examples
+  - Provides integration guidance for development workflows
+  - Discusses advanced fuzzing techniques for smart contracts
+
+- [Invariant-Driven Development for Blockchain Security](https://blog.trailofbits.com/2025/02/12/the-call-for-invariant-driven-development/): Methodology for robust blockchain systems
+  - Defines the concept of system invariants for blockchain
+  - Explains the process of invariant identification
+  - Demonstrates invariant testing approaches
+  - Provides case studies of invariant violations
+  - Offers integration guidance for development teams
+
+- [Filecoin GossipSub Vulnerability](https://blog.trailofbits.com/2024/11/13/killing-filecoin-nodes/): Analysis of protocol implementation vulnerability
+  - Details the discovered vulnerability in libp2p GossipSub
+  - Explains the exploitation mechanism
+  - Discusses impact on the Filecoin network
+  - Provides remediation guidance
+  - Offers lessons for protocol implementers
+
+- [Finding Mispriced EVM Opcodes with Fuzzing](https://blog.trailofbits.com/2024/06/17/finding-mispriced-opcodes-with-fuzzing/): Identifying DoS vectors in Ethereum
+  - Demonstrates using Echidna to find gas-related issues
+  - Explains the concept of mispriced opcodes
+  - Discusses impact on blockchain performance
+  - Provides detection methodology
+  - Offers remediation approaches
+
+- [Curvance Protocol Invariant Testing](https://blog.trailofbits.com/2024/04/30/curvance-invariants-unleashed/): Case study in DeFi protocol security
+  - Details the invariant development process
+  - Demonstrates property-based testing techniques
+  - Explains critical DeFi security properties
+  - Provides implementation guidance
+  - Discusses continuous verification approaches
+
+- [AttackNet for Blockchain Chaos Testing](https://blog.trailofbits.com/2024/03/18/releasing-the-attacknet-a-new-tool-for-finding-bugs-in-blockchain-nodes-using-chaos-testing/): Tool for blockchain node resilience testing
+  - Explains the concept of chaos testing for blockchains
+  - Details AttackNet's architecture and capabilities
+  - Provides usage examples for node testing
+# Trail of Bits - Supplementary Content
+
+## Red Team Services
+
+Trail of Bits offers comprehensive red team services that go beyond standard security assessments, providing organizations with a realistic view of their security posture through adversarial simulation.
+
+- [Security Assessment Services Overview](https://www.trailofbits.com/services/software-assurance/): Our holistic approach to security testing
+- [Integrated Security Assessment](https://www.trailofbits.com/services/software-assurance/appsec/): Our full-spectrum approach combining code review with live testing
+
+
+## AI Security Red Team Services
+
+Trail of Bits provides specialized adversarial assessments for AI systems, combining traditional security red teaming with AI-specific safety and robustness testing methodologies.
+
+- [AI/ML Security Services Overview](https://www.trailofbits.com/services/software-assurance/ai-ml/): Our dedicated practice for AI/ML security and safety assessments
+- [LeftoverLocals](https://blog.trailofbits.com/2024/01/16/leftoverlocals-listening-to-llm-responses-through-leaked-gpu-local-memory/): Research on GPU memory leaks affecting LLM security
+
+#### AI Infrastructure Security Assessment
+- **ML Deployment Infrastructure Testing**: Evaluating security of model serving endpoints, inference services, and API gateways
+- **Data Pipeline Security**: Identifying vulnerabilities in training and inference data processing pipelines
+- **Cloud AI Service Security**: Assessing configuration and security controls of cloud-based AI services
+- **Container Security for ML Workloads**: Reviewing container security for specialized ML deployments
+- **Kubernetes Security for AI Platforms**: Analyzing security posture of Kubernetes clusters hosting AI workloads
+
+#### AI Prompt Security Assessment
+- **Prompt Injection Testing**: Systematic testing for prompt injection vulnerabilities and mitigations
+- **Jailbreak Attempt Analysis**: Evaluating resistance to jailbreaking techniques using advanced methods
+- **Output Manipulation Testing**: Testing for ways to manipulate AI system outputs through crafted inputs
+- **Context Window Exploitation**: Identifying vulnerabilities related to context window limitations and manipulation
+- **Data Exfiltration Assessment**: Testing for techniques that could extract sensitive data through prompt engineering
+
+## Supply Chain Security Services
+
+Trail of Bits provides comprehensive supply chain security assessments to identify and mitigate risks throughout the software development and distribution process.
+
+- [Supply Chain Security Overview](https://blog.trailofbits.com/2024/10/01/securing-the-software-supply-chain-with-the-slsa-framework/): Our approach to securing the software supply chain
+- [PyPI Security Assessment](https://blog.trailofbits.com/2023/11/14/our-audit-of-pypi/): In-depth security audit of the Python Package Index
+- [RubyGems.org Security Audit](https://blog.trailofbits.com/2024/12/11/auditing-the-ruby-ecosystems-central-package-repository/): Comprehensive assessment of the Ruby ecosystem's package repository
+- [PyPI Attestations Security](https://blog.trailofbits.com/2024/11/14/attestations-a-new-generation-of-signatures-on-pypi/): Deep dive into PyPI's digital attestation system
+
+#### Core Supply Chain Security Services
+- **Dependency Analysis**: Comprehensive review of direct and transitive dependencies for security vulnerabilities and risks
+- **Build Pipeline Security**: Assessing CI/CD environments for potential compromise vectors and security weaknesses
+- **Package Registry Security**: Evaluating security of private and public package registries and distribution mechanisms
+- **Artifact Verification Systems**: Designing and reviewing systems for verifying software artifact integrity and provenance
+- **SBOM Generation and Validation**: Creating and validating Software Bills of Materials for accurate dependency tracking
+
+#### Advanced Supply Chain Capabilities
+- **SLSA Framework Implementation**: Assistance with implementing Supply-chain Levels for Software Artifacts framework
+- **Sigstore Integration**: Implementing and reviewing Sigstore deployments for artifact signing and verification
+- **Reproducible Build Analysis**: Evaluating and establishing reproducible build processes to enhance artifact integrity
+- **Dependency Confusion Mitigation**: Testing for and mitigating dependency confusion attack vectors
+- **Typosquatting Protection**: Establishing controls to prevent malicious package substitution attacks
+
+## Secure Development Lifecycle Services
+
+Trail of Bits helps organizations implement and enhance secure development practices throughout the software development lifecycle, reducing security risks before they reach production.
+
+- [Continuous Trail Methodology](https://blog.trailofbits.com/2025/03/03/continuous-trail/): Our approach to integrating security throughout the software development lifecycle
+- [Threat Modeling the Trail of Bits Way](https://blog.trailofbits.com/2025/02/28/threat-modeling-the-trail-of-bits-way/): Our structured approach to identifying security risks
+- [Testing Handbook](https://appsec.guide/): Comprehensive guide to security testing methodologies and tools
+
+#### Security Assessment Services
+- **Secure Architecture Review**: Evaluating system architecture for security weaknesses before implementation begins
+- **Secure Design Consulting**: Assisting development teams with security-focused design decisions and architecture
+- **Security Requirements Development**: Establishing clear, measurable security requirements aligned with business needs
+- **Threat Modeling Facilitation**: Leading threat modeling exercises to identify and mitigate potential security risks
+- **Security Control Design**: Designing effective, appropriate security controls based on identified threats
+
+#### DevSecOps Integration
+- **CI/CD Security Integration**: Implementing security testing within continuous integration and delivery pipelines
+- **Security Tool Selection**: Identifying and configuring appropriate security testing tools for development workflows
+- **Security Gates Configuration**: Establishing appropriate security gates and quality thresholds for software releases
+- **Automated Security Testing**: Setting up automated security scanning and testing throughout the development process
+- **Security Metrics Implementation**: Developing meaningful security metrics to measure and improve security posture
+
+## Zero-Knowledge Proof Security Services
+
+Trail of Bits provides specialized security services for zero-knowledge proof systems, combining deep cryptographic expertise with practical implementation security.
+
+- [ZKDocs](https://www.zkdocs.com/): Comprehensive documentation resource for zero-knowledge proof systems
+- [Circomspect](https://github.com/trailofbits/circomspect): Static analyzer for Circom zero-knowledge circuit language
+- [Frozen Heart Vulnerability Disclosure](https://blog.trailofbits.com/2022/04/13/part-1-coordinated-disclosure-of-vulnerabilities-affecting-girault-bulletproofs-and-plonk/): Critical vulnerabilities discovered in multiple zero-knowledge proof systems
+- [FSHarm](https://blog.trailofbits.com/2024/06/24/disarming-fiat-shamir-footguns/): Tool for detecting errors in Fiat-Shamir transformation implementations
+
+#### Zero-Knowledge Protocol Assessment
+- **Protocol Design Review**: Evaluating ZKP protocol design for mathematical correctness and security properties
+- **Protocol Implementation Verification**: Verifying that implementations correctly realize the protocol specification
+- **Zero-Knowledge Property Validation**: Assessing that implementations maintain the zero-knowledge property in practice
+- **Trusted Setup Security**: Reviewing multi-party computation ceremonies for trusted setup generation
+- **ZK-SNARK/ZK-STARK Review**: Specialized assessment of different zero-knowledge proof system implementations
+
+#### ZK Implementation Security
+- **Circuit Implementation Review**: Analyzing ZK circuit implementations for correctness and optimization issues
+- **Constraint System Verification**: Verifying that constraint systems correctly encode the intended computation
+- **Prover/Verifier Security Analysis**: Evaluating the security of prover and verifier implementations
+- **Performance and Gas Optimization**: Reviewing ZK implementations for performance bottlenecks and gas optimization
+- **ZK Application Integration Security**: Assessing the secure integration of ZK proofs into larger applications
+
+## Multi-Party Computation Security
+
+Trail of Bits delivers comprehensive security assessments for multi-party computation (MPC) systems, addressing the unique security challenges of distributed cryptographic protocols.
+
+- [Lit Protocol Cait-Sith Review](https://www.litprotocol.com/): Assessment of threshold cryptography implementation
+- [Don't Overextend Your Oblivious Transfer](https://blog.trailofbits.com/2023/09/20/dont-overextend-your-oblivious-transfer/): Research on vulnerabilities in oblivious transfer protocols for MPC
+- [Breaking the Shared Key in Threshold Signature Schemes](https://blog.trailofbits.com/2024/02/20/breaking-the-shared-key-in-threshold-signature-schemes/): Analysis of vulnerabilities in threshold signature schemes
+
+#### MPC Protocol Assessment
+- **Protocol Design Validation**: Evaluating MPC protocol designs for correctness, efficiency, and security guarantees
+- **Adversary Model Verification**: Verifying that protocols satisfy security definitions under stated adversary models
+- **Threshold Scheme Analysis**: Analyzing threshold schemes for correctness and collusion resistance
+- **Protocol Composition Security**: Assessing security of composed MPC protocols and their interactions
+- **Side-Channel Vulnerability Assessment**: Identifying potential side-channel leakage in MPC implementations
+
+#### MPC Implementation Security
+- **Implementation Verification**: Verifying that implementations correctly realize the intended MPC protocol
+- **Network Security Analysis**: Evaluating the security of communication channels and network protocols
+- **Key Management Security**: Assessing key generation, distribution, and management for MPC protocols
+- **Random Number Generation Review**: Analyzing quality and security of random number generation for MPC
+- **Integration Security Assessment**: Reviewing secure integration of MPC protocols into larger systems
+
+## Gaming and Anti-Cheat Security
+
+Trail of Bits provides specialized security assessments for game developers, focusing on anti-cheat mechanisms, server security, and player experience protection.
+
+- [Epic Games Fortnite Mod System](https://www.epicgames.com/fortnite/): Security assessment of modding capabilities
+- [Epic Games Anti-Cheat Security Assessment](https://www.epicgames.com/site/en-US/home): In-depth evaluation of anti-cheat mechanisms
+- [Epic Games Fortnite Android Beta](https://www.epicgames.com/fortnite/): Mobile security assessment focusing on platform-specific risks
+
+#### Game Client Security
+- **Client-Side Anti-Cheat Review**: Evaluating effectiveness of anti-cheat mechanisms against common exploitation techniques
+- **Game Memory Protection**: Assessing memory protection techniques to prevent unauthorized modification
+- **Reverse Engineering Resistance**: Analyzing resistance to reverse engineering and modding attempts
+- **Asset Protection Strategy**: Reviewing strategies for protecting game assets and intellectual property
+- **Client-Server Trust Boundaries**: Identifying client-server trust assumptions and potential exploits
+
+#### Game Server and Infrastructure Security
+- **Game Server Architecture Review**: Evaluating security of game server architecture and infrastructure
+- **Matchmaking and Lobby Security**: Assessing security of matchmaking systems and player lobbies
+- **Game Economy Protection**: Reviewing systems protecting in-game economies and transactions
+- **Player Data Security**: Evaluating security of player account data and personally identifiable information
+- **DDoS Mitigation Strategies**: Reviewing strategies for mitigating distributed denial of service attacks
+
+## Post-Quantum Cryptography Readiness
+
+Trail of Bits helps organizations prepare for the quantum computing era by assessing and implementing quantum-resistant cryptographic solutions.
+
+- [A Guide to Post-Quantum Cryptography](https://blog.trailofbits.com/2018/10/22/a-guide-to-post-quantum-cryptography/): Comprehensive overview of post-quantum cryptographic approaches
+- [Quantum is Unimportant to Post-Quantum](https://blog.trailofbits.com/2024/07/01/quantum-is-unimportant-to-post-quantum/): Practical perspective on transitioning to quantum-resistant algorithms
+- [Announcing Two New LMS Libraries](https://blog.trailofbits.com/2024/04/26/announcing-two-new-lms-libraries/): Open-source libraries for Leighton-Micali Signature scheme implementation
+
+#### PQC Assessment Services
+- **Quantum Threat Modeling**: Identifying cryptographic systems vulnerable to quantum computing attacks
+- **Cryptographic Inventory**: Creating comprehensive inventories of cryptographic algorithms used throughout systems
+- **Migration Path Planning**: Developing strategic plans for transitioning to post-quantum cryptographic algorithms
+- **PQC Implementation Security**: Assessing the security of post-quantum cryptography implementations
+- **Hybrid Cryptographic Schemes**: Evaluating hybrid approaches combining classical and post-quantum algorithms
+
+#### PQC Implementation Services
+- **PQC Algorithm Selection**: Advising on appropriate post-quantum algorithms based on application requirements
+- **NIST PQC Standards Implementation**: Implementing NIST-selected post-quantum cryptographic standards
+- **PQC Performance Optimization**: Optimizing post-quantum implementations for performance and efficiency
+- **Protocol Adaptation**: Modifying existing protocols to support post-quantum cryptographic primitives
+- **PQC Integration Testing**: Testing and verifying correct integration of post-quantum cryptography into systems
+
+## Hardware Security Assessment
+
+Trail of Bits conducts comprehensive security evaluations of hardware components, embedded systems, and hardware-software interfaces to identify vulnerabilities at the physical layer.
+
+- [Hardware-Side Channels in the Cloud](https://blog.trailofbits.com/2015/07/21/hardware-side-channels-in-the-cloud/): Analysis of side-channel attack risks in cloud environments
+- [Enhancing Trust for SGX Enclaves](https://blog.trailofbits.com/2024/01/26/enhancing-trust-for-sgx-enclaves/): Improving trustworthiness of Intel SGX enclaves
+- [Notes on AWS Nitro Enclaves](https://blog.trailofbits.com/2024/02/16/a-few-notes-on-aws-nitro-enclaves-images-and-attestation/): Analysis of AWS Nitro Enclaves security architecture
+
+#### Hardware Security Testing
+- **Hardware Security Module Review**: Assessing security of HSMs and their integration with software systems
+- **Embedded System Security**: Evaluating security of embedded firmware, bootloaders, and hardware interfaces
+- **IoT Device Security Assessment**: Comprehensive security testing of Internet of Things devices and ecosystems
+- **FPGA Security Analysis**: Reviewing security of Field-Programmable Gate Array implementations
+- **Side-Channel Attack Assessment**: Testing resistance to timing, power analysis, and electromagnetic side-channels
+
+#### Hardware-Software Interface Security
+- **Trusted Execution Environment Assessment**: Evaluating security of TEEs like Intel SGX, ARM TrustZone, and AMD SEV
+- **Secure Boot Implementation Review**: Assessing secure boot implementations and chain of trust mechanisms
+- **Device Driver Security Analysis**: Reviewing device driver code for security vulnerabilities and design flaws
+- **Firmware Update Mechanism Security**: Evaluating security of firmware update and verification processes
+- **Hardware Root of Trust Validation**: Assessing implementation and usage of hardware root of trust mechanisms
+
+## Exploit Development and Vulnerability Research
+
+Trail of Bits conducts cutting-edge vulnerability research and exploit development to help organizations understand and address complex security risks before attackers can exploit them.
+
+- [Memory Safety and Exploitation Techniques](https://blog.trailofbits.com/2019/11/27/64-bits-ought-to-be-enough-for-anybody/): Analysis of integer overflow vulnerabilities and exploitation
+- [A Walk Down Memory Lane](https://blog.trailofbits.com/2017/04/14/a-walk-down-memory-lane/): Evolution of memory corruption vulnerabilities and mitigations
+- [How to Spot Good Fuzzing Research](https://blog.trailofbits.com/2018/10/05/how-to-spot-good-fuzzing-research/): Evaluating the quality and significance of fuzzing research
+
+#### Vulnerability Research Services
+- **Novel Vulnerability Discovery**: Identifying previously unknown vulnerabilities in software and hardware systems
+- **Exploit Technique Development**: Advancing the state of the art in exploitation techniques and methodologies
+- **Mitigation Bypass Research**: Researching ways to bypass common security mitigations and protections
+- **Attack Surface Analysis**: Comprehensive mapping of attack surfaces in complex systems and applications
+- **Vulnerability Impact Assessment**: Evaluating real-world impact and exploitability of identified vulnerabilities
+
+#### Security Research Programs
+- **Public Vulnerability Disclosure**: Responsible disclosure of discovered vulnerabilities to affected vendors
+- **Security Research Publications**: Publishing cutting-edge security research in academic and industry venues
+- **Exploit Proof-of-Concept Development**: Creating proof-of-concept exploits to demonstrate vulnerability impact
+- **Security Tool Development**: Building specialized tools for vulnerability discovery and exploitation
+- **Defensive Technique Research**: Researching and developing novel defensive techniques and mitigations
+
+## Secure Code Review Tools and Services
+
+Trail of Bits offers specialized tools and services to enhance the security code review process, helping organizations identify and remediate vulnerabilities more efficiently.
+
+- [WeAudit VSCode Extension](https://marketplace.visualstudio.com/items?itemName=trailofbits.weaudit): Tool to enhance manual code review process during security audits
+- [SARIF Explorer](https://marketplace.visualstudio.com/items?itemName=trailofbits.sarif-explorer): Visualization tool for static analysis results
+- [Read Code Like a Pro with Our WeAudit VSCode Extension](https://blog.trailofbits.com/2024/03/19/read-code-like-a-pro-with-our-weaudit-vscode-extension/): Guide to using WeAudit for efficient code reviews
+- [Streamline the Static Analysis Triage Process with SARIF Explorer](https://blog.trailofbits.com/2024/03/20/streamline-the-static-analysis-triage-process-with-sarif-explorer/): Introduction to SARIF Explorer for static analysis triage
+- [Semgrep Rules Collection](https://github.com/trailofbits/semgrep-rules): Extensive library of custom static analysis rules
+
+#### Security Code Review Tools
+- **CodeQL Query Collection**: Custom queries for the CodeQL semantic code analysis engine, targeting specific vulnerability patterns
+- **Semgrep Rules Repository**: Extensive library of Semgrep rules for detecting security vulnerabilities across multiple languages
+- **Language-Specific Analyzers**: Specialized analyzers for specific programming languages and frameworks
+- **Custom Rule Development**: Creating tailored static analysis rules for organization-specific security concerns
+- **Security Linter Integration**: Configuring and integrating security linters into development workflows
+
+#### Code Review Process Enhancement
+- **Code Review Methodology Development**: Establishing effective, efficient code review methodologies for security
+- **Security Code Review Training**: Training developers and security teams in effective security code review techniques
+- **Review Documentation Templates**: Creating templates and checklists for consistent, thorough security reviews
+- **Collaborative Review Workflows**: Implementing tools and processes for collaborative security code reviews
+- **Automated and Manual Review Integration**: Combining automated tools with manual review for comprehensive coverage
+
+## Incident Response and Security Training
+
+Trail of Bits provides specialized incident response services and security training programs to help organizations prepare for, detect, and respond to security incidents effectively.
+
+- [Announcing AI/ML Safety and Security Trainings](https://blog.trailofbits.com/2024/06/07/announcing-ai-ml-safety-and-security-trainings/): New training courses for AI/ML security
+- [CTF Field Guide](https://github.com/trailofbits/ctf): Educational resource for learning security through capture-the-flag competitions
+- [AppsecGuide](https://appsec.guide/): Comprehensive guide to application security testing techniques
+
+#### Incident Response Services
+- **Breach Investigation**: In-depth investigation of security breaches to determine scope, impact, and root causes
+- **Malware Analysis**: Advanced analysis of malware samples to understand functionality and attribution
+- **Forensic Analysis**: Digital forensics to collect and analyze evidence from compromised systems
+- **Incident Response Planning**: Developing comprehensive incident response plans and playbooks
+- **Post-Incident Recovery**: Assisting with secure recovery and remediation after security incidents
+
+#### Security Training Programs
+- **Secure Coding Workshops**: Hands-on training in secure coding practices for developers
+- **Advanced Exploit Development**: Training in advanced exploitation techniques and vulnerability discovery
+- **Reverse Engineering Training**: Instruction in binary analysis and reverse engineering techniques
+- **Blockchain Security Training**: Specialized training in smart contract and blockchain security
+- **Cryptography Implementation Security**: Training in secure cryptographic implementation practices
+
+## Security Due Diligence and M&A Services
+
+Trail of Bits provides comprehensive security due diligence services for mergers, acquisitions, and investment decisions, helping organizations understand the security posture of potential targets.
+
+- [M&A and VC Services Overview](https://www.trailofbits.com/services/software-assurance/): Our comprehensive approach to security due diligence
+- [Evaluating Blockchain Security Maturity](https://blog.trailofbits.com/2023/07/14/evaluating-blockchain-security-maturity/): Framework for assessing blockchain project security posture
+- [Can You Pass the Rekt Test?](https://blog.trailofbits.com/2023/08/14/can-you-pass-the-rekt-test/): Framework for assessing blockchain project resilience
+
+#### Security Due Diligence Services
+- **Technical Security Assessment**: Evaluating the technical security posture of acquisition or investment targets
+- **Security Architecture Review**: Assessing the security architecture and design of target systems and applications
+- **Security Process Evaluation**: Reviewing the maturity of security processes, policies, and procedures
+- **Vulnerability Assessment**: Identifying critical security vulnerabilities and technical debt
+- **Security Roadmap Development**: Creating post-acquisition security improvement roadmaps
+
+#### M&A Security Integration
+- **Security Integration Planning**: Developing plans for securely integrating acquired technology and systems
+- **Security Control Alignment**: Aligning security controls and practices between organizations
+- **Security Team Integration**: Strategies for effectively integrating security teams following acquisitions
+- **Security Policy Harmonization**: Reconciling security policies and standards between organizations
+- **Security Risk Remediation**: Prioritizing and addressing security risks identified during due diligence
+
+## Secure SDLC Implementation
+
+Trail of Bits helps organizations implement and optimize secure software development lifecycles (SDLC), integrating security throughout the development process from requirements to deployment.
+
+- [Continuous Trail Methodology](https://blog.trailofbits.com/2025/03/03/continuous-trail/): Our approach to integrating security throughout the software development lifecycle
+- [The Tao of Continuous Integration](https://blog.trailofbits.com/2021/02/26/the-tao-of-continuous-integration/): Principles for effective CI/CD pipelines with security focus
+- [How to Introduce Semgrep to Your Organization](https://blog.trailofbits.com/2024/01/12/how-to-introduce-semgrep-to-your-organization/): Guide for implementing static analysis in development workflows
+
+#### Secure SDLC Design
+- **Security Requirement Definition**: Establishing clear, actionable security requirements
+- **Threat Modeling Integration**: Incorporating threat modeling throughout the development process
+- **Security Gate Definition**: Defining appropriate security gates and approval processes
+- **Security Testing Strategy**: Developing comprehensive strategies for security testing
+- **Security Metrics Development**: Creating meaningful metrics to measure security posture
+
+#### Secure SDLC Implementation
+- **Security Tool Integration**: Implementing and configuring security tools within development workflows
+- **Developer Security Training**: Training developers in secure coding practices and security awareness
+- **Security Review Process Design**: Establishing effective security review processes
+- **Secure Build Pipeline Configuration**: Configuring secure build and deployment pipelines
+- **Continuous Security Validation**: Implementing continuous security testing and validation
+
+## Mobile Application Security
+
+Trail of Bits provides comprehensive security assessments for mobile applications on iOS and Android platforms, addressing platform-specific security challenges and risks.
+
+- [Mobile Application Security Overview](https://www.trailofbits.com/services/software-assurance/appsec/): Our specialized mobile application security services
+- [Introducing iVerify: The Security Toolkit for iPhone Users](https://blog.trailofbits.com/2019/11/14/introducing-iverify-the-security-toolkit-for-iphone-users/): Mobile security application for iOS users
+- [iOS Jailbreak Detection Toolkit](https://blog.trailofbits.com/2017/10/12/ios-jailbreak-detection-toolkit-now-available/): Open-source toolkit for detecting iOS jailbreaks
+
+#### iOS Application Security
+- **Swift/Objective-C Code Review**: Expert security review of iOS application codebases
+- **iOS Security Framework Assessment**: Evaluating usage of Apple security frameworks and features
+- **Jailbreak Detection Review**: Analyzing effectiveness of jailbreak detection mechanisms
+- **App Store Security Review**: Pre-submission security review to identify potential App Store rejection issues
+- **iOS Privacy Compliance**: Evaluating compliance with App Store privacy requirements and best practices
+
+#### Android Application Security
+- **Java/Kotlin Code Review**: Specialized security review of Android application code
+- **Android Security Framework Assessment**: Evaluating usage of Android security features and frameworks
+- **Root Detection Evaluation**: Analyzing effectiveness of root detection implementations
+- **Inter-Component Communication Security**: Assessing security of Android IPC mechanisms
+- **Google Play Security Compliance**: Pre-submission security review for Google Play requirements
+
+## Advanced Binary Analysis
+
+Trail of Bits provides cutting-edge binary analysis services, leveraging specialized tools and techniques to analyze compiled code when source code is unavailable or insufficient.
+
+- [Manticore](https://github.com/trailofbits/manticore): Symbolic execution tool for analyzing binaries
+- [McSema](https://github.com/lifting-bits/mcsema): Framework for lifting x86, x86_64, and aarch64 binaries to LLVM bitcode
+- [Maat](https://github.com/trailofbits/maat): Symbolic execution framework designed for usability
+- [Mcsema: I'm Liftin' It](https://blog.trailofbits.com/2017/03/14/mcsema-im-liftin-it/): Update on McSema binary lifting capabilities
+- [Magic with Manticore](https://blog.trailofbits.com/2017/05/15/magic-with-manticore/): Showcasing Manticore capabilities for binary analysis
+
+#### Binary Analysis Services
+- **Reverse Engineering**: Expert analysis of compiled binaries to understand functionality and identify vulnerabilities
+- **Vulnerability Discovery**: Identifying security vulnerabilities in binary applications
+- **Malware Analysis**: Detailed analysis of malicious code to determine capabilities and impact
+- **Legacy Application Security**: Assessing security of legacy applications without source code
+- **Third-Party Binary Security**: Evaluating security of third-party binary components and libraries
+
+#### Advanced Binary Analysis Techniques
+- **Symbolic Execution**: Using symbolic execution tools to explore multiple execution paths
+- **Binary Lifting**: Converting binary code to intermediate representations for advanced analysis
+- **Dynamic Binary Instrumentation**: Runtime instrumentation and monitoring of binary applications
+- **Concolic Execution**: Combining concrete and symbolic execution for efficient program analysis
+- **Control Flow Analysis**: Analyzing program control flow for security vulnerabilities
+
+## Continuous Security Validation
+
+Trail of Bits helps organizations implement continuous security validation programs that provide ongoing verification of security controls and identify vulnerabilities throughout the development lifecycle.
+
+- [Continuous Trail Methodology](https://blog.trailofbits.com/2025/03/03/continuous-trail/): Our approach to integrating security throughout the software development lifecycle
+- [Crytic](https://crytic.io/): Continuous assurance platform for smart contracts
+- [Why Fuzzing Over Formal Verification?](https://blog.trailofbits.com/2024/03/22/why-fuzzing-over-formal-verification/): Practical advantages of fuzzing for continuous security testing
+
+#### Continuous Testing Services
+- **Automated Security Testing**: Implementing automated security testing in development pipelines
+- **Continuous Vulnerability Scanning**: Establishing ongoing vulnerability scanning processes
+- **Security Regression Testing**: Ensuring security fixes remain effective over time
+- **Attack Surface Monitoring**: Continuously monitoring for changes in application attack surface
+- **Security Control Validation**: Regular validation of security control effectiveness
+
+#### Security Metrics and Reporting
+- **Security Dashboard Development**: Creating dashboards for visualizing security posture
+- **Security Metrics Program**: Establishing meaningful security metrics and tracking mechanisms
+- **Vulnerability Trending Analysis**: Analyzing vulnerability trends over time to identify patterns
+- **Risk Quantification**: Quantifying security risk based on vulnerability data and business impact
+- **Executive Security Reporting**: Developing executive-level reporting on security posture
+
+## Security Engineering Services
+
+Trail of Bits provides specialized security engineering services to help organizations build custom security solutions, infrastructure, and tools tailored to their specific needs.
+
+- [Security Engineering Services Overview](https://www.trailofbits.com/services/security-engineering/): Our approach to custom security solution development
+- [Announcing Manticore UI](https://blog.trailofbits.com/2021/11/17/mui-visualizing-symbolic-execution-with-manticore-and-binary-ninja/): Visualization tool for Manticore symbolic execution
+- [Blight: Build-time Instrumentation Tool](https://blog.trailofbits.com/2020/11/25/high-fidelity-build-instrumentation-with-blight/): Tool for instrumenting build processes
+
+#### Custom Security Tool Development
+- **Specialized Security Scanners**: Building custom security scanning tools for unique environments
+- **Secure Deployment Pipelines**: Developing secure, automated deployment systems
+- **Security Monitoring Solutions**: Creating specialized security monitoring and alerting systems
+- **Custom Fuzzing Harnesses**: Building targeted fuzzing tools for specific applications
+- **Security Visualization Tools**: Developing tools to visualize security data and findings
+
+#### Security Automation Engineering
+- **Security Test Automation**: Implementing automated security testing frameworks
+- **Vulnerability Management Automation**: Developing automated vulnerability tracking and remediation systems
+- **Security Policy Enforcement**: Building automated security policy checking and enforcement tools
+- **Secure Configuration Management**: Implementing secure configuration management solutions
+- **Security Response Automation**: Developing automated security incident response capabilities
+
+## Confidential Computing Security
+
+Trail of Bits provides specialized security services for confidential computing environments, focusing on secure enclaves, trusted execution environments, and privacy-preserving computation.
+
+- [Enhancing Trust for SGX Enclaves](https://blog.trailofbits.com/2024/01/26/enhancing-trust-for-sgx-enclaves/): Improving trustworthiness of Intel SGX enclaves
+- [Notes on AWS Nitro Enclaves](https://blog.trailofbits.com/2024/09/24/notes-on-aws-nitro-enclaves-attack-surface/): Attack surface analysis of AWS Nitro Enclaves
+- [A Few Notes on AWS Nitro Enclaves Images and Attestation](https://blog.trailofbits.com/2024/02/16/a-few-notes-on-aws-nitro-enclaves-images-and-attestation/): Security aspects of AWS Nitro Enclaves
+
+#### Confidential Computing Assessment
+- **TEE Security Review**: Evaluating security of Trusted Execution Environment implementations
+- **Intel SGX Application Security**: Assessing security of applications using Intel Software Guard Extensions
+- **AMD SEV Deployment Security**: Reviewing security of AMD Secure Encrypted Virtualization deployments
+- **ARM TrustZone Security**: Analyzing security of ARM TrustZone implementations and applications
+- **Enclave Attestation Review**: Evaluating security of remote attestation mechanisms
+
+#### Confidential Computing Implementation
+- **Secure Enclave Design**: Designing secure applications using trusted execution technologies
+- **Enclave Side-Channel Protection**: Implementing mitigations against side-channel attacks on enclaves
+- **Memory Protection Verification**: Verifying effectiveness of memory protection mechanisms
+- **Attestation Protocol Implementation**: Developing secure attestation protocols for trusted execution environments
+- **Secure Data Processing Design**: Designing systems for secure data processing in confidential computing environments
+
+## Fuzzing and Property-Based Testing
+
+Trail of Bits offers advanced fuzzing and property-based testing services, helping organizations discover vulnerabilities through automated testing approaches that find edge cases traditional testing misses.
+
+- [DeepState](https://github.com/trailofbits/deepstate): Unified fuzzing framework for C/C++
+- [Echidna](https://github.com/crytic/echidna): Property-based fuzzer for Ethereum smart contracts
+- [Medusa](https://github.com/crytic/medusa): High-performance smart contract fuzzer with parallelization capabilities
+- [Unleashing Medusa for Smart Contract Fuzzing](https://blog.trailofbits.com/2025/02/14/unleashing-medusa-fast-and-scalable-smart-contract-fuzzing/): Introduction to our high-performance smart contract fuzzer
+- [Introducing Ruzzy: A Coverage-Guided Ruby Fuzzer](https://blog.trailofbits.com/2024/03/29/introducing-ruzzy-a-coverage-guided-ruby-fuzzer/): Tool for fuzzing Ruby C extensions
+- [Master Fuzzing with Our New Testing Handbook Chapter](https://blog.trailofbits.com/2024/02/09/master-fuzzing-with-our-new-testing-handbook-chapter/): Comprehensive guide to fuzzing techniques
+- [Fuzzing in the Year 2000](https://blog.trailofbits.com/2019/03/28/fuzzing-in-the-year-2000/): Historical perspective on fuzzing evolution
+- [The Smart Fuzzer Revolution](https://blog.trailofbits.com/2017/02/16/the-smart-fuzzer-revolution/): Evolution of modern intelligent fuzzing
+
+#### Fuzzing Services
+- **Custom Fuzzer Development**: Building specialized fuzzers for specific applications and protocols
+- **Fuzzing Infrastructure Setup**: Establishing scalable fuzzing infrastructure for continuous testing
+- **Fuzzing Corpus Development**: Creating effective seed corpora for fuzzing campaigns
+- **Fuzzing Campaign Analysis**: Analyzing results from fuzzing campaigns to identify vulnerabilities
+- **Fuzzing Integration**: Integrating fuzzing into development workflows and CI/CD pipelines
+
+#### Property-Based Testing
+- **Property Identification**: Identifying critical safety and security properties for testing
+- **Invariant Development**: Developing robust invariants for smart contracts and critical systems
+- **Property Test Implementation**: Implementing comprehensive property-based test suites
+- **QuickCheck-Style Testing**: Applying randomized property testing techniques to find edge cases
+- **Model-Based Property Testing**: Using formal models to generate property-based tests

@@ -1,0 +1,242 @@
+# Product Documentation
+
+## Product Documentation
+
+- [Welcome to e6data](https://docs.e6data.com/product-documentation/welcome-to-e6data): e6data is a lakehouse compute engine built to run high concurrency, complex SQL analytics and AI workloads—10x faster, 60% cheaper, zero data movement.
+- [Introduction to e6data](https://docs.e6data.com/product-documentation/introduction-to-e6data): e6data is a lakehouse compute engine built to run high concurrency, complex SQL analytics and AI workloads—10x faster, 60% cheaper, zero data movement.
+- [Concepts](https://docs.e6data.com/product-documentation/introduction-to-e6data/concepts): This section introduces the set of fundamental concepts and terminology used by e6data. Understanding these will help to use e6data effectively.
+- [Architecture](https://docs.e6data.com/product-documentation/introduction-to-e6data/architecture): Understand how e6data is structured
+- [e6data in VPC Deployment Model](https://docs.e6data.com/product-documentation/introduction-to-e6data/architecture/e6data-in-vpc-deployment-model)
+- [Connect to e6data serverless compute](https://docs.e6data.com/product-documentation/introduction-to-e6data/architecture/connect-to-e6data-serverless-compute)
+- [Get Started](https://docs.e6data.com/product-documentation/get-started): Get ready to start querying!
+- [Sign Up](https://docs.e6data.com/product-documentation/sign-up): This article will help you to create your e6data account
+- [Setup](https://docs.e6data.com/product-documentation/setup): Setting up your cloud for e6data
+- [AWS Setup](https://docs.e6data.com/product-documentation/setup/aws-setup): The page provides setup guides for deploying e6data on AWS.
+- [In VPC Deployment (AWS)](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws)
+- [Prerequisite Infrastructure](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/prerequisite-infrastructure)
+- [Infrastructure & Permissions for e6data](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/infrastructure-and-permissions-for-e6data)
+- [Setup Kubernetes Components](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/setup-kubernetes-components)
+- [Setup using Terraform in AWS](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/setup-using-terraform-in-aws)
+- [Update a AWS Terraform for your Workspace](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/setup-using-terraform-in-aws/update-a-aws-terraform-for-your-workspace)
+- [AWS PrivateLink and e6data](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/aws-privatelink-and-e6data)
+- [VPC Peering | e6data on AWS](https://docs.e6data.com/product-documentation/setup/aws-setup/in-vpc-deployment-aws/vpc-peering-or-e6data-on-aws): Manage and deploy AWS resources using the AWS provider in Terraform. Ensure correct setup using the official configuration guidelines.
+- [Connect to e6data serverless compute (AWS)](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws)
+- [Workspace Creation](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/workspace-creation): This page outlines the porcess of creating a workspace for connecting to e6data serverless compute
+- [Catalog Creation](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/catalog-creation): The page outlines the process of creating a catalog for connecting to e6data serverless compute
+- [Glue Metastore](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/catalog-creation/glue-metastore)
+- [Hive Metastore](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/catalog-creation/hive-metastore)
+- [Unity Catalog](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/catalog-creation/unity-catalog)
+- [Cluster Creation](https://docs.e6data.com/product-documentation/setup/aws-setup/connect-to-e6data-serverless-compute-aws/cluster-creation): This page outlines the process for creating a e6data servlerss compute cluster
+- [GCP Setup](https://docs.e6data.com/product-documentation/setup/gcp-setup): The page provides setup guides for deploying e6data on GCP.
+- [In VPC Deployment (GCP)](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp): The Page Outlines the setps & Prerequistes for in VPC deployment for GCP
+- [Prerequisite Infrastructure](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp/prerequisite-infrastructure)
+- [Infrastructure & Permissions for e6data](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp/infrastructure-and-permissions-for-e6data)
+- [Setup Kubernetes Components](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp/setup-kubernetes-components)
+- [Setup using Terraform in GCP](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp/setup-using-terraform-in-gcp): Deploying an e6data Workspace in GCP using Terraform
+- [Update a GCP Terraform for your Workspace](https://docs.e6data.com/product-documentation/setup/gcp-setup/in-vpc-deployment-gcp/update-a-gcp-terraform-for-your-workspace)
+- [Connect to e6data serverless compute (GCP)](https://docs.e6data.com/product-documentation/setup/gcp-setup/connect-to-e6data-serverless-compute-gcp)
+- [Azure Setup](https://docs.e6data.com/product-documentation/setup/azure-setup): Deploying e6data Workspace in Microsoft Azure using Terraform
+- [Prerequisite Infrastructure](https://docs.e6data.com/product-documentation/setup/azure-setup/prerequisite-infrastructure)
+- [Infrastructure & Permissions for e6data](https://docs.e6data.com/product-documentation/setup/azure-setup/infrastructure-and-permissions-for-e6data)
+- [Setup Kubernetes Components](https://docs.e6data.com/product-documentation/setup/azure-setup/setup-kubernetes-components)
+- [Setup using Terraform in AZURE](https://docs.e6data.com/product-documentation/setup/azure-setup/setup-using-terraform-in-azure): Deploying e6data Workspace in Microsoft Azure using Terraform
+- [Update a AZURE Terraform for your Workspace](https://docs.e6data.com/product-documentation/setup/azure-setup/setup-using-terraform-in-azure/update-a-azure-terraform-for-your-workspace)
+- [Workspaces](https://docs.e6data.com/product-documentation/workspaces): Understanding Workspaces in e6data
+- [Create Workspaces](https://docs.e6data.com/product-documentation/workspaces/create-workspaces)
+- [Enable/Disable Workspaces](https://docs.e6data.com/product-documentation/workspaces/enable-disable-workspaces)
+- [Update a Workspace](https://docs.e6data.com/product-documentation/workspaces/update-a-workspace)
+- [Delete a Workspace](https://docs.e6data.com/product-documentation/workspaces/delete-a-workspace)
+- [Catalogs](https://docs.e6data.com/product-documentation/catalogs): Understanding Catalogs in e6data
+- [Create Catalogs](https://docs.e6data.com/product-documentation/catalogs/create-catalogs)
+- [Hive Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/hive-metastore): Managing connections to Hive Metastore from e6data
+- [Connect to a Hive Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/hive-metastore/connect-to-a-hive-metastore)
+- [Edit a Hive Metastore Connection](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/hive-metastore/edit-a-hive-metastore-connection)
+- [Delete a Hive Metastore Connection](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/hive-metastore/delete-a-hive-metastore-connection)
+- [Glue Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/glue-metastore): Creating e6data catalog using Glue Metastore
+- [Connect to a Glue Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/glue-metastore/connect-to-a-glue-metastore)
+- [Edit a Glue Metastore Connection](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/glue-metastore/edit-a-glue-metastore-connection)
+- [Delete a Glue Metastore Connection](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/glue-metastore/delete-a-glue-metastore-connection)
+- [Unity Catalog](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/unity-catalog): Creating e6data catalog using Unity catalog
+- [Connect to Unity Catalog](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/unity-catalog/connect-to-unity-catalog)
+- [Edit Unity Catalog](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/unity-catalog/edit-unity-catalog)
+- [Delete Unity Catalog](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/unity-catalog/delete-unity-catalog)
+- [Cross-account Catalog Access](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/cross-account-catalog-access)
+- [Configure Cross-account Catalog to Access AWS Hive Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/cross-account-catalog-access/configure-cross-account-catalog-to-access-aws-hive-metastore)
+- [Configure Cross-account Catalog to Access Unity Catalog](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/cross-account-catalog-access/configure-cross-account-catalog-to-access-unity-catalog)
+- [Configure Cross-account Catalog to Access AWS Glue](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/cross-account-catalog-access/configure-cross-account-catalog-to-access-aws-glue)
+- [Configure Cross-account Catalog to Access GCP Hive Metastore](https://docs.e6data.com/product-documentation/catalogs/create-catalogs/cross-account-catalog-access/configure-cross-account-catalog-to-access-gcp-hive-metastore)
+- [Manage Catalogs](https://docs.e6data.com/product-documentation/catalogs/manage-catalogs)
+- [Privileges](https://docs.e6data.com/product-documentation/catalogs/privileges): Understanding Privileges in Catalog
+- [Access Control](https://docs.e6data.com/product-documentation/catalogs/privileges/access-control)
+- [Column Masking](https://docs.e6data.com/product-documentation/catalogs/privileges/column-masking)
+- [Row Filter](https://docs.e6data.com/product-documentation/catalogs/privileges/row-filter)
+- [Clusters](https://docs.e6data.com/product-documentation/clusters): Configure a cluster
+- [Edit & Delete Clusters](https://docs.e6data.com/product-documentation/clusters/edit-and-delete-clusters): Change the configuration of cluster
+- [Suspend & Resume Clusters](https://docs.e6data.com/product-documentation/clusters/suspend-and-resume-clusters)
+- [Cluster Size](https://docs.e6data.com/product-documentation/clusters/cluster-size): Understand the cluster sizes offered during cluster creation.
+- [Load Based Sizing](https://docs.e6data.com/product-documentation/clusters/load-based-sizing): This page describes about load based sizing in the cluster.
+- [Auto Suspension](https://docs.e6data.com/product-documentation/clusters/auto-suspension): This page describes about the auto suspension feature in the cluster.
+- [Query Timeout](https://docs.e6data.com/product-documentation/clusters/query-timeout): This page describes about the query timeout feature in the cluster.
+- [Monitoring](https://docs.e6data.com/product-documentation/clusters/monitoring)
+- [Connection Info](https://docs.e6data.com/product-documentation/clusters/connection-info)
+- [Pools](https://docs.e6data.com/product-documentation/pools): This page outlines about Pools
+- [Delete Pools](https://docs.e6data.com/product-documentation/pools/delete-pools): This page outlines Pool deletion and Pool permissions.
+- [Query Editor](https://docs.e6data.com/product-documentation/query-editor): Run queries using the e6data Query Editor
+- [Editor Pane](https://docs.e6data.com/product-documentation/query-editor/editor-pane): This page explains the features and functionalities of the Editor Pane in e6data's Query Editor.
+- [Results Pane](https://docs.e6data.com/product-documentation/query-editor/results-pane): This page explains how to view and interpret query results in the e6data Query Editor.
+- [Schema Explorer](https://docs.e6data.com/product-documentation/query-editor/schema-explorer): This page explains how to navigate and interact with the Schema Explorer in the Query Editor.
+- [Data Preview](https://docs.e6data.com/product-documentation/query-editor/data-preview): This page explains how to preview dataset samples within the Query Editor.
+- [Notebook](https://docs.e6data.com/product-documentation/notebook): Run queries using the e6data Query Notebook
+- [Editor Pane](https://docs.e6data.com/product-documentation/notebook/editor-pane): This page explains the features and functionalities of the Notebook Editor Pane in e6data.
+- [Results Pane](https://docs.e6data.com/product-documentation/notebook/results-pane): This page explains how to view and interpret query results in the e6data Notebook.
+- [Schema Explorer](https://docs.e6data.com/product-documentation/notebook/schema-explorer): This page explains how to navigate and interact with the Schema Explorer in the Notebook.
+- [Data Preview](https://docs.e6data.com/product-documentation/notebook/data-preview): This page explains how to preview dataset samples within the Notebook
+- [Query History](https://docs.e6data.com/product-documentation/query-history): This page explains how to view, manage, and track past queries executed in the e6data Query Editor.
+- [Query Count API](https://docs.e6data.com/product-documentation/query-history/query-count-api): Get insights into query execution volume over time in e6data.
+- [Connectivity](https://docs.e6data.com/product-documentation/connectivity): This page explains the network and integration options available for connecting to e6data.
+- [IP Sets](https://docs.e6data.com/product-documentation/connectivity/ip-sets): This page explains how to manage allowed IP ranges for secure access to e6data.
+- [Endpoints](https://docs.e6data.com/product-documentation/connectivity/endpoints): This page explains how to configure and manage network endpoints for connecting to e6data.
+- [Cloud Resources](https://docs.e6data.com/product-documentation/connectivity/cloud-resources): This page explains how to configure and manage cloud-based resources for e6data connectivity and storage.
+- [Network Firewall](https://docs.e6data.com/product-documentation/connectivity/network-firewall): The e6data Network Firewall feature allows users to manage IP whitelisting, enabling or restricting access to e6data  at the cluster level.
+- [Access Control](https://docs.e6data.com/product-documentation/access-control): Overview of Access Control mechanisms in e6data.
+- [Users](https://docs.e6data.com/product-documentation/access-control/users): Managing user accounts.
+- [Groups](https://docs.e6data.com/product-documentation/access-control/groups): Grouping users for easier management.
+- [Roles](https://docs.e6data.com/product-documentation/access-control/roles): Assign roles and permission to users.
+- [Permissions](https://docs.e6data.com/product-documentation/access-control/roles/permissions): Manage user access efficiently by grouping permissions in e6data.
+- [Policies](https://docs.e6data.com/product-documentation/access-control/roles/policies): Define and enforce access control rules.
+- [Single Sign-On (SSO)](https://docs.e6data.com/product-documentation/access-control/single-sign-on-sso): Enable seamless and secure authentication for e6data using SSO.
+- [AWS SSO](https://docs.e6data.com/product-documentation/access-control/single-sign-on-sso/aws-sso): Configure AWS Single Sign-On for secure authentication and access management.
+- [Okta](https://docs.e6data.com/product-documentation/access-control/single-sign-on-sso/okta): Set up Okta for seamless Single Sign-On (SSO)
+- [Microsoft My Apps-SSO](https://docs.e6data.com/product-documentation/access-control/single-sign-on-sso/microsoft-my-apps-sso): Configure Single Sign-On using Microsoft My Apps for streamlined authentication.
+- [Icons for IdP](https://docs.e6data.com/product-documentation/access-control/single-sign-on-sso/icons-for-idp): Customize identity provider (IdP) icons for better user recognition.
+- [Service Accounts](https://docs.e6data.com/product-documentation/access-control/service-accounts): Manage automated access with dedicated service accounts.
+- [Multi-Factor Authentication (Beta)](https://docs.e6data.com/product-documentation/access-control/multi-factor-authentication-beta): Enhance security with an additional verification layer.
+- [Usage and Cost Management](https://docs.e6data.com/product-documentation/usage-and-cost-management): Usage and Cost Management tracks resource usage and optimizes costs for efficient operations.
+- [Audit Log](https://docs.e6data.com/product-documentation/audit-log): Audit Log feature of e6data , will help you navigate and utilise the Audit Logs effectively to track administrative actions related to workspaces, catalogs, and clusters.
+- [User Settings](https://docs.e6data.com/product-documentation/user-settings): Manage profile details,
+- [Profile](https://docs.e6data.com/product-documentation/user-settings/profile): This page describes about the user profile.
+- [Personal Access Tokens (PAT)](https://docs.e6data.com/product-documentation/user-settings/personal-access-tokens-pat): This page describes authentication using e6data personal access tokens.
+- [Advanced Features](https://docs.e6data.com/product-documentation/advanced-features): Access extended settings and configurations
+- [Cross-Catalog & Cross-Schema Querying](https://docs.e6data.com/product-documentation/advanced-features/cross-catalog-and-cross-schema-querying): Execute queries across multiple catalogs and schemas seamlessly.
+- [Supported Data Types](https://docs.e6data.com/product-documentation/supported-data-types): This document contains the datatypes supported by e6data
+- [SQL Command Reference](https://docs.e6data.com/product-documentation/sql-command-reference): e6data supports the following categories of functions:
+- [Query Syntax](https://docs.e6data.com/product-documentation/sql-command-reference/query-syntax): Guidelines and structure for writing queries effectively.
+- [General functions](https://docs.e6data.com/product-documentation/sql-command-reference/query-syntax/general-functions): Commonly used functions for data processing.
+- [Aggregate Functions](https://docs.e6data.com/product-documentation/sql-command-reference/aggregate-functions): Aggregate functions operate on multiple sets of values and return a single value.
+- [Mathematical Functions & Operators](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators): This page contains the Mathematical functions and operators supported by e6data.
+- [Arithematic Operators](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators/arithematic-operators): Perform mathematical operations in queries.
+- [Rounding and Truncation Functions](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators/rounding-and-truncation-functions): Adjust numerical values by rounding or truncating.
+- [Exponential and Root Functions](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators/exponential-and-root-functions): Perform exponential calculations and extract roots of numbers.
+- [Trigonometric Functions](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators/trigonometric-functions): Compute sine, cosine, tangent, and other trigonometric values.
+- [Logarithmic Functions](https://docs.e6data.com/product-documentation/sql-command-reference/mathematical-functions-and-operators/logarithmic-functions): Calculate logarithms using various bases for numerical analysis.
+- [String Functions](https://docs.e6data.com/product-documentation/sql-command-reference/string-functions): This document contains the string functions supported by e6data.
+- [Date-Time Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions): This document contains the date-time functions supported by e6data
+- [Constant Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/constant-functions): Return fixed values that remain unchanged in computations.
+- [Conversion Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/conversion-functions): Transform data types and formats for compatibility.
+- [Date Truncate Function](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/date-truncate-function): Trim date and time values to a specified precision.
+- [Addition and Subtraction Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/addition-and-subtraction-functions): Perform arithmetic operations on numerical and date values.
+- [Extraction Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/extraction-functions): Retrieve specific components from dates, times, and strings.
+- [Format Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/format-functions): Modify the appearance of dates, numbers, and text values
+- [Timezone Functions](https://docs.e6data.com/product-documentation/sql-command-reference/date-time-functions/timezone-functions): Convert and manipulate timestamps across different time zones.
+- [Conditional Expressions](https://docs.e6data.com/product-documentation/sql-command-reference/conditional-expressions): Execute logic-based operations based on specified conditions.
+- [Conversion Functions](https://docs.e6data.com/product-documentation/sql-command-reference/conversion-functions): This page contains the explicit conversion functions supported by e6data.
+- [Window Functions](https://docs.e6data.com/product-documentation/sql-command-reference/window-functions): This page contains window functions supported by e6data.
+- [Comparison Operators & Functions](https://docs.e6data.com/product-documentation/sql-command-reference/comparison-operators-and-functions): This page contains the Comparison operators supported by e6data.
+- [Logical Operators](https://docs.e6data.com/product-documentation/sql-command-reference/logical-operators): This page contains logical operators supported by e6data.
+- [Statistical Functions](https://docs.e6data.com/product-documentation/sql-command-reference/statistical-functions): Uncategorized additional functions supported by e6data
+- [Bitwise Functions](https://docs.e6data.com/product-documentation/sql-command-reference/bitwise-functions): Bitwise functions supported by e6data
+- [Array Functions](https://docs.e6data.com/product-documentation/sql-command-reference/array-functions): Array functions supported by e6data
+- [Regular Expression Functions](https://docs.e6data.com/product-documentation/sql-command-reference/regular-expression-functions): Perform pattern matching and text manipulation using regex.
+- [Generate Functions](https://docs.e6data.com/product-documentation/sql-command-reference/generate-functions): Create sequences, arrays, or structured data dynamically.
+- [Cardinality Estimation Functions](https://docs.e6data.com/product-documentation/sql-command-reference/cardinality-estimation-functions): pproximate the number of unique elements in a dataset.
+- [JSON Functions](https://docs.e6data.com/product-documentation/sql-command-reference/json-functions): Parse, manipulate, and extract data from JSON structures.
+- [Checksum Functions](https://docs.e6data.com/product-documentation/sql-command-reference/checksum-functions): Generate and verify hash values for data integrity.
+- [Unload Function (Copy into)](https://docs.e6data.com/product-documentation/sql-command-reference/unload-function-copy-into): Export query results to external storage efficiently.
+- [Struct Functions](https://docs.e6data.com/product-documentation/sql-command-reference/struct-functions): Work with structured data by creating and manipulating nested fields.
+- [Equivalent Functions & Operators](https://docs.e6data.com/product-documentation/equivalent-functions-and-operators): Compare values and expressions for equality and similarity.
+- [Connectors & Drivers](https://docs.e6data.com/product-documentation/connectors-and-drivers): Integrate with external systems using supported connectors and drivers.
+- [DBeaver](https://docs.e6data.com/product-documentation/connectors-and-drivers/dbeaver): Connect and interact with databases using the DBeaver SQL client.
+- [DbVisualiser](https://docs.e6data.com/product-documentation/connectors-and-drivers/dbvisualiser): Access and manage databases using the DbVisualizer tool.
+- [Apache Superset](https://docs.e6data.com/product-documentation/connectors-and-drivers/apache-superset): Visualize and explore data with interactive dashboards and charts.
+- [Jupyter Notebook](https://docs.e6data.com/product-documentation/connectors-and-drivers/jupyter-notebook): Execute queries and analyze data within an interactive notebook environment.
+- [Tableau Cloud](https://docs.e6data.com/product-documentation/connectors-and-drivers/tableau-cloud): Connect and visualize data using Tableau’s cloud-based analytics platform.
+- [Tableau Desktop](https://docs.e6data.com/product-documentation/connectors-and-drivers/tableau-desktop): Analyze and visualize data locally with Tableau’s desktop application.
+- [Power BI](https://docs.e6data.com/product-documentation/connectors-and-drivers/power-bi): Power BI is a Microsoft business intelligence platform that allows users to visualize and analyze data from various sources, including SQL databases.
+- [Metabase](https://docs.e6data.com/product-documentation/connectors-and-drivers/metabase): Explore and visualize data using an open-source business intelligence tool.
+- [Zeppelin](https://docs.e6data.com/product-documentation/connectors-and-drivers/zeppelin): Perform interactive data analytics with Apache Zeppelin notebooks.
+- [Python Connector](https://docs.e6data.com/product-documentation/connectors-and-drivers/python-connector): Integrate and interact with data using the Python API.
+- [Code Samples](https://docs.e6data.com/product-documentation/connectors-and-drivers/python-connector/code-samples): Python code snippets to carry out common operations on e6data
+- [JDBC Driver](https://docs.e6data.com/product-documentation/connectors-and-drivers/jdbc-driver): Connect to databases using the Java Database Connectivity (JDBC) standard.
+- [Code Samples](https://docs.e6data.com/product-documentation/connectors-and-drivers/jdbc-driver/code-samples): Java code snippets to carry out common operations on e6data via JDBC Driver
+- [API Support](https://docs.e6data.com/product-documentation/connectors-and-drivers/jdbc-driver/api-support): Access and interact with data programmatically using REST APIs.
+- [Configure Cluster Ingress](https://docs.e6data.com/product-documentation/connectors-and-drivers/configure-cluster-ingress): Securely enabling ingress to e6data clusters for external services
+- [ALB Ingress in Kubernetes](https://docs.e6data.com/product-documentation/connectors-and-drivers/configure-cluster-ingress/alb-ingress-in-kubernetes): Configuring ALB Ingress in Kubernetes
+- [GCE Ingress in Kubernetes](https://docs.e6data.com/product-documentation/connectors-and-drivers/configure-cluster-ingress/gce-ingress-in-kubernetes): Configuring GCE Ingress In Kubernetes
+- [Ingress-Nginx in Kubernetes](https://docs.e6data.com/product-documentation/connectors-and-drivers/configure-cluster-ingress/ingress-nginx-in-kubernetes): Configuring Ingress-Nginx in Kubernetes
+- [Security & Trust](https://docs.e6data.com/product-documentation/security-and-trust): Ensure data protection, compliance, and secure access controls.
+- [Best Practices](https://docs.e6data.com/product-documentation/security-and-trust/best-practices): Best practices to manage your e6data deployment
+- [AWS Best Practices](https://docs.e6data.com/product-documentation/security-and-trust/best-practices/aws-best-practices)
+- [Features & Responsibilities Matrix](https://docs.e6data.com/product-documentation/security-and-trust/features-and-responsibilities-matrix): Define roles and access levels for various features.
+- [Data Protection Addendum(DPA)](https://docs.e6data.com/product-documentation/security-and-trust/data-protection-addendum-dpa): DATA PROTECTION ADDENDUM
+- [Tutorials and Best Practices](https://docs.e6data.com/product-documentation/tutorials-and-best-practices): This page helps you to understand on how to use e6data platform and
+- [How to configure HIVE metastore if you don't have one?](https://docs.e6data.com/product-documentation/tutorials-and-best-practices/how-to-configure-hive-metastore-if-you-dont-have-one): This article will guide you on how to set up a HIVE metastore in case you don't have a metastore.
+- [How-To Videos](https://docs.e6data.com/product-documentation/tutorials-and-best-practices/how-to-videos): Tutorial videos on how to carry out common operations in the e6data platform.
+- [Known Limitations](https://docs.e6data.com/product-documentation/known-limitations): Identify current constraints and restrictions in the system.
+- [SQL Limitations](https://docs.e6data.com/product-documentation/known-limitations/sql-limitations): Understand constraints and unsupported features in SQL execution.
+- [Other Limitations](https://docs.e6data.com/product-documentation/known-limitations/other-limitations): Recognize additional constraints affecting functionality and performance.
+- [Restart Triggers](https://docs.e6data.com/product-documentation/known-limitations/restart-triggers): Manage and configure conditions for automatic process restarts.
+- [Cloud Provider Limitations](https://docs.e6data.com/product-documentation/known-limitations/cloud-provider-limitations): Understand restrictions imposed by different cloud platforms.
+- [Error Codes](https://docs.e6data.com/product-documentation/error-codes): This page consists of all the errors that are displayed on the screen.
+- [General Errors](https://docs.e6data.com/product-documentation/error-codes/general-errors): Identify and resolve common system and user-related issues.
+- [User Account Errors](https://docs.e6data.com/product-documentation/error-codes/user-account-errors): Troubleshoot authentication, access, and profile-related issues.
+- [Workspace Errors](https://docs.e6data.com/product-documentation/error-codes/workspace-errors): Diagnose and resolve issues related to workspace setup and usage.
+- [Catalog Errors](https://docs.e6data.com/product-documentation/error-codes/catalog-errors): Address issues encountered while managing catalogs and metadata.
+- [Cluster Errors](https://docs.e6data.com/product-documentation/error-codes/cluster-errors): Troubleshoot failures and performance issues in cluster operations.
+- [Data Governance Errors](https://docs.e6data.com/product-documentation/error-codes/data-governance-errors): Resolve issues related to access control, policies, and compliance.
+- [Query History Errors](https://docs.e6data.com/product-documentation/error-codes/query-history-errors): Address issues with logging, tracking, and retrieving query history.
+- [Query Editor Errors](https://docs.e6data.com/product-documentation/error-codes/query-editor-errors): Troubleshoot issues related to query execution and interface functionality.
+- [Pool Errors](https://docs.e6data.com/product-documentation/error-codes/pool-errors): Identify and resolve issues affecting resource pooling and allocation.
+- [Connectivity Errors](https://docs.e6data.com/product-documentation/error-codes/connectivity-errors): Troubleshoot network and connection-related issues.
+- [Terms & Condition](https://docs.e6data.com/product-documentation/terms-and-condition): Understand the rules and policies governing usage and access.
+- [Privacy Policy](https://docs.e6data.com/product-documentation/privacy-policy): Learn how data is collected, stored, and protected.
+- [Cookie Policy](https://docs.e6data.com/product-documentation/privacy-policy/cookie-policy): Understand how cookies are used for functionality and analytics.
+- [FAQs](https://docs.e6data.com/product-documentation/faqs): Find answers to common questions about features, usage, and troubleshooting.
+- [Workspace Setup](https://docs.e6data.com/product-documentation/faqs/workspace-setup): Frequently Asked Questions about Workspace
+- [Security](https://docs.e6data.com/product-documentation/faqs/security): Frequently Asked Questions about Security
+- [Catalog Privileges](https://docs.e6data.com/product-documentation/faqs/catalog-privileges): Frequently Asked Questions about Catalog Privileges
+- [Services Utilised for e6data Deployment](https://docs.e6data.com/product-documentation/services-utilised-for-e6data-deployment): This page outlines the key services and resources required for deploying e6data on various cloud platforms.
+- [AWS supported regions](https://docs.e6data.com/product-documentation/services-utilised-for-e6data-deployment/aws-supported-regions): This page lists the AWS regions where e6data can be deployed, ensuring optimal performance and compliance with regional requirements.
+- [GCP supported regions](https://docs.e6data.com/product-documentation/services-utilised-for-e6data-deployment/gcp-supported-regions): This article lists the regions supported by e6data in GCP
+- [AZURE supported regions](https://docs.e6data.com/product-documentation/services-utilised-for-e6data-deployment/azure-supported-regions): This article lists the regions supported by e6data in AZURE.
+- [Release Notes & Updates](https://docs.e6data.com/product-documentation/release-notes-and-updates): New features, announcements & bug fixes
+- [6th Sept 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/6th-sept-2024): Enhanced Data Analyst role
+- [6th June 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/6th-june-2024): Latest update- MFA and service accounts.
+- [18th April 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/18th-april-2024): This page covers the latest updates to e6data, including improved connectivity, security, and query editing features.
+- [9th April 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/9th-april-2024): This page explains the latest updates to e6data, focusing on schema behavior within the Schema Explorer for improved navigation and management.
+- [30th March 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/30th-march-2024): This page covers recent e6data updates, including catalog privileges for column masking and row filtering, query history enhancements, and support for deletion vectors in Iceberg tables.
+- [16th March 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/16th-march-2024): This page highlights the new feature for exporting query history to CSV, enhancing data analysis and reporting capabilities on the e6data platform.
+- [14th March 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/14th-march-2024): This page covers the latest updates to e6data, including the new DataExport role, improved resource selection in catalog privileges, and the addition of client-perceived time in query history.
+- [12th March 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/12th-march-2024): recent e6data updates, including enhanced cluster connection info, improved connectivity, and catalog refresh capabilities for Data Analyst roles.
+- [2nd March 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/2nd-march-2024): Covers the latest e6data updates, including catalog privileges (Beta), support for liquid clustering, new functions, and the impersonation feature for the Metabase BI tool via Apache Ranger.
+- [10th February 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/10th-february-2024): This page introduces the new gateway connectivity feature, enabling seamless external client connections through endpoints on the e6data platform.
+- [3rd February 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/3rd-february-2024): This page covers the new connectivity and notebook features on the e6data platform.
+- [17th January 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/17th-january-2024): This page highlights the introduction of new functionalities on the e6data platform.
+- [9th January 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/9th-january-2024): This page covers the latest e6data enhancements, including new functionalities, bug fixes, and performance optimizations.
+- [3rd January 2024](https://docs.e6data.com/product-documentation/release-notes-and-updates/3rd-january-2024): This page outlines the platform enhancement and catalog auto-refresh feature
+- [18th December 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/18th-december-2023): This page covers backend and platform enhancements, including improved security for monitoring components and enhanced access control.
+- [12th December 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/12th-december-2023): This page introduces the platform enhancement, including the new Find and Replace feature in the query editor.
+- [9th December 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/9th-december-2023): Plugin, platform, engine enhancements.
+- [4th December 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/4th-december-2023): Improvements to query Editor session handling.
+- [27th November 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/27th-november-2023): UI enhancements.
+- [8th September 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/8th-september-2023): User roles and privileges.
+- [4th September 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/4th-september-2023): Covers the new features, including the ability to enable and disable workspaces, along with UI enhancements.
+- [26th August 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/26th-august-2023): covers pod metrics, workspace updates, editable query history views, and UI enhancements.
+- [21st August 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/21st-august-2023): This page covers the new query editor roles, query resume, customizable views, catalog editing, and external access to clusters.
+- [19th July 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/19th-july-2023): This page highlights query editor enhancements, schema search, an enhanced query run button, and visual/UI improvements.
+- [23rd May 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/23rd-may-2023): Covers the introduction of the Workspace Admin role, multi-catalog support, SQL optimizations, bug fixes, and known limitations.
+- [5th May 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/5th-may-2023): page covers tab management, cluster tag improvements, SQL optimizations, bug fixes, and known limitations.
+- [28th April 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/28th-april-2023): This page highlights data preview and query editor UI improvements.
+- [19th April 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/19th-april-2023): This page covers IP allowlisting for external access.
+- [15th April 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/15th-april-2023): This page highlights cross-account catalog access, execution planner, and query editor enhancements.
+- [10th April 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/10th-april-2023): Covers auto save in query editor and SSO login via e6data portal and Google IdP.
+- [30th March 2023](https://docs.e6data.com/product-documentation/release-notes-and-updates/30th-march-2023): This page covers SSO support, AWS S3 Gateway Endpoints, and parquet data pruning.

@@ -1,0 +1,46 @@
+# Yala
+
+## Yala
+
+- [About Yala](https://docs.yala.org/yala-bitcoin-liquidity-solution/about-yala): Yala offers a BTC backed stablecoin, connecting the BTC liquidity to the rest of the ecosystem via a multi chain strategy.
+- [Market Challenge](https://docs.yala.org/yala-bitcoin-liquidity-solution/about-yala/market-challenge)
+- [Yala Architecture](https://docs.yala.org/yala-bitcoin-liquidity-solution/about-yala/yala-architecture)
+- [$YU Stablecoin](https://docs.yala.org/usdyu-stablecoin)
+- [$YU Stablecoin Design](https://docs.yala.org/usdyu-stablecoin/usdyu-stablecoin-design)
+- [Peg Stability Module (PSM)](https://docs.yala.org/usdyu-stablecoin/peg-stability-module-psm)
+- [Yield Generation Mechanisms](https://docs.yala.org/usdyu-stablecoin/yield-generation-mechanisms): Exploring Yield Generation Mechanisms of Yala's Bitcoin-Backed $YU Stablecoin
+- [Minting and Redeeming $YU](https://docs.yala.org/usdyu-stablecoin/minting-and-redeeming-usdyu)
+- [Yala MetaVault Security Design](https://docs.yala.org/security-framework/yala-metavault-security-design)
+- [Yala Bitcoin Bridge](https://docs.yala.org/security-framework/yala-bitcoin-bridge)
+- [Security Partnerships](https://docs.yala.org/security-framework/security-partnerships)
+- [Security Audits](https://docs.yala.org/security-audits)
+- [What is MetaMint and how does it work?](https://docs.yala.org/metamint/what-is-metamint-and-how-does-it-work)
+- [Features and Benefits of MetaMint](https://docs.yala.org/metamint/features-and-benefits-of-metamint)
+- [Safety Measures](https://docs.yala.org/metamint/safety-measures)
+- [Conclusion](https://docs.yala.org/metamint/conclusion)
+- [Liquidation](https://docs.yala.org/liquidation/liquidation)
+- [Risk Management](https://docs.yala.org/risk-management)
+- [Key Risk Parameters](https://docs.yala.org/risk-management/key-risk-parameters)
+- [YaYaGent - Your AI-Powered $YU Yield Farming Strategist](https://docs.yala.org/yayagent-your-ai-powered-usdyu-yield-farming-strategist)
+- [FAQ](https://docs.yala.org/frequently-asked-questions/faq)
+- [Migrating from V2 to V3](https://docs.yala.org/user-guide-v3/migrating-from-v2-to-v3)
+- [Connecting Wallet](https://docs.yala.org/user-guide-v3/connecting-wallet)
+- [MetaMint $YU](https://docs.yala.org/user-guide-v3/metamint-usdyu): Metamint is a process that allows you to turn Bitcoin (BTC) into $YU. This guide explains how to stake BTC, mint $YU, and unstake your BTC when needed.
+- [Portfolio Management](https://docs.yala.org/user-guide-v3/portfolio-management)
+- [Bridge Tool](https://docs.yala.org/user-guide-v3/bridge-tool)
+- [Earn](https://docs.yala.org/user-guide-v3/earn)
+- [Berries Rule - Yala's Reward System](https://docs.yala.org/user-guide-v3/berries-rule-yalas-reward-system)
+- [Yala Testnet: Team Ups & Lucky Draws](https://docs.yala.org/user-guide-v3/berries-rule-yalas-reward-system/yala-testnet-team-ups-and-lucky-draws)
+- [Liquidation](https://docs.yala.org/user-guide-v3/liquidation)
+- [Emergency Shutdown](https://docs.yala.org/user-guide-v3/emergency-shutdown)
+- [Testnet Contract Address](https://docs.yala.org/user-guide-v3/testnet-contract-address)
+- [Key Terms](https://docs.yala.org/user-guide-v3/key-terms)
+- [MetaMint $YU](https://docs.yala.org/user-guide-v2/metamint-usdyu): Metamint is a process that allows you to turn Bitcoin (BTC) into $YU. This guide explains how to stake BTC, mint $YU, and unstake your BTC when needed.
+- [Berries Rule - Yala's Reward System](https://docs.yala.org/user-guide-v2/berries-rule-yalas-reward-system)
+- [Liquidation](https://docs.yala.org/user-guide-v2/liquidation)
+- [Testnet Contract Address](https://docs.yala.org/user-guide-v2/testnet-contract-address)
+- [Connecting Wallet](https://docs.yala.org/user-guide-v2/connecting-wallet)
+- [Portfolio Management](https://docs.yala.org/user-guide-v2/portfolio-management)
+- [Yala Testnet: Team Ups & Lucky Draws](https://docs.yala.org/user-guide-v2/yala-testnet-team-ups-and-lucky-draws)
+- [Terms of Use](https://docs.yala.org/legals/terms-of-use)
+- [Privacy Policy](https://docs.yala.org/legals/privacy-policy)

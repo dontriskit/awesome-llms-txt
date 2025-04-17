@@ -1,0 +1,10 @@
+# Adly Docs
+
+## Adly Docs
+
+- [Welcome](https://docs.adly.tech/readme)
+- [API for task verification](https://docs.adly.tech/advertiser/api-for-task-verification): Instructions on what we expect from the advertiser's API to check the completion of tasks
+- [Getting Started](https://docs.adly.tech/publisher/getting-started)
+- [Typescript](https://docs.adly.tech/publisher/typescript)
+- [Code Examples](https://docs.adly.tech/publisher/code-examples)
+- [Set up Reward Hook](https://docs.adly.tech/publisher/set-up-reward-hook)

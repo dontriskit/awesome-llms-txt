@@ -1,0 +1,3894 @@
+# Get account details
+Source: https://docs.amplemarket.com/api-reference/account-info
+
+get /account-info
+Get account details
+
+
+
+# Log call
+Source: https://docs.amplemarket.com/api-reference/calls/create-calls
+
+post /calls
+Log call
+
+
+
+# List dispositions
+Source: https://docs.amplemarket.com/api-reference/calls/get-call-dispositions
+
+get /calls/dispositions
+List dispositions
+
+
+
+# Single company enrichment
+Source: https://docs.amplemarket.com/api-reference/companies-enrichment/single-company-enrichment
+
+get /companies/find
+Single company enrichment
+
+
+
+# Retrieve contact
+Source: https://docs.amplemarket.com/api-reference/contacts/get-contact
+
+get /contacts/{id}
+Retrieve contact
+
+
+
+# Retrieve contact by email
+Source: https://docs.amplemarket.com/api-reference/contacts/get-contact-by-email
+
+get /contacts/email/{email}
+Retrieve contact by email
+
+
+
+# List contacts
+Source: https://docs.amplemarket.com/api-reference/contacts/get-contacts
+
+get /contacts
+List contacts
+
+
+
+# Cancel batch of email validations
+Source: https://docs.amplemarket.com/api-reference/email-validation/cancel-batch-of-email-validations
+
+patch /email-validations/{id}
+Cancel batch of email validations
+
+
+
+# Retrieve email validation results
+Source: https://docs.amplemarket.com/api-reference/email-validation/retrieve-email-validation-results
+
+get /email-validations/{id}
+Retrieve email validation results
+
+
+
+# Start batch of email validations
+Source: https://docs.amplemarket.com/api-reference/email-validation/start-batch-of-email-validations
+
+post /email-validations
+Start batch of email validations
+
+<Check>For each email that goes through the validation process will consume 1 email credit from your account</Check>
+
+
+# Errors and Compatibility
+Source: https://docs.amplemarket.com/api-reference/errors
+
+How to navigate the API responses.
+
+# Handling Errors
+
+Amplemarket uses convention HTTP response codes to indicate the success or failure of an API request.
+
+Some errors that could be handled programmatically include an [error code](#error-codes) that briefly describes the reported error. When this happens, you can find details within the response under the field `_errors`.
+
+## Error Object
+
+An error object MAY have the following members, and MUST contain at least on of:
+
+* `id` (string) - a unique identifier for this particular occurrence of the problem
+
+* `status` (string) - the HTTP status code applicable to this problem
+
+* `code` (string) - an application-specific [error code](#error-codes)
+
+* `title` (string) - human-readable summary of the problem that SHOULD NOT
+  change from occurrence to occurrence of the problem, except for purposes of localization
+
+* `detail` (string) - a human-readable explanation specific to this occurrence of the problem, and can be localized
+
+* `source` (object) - an object containing references to the primary source of the error which **SHOULD** include one of the following members or be omitted:
+  * `pointer`: a JSON Pointer [RFC6901](https://tools.ietf.org/html/rfc6901) to the value in the request document that caused the error (e.g. `"/data"` for a primary data object, or `"/data/attributes/title"` for a specific attribute). This **MUST** point to a value in the request document that exists; if it doesn’t, then client **SHOULD** simply ignore the pointer.
+
+  * `parameter`: a string indicating which URI query parameter caused the error.
+
+  * `header`: a string indicating the name of a single request header which caused the error.
+
+Example:
+
+```js
+{
+	"_errors":[
+		{
+			"status":"400",
+			"code": "unsupported_value",
+			"title": "Unsupported Value",
+			"detail": "Number of emails exceeds 100000 limit"
+			"source": {
+				"pointer": "/emails"
+			}
+		}
+	]
+}
+```
+
+## Error Codes
+
+The following error codes may be returned by the API:
+
+| code                             | title                         | Description                                                                                                                              |
+| -------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| internal\_server\_error          | Internal Server Error         | An unexpected error occurred                                                                                                             |
+| insufficient\_credits            | Insufficient Credits          | The account doesn’t have enough credits to continue the operation                                                                        |
+| person\_not\_found               | Person Not Found              | A matching person was not found in our database                                                                                          |
+| unavailable\_for\_legal\_reasons | Unavailable For Legal Reasons | A matching person was found in our database, but has been removed due to privacy reasons                                                 |
+| unsupported\_value               | Unsupported Value             | Request has a field containing a value unsupported by the operation; more details within the corresponding [error object](#error-object) |
+| missing\_field                   | Missing Field                 | Request is missing a mandatory field; more details within the corresponding [error object](#error-object)                                |
+| unauthorized                     | Unauthorized                  | The API credentials used are either invalid, or the user is not authorized to perform the operation                                      |
+
+# Compatibility
+
+When receiving data from Amplemarket please take into consideration that adding fields to the JSON output is considered a backwards-compatible change and it may happen without prior warning or through explicit versioning.
+
+<Tip>It is recommended to future proof your code so that it disregards all JSON fields you don't actually use.</Tip>
+
+
+# Create email exclusions
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded-emails
+
+post /excluded-emails
+Create email exclusions
+
+
+
+# Create domain exclusions
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded_domains
+
+post /excluded-domains
+Create domain exclusions
+
+
+
+# Delete email exclusions
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/delete-excluded-emails
+
+delete /excluded-emails
+Delete email exclusions
+
+
+
+# Delete domain exclusions
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/delete-excluded_domains
+
+delete /excluded-domains
+Delete domain exclusions
+
+
+
+# List excluded domains
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/get-excluded-domains
+
+get /excluded-domains
+List excluded domains
+
+
+
+# List excluded emails
+Source: https://docs.amplemarket.com/api-reference/exclusion-lists/get-excluded-emails
+
+get /excluded-emails
+List excluded emails
+
+
+
+# Introduction
+Source: https://docs.amplemarket.com/api-reference/introduction
+
+How to use the Amplemarket API.
+
+The Amplemarket API is a [REST-based](http://en.wikipedia.org/wiki/Representational_State_Transfer) API that returns JSON-encoded responses and complies with the HTTP standard regarding response codes, authentication and verbs.
+
+Production API access is provided via `https://api.amplemarket.com` base URL.
+
+The media type used is `application/json`
+
+# Authentication
+
+You will be provided with an API Key that can then be used to authenticate against the Amplemarket API.
+
+### Authorization Header
+
+The Amplemarket API uses API Keys to authenticate requests. You can view and manage your API keys from the Dashboard as explained in the [getting started section](/guides/quickstart).
+
+All API requests must be made over [HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure) to keep your data secure. Calls made over plain HTTP will be redirected to HTTPS. API requests without authentication will also fail. Please do not share your secret API keys in publicly accessible locations such as Github repos, client-side code, etc.
+
+To make an authenticated request, specify the bearer token within the `Authorization` HTTP header:
+
+```js
+GET /email-validations/1
+Authorization: Bearer {{api-key}}
+```
+
+```js
+curl /email-validations/1 \
+  -H "Authorization: Bearer {{api-key}}
+```
+
+# Limits
+
+## Rate Limits
+
+The Amplemarket API uses rate limiting at the request level in order to maximize stability and ensure quality of service to all our API consumers.
+
+By default, each consumer is allowed **500 requests per minute** across all API endpoints, except the ones listed below. Users who send many requests in quick succession might see error responses that show up as status code `429 Too Many Requests`.
+
+If you need these limits increased, please [contact support](mailto:support@amplemarket.com).
+
+### Endpoint specific limits
+
+| Endpoint       | Limit      |
+| -------------- | ---------- |
+| /people/search | 300/minute |
+| /people/find   | 100/minute |
+
+## Usage Limits
+
+Selected operations that run in the background also have limits associated with them, according to the following table:
+
+| Operation             | Limit        |
+| --------------------- | ------------ |
+| Max Email Validations | 100k/request |
+| Email Validations     | 15000/hour   |
+
+## Costs
+
+Endpoints that incur credit consumption have the amount specified alongside selected endpoints in the API reference.
+
+In the eventuality the account runs out of credits, the API will return an [error](errors#error-object) with the [error code](errors#error-codes) `insufficient_credits`.
+
+
+# Create Lead List
+Source: https://docs.amplemarket.com/api-reference/lead-list/create-lead-list
+
+post /lead-lists
+Create Lead List
+
+
+
+# List Lead Lists
+Source: https://docs.amplemarket.com/api-reference/lead-list/get-lead-lists
+
+get /lead-lists
+List Lead Lists
+
+
+
+# Retrieve Lead List
+Source: https://docs.amplemarket.com/api-reference/lead-list/retrieve-lead-list
+
+get /lead-lists/{id}
+Retrieve Lead List
+
+
+
+# Links and Pagination
+Source: https://docs.amplemarket.com/api-reference/pagination
+
+How to navigate the API responses.
+
+# Links
+
+Amplemarket provides a RESTful API including the concept of hyperlinking in order to facilitate user’s navigating the API without necessarily having to build URLs.
+
+For this responses MAY include `_links` member in order to facilitate navigation, inspired by the [HAL media type](https://stateless.co/hal_specification.html).
+
+The `_links` member is an object whose members correspond to a name that represents the link relationship.
+
+All links are relative, and thus require appending on top of a Base URL that should be configurable.
+
+E.g. a `GET` request could be performed on a “self” link:
+
+`GET {{base_url}}{{response._links.self.href}}`
+
+## Link Object
+
+A link object is composed of the following fields:
+
+* `href` (string) - A relative URL that represents a hyperlink to another related object
+
+Example:
+
+```js
+{
+  "_links": {
+    "self": { "href": "/email-validations/1" }
+  }
+}
+```
+
+# Pagination
+
+Certain endpoints that return large number of results will require pagination in order to transverse and visualize all the data.
+
+The approach that was adopted is Cursor-based pagination (aka keyset pagination) with the following query parameters: `page[size]`, `page[before]`, and `page[after]`
+
+As the cursor may change based on the results being returned (e.g. for Email Validation it’s based on the email, while for Lead Lists it’s based on the ID of the lead list’s entry) it’s **highly recommended** to follow the links `next` or `prev` within the response (e.g. `response._links.next.href`).
+
+Notes:
+
+* The `next` and `previous` links will only appear when there are items available.
+
+* The results that will appear will be exclusive of the values provided in the `page[before]` and `page[after]` query parameters.
+
+Example:
+
+```json
+  "_links": {
+    "self": { "href": "/lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f" },
+    "prev": { "href": "/lead-lists/1?page[size]=100&page[before]=81f63c2e-edbd-4c1a-9168-542ede3ce98a" },
+    "next": { "href": "/lead-lists/1?page[size]=100&page[after]=81f63c2e-edbd-4c1a-9168-542ede3ce98a" }
+  }
+```
+
+## Searcher pagination
+
+Certain special endpoints such as [Search people](/api-reference/searcher/search-people) take a different pagination approach, where the the pagination is done through the POST request's body using the `page` and `page_size` fields.
+
+For these cases the response will include a `_pagination` object:
+
+* `page` (integer) - The current page number
+* `page_size` (integer) - The number of entries per page
+* `total_pages` (integer) - The total number of pages in the search results
+* `total` (integer) - The total number of entries in the search results
+
+Example:
+
+```js
+  "_pagination": {
+    "page": 1,
+    "page_size": 30,
+    "total_pages": 100,
+    "total": 3000
+  }
+```
+
+
+# Single person enrichment
+Source: https://docs.amplemarket.com/api-reference/people-enrichment/single-person-enrichment
+
+get /people/find
+Single person enrichment
+
+<Check>
+  Credit consumption:
+
+  * 0.5 email credits when a person is found, charged at most once per 24 hours
+  * 1 email credit when an email is revealed, only charged once
+  * 1 phone credit when a phone number is revealed, only charged once
+</Check>
+
+
+# Review phone number
+Source: https://docs.amplemarket.com/api-reference/phone-numbers/review-phone-number
+
+post /phone_numbers/{id}/review
+Review phone number
+
+
+
+# Search people
+Source: https://docs.amplemarket.com/api-reference/searcher/search-people
+
+post /people/search
+Search people
+
+
+
+# Add leads
+Source: https://docs.amplemarket.com/api-reference/sequences/add-leads
+
+post /sequences/{id}/leads
+Add leads
+
+
+
+# List Sequences
+Source: https://docs.amplemarket.com/api-reference/sequences/get-sequences
+
+get /sequences
+List Sequences
+
+
+
+# Supported departments
+Source: https://docs.amplemarket.com/api-reference/supported-departments
+
+
+
+These are the supported departments for the Amplemarket API, which can be used for example in the [Search people](/api-reference/searcher/search-people) endpoint:
+
+* Senior Leadership
+* Consulting
+* Design
+* Education
+* Engineering & Technical
+* Finance
+* Human Resources
+* Information Technology
+* Legal
+* Marketing
+* Medical & Health
+* Operations
+* Product
+* Revenue
+
+
+# Supported industries
+Source: https://docs.amplemarket.com/api-reference/supported-industries
+
+
+
+These are the supported industries for the Amplemarket API, which can be used for example in the [Search people](/api-reference/searcher/search-people) endpoint:
+
+* Account Management
+* Accounting
+* Acquisitions
+* Advertising
+* Anesthesiology
+* Application Development
+* Artificial Intelligence / Machine Learning
+* Bioengineering Biometrics
+* Brand Management
+* Business Development
+* Business Intelligence
+* Business Service Management / ITSM
+* Call Center
+* Channel Sales
+* Chemical Engineering
+* Chiropractics
+* Clinical Systems
+* Cloud / Mobility
+* Collaboration Web App
+* Compensation Benefits
+* Compliance
+* Construction
+* Consultant
+* Content Marketing
+* Contracts
+* Corporate Secretary
+* Corporate Strategy
+* Culture, Diversity Inclusion
+* Customer Experience
+* Customer Marketing
+* Customer Retention Development
+* Customer Service / Support
+* Customer Success
+* Data Center
+* Data Science
+* Data Warehouse
+* Database Administration
+* Demand Generation
+* Dentistry
+* Dermatology
+* DevOps
+* Digital Marketing
+* Digital Transformation
+* Doctors / Physicians
+* eCommerce Development
+* eCommerce Marketing
+* eDiscovery
+* Emerging Technology / Innovation
+* Employee Labor Relations
+* Engineering Technical
+* Enterprise Architecture
+* Enterprise Resource Planning
+* Epidemiology
+* Ethics
+* Event Marketing
+* Executive
+* Facilities Management
+* Field / Outside Sales
+* Field Marketing
+* Finance
+* Finance Executive
+* Financial Planning Analysis
+* Financial Reporting
+* Financial Risk
+* Financial Strategy
+* Financial Systems
+* First Responder
+* Founder
+* Governance
+* Governmental Affairs Regulatory Law
+* Graphic / Visual / Brand Design
+* Health Safety
+* Help Desk / Desktop Services
+* HR / Financial / ERP Systems
+* HR Business Partner
+* Human Resource Information System
+* Human Resources
+* Human Resources Executive
+* Industrial Engineering
+* Infectious Disease
+* Information Security
+* Information Technology
+* Information Technology Executive
+* Infrastructure
+* Inside Sales
+* Intellectual Property Patent
+* Internal Audit Control
+* Investor Relations
+* IT Asset Management
+* IT Audit / IT Compliance
+* IT Operations
+* IT Procurement
+* IT Strategy
+* IT Training
+* Labor Employment
+* Lawyer / Attorney
+* Lead Generation
+* Learning Development
+* Leasing
+* Legal
+* Legal Counsel
+* Legal Executive
+* Legal Operations
+* Litigation
+* Logistics
+* Marketing
+* Marketing Analytics / Insights
+* Marketing Communications
+* Marketing Executive
+* Marketing Operations
+* Mechanic
+* Medical Administration
+* Medical Education Training
+* Medical Health Executive
+* Medical Research
+* Medicine
+* Mergers Acquisitions
+* Mobile Development
+* Networking
+* Neurology
+* Nursing
+* Nutrition Dietetics
+* Obstetrics / Gynecology
+* Office Operations
+* Oncology
+* Operations
+* Operations Executive
+* Ophthalmology
+* Optometry
+* Organizational Development
+* Orthopedics
+* Partnerships
+* Pathology
+* Pediatrics
+* People Operations
+* Pharmacy
+* Physical Security
+* Physical Therapy
+* Principal
+* Privacy
+* Product Development
+* Product Management
+* Product Marketing
+* Product or UI/UX Design
+* Professor
+* Project Development
+* Project Management
+* Project Program Management
+* Psychiatry
+* Psychology
+* Public Health
+* Public Relations
+* Quality Assurance
+* Quality Management
+* Radiology
+* Real Estate
+* Real Estate Finance
+* Recruiting Talent Acquisition
+* Research Development
+* Retail / Store Systems
+* Revenue Operations
+* Safety
+* Sales
+* Sales Enablement
+* Sales Engineering
+* Sales Executive
+* Sales Operations
+* Sales Training
+* Scrum Master / Agile Coach
+* Search Engine Optimization / Pay Per Click
+* Servers
+* Shared Services
+* Social Media Marketing
+* Social Work
+* Software Development
+* Sourcing / Procurement
+* Storage Disaster Recovery
+* Store Operations
+* Strategic Communications
+* Superintendent
+* Supply Chain
+* Support / Technical Services
+* Talent Management
+* Tax
+* Teacher
+* Technical Marketing
+* Technician
+* Technology Operations
+* Telecommunications
+* Test / Quality Assurance
+* Treasury
+* UI / UX
+* Virtualization
+* Web Development
+* Workforce Management
+
+
+# Supported job functions
+Source: https://docs.amplemarket.com/api-reference/supported-job-functions
+
+
+
+These are the supported job functions for the Amplemarket API, which can be used for example in the [Search people](/api-reference/searcher/search-people) endpoint:
+
+* Account Management
+* Accounting
+* Acquisitions
+* Advertising
+* Anesthesiology
+* Application Development
+* Artificial Intelligence / Machine Learning
+* Bioengineering & Biometrics
+* Brand Management
+* Business Development
+* Business Intelligence
+* Business Service Management / ITSM
+* Call Center
+* Channel Sales
+* Chemical Engineering
+* Chiropractics
+* Clinical Systems
+* Cloud / Mobility
+* Collaboration & Web App
+* Compensation & Benefits
+* Compliance
+* Construction
+* Consultant
+* Content Marketing
+* Contracts
+* Corporate Secretary
+* Corporate Strategy
+* Culture, Diversity & Inclusion
+* Customer Experience
+* Customer Marketing
+* Customer Retention & Development
+* Customer Service / Support
+* Customer Success
+* Data Center
+* Data Science
+* Data Warehouse
+* Database Administration
+* Demand Generation
+* Dentistry
+* Dermatology
+* DevOps
+* Digital Marketing
+* Digital Transformation
+* Doctors / Physicians
+* eCommerce Development
+* eCommerce Marketing
+* eDiscovery
+* Emerging Technology / Innovation
+* Employee & Labor Relations
+* Engineering & Technical
+* Enterprise Architecture
+* Enterprise Resource Planning
+* Epidemiology
+* Ethics
+* Event Marketing
+* Executive
+* Facilities Management
+* Field / Outside Sales
+* Field Marketing
+* Finance
+* Finance Executive
+* Financial Planning & Analysis
+* Financial Reporting
+* Financial Risk
+* Financial Strategy
+* Financial Systems
+* First Responder
+* Founder
+* Governance
+* Governmental Affairs & Regulatory Law
+* Graphic / Visual / Brand Design
+* Growth
+* Health & Safety
+* Help Desk / Desktop Services
+* HR / Financial / ERP Systems
+* HR Business Partner
+* Human Resource Information System
+* Human Resources
+* Human Resources Executive
+* Industrial Engineering
+* Infectious Disease
+* Information Security
+* Information Technology
+* Information Technology Executive
+* Infrastructure
+* Inside Sales
+* Intellectual Property & Patent
+* Internal Audit & Control
+* Investor Relations
+* IT Asset Management
+* IT Audit / IT Compliance
+* IT Operations
+* IT Procurement
+* IT Strategy
+* IT Training
+* Labor & Employment
+* Lawyer / Attorney
+* Lead Generation
+* Learning & Development
+* Leasing
+* Legal
+* Legal Counsel
+* Legal Executive
+* Legal Operations
+* Litigation
+* Logistics
+* Marketing
+* Marketing Analytics / Insights
+* Marketing Communications
+* Marketing Executive
+* Marketing Operations
+* Mechanic
+* Medical & Health Executive
+* Medical Administration
+* Medical Education & Training
+* Medical Research
+* Medicine
+* Mergers & Acquisitions
+* Mobile Development
+* Networking
+* Neurology
+* Nursing
+* Nutrition & Dietetics
+* Obstetrics / Gynecology
+* Office Operations
+* Oncology
+* Operations
+* Operations Executive
+* Ophthalmology
+* Optometry
+* Organizational Development
+* Orthopedics
+* Partnerships
+* Pathology
+* Pediatrics
+* People Operations
+* Pharmacy
+* Physical Security
+* Physical Therapy
+* Principal
+* Privacy
+* Product Development
+* Product Management
+* Product Marketing
+* Product or UI/UX Design
+* Professor
+* Project & Program Management
+* Project Development
+* Project Management
+* Psychiatry
+* Psychology
+* Public Health
+* Public Relations
+* Quality Assurance
+* Quality Management
+* Radiology
+* Real Estate
+* Real Estate Finance
+* Recruiting & Talent Acquisition
+* Research & Development
+* Retail / Store Systems
+* Revenue Operations
+* Safety
+* Sales
+* Sales Enablement
+* Sales Engineering
+* Sales Executive
+* Sales Operations
+* Sales Training
+* Scrum Master / Agile Coach
+* Search Engine Optimization / Pay Per Click
+* Servers
+* Shared Services
+* Social Media Marketing
+* Social Work
+* Software Development
+* Sourcing / Procurement
+* Storage & Disaster Recovery
+* Store Operations
+* Strategic Communications
+* Superintendent
+* Supply Chain
+* Support / Technical Services
+* Talent Management
+* Tax
+* Teacher
+* Technical Marketing
+* Technician
+* Technology Operations
+* Telecommunications
+* Test / Quality Assurance
+* Treasury
+* UI / UX
+* Virtualization
+* Web Development
+* Workforce Management
+
+
+# Complete task
+Source: https://docs.amplemarket.com/api-reference/tasks/complete-task
+
+post /tasks/{id}/complete
+Complete task
+
+
+
+# List tasks
+Source: https://docs.amplemarket.com/api-reference/tasks/get-tasks
+
+get /tasks
+List tasks
+
+
+
+# List task statuses
+Source: https://docs.amplemarket.com/api-reference/tasks/get-tasks-statuses
+
+get /tasks/statuses
+List task statuses
+
+
+
+# List task types
+Source: https://docs.amplemarket.com/api-reference/tasks/get-tasks-types
+
+get /tasks/types
+List task types
+
+
+
+# Skip task
+Source: https://docs.amplemarket.com/api-reference/tasks/skip-task
+
+post /tasks/{id}/skip
+Skip task
+
+
+
+# List users
+Source: https://docs.amplemarket.com/api-reference/users/get-users
+
+get /users
+List users
+
+
+
+# Companies Search
+Source: https://docs.amplemarket.com/guides/companies-search
+
+Learn how to find the right company.
+
+Matching against a Company in our database allows the retrieval of data associated with said Company.
+
+## Company Object
+
+Here is the description of the Company object:
+
+| Field                           | Type              | Description                                  |
+| ------------------------------- | ----------------- | -------------------------------------------- |
+| `id`                            | string            | Amplemarket ID of the Company                |
+| `name`                          | string            | Name of the Company                          |
+| `linkedin_url`                  | string            | LinkedIn URL of the Company                  |
+| `website`                       | string            | Website of the Company                       |
+| `overview`                      | string            | Description of the Company                   |
+| `logo_url`                      | string            | Logo URL of the Company                      |
+| `founded_year`                  | integer           | Year the Company was founded                 |
+| `traffic_rank`                  | integer           | Traffic rank of the Company                  |
+| `sic_codes`                     | array of integers | SIC codes of the Company                     |
+| `type`                          | string            | Type of the Company (Public Company, etc.)   |
+| `total_funding`                 | integer           | Total funding of the Company                 |
+| `latest_funding_stage`          | string            | Latest funding stage of the Company          |
+| `latest_funding_date`           | string            | Latest funding date of the Company           |
+| `keywords`                      | array of strings  | Keywords of the Company                      |
+| `estimated_number_of_employees` | integer           | Estimated number of employees at the Company |
+| `followers`                     | integer           | Number of followers on LinkedIn              |
+| `size`                          | string            | Self reported size of the Company            |
+| `industry`                      | string            | Industry of the Company                      |
+| `location`                      | string            | Location of the Company                      |
+| `location_details`              | object            | Location details of the Company              |
+| `is_b2b`                        | boolean           | `true` if the Company has a B2B component    |
+| `is_b2c`                        | boolean           | `true` if the Company has a B2C component    |
+| `technologies`                  | array of strings  | Technologies detected for the Company        |
+| `department_headcount`          | object            | Headcount by department                      |
+| `job_function_headcount`        | object            | Headcount by job function                    |
+| `estimated_revenue`             | string            | The estimated annual revenue of the company  |
+| `revenue`                       | integer           | The annual revenue of the company            |
+
+## Companies Endpoints
+
+### Finding a Company
+
+**Request**
+
+The following endpoint can be used to find a Company on Amplemarket:
+
+```js
+GET /companies/find?linkedin_url=https://www.linkedin.com/company/company-1 HTTP/1.1
+GET /companies/find?domain=example.com HTTP/1.1
+```
+
+**Response**
+
+The response contains the Linkedin URL of the Company along with the other relevant data.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "eec03d70-58aa-46e8-9d08-815a7072b687",
+  "object": "company",
+  "name": "A Company",
+  "website": "https://company.com",
+  "linkedin_url": "https://www.linkedin.com/company/company-1",
+  "keywords": [
+    "sales",
+    "ai sales",
+    "sales engagement"
+  ],
+  "estimated_number_of_employees": 500,
+  "size": "201-500 employees",
+  "industry": "Software Development",
+  "location": "San Francisco, California, US",
+  "is_b2b": true,
+  "is_b2c": false,
+  "technologies": ["Salesforce"]
+}
+```
+
+
+# Email Validation
+Source: https://docs.amplemarket.com/guides/email-verification
+
+Learn how to validate email addresses.
+
+Email validation plays a critical role in increasing the deliverability rate of email messages sent to potential leads. It allows the user to determine the validity of the email, whether it's valid or not, or whether there's some risk associated in having the email bounce.
+
+The email validation flow will usually follow these steps:
+
+1. `POST /email-validations/` with a list of emails that will be validated
+
+2. In the response, follow the URL provided in `response._links.self.href`
+
+3. Continue polling the endpoint while respecting the `Retry-After` HTTP Header
+
+4. When validation completes, the results are in `response.results`
+
+5. If the results are larger than the [default limit](/api-reference/introduction#usage-limits), then follow the URL provided in `response._links.next.href`
+
+## Email Validation Object
+
+| Field     | Type                               | Description                                                                                      |
+| --------- | ---------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `id`      | string                             | The ID of the email validation operation                                                         |
+| `status`  | string                             | The status of the email validation operation:                                                    |
+|           |                                    | `queued`: The validation operation hasn’t started yet                                            |
+|           |                                    | `processing`: The validation operation is in-progress                                            |
+|           |                                    | `completed`: The validation operation terminated successfully                                    |
+|           |                                    | `canceled`: The validation operation terminated due to being canceled                            |
+|           |                                    | `error`: The validation operation terminated with an error; see `_errors` for more details       |
+| `results` | array of email\_validation\_result | The validation results for the emails provided; default number of results range from 1 up to 100 |
+| `_links`  | array of links                     | Contains useful links related to this resource                                                   |
+| `_errors` | array of errors                    | Contains the errors if the operation fails                                                       |
+
+## Email Validation Result Object
+
+| Field       | Type    | Description                                                                                                                      |
+| ----------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `email`     | string  | The email address that went through the validation process                                                                       |
+| `catch_all` | boolean | Whether the domain has been configured to catch all emails or not                                                                |
+| `result`    | string  | The result of the validation:                                                                                                    |
+|             |         | `deliverable`: The email provider has confirmed that the email address exists and can receive emails                             |
+|             |         | `risky`: The email address may result in a bounce or low engagement, usually if it’s a catch-all, mailbox is full, or disposable |
+|             |         | `unknown`: Unable to receive a response from the email provider to determine the status of the email address                     |
+|             |         | `undeliverable`: The email address is either incorrect or does not exist                                                         |
+
+## Email Validation Endpoints
+
+### Start Email Validation
+
+**Request**
+
+A batch of emails can be sent to the email validation service, up to 100,000 entries:
+
+```js
+POST /email-validations HTTP/1.1
+Content-Type: application/json
+
+{	
+  "emails": [
+		{"email":"foo@example.com"},
+		{"email":"bar+baz@example.com"}
+	]
+}
+```
+
+```bash
+curl -X POST https://api.amplemarket.com/email-validations \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"emails": [{"email":"foo@example.com"}, {"email":"bar+baz@example.com"}]}'
+```
+
+**Response**
+
+This will return a `202 Accepted` indicating that the email validation will soon be started:
+
+```js
+HTTP/1.1 202 Accepted
+Content-Type: application/json
+Location: /email-validations/1
+
+{
+  "id": "1",
+  "object": "email_validation",
+  "status": "queued",
+	"results": [],
+	"_links": {
+    "self": { "href": "/email-validations/1" }
+  }
+}
+```
+
+**HTTP Headers**
+
+* `Location`: `GET` points back to the email validations object that was created
+
+**Links**
+
+* `self` - `GET` points back to the email validations object that was created
+
+### Email Validation Polling
+
+**Request**
+
+The Email Validation object can be polled in order to receive results:
+
+```js
+GET /email-validations/{{id}} HTTP/1.1
+Content-Type: application/json
+```
+
+```bash
+curl https://api.amplemarket.com/email-validations/{{id}} \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+**Response**
+
+Will return a `200` OK while the operation hasn't yet terminated.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+Retry-After: 60
+
+{
+  "id": "1",
+  "object": "email_validation",
+  "status": "processing",
+	"results": [],
+	"_links": {
+    "self": { "href": "/email-validations/1" }
+  }
+}
+```
+
+**HTTP Headers**
+
+* `Retry-After` - indicates how long to wait until performing another `GET` request
+
+**Links**
+
+* `self` - `GET` points back to the same object
+
+* `next` - `GET` points to the next page of entries, when available
+
+* `prev` - `GET` points to the previous page of entries, when available
+
+### Retrieving Email Validation Results
+
+**Request**
+
+When the email validation operation has terminated, the results can be retrieved using the same url:
+
+```js
+GET /email-validations/1 HTTP/1.1
+Content-Type: application/json
+```
+
+```bash
+curl https://api.amplemarket.com/email-validations/{{id}} \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+**Response**
+
+The response will display up to 100 results:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "1",
+  "object": "email_validation",
+  "status": "completed",
+	"results": [
+		{
+			"object": "email_validation_result",
+	    "email": "foo@example.com",
+	    "result": "deliverable",
+	    "catch_all": false
+		},
+		{
+			"object": "email_validation_result",
+	    "email": "bar@example.com",
+	    "result": "deliverable",
+	    "catch_all": false
+		}
+	],
+	"_links": {
+    "self": { "href": "/email-validations/1" },
+    "next": { "href": "/email-validations/1?page[size]=100&page[after]=foo@example.com" },
+    "prev": { "href": "/email-validations/1?page[size]=100&page[before]=foo@example.com" }
+  }
+}
+```
+
+If the results contains more than 100 entries, then pagination is required transverse them all and can be done using the links such as:`response._links.next.href`  (e.g. `GET /email-validations/1?page[size]=100&page[after]=foo@example.com`).
+
+**Links**
+
+* `self` - `GET` points back to the same object
+
+* `next` - `GET` points to the next page of entries, when available
+
+* `prev` - `GET` points to the previous page of entries, when available
+
+### Cancelling a running Email Validation operation
+
+**Request**
+
+You can cancel an email validation operation that's still running by sending a `PATCH` request:
+
+```js
+PATCH /email-validations/1 HTTP/1.1
+Content-Type: application/json
+
+{
+	"status": "canceled"
+}
+```
+
+```bash
+curl -X PATCH https://api.amplemarket.com/email-validations \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"status": "canceled"}'
+```
+
+Only `"status"` is supported in this request, any other field will be ignored.
+
+**Response**
+
+The response will display any available results up until the point the email validation operation was canceled.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "1",
+  "object": "email_validation",
+  "status": "canceled",
+	"results": [
+		{
+			"object": "email_validation_result",
+	    "email": "foo@example.com",
+	    "result": "deliverable",
+	    "catch_all": false
+		}
+  ],
+	"_links": {
+    "self": { "href": "/email-validations/1" },
+    "next": { "href": "/email-validations/1?page[size]=100&page[after]=foo@example.com" },
+    "prev": { "href": "/email-validations/1?page[size]=100&page[before]=foo@example.com" }
+  }
+}
+```
+
+If the results contains more than 100 entries, then pagination is required transverse them all and can be done using the links such as:`response._links.next.href`  (e.g. `GET /email-validations/1?page[size]=100&page[after]=foo@example.com`).
+
+**Links**
+
+* `self` - `GET` points back to the same object
+
+* `next` - `GET` points to the next page of entries, when available
+
+* `prev` - `GET` points to the previous page of entries, when available
+
+
+# Exclusion Lists
+Source: https://docs.amplemarket.com/guides/exclusion-lists
+
+Learn how to manage domain and email exclusions.
+
+Exclusion lists are used to manage domains and emails that should not be sequenced.
+
+## Exclusion Lists Overview
+
+The exclusion list API endpoints allow you to:
+
+1. **List excluded domains and emails**
+2. **Create new exclusions**
+3. **Delete existing exclusions**
+
+## Exclusion Domain Object
+
+| Field             | Type   | Description                                                             |
+| ----------------- | ------ | ----------------------------------------------------------------------- |
+| `domain`          | string | The domain name that is excluded (e.g., `domain.com`).                  |
+| `source`          | string | The source or reason for exclusion (e.g., `amplemarket`, `salesforce`). |
+| `date_added`      | string | The date the domain was added to the exclusion list (ISO 8601).         |
+| `excluded_reason` | string | The reason for the exclusion (e.g., `api`, \`manual).                   |
+| `_links`          | object | Links to related resources.                                             |
+
+## Exclusion Email Object
+
+| Field             | Type   | Description                                                             |
+| ----------------- | ------ | ----------------------------------------------------------------------- |
+| `email`           | string | The email address that is excluded (e.g., `someone@domain.com`).        |
+| `source`          | string | The source or reason for exclusion (e.g., `amplemarket`, `salesforce`). |
+| `date_added`      | string | The date the email was added to the exclusion list (ISO 8601).          |
+| `excluded_reason` | string | The reason for the exclusion (e.g., `api`, `manual`).                   |
+| `_links`          | object | Links to related resources.                                             |
+
+## Exclusion Domains Endpoints
+
+### List Excluded Domains
+
+**Request**
+
+Retrieve a list of excluded domains:
+
+```js
+GET /excluded-domains HTTP/1.1
+Authorization: Bearer {{API Key}}
+```
+
+```bash
+curl -X GET https://api.amplemarket.com/excluded-domains \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+**Response**
+
+This will return a `200 OK` with a list of excluded domains:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "excluded_domains": [
+    {
+      "domain": "domain.com",
+      "source": "amplemarket",
+      "date_added": "2024-08-28T22:33:16.145Z",
+      "excluded_reason": "api"
+    }
+  ],
+  "_links": {
+    "self": { "href": "/excluded-domains?size=2000" }
+  }
+}
+```
+
+### Create Domain Exclusions
+
+**Request**
+
+Add new domains to the exclusion list.
+
+```js
+POST /excluded-domains HTTP/1.1
+Authorization: Bearer API_KEY
+Content-Type: application/json
+
+{
+  "excluded_domains": [
+    {"domain": "new_domain.com"}
+  ]
+}
+```
+
+```bash
+curl -X POST https://api.amplemarket.com/excluded-domains \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"excluded_domains": [{"domain":"new_domain.com"}]}'
+```
+
+**Response**
+
+This will return a `200 OK` with the status of each domain:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "existing_domain.com": "duplicated",
+  "new_domain.com": "success"
+}
+```
+
+### Delete Domain Exclusions
+
+**Request**
+
+Remove domains from the exclusion list.
+
+```js
+DELETE /excluded-domains HTTP/1.1
+Authorization: Bearer API_KEY
+Content-Type: application/json
+
+{
+  "excluded_domains": [
+    {"domain": "existing_domain.com"}
+  ]
+}
+```
+
+```bash
+curl -X DELETE https://api.amplemarket.com/excluded-domains \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"excluded_domains": [{"domain":"existing_domain.com"}]}'
+```
+
+**Response**
+
+This will return a `200 OK` with the status of each domain:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "existing_domain.com": "success",
+  "existing_domain_from_crm.com": "unsupported",
+  "unexistent_domain.com": "not_found"
+}
+```
+
+## Exclusion Emails Endpoints
+
+### List Excluded Emails
+
+**Request**
+
+Retrieve a list of excluded emails:
+
+```js
+GET /excluded-emails HTTP/1.1
+Authorization: Bearer {{API Key}}
+```
+
+```bash
+curl -X GET https://api.amplemarket.com/excluded-emails \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+**Response**
+
+This will return a `200 OK` with a list of excluded emails:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "excluded_emails": [
+    {
+      "email": "someone@domain.com",
+      "source": "amplemarket",
+      "date_added": "2024-08-28T22:33:16.145Z",
+      "excluded_reason": "api"
+    }
+  ],
+  "_links": {
+    "self": { "href": "/excluded-emails?size=2000" }
+  }
+}
+```
+
+### Create Email Exclusions
+
+**Request**
+
+Add new emails to the exclusion list.
+
+```js
+POST /excluded-emails HTTP/1.1
+Authorization: Bearer API_KEY
+Content-Type: application/json
+
+{
+  "excluded_emails": [
+    {"email": "someone@domain.com"}
+  ]
+}
+```
+
+```bash
+curl -X POST https://api.amplemarket.com/excluded-emails \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"excluded_emails": [{"email":"someone@domain.com"}]}'
+```
+
+**Response**
+
+This will return a `200 OK` with the status of each email:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "existing@domain.com": "duplicated",
+  "new@domain.com": "success"
+}
+```
+
+### Delete Email Exclusions
+
+**Request**
+
+Remove emails from the exclusion list.
+
+```js
+DELETE /excluded-emails HTTP/1.1
+Authorization: Bearer API_KEY
+Content-Type: application/json
+
+{
+  "excluded_emails": [
+    {"email": "someone@domain.com"}
+  ]
+}
+```
+
+```bash
+curl -X DELETE https://api.amplemarket.com/excluded-emails \
+	-H "Authorization: Bearer {{API Key}}" \
+	-H "Content-Type: application/json" \
+	-d '{"excluded_emails": [{"email":"someone@domain.com"}]}'
+```
+
+**Response**
+
+This will return a `200 OK` with the status of each email:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "existing@domain.com": "success",
+  "existing_from_crm@domain.com": "unsupported",
+  "unexistent@domain.com": "not_found"
+}
+```
+
+
+# Inbound Workflows
+Source: https://docs.amplemarket.com/guides/inbound-workflows
+
+Learn how to trigger an Inbound Workflow by sending Amplemarket leads.
+
+Inbound Workflows will allow you to trigger automated actions for your inbound leads. You can accomplish this by sending to Amplemarket the inbound leads that, for example, completed a form sign-up on your website.
+
+## Enable Inbound Workflows
+
+These are the steps to follow in your Amplemarket Account in order to enable Inbound Workflows:
+
+1. Login in to your Amplemarket Account
+
+2. On the left sidebar find the ⚡️ icon and click Inbound Workflows
+
+3. Click + New Inbound Workflow button located above on the right
+
+4. Provide a name for your Workflow
+
+5. Optionally, you can make this into an Account-level workflow. When enabled, this allows you to set what user the configured actions will be associated with via the `user_email` parameter.
+
+6. Start configuring your Workflow by expanding it
+
+7. After expanding it you will find a URL that looks like this: `https://app.amplemarket.com/api/v1/inbound_smart_action_webhooks/df64d8a2-65ba-49df-81cf-2050320a42dc/add_lead`
+
+8. Click on the plus (+) icon to Choose an Action. The simplest Inbound Workflows involve adding a lead to a sequence. To do this, choose the Trigger sequence action and select the sequence you want to use.
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/inbound-workflow-trigger.png" />
+
+## Configuring the action
+
+Important note! Inbound Workflows will require you to select a Sequence. You need to build the sequence before enabling your Inbound Workflow. Keep in mind that for these leads we do not have as many data points compared to those you get from our Searcher or from LinkedIn using the Amplemarket Chrome Extension. In any case, we will attempt to enrich your Inbound leads with the following information:
+
+* `{{first_name}}` - first name of the prospect
+
+* `{{last_name}}` - last name of the prospect
+
+* `{{company_name}}` - name of the company
+
+* `{{company_domain}}` - domain of the company
+
+These are the only dynamic fields you should be including in our inbound sequence. If you try adding other dynamic fields the Inbound Workflow will most likely fail to execute and the sequence will not be sent out.
+
+Please note that we will not always be able to enrich the data listed above so there may be instances of this action failing. If one of your Inbound Workflows happen to fail, consider starting that lead into a new sequence that uses fewer dynamic fields.
+
+## Sending leads to Amplemarket
+
+New leads can be sent to Amplemarket by issuing a HTTP POST request to the endpoint associated with your Inbound Workflows. The request body will have to be a JSON object with the following format:
+
+```js
+{
+  "email": "john.doe@acme.org",
+  "first_name": "John",
+  "last_name": "Doe",
+  "company_name": "Acme Corp",
+  "company_domain": "acme.org"
+}
+```
+
+Note that you need at least an email field in the JSON object, while all other fields passed in the JSON object will be available to be used by the sequence you've selected.
+
+To know more about this endpoint, [please refer to the specification](/workflows/inbound-workflows)
+
+
+# Lead Lists
+Source: https://docs.amplemarket.com/guides/lead-lists
+
+Learn how to use lead lists.
+
+Lead Lists can be used to upload a set of leads which will then undergo additional enrichment and processing in order to reveal as much information on each lead as possible, leveraging Amplemarket's vast database.
+
+Usually the flow for this is:
+
+1. `POST /lead-lists/` with a list of LinkedIn URLs that will be processed and revealed
+
+2. In the response, follow the URL provided in `response._links.self.href`
+
+3. Continue polling the endpoint while respecting the `Retry-After` HTTP Header
+
+4. When validation completes, the results are in `response.results`
+
+5. If the results are larger than the default [limit](/api-reference/introduction#usage-limits), then follow the URL provided in `response._links.next.href`
+
+## Lead List Object
+
+| Field     | Type                       | Description                                                                          |
+| --------- | -------------------------- | ------------------------------------------------------------------------------------ |
+| `id`      | string                     | The ID of the Lead List                                                              |
+| `name`    | string                     | The name of the Lead List                                                            |
+| `status`  | string                     | The status of the Lead List:                                                         |
+|           |                            | `queued`: The validation operation hasn’t started yet                                |
+|           |                            | `processing`: The validation operation is in-progress                                |
+|           |                            | `completed`: The validation operation terminated successfully                        |
+|           |                            | `canceled`: The validation operation terminated due to being canceled                |
+| `shared`  | boolean                    | If the Lead List is shared across the Account                                        |
+| `visible` | boolean                    | If the Lead List is visible in the Dashboard                                         |
+| `owner`   | string                     | The email of the owner of the Lead List                                              |
+| `options` | object                     | Options for the Lead List:                                                           |
+|           |                            | `reveal_phone_numbers`: boolean - If phone numbers should be revealed for the leads  |
+|           |                            | `validate_email`: boolean - If the emails of the leads should be validated           |
+|           |                            | `enrich`: boolean - If the leads should be enriched                                  |
+| `type`    | string                     | The type of the Lead List:                                                           |
+|           |                            | `linkedin`: The inputs were LinkedIn URLs                                            |
+|           |                            | `email`: The inputs were emails                                                      |
+|           |                            | `title_and_company`: The inputs were titles and company names                        |
+|           |                            | `name_and_company`: The inputs were person names and company names                   |
+|           |                            | `salesforce`: The inputs were Salesforce Object IDs                                  |
+|           |                            | `hubspot`: The inputs were Hubspot Object IDs                                        |
+|           |                            | `person`: The inputs were Person IDs                                                 |
+|           |                            | `adaptive`: The input CSV file's columns were used dynamically during enrichment     |
+| `leads`   | array of lead\_list\_entry | The entries of the Lead List; the default number of results that appear is up to 100 |
+| `_links`  | array of links             | Contains useful links related to this resource                                       |
+
+## Lead List Entry Object
+
+| Field                     | Type                                     | Description                                        |
+| ------------------------- | ---------------------------------------- | -------------------------------------------------- |
+| `id`                      | string                                   | The ID of the entry                                |
+| `email`                   | string                                   | The email address of the entry                     |
+| `person_id`               | string                                   | The ID of the Person matched with this entry       |
+| `linkedin_url`            | string                                   | The LinkedIn URL of the entry                      |
+| `first_name`              | string                                   | The first name of the entry                        |
+| `last_name`               | string                                   | The last name of the entry                         |
+| `company_name`            | string                                   | The company name of the entry                      |
+| `company_domain`          | string                                   | The company domain of the entry                    |
+| `industry`                | string                                   | The industry of the entry                          |
+| `title`                   | string                                   | The title of the entry                             |
+| `email_validation_result` | object of type email\_validation\_result | The result of the email validation if one occurred |
+| `data`                    | object                                   | Other arbitrary fields may be included here        |
+
+## Lead List Endpoints
+
+### Creating a new Lead List
+
+**Request**
+
+A list of leads can be supplied to create a new Lead List with a subset of settings that are included within the [`lead_list` object](#lead-list-object):
+
+* `owner` (string, mandatory) - email of the owner of the lead list which must be an existing user; if a revoked users is provided, the fallback will be the oldest admin's account instead
+
+* `shared` (boolean, mandatory) - indicates whether this list should be shared across the account or just for the specific user
+
+* `type` (string, mandatory) - currently only `linkedin`, `email`, and `titles_and_company`  are supported
+
+* `leads` ([array of `lead_list_entry`](#lead-list-entry-object), mandatory) where:
+  * For the `linkedin` type, each entry only requires the field `linkedin_url`
+
+  * For the `email` type, each entry only requires the field `email`
+
+  * For the `titles_and_company` type, each entry only requires the fields `title` and `company_name` (or `company_domain`)
+
+* `name` (string, optional) - defaults to an automatically generated one when not supplied
+
+* `visible` (boolean, optional) - defaults to true
+
+* `options` (object)
+  * `reveal_phone_numbers` (boolean) - if phone numbers should be revealed for the leads
+
+  * `validate_email` (boolean) - if the emails of the leads should be validated
+    * Can only be disabled for lists of type `email`
+
+  * `enrich` (boolean) - if the leads should be enriched
+    * Can only be disabled for lists of type `email`
+
+```js
+POST /lead-lists HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Example",
+  "shared": true,
+  "visible": true,
+  "owner": "user@example.com",
+  "type": "linkedin",
+  "leads": [
+    {
+      "linkedin_url": "..."
+    },
+    {
+      "linkedin_url": "..."
+    }
+  ]
+}
+```
+
+**Response**
+
+This will return a `202 Accepted` indicating that the email validation will soon be started:
+
+```js
+HTTP/1.1 202 Accepted
+Content-Type: application/json
+Location: /lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f
+
+{
+  "id": "81f63c2e-edbd-4c1a-9168-542ede3ce98f",
+  "object": "lead_list",
+  "name": "Example",
+  "status": "queued",
+  "shared": true,
+  "visible": false,
+  "owner": "user@example.com",
+  "type": "linkedin",
+  "options": {
+    "reveal_phone_numbers": false,
+    "validate_email": true,
+    "enrich": true,
+  },
+  "leads": [],
+  "_links": {
+    "self": { "href": "/lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f" }
+  }
+}
+```
+
+**HTTP Headers**
+
+* `Location`: `GET` points back to the object that was created
+
+**Links**
+
+* `self` - `GET` points back to the object that was created
+
+### Polling a Lead List
+
+**Request**
+
+The Lead List object can be polled in order to receive results:
+
+```js
+GET /lead-lists/{{id}} HTTP/1.1
+Content-Type: application/json
+```
+
+**Response**
+
+Will return a `200 OK` while the operation hasn't yet terminated.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+Retry-After: 60
+
+{
+  "id": "81f63c2e-edbd-4c1a-9168-542ede3ce98f",
+  "object": "lead_list",
+  "name": "Example",
+  "status": "processing",
+  "shared": true,
+  "visible": false,
+  "owner": "user@example.com",
+  "type": "linkedin",
+  "options": {
+    "reveal_phone_numbers": false,
+    "validate_email": true,
+    "enrich": true,
+  },
+  "leads": [],
+  "_links": {
+    "self": { "href": "/lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f" }
+  }
+}
+```
+
+**HTTP Headers**
+
+* `Retry-After` - indicates how long to wait until performing another `GET` request
+
+**Links**
+
+* `self` - `GET` points back to the same object
+
+### Retrieving a Lead List
+
+**Request**
+
+When the processing of the lead list has terminated, the results can be retrieved using the same url:
+
+```js
+GET /lead-lists/{{id}} HTTP/1.1
+Content-Type: application/json
+```
+
+**Response**
+
+The response will display up to 100 results and will contain as much information as available about each lead, however there may be many fields that don't have all information.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "81f63c2e-edbd-4c1a-9168-542ede3ce98f",
+  "object": "lead_list",
+  "name": "Example",
+  "status": "completed",
+  "shared": true,
+  "visible": false,
+  "owner": "user@example.com",
+  "type": "linkedin",
+  "options": {
+    "reveal_phone_numbers": false,
+    "validate_email": true,
+    "enrich": true,
+  },
+  "leads": [
+		{
+      "id": "81f63c2e-edbd-4c1a-9168-542ede3ce98a",
+      "object": "lead_list_entry",
+      "email": "lead@company1.com",
+      "person_id": "576ed970-a4c4-43a1-bdf0-154d1d9049ed",
+      "linkedin_url": "https://www.linkedin.com/in/lead1/",
+      "first_name": "Lead",
+      "last_name": "One",
+      "company_name": "Company 1",
+      "company_domain": "company1.com",
+      "industry": "Computer Software",
+      "title": "CEO",
+      "email_validation_result": {
+        "object": "email_validation_result",
+        "email": "lead@company1.com",
+        "result": "deliverable",
+        "catch_all": false
+      },
+      "data": {
+        // other data fields
+      }
+    },
+    {
+      "id": "81f63c2e-edbd-4c1a-9168-542ede3ce98a",
+      "object": "lead_list_entry",
+      "email": "lead@company2.com",
+      "person_id": "1dfe7176-5491-4e95-a20f-10ebac3c7c4b",
+      "linkedin_url": "https://www.linkedin.com/in/jim-smith",
+      "first_name": "Jim",
+      "last_name": "Smith",
+      "company_name": "Example, Inc",
+      "company_domain": "example.com",
+      "industry": "Computer Software",
+      "title": "CTO",
+      "email_validation_result": {
+        "object": "email_validation_result",
+        "email": "lead@company1.com",
+        "result": "deliverable",
+        "catch_all": false
+      },
+      "data": {
+        // other data fields
+      }
+		},
+		{
+			"id": "6ba3394f-b0f2-44e0-86e0-f360a0a8dcec",
+      "object": "lead_list_entry",
+      "email": null,
+      "person_id": null,
+      "linkedin_url": "https://www.linkedin.com/in/nobody",
+      "first_name": null,
+      "last_name": null,
+      "company_name": null,
+      "company_domain": null,
+      "industry": null,
+      "title": null,
+      "email_validation_result": null,
+      "data": {
+        // other data fields
+      }
+		}
+	],
+  "_links": {
+    "self": { "href": "/lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f" },
+    "prev": { "href": "/lead-lists/1?page[size]=100&page[before]=81f63c2e-edbd-4c1a-9168-542ede3ce98a" },
+    "next": { "href": "/lead-lists/1?page[size]=100&page[after]=81f63c2e-edbd-4c1a-9168-542ede3ce98a" }
+  }
+}
+```
+
+If the list contains more than 100 entries, then pagination is required transverse them all and can be done using the links such as: `response._links.next.href`  (e.g. `GET /lead-lists/81f63c2e-edbd-4c1a-9168-542ede3ce98f?page[size]=100&page[after]=81f63c2e-edbd-4c1a-9168-542ede3ce98a`).
+
+**Links**
+
+* `self` - `GET` points back to the same object
+
+* `next` - `GET` points to the next page of entries, when available
+
+* `prev` - `GET` points to the previous page of entries, when available
+
+### List Lead Lists
+
+**Request**
+
+Retrieve a list of Lead Lists:
+
+```js
+GET /lead-lists HTTP/1.1
+Authorization: Bearer {{API Key}}
+```
+
+```bash
+curl -X GET https://api.amplemarket.com/lead-lists \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+**Response**
+
+This will return a `200 OK` with a list of Lead Lists:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "lead_lists": [
+    {
+      "id": "01937248-a242-7be7-9666-ba15a35d223d",
+      "name": "Sample list 1",
+      "status": "queued",
+      "shared": false,
+      "visible": true,
+      "owner": "foo-23@email.com",
+      "type": "linkedin"
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/lead-lists?page[size]=20"
+    }
+  }
+}
+```
+
+
+# Outbound JSON Push
+Source: https://docs.amplemarket.com/guides/outbound-json-push
+
+Learn how to receive a notifications from Amplemarket when contacts reply.
+
+Outbound Workflows will allow you to get programmatically notified when a lead is contacted or when it replies. You can accomplish this by configuring a specified endpoint that Amplemarket will notify according to a specified message format.
+
+There are three ways to configure webhooks:
+
+* JSON Push Integration
+
+* JSON Push from Workflow
+
+* JSON Push from Inbound Workflow
+
+## Enable JSON Data Integration
+
+These are the steps to follow in your Amplemarket Account in order to enable the JSON Data Integration:
+
+1. Login in to your Amplemarket Account
+
+2. On the left sidebar go to Settings and click Integrations.
+
+3. Click Connect button for JSON data under Other Integrations.
+
+4. Use the toggles to select which in-sequence activities to push.
+
+5. Select whether you want to push all new contacts or only contacts that replied
+
+6. Specify the endpoint that will receive the messages and test it.
+
+7. If everything went well, save changes and Amplemarket will start notifying you of events.
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/outbound-json-push.png" />
+
+### Types of events
+
+On Amplemarket, the following activity will be pushed through a webhook:
+
+* Within a sequence
+
+  * An email sent
+
+  * Executed LinkedIn activities: visits, connections, messages, follows and like last posts
+
+  * Phone calls made using Amplemarket’s dialer
+
+  * Executed generic tasks
+
+* An email reply from a prospect in a sequence
+
+* A LinkedIn reply from a prospect in a sequence
+
+* An email sent within a reply sequence
+
+* An email received from a prospect within a reply sequence
+
+<Check>This is true for both automatic and manual activities in your sequences.</Check>
+
+To check webhook schemas for this source please check [our documentation](/workflows/webhooks)
+
+## Enable JSON Push from Workflows
+
+These are the steps to follow in your Amplemarket Account in order to enable JSON Push from a Workflow:
+
+1. Login in to your Amplemarket Account
+
+2. On the left sidebar go to Workflows
+
+3. Select which tags you wish to automated
+
+4. Pick the Send JSON to endpoint action
+
+5. Specify the endpoint that will receive the messages and test it.
+
+6. If everything went well, save changes and enable the automation.
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/outbound-workflow-action.png" />
+
+### Types of events
+
+On Amplemarket, the following classifications will be pushed through a webhook:
+
+* An interested reply
+
+* A not interested reply
+
+* A hard no response
+
+* An out of office notice
+
+* An ask to circle back later
+
+* Not the right person to engage
+
+* A forward to the right person
+
+To check webhook schemas for this source please check [our documentation](/workflows/webhooks/workflow)
+
+## Enable JSON Push from Inbound Workflows
+
+These are the steps to follow in your Amplemarket Account in order to enable JSON Push from an Inbound Workflow:
+
+1. Login in to your Amplemarket Account
+
+2. On the left sidebar go to Inbound Workflows
+
+3. Create a new Inbound Workflow trigger
+
+4. Pick the Send JSON to endpoint action
+
+5. Specify the endpoint that will receive the messages and test it.
+
+6. If everything went well, save changes and enable the automation.
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/inbound-workflow-action.png" />
+
+### Types of events
+
+The lead data received from the inbound workflow with be pushed through a webhook.
+
+To check webhook schemas for this source please check [our documentation](/workflows/webhooks/inbound-workflow)
+
+
+# People Search
+Source: https://docs.amplemarket.com/guides/people-search
+
+Learn how to find the right people.
+
+Matching against a Person in our database allows the retrieval of data associated with said Person.
+
+## Person Object
+
+The Person object represents a b2b contact, typically associated with a company. Here is a description of the Person object:
+
+| Field              | Type           | Description                            |
+| ------------------ | -------------- | -------------------------------------- |
+| `id`               | string         | ID of the Person                       |
+| `linkedin_url`     | string         | LinkedIn URL of the Person             |
+| `name`             | string         | Name of the Person                     |
+| `first_name`       | string         | First name of the Person               |
+| `last_name`        | string         | Last name of the Person                |
+| `title`            | string         | Title of the Person                    |
+| `headline`         | string         | Headline of the Person                 |
+| `logo_url`         | string         | Image URL of the Person                |
+| `location`         | string         | Location of the Person                 |
+| `location_details` | object         | Location details of the Person         |
+| `company`          | Company object | Company the Person currently works for |
+
+## Company Object
+
+Here is the description of the Company object:
+
+| Field                           | Type              | Description                                  |
+| ------------------------------- | ----------------- | -------------------------------------------- |
+| `id`                            | string            | Amplemarket ID of the Company                |
+| `name`                          | string            | Name of the Company                          |
+| `linkedin_url`                  | string            | LinkedIn URL of the Company                  |
+| `website`                       | string            | Website of the Company                       |
+| `overview`                      | string            | Description of the Company                   |
+| `logo_url`                      | string            | Logo URL of the Company                      |
+| `founded_year`                  | integer           | Year the Company was founded                 |
+| `traffic_rank`                  | integer           | Traffic rank of the Company                  |
+| `sic_codes`                     | array of integers | SIC codes of the Company                     |
+| `type`                          | string            | Type of the Company (Public Company, etc.)   |
+| `total_funding`                 | integer           | Total funding of the Company                 |
+| `latest_funding_stage`          | string            | Latest funding stage of the Company          |
+| `latest_funding_date`           | string            | Latest funding date of the Company           |
+| `keywords`                      | array of strings  | Keywords of the Company                      |
+| `estimated_number_of_employees` | integer           | Estimated number of employees at the Company |
+| `followers`                     | integer           | Number of followers on LinkedIn              |
+| `size`                          | string            | Self reported size of the Company            |
+| `industry`                      | string            | Industry of the Company                      |
+| `location`                      | string            | Location of the Company                      |
+| `location_details`              | object            | Location details of the Company              |
+| `is_b2b`                        | boolean           | `true` if the Company has a B2B component    |
+| `is_b2c`                        | boolean           | `true` if the Company has a B2C component    |
+| `technologies`                  | array of strings  | Technologies detected for the Company        |
+| `department_headcount`          | object            | Headcount by department                      |
+| `job_function_headcount`        | object            | Headcount by job function                    |
+| `estimated_revenue`             | string            | The estimated annual revenue of the company  |
+| `revenue`                       | integer           | The annual revenue of the company            |
+
+## People Endpoints
+
+### Finding a Person
+
+**Request**
+
+The following endpoint can be used to find a Person on Amplemarket:
+
+```js
+GET /people/find?linkedin_url=https://www.linkedin.com/in/person-1 HTTP/1.1
+GET /people/find?email=person@example.com HTTP/1.1
+GET /people/find?name=John%20Doe&title=CEO&company_name=Example HTTP/1.1
+GET /people/find?name=John%20Doe&title=CEO&company_domain=example.com HTTP/1.1
+```
+
+**Response**
+
+The response contains the Linkedin URL of the Person along with the other relevant data.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "84d31ab0-bac0-46ea-9a8b-b8721126d3d6",
+  "object": "person",
+  "name": "Jonh Doe",
+  "first_name": "Jonh",
+  "last_name": "Doe",
+  "linkedin_url": "https://www.linkedin.com/in/person-1",
+  "title": "Founder and CEO",
+  "headline": "CEO @ Company",
+  "location": "San Francisco, California, United States",
+  "company": {
+    "id": "eec03d70-58aa-46e8-9d08-815a7072b687",
+    "object": "company",
+    "name": "A Company",
+    "website": "https://company.com",
+    "linkedin_url": "https://www.linkedin.com/company/company-1",
+    "keywords": [
+      "sales",
+      "ai sales",
+      "sales engagement"
+    ],
+    "estimated_number_of_employees": 500,
+    "size": "201-500 employees",
+    "industry": "Software Development",
+    "location": "San Francisco, California, US",
+    "is_b2b": true,
+    "is_b2c": false,
+    "technologies": ["Salesforce"]
+  }
+}
+```
+
+#### Revealing an email address
+
+```js
+GET /people/find?linkedin_url=https://www.linkedin.com/in/person-1&reveal_email=true HTTP/1.1
+```
+
+**Response**
+
+The response contains the Linkedin URL of the Person along with the other relevant data and the revealed email address (if successful).
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "84d31ab0-bac0-46ea-9a8b-b8721126d3d6",
+  "object": "person",
+  "name": "Jonh Doe",
+  "first_name": "Jonh",
+  "last_name": "Doe",
+  "linkedin_url": "https://www.linkedin.com/in/person-1",
+  "title": "Founder and CEO",
+  "headline": "CEO @ Company",
+  "location": "San Francisco, California, United States",
+  "company": {
+    "id": "eec03d70-58aa-46e8-9d08-815a7072b687",
+    "object": "company",
+    "name": "A Company",
+    "website": "https://company.com",
+    "linkedin_url": "https://www.linkedin.com/company/company-1",
+    "keywords": [
+      "sales",
+      "ai sales",
+      "sales engagement"
+    ],
+    "estimated_number_of_employees": 500,
+    "size": "201-500 employees",
+    "industry": "Software Development",
+    "location": "San Francisco, California, US",
+    "is_b2b": true,
+    "is_b2c": false,
+    "technologies": ["Salesforce"]
+  },
+  "email": "john.doe@company.com"
+}
+```
+
+**Response (Request Timeout)**
+
+It is possible for the request to time out when revealing an email address, in this case the response will look like this.
+
+```js
+HTTP/1.1 408 Request Timeout
+Content-Type: application/json
+Retry-After: 60
+
+{
+  "object": "error",
+  "_errors": [
+    {
+      "code": "request_timeout",
+      "title": "Request timeout"
+      "detail": "We are processing your request, try again later."
+    }
+  ]
+}
+```
+
+In this case you are free to retry the request after the specified time in the `Retry-After` header.
+
+#### Revealing phone numbers
+
+```js
+GET /people/find?linkedin_url=https://www.linkedin.com/in/person-1&reveal_phone_numbers=true HTTP/1.1
+```
+
+**Response**
+
+The response contains the Linkedin URL of the Person along with the other relevant data and the revealed phone numbers (if successful).
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id": "84d31ab0-bac0-46ea-9a8b-b8721126d3d6",
+  "object": "person",
+  "name": "Jonh Doe",
+  "first_name": "Jonh",
+  "last_name": "Doe",
+  "linkedin_url": "https://www.linkedin.com/in/person-1",
+  "title": "Founder and CEO",
+  "headline": "CEO @ Company",
+  "location": "San Francisco, California, United States",
+  "company": {
+    "id": "eec03d70-58aa-46e8-9d08-815a7072b687",
+    "object": "company",
+    "name": "A Company",
+    "website": "https://company.com",
+    "linkedin_url": "https://www.linkedin.com/company/company-1",
+    "keywords": [
+      "sales",
+      "ai sales",
+      "sales engagement"
+    ],
+    "estimated_number_of_employees": 500,
+    "size": "201-500 employees",
+    "industry": "Software Development",
+    "location": "San Francisco, California, US",
+    "is_b2b": true,
+    "is_b2c": false,
+    "technologies": ["Salesforce"]
+  },
+  "phone_numbers": [
+    {
+      "object": "phone_number",
+      "id": "84d31ab0-bac0-46ea-9a8b-b8721126d3d6",
+      "number": "+1 123456789",
+      "type": "mobile"
+    }
+  ]
+}
+```
+
+**Response (Request Timeout)**
+
+It is possible for the request to time out when revealing phone numbers, in this case the response will look like this.
+
+```js
+HTTP/1.1 408 Request Timeout
+Content-Type: application/json
+Retry-After: 60
+
+{
+  "object": "error",
+  "_errors": [
+    {
+      "code": "request_timeout",
+      "title": "Request timeout"
+      "detail": "We are processing your request, try again later."
+    }
+  ]
+}
+```
+
+In this case you are free to retry the request after the specified time in the `Retry-After` header.
+
+### Searching for multiple People
+
+The following endpoint can be used to search for multiple People on Amplemarket:
+
+```js
+POST /people/search HTTP/1.1
+Content-Type: application/json
+
+{
+  "person_name": "Jonh Doe",
+  "person_titles": ["CEO"],
+  "person_locations": ["San Francisco, California, United States"],
+  "company_names": ["A Company"],
+  "page": 1,
+  "page_size": 10
+}
+```
+
+**Response**
+
+The response contains the Linkedin URL of the Person along with the other relevant data.
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "object": "person_search_result",
+  "results": [
+    {
+      "id": "84d31ab0-bac0-46ea-9a8b-b8721126d3d6",
+      "object": "person",
+      "name": "Jonh Doe",
+      "first_name": "Jonh",
+      "last_name": "Doe",
+      "linkedin_url": "https://www.linkedin.com/in/person-1",
+      "title": "Founder and CEO",
+      "headline": "CEO @ Company",
+      "location": "San Francisco, California, United States",
+      "company": {
+        "id": "eec03d70-58aa-46e8-9d08-815a7072b687",
+        "object": "company",
+        "name": "A Company",
+        "website": "https://company.com",
+        "linkedin_url": "https://www.linkedin.com/company/company-1",
+        "keywords": [
+          "sales",
+          "ai sales",
+          "sales engagement"
+        ],
+        "estimated_number_of_employees": 500,
+        "size": "201-500 employees",
+        "industry": "Software Development",
+        "location": "San Francisco, California, US",
+        "is_b2b": true,
+        "is_b2c": false,
+        "technologies": ["Salesforce"]
+      }
+    }
+  ],
+  "_pagination": {
+    "page": 1,
+    "page_size": 1,
+    "total_pages": 1,
+    "total": 1
+  }
+}
+```
+
+
+# Getting Started
+Source: https://docs.amplemarket.com/guides/quickstart
+
+Getting access and starting using the API.
+
+The API is available from all Amplemarket accounts and getting started is as easy as following these steps:
+
+First, [sign in](https://app.amplemarket.com/login) or [request a demo](https://www.amplemarket.com/demo) to have an account.
+
+<Steps>
+  <Step title="Go to API Integrations page">
+    Go to the Amplemarket Dashboard, navigate to Settings > API to open the API Integrations page.
+  </Step>
+
+  <Step title="Generate an API Key">
+    Click the `+ New API Key` button and give a name to your api key.
+
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/getting-started-key.png" />
+  </Step>
+
+  <Step title="Copy API Key and start using">
+    Copy the API Key and you're ready to start!
+
+    <img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/getting-started-copy.png" />
+  </Step>
+</Steps>
+
+## API Playground
+
+<Tip>You can copy your API Key into the Authorization header in our [playground](/api-reference/people-enrichment/single-person-enrichment) and start exploring the API.</Tip>
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/getting-started-playground.png" />
+
+## Postman Collection
+
+<Tip>At any time you can jump from this documentation portal into Postman and run our collection.</Tip>
+
+<Note>If you want, you can also [import the collection](https://api.postman.com/collections/20053380-5f813bad-f399-4542-a36a-b0900cd37d4d?access_key=PMAT-01HSA73CZM63C0KV0YAQYC4ACY) directly into Postman</Note>
+
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/getting-started-postman.png" />
+
+
+# Sequences
+Source: https://docs.amplemarket.com/guides/sequences
+
+Learn how to use sequences.
+
+Sequences can be used to engage with leads. They must be created by users via web app, while leads can also be programmatically added into existing sequences.
+
+Example flow:
+
+1. Sequences are created by users in the web app
+
+2. The API client lists the sequences via API applying the necessary filters
+
+3. Collect the sequences from `response.sequences`
+
+4. Iterate the endpoint through `response._links.next.href` while respecting the `Retry-After` HTTP Header
+
+5. Add leads to the desired sequences
+
+## Sequences Endpoints
+
+### List Sequences
+
+#### Sequence Object
+
+| Field                   | Type           | Description                                                                          |
+| ----------------------- | -------------- | ------------------------------------------------------------------------------------ |
+| `id`                    | string         | The ID of the Sequence                                                               |
+| `name`                  | string         | The name of the Sequence                                                             |
+| `status`                | string         | The status of the Sequence:                                                          |
+|                         |                | `active`: The sequence is live and can accept new leads                              |
+|                         |                | `draft`: The sequence is not launched yet and cannot accept leads programmatically   |
+|                         |                | `archived`: The sequence is archived and cannot accept leads programmatically        |
+|                         |                | `archiving`: The sequence is being archived and cannot accept leads programmatically |
+|                         |                | `paused`: The sequence is paused and can accept new leads                            |
+|                         |                | `pausing`: The sequence is being paused and cannot accept leads programmatically     |
+|                         |                | `resuming`: The sequence is being resumed and cannot accept leads programmatically   |
+| `created_at`            | string         | The creation date in ISO 8601                                                        |
+| `updated_at`            | string         | The last update date in ISO 8601                                                     |
+| `created_by_user_id`    | string         | The user id of the creator of the Sequence (refer to the `Users` API)                |
+| `created_by_user_email` | string         | The email of the creator of the Sequence                                             |
+| `_links`                | array of links | Contains useful links related to this resource                                       |
+
+#### Request format
+
+Retrieve a list of Sequences:
+
+```js
+GET /sequences HTTP/1.1
+Authorization: Bearer {{API Key}}
+```
+
+```bash
+curl -X GET https://api.amplemarket.com/sequences \
+	-H "Authorization: Bearer {{API Key}}"
+```
+
+Sequences can be filtered using
+
+* `name` (case insensitive search)
+* `status`
+* `created_by_user_id`
+* `created_by_user_email`
+
+#### Response
+
+This will return a `200 OK` with a list of Sequences:
+
+```js
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "sequences": [
+    {
+      "id": "311d73f042157b352c724975970e4369dba30777",
+      "name": "Sample sequence",
+      "status": "active",
+      "created_by_user_id": "edbec9eb3b3d8d7c1c24ab4dcac572802b14e5f1",
+      "created_by_user_email": "foo-49@email.com",
+      "created_at": "2025-01-07T10:16:01Z",
+      "updated_at": "2025-01-07T10:16:01Z"
+    },
+    {
+      "id": "e6890fa2c0453fd2691c06170293131678deb47b",
+      "name": "A sequence",
+      "status": "active",
+      "created_by_user_id": "edbec9eb3b3d8d7c1c24ab4dcac572802b14e5f1",
+      "created_by_user_email": "foo-49@email.com",
+      "created_at": "2025-01-07T10:16:01Z",
+      "updated_at": "2025-01-07T10:16:01Z"
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/sequences?page[size]=20"
+    },
+    "next": {
+      "href": "/sequences?page[after]=e6890fa2c0453fd2691c06170293131678deb47b&page[size]=20"
+    }
+  }
+}
+```
+
+If the result set contains more entries than the page size, then pagination is required transverse them all and can be done using the links such as: `response._links.next.href`  (e.g. `GET /sequences/81f63c2e-edbd-4c1a-9168-542ede3ce98f?page[size]=100&page[after]=81f63c2e-edbd-4c1a-9168-542ede3ce98a`).
+
+#### Links
+
+* `self` - `GET` points back to the same object
+
+* `next` - `GET` points to the next page of entries, when available
+
+* `prev` - `GET` points to the previous page of entries, when available
+
+### Add leads to a Sequence
+
+This endpoint allows users to add one or more leads to an existing active sequence in Amplemarket.
+It supports flexible lead management with customizable distribution settings, real-time validations,
+and asynchronous processing for improved scalability.
+
+For specific API details, [please refer to the API specification](/api-reference/sequences/add-leads).
+
+<Note>This endpoint does not update leads already in sequence, it can only add new ones</Note>
+
+#### Choosing the sequence
+
+A sequence is identified by its `id`, which is used in the `POST` request:
+
+```
+POST https://api.amplemarket.com/sequences/cb4925debf37ccb6ae1244317697e0f/leads
+```
+
+To retrieve it, you have two options:
+
+1. Use the "List Sequences" endpoint
+2. Go to the Amplemarket Dashboard, navigate to Sequences, and choose your Sequence.
+
+* In the URL bar of your browser, you will find a URL that looks like this:
+  `https://app.amplemarket.com/dashboard/sequences/cb4925debf37ccb6ae1244317697e0f`
+* In this case, the sequence `id` is `cb4925debf37ccb6ae1244317697e0f`
+
+#### Request format
+
+The request has two main properties:
+
+* `leads`: An array of objects, each of them representing a lead to be added to the sequence.
+  Each lead object must include at least an `email` or `linkedin_url` field.
+  These properties are used to check multiple conditions, including exclusion lists and whether they are already present in other sequences.
+  Other supported properties:
+  * `data`: holds other lead data fields, such as `first_name` and `company_domain`
+  * `overrides`: used to bypass certain safety checks. It can be omitted completely or partially, and the default value is `false` for each of the following overrides:
+    * `ignore_recently_contacted`: whether to override the recently contacted check. Note that the time range used for considering a given lead as "recently contacted" is an account-wide setting managed by your Amplemarket account administrator
+    * `ignore_exclusion_list`: whether to override the exclusion list
+    * `ignore_duplicate_leads_in_other_draft_sequences`: whether to bypass the check for leads with the same `email` or `linkedin_url` present in other draft sequences
+    * `ignore_duplicate_leads_in_other_active_sequences`: whether to bypass the check for leads with the same `email` or `linkedin_url` present in other active or paused sequences
+* `settings`: an optional object storing lead distribution configurations affecting all leads:
+  * `leads_distribution`: a string that can have 2 values:
+    * `sequence_senders`: (default) the leads will be distributed across the mailboxes configured in the sequence settings
+    * `custom_mailboxes`: the leads will be distributed across the mailboxes referred to by the `/settings/mailboxes` property, regardless of the sequence setting.
+  * `mailboxes`: an array of email addresses, that must correspond to mailboxes connected to the Amplemarket account.
+    If `/settings/leads_distribution` is `custom_mailboxes`, this property will be used to assign the leads to the respective users and mailboxes.
+    Otherwise, this property is ignored.
+
+#### Request limits
+
+Each request can have up to **250 leads**, if you try to send more, the request will fail with an HTTP 400.
+Besides the `email` and `linkedin_url`, each lead can have up to **50 data fields** on the `data` object.
+Both the data field names and values must be of the type `String`, field names can be up to *255 characters* while values can be up to *512 characters*.
+The names of the data fields can only have lowercase letters, numbers or underscores (`_`),
+and must start with a letter. Some examples of rejected data field names:
+
+| Rejected         | Accepted            | Explanation                         |
+| ---------------- | ------------------- | ----------------------------------- |
+| `FirstName`      | `first_name`        | Only lowercase letters are accepted |
+| `first name`     | `first_name`        | Spaces are not accepted             |
+| `3_letter_name`  | `three_letter_name` | Must start with a letter            |
+| `_special_field` | `special_field`     | Must start with a letter            |
+
+#### Request example
+
+```json
+{
+  "leads": [
+    {
+      "email": "lead1@example.com",
+      "data": {
+        "first_name": "John",
+        "company_name": "Apple"
+      }
+    },
+    {
+      "email": "lead2@example.org",
+      "data": {
+        "first_name": "Jane",
+        "company_name": "Salesforce"
+      },
+      "overrides": {
+        "ignore_exclusion_list": true
+      }
+    }
+  ],
+  "settings": {
+    "leads_distribution": "custom_mailboxes",
+    "mailboxes": ["my_sales_mailbox@example.com"]
+  }
+}
+```
+
+#### Response format
+
+There are 3 potential outcomes:
+
+* The request is successful, and it returns the number of leads that were added and skipped due to safety checks. Example:
+
+  ```json
+  {
+    "total": 2,
+    "total_added_to_sequence": 1,
+    "duplicate_emails": [],
+    "duplicate_linkedin_urls": [],
+    "in_exclusion_list_and_skipped": [{"email": "lead1@example.com"}],
+    "recently_contacted_and_skipped": [],
+    "already_in_sequence_and_skipped": [],
+    "in_other_draft_sequences_and_skipped": [],
+    "in_other_active_sequences_and_skipped": []
+  }
+  ```
+
+  | Property name                           | Explanation                                                                                                                                                                           |
+  | --------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | `total`                                 | Total number of lead objects in the request                                                                                                                                           |
+  | `total_added_to_sequence`               | Total number of leads added to the sequence                                                                                                                                           |
+  | `duplicate_emails`                      | List of email addresses that appeared duplicated in the request. Leads with duplicate emails will be skipped and not added to the sequence                                            |
+  | `duplicate_linkedin_urls`               | List of LinkedIn URLs that appeared duplicated in the request. Leads with duplicate LinkedIn URLs will be skipped and not added to the sequence                                       |
+  | `in_exclusion_list_and_skipped`         | List of lead objects (with just the `email` and `linkedin_url` fields) that were in the account exclusion list, and therefore not added to the sequence                               |
+  | `recently_contacted_and_skipped`        | List of lead objects (with just the `email` and `linkedin_url` fields) that were recently contacted by the account, and therefore not added to the sequence                           |
+  | `already_in_sequence_and_skipped`       | List of lead objects (with just the `email` and `linkedin_url` fields) that are already present in the sequence with the same contact fields, and therefore not added to the sequence |
+  | `in_other_draft_sequences_and_skipped`  | List of lead objects (with just the `email` and `linkedin_url` fields) that are present in other draft sequences of the account, and therefore skipped                                |
+  | `in_other_active_sequences_and_skipped` | List of lead objects (with just the `email` and `linkedin_url` fields) that are present in other active sequences of the account, and therefore skipped                               |
+
+  <Note>Checks corresponding to `in_exclusion_list_and_skipped`, `recently_contacted_and_skipped`, `in_other_draft_sequences_and_skipped`, and `in_other_active_sequences_and_skipped` can be bypased
+  by using the [`overrides` property on the lead object](#request-format-2)</Note>
+
+* The request was malformed in itself. In that case, the response will have the HTTP Status code `400`,
+  and the body will contain an indication of the error, [following the standard format](/api-reference/errors#error-object).
+
+* The request was correctly formatted, but due to other reasons the request cannot be completed.
+  The response will have the HTTP Status code `422`, and a single property `validation_errors`,
+  which can indicate one or more problems. Example
+  ```json
+  {
+    "validation_errors": [
+      {
+        "error_code": "missing_lead_field",
+        "message": "Missing lead dynamic field 'it' on leads with indexes [1]"
+      },
+      {
+        "error_code": "total_leads_exceed_limit",
+        "message": "Number of leads 1020 would exceed the per-sequence limit of 1000"
+      }
+    ]
+  }
+  ```
+
+#### Error codes and their explanations
+
+All `error_code` values have an associated message giving more details about the specific cause of failure.
+Some of the errors include:
+
+| `error_code`                    | Description                                                                                                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"invalid_sequence_status"`     | The sequence is in a status that does not allow adding new leads with this method. That typically is because the sequence is in the "Draft" or "Archived" states                                 |
+| `"missing_ai_credits"`          | Some of the sequence users do not have enough credits to support additional leads                                                                                                                |
+| `"missing_feature_copywriter"`  | Some of the sequence users do not have access to Duo features, and the sequence is using Duo Copywriter email stages or Duo Voice stages                                                         |
+| `"missing_feature_dialer"`      | The sequence has a phone call stage, and some of the users do not have a Dialer configured                                                                                                       |
+| `"missing_linkedin_account"`    | The sequence has a stage that requires a LinkedIn account (such as Duo Copywriter or automatic LinkedIn stages), and not all sequence users have connected their LinkedIn account to Amplemarket |
+| `"missing_voice_clone"`         | The sequence has a Duo Voice stage, but a sequence user does not have an usable voice clone configured                                                                                           |
+| `"missing_lead_field"`          | The sequence requires a lead data field that was not provided in the request (such as an email address when there are email stages, or a data field used in the text)                            |
+| `"missing_sender_field"`        | The sequence requires a sender data field that a sequence user has not filled in yet                                                                                                             |
+| `"mailbox_unusable"`            | A mailbox was selected to be used, but it cannot be used (e.g. due to disconnection or other errors)                                                                                             |
+| `"max_leads_threshold_reached"` | Adding all the leads would make the sequence go over the account-wide per-sequence lead limit                                                                                                    |
+| `"other_validation_error"`      | An unexpected validaton error has occurred                                                                                                                                                       |
+
+
+# Amplemarket API
+Source: https://docs.amplemarket.com/home
+
+
+
+Welcome to Amplemarket's API. At Amplemarket we are leveraging the most recent developments in machine learning to develop the next generation of sales tools and help companies grow at scale.
+
+<Note>Tip: Open search with `⌘K`, then start typing to find anything in our docs</Note>
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/amplemarket-50/images/homepage.avif" />
+</Frame>
+
+<CardGroup cols={3}>
+  <Card title="Guides" icon="arrow-progress">
+    Learn more about what you can build with our API guides.
+
+    [Get started...](/guides/quickstart)
+  </Card>
+
+  <Card title="API Reference" icon="code">
+    Double check parameters and play with our API live.
+
+    [Check our API...](/api-reference/introduction)
+  </Card>
+
+  <Card title="Workflows" icon="webhook">
+    Configure inbound workflows and webhooks
+
+    [Go to workflows...](/workflows/introduction)
+  </Card>
+</CardGroup>
+
+### Quick Links
+
+***
+
+<AccordionGroup>
+  <Accordion title="Getting started with API" icon="play" defaultOpen="true">
+    Follow our guide to [get access to the API](/guides/quickstart)
+  </Accordion>
+
+  <Accordion title="Finding the right person" icon="searchengin">
+    Call our [people endpoint](/guides/people-search#people-endpoints) and find the right leads.
+  </Accordion>
+
+  <Accordion title="Validating email addresses" icon="address-card">
+    Start a bulk [email validation](/guides/email-verification#email-validation-endpoints) and poll for results.
+  </Accordion>
+
+  <Accordion title="Uploading lead lists" icon="bookmark">
+    Upload a [lead list](/guides/lead-lists#lead-list-endpoints) and use it in Amplemarket.
+  </Accordion>
+
+  <Accordion title="Triggering inbound workflows" icon="bolt">
+    Trigger an [inbound workflow](/guides/inbound-workflows) and integrate with other systems.
+  </Accordion>
+
+  <Accordion title="Receiving a JSON push" icon="webhook">
+    Register a [webhook](/guides/outbound-json-push) and start receiving activity notifications.
+  </Accordion>
+</AccordionGroup>
+
+### Support
+
+To learn more about the product or if you need further assistance, use our [Support portal](https://knowledge.amplemarket.com/hc/en-us)
+
+
+# Inbound Workflow
+Source: https://docs.amplemarket.com/workflows/inbound-workflows
+
+POST https://app.amplemarket.com/api/v1/inbound_smart_action_webhooks/{ID}/add_lead
+
+### URL Parameters
+
+<ParamField path="ID" type="string">
+  The ID of the inbound workflow webhook
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="email" type="string" required>
+  The email of the inbound lead
+</ParamField>
+
+<ParamField body="first_name" type="string">
+  The first name of the inbound lead
+</ParamField>
+
+<ParamField body="last_name" type="string">
+  The last name of the inbound lead
+</ParamField>
+
+<ParamField body="company_name" type="string">
+  The company name of the inbound lead
+</ParamField>
+
+<ParamField body="company_domain" type="string">
+  The company domain of the inbound lead
+</ParamField>
+
+<ParamField body="user_email" type="string">
+  If configured as account-level specifies the user email for which to trigger the configured actions
+</ParamField>
+
+<Info>You may pass additional arbitrary parameters which you can then use on the actions for these inbound leads.</Info>
+
+<RequestExample>
+  ```http Example
+  POST /api/v1/inbound_smart_action_webhooks/5761d8c6-7bb8-4904-9b0d-438b946c33d8/add_lead HTTP/1.1
+  User-Agent: MyClient/1.0.0
+  Accept: application/json, */*
+  Content-Type: application/json
+  Host: app.amplemarket.com
+
+  {
+    "email": "john.doe@acme.org"
+  }
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```http 200
+  HTTP/1.1 200 OK
+  ```
+
+  ```http 404
+  HTTP/1.1 404 Not Found
+
+  The resource could not be found.
+  ```
+
+  ```http 422
+  HTTP/1.1 422 Unprocessable Entity
+
+  The resource could be found but the request could not be processed.
+  ```
+
+  ```http 503
+  HTTP/1.1 503 Service Unavailable
+
+  We're temporarily offline for maintenance. Please try again later.
+  ```
+</ResponseExample>
+
+
+# Workflows
+Source: https://docs.amplemarket.com/workflows/introduction
+
+How to enable webhooks with Amplemarket
+
+[Webhooks](https://en.wikipedia.org/wiki/Webhook) are useful way to extend Amplemarket's functionality and integrating it with other systems you already use.
+
+Amplemarket supports integrating both incoming and outgoing workflows using webhooks:
+
+<AccordionGroup>
+  <Accordion title="Inbound Workflows" icon="bolt" defaultOpen="true">
+    Follow the instructions in [our Inbound Workflows guide](/guides/inbound-workflows) to enable inbound workflows in your account.
+
+    You can then start sending leads to Amplemarket by [following our specified structure](inbound-workflows).
+  </Accordion>
+
+  <Accordion title="JSON Push Webhook" icon="webhook" defaultOpen="true">
+    Follow the instructions in [our Outbound JSON Push guide](/guides/outbound-json-push) to enable outbound workflows in your account.
+
+    Amplemarket will then start sending JSON-encoded messages to the HTTP endpoints you specify. Check [our documented events](webhooks) to see all available events.
+  </Accordion>
+</AccordionGroup>
+
+<Note>To know more about all available Smart Actions and how Amplemarket leverages Workflows, read our [knowledge base article](https://knowledge.amplemarket.com/hc/en-us/articles/360052097492-Hard-No-Smart-Actions).</Note>
+
+
+# Inbound Workflows
+Source: https://docs.amplemarket.com/workflows/webhooks/inbound-workflow
+
+Notifications for received leads through an Inbound Workflow
+
+<ResponseField name="lead" type="object" required>
+  <Expandable title="properties">
+    <ResponseField name="email" type="string" required />
+
+    <ResponseField name="first_name" type="string" />
+
+    <ResponseField name="last_name" type="string" />
+
+    <ResponseField name="company_name" type="string" />
+
+    <ResponseField name="company_domain" type="string" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="user" type="object" required>
+  <Expandable title="properties">
+    <ResponseField name="email" type="string" />
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```js Lead
+  {
+    "lead": {
+      "email": "noreply@amplemarket.com",
+      "first_name": "Noreply",
+      "company_name": "amplemarket"
+    },
+    "user": {
+      "email": "test@amplemarket.com"
+    }
+  }
+  ```
+</RequestExample>
+
+
+# Replies
+Source: https://docs.amplemarket.com/workflows/webhooks/replies
+
+Notifications for an email or LinkedIn message reply received from a prospect through a sequence or reply sequence
+
+<ResponseField name="from" type="string">
+  Sender's email address.
+</ResponseField>
+
+<ResponseField name="to" type="array[string]">
+  List of recipients in the "To" field.
+</ResponseField>
+
+<ResponseField name="cc" type="array[string]">
+  List of recipients in the "CC" field.
+</ResponseField>
+
+<ResponseField name="bcc" type="array[string]">
+  List of recipients in the "BCC" field.
+</ResponseField>
+
+<ResponseField name="date" type="datetime">
+  When the email was sent.
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+  Email subject line.
+</ResponseField>
+
+<ResponseField name="body" type="string">
+  Email content.
+</ResponseField>
+
+<ResponseField name="id" type="string">
+  Activity ID.
+</ResponseField>
+
+<ResponseField name="linkedin" type="object | null">
+  LinkedIn activity details.
+
+  <Expandable title="properties">
+    <ResponseField name="subject" type="string" />
+
+    <ResponseField name="description" type="string" />
+
+    <ResponseField name="date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="linkedin_url" type="string">
+  Lead's LinkedIn URL.
+</ResponseField>
+
+<ResponseField name="is_reply" type="boolean" default="false" required>
+  Whether the activity is a reply.
+</ResponseField>
+
+<ResponseField name="labels" type="array[enum[string]]">
+  Available values are `interested`, `hard_no`, `introduction`, `not_interested`, `ooo`, `asked_to_circle_back_later`, `not_the_right_person`, `forwarded_to_the_right_person`
+</ResponseField>
+
+<ResponseField name="user" type="object" required>
+  User details.
+
+  <Expandable title="properties">
+    <ResponseField name="first_name" type="string" />
+
+    <ResponseField name="last_name" type="string" />
+
+    <ResponseField name="email" type="string" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="dynamic_fields" type="object">
+  Lead's dynamic fields.
+</ResponseField>
+
+<ResponseField name="sequence" type="object | null">
+  Sequence details.
+
+  <Expandable title="properties">
+    <ResponseField name="name" type="string" />
+
+    <ResponseField name="start_date" type="datetime" />
+
+    <ResponseField name="end_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="sequence_stage" type="object | null">
+  Sequence stage details.
+
+  <Expandable title="properties">
+    <ResponseField name="index" type="integer" />
+
+    <ResponseField name="type" type="enum[string]">
+      Available values are: `email`, `linkedin_visit`, `linkedin_follow`, `linkedin_like_last_post`, `linkedin_connect`, `linkedin_message`, `linkedin_voice_message`, `linkedin_video_message`, `phone_call`, `custom_task`
+    </ResponseField>
+
+    <ResponseField name="automatic" type="boolean" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="reply_sequence" type="object | null">
+  Reply sequence details.
+
+  <Expandable title="properties">
+    <ResponseField name="name" type="string" />
+
+    <ResponseField name="start_date" type="datetime" />
+
+    <ResponseField name="end_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="reply_sequence_stage" type="object | null">
+  Reply sequence stage details.
+
+  <Expandable title="properties">
+    <ResponseField name="index" type="integer" />
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```js Email
+  {
+    "from": "noreply@amplemarket.com",
+    "to": [
+      "noreply@amplemarket.com",
+      "noreply@amplemarket.com"
+    ],
+    "cc": [
+      "noreply@amplemarket.com"
+    ],
+    "bcc": [
+      "noreply@amplemarket.com"
+    ],
+    "date": "2022-09-18T13:12:00+00:00",
+    "subject": "Re: The subject of the message",
+    "body": "The email message body in plaintext.",
+    "is_reply": true,
+    "id": "6d3mi54v6hxrissb2zqgpq1xu",
+    "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+    "labels": ["Interested"]
+    "dynamic_fields": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Amplemarket",
+      "company_domain": "amplemarket.com",
+      "company_email_domain": "amplemarket.com",
+      "title": "Founder & CEO",
+      "simplified_title": "CEO",
+      "email": "noreply@amplemarket.com",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "industry": "Computer Software",
+      "linkedin_url": "https://www.linkedin.com/in/williamhgates"
+    },
+    "user": {
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "luis@amplemarket.com"
+    },
+    "sequence": {
+      "name": "The name of the sequence",
+      "start_date": "2022-09-12T11:33:47Z",
+      "end_date": "2022-09-18T13:12:47Z"
+    },
+    "sequence_stage": {
+      "index": 3
+    }
+  }
+  ```
+
+  ```js LinkedIn
+  {
+    "is_reply": true,
+    "id": "6d3mi54v6hxrissb2zqgpq1xu",
+    "linkedin": {
+      "subject": "LinkedIn: Send message to Profile",
+      "description": "Message:  \"This is the message body\"",
+      "date": "2024-10-11T10:57:00Z"
+    },
+    "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+    "labels": ["Interested"]
+    "dynamic_fields": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Amplemarket",
+      "company_domain": "amplemarket.com",
+      "company_email_domain": "amplemarket.com",
+      "title": "Founder & CEO",
+      "simplified_title": "CEO",
+      "email": "noreply@amplemarket.com",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "industry": "Computer Software",
+      "linkedin_url": "https://www.linkedin.com/in/williamhgates"
+    },
+    "user": {
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "luis@amplemarket.com"
+    },
+    "sequence": {
+      "name": "The name of the sequence",
+      "start_date": "2022-09-12T11:33:47Z",
+      "end_date": "2022-09-18T13:12:47Z"
+    },
+    "sequence_stage": {
+      "index": 2,
+      "type": "linkedin_message",
+      "automatic": true
+    }
+  }
+  ```
+
+  ```js Reply Sequence (email only)
+  {
+    "from": "noreply@amplemarket.com",
+    "to": [
+      "noreply@amplemarket.com",
+      "noreply@amplemarket.com"
+    ],
+    "cc": [
+      "noreply@amplemarket.com"
+    ],
+    "bcc": [
+      "noreply@amplemarket.com"
+    ],
+    "date": "2022-09-18T13:12:00+00:00",
+    "subject": "Re: The subject of the message",
+    "body": "The email message body in plaintext.",
+    "is_reply": true,
+    "id": "6d3mi54v6hxrissb2zqgpq1xu",
+    "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+    "dynamic_fields": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Amplemarket",
+      "company_domain": "amplemarket.com",
+      "company_email_domain": "amplemarket.com",
+      "title": "Founder & CEO",
+      "simplified_title": "CEO",
+      "email": "noreply@amplemarket.com",
+      "city": "San Francisco",
+      "state": "California",
+      "country": "United States",
+      "industry": "Computer Software",
+      "linkedin_url": "https://www.linkedin.com/in/williamhgates"
+    },
+    "user": {
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "luis@amplemarket.com"
+    },
+    "reply_sequence": {
+      "name": "The name of the reply sequence",
+      "start_date": "2022-09-15T11:20:32Z",
+      "end_date": "2022-09-21T11:20:32Z"
+    },
+    "reply_sequence_stage": {
+      "index": 1
+    }
+  }
+  ```
+</RequestExample>
+
+
+# Sequence Stage
+Source: https://docs.amplemarket.com/workflows/webhooks/sequence-stage
+
+Notifications for manual or automatic sequence stage or reply sequence
+
+<ResponseField name="from" type="string">
+  Sender's email address.
+</ResponseField>
+
+<ResponseField name="to" type="array[string]">
+  List of recipients in the "To" field.
+</ResponseField>
+
+<ResponseField name="cc" type="array[string]">
+  List of recipients in the "CC" field.
+</ResponseField>
+
+<ResponseField name="bcc" type="array[string]">
+  List of recipients in the "BCC" field.
+</ResponseField>
+
+<ResponseField name="date" type="datetime">
+  When the email was sent.
+</ResponseField>
+
+<ResponseField name="subject" type="string">
+  Email subject line.
+</ResponseField>
+
+<ResponseField name="body" type="string">
+  Email content.
+</ResponseField>
+
+<ResponseField name="id" type="string">
+  Activity ID.
+</ResponseField>
+
+<ResponseField name="linkedin" type="object | null">
+  LinkedIn activity details.
+
+  <Expandable title="properties">
+    <ResponseField name="subject" type="string" />
+
+    <ResponseField name="description" type="string" />
+
+    <ResponseField name="date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="call" type="object | null">
+  Call details.
+
+  <Expandable title="properties">
+    <ResponseField name="date" type="datetime" />
+
+    <ResponseField name="title" type="string" />
+
+    <ResponseField name="description" type="string" />
+
+    <ResponseField name="direction" type="enum[string]">
+      Available values are: `incoming`, `outgoing`
+    </ResponseField>
+
+    <ResponseField name="disposition" type="enum[string]">
+      Available values are: `no_answer`, `no_answer_voicemail`, `wrong_number`, `busy`, `not_interested`, `interested`
+    </ResponseField>
+
+    <ResponseField name="duration" type="datetime" />
+
+    <ResponseField name="from" type="string" />
+
+    <ResponseField name="to" type="string" />
+
+    <ResponseField name="recording_url" type="string" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="task" type="object | null">
+  Generic Task details.
+
+  <Expandable title="properties">
+    <ResponseField name="subject" type="string" />
+
+    <ResponseField name="user_notes" type="string" />
+
+    <ResponseField name="date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="linkedin_url" type="string">
+  Lead's LinkedIn URL.
+</ResponseField>
+
+<ResponseField name="is_reply" type="boolean" default="false" required>
+  Whether the activity is a reply.
+</ResponseField>
+
+<ResponseField name="user" type="object" required>
+  User details.
+
+  <Expandable title="properties">
+    <ResponseField name="first_name" type="string" />
+
+    <ResponseField name="last_name" type="string" />
+
+    <ResponseField name="email" type="string" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="dynamic_fields" type="object">
+  Lead's dynamic fields.
+</ResponseField>
+
+<ResponseField name="sequence" type="object | null">
+  Sequence details.
+
+  <Expandable title="properties">
+    <ResponseField name="name" type="string" />
+
+    <ResponseField name="start_date" type="datetime" />
+
+    <ResponseField name="end_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="sequence_stage" type="object | null">
+  Sequence stage details.
+
+  <Expandable title="properties">
+    <ResponseField name="index" type="integer" />
+
+    <ResponseField name="type" type="enum[string]">
+      Available values are: `email`, `linkedin_visit`, `linkedin_follow`, `linkedin_like_last_post`, `linkedin_connect`, `linkedin_message`, `linkedin_voice_message`, `linkedin_video_message`, `phone_call`, `custom_task`
+    </ResponseField>
+
+    <ResponseField name="automatic" type="boolean" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="reply_sequence" type="object | null">
+  Reply sequence details.
+
+  <Expandable title="properties">
+    <ResponseField name="name" type="string" />
+
+    <ResponseField name="start_date" type="datetime" />
+
+    <ResponseField name="end_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="reply_sequence_stage" type="object | null">
+  Reply sequence stage details.
+
+  <Expandable title="properties">
+    <ResponseField name="index" type="integer" />
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```js Email
+  {
+      "from": "noreply@amplemarket.com",
+      "to": [
+          "destination@example.com"
+      ],
+      "cc": [
+          "noreply@amplemarket.com"
+      ],
+      "bcc": [
+          "noreply@amplemarket.com"
+      ],
+      "date": "2024-10-11T10:57:00Z",
+      "subject": "The subject of the message",
+      "body": "The email message body in plaintext.",
+      "id": "d4927e92486a0ac8399ddb2d7c6105fe",
+      "linkedin_url": "https://linkedin.com/in/test",
+      "is_reply": false,
+      "user": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "jane.doe@email.com"
+      },
+      "dynamic_fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Amplemarket",
+        "company_domain": "amplemarket.com",
+        "company_email_domain": "amplemarket.com",
+        "title": "Founder & CEO",
+        "simplified_title": "CEO",
+        "email": "destination@example.com",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States",
+        "industry": "Computer Software",
+        "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+        "sender": {
+          "first_name": "Jane",
+          "last_name": "Doe"
+        }
+      },
+      "sequence": {
+        "name": "The name of the sequence",
+        "start_date": "2024-10-11T10:57:00Z",
+        "end_date": "2024-10-12T10:57:00Z"
+      },
+      "sequence_stage": {
+        "index": 2,
+        "type": "email",
+        "automatic": true
+      }
+  }
+  ```
+
+  ```js LinkedIn
+  {
+      "id": "d4927e92486a0ac8399ddb2d7c6105fe",
+      "linkedin": {
+        "subject": "LinkedIn: Send message to Profile",
+        "description": "Message:  \"This is the message body\"",
+        "date": "2024-10-11T10:57:00Z"
+      },
+      "linkedin_url": "https://linkedin.com/in/test",
+      "is_reply": false,
+      "user": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "jane.doe@email.com"
+      },
+      "dynamic_fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Amplemarket",
+        "company_domain": "amplemarket.com",
+        "company_email_domain": "amplemarket.com",
+        "title": "Founder & CEO",
+        "simplified_title": "CEO",
+        "email": "destination@example.com",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States",
+        "industry": "Computer Software",
+        "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+        "sender": {
+          "first_name": "Jane",
+          "last_name": "Doe"
+        }
+      },
+      "sequence": {
+        "name": "The name of the sequence",
+        "start_date": "2024-10-11T10:57:00Z",
+        "end_date": "2024-10-12T10:57:00Z"
+      },
+      "sequence_stage": {
+        "index": 2,
+        "type": "linkedin_message",
+        "automatic": true
+      }
+  }
+  ```
+
+  ```js Call
+  {
+      "id": "d4927e92486a0ac8399ddb2d7c6105fe",
+      "call": {
+        "date": "2024-10-11T10:57:00Z",
+        "title": "Incoming call to  (+351999999999) | Answered | Answered",
+        "description": "Call disposition: Answered<br />Call recording URL: https://amplemarket.com/example<br />",
+        "direction": "incoming",
+        "disposition": "interested",
+        "duration": "1970-01-01T00:02:00.000Z",
+        "from": "+351999999999",
+        "to": "+351888888888",
+        "recording_url": "https://amplemarket.com/example"
+      },
+      "linkedin_url": "https://linkedin.com/in/test",
+      "is_reply": false,
+      "user": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "jane.doe@email.com"
+      },
+      "dynamic_fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Amplemarket",
+        "company_domain": "amplemarket.com",
+        "company_email_domain": "amplemarket.com",
+        "title": "Founder & CEO",
+        "simplified_title": "CEO",
+        "email": "destination@example.com",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States",
+        "industry": "Computer Software",
+        "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+        "sender": {
+          "first_name": "Jane",
+          "last_name": "Doe"
+        }
+      },
+      "sequence": {
+        "name": "The name of the sequence",
+        "start_date": "2024-10-11T10:57:00Z",
+        "end_date": "2024-10-12T10:57:00Z"
+      },
+      "sequence_stage": {
+        "index": 2,
+        "type": "phone_call",
+        "automatic": true
+      }
+  }
+  ```
+
+  ```js Generic task
+  {
+      "id": "d4927e92486a0ac8399ddb2d7c6105fe",
+      "task": {
+        "subject": "Generic Task",
+        "user_notes": "This is a note",
+        "date": "2024-10-11T10:57:00+00:00"
+      },
+      "linkedin_url": "https://linkedin.com/in/test",
+      "is_reply": false,
+      "user": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "jane.doe@email.com"
+      },
+      "dynamic_fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Amplemarket",
+        "company_domain": "amplemarket.com",
+        "company_email_domain": "amplemarket.com",
+        "title": "Founder & CEO",
+        "simplified_title": "CEO",
+        "email": "destination@example.com",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States",
+        "industry": "Computer Software",
+        "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+        "sender": {
+          "first_name": "Jane",
+          "last_name": "Doe"
+        }
+      },
+      "sequence": {
+        "name": "The name of the sequence",
+        "start_date": "2024-10-11T10:57:00Z",
+        "end_date": "2024-10-12T10:57:00Z"
+      },
+      "sequence_stage": {
+        "index": 2,
+        "type": "custom_task",
+        "automatic": true
+      }
+  }
+  ```
+
+  ```js Reply Sequence (email only)
+  {
+      "from": "noreply@amplemarket.com",
+      "to": [
+          "destination@example.com"
+      ],
+      "cc": [
+          "noreply@amplemarket.com"
+      ],
+      "bcc": [
+          "noreply@amplemarket.com"
+      ],
+      "date": "2024-10-11T10:57:00Z",
+      "subject": "The subject of the message",
+      "body": "The email message body in plaintext.",
+      "id": "d4927e92486a0ac8399ddb2d7c6105fe",
+      "linkedin_url": "https://linkedin.com/in/test",
+      "is_reply": false,
+      "user": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "email": "jane.doe@email.com"
+      },
+      "dynamic_fields": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Amplemarket",
+        "company_domain": "amplemarket.com",
+        "company_email_domain": "amplemarket.com",
+        "title": "Founder & CEO",
+        "simplified_title": "CEO",
+        "email": "destination@example.com",
+        "city": "San Francisco",
+        "state": "California",
+        "country": "United States",
+        "industry": "Computer Software",
+        "linkedin_url": "https://www.linkedin.com/in/williamhgates",
+        "sender": {
+          "first_name": "Jane",
+          "last_name": "Doe"
+        }
+      },
+      "reply_sequence": {
+        "name": "The name of the reply sequence",
+        "start_date": "2024-10-11T10:57:00Z",
+        "end_date": "2024-10-12T10:57:00Z"
+      },
+      "reply_sequence_stage": {
+        "index": 1
+      }
+  }
+  ```
+</RequestExample>
+
+
+# Workflows
+Source: https://docs.amplemarket.com/workflows/webhooks/workflow
+
+Notifications for "Send JSON" actions used in Workflows
+
+<ResponseField name="email_message" type="object" required>
+  <Expandable title="properties">
+    <ResponseField name="id" type="string" />
+
+    <ResponseField name="from" type="string" />
+
+    <ResponseField name="to" type="string" />
+
+    <ResponseField name="cc" type="string" />
+
+    <ResponseField name="bcc" type="string" />
+
+    <ResponseField name="subject" type="string" />
+
+    <ResponseField name="snippet" type="string" />
+
+    <ResponseField name="last_message" type="string" />
+
+    <ResponseField name="body" type="string" />
+
+    <ResponseField name="tag" type="array[enum[string]]">
+      Available values are `interested`, `hard_no`, `introduction`, `not_interested`, `ooo`, `asked_to_circle_back_later`, `not_the_right_person`, `forwarded_to_the_right_person`
+    </ResponseField>
+
+    <ResponseField name="date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="sequence_stage" type="object">
+  <Expandable title="properties">
+    <ResponseField name="index" type="integer" />
+
+    <ResponseField name="sending_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="sequence" type="object">
+  <Expandable title="properties">
+    <ResponseField name="key" type="string" />
+
+    <ResponseField name="name" type="string" />
+
+    <ResponseField name="start_date" type="datetime" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="user" type="object" required>
+  <Expandable title="properties">
+    <ResponseField name="email" type="string" />
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="lead" type="object">
+  <Expandable title="properties">
+    <ResponseField name="email" type="string" />
+
+    <ResponseField name="first_name" type="string" />
+
+    <ResponseField name="last_name" type="string" />
+
+    <ResponseField name="company_name" type="string" />
+
+    <ResponseField name="company_domain" type="string" />
+  </Expandable>
+</ResponseField>
+
+<Warning>
+  In scenarios where the `not_the_right_person` tag is used please note that the third-party information sent refers to the details of the originally contacted person.
+
+  Meanwhile, the lead details will now be updated to reflect the newly-referred person who is considered a more appropriate contact for the ongoing sales process.
+</Warning>
+
+<RequestExample>
+  ```js Reply
+  {
+    "email_message": {
+      "id": "47f5d8c2-aa96-42ac-a6f0-6507e78b8b9b",
+      "from": "\"Sender\" <noreply@amplemarket.com>",
+      "to": "\"Recipient 1\" <noreply@amplemarket.com>,\"Recipient 2\" <noreply@amplemarket.com>, ",
+      "cc": "\"Carbon Copy\" <noreply@amplemarket.com>",
+      "bcc": "\"Blind Carbon Copy\" <noreply@amplemarket.com>",
+      "subject": "The subject of the message",
+      "snippet": "A short snippet of the email message.",
+      "last_message": "A processed version of the message (without salutation and signature).",
+      "body": "The original email message body.",
+      "tag": [
+        "interested"
+      ],
+      "date": "2019-11-27T12:37:46+00:00"
+    },
+    "sequence_stage": {
+      "index": 3,
+      "sending_date": "2019-11-27T07:37:46Z"
+    },
+    "sequence": {
+      "key": "b7ff348ea1a061e39cbe703880048d64171d8487",
+      "name": "The name of the sequence",
+      "start_date": "2019-11-24T12:37:46Z"
+    },
+    "user": {
+      "email": "test@amplemarket.com"
+    }
+    "lead": {
+      "email": "noreply@amplemarket.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Company",
+      "company_domain": "company.com"
+    }
+  }
+  ```
+
+  ```js Out of Office
+  {
+    "email_message": {
+      "id": "47f5d8c2-aa96-42ac-a6f0-6507e78b8b9b",
+      "from": "\"Sender\" <noreply@amplemarket.com>",
+      "to": "\"Recipient 1\" <noreply@amplemarket.com>,\"Recipient 2\" <noreply@amplemarket.com>, ",
+      "cc": "\"Carbon Copy\" <noreply@amplemarket.com>",
+      "bcc": "\"Blind Carbon Copy\" <noreply@amplemarket.com>",
+      "subject": "The subject of the message",
+      "snippet": "A short snippet of the email message.",
+      "last_message": "A processed version of the message (without salutation and signature).",
+      "body": "The original email message body.",
+      "tag": [
+        "ooo"
+      ],
+      "date": "2019-11-27T12:37:46+00:00"
+    },
+    "sequence_stage": {
+      "index": 3,
+      "sending_date": "2019-11-27T07:37:46Z"
+    },
+    "sequence": {
+      "key": "b7ff348ea1a061e39cbe703880048d64171d8487",
+      "name": "The name of the sequence",
+      "start_date": "2019-11-24T12:37:46Z"
+    },
+    "user": {
+      "email": "test@amplemarket.com"
+    }
+    "lead": {
+      "email": "noreply@amplemarket.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Company",
+      "company_domain": "company.com"
+    }
+    "additional_info": {
+      "return_date": "2023-01-01"
+    }
+  }
+  ```
+
+  ```js Follow Up
+  {
+    "email_message": {
+      "id": "47f5d8c2-aa96-42ac-a6f0-6507e78b8b9b",
+      "from": "\"Sender\" <noreply@amplemarket.com>",
+      "to": "\"Recipient 1\" <noreply@amplemarket.com>,\"Recipient 2\" <noreply@amplemarket.com>, ",
+      "cc": "\"Carbon Copy\" <noreply@amplemarket.com>",
+      "bcc": "\"Blind Carbon Copy\" <noreply@amplemarket.com>",
+      "subject": "The subject of the message",
+      "snippet": "A short snippet of the email message.",
+      "last_message": "A processed version of the message (without salutation and signature).",
+      "body": "The original email message body.",
+      "tag": [
+        "asked_to_circle_back_later"
+      ],
+      "date": "2019-11-27T12:37:46+00:00"
+    },
+    "sequence_stage": {
+      "index": 3,
+      "sending_date": "2019-11-27T07:37:46Z"
+    },
+    "sequence": {
+      "key": "b7ff348ea1a061e39cbe703880048d64171d8487",
+      "name": "The name of the sequence",
+      "start_date": "2019-11-24T12:37:46Z"
+    },
+    "user": {
+      "email": "test@amplemarket.com"
+    }
+    "lead": {
+      "email": "noreply@amplemarket.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "company_name": "Company",
+      "company_domain": "company.com"
+    }
+    "additional_info": {
+      "follow_up_date": "2023-01-01"
+    }
+  }
+  ```
+
+  ```js Not The Right Person
+  {
+    "email_message": {
+      "id": "47f5d8c2-aa96-42ac-a6f0-6507e78b8b9b",
+      "from": "\"Sender\" <noreply@amplemarket.com>",
+      "to": "\"Recipient 1\" <noreply@amplemarket.com>,\"Recipient 2\" <noreply@amplemarket.com>, ",
+      "cc": "\"Carbon Copy\" <noreply@amplemarket.com>",
+      "bcc": "\"Blind Carbon Copy\" <noreply@amplemarket.com>",
+      "subject": "The subject of the message",
+      "snippet": "A short snippet of the email message.",
+      "last_message": "A processed version of the message (without salutation and signature).",
+      "body": "The original email message body.",
+      "tag": [
+        "not_the_right_person"
+      ],
+      "date": "2019-11-27T12:37:46+00:00"
+    },
+    "sequence_stage": {
+      "index": 3,
+      "sending_date": "2019-11-27T07:37:46Z"
+    },
+    "sequence": {
+      "key": "b7ff348ea1a061e39cbe703880048d64171d8487",
+      "name": "The name of the sequence",
+      "start_date": "2019-11-24T12:37:46Z"
+    },
+    "user": {
+      "email": "test@amplemarket.com"
+    }
+    "lead": {
+      "email": "noreply@amplemarket.com",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "company_name": "Company",
+      "company_domain": "company.com"
+    }
+    "additional_info": {
+      "third_party_email": "noreply@amplemarket.com",
+      "third_party_first_name": "John",
+      "third_party_last_name": "Doe",
+      "third_party_company_name": "Company",
+      "third_party_company_domain": "company.com"
+    }
+  }
+  ```
+</RequestExample>
+
+

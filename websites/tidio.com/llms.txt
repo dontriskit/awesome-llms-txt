@@ -1,0 +1,253 @@
+﻿# Tidio
+> Tidio is a customer support software suite comprising live chat, chatbot, AI chatbot (AI agent), help desk, and ticketing features. Tidio integrates with websites, ecommerce platforms (such as Shopify and WooCommerce), communications channels (such as Facebook Messenger, Instagram, and WhatsApp), and other tools to provide automated, enhanced customer service.
+
+
+Learn more about the Tidio customer service platform:
+
+
+## About Tidio
+- [Tidio Homepage](https://www.tidio.com/)
+- [About Tidio](https://www.tidio.com/about/): Learn about Tidio, the B2B SaaS company behind customer service software.
+  - [About Lyro](https://www.tidio.com/blog/lyro-conversational-ai/): Meet Lyro, the AI agent for customer service
+- [Tidio Pricing](https://www.tidio.com/pricing/): See how much Tidio costs.
+  - [Tidio Premium Plans](https://www.tidio.com/tidio-premium/): Find out more about Tidio Premium.
+
+
+## Access
+- [Log In](https://www.tidio.com/panel/login): Log into your Tidio account.
+- [Sign Up](https://www.tidio.com/panel/register): Register a new Tidio account.
+
+
+## Demos
+- [Lyro AI Agent Playground](https://www.tidio.com/ai-agent/playground/): Experience Lyro, Tidio’s AI agent in action.
+- [Watch Tidio Demo](https://www.tidio.com/watch-demo/): Watch a video demo of Tidio.
+
+
+## Tidio Comparisons
+- [Tidio vs Gorgias](https://www.tidio.com/vs/gorgias/)
+- [Tidio vs Intercom](https://www.tidio.com/vs/intercom/)
+- [Tidio vs LiveChat](https://www.tidio.com/vs/live-chat/)
+- [Tidio vs Zendesk](https://www.tidio.com/vs/zendesk/)
+
+
+## Features
+- [All Features Overview](https://www.tidio.com/features/)
+
+
+### Core Features 
+- [Lyro](https://www.tidio.com/ai-agent/): AI agent for customer service and conversational AI chatbot
+- [Flows](https://www.tidio.com/flows/): Automation and rule-based chatbot builder
+- [Help Desk](https://www.tidio.com/help-desk/): Help desk software
+- [Live Chat](https://www.tidio.com/live-chat/): Live chat software for websites
+- [Ticketing System](https://www.tidio.com/ticketing/)
+
+
+### Additional Features
+- [Analytics Dashboard](https://www.tidio.com/analytics/)
+- [Team Departments Feature](https://www.tidio.com/departments/)
+- [Visitors List Tool](https://www.tidio.com/visitors-list/)
+
+
+### Features by Use Case
+- [Tidio for Ecommerce](https://www.tidio.com/industry/ecommerce/)
+- [Tidio for Customer Service](https://www.tidio.com/solutions/customer-service/)
+- [Tidio for Marketing and Sales](https://www.tidio.com/solutions/marketing-and-sales/)
+
+
+## Integrations
+- [All Integrations](https://www.tidio.com/integrations/): See how Tidio can integrate with your technology stack.
+
+
+### Channel Integrations
+- [Instagram Integration](https://www.tidio.com/instagram/)
+- [Messenger Integration](https://www.tidio.com/messenger/)
+- [WhatsApp Integration](https://www.tidio.com/whatsapp-integration/)
+- [Shared Inbox](https://www.tidio.com/shared-inbox/)
+- [Multichannel Communication](https://www.tidio.com/multichannel/)
+
+
+### Platform Integrations
+- [BigCommerce Integration](https://www.tidio.com/bigcommerce/)
+- [Ecwid Integration](https://www.tidio.com/ecwid/)
+- [Shopify Integration](https://www.tidio.com/integrations/shopify/)
+- [WordPress Integration](https://www.tidio.com/integrations/wordpress/)
+- [PrestaShop Integration](https://www.tidio.com/prestashop/)
+- [Shopware Integration](https://www.tidio.com/shopware/)
+- [Squarespace Integration](https://www.tidio.com/squarespace/)
+- [Weebly Integration](https://www.tidio.com/weebly/)
+- [Wix Integration](https://www.tidio.com/wix/)
+
+
+## Pricing
+
+
+| Plan | Description | Price |
+| --- | --- | --- |
+| Free | For solo entrepreneurs. | 0 USD/mo. |
+| Starter | Ideal for small businesses focused on enhancing customer satisfaction via live chat support. | 24.17 USD/mo. |
+| Growth | Ideal for teams of all sizes prioritizing customer service as their competitive advantage. | Starts at 49.17 USD/mo. |
+| Plus | For businesses requiring better limits, additional integrations, advanced features, and premium support. | Starts at 749 USD/mo. |
+| Premium | For more complex businesses. | Starts at 2999 USD/mo. |
+
+
+| Feature Category | Feature | Free | Starter | Growth | Plus | Premium |
+| --- | --- | --- | --- | --- | --- | --- |
+| Customer Support Quota | Handled Conversations | 50 | 100 | 250 (up to 2000 via upgrade) | Custom | Unlimited |
+| Customer Support Quota | Seats | 10 | 10 | 10 | Custom | Custom |
+| Live Chat & Ticketing | Live Chat | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Live Chat & Ticketing | Help Desk | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Live Chat & Ticketing | Email management system | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Live Chat & Ticketing | Live video calls | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Lyro AI Agent | Lyro AI Agent conversations | 50 free (50–300 via upgrade) | 50 free (50–300 via upgrade) | 50 free (50–300 via upgrade) | Custom | Custom |
+| Lyro AI Agent | Lyro AI Agent tasks | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Lyro AI Agent | FAQ upload | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Lyro AI Agent | FAQ scraper | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Lyro AI Agent | Website scraper | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Lyro AI Agent | Lyro Connect | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Lyro AI Agent | Lyro custom name | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Lyro AI Agent | Lyro product recommendation | available via upgrade to 50–300 Lyro AI Agent conversations | available via upgrade to 50–300 Lyro AI Agent conversations | available via upgrade to 50–300 Lyro AI Agent conversations | ✓ | ✓ |
+| Flows | Visitors reached via Flows | 100 free, 2k–100k via upgrade | 100 free, 2k–100k via upgrade | 100 free, 2k–100k via upgrade | Custom | Custom |
+| Flows | Sales Flows templates | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Flows | FAQ Flows templates | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Flows | Visual Flows builder | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Features | Tidio AI reply assistant | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Features | Basic analytics | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Features | Live visitors list | ✗ | ✓ | ✓ | ✓ | ✓ |
+| Features | Operating hours | ✗ | ✓ | ✓ | ✓ | ✓ |
+| Features | Chat page | ✗ | ✓ | ✓ | ✓ | ✓ |
+| Features | Advanced analytics | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Live typing | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Viewed pages history | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Visitors info | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Visitor notes | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Automatic response | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Automatic chat assignment | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Automated satisfaction survey | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Automated conversation solving | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Canned responses | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Permissions | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Native Shopify actions | ✗ | ✗ | ✓ | ✓ | ✓ |
+| Features | Multisite | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Features | Departments | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Features | Multilanguage | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Features | OpenAPI | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Integrations | Messenger | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Instagram | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | WhatsApp | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Email | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | ActiveCampaign | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Adobe Commerce | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Agile CRM | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Brevo | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Drupal | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Ecwid | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Google Analytics (GA4) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Google Tag Manager | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | HubSpot | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Jimdo | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Joomla | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Judge.me | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Klaviyo | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Mailchimp | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | MailerLite | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Omnisend | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | OpenAPI | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | OpenCart | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Pipedrive | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | PrestaShop | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Salesforce | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | SendInBlue | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Shift4Shop | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Shopify | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Shopware | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Site123 | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Squarespace | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Webydo | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Weebly | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Wix | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | WooCommerce | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | WordPress | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Zapier | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Zendesk | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Zendesk Sell | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Zoho CRM | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Integrations | Custom integrations | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Apps | Desktop app | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Apps | Mobile app | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Services | Support over email | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Services | Support over live chat | ✗ | ✓ | ✓ | ✓ | ✓ |
+| Services | Flows building & strategy assistance | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Services | Dedicated Success Manager | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Services | Training sessions | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Services | Account reviews | ✗ | ✗ | ✗ | ✓ | ✓ |
+| Services | Priority Service + Premium Support | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Services | Super admin role | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Services | Analysis & monitoring | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Services | Lyro as a managed service | ✗ | ✗ | ✗ | ✗ | ✓ |
+| Customization | Widget customization | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Customization | No Tidio branding | ✗ | ✗ | Add-on (16.67 USD/mo.) | ✓ | ✓ |
+| Customization | Custom branding | ✗ | ✗ | ✗ | ✓ | ✓ |
+
+
+### "Lyro AI conversations" upgrade
+
+
+| Conversations | Price (USD/mo.) |
+| ------------- | ---------------- |
+| 50            | 32.50            |
+| 100           | 62.50            |
+| 150           | 91.67            |
+| 200           | 116.67           |
+| 300           | 175.00           |
+
+
+### "Visitors reached with Flows" upgrade
+
+
+| Visitors Reached | Price (USD/mo.) |
+| ---------------- | ---------------- |
+| 2,000            | 24.17            |
+| 3,000            | 32.50            |
+| 5,000            | 40.83            |
+| 10,000           | 57.50            |
+| 15,000           | 70.83            |
+| 20,000           | 82.50            |
+| 30,000           | 99.17            |
+| 40,000           | 115.83           |
+| 50,000           | 140.83           |
+| 75,000           | 199.17           |
+| 100,000          | 249.17           |
+
+
+## Resources
+- [Tidio Blog](https://www.tidio.com/blog/)
+- [Resources](https://www.tidio.com/resources/)
+- [ROI and Automation Calculators](https://www.tidio.com/resources/calculators/)
+- [Flow Builder Calculator](https://www.tidio.com/resources/calculators/flows/)
+- [Tidio ROI Calculator](https://roi-calculator.tidio.com/)
+- [Case Studies](https://www.tidio.com/resources/case-studies/)
+- [Ebooks](https://www.tidio.com/resources/ebooks/)
+
+
+## Contact
+- [Contact](https://www.tidio.com/contact/): Get in touch with Tidio and its support team.
+- [Contact Sales](https://www.tidio.com/contact-sales/): Book a demo and talk to sales.
+
+
+## Help
+- [Help Center](https://help.tidio.com/hc/en-us): Help articles and frequently asked questions.
+- [Tidio Academy](https://academy.tidio.com/): Courses on Tidio and customer support.
+- [Resources for Developers](https://academy.tidio.com/): API, SDK, and other documentation.
+
+
+## Partnerships
+- [Affiliate Program](https://www.tidio.com/affiliate/)
+- [Referral Program](https://www.tidio.com/partner-referral/)
+- [Partner Program](https://www.tidio.com/partners/)
+
+
+## Legal
+- [Privacy Policy](https://www.tidio.com/privacy-policy/)
+- [Security Policy](https://www.tidio.com/security-policy/)
+- [Security Practices](https://www.tidio.com/security/)
+- [Terms of Service](https://www.tidio.com/terms/)

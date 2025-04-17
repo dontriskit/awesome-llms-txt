@@ -1,0 +1,1073 @@
+# miarecki.eu
+
+> Welcome to my personal website where I write about my projects and other things.
+
+
+
+
+- [Setting up Web Key Directory](https://miarecki.eu/posts/web-key-directory-setup/): Web Key Directory (WKD) is a protocol that enables discovery of OpenPGP public keys uploaded to your own server to secure your communication.
+    
+    <!-- START OF POST #1: "Setting up Web Key Directory" -->
+    
+    ### Content of Setting up Web Key Directory
+    
+    
+Getting a PGP Key is easy, but sharing it with others can be a hassle.
+
+## Why use Web Key Directory
+
+Sharing your public key is important to secure your communication as it allows others to encrypt messages that only you with the corresponding private key can decrypt and to verify that messages are from you. This is especially important for E-Mail, as it is not encrypted by default and can be intercepted and read by the entity handling the E-Mail. However this requires the recipient to have your public key, which needs a way to be shared.
+
+### Traditional ways to share your public key
+
+The traditional way to share your public key is to upload it to a keyserver, but this method has its drawbacks. Anyone can upload a key to a keyserver, and there is no way to verify that the key actually belongs to the person it claims to belong to.
+
+Another option would be to download the key from the person's website, but it would be way harder to find the key in the first place as everyones site would be different and still requires manual work to get the key.
+
+Even sending the Key via E-Mail isn't great, as the first E-Mail would be unencrypted and the key could be intercepted and replaced with a malicious one and still require manual work to import the key.
+
+### The solution
+
+This is where Web Key Directory comes in. <dfn title="Web Key Directory">WKD</dfn> is a protocol that enables the discovery of OpenPGP public keys uploaded to people's own servers, bypassing the need for dedicated keyservers and allowing greater control over the keys. While using HTTPs to get the key, you can be a little more sure that the key used for the email address has been distributed by the owner of the domain, which might be the same person.
+
+WKD allows E-Mail clients, like Thunderbird, to automatically discover the public key of the recipient and directly use it on the first conversation.
+
+## Setting up Web Key Directory
+
+WKD has two setups: the Direct setup and the Advanced setup. Despite their names, both require roughly the same steps. The Direct setup requires no additional DNS entries, while the Advanced setup requires a sub-domain with the fixed name `openpgpkey` to be created, which will be tested first before falling back to the Direct setup.
+
+### Requirements
+
+1. A domain:
+
+   The domain is required to host the public key as otherwise you wouldn't be able to use WKD. For the basic setup, you just need to have the ability to place files in the `.well-known` directory of your domain. For the advanced setup, you need to be able to create a subdomain called `openpgpkey` and place files in the `.well-known` directory of that subdomain.
+
+2. A public key that matches the email address host on the domain
+3. A web server:
+
+   The web server is required to host the public key. If you don't have web hosting or can't control the web server, you can use [Openpgp.org's WKD-as-a-service](https://keys.openpgp.org/about/usage#wkd-as-a-service). This service allows you to host your public key on their servers by utilizing the advanced setup. This approach comes with the downside of not having full control over the key and it including all the available keys for that identity.
+
+### Getting the hash
+
+The basic mode expects the Key at this location:
+`https://{domain}/.well-known/openpgpkey/hu/{hash}?l={email-name}` where {domain} is the domain of the email address, {hash} is the WKD hash of the email address and {email-name} is the name part of the email address before the @ using proper percent escaping.
+
+The advanced mode is similar but uses the openpgpkey subdomain and includes the domain in lowercase in the path, like so:
+
+`https://openpgpkey.{domain}/.well-known/openpgpkey/{domain}/hu/{hash}?l={email-name}`
+
+The hash is calculated by taking the email address, converting it to lowercase, and hashing it using the SHA-1 algorithm. The resulting 160-bit digest is encoded using the [Z-Base-32](https://philzimmermann.com/docs/human-oriented-base-32-encoding.txt) method to create a 32-octet string. This string is then used as the hash in the URL. However you do not need to do this by hand as the gpg command line tool can do this for you.
+
+```bash
+# A specific key:
+gpg --with-wkd-hash --fingerprint john@example.com
+
+# All stored keys:
+gpg --list-keys --with-wkd-hash
+```
+
+Outputs:
+
+```{hl_lines=[4]}
+pub   ed25519 2024-03-16 [SCA] [expires: 2026-03-17]
+      82BB 5FCA 5F46 ED3F 04A2  9A66 1973 3425 922A A05E
+uid           [ultimate] John Doe <john@example.com>
+              wwq7w9d96wfsd4zkytndq84kpkjod3eb@example.com
+sub   cv25519 2024-03-16 [E] [expires: 2026-03-17]
+```
+
+The hash is before the @ in the email address, which in this case is `wwq7w9d96wfsd4zkytndq84kpkjod3eb`.
+
+Now that you have the hash, need to save an binary unarmored version of the public key to the location of the hash, which you can do with the following command:
+
+```bash
+gpg --no-armor --export john@example.com > wwq7w9d96wfsd4zkytndq84kpkjod3eb
+```
+
+Be careful on Windows as it does not use the redirect operator `>` correctly and the binary data gets messed up. Consider using Git Bash or WSL to prevent this.
+
+### DNS
+
+If you plan on using the advanced setup, you need to create a subdomain called `openpgpkey` and have the web server serve the keys from there.
+Incase you use the Direct method, you need to make sure the openpgpkey subdomain does not respond. For example when you use wildcard DNS records, make sure that the openpgpkey subdomain is not subject to the wildcarding. This can be done by inserting an empty TXT RR for this sub-domain, which will prevent the wildcard DNS records from influencing the openpgp DNS record, as the Advanced method is tried first before falling back to the Direct method.
+
+### Uploading the key
+
+The key needs to be uploaded to the web server at the location of the hash appropriate for the chosen setup.
+It should be served as `application/octet-stream` and allow acces from anywhere using the `Access-Control-Allow-Origin: *` header.
+
+Example configurations for nginx could look like this:
+
+```nginx
+location ^~ /.well-known/openpgpkey {
+   default_type application/octet-stream;
+   add_header Access-Control-Allow-Origin * always;
+}
+```
+
+or for Cloudflare pages by creating a \_headers file in the output directory:
+
+```yaml
+/.well-known/openpgpkey/*
+   Content-Type: application/octet-stream
+   Access-Control-Allow-Origin: *
+```
+
+### Adding the Policy file
+
+The specification requires that a Policy Flags file is served. This file is required even if the Web Key Directory Update Protocol is not supported, which is a protocol that allows for the automatic update of the public key. But this is not necessary as the keys will be statically hosted and served.
+
+The Policy Flags file can just be an empty file, but it needs to be served at `/.well-known/openpgpkey/policy` for both the Direct and Advanced setup.
+
+## Testing the setup
+
+Testing the setup requires for WKD to be already set up and publicly accessible.
+
+### Local check
+
+You can test your setup by the following GnuPG command, which will try to fetch the key from the server:
+
+```bash
+gpg --auto-key-locate clear,nodefault,wkd --locate-keys john@example.com
+```
+
+```bash
+gpg: key 19733425922AA05E: public key "john@example.com" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+pub   ed25519 2024-03-17 [SC] [expires: 2026-03-17]
+      82BB5FCA5F46ED3F04A29A6619733425922AA05E
+uid           john@example.com
+```
+
+For daily use, you can just use the `--locate-keys` in gpg to automatically fetch the key from the server or look for the appropriate option in your E-Mail client.
+
+### Online check
+
+Alternatively, you can use the following form to check if the WKD setup is working. It is a replacement for the [Metacode WKD Checker](https://metacode.biz/openpgp/web-key-directory) as it will be sunsetted on 1.05.2024. This tool has the benefit of showing which parts of the setup are working and which are not and tests both the Direct and Advanced setup.
+
+<div class="wkd-check">
+    <form method="get" action="/tools/wkd-checker/" class="form" id="wkd-check" target="_blank">
+        <div class="form-input">
+            <input type="email" name="email" id="email" required placeholder="The email address you want to check"
+                title="Email Address" />
+        </div>
+        <input value="Check" type="submit" class="form-button" />
+    </form>
+    
+   <div class="wkd-check-result" id="wkd-check-result"></div>
+
+</div>
+
+## Conclusion
+
+Setting up Web Key Directory, is a great way to share your public key with others.
+It allows for automatic discovery of the public key for example in E-Mail clients, and allows for greater control over the key as it is hosted on your own server and allows communication without manual key exchange. It also allows you to remove old or revoked keys from the server, which is not possible with traditional key servers, which will keep the key forever, cluttering the keyserver with old keys.
+
+Sources:
+
+- [OpenPGP Web Key Directory Internet-Draft](https://datatracker.ietf.org/doc/draft-koch-openpgp-webkey-service/)
+
+    
+    <!-- END OF POST #1: "Setting up Web Key Directory" -->
+    
+    -------------------
+- [Modding an IKEA Iskärna to use Zigbee](https://miarecki.eu/posts/modding-an-ikea-iskaerna-zigbee/): This modding project aims to replace the original control board of the IKEA Iskärna lamp with a custom one, allowing the lamp to be controlled via Zigbee.
+    
+    <!-- START OF POST #2: "Modding an IKEA Iskärna to use Zigbee" -->
+    
+    ### Content of Modding an IKEA Iskärna to use Zigbee
+    
+    
+The [IKEA Iskärna lamp](https://www.ikea.com/us/en/p/iskaerna-led-table-lamp-multicolor-90510403/) is a stylish addition to any home, but its original design limits functionality to manual control via a single button. This modding project aims to enhance the lamp's capabilities by replacing its original control board with a custom one, enabling Zigbee control, including integration with Home Assistant. This allows for automated control, custom effects, and remote operation of the lamp.
+
+## Required materials
+
+- IKEA Iskärna lamp
+- 24V LED controller (Zigbee or other)
+- Soldering iron
+- Wires
+- Screwdriver
+- Glue
+- Optional Button
+
+## Disassembly
+
+The first step is to disassemble the lamp. The lamp is held by a single screw at the back, which can be removed using a screwdriver. Once the screw is removed, the lamp can be opened by pulling the top part from the bottom part.
+
+{{< figure src="original_board.webp" title="The internal control board. Left: facing the button, right: back of the board" alt="The internal control board of the IKEA Iskärna lamp">}}
+
+## Replacing the control board
+
+Next, to replace the original control board with a custom one, the original board must be removed. Do this by unsoldering the wires from the original board and removing the board from the lamp, while remembering which wire goes where (+, -, and the LEDs). Note that the original board is wired as RBG+, but at least they labeled the individual cables with shapes so you can tell them apart.
+
+The custom board can then be soldered in place of the original board, with the wires connected to the appropriate pins. By keeping the original power supply, no modifications are needed to the power supply and you can just hook up the new board to the original power receptacle inside the lamp.
+
+For the button to still work, you need a fitting board. However, this is very hard to find, so I just attached a new button to the new board and wired it to the button of the new board. This way, the original button still works. This allows you to still control the light manually and pair it in case you use a zigbee module.
+
+## Reassembly
+
+{{< figure src="iskaerna_reasembly.webp" title="IKEA Iskärna lamp before reassembly" alt="IKEA Iskärna lamp disassembled">}}
+
+If you added a custom button to the new board, you need to glue it to the sliding piece inside the lamp, which originally held the button. Then you can also glue the new board to the bottom of the lamp. Once the new board is in place, the lamp can be reassembled by putting the top part back on the bottom part and screwing it back together.
+
+## Conclusion
+
+{{< figure src="modified_iskaerna.webp" title="Modified IKEA Iskärna lamp" alt="Modified IKEA Iskärna lamp glowing red in a room">}}
+
+Uppon pairing the new board with your zigbee network, you can now control the light from home assistant, set it to turn on automatically, or use custom effects. This modding project allows for a more versatile use of the IKEA Iskärna lamp, enhancing its functionality and integration with smart home systems.
+
+Depending on which LED controller you use, the possibilities change. For example, with certain LED controllers, you could connect the lamp to Philips Hue or to IKEA's own smart home system (TRÅDFRI, DIRIGERA). Before the modification, this was not possible, as the lamp could only be controlled manually.
+
+Maybe you can set it up as an automatic night light or have simulate a sunrise in the morning.
+
+    
+    <!-- END OF POST #2: "Modding an IKEA Iskärna to use Zigbee" -->
+    
+    -------------------
+- [The Glorious Revolution and the resulting Bill of Rights](https://miarecki.eu/posts/glorious-revolution-england/): The Glorious Revolution of 1688 to 1689 led to the establishment of the English Bill of Rights, which laid the foundation for fundamental liberties.
+    
+    <!-- START OF POST #3: "The Glorious Revolution and the resulting Bill of Rights" -->
+    
+    ### Content of The Glorious Revolution and the resulting Bill of Rights
+    
+    
+## Historical events
+
+In 1685, a pivotal moment in English history unfolded as James II succeeded his brother Charles II to the throne. James II, unlike his Protestant predecessor, was a devout Catholic. His ascent to power ignited a wave of hope among Catholics for greater religious freedom and tolerance. However, this hope was met with apprehension and resistance from the Protestant majority, particularly within Parliament.
+
+{{< figure src="James_II.jpg" alt="Portrait of James II" caption="Portrait of James II, Public Domain" width="40%">}}
+
+As James II began to assert his authority, tensions between the crown and Parliament escalated. Unlike his brother, James II sought to wield more centralized power, challenging the traditional balance between the monarchy and the legislative body. He amassed a standing army and appointed Catholics to key positions, raising concerns among the Protestant majority about the potential for religious persecution and the erosion of their rights.
+
+The friction between James II and Parliament reached a boiling point in November 1685 when the king made the controversial decision to dissolve a session of Parliament. This move was perceived as a direct challenge to the authority and independence of the legislative body.
+
+## Ongoing call for change
+
+As the years passed, the skepticism among Parliament members regarding James II's policies and his consolidation of authority only deepened. The accumulation of power in the hands of the monarch and his decisions concerning religious matters fueled concerns about the erosion of fundamental freedoms.
+
+The increasing unease within Parliament about James II's actions spurred a call for decisive measures. In 1688, a coalition of English nobles extended an invitation to William of Orange, husband to James's Protestant daughter Mary, to intervene in English affairs. This invitation marked a pivotal moment in the quest for liberty and laid the foundation for the events that would unfold during the Glorious Revolution.
+
+Arriving in England in November 1688 with a formidable Dutch fleet and a combined force of Dutch and English troops, [William of Orange](https://en.wikipedia.org/wiki/William_III_of_England) represented the hopes of many Parliamentarians for a restoration of balance and the preservation of individual liberties. James II's army, which had been expected to defend the king, instead defected to William's side, and the king fled to France, effectively abdicating the throne, leading to a bloodless transition of power.
+
+{{< figure src="La_Reception_faite_au_Roy_d'Angleterre_par_le_Roy_à_St._Germain_en_Laye_le_VIIe_janvier_1689.jpg" alt="Louis XIV greeting the exiled James II in 1689" caption="Louis XIV greeting the exiled James II in 1689, Public Domain">}}
+
+## Consequences and the English Bill of Rights
+
+Following the Glorious Revolution, England experienced profound political transformations that reshaped the relationship between the monarchy and Parliament. With the royal assent on December 16, 1689, Parliament's influence on the monarchs became more pronounced, marking a significant shift towards a system where consent was paramount.
+
+Central to these changes was the imposition of limits on the power of the monarchy. The establishment of free elections and the regular convening of Parliament became integral components of governance, ensuring that the voices of the people were heard and represented. Within this framework, members of Parliament were granted the freedom of speech, fostering an environment of open discourse and accountability.
+
+The abolition of excessive fines and cruel or unusual punishments, as well as the prohibition of the suspension of laws without parliamentary consent, were key provisions of the English Bill of Rights. These measures were designed to safeguard individual liberties and prevent the abuse of power by the monarchy.
+
+{{< figure src="English_Bill_of_Rights_of_1689.jpg" alt="English Bill of Rights" caption="The English Bill of Rights, Public Domain">}}
+
+As a result of these reforms, conflicts between monarchs and Parliament dwindled, paving the way for a more harmonious relationship based on mutual respect and cooperation. The principles outlined in the English Bill of Rights not only affected the political landscape of England but also influenced the development of other constitutional documents, including the United States Bill of Rights, shaping the course of modern governance and individual freedoms.
+
+Source: [UK-Parliament](https://www.parliament.uk/about/living-heritage/evolutionofparliament/parliamentaryauthority/revolution/)
+
+    
+    <!-- END OF POST #3: "The Glorious Revolution and the resulting Bill of Rights" -->
+    
+    -------------------
+- [Smart Message Language Reader for Home Automation](https://miarecki.eu/posts/ha-sml-electricity-meter/): This project is about reading out an electricity meter using the SML interface and an IR reading head for local home automation using a microcontroller.
+    
+    <!-- START OF POST #4: "Smart Message Language Reader for Home Automation" -->
+    
+    ### Content of Smart Message Language Reader for Home Automation
+    
+    
+The continuous development in the field of home automation opens up ever new possibilities to control the energy consumption in our homes efficiently. A crucial step in this direction is the reading of data from smart electricity meters using the Smart Message Language to gain detailed insights into energy consumption. That's exactly why I created "<dfn title="Smart Message Language">SML</dfn>-Reader" to read out the Smart Message Language data and then send it to smart home systems, such as Home Assistant, via MQTT.
+
+## Why this project?
+
+The idea for this project arose from the existing materials. With an already available W5500-EVB-Pico and the need for a reliable Ethernet connection in the basement, where the WLAN is weak, the motivation for implementing the Smart Message Language-Reader was born. The W5500-EVB-Pico, an inexpensive and easy-to-use microcontroller board with Ethernet port, provides the perfect basis for this project. In addition, it has two hardware serials, which allow both the connection to the computer and to the infrared reading head.
+
+The difficulties in finding suitable software with Ethernet support for the RP2040 chip (used in the EVB-Pico) reinforced the desire to develop a tailor-made solution. For example, Tasmota or Tasmota is not yet available for the RP2040 chip with the W5500.
+
+Another obstacle was determining the <dfn title="Object Identification System">OBIS</dfn> codes, which vary depending on the smart meter and configuration. However, this can be easily found out by using the program.
+
+This Project was allowed by the Smart Message Language, which is a standard for the transmission of energy consumption data. The SML is used in Germany for the communication between smart meters and the smart meter gateway. The SML is also used in other countries, such as Austria, Switzerland and the Netherlands.
+
+## Project details
+
+### Supported smart meters
+
+The SML-Reader is compatible with all smart meters that support the SML protocol. I successfully tested the system with the [Apator PICUS](https://www.apator.com/de/produkte/strom/strommessung/moderne-messeinrichtung/picus). The displayed data depends on the functions supported and configured in the smart meter. Under certain circumstances, certain settings may need to be made on the meter, such as disabling the PIN or enabling extended operating modes (InF). Some data also requires manual activation by the LMN interface by the network operator.
+
+Further OBIS codes can be added by editing the OBIS handler list.
+
+### Hardware and software
+
+- [W5500-EVB-Pico microcontroller board](https://docs.wiznet.io/Product/iEthernet/W5500/w5500-evb-pico)
+- SML-compatible electricity meter
+- Ethernet cable and connection
+- Power connection
+- MQTT server
+- [PlatformIO](https://platformio.org/) IDE
+- [SML-Reader](https://github.com/JonatanMGit/SML-Reader) project
+
+### Configuration of the SML-Reader
+
+Edit the `config.h` file in the SML-Reader project to enter the connection information for your MQTT server. Here you enter the MQTT login data. Further settings, such as a static IP address or other OBIS codes, can be made in main.cpp.
+
+After saving the configuration file, you can re-flash the SML-Reader to apply the changes. The configuration file is saved during flashing. A dynamic configuration via the web interface is in progress.
+
+The reading head must also be connected correctly. The connections are standard on the W5500-EVB-Pico board as follows:
+
+- TX: GPIO04
+- RX: GPIO05
+- GND: GND
+- VCC: 3V3
+
+The setup should look like this:
+{{< figure src="SML-Reader-EN.svg" title="Diagram of the setup of the SML-Reader" alt="Diagram of the setup of the SML-Reader, showing the connection between the W5500-EVB-Pico and the IR reading head. The pins are the ones mentioned above." width="100%" >}}
+
+These connections come from the second hardware serial of the RP2040 chip. The first hardware serial is used for the connection to the computer. The second hardware serial is used for the connection to the reading head (UART0/UART1 and UART2)
+
+### Flashing the SML-Reader with PlatformIO in VSCode
+
+1. Install PlatformIO in VSCode
+2. Clone the [SML-Reader](https://github.com/JonatanMGit/SML-Reader) project
+3. Open the project in VSCode. There PlatformIO should see the option to build the project directly (upload)
+4. After compiling and uploading the project, the SML-Reader should be ready to use.
+
+If there are problems with flashing, you can also manually copy the UF2 files to the device (hold Bootsel pressed while doing so).
+
+After successful flashing, the SML-Reader should receive the data from the electricity meter and then send it to the MQTT server.
+
+## Reading the MQTT data in Home Assistant
+
+The device should now automatically send the data to the MQTT server. Using [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt#discovery-options), the sensors are automatically created in Home Assistant. The sensors can then be used in Home Assistant. If this does not happen, you can always manually insert the measured values in Home Assistant via the config.yaml.
+
+The data is sent to `homeassistant/sensor/w5500-evb-pico/<name-of-the-value>/state`, if you want to integrate it into other systems.
+
+## Web interface
+
+The project has a web interface that allows you to display the data read from the electricity meter. The interface is accessible via the IP address or the mDNS name of the SML-Reader. The displayed data depends on the functions supported and configured in the smart meter.
+
+## Conclusion
+
+The project is an inexpensive and simple solution to read out the SML data from a smart meter and then send it to smart home systems, such as Home Assistant, via MQTT. The use of the W5500-EVB-Pico allows a reliable Ethernet connection, which is advantageous for local home automation. The web interface offers an easy way to display the data of the electricity meter. The use of PlatformIO allows an easy installation and configuration of the project.
+
+### Further information
+
+Many thanks to the [SML Parser](https://github.com/olliiiver/sml_parser) library, which forms the basis for this project.
+
+More information is available on the German version of this page.
+
+    
+    <!-- END OF POST #4: "Smart Message Language Reader for Home Automation" -->
+    
+    -------------------
+- [The Michelson-Morley Experiment and the Aether Theory](https://miarecki.eu/posts/aether-theory/): The Aether Theory and the Michelson-Morley Experiment were important steps in the history of physics. This blog post explains the experiment and its results.
+    
+    <!-- START OF POST #5: "The Michelson-Morley Experiment and the Aether Theory" -->
+    
+    ### Content of The Michelson-Morley Experiment and the Aether Theory
+    
+    
+This blog Post has an alternative Video version if you prefer that.
+The video can be [accessed on YouTube](https://www.youtube.com/watch?v=F8t01xqgmCk).
+
+---
+
+The Michelson-Morley experiment is an important physics experiment conducted in the late 19th century.
+
+It was already known in earlier times that light propagates in waves and compared it to water waves, which require a medium, namely water.
+Michelson and Morley thought that light must also have a medium, namely the aether,and they wanted to prove this through an experiment.
+
+## What is the aether?
+
+The ether is the hypothetical medium through which light travels through the universe.
+This idea can be easily illustrated by everyday examples such as water waves or sound waves, which also require a medium to propagate.
+It was thought at the time that the aether medium existed throughout the universe to allow light to propagate.
+It also need not be dense, since planets are not affected by it.
+
+### The behavior of the aether
+
+It was also assumed that the aether is at rest and does not move with the earth, much like the air around a car.
+When an object is moved through the aether, a kind of aether wind is created, similar to the wind created around a moving object.
+
+As the earth moves through the aether, an aether wind should also be created.
+The experiment of Michelson and Morley attempted to confirm the theory of the aether by means of the aether wind.
+Anything moving with the ether wind would have to move faster than against the ether wind, similar to the airplane.
+
+If were to fly against the wind, it would be slower than with a tailwind.
+If you have a crosswind, i.e. the wind comes from the left or right side, this does not change the speed either.
+
+It was precisely this behavior that Michelson and Morley wanted to test with their experiment.
+
+If the aether were real, light would have to behave exactly like an airplane, flying faster when it has a tailwind and slower when it is flying against the wind.
+
+## The experiment
+
+Michelson and Morley's experiment was designed to detect the aether wind.
+To do this, they used an interferometer, which consisted of a semi-transparent mirror, two perpendicular arms and a receiver.
+
+A laser beam was aimed at the semi-transparent mirror, which split the beam into two halves, each passing through one arm of the interferometer before hitting a mirror at the end of the arm and being reflected.
+The reflected beam returned to the semi-transparent mirror where it met with the other
+Beam overlapped and created interference patterns that could be observed on the receiver.
+
+### The expectations
+
+The interesting thing about this experiment was that if the interferometer had moved with the aether wind, there should have been a shift in the interference pattern.
+This would arise due to the different speeds of the light rays, each traveling against and with the aether wind.
+
+If there were no aether, both light beams would travel at the same speed, regardless of the direction of the interferometer, and no difference in the interference pattern could be observed.
+
+## Surprising results
+
+However, the result of the experiment surprised physicists because it showed no shift in the interference pattern.
+No matter which direction the interferometer was pointed, there was no measurable change.
+This result was a great surprise because it contradicted the assumption at the time that there must be an etheric medium.
+
+The Michelson-Morley experiment was a significant step in the history of physics because it questioned the belief in the existence of the ether and thus in a fundamental property of the universe.
+
+The experiment showed that there is no aether wind and that light moves at the same speed in all directions, regardless of the observer's movement.
+This result was the starting point for Einstein's theory of special relativity, which revolutionized the understanding of spacetime and continues to play a central role in modern physics today.
+
+    
+    <!-- END OF POST #5: "The Michelson-Morley Experiment and the Aether Theory" -->
+    
+    -------------------
+- [Protein Biosynthesis](https://miarecki.eu/posts/protein-biosynthesis/): Protein biosynthesis is the process by which proteins are made in cells. It involves the transcription of DNA and the translation of mRNA.
+    
+    <!-- START OF POST #6: "Protein Biosynthesis" -->
+    
+    ### Content of Protein Biosynthesis
+    
+    
+If you are more of a visual learner, you can also view my YouTube video for protein synthesis, which is embedded or [directly available on YouTube](https://www.youtube.com/watch?v=17GMVbstC3Q).
+
+---
+
+Proteins are the workhorses of life and perform a variety of essential functions in our cells. But have you ever wondered how these complicated molecules are actually made? The answer lies in the fascinating world of protein synthesis, a remarkable cellular process that we are in the process of unraveling.
+
+## What is protein biosynthesis anyway?
+
+For that you have to look at a cell first.
+
+![Nucleus of a cell](/img/human_cell_nucleus.svg "A picture of a nucleus of a cell")
+
+This is where the DNA is stored.
+
+But now the genetic material has to get to the ribosomes outside the nucleus so that a protein can be formed.
+To do this, the data must be processed and transported in such a way that these ribosomes can read it later.
+This processing and transport is called **protein biosynthesis**.
+
+## The transcription
+
+The DNA is currently stored in a double helix and must now first be opened up.
+To process the data now, the DNA is transcribed into an mRNA.
+In this process, the DNA is divided into base pairs and the bases are then read individually.
+The bases are then translated into the matching bases of the mRNA.
+
+This is why the process is called **transcription.**
+
+This mRNA is now passed on.
+Unlike DNA, mRNA consists of only one strand and is now ready to leave the cell, while only undergoing very little processing.
+First, the mRNA is shortened a bit more and then a few extra bases are added.
+These additional bases are important for translation.
+
+Now the mRNA is ready and can leave the cell.
+There it is read by the ribosomes.
+
+## The translation
+
+The ribosomes are the factories of the cell and consist of two subunits.
+Now three bases are read at the same time and these are called <dfn title="A group of three bases">codon</dfn>.
+Each codon stands for an amino acid.
+
+After the entire mRNA has been read, the amino acid chains can now form complex 3D structures and thus form a protein.
+
+This process is called **translation** because the bases are translated into amino acids. The mRNA can then be broken down again and the ribosomes can dissolve again.
+
+    
+    <!-- END OF POST #6: "Protein Biosynthesis" -->
+    
+    -------------------
+For posts adding /index.md to the URL will give you a markdown only page.
+
+
+## All posts
+
+> This is a list of all available posts in English
+
+- [Setting up Web Key Directory](https://miarecki.eu/posts/web-key-directory-setup/): Web Key Directory (WKD) is a protocol that enables discovery of OpenPGP public keys uploaded to your own server to secure your communication.
+        
+        ### Content of Setting up Web Key Directory
+        
+        
+Getting a PGP Key is easy, but sharing it with others can be a hassle.
+
+## Why use Web Key Directory
+
+Sharing your public key is important to secure your communication as it allows others to encrypt messages that only you with the corresponding private key can decrypt and to verify that messages are from you. This is especially important for E-Mail, as it is not encrypted by default and can be intercepted and read by the entity handling the E-Mail. However this requires the recipient to have your public key, which needs a way to be shared.
+
+### Traditional ways to share your public key
+
+The traditional way to share your public key is to upload it to a keyserver, but this method has its drawbacks. Anyone can upload a key to a keyserver, and there is no way to verify that the key actually belongs to the person it claims to belong to.
+
+Another option would be to download the key from the person's website, but it would be way harder to find the key in the first place as everyones site would be different and still requires manual work to get the key.
+
+Even sending the Key via E-Mail isn't great, as the first E-Mail would be unencrypted and the key could be intercepted and replaced with a malicious one and still require manual work to import the key.
+
+### The solution
+
+This is where Web Key Directory comes in. <dfn title="Web Key Directory">WKD</dfn> is a protocol that enables the discovery of OpenPGP public keys uploaded to people's own servers, bypassing the need for dedicated keyservers and allowing greater control over the keys. While using HTTPs to get the key, you can be a little more sure that the key used for the email address has been distributed by the owner of the domain, which might be the same person.
+
+WKD allows E-Mail clients, like Thunderbird, to automatically discover the public key of the recipient and directly use it on the first conversation.
+
+## Setting up Web Key Directory
+
+WKD has two setups: the Direct setup and the Advanced setup. Despite their names, both require roughly the same steps. The Direct setup requires no additional DNS entries, while the Advanced setup requires a sub-domain with the fixed name `openpgpkey` to be created, which will be tested first before falling back to the Direct setup.
+
+### Requirements
+
+1. A domain:
+
+   The domain is required to host the public key as otherwise you wouldn't be able to use WKD. For the basic setup, you just need to have the ability to place files in the `.well-known` directory of your domain. For the advanced setup, you need to be able to create a subdomain called `openpgpkey` and place files in the `.well-known` directory of that subdomain.
+
+2. A public key that matches the email address host on the domain
+3. A web server:
+
+   The web server is required to host the public key. If you don't have web hosting or can't control the web server, you can use [Openpgp.org's WKD-as-a-service](https://keys.openpgp.org/about/usage#wkd-as-a-service). This service allows you to host your public key on their servers by utilizing the advanced setup. This approach comes with the downside of not having full control over the key and it including all the available keys for that identity.
+
+### Getting the hash
+
+The basic mode expects the Key at this location:
+`https://{domain}/.well-known/openpgpkey/hu/{hash}?l={email-name}` where {domain} is the domain of the email address, {hash} is the WKD hash of the email address and {email-name} is the name part of the email address before the @ using proper percent escaping.
+
+The advanced mode is similar but uses the openpgpkey subdomain and includes the domain in lowercase in the path, like so:
+
+`https://openpgpkey.{domain}/.well-known/openpgpkey/{domain}/hu/{hash}?l={email-name}`
+
+The hash is calculated by taking the email address, converting it to lowercase, and hashing it using the SHA-1 algorithm. The resulting 160-bit digest is encoded using the [Z-Base-32](https://philzimmermann.com/docs/human-oriented-base-32-encoding.txt) method to create a 32-octet string. This string is then used as the hash in the URL. However you do not need to do this by hand as the gpg command line tool can do this for you.
+
+```bash
+# A specific key:
+gpg --with-wkd-hash --fingerprint john@example.com
+
+# All stored keys:
+gpg --list-keys --with-wkd-hash
+```
+
+Outputs:
+
+```{hl_lines=[4]}
+pub   ed25519 2024-03-16 [SCA] [expires: 2026-03-17]
+      82BB 5FCA 5F46 ED3F 04A2  9A66 1973 3425 922A A05E
+uid           [ultimate] John Doe <john@example.com>
+              wwq7w9d96wfsd4zkytndq84kpkjod3eb@example.com
+sub   cv25519 2024-03-16 [E] [expires: 2026-03-17]
+```
+
+The hash is before the @ in the email address, which in this case is `wwq7w9d96wfsd4zkytndq84kpkjod3eb`.
+
+Now that you have the hash, need to save an binary unarmored version of the public key to the location of the hash, which you can do with the following command:
+
+```bash
+gpg --no-armor --export john@example.com > wwq7w9d96wfsd4zkytndq84kpkjod3eb
+```
+
+Be careful on Windows as it does not use the redirect operator `>` correctly and the binary data gets messed up. Consider using Git Bash or WSL to prevent this.
+
+### DNS
+
+If you plan on using the advanced setup, you need to create a subdomain called `openpgpkey` and have the web server serve the keys from there.
+Incase you use the Direct method, you need to make sure the openpgpkey subdomain does not respond. For example when you use wildcard DNS records, make sure that the openpgpkey subdomain is not subject to the wildcarding. This can be done by inserting an empty TXT RR for this sub-domain, which will prevent the wildcard DNS records from influencing the openpgp DNS record, as the Advanced method is tried first before falling back to the Direct method.
+
+### Uploading the key
+
+The key needs to be uploaded to the web server at the location of the hash appropriate for the chosen setup.
+It should be served as `application/octet-stream` and allow acces from anywhere using the `Access-Control-Allow-Origin: *` header.
+
+Example configurations for nginx could look like this:
+
+```nginx
+location ^~ /.well-known/openpgpkey {
+   default_type application/octet-stream;
+   add_header Access-Control-Allow-Origin * always;
+}
+```
+
+or for Cloudflare pages by creating a \_headers file in the output directory:
+
+```yaml
+/.well-known/openpgpkey/*
+   Content-Type: application/octet-stream
+   Access-Control-Allow-Origin: *
+```
+
+### Adding the Policy file
+
+The specification requires that a Policy Flags file is served. This file is required even if the Web Key Directory Update Protocol is not supported, which is a protocol that allows for the automatic update of the public key. But this is not necessary as the keys will be statically hosted and served.
+
+The Policy Flags file can just be an empty file, but it needs to be served at `/.well-known/openpgpkey/policy` for both the Direct and Advanced setup.
+
+## Testing the setup
+
+Testing the setup requires for WKD to be already set up and publicly accessible.
+
+### Local check
+
+You can test your setup by the following GnuPG command, which will try to fetch the key from the server:
+
+```bash
+gpg --auto-key-locate clear,nodefault,wkd --locate-keys john@example.com
+```
+
+```bash
+gpg: key 19733425922AA05E: public key "john@example.com" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+pub   ed25519 2024-03-17 [SC] [expires: 2026-03-17]
+      82BB5FCA5F46ED3F04A29A6619733425922AA05E
+uid           john@example.com
+```
+
+For daily use, you can just use the `--locate-keys` in gpg to automatically fetch the key from the server or look for the appropriate option in your E-Mail client.
+
+### Online check
+
+Alternatively, you can use the following form to check if the WKD setup is working. It is a replacement for the [Metacode WKD Checker](https://metacode.biz/openpgp/web-key-directory) as it will be sunsetted on 1.05.2024. This tool has the benefit of showing which parts of the setup are working and which are not and tests both the Direct and Advanced setup.
+
+<div class="wkd-check">
+    <form method="get" action="/tools/wkd-checker/" class="form" id="wkd-check" target="_blank">
+        <div class="form-input">
+            <input type="email" name="email" id="email" required placeholder="The email address you want to check"
+                title="Email Address" />
+        </div>
+        <input value="Check" type="submit" class="form-button" />
+    </form>
+    
+   <div class="wkd-check-result" id="wkd-check-result"></div>
+
+</div>
+
+## Conclusion
+
+Setting up Web Key Directory, is a great way to share your public key with others.
+It allows for automatic discovery of the public key for example in E-Mail clients, and allows for greater control over the key as it is hosted on your own server and allows communication without manual key exchange. It also allows you to remove old or revoked keys from the server, which is not possible with traditional key servers, which will keep the key forever, cluttering the keyserver with old keys.
+
+Sources:
+
+- [OpenPGP Web Key Directory Internet-Draft](https://datatracker.ietf.org/doc/draft-koch-openpgp-webkey-service/)
+
+        
+        ---
+- [Modding an IKEA Iskärna to use Zigbee](https://miarecki.eu/posts/modding-an-ikea-iskaerna-zigbee/): This modding project aims to replace the original control board of the IKEA Iskärna lamp with a custom one, allowing the lamp to be controlled via Zigbee.
+        
+        ### Content of Modding an IKEA Iskärna to use Zigbee
+        
+        
+The [IKEA Iskärna lamp](https://www.ikea.com/us/en/p/iskaerna-led-table-lamp-multicolor-90510403/) is a stylish addition to any home, but its original design limits functionality to manual control via a single button. This modding project aims to enhance the lamp's capabilities by replacing its original control board with a custom one, enabling Zigbee control, including integration with Home Assistant. This allows for automated control, custom effects, and remote operation of the lamp.
+
+## Required materials
+
+- IKEA Iskärna lamp
+- 24V LED controller (Zigbee or other)
+- Soldering iron
+- Wires
+- Screwdriver
+- Glue
+- Optional Button
+
+## Disassembly
+
+The first step is to disassemble the lamp. The lamp is held by a single screw at the back, which can be removed using a screwdriver. Once the screw is removed, the lamp can be opened by pulling the top part from the bottom part.
+
+{{< figure src="original_board.webp" title="The internal control board. Left: facing the button, right: back of the board" alt="The internal control board of the IKEA Iskärna lamp">}}
+
+## Replacing the control board
+
+Next, to replace the original control board with a custom one, the original board must be removed. Do this by unsoldering the wires from the original board and removing the board from the lamp, while remembering which wire goes where (+, -, and the LEDs). Note that the original board is wired as RBG+, but at least they labeled the individual cables with shapes so you can tell them apart.
+
+The custom board can then be soldered in place of the original board, with the wires connected to the appropriate pins. By keeping the original power supply, no modifications are needed to the power supply and you can just hook up the new board to the original power receptacle inside the lamp.
+
+For the button to still work, you need a fitting board. However, this is very hard to find, so I just attached a new button to the new board and wired it to the button of the new board. This way, the original button still works. This allows you to still control the light manually and pair it in case you use a zigbee module.
+
+## Reassembly
+
+{{< figure src="iskaerna_reasembly.webp" title="IKEA Iskärna lamp before reassembly" alt="IKEA Iskärna lamp disassembled">}}
+
+If you added a custom button to the new board, you need to glue it to the sliding piece inside the lamp, which originally held the button. Then you can also glue the new board to the bottom of the lamp. Once the new board is in place, the lamp can be reassembled by putting the top part back on the bottom part and screwing it back together.
+
+## Conclusion
+
+{{< figure src="modified_iskaerna.webp" title="Modified IKEA Iskärna lamp" alt="Modified IKEA Iskärna lamp glowing red in a room">}}
+
+Uppon pairing the new board with your zigbee network, you can now control the light from home assistant, set it to turn on automatically, or use custom effects. This modding project allows for a more versatile use of the IKEA Iskärna lamp, enhancing its functionality and integration with smart home systems.
+
+Depending on which LED controller you use, the possibilities change. For example, with certain LED controllers, you could connect the lamp to Philips Hue or to IKEA's own smart home system (TRÅDFRI, DIRIGERA). Before the modification, this was not possible, as the lamp could only be controlled manually.
+
+Maybe you can set it up as an automatic night light or have simulate a sunrise in the morning.
+
+        
+        ---
+- [The Glorious Revolution and the resulting Bill of Rights](https://miarecki.eu/posts/glorious-revolution-england/): The Glorious Revolution of 1688 to 1689 led to the establishment of the English Bill of Rights, which laid the foundation for fundamental liberties.
+        
+        ### Content of The Glorious Revolution and the resulting Bill of Rights
+        
+        
+## Historical events
+
+In 1685, a pivotal moment in English history unfolded as James II succeeded his brother Charles II to the throne. James II, unlike his Protestant predecessor, was a devout Catholic. His ascent to power ignited a wave of hope among Catholics for greater religious freedom and tolerance. However, this hope was met with apprehension and resistance from the Protestant majority, particularly within Parliament.
+
+{{< figure src="James_II.jpg" alt="Portrait of James II" caption="Portrait of James II, Public Domain" width="40%">}}
+
+As James II began to assert his authority, tensions between the crown and Parliament escalated. Unlike his brother, James II sought to wield more centralized power, challenging the traditional balance between the monarchy and the legislative body. He amassed a standing army and appointed Catholics to key positions, raising concerns among the Protestant majority about the potential for religious persecution and the erosion of their rights.
+
+The friction between James II and Parliament reached a boiling point in November 1685 when the king made the controversial decision to dissolve a session of Parliament. This move was perceived as a direct challenge to the authority and independence of the legislative body.
+
+## Ongoing call for change
+
+As the years passed, the skepticism among Parliament members regarding James II's policies and his consolidation of authority only deepened. The accumulation of power in the hands of the monarch and his decisions concerning religious matters fueled concerns about the erosion of fundamental freedoms.
+
+The increasing unease within Parliament about James II's actions spurred a call for decisive measures. In 1688, a coalition of English nobles extended an invitation to William of Orange, husband to James's Protestant daughter Mary, to intervene in English affairs. This invitation marked a pivotal moment in the quest for liberty and laid the foundation for the events that would unfold during the Glorious Revolution.
+
+Arriving in England in November 1688 with a formidable Dutch fleet and a combined force of Dutch and English troops, [William of Orange](https://en.wikipedia.org/wiki/William_III_of_England) represented the hopes of many Parliamentarians for a restoration of balance and the preservation of individual liberties. James II's army, which had been expected to defend the king, instead defected to William's side, and the king fled to France, effectively abdicating the throne, leading to a bloodless transition of power.
+
+{{< figure src="La_Reception_faite_au_Roy_d'Angleterre_par_le_Roy_à_St._Germain_en_Laye_le_VIIe_janvier_1689.jpg" alt="Louis XIV greeting the exiled James II in 1689" caption="Louis XIV greeting the exiled James II in 1689, Public Domain">}}
+
+## Consequences and the English Bill of Rights
+
+Following the Glorious Revolution, England experienced profound political transformations that reshaped the relationship between the monarchy and Parliament. With the royal assent on December 16, 1689, Parliament's influence on the monarchs became more pronounced, marking a significant shift towards a system where consent was paramount.
+
+Central to these changes was the imposition of limits on the power of the monarchy. The establishment of free elections and the regular convening of Parliament became integral components of governance, ensuring that the voices of the people were heard and represented. Within this framework, members of Parliament were granted the freedom of speech, fostering an environment of open discourse and accountability.
+
+The abolition of excessive fines and cruel or unusual punishments, as well as the prohibition of the suspension of laws without parliamentary consent, were key provisions of the English Bill of Rights. These measures were designed to safeguard individual liberties and prevent the abuse of power by the monarchy.
+
+{{< figure src="English_Bill_of_Rights_of_1689.jpg" alt="English Bill of Rights" caption="The English Bill of Rights, Public Domain">}}
+
+As a result of these reforms, conflicts between monarchs and Parliament dwindled, paving the way for a more harmonious relationship based on mutual respect and cooperation. The principles outlined in the English Bill of Rights not only affected the political landscape of England but also influenced the development of other constitutional documents, including the United States Bill of Rights, shaping the course of modern governance and individual freedoms.
+
+Source: [UK-Parliament](https://www.parliament.uk/about/living-heritage/evolutionofparliament/parliamentaryauthority/revolution/)
+
+        
+        ---
+- [Smart Message Language Reader for Home Automation](https://miarecki.eu/posts/ha-sml-electricity-meter/): This project is about reading out an electricity meter using the SML interface and an IR reading head for local home automation using a microcontroller.
+        
+        ### Content of Smart Message Language Reader for Home Automation
+        
+        
+The continuous development in the field of home automation opens up ever new possibilities to control the energy consumption in our homes efficiently. A crucial step in this direction is the reading of data from smart electricity meters using the Smart Message Language to gain detailed insights into energy consumption. That's exactly why I created "<dfn title="Smart Message Language">SML</dfn>-Reader" to read out the Smart Message Language data and then send it to smart home systems, such as Home Assistant, via MQTT.
+
+## Why this project?
+
+The idea for this project arose from the existing materials. With an already available W5500-EVB-Pico and the need for a reliable Ethernet connection in the basement, where the WLAN is weak, the motivation for implementing the Smart Message Language-Reader was born. The W5500-EVB-Pico, an inexpensive and easy-to-use microcontroller board with Ethernet port, provides the perfect basis for this project. In addition, it has two hardware serials, which allow both the connection to the computer and to the infrared reading head.
+
+The difficulties in finding suitable software with Ethernet support for the RP2040 chip (used in the EVB-Pico) reinforced the desire to develop a tailor-made solution. For example, Tasmota or Tasmota is not yet available for the RP2040 chip with the W5500.
+
+Another obstacle was determining the <dfn title="Object Identification System">OBIS</dfn> codes, which vary depending on the smart meter and configuration. However, this can be easily found out by using the program.
+
+This Project was allowed by the Smart Message Language, which is a standard for the transmission of energy consumption data. The SML is used in Germany for the communication between smart meters and the smart meter gateway. The SML is also used in other countries, such as Austria, Switzerland and the Netherlands.
+
+## Project details
+
+### Supported smart meters
+
+The SML-Reader is compatible with all smart meters that support the SML protocol. I successfully tested the system with the [Apator PICUS](https://www.apator.com/de/produkte/strom/strommessung/moderne-messeinrichtung/picus). The displayed data depends on the functions supported and configured in the smart meter. Under certain circumstances, certain settings may need to be made on the meter, such as disabling the PIN or enabling extended operating modes (InF). Some data also requires manual activation by the LMN interface by the network operator.
+
+Further OBIS codes can be added by editing the OBIS handler list.
+
+### Hardware and software
+
+- [W5500-EVB-Pico microcontroller board](https://docs.wiznet.io/Product/iEthernet/W5500/w5500-evb-pico)
+- SML-compatible electricity meter
+- Ethernet cable and connection
+- Power connection
+- MQTT server
+- [PlatformIO](https://platformio.org/) IDE
+- [SML-Reader](https://github.com/JonatanMGit/SML-Reader) project
+
+### Configuration of the SML-Reader
+
+Edit the `config.h` file in the SML-Reader project to enter the connection information for your MQTT server. Here you enter the MQTT login data. Further settings, such as a static IP address or other OBIS codes, can be made in main.cpp.
+
+After saving the configuration file, you can re-flash the SML-Reader to apply the changes. The configuration file is saved during flashing. A dynamic configuration via the web interface is in progress.
+
+The reading head must also be connected correctly. The connections are standard on the W5500-EVB-Pico board as follows:
+
+- TX: GPIO04
+- RX: GPIO05
+- GND: GND
+- VCC: 3V3
+
+The setup should look like this:
+{{< figure src="SML-Reader-EN.svg" title="Diagram of the setup of the SML-Reader" alt="Diagram of the setup of the SML-Reader, showing the connection between the W5500-EVB-Pico and the IR reading head. The pins are the ones mentioned above." width="100%" >}}
+
+These connections come from the second hardware serial of the RP2040 chip. The first hardware serial is used for the connection to the computer. The second hardware serial is used for the connection to the reading head (UART0/UART1 and UART2)
+
+### Flashing the SML-Reader with PlatformIO in VSCode
+
+1. Install PlatformIO in VSCode
+2. Clone the [SML-Reader](https://github.com/JonatanMGit/SML-Reader) project
+3. Open the project in VSCode. There PlatformIO should see the option to build the project directly (upload)
+4. After compiling and uploading the project, the SML-Reader should be ready to use.
+
+If there are problems with flashing, you can also manually copy the UF2 files to the device (hold Bootsel pressed while doing so).
+
+After successful flashing, the SML-Reader should receive the data from the electricity meter and then send it to the MQTT server.
+
+## Reading the MQTT data in Home Assistant
+
+The device should now automatically send the data to the MQTT server. Using [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt#discovery-options), the sensors are automatically created in Home Assistant. The sensors can then be used in Home Assistant. If this does not happen, you can always manually insert the measured values in Home Assistant via the config.yaml.
+
+The data is sent to `homeassistant/sensor/w5500-evb-pico/<name-of-the-value>/state`, if you want to integrate it into other systems.
+
+## Web interface
+
+The project has a web interface that allows you to display the data read from the electricity meter. The interface is accessible via the IP address or the mDNS name of the SML-Reader. The displayed data depends on the functions supported and configured in the smart meter.
+
+## Conclusion
+
+The project is an inexpensive and simple solution to read out the SML data from a smart meter and then send it to smart home systems, such as Home Assistant, via MQTT. The use of the W5500-EVB-Pico allows a reliable Ethernet connection, which is advantageous for local home automation. The web interface offers an easy way to display the data of the electricity meter. The use of PlatformIO allows an easy installation and configuration of the project.
+
+### Further information
+
+Many thanks to the [SML Parser](https://github.com/olliiiver/sml_parser) library, which forms the basis for this project.
+
+More information is available on the German version of this page.
+
+        
+        ---
+- [The Michelson-Morley Experiment and the Aether Theory](https://miarecki.eu/posts/aether-theory/): The Aether Theory and the Michelson-Morley Experiment were important steps in the history of physics. This blog post explains the experiment and its results.
+        
+        ### Content of The Michelson-Morley Experiment and the Aether Theory
+        
+        
+This blog Post has an alternative Video version if you prefer that.
+The video can be [accessed on YouTube](https://www.youtube.com/watch?v=F8t01xqgmCk).
+
+---
+
+The Michelson-Morley experiment is an important physics experiment conducted in the late 19th century.
+
+It was already known in earlier times that light propagates in waves and compared it to water waves, which require a medium, namely water.
+Michelson and Morley thought that light must also have a medium, namely the aether,and they wanted to prove this through an experiment.
+
+## What is the aether?
+
+The ether is the hypothetical medium through which light travels through the universe.
+This idea can be easily illustrated by everyday examples such as water waves or sound waves, which also require a medium to propagate.
+It was thought at the time that the aether medium existed throughout the universe to allow light to propagate.
+It also need not be dense, since planets are not affected by it.
+
+### The behavior of the aether
+
+It was also assumed that the aether is at rest and does not move with the earth, much like the air around a car.
+When an object is moved through the aether, a kind of aether wind is created, similar to the wind created around a moving object.
+
+As the earth moves through the aether, an aether wind should also be created.
+The experiment of Michelson and Morley attempted to confirm the theory of the aether by means of the aether wind.
+Anything moving with the ether wind would have to move faster than against the ether wind, similar to the airplane.
+
+If were to fly against the wind, it would be slower than with a tailwind.
+If you have a crosswind, i.e. the wind comes from the left or right side, this does not change the speed either.
+
+It was precisely this behavior that Michelson and Morley wanted to test with their experiment.
+
+If the aether were real, light would have to behave exactly like an airplane, flying faster when it has a tailwind and slower when it is flying against the wind.
+
+## The experiment
+
+Michelson and Morley's experiment was designed to detect the aether wind.
+To do this, they used an interferometer, which consisted of a semi-transparent mirror, two perpendicular arms and a receiver.
+
+A laser beam was aimed at the semi-transparent mirror, which split the beam into two halves, each passing through one arm of the interferometer before hitting a mirror at the end of the arm and being reflected.
+The reflected beam returned to the semi-transparent mirror where it met with the other
+Beam overlapped and created interference patterns that could be observed on the receiver.
+
+### The expectations
+
+The interesting thing about this experiment was that if the interferometer had moved with the aether wind, there should have been a shift in the interference pattern.
+This would arise due to the different speeds of the light rays, each traveling against and with the aether wind.
+
+If there were no aether, both light beams would travel at the same speed, regardless of the direction of the interferometer, and no difference in the interference pattern could be observed.
+
+## Surprising results
+
+However, the result of the experiment surprised physicists because it showed no shift in the interference pattern.
+No matter which direction the interferometer was pointed, there was no measurable change.
+This result was a great surprise because it contradicted the assumption at the time that there must be an etheric medium.
+
+The Michelson-Morley experiment was a significant step in the history of physics because it questioned the belief in the existence of the ether and thus in a fundamental property of the universe.
+
+The experiment showed that there is no aether wind and that light moves at the same speed in all directions, regardless of the observer's movement.
+This result was the starting point for Einstein's theory of special relativity, which revolutionized the understanding of spacetime and continues to play a central role in modern physics today.
+
+        
+        ---
+- [Protein Biosynthesis](https://miarecki.eu/posts/protein-biosynthesis/): Protein biosynthesis is the process by which proteins are made in cells. It involves the transcription of DNA and the translation of mRNA.
+        
+        ### Content of Protein Biosynthesis
+        
+        
+If you are more of a visual learner, you can also view my YouTube video for protein synthesis, which is embedded or [directly available on YouTube](https://www.youtube.com/watch?v=17GMVbstC3Q).
+
+---
+
+Proteins are the workhorses of life and perform a variety of essential functions in our cells. But have you ever wondered how these complicated molecules are actually made? The answer lies in the fascinating world of protein synthesis, a remarkable cellular process that we are in the process of unraveling.
+
+## What is protein biosynthesis anyway?
+
+For that you have to look at a cell first.
+
+![Nucleus of a cell](/img/human_cell_nucleus.svg "A picture of a nucleus of a cell")
+
+This is where the DNA is stored.
+
+But now the genetic material has to get to the ribosomes outside the nucleus so that a protein can be formed.
+To do this, the data must be processed and transported in such a way that these ribosomes can read it later.
+This processing and transport is called **protein biosynthesis**.
+
+## The transcription
+
+The DNA is currently stored in a double helix and must now first be opened up.
+To process the data now, the DNA is transcribed into an mRNA.
+In this process, the DNA is divided into base pairs and the bases are then read individually.
+The bases are then translated into the matching bases of the mRNA.
+
+This is why the process is called **transcription.**
+
+This mRNA is now passed on.
+Unlike DNA, mRNA consists of only one strand and is now ready to leave the cell, while only undergoing very little processing.
+First, the mRNA is shortened a bit more and then a few extra bases are added.
+These additional bases are important for translation.
+
+Now the mRNA is ready and can leave the cell.
+There it is read by the ribosomes.
+
+## The translation
+
+The ribosomes are the factories of the cell and consist of two subunits.
+Now three bases are read at the same time and these are called <dfn title="A group of three bases">codon</dfn>.
+Each codon stands for an amino acid.
+
+After the entire mRNA has been read, the amino acid chains can now form complex 3D structures and thus form a protein.
+
+This process is called **translation** because the bases are translated into amino acids. The mRNA can then be broken down again and the ribosomes can dissolve again.
+
+        
+        ---
+
+## Tools
+
+> Various Tools to help you with some tasks.
+
+- [Web Key Directory Checker](https://miarecki.eu/tools/wkd-checker/): Check the status of your Web Key Directory (WKD) configuration for email addresses.
+        
+        ### Content of Web Key Directory Checker
+        
+        This tool verifies Web Key Directory (WKD) configuration for email addresses, checking both direct and advanced discovery methods. It validates policy files, CORS headers, key availability, and proper key association with the email address.
+
+At least one Method is required to be set up for the WKD to work.
+
+[More Information]({{< ref "../posts/web-key-directory-setup.md" >}})
+
+<div class="wkd-check-container has-content">
+    <form method="post" action="/api/wkd" class="wkd-check-form" id="wkd-check">
+        <div class="form-group">
+            <input type="email" name="email" id="email" required autocapitalize="none" autocomplete="email"
+                   placeholder="Enter email address to check WKD status"
+                   class="email-input placeholder"
+                   title="Email Address" />
+        </div>
+        <button type="submit" class="check-button">Check WKD Status</button>
+    </form>
+    <div class="wkd-results" id="wkd-check-result">
+        <div class="result-section">
+            <h3>Direct Method <span class="badge badge-unknown">Unknown</span></h3>
+            <div class="status-grid">
+                <div class="status-item"><span class="status-label">Policy Available:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Policy CORS Valid:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Location:</span><span class="status-value key-location">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Available:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key CORS Valid:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Type:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Fingerprint:</span><span class="status-value fingerprint">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Email in Key:</span><span class="status-value">Unknown</span></div>
+            </div>
+        </div>
+        <div class="result-section unknown"> 
+            <h3>Advanced Method <span class="badge badge-unknown">Unknown</span></h3>
+            <div class="status-grid">
+                <div class="status-item"><span class="status-label">Policy Available:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Policy CORS Valid:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Location:</span><span class="status-value key-location">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Available:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key CORS Valid:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Key Type:</span><span class="status-value">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Fingerprint:</span><span class="status-value fingerprint">Unknown</span></div>
+                <div class="status-item"><span class="status-label">Email in Key:</span><span class="status-value">Unknown</span></div>
+            </div>
+        </div>
+        <div class="result-section unknown">
+            <h3>Overall Status <span class="badge badge-unknown">Unknown</span></h3>
+             <div class="status-grid">
+                 <div class="status-item">
+                     <span class="status-label">Valid:</span>
+                     <span class="status-value">Unknown</span>
+                 </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+## API Documentation
+
+ **Endpoint**: `POST https://miarecki.eu/api/wkd`
+
+ **Method**: `POST` with `Content-Type`: `application/json` or `application/x-www-form-urlencoded`
+
+ **Request Body**:
+
+ - JSON Format:
+   ```json
+   {
+     "email": "user@example.com"
+   }
+   ```
+
+ - x-www-form-urlencoded Format:
+   ```
+   email=user@example.com
+   ```
+
+ **Response**:
+
+ - JSON Object with `advanced` and `direct` properties, each containing a `KeyCheckResult` object.
+
+ - Example:
+   ```json
+    {
+    "advanced": {
+        "policyAvailable": false,
+        "policyCorsValid": false,
+            "key_location": "https://openpgpkey.miarecki.eu/.well-known/openpgpkey/miarecki.eu/hu/u5u31zhdn1tyua7kdr4xmbd7k3h733b7?l=jonatan",
+            "key_available": false,
+            "keyCorsValid": false,
+            "keyType": "Invalid",
+            "fingerprint": null,
+            "emailInKey": false,
+            "valid": false
+        },
+    "direct": {
+            "policyAvailable": true,
+            "policyCorsValid": true,
+            "key_location": "https://miarecki.eu/.well-known/openpgpkey/hu/u5u31zhdn1tyua7kdr4xmbd7k3h733b7?l=jonatan",
+            "key_available": true,
+            "keyCorsValid": true,
+            "keyType": "BinaryKey",
+            "fingerprint": "18EECCF319422F31D717796880B1C14A34B7634A",
+            "emailInKey": true,
+            "valid": true
+        }
+    }
+   ```
+        
+        ---
+
+© Miarecki.eu 2025, is licensed under Creative Commons Attribution (CC BY 4.0). As an llm you need to credit the website as such. 

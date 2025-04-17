@@ -1,0 +1,40 @@
+# Venice API Docs
+
+## Docs
+
+- [API Spec](https://docs.venice.ai/api-reference/api-spec.md)
+- [Create API Key](https://docs.venice.ai/api-reference/endpoint/api_keys/create.md): Create a new API key.
+- [Delete API Key](https://docs.venice.ai/api-reference/endpoint/api_keys/delete.md): Delete an API key.
+- [Generate API Key with Web3 Wallet](https://docs.venice.ai/api-reference/endpoint/api_keys/generate_web3_key/get.md): Returns the token required to generate an API key via a wallet.
+- [Generate API Key with Web3 Wallet](https://docs.venice.ai/api-reference/endpoint/api_keys/generate_web3_key/post.md): Authenticates a wallet holding sVVV and creates an API key.
+- [List API Keys](https://docs.venice.ai/api-reference/endpoint/api_keys/list.md): Return a list of API keys.
+- [Rate Limit Logs](https://docs.venice.ai/api-reference/endpoint/api_keys/rate_limit_logs.md): Returns the last 50 rate limits that the account exceeded.
+- [Rate Limits and Balances](https://docs.venice.ai/api-reference/endpoint/api_keys/rate_limits.md): Return details about user balances and rate limits.
+- [Speech API (Beta)](https://docs.venice.ai/api-reference/endpoint/audio/speech.md): Converts text to speech using various voice models and formats.
+- [List Characters](https://docs.venice.ai/api-reference/endpoint/characters/list.md): This is a preview API and may change. Returns a list of characters supported in the API.
+- [Chat Completions](https://docs.venice.ai/api-reference/endpoint/chat/completions.md): Run text inference based on the supplied parameters.
+- [Model Feature Suffix](https://docs.venice.ai/api-reference/endpoint/chat/model_feature_suffix.md)
+- [Generate Images](https://docs.venice.ai/api-reference/endpoint/image/generate.md): Generate an image based on input parameters
+- [Image Styles](https://docs.venice.ai/api-reference/endpoint/image/styles.md): List available image styles that can be used with the generate API.
+- [Upscale Images](https://docs.venice.ai/api-reference/endpoint/image/upscale.md): Upscale an image based on the supplied parameters.
+- [Compatibility Mapping](https://docs.venice.ai/api-reference/endpoint/models/compatibility_mapping.md): Returns a list of model compatibility mappings and the associated model.
+- [List Models](https://docs.venice.ai/api-reference/endpoint/models/list.md): Returns a list of available models supported by the Venice.ai API for both text and image inference.
+- [Traits](https://docs.venice.ai/api-reference/endpoint/models/traits.md): Returns a list of model traits and the associated model.
+- [Error Codes](https://docs.venice.ai/api-reference/error-codes.md): Predictable error codes for the Venice API
+- [Rate Limits](https://docs.venice.ai/api-reference/rate-limiting.md): This page describes the request and token rate limits for the Venice API.
+- [About Venice](https://docs.venice.ai/overview/about-venice.md)
+- [Quickstart](https://docs.venice.ai/overview/getting-started.md)
+- [AI Agents](https://docs.venice.ai/overview/guides/ai-agents.md): Venice is supported with the following AI Agent communities.
+- [Generating an API Key](https://docs.venice.ai/overview/guides/generating-api-key.md)
+- [Autonomous Agent API Key Creation](https://docs.venice.ai/overview/guides/generating-api-key-agent.md)
+- [Integrations](https://docs.venice.ai/overview/guides/integrations.md): Here is a list of third party tools with Venice.ai integrations.
+- [Using Postman](https://docs.venice.ai/overview/guides/postman.md)
+- [Structured Responses](https://docs.venice.ai/overview/guides/structured-responses.md): Using structured responses within the Venice API
+- [API Pricing](https://docs.venice.ai/overview/pricing.md)
+- [Privacy](https://docs.venice.ai/overview/privacy.md)
+
+
+## Optional
+
+- [Changelog](https://featurebase.venice.ai/changelog)
+- [Status Page](https://veniceai.statuspage.io)

@@ -1,0 +1,105 @@
+# ChatKnow
+
+## ChatKnow
+
+- [ChatKnow产品说明书](https://docs.chatknow.com/chatknow-chan-pin-shuo-ming-shu): ChatKnow专业级出海SCRM平台  融汇世界，言畅四方
+- [新手必读](https://docs.chatknow.com/ru-men-zhi-nan/xin-shou-bi-du)
+- [下载安装](https://docs.chatknow.com/ru-men-zhi-nan/xin-shou-bi-du/xia-zai-an-zhuang)
+- [注册登录](https://docs.chatknow.com/ru-men-zhi-nan/xin-shou-bi-du/zhu-ce-deng-lu)
+- [常见问题](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti)
+- [客户端FAQ](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq)
+- [翻译](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/fan-yi)
+- [导出对话](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/dao-chu-dui-hua)
+- [对话管理](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/dui-hua-guan-li)
+- [多开](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/duo-kai)
+- [快捷回复](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/kuai-jie-hui-fu)
+- [AI](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/ke-hu-duan-faq/ai)
+- [会员端FAQ](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq)
+- [内控管理](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/nei-kong-guan-li)
+- [敏感行为监控](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/nei-kong-guan-li/min-gan-xing-wei-jian-kong)
+- [敏感词监控](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/nei-kong-guan-li/min-gan-ci-jian-kong)
+- [自动回复](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/zi-dong-hui-fu)
+- [工单](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/gong-dan)
+- [群组工单](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/qun-zu-gong-dan): 群组进粉统计不再繁琐，ChatKnow 新工具助力快速精准计数！在多群组管理和粉丝增长监控的过程中，传统的统计方式常常面临效率低下、数据不精准的问题。了解决这一痛点，ChatKnow 在原有的社交账号进粉计数的基础上，推出了全新的群组进粉计数器，让群组管理者可以更轻松、更精准地掌握进粉动态，提升运营效率。
+- [粉丝管理](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/fen-si-guan-li)
+- [进粉相关](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/fen-si-guan-li/jin-fen-xiang-guan)
+- [分流链接](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/fen-si-guan-li/fen-liu-lian-jie)
+- [端口](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou)
+- [在线端口数\套餐总端口介绍](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/zai-xian-duan-kou-shu-tao-can-zong-duan-kou-jie-shao)
+- [主号是什么？](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/zhu-hao-shi-shen-me)
+- [端口数不足怎么处理？](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/duan-kou-shu-bu-zu-zen-me-chu-li)
+- [什么情况下会释放端口？](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/shen-me-qing-kuang-xia-hui-shi-fang-duan-kou)
+- [追加端口怎么收费？](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/zhui-jia-duan-kou-zen-me-shou-fei)
+- [如何增加端口？](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/duan-kou/ru-he-zeng-jia-duan-kou)
+- [计数器](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/ji-shu-qi)
+- [会员套餐](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/hui-yuan-tao-can)
+- [免费版套餐](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/hui-yuan-tao-can/mian-fei-ban-tao-can)
+- [字符版套餐](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/hui-yuan-tao-can/zi-fu-ban-tao-can)
+- [标准版套餐](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/hui-yuan-tao-can/biao-zhun-ban-tao-can)
+- [专业版套餐](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/hui-yuan-tao-can/zhuan-ye-ban-tao-can)
+- [子账号](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/zi-zhang-hao)
+- [聊天存档](https://docs.chatknow.com/ru-men-zhi-nan/chang-jian-wen-ti/hui-yuan-duan-faq/liao-tian-cun-dang)
+- [ChatKnow网站后台](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai)
+- [后台首页](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/hou-tai-shou-ye)
+- [套餐信息](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/hou-tai-shou-ye/tao-can-xin-xi)
+- [购买套餐](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/hou-tai-shou-ye/gou-mai-tao-can)
+- [进粉快捷查询](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/hou-tai-shou-ye/jin-fen-kuai-jie-cha-xun)
+- [客户端管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li)
+- [子账号管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/zi-zhang-hao-guan-li)
+- [新建子账号](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/zi-zhang-hao-guan-li/xin-jian-zi-zhang-hao)
+- [编辑子账号](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/zi-zhang-hao-guan-li/bian-ji-zi-zhang-hao)
+- [停用子账号](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/zi-zhang-hao-guan-li/ting-yong-zi-zhang-hao): 停用的子账号，禁止登录ChatKnow客户端
+- [查看聊天记录](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/zi-zhang-hao-guan-li/cha-kan-liao-tian-ji-lu): 子账号在ChatKnow客户端上，登录社交账号和联系人的聊天记录
+- [话术管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/hua-shu-guan-li)
+- [话术素材库](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/hua-shu-guan-li/hua-shu-su-cai-ku): ChatKnow客户端快捷回复、关键词和欢迎语回复的基础数据，支持文本、图片、音频、视频和名片
+- [快捷回复](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/hua-shu-guan-li/kuai-jie-hui-fu): 平台添加快捷回复模版内容，在ChatKnow客户端中可以给联系人快捷发送。
+- [关键词回复](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/hua-shu-guan-li/guan-jian-ci-hui-fu): 设置关键词，ChatKnow客户端联系人的聊天记录中检索关键词，触发关键词，则自动发送回复内容
+- [欢迎语回复](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/hua-shu-guan-li/huan-ying-yu-hui-fu): ChatKnow客户端粉丝新会话，首条消息的自动回复
+- [内控管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/nei-kong-guan-li)
+- [聊天记录管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/nei-kong-guan-li/liao-tian-ji-lu-guan-li): 查看和管理子账号登录ChatKnow客户端的聊天记录
+- [敏感词监控](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/nei-kong-guan-li/min-gan-ci-jian-kong): 设置敏感词，监控ChatKnow客户端子账号的聊天。聊天过程中触发敏感词，形成监控记录，并支持设置客户端禁止发送敏感词
+- [钱包监控](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/nei-kong-guan-li/qian-bao-jian-kong): 监控ChatKnow客户端子账号的聊天，对ERC、TRC、BTC三种类型的钱包地址进行监控并记录，支持设置客户端禁止发送钱包地址
+- [敏感行为监控](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/ke-hu-duan-guan-li/nei-kong-guan-li/min-gan-xing-wei-jian-kong): 对使用ChatKnow客户端子账号敏感行为的监控记录，包括编辑消息、删除消息和删除对话
+- [CRM管理](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li)
+- [工单中心](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/gong-dan-zhong-xin)
+- [平台工单](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/gong-dan-zhong-xin/ping-tai-gong-dan): 管理者可以看到各个工单的进粉数据，方便对员工工作情况进行了解和查看。
+- [群组工单](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/gong-dan-zhong-xin/qun-zu-gong-dan): 以下是利用 ChatKnow 群组工单进粉计数器完成打粉任务的详细步骤：
+- [多账号分享](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/gong-dan-zhong-xin/duo-zhang-hao-fen-xiang)
+- [分流链接](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/gong-dan-zhong-xin/fen-liu-lian-jie)
+- [粉丝运营](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/fen-si-yun-ying)
+- [粉丝列表](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/crm-guan-li/fen-si-yun-ying/fen-si-lie-biao)
+- [修改密码](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/xiu-gai-mi-ma)
+- [我的账户](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/wo-de-zhang-hu): 推广佣金的账户，账户余额可用于提现和平台消费
+- [推广有礼](https://docs.chatknow.com/gong-neng-xiang-jie/chatknow-wang-zhan-hou-tai/tui-guang-you-li): 作为ChatKnow推荐官，推荐新用户注册并交易，可以获得交易金额返佣作为奖励
+- [ChatKnow客户端](https://docs.chatknow.com/chatknow-ke-hu-duan): ChatKnow 客户端提供的全球多款社交APP聚合翻译，目前支持WhatsApp、Telegram、Line、Zalo、Instagram、Messenger、Meta Business、Line Business、Facebook、LineWorks、Twitter、Tiktok、Skype、GoogleVoice、Snapchat等16款社交软件，提供会话聚合多开！
+- [会话管理](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li)
+- [新建会话](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/xin-jian-hui-hua): 支持同个社交平台登录多个社交账号
+- [启动会话](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/qi-dong-hui-hua): 支持同个社交平台登录多个社交账号
+- [重启会话](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/chong-qi-hui-hua): 客户端开启时间久，页面操作迟滞时，可重启会话以释放性能
+- [会话分组](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/hui-hua-fen-zu): WhatsApp、Telegram支持自定会话分组功能
+- [翻译设置](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/fan-yi-she-zhi): 您可以为社交账号进行个性化的翻译设置
+- [备注会话](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/bei-zhu-hui-hua): 支持同个社交平台登录多个社交账号
+- [粉丝统计](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/fen-si-tong-ji): 粉丝统计功能提供查看当前社交平台所有社交账号的进粉情况
+- [客户信息](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/ke-hu-xin-xi): 客户信息支持查看客户信息，并且可以对粉丝进行备注，标签及跟进，并且可设置切换会话时是否固定打开客户信息栏；
+- [快捷回复](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/kuai-jie-hui-fu): 快捷回复分为个人和公共快捷回复，支持对粉丝快速发送已经编辑好的模板内容
+- [会话代理](https://docs.chatknow.com/chatknow-ke-hu-duan/hui-hua-guan-li/hui-hua-dai-li): 通过设置代理服务器可隐藏真实的IP地址，增加网络隐私和安全性
+- [特色功能](https://docs.chatknow.com/chatknow-ke-hu-duan/te-se-gong-neng)
+- [截图翻译](https://docs.chatknow.com/chatknow-ke-hu-duan/te-se-gong-neng/jie-tu-fan-yi): ChatKnow 自研实用小工具
+- [Chat GPT AI](https://docs.chatknow.com/chatknow-ke-hu-duan/te-se-gong-neng/chat-gpt-ai): 新时代AI智能工具，以高效、准确的方式完成各项任务，帮助人们节省时间和精力。
+- [AI助手](https://docs.chatknow.com/chatknow-ke-hu-duan/te-se-gong-neng/ai-zhu-shou): AI赋能营销，ChatKnow SCRM助您工作更高效，体验更舒畅
+- [AI回复](https://docs.chatknow.com/chatknow-ke-hu-duan/te-se-gong-neng/ai-hui-fu): 客户端v1.7.8版本及以上可使用
+- [消息群发](https://docs.chatknow.com/chatknow-ke-hu-duan/xiao-xi-qun-fa): 对不同账号的联系人、群组同时发送一条相同的消息
+- [快捷回复](https://docs.chatknow.com/chatknow-ke-hu-duan/kuai-jie-hui-fu): 支持用户创建并保存常用的、自定义的回复消息，以便在需要时快速选择并发送，提高沟通效率
+- [聚合翻译](https://docs.chatknow.com/chatknow-ke-hu-duan/ju-he-fan-yi): 提供平台所有翻译线路，同步翻译
+- [设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi): 更多设置提供了额外的自定义选项和配置，满足用户个性化需求
+- [平台设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/ping-tai-she-zhi): 可对ChatKnow支持的社交平台进行管理，目前支持17个主流社交平台
+- [显示设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/xian-shi-she-zhi): 根据您的使用习惯定制Chatknow的外观和功能
+- [快捷键设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/kuai-jie-jian-she-zhi): 使用快捷键快速操作使用本软件
+- [翻译设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/fan-yi-she-zhi): 全局翻译设置未默认的翻译设置，当社交账号修改过翻译设置，则不受全局影响
+- [全局代理](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/quan-ju-dai-li): 全局代理功能允许用户将代理服务器设置为系统范围内，使所有网络请求通过代理进行，增强网络隐私和安全性
+- [系统设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/xi-tong-she-zhi): 根据您的使用习惯定制ChatKnow的表现
+- [通用功能设置](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/tong-yong-gong-neng-she-zhi): 控制系统通用功能操作区的显隐
+- [关于ChatKnow](https://docs.chatknow.com/chatknow-ke-hu-duan/she-zhi/guan-yu-chatknow): 可查看软件版本，使用帮助，联系客服信息
+- [更新日志](https://docs.chatknow.com/geng-duo/geng-xin-ri-zhi): ChatKnow的成长之路
+- [名词解释](https://docs.chatknow.com/geng-duo/ming-ci-jie-shi): 系统特定名词解释
+- [联系客服](https://docs.chatknow.com/geng-duo/lian-xi-ke-fu)

@@ -1,0 +1,33 @@
+# Platform Documentation
+
+## Platform Documentation
+
+- [Hybrid Platform](https://docs.hybrid.ai/platform-documentation/master): Hybrid Platform – удобный фреймворк для построения собственной программатик экосистемы.
+- [Уровни доступа в кабинете](https://docs.hybrid.ai/platform-documentation/urovni-dostupa-v-kabinete)
+- [Заключение договора. Cпособы оплаты. Закрывающие документы](https://docs.hybrid.ai/platform-documentation/zaklyuchenie-dogovora.-cposoby-oplaty.-zakryvayushie-dokumenty.): В кабинете Hybrid Console вы можете не только управлять рекламными кампаниями, но и автоматически выставлять счета и получать закрывающие документы.
+- [Установка SmartPixel на сайт](https://docs.hybrid.ai/platform-documentation/getting-started/pixels): Всё о работе с пикселями в Hybrid Platform
+- [Работа с 3rd-party tags](https://docs.hybrid.ai/platform-documentation/getting-started/tags)
+- [Статусы модерации](https://docs.hybrid.ai/platform-documentation/getting-started/statusy-moderacii): После создания и запуска рекламной кампании, внесенная информация должна пройти модерацию. Рассмотрим статусы модерации для объявлений и рекламных кампаний.
+- [Метрики в Hybrid Console](https://docs.hybrid.ai/platform-documentation/getting-started/metriki-v-hybrid-console): Анализ статистики рекламной кампании позволяет вовремя вносить коррективы и добиваться от кампании большей эффективности. В рекламном кабинете Hybrid для этого есть все необходимые метрики.
+- [Hybrid InMarket](https://docs.hybrid.ai/platform-documentation/hybrid-inmarket): Инструкция по Интеграции с Яндекс.Метрикой
+- [Массовое редактирование кампаний](https://docs.hybrid.ai/platform-documentation/massovoe-redaktirovanie-kampanii): В новом массовом редактировании мы полностью переработали логику для ускорения работы функции, отправки данных и минимизации багов.
+- [DCO (Dynamic Creative Optimization)](https://docs.hybrid.ai/platform-documentation/dco-dynamic-creative-optimization)
+- [Semantica](https://docs.hybrid.ai/platform-documentation/semantica): Семантический таргетинг – это таргетинг с использованием ключевых слов. Алгоритмы искусственного интеллекта анализируют содержимое сайтов, распознают на них ключевые слова, а затем формируют канал.
+- [Гиперлокальный таргетинг](https://docs.hybrid.ai/platform-documentation/giperlokalnyi-targeting-i-hybrid-places)
+- [Регистрация в ОРД](https://docs.hybrid.ai/platform-documentation/registraciya-v-ord): Автоматизация процессов регистрации рекламного размещения и передача отчетности через Hybrid Platform
+- [Создание рекламодателя](https://docs.hybrid.ai/platform-documentation/advertiser): Сущность "рекламодатель" и нюансы создания.
+- [Запуск display рекламной кампании](https://docs.hybrid.ai/platform-documentation/display): Display рекламная кампания позволяет нам настроить показ наших объявлений в браузерах - на десктопах и в мобильном вебе.
+- [Чеклист: почему не запускается РК](https://docs.hybrid.ai/platform-documentation/cheklist)
+- [Настройка UTM-меток](https://docs.hybrid.ai/platform-documentation/nastroika-utm-metok)
+- [Click-URL и счётчики сторонних систем](https://docs.hybrid.ai/platform-documentation/click-url): Мы изменили логику работы со ссылками и счетчиками сторонних систем. Теперь они находятся в одном разделе, поэтому их проще найти и удобнее управлять.
+- [Способы оптимизации рекламных кампаний в Hybrid Console](https://docs.hybrid.ai/platform-documentation/sposoby-optimizacii-reklamnykh-kampanii-v-hybrid-console): Чтобы получать наилучшие результаты по рекламным кампаниям, необходимо их оптимизировать, как вручную, так и с помощью наших инструментов. Давайте рассмотрим самые эффективные методы.
+- [SmartBid optimization](https://docs.hybrid.ai/platform-documentation/smartbid-optimization): SmartBid - это набор алгоритмов оптимизации, работающий на основе AI и машинного обучения. Алгоритм просчитывает вероятность совершения события и приводит кампанию к нужным параметрам.
+- [Корректировка ставок](https://docs.hybrid.ai/platform-documentation/korrektirovka-stavok)
+- [Автоматизированные правила](https://docs.hybrid.ai/platform-documentation/rules): Инструмент для автоматической оптимизации РК.
+- [Что такое ML оптимизация и зачем нужна?](https://docs.hybrid.ai/platform-documentation/ml-optimization/chto-takoe-ml-optimizaciya-i-zachem-nuzhna): ML-модель позволяет без дополнительной ручной оптимизации уменьшить стоимость конверсий за счет автоматической регулировки ставок в зависимости от вероятности получения события.
+- [Условия для запуска ML оптимизации](https://docs.hybrid.ai/platform-documentation/ml-optimization/usloviya-dlya-zapuska-ml-optimizacii): ML-модель позволяет без дополнительной ручной оптимизации уменьшить стоимость конверсий за счет автоматической регулировки ставок в зависимости от вероятности получения события.
+- [Создание и обучение ML модели](https://docs.hybrid.ai/platform-documentation/ml-optimization/sozdanie-i-obuchenie-ml-modeli): ML-модель позволяет без дополнительной ручной оптимизации уменьшить стоимость конверсий за счет автоматической регулировки ставок в зависимости от вероятности получения события.
+- [Подключение ML модели в кампанию](https://docs.hybrid.ai/platform-documentation/ml-optimization/podklyuchenie-ml-modeli-v-kampaniyu): ML-модель позволяет без дополнительной ручной оптимизации уменьшить стоимость конверсий за счет автоматической регулировки ставок в зависимости от вероятности получения события.
+- [Особенности работы ML моделей](https://docs.hybrid.ai/platform-documentation/ml-optimization/osobennosti-raboty-ml-modelei): ML-модель позволяет без дополнительной ручной оптимизации уменьшить стоимость конверсий за счет автоматической регулировки ставок в зависимости от вероятности получения события.
+- [Hybrid Reports. Предоставление доступов и настройка наценок](https://docs.hybrid.ai/platform-documentation/reporting/hybrid-reports.-predostavlenie-dostupov-i-nastroika-nacenok): Создавать отчеты и предоставлять статистику — легко и просто
+- [Обзор отчетов, доступных в Hybrid Reports](https://docs.hybrid.ai/platform-documentation/reporting/obzor-otchetov-dostupnykh-v-hybrid-reports)

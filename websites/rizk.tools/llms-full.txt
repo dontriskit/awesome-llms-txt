@@ -1,0 +1,847 @@
+# Rizk SDK Documentation | Documentation
+
+> Documentation for the Rizk SDK - a powerful toolkit for building AI applications with built-in guardrails, telemetry, and policy enforcement.
+
+## Main
+
+### GitHub
+
+Source: [https://github.com/rizk-tools/rizk-sdk](https://github.com/rizk-tools/rizk-sdk)
+
+*Error fetching content from https://github.com/rizk-tools/rizk-sdk*
+
+### Installation
+
+Source: [https://docs.rizk.tools/getting-started/installation/](https://docs.rizk.tools/getting-started/installation/)
+
+# Installation
+
+This guide will help you install and set up the Rizk SDK in your project.
+
+## Prerequisites
+
+* Python 3.8 or higher
+* pip (Python package installer)
+
+## Installing the SDK
+
+You can install the Rizk SDK using pip:
+
+```
+
+pip install rizk-sdk
+
+
+```
+
+## Environment Setup
+
+The Rizk SDK requires certain environment variables to be set up. You can set them in your `.env` file or directly in your environment:
+
+```
+
+RIZK_API_KEY=your_api_key_here
+
+RIZK_OPENTELEMETRY_ENDPOINT=https://api.rizk.tools
+
+
+```
+
+## Dependencies
+
+The Rizk SDK has the following main dependencies:
+
+* `opentelemetry-api`
+* `opentelemetry-sdk`
+* `traceloop-sdk`
+* `pyyaml`
+* `aiohttp`
+
+These will be automatically installed when you install the Rizk SDK.
+
+## Verifying Installation
+
+You can verify your installation by running a simple test:
+
+```
+
+from rizk.sdk import Rizk
+
+
+# Initialize the SDK
+
+client = Rizk.init(
+
+    app_name="my_app",
+
+    api_key="your_api_key_here"
+
+)
+
+
+# If no exception is raised, the installation was successful
+
+print("Rizk SDK installed successfully!")
+
+
+```
+
+## Next Steps
+
+* [Quick Start Guide](./quickstart)
+* [Configuration Guide](./configuration)
+* [API Reference](../api/rizk)
+
+### Quickstart
+
+Source: [https://docs.rizk.tools/getting-started/quickstart/](https://docs.rizk.tools/getting-started/quickstart/)
+
+# Quick Start
+
+This guide will help you get started with the Rizk SDK by creating a simple AI agent with guardrails.
+
+## Basic Setup
+
+First, let's create a simple script that uses the Rizk SDK:
+
+```
+
+import os
+
+from rizk.sdk import Rizk
+
+from rizk.sdk.decorators import agent, add_policies
+
+
+# Initialize the SDK
+
+client = Rizk.init(
+
+    app_name="my_ai_agent",
+
+    api_key=os.getenv("RIZK_API_KEY"),
+
+    telemetry_enabled=True
+
+)
+
+
+# Define your AI agent
+
+@agent
+
+@add_policies(["content_moderation", "safety"])
+
+async def my_agent(query: str):
+
+    """
+
+    A simple AI agent that processes user queries with guardrails.
+
+
+    Args:
+
+        query: The user's input query
+
+
+    Returns:
+
+        str: The agent's response
+
+    """
+
+    # Set context for the current conversation
+
+    Rizk.set_association_properties({
+
+        "organization_id": "my_org",
+
+        "project_id": "my_project",
+
+        "agent_id": "my_agent"
+
+    })
+
+
+    # Process the query through guardrails
+
+    guardrails = Rizk.get_guardrails()
+
+    result = await guardrails.process_message(query)
+
+
+    if not result["allowed"]:
+
+        return f"Query blocked: {result.get('blocked_reason', 'Policy violation')}"
+
+
+    # Your AI processing logic here
+
+    response = f"Processed query: {query}"
+
+
+    # Check the output through guardrails
+
+    output_check = await guardrails.check_output(response)
+
+
+    if not output_check["allowed"]:
+
+        return "Response blocked: Policy violation detected"
+
+
+    return response
+
+
+# Example usage
+
+async def main():
+
+    # Test the agent
+
+    response = await my_agent("Hello, how are you?")
+
+    print(response)
+
+
+    # Test with potentially harmful content
+
+    response = await my_agent("Generate harmful content")
+
+    print(response)
+
+
+if __name__ == "__main__":
+
+    import asyncio
+
+    asyncio.run(main())
+
+
+```
+
+## Understanding the Code
+
+Let's break down the key components:
+
+1. **SDK Initialization**:  
+```  
+client = Rizk.init(  
+    app_name="my_ai_agent",  
+    api_key=os.getenv("RIZK_API_KEY"),  
+    telemetry_enabled=True  
+)  
+```  
+This initializes the Rizk SDK with your application name and API key.
+2. **Agent Decorator**:  
+```  
+@agent  
+@add_policies(["content_moderation", "safety"])  
+```  
+The `@agent` decorator marks your function as an AI agent, and `@add_policies` applies specific guardrails policies.
+3. **Guardrails Processing**:  
+```  
+guardrails = Rizk.get_guardrails()  
+result = await guardrails.process_message(query)  
+```  
+This processes the input through the guardrails system before your AI logic.
+4. **Output Checking**:  
+```  
+output_check = await guardrails.check_output(response)  
+```  
+This ensures the AI's response complies with policies.
+
+## Running the Example
+
+1. Save the code in a file (e.g., `my_agent.py`)
+2. Set your environment variables:  
+```  
+export RIZK_API_KEY=your_api_key_here  
+```
+3. Run the script:  
+```  
+python my_agent.py  
+```
+
+## Next Steps
+
+* [Configuration Guide](./configuration)
+* [Guardrails Documentation](../core-concepts/guardrails)
+
+### Configuration
+
+Source: [https://docs.rizk.tools/getting-started/configuration/](https://docs.rizk.tools/getting-started/configuration/)
+
+# Configuration
+
+This guide covers all configuration options available in the Rizk SDK.
+
+## SDK Initialization
+
+The Rizk SDK can be initialized with various configuration options:
+
+```
+
+from rizk.sdk import Rizk
+
+
+client = Rizk.init(
+
+    # Required
+
+    app_name="my_app",
+
+    api_key="your_api_key_here",
+
+
+    # Optional
+
+    opentelemetry_endpoint="https://api.rizk.tools",
+
+    enabled=True,
+
+    telemetry_enabled=True,
+
+    headers={"custom-header": "value"},
+
+    disable_batch=False,
+
+    resource_attributes={
+
+        "service.name": "my_service",
+
+        "service.version": "1.0.0",
+
+        "deployment.environment": "production"
+
+    },
+
+    policies_path="/path/to/policies",
+
+    llm_service=my_custom_llm_service
+
+)
+
+
+```
+
+## Configuration Options
+
+### Required Options
+
+| Option    | Type | Description              |
+| --------- | ---- | ------------------------ |
+| app\_name | str  | Name of your application |
+| api\_key  | str  | Your Rizk API key        |
+
+### Optional Options
+
+| Option                  | Type             | Default | Description                         |
+| ----------------------- | ---------------- | ------- | ----------------------------------- |
+| opentelemetry\_endpoint | str              | None    | OpenTelemetry collector endpoint    |
+| enabled                 | bool             | True    | Whether tracing is enabled          |
+| telemetry\_enabled      | bool             | True    | Whether telemetry is enabled        |
+| headers                 | Dict\[str, str\] | {}      | Custom headers for API requests     |
+| disable\_batch          | bool             | False   | Whether to disable batch processing |
+| resource\_attributes    | Dict\[str, str\] | {}      | Additional resource attributes      |
+| policies\_path          | str              | None    | Path to custom policies directory   |
+| llm\_service            | Any              | None    | Custom LLM service implementation   |
+
+## Environment Variables
+
+You can also configure the SDK using environment variables:
+
+```
+
+RIZK_API_KEY=your_api_key_here
+
+RIZK_OPENTELEMETRY_ENDPOINT=https://api.rizk.tools
+
+RIZK_ENABLED=true
+
+RIZK_TELEMETRY_ENABLED=true
+
+RIZK_DISABLE_BATCH=false
+
+RIZK_POLICIES_PATH=/path/to/policies
+
+
+```
+
+## Resource Attributes
+
+Resource attributes help identify your application in telemetry data:
+
+```
+
+resource_attributes = {
+
+    "service.name": "my_service",
+
+    "service.version": "1.0.0",
+
+    "deployment.environment": "production",
+
+    "custom.attribute": "value"
+
+}
+
+
+client = Rizk.init(
+
+    app_name="my_app",
+
+    api_key="your_api_key",
+
+    resource_attributes=resource_attributes
+
+)
+
+
+```
+
+## Custom Policies
+
+You can specify a custom path for your policies:
+
+```
+
+client = Rizk.init(
+
+    app_name="my_app",
+
+    api_key="your_api_key",
+
+    policies_path="/path/to/your/policies"
+
+)
+
+
+```
+
+The policies directory should contain YAML files with policy definitions.
+
+## Custom LLM Service
+
+You can provide your own LLM service implementation:
+
+```
+
+class MyCustomLLMService:
+
+    async def generate(self, prompt: str, **kwargs):
+
+        # Your custom LLM implementation
+
+        pass
+
+
+client = Rizk.init(
+
+    app_name="my_app",
+
+    api_key="your_api_key",
+
+    llm_service=MyCustomLLMService()
+
+)
+
+
+```
+
+## Next Steps
+
+* [Guardrails Documentation](../core-concepts/guardrails)
+* [API Reference](/api/rizk)
+
+### Guardrails
+
+Source: [https://docs.rizk.tools/core-concepts/guardrails/](https://docs.rizk.tools/core-concepts/guardrails/)
+
+# Guardrails
+
+Guardrails are a powerful feature of the Rizk SDK that helps ensure your AI applications operate safely and ethically. This guide explains how guardrails work and how to use them effectively.
+
+## Overview
+
+Guardrails provide multiple layers of protection:
+
+1. **Fast Rules**: Quick, rule-based checks for immediate policy violations
+2. **Policy Augmentation**: Context-aware policy enforcement
+3. **LLM Fallback**: Advanced language model-based policy checking
+
+## Basic Usage
+
+### Using Guardrails with Decorators
+
+The simplest way to use guardrails is through decorators:
+
+```
+
+from rizk.sdk import Rizk
+
+from rizk.sdk.decorators import agent, add_policies
+
+
+@agent
+
+@add_policies(["content_moderation", "safety"])
+
+async def my_agent(query: str):
+
+    # Your agent logic here
+
+    pass
+
+
+```
+
+### Manual Guardrails Processing
+
+You can also process messages manually through the guardrails engine:
+
+```
+
+from rizk.sdk import Rizk
+
+
+# Initialize SDK
+
+client = Rizk.init(app_name="my_app", api_key="your_api_key")
+
+
+# Get guardrails instance
+
+guardrails = Rizk.get_guardrails()
+
+
+# Process a message
+
+result = await guardrails.process_message(
+
+    message="User query here",
+
+    context={
+
+        "conversation_id": "unique_id",
+
+        "user_id": "user123"
+
+    }
+
+)
+
+
+if not result["allowed"]:
+
+    print(f"Message blocked: {result.get('blocked_reason')}")
+
+
+```
+
+## Guardrails Components
+
+### 1\. Fast Rules Engine
+
+Fast rules provide immediate policy checks using predefined rules:
+
+```
+
+# Example fast rule in YAML
+
+- id: no_harmful_content
+
+  description: Block harmful content
+
+  rules:
+
+    - pattern: "harmful|dangerous|illegal"
+
+      action: block
+
+      confidence: 0.9
+
+
+```
+
+### 2\. Policy Augmentation
+
+Policy augmentation enhances the system prompt with policy guidelines:
+
+```
+
+# Example policy augmentation
+
+@add_policies(["content_moderation"])
+
+async def my_agent(query: str):
+
+    # The system prompt will be automatically augmented with policy guidelines
+
+    response = await process_query(query)
+
+    return response
+
+
+```
+
+### 3\. LLM Fallback
+
+The LLM fallback provides advanced policy checking:
+
+```
+
+# The LLM fallback is automatically used when fast rules have low confidence
+
+result = await guardrails.process_message(
+
+    message="Complex query requiring deep analysis",
+
+    context={"conversation_id": "unique_id"}
+
+)
+
+
+if result["decision_layer"] == "llm_fallback":
+
+    print("Using LLM for policy evaluation")
+
+
+```
+
+## Policy Configuration
+
+### Default Policies
+
+The SDK includes default policies in `default_policies.yaml`:
+
+```
+
+policies:
+
+  - id: content_moderation
+
+    description: Basic content moderation
+
+    rules:
+
+      - pattern: "harmful|dangerous"
+
+        action: block
+
+        confidence: 0.9
+
+
+```
+
+### Custom Policies
+
+Create your own policies in YAML format:
+
+```
+
+policies:
+
+  - id: custom_policy
+
+    description: Custom policy rules
+
+    rules:
+
+      - pattern: "your_pattern"
+
+        action: block
+
+        confidence: 0.8
+
+
+```
+
+## Context and State Management
+
+Guardrails maintain conversation state for better context:
+
+```
+
+# Set context for the current conversation
+
+Rizk.set_association_properties({
+
+    "organization_id": "org123",
+
+    "project_id": "project456",
+
+    "agent_id": "agent789"
+
+})
+
+
+# Process message with context
+
+result = await guardrails.process_message(
+
+    message="User query",
+
+    context={
+
+        "conversation_id": "conv123",
+
+        "recent_messages": [
+
+            {"role": "user", "content": "Previous message"}
+
+        ]
+
+    }
+
+)
+
+
+```
+
+## Output Checking
+
+Guardrails can also check AI-generated responses:
+
+```
+
+# Generate response
+
+response = "AI generated response"
+
+
+# Check output
+
+output_check = await guardrails.check_output(
+
+    ai_response=response,
+
+    context={"conversation_id": "conv123"}
+
+)
+
+
+if not output_check["allowed"]:
+
+    print("Response blocked: Policy violation")
+
+
+```
+
+## Best Practices
+
+1. **Always Use Context**:  
+```  
+context = {  
+    "conversation_id": str(uuid.uuid4()),  
+    "user_id": "user123",  
+    "timestamp": datetime.now().isoformat()  
+}  
+```
+2. **Handle Policy Violations**:  
+```  
+result = await guardrails.process_message(message, context)  
+if not result["allowed"]:  
+    logging.warning(f"Policy violation: {result.get('blocked_reason')}")  
+    return handle_violation(result)  
+```
+3. **Monitor Decision Layers**:  
+```  
+if result["decision_layer"] == "fast_rules":  
+    logging.info("Using fast rules for policy check")  
+elif result["decision_layer"] == "llm_fallback":  
+    logging.info("Using LLM for policy check")  
+```
+
+## Next Steps
+
+* [API Reference](../api/guardrails-engine)
+
+### Policy Enforcement
+
+Source: [https://docs.rizk.tools/core-concepts/policy-enforcement/](https://docs.rizk.tools/core-concepts/policy-enforcement/)
+
+*Content available at [https://docs.rizk.tools/core-concepts/policy-enforcement/](https://docs.rizk.tools/core-concepts/policy-enforcement/)*
+
+### Telemetry
+
+Source: [https://docs.rizk.tools/core-concepts/telemetry/](https://docs.rizk.tools/core-concepts/telemetry/)
+
+*Content available at [https://docs.rizk.tools/core-concepts/telemetry/](https://docs.rizk.tools/core-concepts/telemetry/)*
+
+### Tracing
+
+Source: [https://docs.rizk.tools/core-concepts/tracing/](https://docs.rizk.tools/core-concepts/tracing/)
+
+*Content available at [https://docs.rizk.tools/core-concepts/tracing/](https://docs.rizk.tools/core-concepts/tracing/)*
+
+### Rizk Class
+
+Source: [https://docs.rizk.tools/api/rizk/](https://docs.rizk.tools/api/rizk/)
+
+*Content available at [https://docs.rizk.tools/api/rizk/](https://docs.rizk.tools/api/rizk/)*
+
+### Client
+
+Source: [https://docs.rizk.tools/api/client/](https://docs.rizk.tools/api/client/)
+
+*Content available at [https://docs.rizk.tools/api/client/](https://docs.rizk.tools/api/client/)*
+
+### Fast Rules Engine
+
+Source: [https://docs.rizk.tools/api/fast-rules-engine/](https://docs.rizk.tools/api/fast-rules-engine/)
+
+*Content available at [https://docs.rizk.tools/api/fast-rules-engine/](https://docs.rizk.tools/api/fast-rules-engine/)*
+
+### Guardrails Engine
+
+Source: [https://docs.rizk.tools/api/guardrails-engine/](https://docs.rizk.tools/api/guardrails-engine/)
+
+*Content available at [https://docs.rizk.tools/api/guardrails-engine/](https://docs.rizk.tools/api/guardrails-engine/)*
+
+### LLM Fallback
+
+Source: [https://docs.rizk.tools/api/llm-fallback/](https://docs.rizk.tools/api/llm-fallback/)
+
+*Content available at [https://docs.rizk.tools/api/llm-fallback/](https://docs.rizk.tools/api/llm-fallback/)*
+
+### Policy Augmentation
+
+Source: [https://docs.rizk.tools/api/policy-augmentation/](https://docs.rizk.tools/api/policy-augmentation/)
+
+*Content available at [https://docs.rizk.tools/api/policy-augmentation/](https://docs.rizk.tools/api/policy-augmentation/)*
+
+### State Manager
+
+Source: [https://docs.rizk.tools/api/state-manager/](https://docs.rizk.tools/api/state-manager/)
+
+*Content available at [https://docs.rizk.tools/api/state-manager/](https://docs.rizk.tools/api/state-manager/)*
+
+
+## Documentation
+
+### Documentation
+
+Source: [https://docs.rizk.tools/](https://docs.rizk.tools/)
+
+# Rizk SDK Documentation
+
+Welcome to the Rizk SDK documentation. Rizk is a powerful SDK for building AI applications with built-in guardrails, telemetry, and policy enforcement.
+
+## Getting Started
+
+[InstallationSetting up Rizk SDK in your project](/getting-started/installation)[Quick StartBuild your first app with Rizk SDK](/getting-started/quickstart)[ConfigurationConfigure Rizk SDK for your needs](/getting-started/configuration)
+
+## Core Concepts
+
+[GuardrailsProtect your AI applications](/core-concepts/guardrails)[TelemetryMonitor and analyze usage](/core-concepts/telemetry)[Policy EnforcementImplement and enforce policies](/core-concepts/policy-enforcement)[TracingDebug and track execution flows](/core-concepts/tracing)
+
+## API Reference
+
+[Rizk ClassCore SDK functionality](/api/rizk)[ClientClient-side integration](/api/client)[DecoratorsExtend functionality](/api/decorators)[Guardrails EngineAdvanced guardrails configuration](/api/guardrails-engine)
+
+LLMs Full Documentation
+
+This document provides comprehensive documentation for LLM integration in the Rizk SDK.
+
+[Content to be added]

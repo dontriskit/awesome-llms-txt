@@ -1,0 +1,155 @@
+# Intelligems Docs
+
+## Intelligems Docs
+
+- [Welcome to Intelligems](https://docs.intelligems.io/welcome-to-intelligems)
+- [Getting Started](https://docs.intelligems.io/getting-started/getting-started)
+- [Adding Intelligems Script to your Theme](https://docs.intelligems.io/getting-started/adding-intelligems-script-to-your-theme)
+- [Common Use Cases](https://docs.intelligems.io/getting-started/common-use-cases)
+- [Price Test Common Use Cases](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases)
+- [The Straddle](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases/the-straddle)
+- [The Double Down](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases/the-double-down)
+- [The Strikethrough](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases/the-strikethrough)
+- [The Great Discount Debate](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases/the-great-discount-debate)
+- [Savings Showdown: Volume Discount vs. Price Discount](https://docs.intelligems.io/getting-started/common-use-cases/price-test-common-use-cases/savings-showdown-volume-discount-vs.-price-discount)
+- [Shipping Test Common Use Cases](https://docs.intelligems.io/getting-started/common-use-cases/shipping-test-common-use-cases)
+- [The Flat Fee Face Off](https://docs.intelligems.io/getting-started/common-use-cases/shipping-test-common-use-cases/the-flat-fee-face-off)
+- [The Threshold Trials](https://docs.intelligems.io/getting-started/common-use-cases/shipping-test-common-use-cases/the-threshold-trials)
+- [Content Test Common Use Cases](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases)
+- [Landing Page Testing](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/landing-page-testing)
+- [Testing a Brand New Theme](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/testing-a-brand-new-theme)
+- [Testing Different Imagery](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/testing-different-imagery)
+- [Testing Cart Elements](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/testing-cart-elements)
+- [Testing Announcement Bar Text](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/testing-announcement-bar-text)
+- [Navigation Menu](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/navigation-menu)
+- [Testing Checkout Blocks](https://docs.intelligems.io/getting-started/common-use-cases/content-test-common-use-cases/testing-checkout-blocks): Test components on Checkout created through the Checkout Blocks app
+- [Offer Test Common Use Cases](https://docs.intelligems.io/getting-started/common-use-cases/offer-test-common-use-cases)
+- [The Volume Discount Duel](https://docs.intelligems.io/getting-started/common-use-cases/offer-test-common-use-cases/the-volume-discount-duel)
+- [Gifting Games](https://docs.intelligems.io/getting-started/common-use-cases/offer-test-common-use-cases/gifting-games)
+- [Best Practices](https://docs.intelligems.io/getting-started/best-practices): Tips for getting the most out of Intelligems.
+- [Test Design Best Practices](https://docs.intelligems.io/getting-started/best-practices/test-design-best-practices): We want you to get the most from the tests you run with Intelligems! See below for our suggested best practices for designing solid tests.
+- [Best Practices During a Test](https://docs.intelligems.io/getting-started/best-practices/best-practices-during-a-test): This article will take you through some best practices leading up to launch and while a test is live.
+- [General FAQs](https://docs.intelligems.io/getting-started/general-faqs)
+- [Price Testing - Getting Started](https://docs.intelligems.io/price-testing/price-testing-getting-started)
+- [Price Testing Integration Guides](https://docs.intelligems.io/price-testing/price-testing-integration-guides): Integration guides for price tests.
+- [Integration Guide using Shopify Functions](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-shopify-functions)
+- [Step 1: Add Intelligems JavaScript](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-shopify-functions/step-1-add-intelligems-javascript)
+- [Step 2: Tag product prices](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-shopify-functions/step-2-tag-product-prices)
+- [Step 3: Update your cart](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-shopify-functions/step-3-update-your-cart)
+- [Step 4: QA your integration, and publish your changes](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-shopify-functions/step-4-qa-your-integration-and-publish-your-changes)
+- [Integration Guide using Checkout Scripts](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts): Learn how to integrate your Shopify Plus store with Intelligems for a Price Test using Checkout Scripts.
+- [Step 1: Add Intelligems JavaScript](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts/step-1-add-intelligems-javascript)
+- [Step 2: Tag product prices](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts/step-2-tag-product-prices)
+- [Step 3: Add the Checkout Script](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts/step-3-add-the-checkout-script)
+- [Step 4: Update your cart](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts/step-4-update-your-cart): Remove hidden line item properties, or calculate and hide discount messages
+- [Step 5: QA your integration, and publish your changes](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-checkout-scripts/step-5-qa-your-integration-and-publish-your-changes)
+- [Integration Guide using Duplicate Products](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products): Learn how to integrate your Shopify store with Intelligems for a Pricing Test using duplicate products.
+- [Step 1: Add Intelligems JavaScript](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products/step-1-add-intelligems-javascript)
+- [Step 2: Tag product prices](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products/step-2-tag-product-prices)
+- [Step 3: Hide duplicate products from collections pages](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products/step-3-hide-duplicate-products-from-collections-pages)
+- [Step 4: Configure duplicate products](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products/step-4-configure-duplicate-products)
+- [Step 5: QA your integration, and publish your changes](https://docs.intelligems.io/price-testing/price-testing-integration-guides/integration-guide-using-duplicate-products/step-5-qa-your-integration-and-publish-your-changes)
+- [Troubleshooting](https://docs.intelligems.io/price-testing/price-testing-integration-guides/troubleshooting): Learn how to address common price test integration issues.
+- [How to Add the data-product-id and/or data-variant-id Attribute to an Element](https://docs.intelligems.io/price-testing/price-testing-integration-guides/troubleshooting/how-to-add-the-data-product-id-and-or-data-variant-id-attribute-to-an-element): If a price on your website that is included in your test is not updating in preview mode, or is highlighted in blue, use this guide to resolve it.
+- [Replo Page Builder](https://docs.intelligems.io/price-testing/price-testing-integration-guides/replo-page-builder)
+- [How to Set Up a Price Test](https://docs.intelligems.io/price-testing/how-to-set-up-a-price-test): Check out the steps below to learn how to set up a price test!
+- [Price Test QA Checklist](https://docs.intelligems.io/price-testing/price-test-qa-checklist): Use this checklist to QA every Price Test before hitting start!
+- [Starting a Price Test](https://docs.intelligems.io/price-testing/starting-a-price-test): Learn how to launch a Price Test in the Intelligems app.
+- [Ending a Price Test](https://docs.intelligems.io/price-testing/ending-a-price-test): Follow these steps to end your Price Test.
+- [Testing Prices with Subscriptions](https://docs.intelligems.io/price-testing/testing-prices-with-subscriptions): Read this article to understand how to run price tests if your store offers subscriptions.
+- [Testing Prices with Recharge 2.0 or Stay.Ai](https://docs.intelligems.io/price-testing/testing-prices-with-subscriptions/testing-prices-with-recharge-2.0-or-stay.ai): This document shows how to set up Intelligems if you want to test prices and you're using Recharge 2.0 or Stay.ai.
+- [How to Set Up a Price Test using Duplicate Products and Recharge Subscriptions](https://docs.intelligems.io/price-testing/testing-prices-with-subscriptions/how-to-set-up-a-price-test-using-duplicate-products-and-recharge-subscriptions): Learn how to set up a Pricing Test using duplicate products and Recharge Subscriptions.
+- [How to Set Up a Price Test using Duplicate Products and Skio Subscriptions](https://docs.intelligems.io/price-testing/testing-prices-with-subscriptions/how-to-set-up-a-price-test-using-duplicate-products-and-skio-subscriptions): Learn how to set up a Pricing Test using duplicate products and Skio Subscriptions.
+- [Managing Duplicate Products when Redirecting to Duplicate PDPs](https://docs.intelligems.io/price-testing/testing-prices-with-subscriptions/managing-duplicate-products-when-redirecting-to-duplicate-pdps): For more complex sites, Intelligems can duplicate products for Price Tests. Here we'll walk you through the steps to configure and activate these duplicate products.
+- [Multi-Currency Testing](https://docs.intelligems.io/price-testing/multi-currency-testing): Run price tests in different currencies
+- [Price Testing FAQs](https://docs.intelligems.io/price-testing/price-testing-faqs)
+- [Shipping Testing - Getting Started](https://docs.intelligems.io/shipping-testing/shipping-testing-getting-started): How shipping testing works and how to get started.
+- [How to Set Up a Shipping Test](https://docs.intelligems.io/shipping-testing/how-to-set-up-a-shipping-test): This guide will walk you through the steps to set up a shipping test in Intelligems.
+- [Shipping Test QA Checklist](https://docs.intelligems.io/shipping-testing/shipping-test-qa-checklist)
+- [Starting a Shipping Test](https://docs.intelligems.io/shipping-testing/starting-a-shipping-test)
+- [Ending a Shipping Test](https://docs.intelligems.io/shipping-testing/ending-a-shipping-test): Follow these steps to end a Shipping Test in the Intelligems app.
+- [Shipping Progress Bar Integration](https://docs.intelligems.io/shipping-testing/shipping-progress-bar-integration)
+- [Shipping Testing FAQs](https://docs.intelligems.io/shipping-testing/shipping-testing-faqs)
+- [Content Testing - Getting Started](https://docs.intelligems.io/content-testing/content-testing-getting-started)
+- [How to Set Up a Split URL Test](https://docs.intelligems.io/content-testing/content-testing-getting-started/how-to-set-up-a-split-url-test): Page redirect testing allows you to split-test URLs to determine which is the best for conversion, revenue, and profit.
+- [How to Set Up an Onsite Edits Test](https://docs.intelligems.io/content-testing/content-testing-getting-started/how-to-set-up-an-onsite-edits-test): Onsite Edits tests allow you to test smaller components on your site using our onsite editor. This is best for smaller changes, such as copy changes, color changes, image swaps, and more.
+- [How to Set Up a Template Test](https://docs.intelligems.io/content-testing/content-testing-getting-started/how-to-set-up-a-template-test)
+- [How to Set Up a Theme Test](https://docs.intelligems.io/content-testing/content-testing-getting-started/how-to-set-up-a-theme-test): Theme testing allows you to split test Shopify themes to determine which is the best for conversion, revenue, and profit.
+- [How to Set Up a Test using our JavaScript API](https://docs.intelligems.io/content-testing/content-testing-getting-started/how-to-set-up-a-test-using-our-javascript-api): Intelligems allows you to set up powerful custom tests using its window object API.
+- [Content Test QA Checklist](https://docs.intelligems.io/content-testing/content-test-qa-checklist)
+- [Ending a Theme Test](https://docs.intelligems.io/content-testing/ending-a-theme-test)
+- [Content Testing FAQs](https://docs.intelligems.io/content-testing/content-testing-faqs)
+- [Personalizations - Getting Started](https://docs.intelligems.io/personalizations/personalizations-getting-started): Personalizations allow you to custom tailor every visitor’s shopping experience with targeted offers, layouts, branding and copy - saving time and maximizing profits.
+- [Personalization Modifications](https://docs.intelligems.io/personalizations/personalization-modifications): This article walks you through the first step of setting up a Personalization - choosing the Modifications that determine what changes will be applied to your site.
+- [Offer Modifications](https://docs.intelligems.io/personalizations/personalization-modifications/offer-modifications): Offers are special Personalization Modifications that allow you to serve discounts and promotions to your visitors without code leakage, test them against each other, and track their success.
+- [Progress Bars](https://docs.intelligems.io/personalizations/personalization-modifications/progress-bars)
+- [Offers: Integrating Widgets](https://docs.intelligems.io/personalizations/personalization-modifications/offers-integrating-widgets): Learn how to add the Intelligems Offer Quantity Buttons to your product pages and Offer Progress Bar to your cart.
+- [Offers: Running a Large Number of Offer Personalizations with Shopify Functions](https://docs.intelligems.io/personalizations/personalization-modifications/offers-running-a-large-number-of-offer-personalizations-with-shopify-functions)
+- [Theme Personalization Precautions](https://docs.intelligems.io/personalizations/personalization-modifications/theme-personalization-precautions)
+- [Targeting Personalizations](https://docs.intelligems.io/personalizations/targeting-personalizations): Once you’ve set up Modifications, go to the Targeting tab to optionally decide who should see the Personalization once it’s active. Personalizations by default show to all visitors.
+- [Targeting Modes for Personalizations](https://docs.intelligems.io/personalizations/targeting-modes-for-personalizations)
+- [Previewing Personalizations](https://docs.intelligems.io/personalizations/previewing-personalizations): Once you’ve set up Modifications, you can go to the Preview tab to make sure everything looks and works well before activating it, or just to see how an active Personalization appears to visitors.
+- [Testing Offer Personalizations](https://docs.intelligems.io/personalizations/testing-offer-personalizations)
+- [Offers Limits](https://docs.intelligems.io/personalizations/offers-limits): Learn how to manage the offer limit for Personalizations and Offer Tests, with options to archive, delete, or increase your limit.
+- [Offer Combinations](https://docs.intelligems.io/personalizations/offer-combinations)
+- [Scheduling Personalizations](https://docs.intelligems.io/personalizations/scheduling-personalizations)
+- [Rolling Out Tests](https://docs.intelligems.io/personalizations/rolling-out-tests): Quickly apply the most successful variant in an experiment to all visitors or to a limited audience by rolling it out as a Personalization.
+- [Personalizations FAQs](https://docs.intelligems.io/personalizations/personalizations-faqs)
+- [Targeting](https://docs.intelligems.io/general-features/targeting)
+- [Audience Targeting](https://docs.intelligems.io/general-features/targeting/audience-targeting)
+- [Currency Targeting](https://docs.intelligems.io/general-features/targeting/currency-targeting)
+- [Page Targeting](https://docs.intelligems.io/general-features/targeting/page-targeting)
+- [Mutually Exclusive Experiments](https://docs.intelligems.io/general-features/targeting/mutually-exclusive-experiments): Prevent visitors from being exposed to similar experiments at the same time or one after another to reduce interaction effects, minimize risks from overlapping experiences, and ensure good UX.
+- [Targeting FAQs](https://docs.intelligems.io/general-features/targeting/targeting-faqs)
+- [Onsite Editor](https://docs.intelligems.io/general-features/onsite-editor): Use Intelligems' Onsite Editor tool to tailor visitors' on-site experience based on their test group.
+- [Image Onsite Editor](https://docs.intelligems.io/general-features/image-onsite-editor): Use Intelligems' Image Onsite Editor tool to tailor the images visitors see based on their test group.
+- [CSS and JavaScript Injection](https://docs.intelligems.io/general-features/css-and-javascript-injection)
+- [Overview](https://docs.intelligems.io/analytics/overview)
+- [How orders are attributed to experiments](https://docs.intelligems.io/analytics/overview/how-orders-are-attributed-to-experiments)
+- [Order and revenue accounting](https://docs.intelligems.io/analytics/overview/order-and-revenue-accounting)
+- [How experiment targeting affects analytics](https://docs.intelligems.io/analytics/overview/how-experiment-targeting-affects-analytics)
+- [Analytics FAQs](https://docs.intelligems.io/analytics/analytics-faqs)
+- [Metric Definitions](https://docs.intelligems.io/analytics/metric-definitions)
+- [Revenue](https://docs.intelligems.io/analytics/metric-definitions/revenue)
+- [Conversion Funnel](https://docs.intelligems.io/analytics/metric-definitions/conversion-funnel)
+- [Profit](https://docs.intelligems.io/analytics/metric-definitions/profit)
+- [Subscriptions](https://docs.intelligems.io/analytics/metric-definitions/subscriptions)
+- [Filters](https://docs.intelligems.io/analytics/filters)
+- [Statistical Significance](https://docs.intelligems.io/analytics/statistical-significance)
+- [Timeseries](https://docs.intelligems.io/analytics/timeseries)
+- [Custom Events](https://docs.intelligems.io/analytics/custom-events)
+- [Overview](https://docs.intelligems.io/analytics/custom-events/overview)
+- [CSS Selectors](https://docs.intelligems.io/analytics/custom-events/css-selectors)
+- [Scoping to specific pages](https://docs.intelligems.io/analytics/custom-events/scoping-to-specific-pages)
+- [Custom Javascript Events](https://docs.intelligems.io/analytics/custom-events/custom-javascript-events)
+- [Testing Custom Events](https://docs.intelligems.io/analytics/custom-events/testing-custom-events)
+- [Using custom events in experiment analytics](https://docs.intelligems.io/analytics/custom-events/using-custom-events-in-experiment-analytics)
+- [How to Add Profit to Intelligems Analytics](https://docs.intelligems.io/analytics/how-to-add-profit-to-intelligems-analytics): Provide cost of goods sold (COGS) data to Intelligems to track profit.
+- [How to Add Product Groups to Intelligems Analytics](https://docs.intelligems.io/analytics/how-to-add-product-groups-to-intelligems-analytics)
+- [Tagging Orders by Test Group in Shopify](https://docs.intelligems.io/analytics/tagging-orders-by-test-group-in-shopify): Show which test group is associated with orders in your Shopify store.
+- [Exporting Data](https://docs.intelligems.io/analytics/exporting-data)
+- [Data Sharing](https://docs.intelligems.io/analytics/data-sharing)
+- [Site Performance](https://docs.intelligems.io/performance-optimization/site-performance): Be confident and help ensure Intelligems is having a minimal impact
+- [Optimizing Your Price-Test Integration](https://docs.intelligems.io/performance-optimization/optimizing-your-price-test-integration)
+- [Anti-Flicker Modes](https://docs.intelligems.io/performance-optimization/anti-flicker-modes)
+- [Edgemesh](https://docs.intelligems.io/performance-optimization/edgemesh)
+- [Google Analytics 4 Integration](https://docs.intelligems.io/integrations/google-analytics-4-integration)
+- [Amplitude Integration](https://docs.intelligems.io/integrations/amplitude-integration)
+- [Heap Integration](https://docs.intelligems.io/integrations/heap-integration)
+- [Heatmap Integrations](https://docs.intelligems.io/integrations/heatmap-integrations)
+- [Integrating with Microsoft Clarity](https://docs.intelligems.io/integrations/heatmap-integrations/integrating-with-microsoft-clarity)
+- [Integrating with Heatmap.com](https://docs.intelligems.io/integrations/heatmap-integrations/integrating-with-heatmap.com)
+- [Integrating with HotJar](https://docs.intelligems.io/integrations/heatmap-integrations/integrating-with-hotjar)
+- [Navidium Testing](https://docs.intelligems.io/integrations/navidium-testing)
+- [Javascript API](https://docs.intelligems.io/developer-resources/javascript-api): For ease of use, Intelligems adds an object to the global window scope when the page loads. It primarily acts as a read interface for configurations and session-specific A/B tests.
+- [User Object](https://docs.intelligems.io/developer-resources/javascript-api/user-object): The User attibute contains the ID and all live experiments and test groups
+- [Price Object](https://docs.intelligems.io/developer-resources/javascript-api/price-object): For advanced and custom price testing integrations.
+- [Campaigns Object](https://docs.intelligems.io/developer-resources/javascript-api/campaigns-object)
+- [campaigns.getAll()](https://docs.intelligems.io/developer-resources/javascript-api/campaigns-object/campaigns.getall)
+- [campaigns.getGWP(options)](https://docs.intelligems.io/developer-resources/javascript-api/campaigns-object/campaigns.getgwp-options)
+- [campaigns.setHistoryStatus(params)](https://docs.intelligems.io/developer-resources/javascript-api/campaigns-object/campaigns.sethistorystatus-params)
+- [Intelligems Theme Snippets](https://docs.intelligems.io/developer-resources/intelligems-theme-snippets)
+- [Advanced Settings](https://docs.intelligems.io/developer-resources/advanced-settings): There are a few advanced settings located within the Intelligems app. This article will walk you through what those are, and how to set them up.
+- [Cart Permalinks](https://docs.intelligems.io/developer-resources/cart-permalinks)
+- [Targeting By Customer Parameters](https://docs.intelligems.io/developer-resources/targeting-by-customer-parameters)
+- [Custom Add to Cart and Order Completed Events](https://docs.intelligems.io/developer-resources/custom-add-to-cart-and-order-completed-events)

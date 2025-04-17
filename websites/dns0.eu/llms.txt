@@ -1,0 +1,29 @@
+# dns0.eu
+
+## Docs
+
+- [Advanced Profile API](https://docs.dns0.eu/apple-configuration-profile/advanced-profile-api.md): Programmatically generate Apple configuration profiles with custom network and domain exceptions, or prohibit users from disabling the profile
+- [Introduction](https://docs.dns0.eu/data-feeds/introduction.md): We operate a sophisticated domain intelligence infrastructure to **collect**, **process** and **analyze** (very) large amounts of data. We make this data available to our customers and threat intelligence partners in real-time and as daily downloadable feeds.
+- [Newly Active Domains (NAD)](https://docs.dns0.eu/data-feeds/newly-active-domains-nad.md): Domains are sometimes warmed up — often showing the appearance of legit activity — to avoid detection before suddenly turning malicious, making this data a very valuable subset of domains to analyze when looking for malicious activity.
+- [Newly Active Hostnames (NAH)](https://docs.dns0.eu/data-feeds/newly-active-hostnames-nah.md): Domains are sometimes warmed up — often showing the appearance of legit activity — to avoid detection before suddenly turning malicious, making this data a very valuable subset of domains to analyze when looking for malicious activity.
+- [Newly Issued Certificates (NIC)](https://docs.dns0.eu/data-feeds/newly-issued-certificates-nic.md): Nearly all malicious domains get issued a certificate — either manually or automatically — very early in their lifecycle and before becoming active. Certificates also contain valuable pieces of information and patterns when investigating malicious activity.
+- [Newly Observed Domains (NOD)](https://docs.dns0.eu/data-feeds/newly-observed-domains-nod.md): While NRD focuses on the first appearance of a domain name in a registry (i.e. the domain registration), NOD focuses on the first time a domain name is observed in the DNS. Newly registered domains are sometimes purposely kept unconfigured for a period of time to avoid detection, making this data another valuable subset of domains to analyze when looking for malicious activity.
+- [Newly Observed Hostnames (NOH)](https://docs.dns0.eu/data-feeds/newly-observed-hostnames-noh.md): NOH focuses on the first time a hostname is observed in the DNS and can help uncover malicious activity at the subdomain level.
+- [Newly Registered Domains (NRD)](https://docs.dns0.eu/data-feeds/newly-registered-domains-nrd.md): Most malicious domains are registered from a few days to only a few seconds before becoming active, making those domains a very valuable subset of domains to analyze when looking for future malicious activity.
+- [Passive DNS (RRsets)](https://docs.dns0.eu/data-feeds/passive-dns-rrsets.md): The real-time firehose of passive DNS data from [dns0.eu](https://dns0.eu).
+- [Become a Partner](https://docs.dns0.eu/infrastructure-partners/become-a-partner.md): We partner with hosting providers and ISPs across the European Union to host DNS nodes for [dns0.eu](https://dns0.eu)
+- [Introduction](https://docs.dns0.eu/introduction.md): Welcome to [dns0.eu](https://dns0.eu) official documentation.
+- [Chromium-based browsers](https://docs.dns0.eu/known-issues/chromium-based-browsers.md)
+- [Compressed IPv6 notation](https://docs.dns0.eu/known-issues/compressed-ipv6-notation.md)
+- [Content filter providers (macOS)](https://docs.dns0.eu/known-issues/content-filter-providers-macos.md)
+- [DNS over HTTPS (Windows 11)](https://docs.dns0.eu/known-issues/dns-over-https-windows-11.md)
+- [.0 IP addresses](https://docs.dns0.eu/known-issues/dot-0-ips.md)
+- [iCloud Private Relay](https://docs.dns0.eu/known-issues/icloud-private-relay.md)
+- [Visual voicemail (iOS)](https://docs.dns0.eu/known-issues/visual-voicemail-ios.md)
+- [VPNs](https://docs.dns0.eu/known-issues/vpns.md)
+- [Anonymized Query Logs](https://docs.dns0.eu/threat-intelligence-partners/anonymized-query-logs.md): Non-aggregated logs of DNS queries that matched your feed(s).
+- [Become a Partner](https://docs.dns0.eu/threat-intelligence-partners/become-a-partner.md): Help us secure the European Internet by providing us with a list of malicious domains to block
+- [False Positive Reports](https://docs.dns0.eu/threat-intelligence-partners/false-positive-reports.md): Reports of domains wrongly flagged as malicious from your feed(s).
+- [Feeds](https://docs.dns0.eu/threat-intelligence-partners/feeds.md): As a threat intelligence partner, you will be providing a list of malicious domains to block
+- [Malicious Domain Reports](https://docs.dns0.eu/threat-intelligence-partners/malicious-domain-reports.md): Reports of malicious domains not being blocked.
+- [How to help](https://docs.dns0.eu/translations/how-to-help.md): Help us improve the translations in your language

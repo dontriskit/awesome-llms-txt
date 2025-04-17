@@ -1,0 +1,2988 @@
+# How do I delete my account?
+Source: https://docs.codecrafters.io/account/delete-account
+
+Instructions on deleting your CodeCrafters account
+
+# Instructions
+
+To delete your CodeCrafters account and all associated data, follow these steps:
+
+1.  Visit your [account settings page](https://app.codecrafters.io/settings/account).
+2.  Click on **Delete my account**
+    <Frame>
+      <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/delete-account/danger-zone.png" />
+    </Frame>
+3.  **Press** and **hold** for *3 seconds* to confirm deletion of your account.
+    <Frame>
+      <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/delete-account/confirm-delete.png" />
+    </Frame>
+
+# Frequently Asked Questions
+
+### What happens to my data after I delete my account?
+
+All data is permanently removed from our servers. This includes progress on challenges, code examples, screencasts, etc.
+
+### How long does it take to delete my account?
+
+Your account is deleted immediately.
+
+### Can I recover my account after its deleted?
+
+Unfortunately, no. You can choose to sign up via your GitHub account again anytime but you will start afresh.
+
+
+# How do I get a local currency invoice?
+Source: https://docs.codecrafters.io/billing/get-a-local-currency-invoice
+
+Instructions on requesting an invoice in your local currency
+
+After you've paid for your membership, email us at [hello@codecrafters.io](mailto:hello@codecrafters.io) and we'll send you an invoice in your local currency.
+
+Here's a template you can use:
+
+<Card title="Click to send email" icon="envelope" iconType="duotone" href="mailto:hello@codecrafters.io?subject=Local currency invoice">
+  **To**: [hello@codecrafters.io](mailto:hello@codecrafters.io)
+
+  **Subject**: Local currency invoice
+
+  **Body**:
+
+  I'd like to receive an invoice in AUD. My GitHub username is `your_github_username`.
+</Card>
+
+Please make sure that you include:
+
+*   Your GitHub username
+*   The local currency you want the invoice in
+*   (Optional) The exact amount that you were charged in your local currency
+    *   If this is not provided, we'll default to the exchange rate at the time of your purchase.
+
+
+# How do I get an invoice?
+Source: https://docs.codecrafters.io/billing/get-an-invoice
+
+Instructions on requesting an invoice
+
+Click the "Manage Membership" button in the top-right account dropdown to access your invoices.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/manage-subscription-button.png" />
+</Frame>
+
+
+# How do I debug test failures?
+Source: https://docs.codecrafters.io/challenges/debug-test-failures
+
+Running into test failures that are hard to debug? Try these steps.
+
+## Steps
+
+### 1. Turn on debug mode
+
+If you don't have debug mode already, turn it on. When debug mode is on, the tester emits verbose logs that can help you better understand what it is doing.
+
+You can enable debug mode by editing the `codecrafters.yml` file in the root of your repository and pushing a new commit to trigger a build.
+
+Here's what test output looks like with debug mode turned off (the default):
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/debug-mode-off-code.png" />
+</Frame>
+
+and here's what it looks like with debug mode turned on:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/debug-mode-on-code.png" />
+</Frame>
+
+### 2. Try adding logs in your code
+
+Use the infamous [printf()](https://stackoverflow.com/questions/189562/what-is-the-proper-name-for-doing-debugging-by-adding-print-statements/189570#189570) debugging technique. Any output on stderr/stdout from your program will be visible in the test logs with the `[your_program]` prefix.
+
+Adding logs in your code can help narrow down the problem.
+
+### 3. Ask for help
+
+If you're still struggling with a bug that is hard to track down, feel free to ask in the [forum](https://forum.codecrafters.io/).
+
+<Note>
+  **Note**: We also have an article specific to the Redis challenge: [How do I debug test failures in the Redis Challenge?](/challenges/debug-test-failures-redis).
+</Note>
+
+
+# How do I debug test failures in the Redis Challenge?
+Source: https://docs.codecrafters.io/challenges/debug-test-failures-redis
+
+
+
+<Note>
+  This is specifically for the Redis Challenge. For debugging test failures for common challenges, refer to our [guide](/challenges/debug-test-failures).
+</Note>
+
+## Required Tools
+
+The easiest way to debug problems with your redis implementation is to compare it to the official implementation. To do this, we'll need a few tools handy.
+
+### redis-cli, redis-server
+
+Make sure you have [redis-cli](https://redis.io/topics/rediscli) and [redis-server](https://redis.io/topics/quickstart#starting-redis) installed. We'll use redis-cli to test commands against your redis implementation, and redis-server as a reference to compare with.
+
+### Wireshark
+
+Since redis-cli & redis-server communicate with each over using TCP, we'll need a tool to inspect TCP messages. Install [Wireshark](https://www.wireshark.org/#download). If you prefer CLI tools you can also use **tcpdump**.
+
+## Methodology
+
+### 1. Setup Wireshark to capture and display TCP traffic
+
+Run Wireshark and use `tcp.port == 6379` or `tcp.port == 6380` as a display filter. We'll use this in step 4 to view captured packets.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/wireshark.png" />
+</Frame>
+
+Make sure that the bottom toolbar says `Loopback: lo0`, and not something like `Wi-Fi: en0`.
+
+#### Using tcpdump to capture and display TCP traffic
+
+```bash terminal
+sudo tcpdump -i lo0 -X port 6379 or port 6380
+```
+
+Only root or user with sudo privileges can run tcpdump. See `man tcpdump` for more information.
+
+### 2. Start your redis server implementation (on port 6379)
+
+You'll find instructions for this in your repository's README (like [here](https://github.com/codecrafters-io/redis-starter-go#usage)). Your server will run on `port 6379`, which is the port we've configured Wireshark to capture data on.
+
+### 3. Start the official redis server implementation (on port 6380)
+
+Run `redis-server --port 6380` to do this.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/redis.png" />
+</Frame>
+
+**Send a few commands to your server using redis-cli.**
+
+Use redis-cli to send commands to your server.
+
+```bash Terminal
+redis-cli -p 6379 ping
+```
+
+```bash Terminal
+redis-cli -p 6379 echo key
+```
+
+<Note>
+  **Note**: You can also use the redis-cli [interactive mode / REPL](https://redis.io/topics/rediscli#interactive-mode), but keep in mind that it sends a [COMMAND](https://redis.io/commands/command) command when it boots, which we don't implement in the Redis challenge.
+</Note>
+
+If your redis implementation doesn't send a valid response, you might see an error like this:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/redis-error.png" />
+</Frame>
+
+These error messages can be cryptic, and in some cases the Redis client might just hang waiting for bytes that never arrive.
+
+### 4. View capture data in Wireshark
+
+Once you've sent a few commands, head back to Wireshark and you'll now see some captured packets. You can inspect these to see exactly what data your implementation responded with.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/capture-data-wireshark.png" />
+</Frame>
+
+Notice the "\*1 \$4 ping" at the bottom? That's the PING command, encoded using the [Redis protocol](https://redis.io/topics/protocol).
+
+#### View capture data from tcpdump
+
+tcpdump can output all the same information as Wireshark. For example, when sending the PING command, look for `$4..PING..` and `+PONG..` in the captured data.
+
+### 5. Compare with official redis implementation
+
+Now that you know exactly what data your Redis server is sending, you can compare it with the official redis implementation to verify that it is working properly.
+
+Send commands using `redis-cli -p 6380 <command>`.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/redis-command.png" />
+</Frame>
+
+Inspect the output in Wireshark (as mentioned in step 4) to see how the official Redis implementation differs from yours.
+
+***
+
+If everything seems correct and you're still seeing test failures, it's possible that the Codecrafters tester program is at fault. Please let us know at [hello@codecrafters.io](mailto:hello@codecrafters.io) if that's the case!
+
+
+# How do challenges work?
+Source: https://docs.codecrafters.io/challenges/how-challenges-work
+
+In CodeCrafters challenges, you'll write code to pass each stage and we'll verify your code submissions. Read more below to understand how exactly this works.
+
+## How do challenges work
+
+### 1. Setting up your Git repository
+
+First off, we'll create a git repository for you. Like [this one](https://github.com/codecrafters-io/redis-starter-python). You'll use this repository to submit code to CodeCrafters to run tests.
+
+You can choose what language to use at this point. You can freely switch between languages whenever you want.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/setup-choose-language.png" />
+</Frame>
+
+Once you've selected a language, we'll create the git repository for you and provide instructions to push a test commit.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/setup-test-commit.png" />
+</Frame>
+
+#### How to run `git` commands?
+
+<Tip>
+  You need to run `git` commands on your local machine.
+
+  <Steps>
+    <Step title="Open Terminal on your system">
+      If you're on Windows, you can use [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/windows-powershell/starting-windows-powershell#from-the-start-menu).
+    </Step>
+
+    <Step title="Set up Git">
+      Make sure Git is [installed](https://git-scm.com/download) and [set up properly](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+    </Step>
+
+    <Step title="Run git commands">
+      Copy and paste the commands into your terminal, and press enter.
+
+      <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/run-git-commands.jpg" />
+    </Step>
+  </Steps>
+</Tip>
+
+Once we receive the test commit and have verified that your repository is setup correctly, you'll automatically proceed to the first stage.
+
+### 2. First Stage Instructions
+
+You'll now see instructions for the first stage.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/bind-to-port.png" />
+</Frame>
+
+CodeCrafters follows a TDD-like approach. For each stage we'll run tests on your code. The tests will initially fail, and then you'll submit code to make those tests pass. In the terminal where you ran git push, you'll see test results available:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/results-terminal.png" />
+</Frame>
+
+(Yes, git push output can contain colors!)
+
+### 3. Passing the first stage
+
+The README will contain [instructions on how to pass the first stage](https://github.com/codecrafters-io/redis-starter-python#passing-the-first-stage). We always include this along with your starter repository, so that it's easy to get started.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/passing-first-stage.png" />
+</Frame>
+
+If you visit `app/main.py` as suggested above, you'll see some commented out code:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/commented-out-code.png" />
+</Frame>
+
+To pass the first stage, all you've got to do is uncomment the code above and then run a git push.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/git-push.png" />
+</Frame>
+
+When you run git push, you'll see the first stage pass.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/first-stage-pass.png" />
+</Frame>
+
+### 4. Next stage
+
+When you head back to the web UI, you'll now see instructions for the second stage:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/respond-to-ping.png" />
+</Frame>
+
+A lot of care goes into crafting these stage instructions. They're tailored to the language you're using, and we ensure that you receive the right hints at the right time. All challenges are vetted by hundreds of early access users before being released to the public.
+
+
+# Can I install additional dependencies?
+Source: https://docs.codecrafters.io/challenges/install-additional-dependencies
+
+From frequently asked questions
+
+For most challenges, yes.
+
+Please refer to the [corresponding language guide](https://docs.codecrafters.io/challenges/language-support/introduction) for instructions.
+
+
+# C++
+Source: https://docs.codecrafters.io/challenges/language-support/cpp
+
+Learn how to solve CodeCrafters challenges in C++
+
+## Local development
+
+To run the code for your challenge locally, you'll need [vcpkg](https://vcpkg.io/en/) & `make` installed.
+
+You'll also need the `VCPKG_ROOT` environment variable set to the path where vcpkg is installed.
+
+The script for your challenge (like `./your_sqlite3.sh`) will automatically compile your code using the rules defined in `CMakeLists.txt` before executing it. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+
+set -e
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
+cmake --build ./build
+exec ./build/server "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `src/` directory.
+* `src/Main.cpp` contains the `main` function, which is what the test runner executes.
+* `CMakeLists.txt` contains the rules for compiling your program.
+
+## Adding more files
+
+You can add more files and directories to `src/`. The test runner will include them when compiling your code.
+
+For example, if you want to create a function `foo()` in another file, you need to:
+
+1. Add a header file `Foo.hpp` and define `foo()` there.
+2. Add a cpp file `Foo.cpp` and implement `foo()` there.
+
+<CodeGroup>
+  ```cpp src/Foo.hpp
+  // Function definitions go here
+  #pragma once
+
+  void foo();
+  ```
+
+  ```cpp src/Foo.cpp
+  // Implementations of functions defined in src/Foo.hpp go here
+  #include <iostream>
+
+  void foo() {
+      std::cout << "Hello from foo!";
+  }
+  ```
+
+  ```cpp src/Main.cpp
+  #include "Foo.hpp"
+
+  int main(int argc, char* argv[]) {
+      foo(); // calls foo() defined in src/Foo.hpp
+  }
+  ```
+</CodeGroup>
+
+<Note>The `#pragma once` directive in `src/Foo.hpp` ensures the header file is included only once during compilation.</Note>
+
+## Adding dependencies
+
+To add a third-party dependency such as the `asio` to a C++ project, follow these steps:
+
+<Steps>
+  <Step title="Add the dependency to vcpkg.json">
+    Run `vcpkg add port asio` to add the dependency to the `vcpkg.json` file.
+  </Step>
+
+  <Step title="Add the dependency to CMakeLists.txt">
+    To be able to use the dependency in your project, you'll need to add it to `CMakeLists.txt`.
+
+    ```CMake
+    find_package(asio CONFIG REQUIRED)
+    target_link_libraries(server PRIVATE asio asio::asio)
+    ```
+  </Step>
+
+  <Step title="Include the dependency in your code">
+    You can now include the dependency in your code.
+
+    ```cpp
+    #include <asio.hpp>
+    ```
+
+    On your next push, the test runner will automatically install the dependency before compiling your code.
+  </Step>
+</Steps>
+
+
+# C#
+Source: https://docs.codecrafters.io/challenges/language-support/csharp
+
+Learn how to solve CodeCrafters challenges in C#
+
+## Local development
+
+To run the code for your challenge locally, you'll need `dotnet` installed. Our test runners use Dotnet 8.0 (as of April 2024).
+
+The script for your challenge (like `./your_sqlite3.sh`) will automatically compile your code using `dotnet` before executing it. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+
+exec dotnet run --project . --configuration Release -- "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `src/` directory.
+* `src/Program.cs` contains the `main` function, which is what the test runner executes.
+* The `.csproj` file defines project settings, target frameworks and dependencies.
+
+## Adding more files
+
+You can add more files and directories to `src/`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `src/Foo.cs`, you could use it like so:
+
+<CodeGroup>
+  ```csharp src/Program.cs
+  public class Main {
+      public static void Main(String[] args) {
+          Foo.foo();  // calls the method foo() from Foo class in Foo.cs
+      }
+  }
+  ```
+
+  ```csharp src/Foo.cs
+  public class Foo {
+      public static void foo() {
+          System.out.println("Hello world!");
+      }
+  }
+  ```
+</CodeGroup>
+
+By default, all classes in `src/` belong to the same namespace. This namespace is called the *project namespace*. E.g. If the project name is `MyProject`, all classes are defined under the `MyProject` namespace. This is why you can call `foo()` without importing anything.
+
+If you want to define a class under a *different* namespace, you'll need to use the [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/namespace) keyword like this:
+
+```csharp
+namespace AnotherNamespace {
+    public class Foo {
+        public static void foo(string[] args) {
+            // write code here
+        }
+    }
+}
+```
+
+Let's say you want to define the `Foo` class in `Foo.cs` under the `AnotherNamespace` namespace.
+
+<CodeGroup>
+  ```csharp src/Foo.cs
+  namespace AnotherNamespace {
+      public class Foo {
+          public static void foo() {
+              System.out.println("Hello world!");
+          }
+      }
+  }
+  ```
+
+  ```csharp src/Program.cs
+  using AnotherNamespace
+
+  public class Main {
+      public static void main(String[] args) {
+          Foo.foo();  // Uses the foo function from Foo class defined under AnotherNamespace
+      }
+  }
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+You can add dependencies to your project by using `dotnet`.
+
+For example, to add the `Newtonsoft.Json` package, run the following command in your terminal:
+
+```bash
+dotnet add package Newtonsoft.Json
+```
+
+It will also update your `.csproj` file with the package reference:
+
+```xml
+<ItemGroup>
+  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+</ItemGroup>
+```
+
+
+# Go
+Source: https://docs.codecrafters.io/challenges/language-support/go
+
+Learn how to solve CodeCrafters challenges in Go
+
+<Note>
+  **New to Go?** We recommend checking out [Go by Example](https://gobyexample.com/) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `go` installed. Our test runners use `go` version `1.19` (as of November 2023).
+
+The script for your challenge (like `./your_bittorrent.sh`) will automatically compile your code using `go build` before executing it.
+
+## File structure
+
+* The files for your solution are placed in the `app/` directory.
+* `app/main.go` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to `app/`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `app/foo.go`, you could use it like so:
+
+<CodeGroup>
+  ```go app/main.go
+  package main
+
+  fun main() {
+      foo() // Uses the foo function from foo.go
+  }
+  ```
+
+  ```go app/foo.go
+  package main
+
+  fun foo() {
+      println("Hello world!")
+  }
+  ```
+</CodeGroup>
+
+All files in `app/` must have a `package main` declaration at the top of the file. If you want to extract files into a different package,
+you can create a new folder in `app/` and add the `package` declaration to the top of each file in that folder.
+
+Let's say you wanted to extract `foo.go` into the `bar` package. You'd move `foo.go` into the `app/bar` and add the relevant `package` declaration to the top of `foo.go`:
+
+<CodeGroup>
+  ```go app/bar/foo.go
+  package bar
+
+  fun foo() {
+      println("Hello world!")
+  }
+  ```
+
+  ```go app/main.go
+  package main
+
+  import "github.com/codecrafters-io/dns-server-starter-go/app/bar" // Adjust this based on the package name in go.mod
+
+  fun main() {
+      bar.foo() // Uses the foo function from app/bar/foo.go
+  }
+  ```
+</CodeGroup>
+
+Note that you'll need to update the import statement in `main.go` to use the new package name (Example: `github.com/codecrafters-io/dns-server-starter-go/app/bar`). You'll
+find the first part of the package name in `go.mod`.
+
+## Adding dependencies
+
+You can add dependencies to your project by adding them to your `go.mod` file. You can use the `go get` command for this.
+
+For example, to add the `github.com/spf13/cobra` library, you can run the following command:
+
+```bash
+$ go get github.com/spf13/cobra
+
+# Output:
+#
+# go: downloading github.com/spf13/cobra v1.8.0
+# go: downloading github.com/inconshreveable/mousetrap v1.1.0
+# go: added github.com/spf13/cobra v1.8.0
+```
+
+This'll add the following line to your `go.mod` file:
+
+```go
+require github.com/spf13/cobra v1.1.3
+```
+
+It'll also make changes to your `go.sum` file.
+
+When you push your code next, the runner will automatically download the dependency.
+
+You can use the dependency in your code like so:
+
+<CodeGroup>
+  ```go app/main.go
+  package main
+
+  import (
+      "github.com/spf13/cobra"
+  )
+
+  func main() {
+      var rootCmd = &cobra.Command{
+          Use:   "test",
+          Short: "test",
+          Run: func(cmd *cobra.Command, args []string) {
+              // Do Stuff Here
+          },
+      }
+
+      rootCmd.Execute()
+  }
+  ```
+</CodeGroup>
+
+
+# Introduction
+Source: https://docs.codecrafters.io/challenges/language-support/introduction
+
+
+
+CodeCrafters challenges are designed to be solved using your favorite programming language. The tester code for most challenges is
+language-agnostic, so the challenge itself can support any language.
+
+We currently support Rust, Python & Go by default for all challenges. Other languages are in beta, and may not be supported for all challenges.
+
+<Info>
+  If you're interested in contributing support for a new language, check out our
+  [contributing guide](/contributors/adding-language-support/introduction).
+</Info>
+
+## Language-specific guides
+
+The subsections below contain language-specific guides that cover things like how to setup your local environment, how to add dependencies, etc.
+
+<Note>We're still working on adding more guides to this section.</Note>
+
+*   [C++](/challenges/language-support/cpp)
+*   [C#](/challenges/language-support/csharp)
+*   [Go](/challenges/language-support/go)
+*   [Java](/challenges/language-support/java)
+*   [JavaScript](/challenges/language-support/javascript)
+*   [Kotlin](/challenges/language-support/kotlin)
+*   [Python](/challenges/language-support/python)
+*   [Ruby](/challenges/language-support/ruby)
+*   [Rust](/challenges/language-support/rust)
+*   [TypeScript](/challenges/language-support/typescript)
+*   [Zig](/challenges/language-support/zig)
+
+
+# Java
+Source: https://docs.codecrafters.io/challenges/language-support/java
+
+Learn how to solve CodeCrafters challenges in Java
+
+## Local development
+
+To run the code for your challenge locally, you'll need `java` & `mvn` installed. Our test runners use Java 21 (as of November 2023).
+
+The script for your challenge (like `./your_bittorrent.sh`) will automatically compile your code using `mvn` before executing it. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+set -e
+mvn -B --quiet package -Ddir=/tmp/codecrafters-redis-target
+exec java -jar /tmp/codecrafters-redis-target/java_redis.jar "$@"
+```
+
+When running tests on our servers, the `mvn` command will only be run once and then commented out. This ensures that each test only runs the `java -jar ...` line.
+
+## File structure
+
+* The files for your solution are placed in the `src/main/java` directory.
+* `src/main/java/Main.java` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to `src/main/java`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `src/main/java/Foo.java`, you could use it like so:
+
+<CodeGroup>
+  ```java src/main/java/Main.java
+  public class Main {
+      public static void main(String[] args) {
+          Foo.foo();  // calls the method foo() from Foo class in Foo.java
+      }
+  }
+  ```
+
+  ```java src/main/java/Foo.java
+  public class Foo {
+      public static void foo() {
+          System.out.println("Hello world!");
+      }
+  }
+  ```
+</CodeGroup>
+
+By default, all files in `src/main/java` are in the `default` package. If you want to extract files into a different package,
+you'll need to add a `package` declaration to the top of the file and change its location. Here's what that'd look like:
+
+Let's say you wanted to extract `Foo.java` into the `com.example` package. Store `Foo.java` at `src/main/java/com/example/Foo.java` and add the following lines:
+
+<CodeGroup>
+  ```java src/main/java/com/example/Foo.java
+  package com.example
+
+  public class Foo {
+      public static void foo() {
+          System.out.println("Hello world!");
+      }
+  }
+  ```
+
+  ```java src/main/java/Main.java
+  import com.example.Foo;
+
+  public class Main {
+      public static void main(String[] args) {
+        Foo.foo();  // Uses the foo function from Foo class in the com.example package
+      }
+  }
+  ```
+</CodeGroup>
+
+<Tip>
+  Use an IDE like IntelliJ IDEA which will automatically offer to move your file
+  to a directory matching the package name.
+</Tip>
+
+## Adding dependencies
+
+You can add dependencies to your project by adding them to your `pom.xml` file.
+
+For example, to add the gson library, add the following to the `<dependencies>` section in your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.8.6</version>
+</dependency>
+```
+
+When you push your code next, the runner will automatically download the dependency.
+
+
+# JavaScript
+Source: https://docs.codecrafters.io/challenges/language-support/javascript
+
+Learn how to solve CodeCrafters challenges in JavaScript
+
+## Local development
+
+To run the code for your challenge locally, you'll need `node` installed. Our test runners use Node 18 (as of April 2024).
+
+The script for your challenge (like `./your_grep.sh`) will automatically compile your code using `node` before executing it. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+
+exec node app/main.js "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `app/` directory.
+* `app/main.js` contains the `main()` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to `app/`. The test runner will include them when compiling your code.
+
+For example, if you add a file at `app/foo.js`, you could use it like so:
+
+<CodeGroup>
+  ```javascript app/foo.js
+  function foo() {
+      console.log('Hello from foo!');
+  }
+
+  function bar() {
+      console.log('Hello from bar!');
+  }
+
+  module.exports = { foo, bar };
+  ```
+
+  ```javascript app/main.js
+  const { foo, bar } = require('./foo');
+
+  function main() {
+      foo();  // Uses the foo function from foo.js
+      bar();  // Uses the bar function from foo.js
+  }
+  ```
+</CodeGroup>
+
+<Note>We use the CommonJS syntax for importing and exporting of modules.</Note>
+
+## Adding dependencies
+
+You can add dependencies to your project using `npm`.
+
+<Note>Instructions for adding depedencies will be documented soon.</Note>
+
+
+# Kotlin
+Source: https://docs.codecrafters.io/challenges/language-support/kotlin
+
+Learn how to solve CodeCrafters challenges in Kotlin
+
+<Note>
+  **New to Kotlin?** We recommend checking out [Kotlin
+  Koans](https://play.kotlinlang.org/koans/overview) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `mvn` installed. Our test runners use `mvn` version `3.9.5` (as of November 2023).
+
+The script for your challenge (like `./your_bittorrent.sh`) will automatically compile your code using `mvn package` before executing it.
+
+## File structure
+
+* The files for your solution are placed in the `src/main/kotlin` directory.
+* `src/main/kotlin/Main.kt` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to `src/main/kotlin`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `src/main/kotlin/Foo.kt`, you could use it like so:
+
+<CodeGroup>
+  ```kotlin src/main/kotlin/Main.kt
+  fun main() {
+      foo() // Uses the foo function from Foo.kt
+  }
+  ```
+
+  ```kotlin src/main/kotlin/Foo.kt
+  fun foo() {
+      println("Hello world!")
+  }
+  ```
+</CodeGroup>
+
+By default, all files in `src/main/kotlin` are in the `default` package. If you want to extract files into a different package,
+you'll need to add a `package` declaration to the top of the file.
+
+Let's say you wanted to extract `Foo.kt` into the `com.example.foo` package. You'd add the following to the top of `Foo.kt`:
+
+<CodeGroup>
+  ```kotlin src/main/kotlin/Foo.kt
+  package com.example
+
+  fun foo() {
+      println("Hello world!")
+  }
+  ```
+
+  ```kotlin src/main/kotlin/Main.kt
+  fun main() {
+      com.example.foo() // Uses the foo function from Foo.kt
+  }
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+You can add dependencies to your project by adding them to your `pom.xml` file.
+
+For example, to add the gson library, add the following to the `<dependencies>` section in your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.8.6</version>
+</dependency>
+```
+
+When you push your code next, the runner will automatically download the dependency.
+
+
+# OCaml
+Source: https://docs.codecrafters.io/challenges/language-support/ocaml
+
+Learn how to solve CodeCrafters challenges in OCaml
+
+<Note>
+  **New to OCaml?** We recommend checking out [A Tour of
+  OCaml](https://ocaml.org/docs/tour-of-ocaml) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need [opam](https://opam.ocaml.org/) and [dune](https://dune.build/install) installed. Our test runners use Dune v3.16 (as of September 2024).
+
+The script for your challenge (`./your_program.sh`) will run your code using these tools. It will look something like this:
+
+```sh
+#!/bin/sh
+
+dune build --build-dir /tmp/redis
+exec /tmp/redis/default/main.exe "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `src/` directory.
+* `src/main.ml` is the entry point for your OCaml program.
+
+## Adding more files
+
+You can organize your code by adding more `.ml` files in the `src/` directory. The test runner will include them when building and running your code.
+
+For example, if you add a file at `src/foo.ml`, you can reference it in `main.ml` like this:
+
+<CodeGroup>
+  ```ocaml src/main.ml
+  let () = Foo.bar () (* Calls the bar function from foo.ml *)
+  ```
+
+  ```ocaml src/foo.ml
+  let bar () = Printf.printf "Hello World!\n"
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+If you're looking for OCaml libraries, you can browse the [opam package repository](https://opam.ocaml.org/packages/).
+
+<Steps>
+  <Step title="Specify dependencies">
+    You need to specify dependencies in both the `dune-project` and `dune` files.
+
+    For example, to add the `yojson` library for handling JSON, first update `dune-project` as follows:
+
+    ```diff
+    (generate_opam_files true)
+
+    (package
+       (name codecrafters_redis)
+    +  (depends yojson)
+       (version 0.1))
+    ```
+
+    Then, update the `dune` file to include `yojson` as a library:
+
+    ```diff
+    (executable
+      (name main)
+    - (libraries unix))
+    + (libraries unix yojson))
+    ```
+
+    <Info>For more details, check the OCaml documentation on [Adding a Dependency](https://ocaml.org/docs/managing-dependencies#adding-a-dependency-to-your-dune-project-file).</Info>
+  </Step>
+
+  <Step title="Install dependencies">
+    You need to regenerate the `.opam` file from `dune-project` before installing dependencies.
+
+    First, run this command to update the `.opam` file:
+
+    ```bash
+    dune build
+    ```
+
+    <Note>If you've already used the library in an `.ml` file, `dune build` will exit with an error. This is okay — it'll still update the `.opam` file (required for the next step).</Note>
+
+    Then, run this command to install the dependencies:
+
+    ```bash
+    opam install . --deps-only
+    ```
+  </Step>
+
+  <Step title="Use dependencies">
+    Here's an example of how to use the `yojson` library:
+
+    ```ocaml
+    open Yojson.Basic
+
+    let () =
+      {| { "challenge": "Build your own Redis", "language": "OCaml" } |}
+      |> from_string
+      |> Util.member "language"
+      |> Util.to_string
+      |> print_endline
+
+    (* This will print "OCaml" *)
+    ```
+  </Step>
+</Steps>
+
+
+# Python
+Source: https://docs.codecrafters.io/challenges/language-support/python
+
+Learn how to solve CodeCrafters challenges in Python
+
+<Note>
+  **New to Python?** We recommend checking out [Automate the Boring Stuff with
+  Python](https://automatetheboringstuff.com/) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `python3` installed. Our test runners use version `3.12` (as of April 2024).
+
+The script for your challenge (like `./spawn_redis_server.sh`) will run your code using this version of the Python interpreter. It looks something like this:
+
+```sh
+#!/bin/sh
+
+exec python3 -m app.main "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `app/` directory.
+* `app/main.py` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to `app/`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `app/foo.py`, you could use it like so:
+
+<CodeGroup>
+  ```Python app/main.py
+
+  from app.foo import foo
+
+  def main():
+      foo() // Uses the foo function from foo.py
+  ```
+
+  ```Python app/foo.py
+  def foo():
+      print("Hello world!")
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+<Note>
+  Not all challenges support managing dependencies via Pipenv at the moment.
+  This will be fixed with the next Python version update.
+</Note>
+
+We use **Pipenv** for managing dependencies.
+
+First install **Pipenv** using `pip`
+
+```bash
+pip install pipenv
+```
+
+Now you can add dependencies to your project using `pipenv`
+
+For example, to add the `requests` library, you can run the following command:
+
+```bash
+pipenv install requests
+```
+
+This will create a virtual environment (if it doesn't exist) and add the following line to your `Pipfile`:
+
+```toml
+[packages]
+requests = "*"
+```
+
+It'll also make changes to your `Pipfile.lock`.
+
+
+# Ruby
+Source: https://docs.codecrafters.io/challenges/language-support/ruby
+
+Learn how to solve CodeCrafters challenges in Ruby
+
+<Note> **New to Ruby?** We recommend [Ruby in Twenty Minutes](https://www.ruby-lang.org/en/documentation/quickstart/) to get up to speed.</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `ruby` installed. Our test runners use version `3.3` (as of May 2024).
+
+The script for your challenge (like `./spawn_redis_server.sh`) will run your code using [Bundler](https://bundler.io/), a dependency manager which comes preinstalled with Ruby. It looks something like this:
+
+```sh
+#!/bin/sh
+
+exec bundle exec ruby app/main.rb "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `app/` directory.
+* `app/main.rb` is the entrypoint of the project.
+
+## Adding more files
+
+You can add more files and directories to `app/`. The test runner will include them when compiling your code.
+
+For example, if you added a file at `app/foo.rb`, you could use it like so:
+
+<CodeGroup>
+  ```Ruby app/main.rb
+  require_relative 'foo'
+
+  foo();  # Calls foo() defined in app/foo.rb
+  ```
+
+  ```Ruby app/foo.rb
+  def foo
+      puts "Hello world!"
+  end
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+`Gemfile` lists your project's dependencies. You can add dependencies by specifying the name of the gem and optionally the version.
+
+For example, To add the `nokogiri` gem, add the following line to your `Gemfile`:
+
+```Gemfile
+gem 'nokogiri'
+```
+
+Then run the following command to install it:
+
+```bash
+bundle install
+```
+
+This command will also update your `Gemfile.lock` file.
+
+
+# Rust
+Source: https://docs.codecrafters.io/challenges/language-support/rust
+
+Learn how to solve CodeCrafters challenges in Rust
+
+<Note>
+  **New to Rust?** We recommend checking out [Rust by
+  Example](https://doc.rust-lang.org/rust-by-example/) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `cargo` installed. Our test runners use version `1.76` (as of April 2024).
+
+The script for your challenge (like `./your_bittorrent.sh`) will automatically compile and run your code using `cargo run`. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+
+exec cargo run \
+    --quiet \
+    --release \
+    --target-dir=/tmp/codecrafters-bittorrent-target \
+    --manifest-path $(dirname "$0")/Cargo.toml -- "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `src` directory.
+* `src/main.rs` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to the `src` directory. The test runner will include them when compiling your code.
+
+Rust uses [modules](https://doc.rust-lang.org/rust-by-example/mod.html) to organize code. For example, to define the `foo` module, create a file at `src/foo.rs`.
+
+You can use functions and variables from `foo.rs` in your main code like so:
+
+<CodeGroup>
+  ```Rust src/main.rs
+  mod foo;
+
+  fn main() {
+    foo::foo(); // Calls the foo function from foo.rs
+  }
+  ```
+
+  ```Rust src/foo.rs
+  pub fn foo() {
+      println!("Hello World!");
+  }
+  ```
+</CodeGroup>
+
+<Note>
+  Remember to make `foo()` accessible to `main.rs` by adding the `pub`
+  identifier
+</Note>
+
+Refer to the Rust [documentation](https://doc.rust-lang.org/book/ch07-05-separating-modules-into-different-files.html) for more details.
+
+## Adding dependencies
+
+You can add dependencies to your program using `cargo add`.
+
+For example, to add the `rand` crate, run the following command:
+
+```bash
+cargo add rand
+```
+
+This command will automatically find the latest version of the `rand` crate and add it to your `Cargo.toml` file:
+
+```toml
+[dependencies]
+rand = "0.8.5"
+```
+
+It'll also make changes to your `Cargo.lock` file.
+
+
+# TypeScript
+Source: https://docs.codecrafters.io/challenges/language-support/typescript
+
+Learn how to solve CodeCrafters challenges in TypeScript
+
+## Local development
+
+To run the code for your challenge locally, you'll need `bun` [installed](https://bun.sh/docs/installation). Our test runners use Bun v1.1 (as of May 2024).
+
+The script for your challenge (like `./your_grep.sh`) will run your code using this version of `bun`. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+
+exec bun run app/main.ts "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `app/` directory.
+* `app/main.ts` is the entrypoint for the program.
+
+## Adding more files
+
+You can add more files and directories to `app/`. The test runner will include them when compiling your code.
+
+For example, if you add a file at `app/foo.ts`, you could use it like so:
+
+<CodeGroup>
+  ```typescript app/main.ts
+  import { foo, bar } from "./foo";
+
+  function main() {
+    foo(); // Uses the foo function from foo.ts
+    bar(); // Uses the bar function from foo.ts
+  }
+  ```
+
+  ```typescript app/foo.ts
+  export function foo() {
+      console.log('Hello from foo!');
+  }
+
+  export function bar() {
+    console.log("Hello from bar!");
+  }
+  ```
+</CodeGroup>
+
+Refer to the Bun [documentation](https://bun.sh/docs/runtime/modules) for additional details.
+
+<Note>
+  Remember to add the `export` keyword to functions and variables that you want
+  to export.
+</Note>
+
+## Adding dependencies
+
+You can add dependencies to your project using `bun add`.
+
+For example, to add `zod` as a dependency, run the following command:
+
+```bash
+bun add zod
+```
+
+This will add the following line to your `package.json` file:
+
+```json
+{
+  "dependencies": {
+    "zod": "^3.0.0"
+  }
+}
+```
+
+It will also update the `bun.lockb` file.
+
+
+# Zig
+Source: https://docs.codecrafters.io/challenges/language-support/zig
+
+Learn how to solve CodeCrafters challenges in Zig
+
+<Note>
+  **New to Zig?** We recommend checking out
+  [ziglang.org/learn](https://ziglang.org/learn/) to get up to speed.
+</Note>
+
+## Local development
+
+To run the code for your challenge locally, you'll need `zig` installed. Our test runners use version `0.11` (as of November 2023).
+
+The script for your challenge (like `./your_bittorrent.sh`) will automatically compile your code using `zig build-exe` before executing it. It'll
+look something like this:
+
+```sh
+#!/bin/sh
+set -e
+
+zig build-exe ./app/main.zig
+exec ./main "$@"
+```
+
+## File structure
+
+* The files for your solution are placed in the `app` directory.
+* `app/main.zig` contains the `main` function, which is what the test runner executes.
+
+## Adding more files
+
+You can add more files and directories to the `app` directory. The test runner will include them when compiling your code.
+
+For example, if you added a file at `app/foo.zig`, you could use it like so:
+
+<CodeGroup>
+  ```zig app/main.zig
+  const foo = @import("foo.zig");
+
+  pub fn main() void {
+    foo.bar() // Uses the bar function from foo.zig
+  }
+  ```
+
+  ```zig app/foo.zig
+  const std = @import("std");
+
+  pub fn bar() void {
+    std.debug.print("Hello World!", .{});
+  }
+  ```
+</CodeGroup>
+
+You can also add files in subdirectories. For example, if you added a file at `app/foo/bar.zig`, you could use it like so:
+
+<CodeGroup>
+  ```zig app/foo/bar.zig
+  const std = @import("std");
+
+  pub fn baz() void {
+    std.debug.print("Hello World!", .{});
+  }
+  ```
+
+  ```zig app/main.zig
+  const bar = @import("foo/bar.zig");
+
+  pub fn main() void {
+    bar.baz() // Uses the baz function from foo/bar.zig
+  }
+  ```
+</CodeGroup>
+
+## Adding dependencies
+
+We don't support the package manager added in Zig 0.11 yet. For now, you'll need to copy in any dependencies you need into your project
+and import them using `@import`.
+
+<Note>
+  We'd love help adding support for the new package manager added in Zig 0.11.
+  If you're interested in this, feel free to open a PR to the [SQLite challenge
+  repository](https://github.com/codecrafters-io/build-your-own-sqlite/tree/main/starter_templates/zig).
+  You can find more details on contributing language support
+  [here](/contributors/adding-language-support/introduction).
+</Note>
+
+
+# Program Interface
+Source: https://docs.codecrafters.io/challenges/program-interface
+
+Learn more about how the CodeCrafters program interface works
+
+When you push code to CodeCrafters, we run three steps:
+
+1.  **Build**: Prepare your project environment
+2.  **Compile**: Transform your source code into executable format (if applicable)
+3.  **Run**: Execute your program for testing
+
+This document explains how to customize the compilation (Step 2) and execution (Step 3) of your code, both locally and on CodeCrafters servers.
+
+## Configuration Files
+
+You can modify specific files in your project to control how your code is processed:
+
+| File                       | Purpose                         | Scope                |
+| -------------------------- | ------------------------------- | -------------------- |
+| `your_program.sh`          | Local compilation and execution | Local only           |
+| `.codecrafters/compile.sh` | Remote compilation              | CodeCrafters servers |
+| `.codecrafters/run.sh`     | Remote execution                | CodeCrafters servers |
+
+## Local Configuration
+
+### `your_program.sh`
+
+This script handles both the compilation (if necessary) and execution of your program in your local environment.
+
+Modify this file to change how your program runs locally.
+
+Changes to this file DO NOT affect how your program is run on CodeCrafteers servers
+
+## Remote Configuration
+
+### `.codecrafters/compile.sh`
+
+This script is used to compile your program on CodeCrafters servers.
+
+<Note>This file will be empty for interpreted languages like (e.g., Python, Ruby) </Note>
+
+### `.codecrafters/run.sh`
+
+This script is used to execute your program on CodeCrafters servers.
+
+
+# Can I re-attempt a challenge in a different language?
+Source: https://docs.codecrafters.io/challenges/reattempt-challenge
+
+
+
+Yes! From the dropdown menu in the sidebar, select **Try a different language**.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/reattempt.png" />
+</Frame>
+
+You can also re-attempt using the same language if you'd like. Your old repository will remain intact, and you can switch back to it at any time.
+
+
+# How do I install the CLI?
+Source: https://docs.codecrafters.io/cli/installation
+
+
+
+The CodeCrafters CLI is a command-line tool that allows you to run tests & view test results
+from your local machine. Using the CLI is faster than using Git since you don't need to
+commit your changes to run tests.
+
+The CLI is available for Mac, Linux and Windows (via [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)).
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-2" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M22 17.607c-.786 2.28-3.139 6.317-5.563 6.361-1.608.031-2.125-.953-3.963-.953-1.837 0-2.412.923-3.932.983-2.572.099-6.542-5.827-6.542-10.995 0-4.747 3.308-7.1 6.198-7.143 1.55-.028 3.014 1.045 3.959 1.045.949 0 2.727-1.29 4.596-1.101.782.033 2.979.315 4.389 2.377-3.741 2.442-3.158 7.549.858 9.426zm-5.222-17.607c-2.826.114-5.132 3.079-4.81 5.531 2.612.203 5.118-2.725 4.81-5.531z" />
+    </svg>
+
+    <span>Mac</span>
+  </div>
+</h2>
+
+If you have the [Homebrew](https://brew.sh/) package manager installed, the CodeCrafters CLI can be installed by
+running:
+
+```bash
+brew install codecrafters-io/tap/codecrafters
+```
+
+If not, you can run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-2" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M20.581 19.049c-.55-.446-.336-1.431-.907-1.917.553-3.365-.997-6.331-2.845-8.232-1.551-1.595-1.051-3.147-1.051-4.49 0-2.146-.881-4.41-3.55-4.41-2.853 0-3.635 2.38-3.663 3.738-.068 3.262.659 4.11-1.25 6.484-2.246 2.793-2.577 5.579-2.07 7.057-.237.276-.557.582-1.155.835-1.652.72-.441 1.925-.898 2.78-.13.243-.192.497-.192.74 0 .75.596 1.399 1.679 1.302 1.461-.13 2.809.905 3.681.905.77 0 1.402-.438 1.696-1.041 1.377-.339 3.077-.296 4.453.059.247.691.917 1.141 1.662 1.141 1.631 0 1.945-1.849 3.816-2.475.674-.225 1.013-.879 1.013-1.488 0-.39-.139-.761-.419-.988zm-9.147-10.465c-.319 0-.583-.258-1-.568-.528-.392-1.065-.618-1.059-1.03 0-.283.379-.37.869-.681.526-.333.731-.671 1.249-.671.53 0 .69.268 1.41.579.708.307 1.201.427 1.201.773 0 .355-.741.609-1.158.868-.613.378-.928.73-1.512.73zm1.665-5.215c.882.141.981 1.691.559 2.454l-.355-.145c.184-.543.181-1.437-.435-1.494-.391-.036-.643.48-.697.922-.153-.064-.32-.11-.523-.127.062-.923.658-1.737 1.451-1.61zm-3.403.331c.676-.168 1.075.618 1.078 1.435l-.31.19c-.042-.343-.195-.897-.579-.779-.411.128-.344 1.083-.115 1.279l-.306.17c-.42-.707-.419-2.133.232-2.295zm-2.115 19.243c-1.963-.893-2.63-.69-3.005-.69-.777 0-1.031-.579-.739-1.127.248-.465.171-.952.11-1.343-.094-.599-.111-.794.478-1.052.815-.346 1.177-.791 1.447-1.124.758-.937 1.523.537 2.15 1.85.407.851 1.208 1.282 1.455 2.225.227.871-.71 1.801-1.896 1.261zm6.987-1.874c-1.384.673-3.147.982-4.466.299-.195-.563-.507-.927-.843-1.293.539-.142.939-.814.46-1.489-.511-.721-1.555-1.224-2.61-2.04-.987-.763-1.299-2.644.045-4.746-.655 1.862-.272 3.578.057 4.069.068-.988.146-2.638 1.496-4.615.681-.998.691-2.316.706-3.14l.62.424c.456.337.838.708 1.386.708.81 0 1.258-.466 1.882-.853.244-.15.613-.302.923-.513.52 2.476 2.674 5.454 2.795 7.15.501-1.032-.142-3.514-.142-3.514.842 1.285.909 2.356.946 3.67.589.241 1.221.869 1.279 1.696l-.245-.028c-.126-.919-2.607-2.269-2.83-.539-1.19.181-.757 2.066-.997 3.288-.11.559-.314 1.001-.462 1.466zm4.846-.041c-.985.38-1.65 1.187-2.107 1.688-.88.966-2.044.503-2.168-.401-.131-.966.36-1.493.572-2.574.193-.987-.023-2.506.431-2.668.295 1.753 2.066 1.016 2.47.538.657 0 .712.222.859.837.092.385.219.709.578 1.09.418.447.29 1.133-.635 1.49zm-8-13.006c-.651 0-1.138-.433-1.534-.769-.203-.171.05-.487.253-.315.387.328.777.675 1.281.675.607 0 1.142-.519 1.867-.805.247-.097.388.285.143.382-.704.277-1.269.832-2.01.832z" />
+    </svg>
+
+    <span>Linux</span>
+  </div>
+</h2>
+
+Run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-2" width="20" height="20" viewBox="0 0 24 24">
+      <path d="M0 12v-8.646l10-1.355v10.001h-10zm11 0h13v-12l-13 1.807v10.193zm-1 1h-10v7.646l10 1.355v-9.001zm1 0v9.194l13 1.806v-11h-13z" />
+    </svg>
+
+    <span>Windows</span>
+  </div>
+</h2>
+
+If you have a Linux distribution installed using [WSL](https://learn.microsoft.com/en-us/windows/wsl/install), run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+
+# How do I update the CLI?
+Source: https://docs.codecrafters.io/cli/update
+
+
+
+The CodeCrafters CLI is a command-line tool that allows you to run tests & view test results from your local machine. Using
+the CLI is faster than using Git since you don't need to commit your changes to run tests.
+
+If you haven't installed the CLI yet, [read this](/cli/installation).
+
+If you've already installed the CLI, you can check its version by running:
+
+```bash
+codecrafters --version
+```
+
+The latest available version can be found [here](https://github.com/codecrafters-io/cli/releases).
+
+To update the CLI, follow the OS-specific instructions below.
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-2" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M22 17.607c-.786 2.28-3.139 6.317-5.563 6.361-1.608.031-2.125-.953-3.963-.953-1.837 0-2.412.923-3.932.983-2.572.099-6.542-5.827-6.542-10.995 0-4.747 3.308-7.1 6.198-7.143 1.55-.028 3.014 1.045 3.959 1.045.949 0 2.727-1.29 4.596-1.101.782.033 2.979.315 4.389 2.377-3.741 2.442-3.158 7.549.858 9.426zm-5.222-17.607c-2.826.114-5.132 3.079-4.81 5.531 2.612.203 5.118-2.725 4.81-5.531z" />
+    </svg>
+
+    <span>Mac</span>
+  </div>
+</h2>
+
+If you have the [Homebrew](https://brew.sh/) package manager installed, the CodeCrafters CLI can be installed by
+running:
+
+```bash
+brew update
+brew upgrade codecrafters-io/tap/codecrafters
+```
+
+If not, you can just re-run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-2" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M20.581 19.049c-.55-.446-.336-1.431-.907-1.917.553-3.365-.997-6.331-2.845-8.232-1.551-1.595-1.051-3.147-1.051-4.49 0-2.146-.881-4.41-3.55-4.41-2.853 0-3.635 2.38-3.663 3.738-.068 3.262.659 4.11-1.25 6.484-2.246 2.793-2.577 5.579-2.07 7.057-.237.276-.557.582-1.155.835-1.652.72-.441 1.925-.898 2.78-.13.243-.192.497-.192.74 0 .75.596 1.399 1.679 1.302 1.461-.13 2.809.905 3.681.905.77 0 1.402-.438 1.696-1.041 1.377-.339 3.077-.296 4.453.059.247.691.917 1.141 1.662 1.141 1.631 0 1.945-1.849 3.816-2.475.674-.225 1.013-.879 1.013-1.488 0-.39-.139-.761-.419-.988zm-9.147-10.465c-.319 0-.583-.258-1-.568-.528-.392-1.065-.618-1.059-1.03 0-.283.379-.37.869-.681.526-.333.731-.671 1.249-.671.53 0 .69.268 1.41.579.708.307 1.201.427 1.201.773 0 .355-.741.609-1.158.868-.613.378-.928.73-1.512.73zm1.665-5.215c.882.141.981 1.691.559 2.454l-.355-.145c.184-.543.181-1.437-.435-1.494-.391-.036-.643.48-.697.922-.153-.064-.32-.11-.523-.127.062-.923.658-1.737 1.451-1.61zm-3.403.331c.676-.168 1.075.618 1.078 1.435l-.31.19c-.042-.343-.195-.897-.579-.779-.411.128-.344 1.083-.115 1.279l-.306.17c-.42-.707-.419-2.133.232-2.295zm-2.115 19.243c-1.963-.893-2.63-.69-3.005-.69-.777 0-1.031-.579-.739-1.127.248-.465.171-.952.11-1.343-.094-.599-.111-.794.478-1.052.815-.346 1.177-.791 1.447-1.124.758-.937 1.523.537 2.15 1.85.407.851 1.208 1.282 1.455 2.225.227.871-.71 1.801-1.896 1.261zm6.987-1.874c-1.384.673-3.147.982-4.466.299-.195-.563-.507-.927-.843-1.293.539-.142.939-.814.46-1.489-.511-.721-1.555-1.224-2.61-2.04-.987-.763-1.299-2.644.045-4.746-.655 1.862-.272 3.578.057 4.069.068-.988.146-2.638 1.496-4.615.681-.998.691-2.316.706-3.14l.62.424c.456.337.838.708 1.386.708.81 0 1.258-.466 1.882-.853.244-.15.613-.302.923-.513.52 2.476 2.674 5.454 2.795 7.15.501-1.032-.142-3.514-.142-3.514.842 1.285.909 2.356.946 3.67.589.241 1.221.869 1.279 1.696l-.245-.028c-.126-.919-2.607-2.269-2.83-.539-1.19.181-.757 2.066-.997 3.288-.11.559-.314 1.001-.462 1.466zm4.846-.041c-.985.38-1.65 1.187-2.107 1.688-.88.966-2.044.503-2.168-.401-.131-.966.36-1.493.572-2.574.193-.987-.023-2.506.431-2.668.295 1.753 2.066 1.016 2.47.538.657 0 .712.222.859.837.092.385.219.709.578 1.09.418.447.29 1.133-.635 1.49zm-8-13.006c-.651 0-1.138-.433-1.534-.769-.203-.171.05-.487.253-.315.387.328.777.675 1.281.675.607 0 1.142-.519 1.867-.805.247-.097.388.285.143.382-.704.277-1.269.832-2.01.832z" />
+    </svg>
+
+    <span>Linux</span>
+  </div>
+</h2>
+
+Re-run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+<h2>
+  <div className={"flex items-center"}>
+    <svg fill="currentColor" className="relative top-[-2px] mr-3" width="20" height="20" viewBox="0 0 24 24">
+      <path d="M0 12v-8.646l10-1.355v10.001h-10zm11 0h13v-12l-13 1.807v10.193zm-1 1h-10v7.646l10 1.355v-9.001zm1 0v9.194l13 1.806v-11h-13z" />
+    </svg>
+
+    <span>Windows</span>
+  </div>
+</h2>
+
+If you have a Linux distribution installed using [WSL](https://learn.microsoft.com/en-us/windows/wsl/install), just re-run the install script:
+
+```bash
+curl https://codecrafters.io/install.sh | sh
+```
+
+
+# How do I use the CLI?
+Source: https://docs.codecrafters.io/cli/usage
+
+
+
+The CodeCrafters CLI is a command-line tool that allows you to run tests & view test results
+from your local machine. Using the CLI is faster than using Git since you don't need to
+commit your changes to run tests.
+
+If you haven't installed the CLI yet, [read this](/cli/installation).
+
+To use the CLI, navigate to a CodeCrafters repository on your local machine and run the `codecrafters test` command:
+
+```bash
+codecrafters test
+```
+
+To run tests against all previous stages first, add the `--previous` flag:
+
+```bash
+codecrafters test --previous
+```
+
+You should see logs like this:
+
+```bash
+Running tests on your codebase. Streaming logs...
+
+[compile]    Compiling redis-starter-rust v0.1.0 (/app)
+[compile]     Finished release [optimized] target(s) in 1.20s
+[compile] Compilation successful.
+
+[stage-1] Running tests for Stage #1: Bind to a port
+[stage-1] $ ./spawn_redis_server.sh
+[stage-1] Connecting to port 6379...
+[your_program] Logs from your program will appear here!
+[stage-1] Looks like your program has terminated. A redis server is expected to be a long-running process.
+[stage-1] Test failed (try setting 'debug: true' in your codecrafters.yml to see more details)
+
+View stage instructions: https://app.codecrafters.io/courses/redis.
+```
+
+You can then make changes to your codebase and re-run the tests by running `codecrafters test` again. You don't
+need to commit your changes using Git to run tests using the CLI.
+
+
+# How do I get access the Forum?
+Source: https://docs.codecrafters.io/community/forum-access
+
+
+
+The forum is located at [https://forum.codecrafters.io](https://forum.codecrafters.io). You can sign-in using your CodeCrafters account to post questions.
+
+
+# Introduction
+Source: https://docs.codecrafters.io/contributors/adding-language-support/introduction
+
+Learn about how you can help us add language support
+
+For a CodeCrafters challenge to support a new language, we need the following things in place:
+
+*   **Starter code**, which is provided to users when they start a challenge.
+*   **A Dockerfile**, which is used to build the container to run user's code.
+
+[Learn more](/contributors/adding-language-support/starter-code)
+
+
+# Starter Code
+Source: https://docs.codecrafters.io/contributors/adding-language-support/starter-code
+
+Learn about how to create starter code for a language
+
+Starter code is the code that we provide to users when they start a challenge. It's the code that they'll be building on top of.
+
+[Here's an example](https://github.com/codecrafters-io/build-your-own-redis/tree/main/compiled_starters/python).
+
+## 1. Run `course-sdk add-language <language>`
+
+<Steps>
+  <Step title="Clone build-your-own-<challenge>">
+    For instance, if you’re adding support for the Kafka challenge, clone the [build-your-own-kafka](https://github.com/codecrafters-io/build-your-own-kafka) repository.
+  </Step>
+
+  <Step title="Run course-sdk add-language <language>">
+    a. Install [course-sdk](https://github.com/codecrafters-io/course-sdk) if it’s not already installed.
+
+    b. In the cloned challenge repository, run the following command:
+
+    ```bash
+    course-sdk add-language <language>
+    ```
+
+    <Info>
+      Check available languages
+      [here](https://github.com/codecrafters-io/language-templates/tree/main/languages).
+    </Info>
+  </Step>
+</Steps>
+
+## 2. Edit starter code
+
+The starter code will be copied to `starter_templates/<language>`.
+
+Suppose you're adding C support, open and edit `starter_templates/c/code/src/main.c`:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/contributors/starter-code-skeleton.jpg" />
+</Frame>
+
+Make necessary edits so the code can pass the first stage of the challenge.
+
+## 3. Run `course-sdk test <language>`
+
+We have comprehensive CI tests in place to ensure that the starter code and Dockerfile for each language are valid.
+
+In the cloned challenge repository, run the following command:
+
+```bash
+course-sdk test <language>
+```
+
+Ensure all tests pass before submitting a pull request (PR).
+
+## First stage solution
+
+To make it easier for users to get started, we automatically generate a solution to the first stage of the challenge. This is done by uncommenting lines in the starter code.
+
+**Example**:
+
+<Frame caption="Stage 1 solution, auto-generated from starter code">
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/contributors/first-stage-solution.png" />
+</Frame>
+
+The way this works is that [course-sdk](https://github.com/codecrafters-io/course-sdk) will look for markers like this in the starter code:
+
+```python
+# Uncomment this to pass the first stage
+```
+
+These markers will be deleted and any code after them will be uncommented to generate the solution.
+
+The full logic for this is [here](https://github.com/codecrafters-io/course-sdk/blob/4beb239db2293a5a5b109dac737c6a2d70d62d1a/lib/compilers/first-stage-solutions-compiler.ts).
+
+
+# Test Runner Image Interface
+Source: https://docs.codecrafters.io/contributors/adding-language-support/test-runner-image-interface
+
+Learn about how to structure a test runner image for the CodeCrafters test runner
+
+The test runner builds user's code (based on the [Starter Code](/contributors/adding-language-support/starter-code)) with the
+corresponding [Dockerfile](/contributors/adding-language-support/dockerfiles) to build a Test Runner Image.
+
+The test runner script is run within a container based on this image.
+
+## Test Runner Script
+
+The test runner script roughly follows this flow:
+
+*   Builds the test runner image.
+    *   This step is only run it a test runner image doesn't exist already or is being re-built.
+    *   Logs from this step are prefixed with `[build]`.
+*   Copies in user's latest code, if it has changed since the image was built.
+*   If any files in `CODECRAFTERS_DEPENDENCY_FILE_PATHS` have changed, triggers a re-build of the test runner image (i.e. back to step 1)
+*   Copies any files in `/app-cached` to `$CODECRAFTERS_SUBMISSION_DIR` if present.
+*   Sets `CODECRAFTERS_SUBMISSION_DIR` to `/app`
+    *   This value is subject to change in the future, hence the use of an environment variable.
+*   Runs `/app/.codecrafters/compile.sh` if it exists.
+    *   Logs from this step are prefixed with `[compile]`.
+    *   This script only runs once even if we're testing multiple stages.
+*   Sets `CODECRAFTERS_TEST_CASES_JSON` based on the current test run.
+*   Runs the tester program ([example](https://github.com/codecrafters-io/redis-tester))
+    *   Logs from this step are streamed directly with no prefix, the tester program is expected to add prefixes like "\[stage-1]", "\[stage-2]" etc. to its logs.
+    *   The user's program is assumed to be present at `/app/.codecrafters/run.sh`.
+    *   The exit code of this step (0 or 1) is used to determine if the test run passed or failed.
+
+## Performance
+
+We use three different techniques to ensure user's code is built & run as fast as possible. Depending on the language, you may not need to use all of these techniques.
+
+### 1. Dockerfile Caching
+
+The test runner will look for a `CODECRAFTERS_DEPENDENCY_FILE_PATHS` environment variable in the image. It will only re-build the image if the files listed in the variable change.
+
+A Dockerfile can contain steps to install dependencies, like `cargo install` for Rust, and `npm install` for JavaScript.
+
+Since files like `Cargo.toml` & `package.json` don't change often, this helps avoid re-installing dependencies on every run.
+
+Any Dockerfile steps that emit output will be printed to the user's test run logs with the `[build]` prefix.
+
+<Frame caption="[build] logs">
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/contributors/build-logs.png" />
+</Frame>
+
+**Notes**:
+
+*   If you want a Dockerfile step's output to not be included in `[build]` logs, you can add `> /dev/null` to the end of the command.
+*   If a `CODECRAFTERS_DEPENDENCY_FILE_PATHS` environment variable is not present, the test runner will never re-build the image.
+
+### 2. Compilation
+
+If the user's repo contains `/.codecrafters/compile.sh`, it will be run once before invoking the tester.
+
+This is useful with compiled languages like Rust, where the first compilation can take a long time, but running the compiled binary is fast.
+
+Logs from this script will be printed to the user's test run logs with the `[compile]` prefix.
+
+<Frame caption="[compile] logs">
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/contributors/compile-logs.png" />
+</Frame>
+
+More on this in in [Test Runner Interface](/challenges/program-interface).
+
+### 3. Cached Files
+
+If any files are placed in `/app-cached`, they will be copied to `/app` folder (overwriting any of the user's code) before running the tester.
+
+This can be used to store files required for incremental compilation in languages that support it.
+
+
+# Building your challenge
+Source: https://docs.codecrafters.io/contributors/authoring-challenges/building-your-challenge
+
+Details on building the stage instructions and test cases for your challenge.
+
+<Note>
+  The CodeCrafters creators program is invite-only. Interested in building
+  CodeCrafters challenges? Write to us at <b>[hello@codecrafters.io](mailto:hello@codecrafters.io)</b>.
+</Note>
+
+Once you've [pre-launched your challenge](/contributors/authoring-challenges/pre-launching-your-challenge), you're ready to start building out the
+stage instructions and test cases.
+
+It's upto you whether you want to build test cases first or stage instructions first. We recommend building both in parallel, one stage at a time. This allows
+you to think about how a learner will progress through your challenge, and what they'll need at each stage.
+
+## Test Cases
+
+For each stage defined in your `course-definition.yml` file, you'll need a corresponding test case. These are defined in your tester repository. Here
+are some examples from our other challenges:
+
+*   [Redis](https://github.com/codecrafters-io/redis-tester)
+*   [Docker](https://github.com/codecrafters-io/docker-tester)
+*   [Git](https://github.com/codecrafters-io/git-tester)
+
+We recommend testing your test cases against a "reference" implementation. For example, in the Git challenge we test `git-tester` by running it against the official
+`git` command.
+
+## Stage Instructions
+
+Stage instructions are present in the `course-definition.yml` file (under the `description_md` key). Here are some examples from our other challenges:
+
+*   [Redis](https://github.com/codecrafters-io/build-your-own-redis/blob/main/course-definition.yml)
+*   [Docker](https://github.com/codecrafters-io/build-your-own-docker/blob/main/course-definition.yml)
+*   [Git](https://github.com/codecrafters-io/build-your-own-git/blob/main/course-definition.yml)
+
+***
+
+Note: we're still building the external course authoring feature, so updates to your tester program might not be visible on `app.codecrafters.io` immediately. Updates to the stage
+instructions should be visible immediately once they're "applied" from the admin area. Let Paul know if you run into any issues.
+
+
+# Course Definition Reference
+Source: https://docs.codecrafters.io/contributors/authoring-challenges/course-definition-reference
+
+Schema for the course-definition.yml file.
+
+<ResponseField name="slug" type="string">
+  A unique URL-friendly identifier for your course. Example: `redis`.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  The name of your course. Example: `Build your own Redis`.
+</ResponseField>
+
+<ResponseField name="short_name" type="string">
+  A short name for your course. Example: `Redis`.
+</ResponseField>
+
+<ResponseField name="release_status" type="string">
+  The release status of your course. Accepted values: `alpha`, `beta`, `live`.
+</ResponseField>
+
+<ResponseField name="description_md" type="string">
+  A markdown description for your course. 25-50 words.
+</ResponseField>
+
+<ResponseField name="short_description_md" type="string">
+  A short description of your course, \< 15 words.
+</ResponseField>
+
+<ResponseField name="completion_percentage" type="integer">
+  The percentage of users who complete this course. Set to 5% if we don't have data yet.
+</ResponseField>
+
+<ResponseField name="languages" type="array">
+  <Expandable title="item properties">
+    <ResponseField name="slug" type="string">
+      Slug for the language. Example: `python`. Full list of languages available [here](https://backend.codecrafters.io/api/v1/languages).
+    </ResponseField>
+
+    <ResponseField name="starter_repository_url" type="string">
+      URL to the starter repository for this language. Example: [https://github.com/codecrafters-io/redis-starter-ruby](https://github.com/codecrafters-io/redis-starter-ruby)
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="marketing" type="object">
+  <Expandable title="properties">
+    <ResponseField name="difficulty" type="string">
+      The difficulty of the course. Accepted values: `easy`, `medium`, `hard`.
+    </ResponseField>
+
+    <ResponseField name="sample_extension_idea_title" type="string">
+      A title for the sample extension idea. Example: `Geospatial Queries`
+    </ResponseField>
+
+    <ResponseField name="sample_extension_idea_description" type="string">
+      A description for the sample extension idea. Example: `A Redis server that can respond to geospatial queries`
+    </ResponseField>
+
+    <ResponseField name="testimonials" type="array">
+      <Expandable title="item properties">
+        <ResponseField name="author_name" type="string" />
+
+        <ResponseField name="author_description" type="string" />
+
+        <ResponseField name="author_avatar" type="string" />
+
+        <ResponseField name="link" type="string" />
+
+        <ResponseField name="text" type="string" />
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="stages" type="array">
+  <Expandable title="item properties">
+    <ResponseField name="slug" type="string">
+      A unique identifier for this stage. Your tester will reference this value. Example: `init`
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      The name of this stage. Example: `Respond to PING`
+    </ResponseField>
+
+    <ResponseField name="description_md" type="string">
+      A markdown description for this stage, rendered in the 'Your Task' card.
+    </ResponseField>
+
+    <ResponseField name="difficulty" type="string">
+      A difficulty rating for this stage, from the perspective of a proficient programmer.
+
+      *   `very_easy`: \<5m
+      *   `easy`: 5-10m
+      *   `medium`: 30m-1h
+      *   `hard`: >1h
+    </ResponseField>
+
+    <ResponseField name="marketing_md" type="string">
+      A short markdown description of this stage, used in the course overview page.
+    </ResponseField>
+
+    <ResponseField name="tester_source_code_url" type="string">
+      Link to the source code for the test cases of this stage. Optional.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+
+# Planning your challenge
+Source: https://docs.codecrafters.io/contributors/authoring-challenges/planning-your-challenge
+
+The following tips should help you build a great CodeCrafters challenge.
+
+<Note>
+  The CodeCrafters challenge authors program is invite-only. Interested in
+  building CodeCrafters challenge? Write to us at <b>[hello@codecrafters.io](mailto:hello@codecrafters.io)</b>.
+</Note>
+
+## 1. Evaluate challenge ideas
+
+We recommend evaluating challenge ideas based on **(a)** how interesting they'd be to an experienced programmer, and **(b)** how well they fit into the "build your own x" format.
+
+## 2. Write high-level descriptions of your challenge
+
+Try to come up with descriptions of your challenge in this format:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/description.png" />
+</Frame>
+
+Check our existing challenges for examples. The goal here is to give a user a quick overview of what they'll build and what they'll learn.
+
+## 3. Build a challenge outline
+
+Time to flesh things out a bit more and plan what each stage will cover.
+
+Each stage should have:
+
+1.  a heading
+2.  a description, and
+3.  one of these difficulty levels, from the perspective of a proficient programmer:
+    a. Very Easy (\< 5 minutes)
+    b. Easy (5-10 minutes)
+    c. Medium (30m-1h)
+    d. Hard (> 1h)
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/stages.png" />
+</Frame>
+
+Here are some things to keep in mind when doing this exercise:
+
+*   Try to keep the first 2-3 stages at a relatively easy difficulty, they shouldn't take more than 5-10 minutes for a proficient programmer. At this point learners might be new to the CodeCrafters platform, so we don't want to overwhelm them.
+*   Break down stages wherever possible. If you can split a "Medium" stage into 3 "Easy" stages, do it.
+*   Ensure there's a reliable way to "test" the stage. How would you invoke the user's program, and how would you verify that their implementation is correct?
+
+It's okay if you don't have 100% clarity on stages at the moment - you can always add/edit/remove stages later once you start building the tester program.
+
+***
+
+Once you've done the steps above, you're ready to [pre-launch](/contributors/authoring-challenges/pre-launching-your-challenge) your challenge! Contact [paul@codecrafters.io](mailto:mailto:paul@codecrafters.io) for help with setting this up.
+
+
+# Pre-launching your challenge
+Source: https://docs.codecrafters.io/contributors/authoring-challenges/pre-launching-your-challenge
+
+Details on pre-launching your challenge.
+
+Once you've [planned your challenge](/contributors/authoring-challenges/planning-your-challenge), you're ready to start adding enough information to
+create the "overview" page.
+
+We'll use this page to pre-launch your challenge and start attracting early users who'll help test your challenge & share feedback.
+
+[Paul](mailto:paul@codecrafters.io) will create a draft challenge for you and grant you access to it.
+
+At the start, the overview page for the challenge will look something like this:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/draft-challenge-overview.png" />
+</Frame>
+
+This page is generated from contents in `course-definition.yml`, which you'll find in your course's repository:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/draft-challenge-yaml.png" />
+</Frame>
+
+View [Course Definition Reference](/contributors/authoring-challenges/course-definition-reference) for a description of all the fields in `course-definition.yml`.
+
+You can edit this file to fill in the relevant information. Once the changes are merged into `main`, you can go to your course's admin page to "apply" the changes.
+
+Your course's admin page is located at `https://app.codecrafters.io/courses/<slug>/admin/updates`.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/course-definition-updates-list.png" />
+</Frame>
+
+Once applied, your changes should be reflected on the overview page. You can continuously tweak these details until you're happy with them.
+
+***
+
+Let Paul know once you're happy with the overview page for your course. You can now move on to [building your challenge](/contributors/authoring-challenges/building-your-challenge).
+
+
+# Writing stage instructions
+Source: https://docs.codecrafters.io/contributors/authoring-challenges/writing-stage-instructions
+
+The following tips should help you write great stage instructions for your challenge.
+
+<Note>
+  The CodeCrafters challenge authors program is invite-only. Interested in
+  building CodeCrafters challenge? Write to us at <b>[hello@codecrafters.io](mailto:hello@codecrafters.io)</b>.
+</Note>
+
+Stage instructions are the heart of a CodeCrafters challenge. Remember that most learners will be new to both
+the CodeCrafters platform and your challenge itself, so it's important to write clear, concise and helpful stage instructions.
+
+## Structure
+
+We recommend following this structure when writing stage instructions:
+
+1.  **Hook**: A short sentence that describes what the user will do in this stage.
+2.  **Explanation**: A longer explanation of the concepts involved in this stage, and what the user needs to implement.
+3.  **Tests**: A clear description of how the user's program will be tested, and what the expected output/behaviour is.
+4.  **Notes** (optional): Any additional notes or tips that might be helpful for the user.
+
+## Example
+
+Here's an example from the Redis challenge:
+
+> In this stage, you'll add support for the `TYPE` command.
+>
+> ### The TYPE command
+>
+> The [TYPE](https://redis.io/commands/type/) command returns the type of value stored at a given key.
+>
+> It returns one of the following types: string, list, set, zset, hash, and stream.
+>
+> Here's how it works:
+>
+> ```bash
+> $ redis-cli set some_key foo
+> "OK"
+> $ redis-cli type some_key
+> "string"
+> ```
+>
+> If a key doesn't exist, the return value will be "none".
+>
+> ```bash
+> $ redis-cli type missing_key
+> "none"
+> ```
+>
+> The return value is encoded as a [simple string](https://redis.io/docs/reference/protocol-spec/#simple-strings).
+>
+> ### Tests
+>
+> The tester will execute your program like this:
+>
+> ```bash
+> $ ./spawn_redis_server.sh
+> ```
+>
+> It'll then send a `SET` command to your server.
+>
+> ```bash
+> $ redis-cli set some_key foo
+> ```
+>
+> It'll then send a `TYPE` command to your server.
+>
+> ```bash
+> $ redis-cli type some_key
+> ```
+>
+> Your server should respond with `+string\r\n`, which is `string` encoded as a [RESP simple string](https://redis.io/docs/reference/protocol-spec/#simple-strings).
+>
+> It'll then send another `TYPE` command with a missing key.
+>
+> ```bash
+> $ redis-cli type missing_key
+> ```
+>
+> Your server should respond with `+none\r\n`, which is `none` encoded as a [RESP simple string](https://redis.io/docs/reference/protocol-spec/#simple-strings).
+>
+> ### Notes
+>
+> *   For now, you only need to handle the "string" and "none" types. We'll add support for the "stream" type in the next stage.
+
+
+# Choosing concepts
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/choosing-concepts
+
+The following tips should help you choose what concepts to build.
+
+We recommend choosing concepts based on what will be most engaging to learners going through [challenges](https://app.codecrafters.io/catalog). Some
+concepts will apply to the challenge as a whole, others might only apply to specific stages.
+
+When going through the stage instructions for challenges, think about:
+
+1.  What concepts one would need to know to solve the stage?
+2.  What concepts are likely to trigger natural curiosity in learners as they go through the stage?
+
+For example, here are the stage 2 instructions for the HTTP server challenge:
+
+> In this stage, you'll respond to a HTTP request with a 200 OK response.
+>
+> Your program will need to:
+>
+> *   Accept a TCP connection
+> *   Read data from the connection (we'll get to parsing it in later stages)
+> *   Respond with `HTTP/1.1 200 OK\r\n\r\n` (there are two `\r\n`s at the end)
+>     *   `HTTP/1.1 200 OK` is the [HTTP Status Line](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#status_line).
+>     *   `\r\n`, also known as [CRLF](https://developer.mozilla.org/en-US/docs/Glossary/CRLF), is the end-of-line marker that HTTP uses.
+>     *   The first `\r\n` signifies the end of the status line.
+>     *   The second `\r\n` signifies the end of the response headers section (which is empty in this case).
+>
+> It's okay to ignore the data received from the connection for now. We'll get to parsing it in later stages.
+>
+> For more details on the structure of a HTTP response, view the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#http_responses).
+
+and here are some concepts that might be useful in this stage:
+
+*   **TCP: An overview**: Learn about the TCP protocol and how it works
+*   **HTTP Response Structure**: Learn about the structure of HTTP responses
+*   **HTTP Request Structure**: Learn about the structure of HTTP requests
+*   **HTTP Status Codes**: Learn about common HTTP status codes and what they mean
+*   **HTTP Request Methods**: Learn about HTTP request methods (GET, POST etc.) and what they mean
+
+Here are some other concepts that might be useful in the HTTP challenge but not necessarily in this stage:
+
+*   **HTTP Headers**: Learn about HTTP headers and how they work.
+*   **Persistent HTTP connections**: Learn about persistent HTTP connections and how they work.
+*   **HTTP Pipelining**: Learn about how HTTP pipelining allows multiple HTTP requests to be sent over a single TCP connection.
+*   **HTTP/1.1 vs HTTP/2**: Learn about the differences between HTTP/1.1 and HTTP/2.
+
+
+# Creating concepts
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/creating-concepts
+
+
+
+To create a concept, visit the [Concepts](https://app.codecrafters.io/concepts) page and click the "Create Concept" button.
+
+**Notes**:
+
+*   The [index](https://app.codecrafters.io/concepts) page is still a work in progress.
+    *   Any concepts you create will show up on this page, there's no "draft" state.
+    *   This is fine because we don't link to the index page anywhere.
+    *   For now the only way users access concepts is by a direct link like [https://app.codecrafters.io/concepts/network-protocols](https://app.codecrafters.io/concepts/network-protocols).
+*   The "Create Concept" button is only visible to users accepted into the concept creator program. If you don't see the button,
+    contact [Paul](mailto:paul@codecrafters.io).
+
+
+# How concepts work
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/how-concepts-work
+
+
+
+What better way to learn about a concept, than through a concept?
+
+View the [How concepts work](https://app.codecrafters.io/concepts/how-concepts-work) concept!
+
+
+# Introduction
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/introduction
+
+Learn about what Concepts are, and how to create them.
+
+<Note>
+  Concept creation is currently invite-only. Interested in building CodeCrafters
+  concepts? Write to us at <b>[hello@codecrafters.io](mailto:hello@codecrafters.io)</b>.
+</Note>
+
+Concepts are interactive tutorials that teach users concepts related to our [Challenges](https://app.codecrafters.io/catalog).
+
+Here's an [example](https://app.codecrafters.io/concepts/network-protocols).
+
+Concepts are a first-class citizen on CodeCrafters. We put a lot of effort into making sure that they're high quality and engaging.
+
+Read on to learn more about creating Concepts.
+
+*   [How concepts work](/contributors/authoring-concepts/how-concepts-work)
+*   [Choosing concepts](/contributors/authoring-concepts/choosing-concepts)
+*   [Creating concepts](/contributors/authoring-concepts/creating-concepts)
+*   [Testing concepts](/contributors/authoring-concepts/testing-concepts)
+*   [Publishing concepts](/contributors/authoring-concepts/publishing-concepts)
+    {/* - [Maintaining your Concept](/contributors/authoring-concepts/maintaining-concepts) */}
+
+
+# Publishing concepts
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/publishing-concepts
+
+
+
+Once your concept is ready, you can "publish" it by linking it to a challenge. To do this,
+you'll need to send a PR to the challenge's GitHub repository.
+
+*   Find the challenge's GitHub repository, like [https://github.com/codecrafters-io/build-your-own-redis](https://github.com/codecrafters-io/build-your-own-redis).
+*   Edit the [`course-definition.yml`](https://github.com/codecrafters-io/build-your-own-redis/blob/main/course-definition.yml) file.
+*   Add your concept's slug to the top-level `concept_slugs` key.
+*   If the concept applies to specific stages, also add it to the `concept_slugs` key in the relevant stage.
+
+
+# Byte-Sized Blocks
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/style-guide/byte-sized-blocks
+
+
+
+Keep each block as short as possible. Where possible, break up blocks into smaller ones.
+
+## Bad Example
+
+> To print variables within a string, you can use `{}` as a placeholder for the variable, and then pass its value as an argument. You can
+> also use multiple placeholders, just remember to supply all the arguments in order.
+>
+> ```rust
+> let name = "Alice";
+> println!("Hello, {}!", name); // "Hello, Alice!"
+>
+> let first_name = "Alice";
+> let last_name = "Smith";
+> print!("Hello, {} {}!", first_name, last_name); // "Hello, Alice Smith!"
+> ```
+
+<Warning>
+  This block introduces two concepts at once: placeholders, and the fact that
+  multiple placeholders can be used.
+</Warning>
+
+## Good Example
+
+<Check>When split into two blocks, this is easier to understand.</Check>
+
+> To print variables within a string, you can use `{}` as a placeholder for the variable, and then pass its value as an argument.
+>
+> ```rust
+> let name = "Alice";
+> println!("Hello, {}!", name); // "Hello, Alice!"
+> ```
+
+> You can also use multiple placeholders, just remember to supply all the arguments in order.
+>
+> ```rust
+> let first_name = "Alice";
+> let last_name = "Smith";
+> print!("Hello, {} {}!", first_name, last_name); // "Hello, Alice Smith!"
+> ```
+
+## Exceptions
+
+### Nested/Auxiliary Content
+
+It's probably okay to break this rule if you're introducing auxiliary information that isn't core to the concept
+at hand.
+
+For example, if you're working on a "Rust Data Types" concept that covers Strings, Integers, Floats and other data types,
+it's probably okay to have a block like this that expands on different integer types:
+
+> **Integer types**
+>
+> Examples include `i32`, `u32`, `i64`, and `u64`. The name of each type gives hints about its features.
+>
+> *   `i32` and `i64` and such have an i, meaning they're signed. This means they can be negative, zero, or positive.
+> *   `u32` and `u64` and others have a u, showing they're unsigned. They can only be zero or positive.
+>
+> The number at the end like 32 or 64 tells us how much space it uses in memory.
+>
+> ```rust
+> let x: i32 = -5; // A signed 32 bit integer
+> let y: u64 = 5000000000; // A unsigned 64 bit integer
+> ```
+
+Although this block could be broken down into one for signed integers and another for unsigned integers, it's probably not worth it. The
+concept covers multiple data types, and the block is just expanding on one of them.
+
+If this block was in a concept that was solely about integers, it'd probably make sense to split up.
+
+
+# Introduction
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/style-guide/introduction
+
+
+
+To ensure that our Concepts are consistent and easy to understand, we've collected a set of guidelines.
+
+Here they are:
+
+*   [Byte-Sized Blocks](./byte-sized-blocks)
+
+
+# Testing concepts
+Source: https://docs.codecrafters.io/contributors/authoring-concepts/testing-concepts
+
+
+
+Before publishing concepts, we recommend testing them out yourself and with a few friends if possible.
+
+When you're an expert in a topic, it's easy to miss things that are confusing to beginners. Real-world feedback is
+the best way to find these gaps. If you can observe someone using your concept live, there's nothing like it.
+
+Feel free to also ask for feedback in our [Forum](/community/forum-access), users are always happy to help!
+
+
+# Introduction
+Source: https://docs.codecrafters.io/contributors/introduction
+
+Learn about how you can help us build CodeCrafters
+
+You can help us build CodeCrafters in the following ways:
+
+## Vote on challenge/extension ideas
+
+Help us prioritize which <Tooltip tip="Challenges are guided projects that involve building real-world applications">Challenges</Tooltip> and <Tooltip tip="Extension are additions to challenges that expand their scope.">Extensions</Tooltip> to build next by voting on ideas. You can also submit your own ideas for
+challenges and extensions.
+
+*   **Required Skills**: None, just a desire to learn new things!
+*   **Effort**: Takes under a minute to vote on an idea.
+
+[Learn more](https://app.codecrafters.io/vote)
+
+## Add language support
+
+Help us add support for new languages. Most challenges are language-agnostic and can support any language with some configuration.
+
+*   **Required Skills**: Familiarity with the language you want to add support for, and basic knowledge of Dockerfiles.
+*   **Effort**: It usually takes 1-2 hours to add support for a new language.
+
+[Learn more](/contributors/adding-language-support/introduction)
+
+## Build concepts
+
+Build [Concepts](/contributors/authoring-concepts/introduction) that teach a programming concepts in a engaging way, and earn a share of the revenue they generate.
+
+<Note>
+  This program is currently invite-only to ensure we can provide a great
+  experience. If you're interested in building concepts, [request an
+  invite](mailto:sarup@codecrafters.io).
+</Note>
+
+*   **Required Skills**: Technical knowledge of the concept you want to teach, ability to explain concepts in a clear and engaging way.
+*   **Effort**: Usually takes 1-4 hours to build a concept.
+
+[Learn more](/contributors/authoring-concepts/introduction)
+
+{/* ## Build challenges
+
+Build CodeCrafters challenges, and earn a share of the revenue they generate.
+
+<Note>
+  This program is currently invite-only to ensure we can provide a great
+  experience. If you're interested in building challenges, [request an
+  invite](mailto:sarup@codecrafters.io).
+</Note>
+
+- **Required Skills**: Familiarity with the tool you want to build a challenge for, ability to break down complex problems into smaller steps and explain them clearly.
+- **Effort**: Usually takes 1-2 weeks to build a challenge, and another 1-2 months to incorporating feedback from users to make it production-ready.
+
+[Learn more](/contributors/authoring-challenges/planning-your-challenge) */}
+
+
+# Publish to GitHub
+Source: https://docs.codecrafters.io/features/publish-to-github
+
+Learn more about the Publish to GitHub feature
+
+This integration allows you to publish your CodeCrafters repositories to GitHub with just a couple of clicks.
+
+Each CodeCrafters Challenge includes an option in the language dropdown menu to **"Publish to GitHub"**:
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/features/publish-to-github-dropdown.png" />
+</Frame>
+
+Once you click 'Publish,' any subsequent changes made to the `master` branch of your CodeCrafters repository will automatically sync to GitHub.
+
+<Note>
+  This synchronization is *one-way* – changes made to the GitHub repository will
+  NOT sync back to your CodeCrafters repository.
+</Note>
+
+## Frequently Asked Questions
+
+### What happens if I delete my CodeCrafters account?
+
+Your CodeCrafters repository will be deleted but your GitHub repository will remain intact. If you choose, you can also delete your GitHub repository.
+
+### What happens if I delete my CodeCrafters repository?
+
+Your GitHub repository will remain unchanged.
+
+### What happens if I push changes directly to my GitHub repository instead of my CodeCrafters repository?
+
+It will have no effect on the CodeCrafters repository. As mentioned in the callout above, syncing is one-way only.
+
+### Who can see my published repository?
+
+This is up to you. You can set this in the privacy settings of your GitHub repository.
+
+
+# Introduction
+Source: https://docs.codecrafters.io/introduction
+
+Welcome to the CodeCrafters docs
+
+<CardGroup cols={2}>
+  <Card title="Challenges" icon={"rectangle-terminal"} href="/challenges/debug-test-failures">
+    Common questions and troubleshooting challenges
+  </Card>
+
+  <Card title="CLI" icon={"message-code"} href="/cli/installation">
+    How to install & use the CodeCrafters CLI
+  </Card>
+
+  <Card title="Billing" icon={"file-invoice"} href="/billing/get-an-invoice">
+    Questions about invoices, billing, and access
+  </Card>
+
+  <Card title="Forum" icon={"people-group"} href="/community/forum-access">
+    Questions about joining our forum
+  </Card>
+
+  <Card title="Profile Pages" icon={"square-user"} href="/profile-pages/where-is-my-profile-page">
+    Finding and editing your profile page
+  </Card>
+</CardGroup>
+
+## Most Popular Articles
+
+Here are answers to the most frequently visited questions
+
+<CardGroup cols={2}>
+  <Card icon={"file-lines"} href="/challenges/how-challenges-work">
+    How do challenges work?
+  </Card>
+
+  <Card icon={"file-lines"} href="/challenges/reattempt-challenge">
+    Can I re-attempt a challenge in a different language?
+  </Card>
+
+  <Card icon={"file-lines"} href="challenges/install-additional-dependencies">
+    Can I install additional dependencies?
+  </Card>
+
+  <Card icon={"file-lines"} href="/challenges/debug-test-failures">
+    How do I debug test failures?
+  </Card>
+
+  <Card icon={"file-lines"} href="/challenges/debug-test-failures-redis">
+    How do I debug test failures in the Redis Challenge?
+  </Card>
+
+  <Card icon={"file-lines"} href="/billing/get-an-invoice">
+    How do I get an invoice?
+  </Card>
+</CardGroup>
+
+
+# Anonymous mode
+Source: https://docs.codecrafters.io/membership/anonymous-mode
+
+Learn more about anonymous mode access with a CodeCrafters membership
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get access to anonymous
+  mode.
+</Tip>
+
+A CodeCrafters membership grants you access to anonymous mode. It allows you to hide your GitHub username and avatar on CodeCrafters.
+
+## What is anonymous mode?
+
+Anonymous mode masks the GitHub username and avatar on your CodeCrafters profile.
+
+Your code examples and profile will still be public but under a random username and profile picture.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/anon-before-after.png" />
+</Frame>
+
+## How do I enable it?
+
+To enable anonymous mode:
+
+1.  Click on your username on the top right corner of the page.
+2.  Select **Settings** from the dropdown menu
+3.  Locate the **Anonymous Mode** option and toggle the button next to it to activate
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/anon-settings.png" />
+</Frame>
+
+<Note>
+  {" "}
+
+  Once anonymous mode is enabled, it will not be disabled, even if your membership
+  expires.
+</Note>
+
+
+# Code examples
+Source: https://docs.codecrafters.io/membership/code-examples
+
+Learn more about accessing code examples with a CodeCrafters membership
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get access to code examples for all stages.
+</Tip>
+
+A CodeCrafters membership grants you access to code examples. This means that you can view code from other users when working on CodeCrafters challenges.
+
+## What are code examples?
+
+Code examples are snippets of code from other users who've passed a stage. Here's what they look like:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/code-examples.png" />
+</Frame>
+
+{/* Most code examples also include AI-generated comments inline. These comments can help if you're new to a language or unfamiliar with common constructs. Example:
+
+<Frame>
+  <img className="w-full" src="/img/membership/code-example-comments.png" />
+</Frame> */}
+
+## What code examples can I access for free without a CodeCrafters membership?
+
+Without a CodeCrafters membership, you can view:
+
+*   All code examples for early stages
+*   Upto 2 code examples for other stages
+
+A CodeCrafters membership grants you access to all recent code examples for a stage, in any language.
+
+
+# Unlimited content access
+Source: https://docs.codecrafters.io/membership/content
+
+Learn more about content access with a CodeCrafters membership.
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get unlimited content access.
+</Tip>
+
+A CodeCrafters membership grants you unlimited access to our [catalog](https://app.codecrafters.io/catalog). You'll also get early access to
+all content we'll release in the future.
+
+## What content can I access for free without a CodeCrafters membership?
+
+All of our content is available in a "read-only" format for free. This means that you can view all of the stage instructions and hints, but
+you won't be able to submit code or run tests for any stages you don't have access to.
+
+Without a CodeCrafters membership, you can run tests and submit code for:
+
+*   All stages in any challenge currently marked as "Free" in the [catalog](https://app.codecrafters.io/catalog)
+*   The first 2 stages of any challenge (including those not marked as "Free")
+
+With a CodeCrafters membership, you can run tests and submit code for all stages in any challenge.
+
+
+# Dark mode
+Source: https://docs.codecrafters.io/membership/dark-mode
+
+Learn more about dark mode access with a CodeCrafters membership
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get access to dark mode.
+</Tip>
+
+A CodeCrafters membership grants you access to dark mode.
+
+## What does it look like?
+
+Here's a preview of what dark mode looks like:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/dark-mode-preview-1.png" />
+</Frame>
+
+## How do I enable/disable dark mode?
+
+When working on a challenge, you can toggle dark mode via the theme switcher in the top-right corner of the page:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/dark-mode-switcher-challenge.png" />
+</Frame>
+
+For other pages, you can access the theme switcher in the account dropdown menu:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/dark-mode-switcher-other.png" />
+</Frame>
+
+
+# Perks
+Source: https://docs.codecrafters.io/membership/perks
+
+Learn more about perks offered to CodeCrafters members.
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get access to all perks.
+</Tip>
+
+A CodeCrafters membership grants you access to [perks](https://codecrafters.io/perks).
+
+## What are perks?
+
+[Perks](https://codecrafters.io/perks) are special benefits that are offered to CodeCrafters members.
+
+You can view the full list of perks here: [codecrafters.io/perks](https://codecrafters.io/perks)
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/perks.png" />
+</Frame>
+
+
+# Turbo test runs
+Source: https://docs.codecrafters.io/membership/turbo
+
+Learn more about turbo test runs
+
+<Tip>
+  [Upgrade here](https://app.codecrafters.io/pay) to get access to unlimited turbo test runs.
+</Tip>
+
+A CodeCrafters membership grants you access to turbo test runs. This means that your test runs will execute faster than regular test runs.
+
+## What are turbo test runs?
+
+Turbo test runs are given first priority by our test runners and execute faster than regular test runs.
+
+In times of high demand, regular test runs might be queued while turbo test runs are executed immediately.
+
+If you have an active CodeCrafters membership, all of your test runs will be turbo test runs.
+
+## How do I know if my test run is a turbo test run?
+
+If your test run is a turbo test run, you'll see this at the top of your test run output:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/turbo.png" />
+</Frame>
+
+If your test run is not a turbo test run, you'll see this instead:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/membership/not-turbo.png" />
+</Frame>
+
+
+# Can I list multiple languages on my profile page?
+Source: https://docs.codecrafters.io/profile-pages/list-multiple-languages
+
+
+
+Yes! When you complete a challenge in multiple languages, all of them will be visible on your profile page.
+
+Here's an example where a user has completed the same challenge in both C & Python:
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/profile-page-example.png" />
+</Frame>
+
+
+# Where is my profile page?
+Source: https://docs.codecrafters.io/profile-pages/where-is-my-profile-page
+
+If you've completed one or more challenges, you'll find your profile page at https://app.codecrafters.io/users/&lt;your_github_username&gt;kj.
+
+**Here's an example**: [Dan Wilhelm's CodeCrafters Profile](https://codecrafters.io/users/danwilhelm).
+
+Profile pages might take upto 24 hours to sync. If you’ve completed a challenge recently and don’t see your profile page yet, check back in 24 hours.
+
+
+# Git clone errors
+Source: https://docs.codecrafters.io/troubleshooting/fix-clone-errors
+
+
+
+When you start a CodeCrafters challenge, we create a Git repository for you to work in. If you're facing issues cloning your repository,
+here are a few things you can try:
+
+# Check our status page
+
+Visit [https://status.codecrafters.io/](https://status.codecrafters.io/) and make sure that the "Git Operations" component is green.
+
+<Frame>
+  <img className="w-full" src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/fix-clone-errors/git-status.png" />
+</Frame>
+
+If the "Git Operations" component is red, it means that we're experiencing issues with our Git infrastructure. In this case, wait for the
+issue to be resolved and then try cloning your repository again.
+
+# Check connectivity to git.codecrafters.io
+
+If the status page looks good, the next step is to check if you can connect to `git.codecrafters.io`. You can do this by running:
+
+```sh
+curl -vvv https://git.codecrafters.io
+```
+
+The logs should look something like this:
+
+```sh
+*   Trying 192.241.134.100:443...
+* Connected to git.codecrafters.io (192.241.134.100) port 443 (#0)
+* ALPN: offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+* (304) (IN), TLS handshake, Unknown (8):
+* (304) (IN), TLS handshake, Certificate (11):
+* (304) (IN), TLS handshake, CERT verify (15):
+* (304) (IN), TLS handshake, Finished (20):
+* (304) (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / AEAD-CHACHA20-POLY1305-SHA256
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.codecrafters.io
+*  start date: Jul 19 00:00:00 2023 GMT
+*  expire date: Jul 24 23:59:59 2024 GMT
+*  subjectAltName: host "git.codecrafters.io" matched cert's "*.codecrafters.io"
+*  issuer: C=US; O=DigiCert Inc; OU=www.digicert.com; CN=RapidSSL TLS RSA CA G1
+*  SSL certificate verify ok.
+* using HTTP/2
+* h2 [:method: GET]
+* h2 [:scheme: https]
+* h2 [:authority: git.codecrafters.io]
+* h2 [:path: /]
+* h2 [user-agent: curl/8.1.2]
+* h2 [accept: */*]
+* Using Stream ID: 1 (easy handle 0x12c810e00)
+> GET / HTTP/2
+> Host: git.codecrafters.io
+> User-Agent: curl/8.1.2
+> Accept: */*
+>
+< HTTP/2 404
+< cache-control: no-cache, max-age=0, must-revalidate
+< date: Fri, 16 Feb 2024 19:08:42 GMT
+< expires: Fri, 01 Jan 1980 00:00:00 GMT
+< pragma: no-cache
+< server: Caddy
+< server: lighttpd/1.4.54
+<
+* Connection #0 to host git.codecrafters.io left intact
+```
+
+If you see a "connection timed out" error instead, this could be due to a firewall or network issue. We recommend disabling your firewall or using a different
+network to see if that resolves the issue.
+
+Sometimes, depending on your ISP's rules, using a VPN can help resolve this issue. If you don't have a VPN installed, we recommend using [1.1.1.1](https://1.1.1.1/).
+
+If none of these options work, please reach out to us at [hello@codecrafters.io](mailto:hello@codecrafters.io) and we'll take a look!
+
+
+# Large files found
+Source: https://docs.codecrafters.io/troubleshooting/large-files
+
+Instructions on resolving error related to large files
+
+When pushing your changes, you might see a message indicating that some files exceed the 1MB size limit:
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/large-file-error.png" />
+</Frame>
+
+If you encounter an error like this, it's likely due to inadvertently committing files that are too large or not meant to be tracked (e.g., binaries or `node_modules/`).
+
+Depending on when these large files entered your Git history, there are two ways to resolve this.
+
+## Solution 1: Amend last commit (Try this first)
+
+<Steps>
+  <Step title="Stage the large files for deletion">
+    Run the following command:
+
+    ```bash
+    git rm LARGE_FILE
+    ```
+
+    This command removes the large files from your Git repository and locally.
+
+    For example to delete the `./server` and `./release/target` binaries shown in the screenshot above, run the following command:
+
+    ```bash
+    git rm server release/target
+    ```
+  </Step>
+
+  <Step title="Commit the changes">
+    ```bash
+    git commit --amend --no-edit --allow-empty
+    ```
+
+    This will amend the previous commit with the changes.
+  </Step>
+
+  <Step title="Push the code">
+    Finally, push your code:
+
+    ```bash
+    git push origin master
+    ```
+  </Step>
+</Steps>
+
+If Solution 1 doesn't work, it means the large files are present in an older commit and will require some extra work. Follow the instructions in Solution 2 below.
+
+## Solution 2: Amend historical commits
+
+<Steps>
+  <Step title="Install `git repo-filter`">
+    You can install [git-filter-repo](https://github.com/newren/git-filter-repo) manually or by using a package manager. For example, to install the tool with Homebrew, run the following command:
+
+    ```bash
+    brew install git-filter-repo
+    ```
+
+    For more information, see [INSTALL.md](https://github.com/newren/git-filter-repo/blob/main/INSTALL.md)
+  </Step>
+
+  <Step title="Delete the large files">
+    Delete each of the large files using the following command:
+
+    ```bash
+    git filter-repo --invert-paths --path PATH-TO-LARGE-FILE
+    ```
+
+    This will remove the file from your Git history and local filesystem.
+    <Note>Add the *path* to the files you want to remove, not just their filename.</Note>
+  </Step>
+
+  <Step title="Restore your remotes and push">
+    The `git filter-repo` tool will automatically remove your configured remote CodeCrafters Git repository. Restore it using the following steps:
+
+    Copy the CodeCrafters Git repository URL from the dropdown menu:
+
+    <Frame>
+      <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/copy-git-url.png" />
+    </Frame>
+
+    Run the following command in your local project folder:
+
+    ```bash
+    git remote add origin CODECRAFTERS-GIT-URL
+    ```
+
+    Finally, force-push your code:
+
+    ```bash
+    git push origin --force --all
+    ```
+  </Step>
+</Steps>
+
+<Note>
+  If you're still running into issues after trying the the two steps above,
+  please reach out to us at
+  [hello@codecrafters.io](mailto:hello@codecrafters.io) and we'll help out!{" "}
+</Note>
+
+
+# No changes found
+Source: https://docs.codecrafters.io/troubleshooting/no-changes
+
+Instructions on resolving error related to no changes found
+
+When pushing your changes, you might see a message indicating that no changes were found.
+
+<Frame>
+  <img src="https://mintlify.s3-us-west-1.amazonaws.com/codecrafters/img/no-changes-found-error.png" />
+</Frame>
+
+This most likely means that you haven't run `git add .` before running `git commit` and `git push`.
+
+Make sure to run all these three commands in order:
+
+```sh
+git add .
+git commit -m "<your_commit_message>"
+git push origin master
+```
+
+

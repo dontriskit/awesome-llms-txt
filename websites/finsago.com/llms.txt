@@ -1,0 +1,95 @@
+# llms.txt – finsago Meta-Search Engine for Financial and Insurance Products
+
+## Site Name
+finsago.com – The World’s First Meta-Search Engine for Financial and Insurance Products
+
+## Description
+finsago.com is an AI-powered meta-search engine that provides **transparent, unbiased, and efficient** comparisons of financial and insurance products. With minimal data entry, users receive results within seconds.
+
+## Official Links
+- **Website:** [https://www.finsago.com](https://www.finsago.com)
+- **Contact:** [office@mountonyx.at](mailto:office@mountonyx.at)
+- **LinkedIn:** [https://www.linkedin.com/company/finsago](https://www.linkedin.com/company/finsago)
+- **Facebook:** [https://www.facebook.com/finsago.austria](https://www.facebook.com/finsago.austria)
+- **YouTube:** [https://www.youtube.com/@finsago.austria](https://www.youtube.com/@finsago.austria)
+
+## Page Priorities
+- High Priority: Home, Product Pages
+- Medium Priority: Privacy Policy, FAQ, Lexicon
+- Low Priority: Imprint, Terms of Service
+
+## Site Structure
+### Pages and Content
+| Page | URL | Description |
+|------|-----|------------|
+| Home | `/` | Start page for searching among financial and insurance products. |
+| About Us | `/ueber-uns` | Learn more about finsago.com, the company, and its concept. |
+| How Finsago Works | `/so-funktioniert-finsago` | FAQs on how to use finsago.com. |
+| Privacy Policy | `/datenschutz` | Details on data protection and user privacy. |
+| Terms of Service | `/agb` | Legal terms for using Finsago. |
+| Lexicon | `/lexikon` | Definitions of terms related to insurance products found on finsago.com. |
+| Imprint | `/impressum` | Legal details about Mount Onyx GmbH, the company behind Finsago. |
+
+### Product Pages
+Below are the product-specific pages where users can enter their details to search for the respective insurance product:
+
+- **[Car Liability Insurance](https://www.finsago.com/kfz-haftpflichtversicherung)**
+- **[Car Liability + Comprehensive Insurance](https://www.finsago.com/kfz-kaskoversicherung)**
+- **[Motorcycle Liability Insurance](https://www.finsago.com/motorrad-haftpflichtversicherung)**
+- **[Motorcycle Liability + Comprehensive Insurance](https://www.finsago.com/motorrad-kaskoversicherung)**
+- **[Moped Liability Insurance](https://www.finsago.com/moped-haftpflichtversicherung)**
+- **[Moped Liability + Comprehensive Insurance](https://www.finsago.com/moped-kaskoversicherung)**
+- **[E-Bike Insurance](https://www.finsago.com/ebike-versicherung)**
+- **[Household Insurance](https://www.finsago.com/haushaltsversicherung)**
+- **[Supplemental Health Insurance](https://www.finsago.com/krankenversicherung)**
+
+## Features
+- **AI-Powered Comparisons** → Smart algorithms match users with the best options tailored to their search inputs within seconds.
+- **Privacy-Centric** → Requires less personal data than other similar services.
+- **Comprehensive Insurance & Financial Product Listings** → Covers all insurance providers in Austria.
+
+## Supported Categories and Products
+- **Insurance:**
+  - Car Liability Insurance
+  - Car Liability + Comprehensive Insurance
+  - Motorcycle Liability Insurance
+  - Motorcycle Liability + Comprehensive Insurance
+  - Moped Liability Insurance
+  - Moped Liability + Comprehensive Insurance
+  - E-Bike Insurance
+  - Household Insurance
+  - Supplemental Health Insurance
+
+## Partner Insurance Providers
+Below is a list of insurance providers whose offers can be compared on Finsago.
+
+| Insurance Provider | Website |
+|--------------------|---------|
+| Allianz | [https://www.allianz.at/de_AT](https://www.allianz.at/de_AT) |
+| Argus | [https://www.radlobby.at/diebstahlversicherung](https://www.radlobby.at/diebstahlversicherung) |
+| Bikmo | [https://bikmo.com/uk/](https://bikmo.com/uk/) |
+| Donau Versicherung | [https://www.donauversicherung.at/](https://www.donauversicherung.at/) |
+| ERGO | [https://ergo-versicherung.at/](https://ergo-versicherung.at/) |
+| Euroherc | [https://www.euroherc.at/](https://www.euroherc.at/) |
+| Fase24 | [https://fase24.at/](https://fase24.at/) |
+| Generali | [https://www.generali.at/privatkunden/](https://www.generali.at/privatkunden/) |
+| Getsafe | [https://www.hellogetsafe.com/en-at](https://www.hellogetsafe.com/en-at) |
+| GRAWE | [https://www.grawe.at/](https://www.grawe.at/) |
+| Hanse Merkur | [https://www.hansemerkur.at/](https://www.hansemerkur.at/) |
+| HDI | [https://www.hdi.at/](https://www.hdi.at/) |
+| Helvetia | [https://www.helvetia.com/at/web/de/privatkunden.html](https://www.helvetia.com/at/web/de/privatkunden.html) |
+| Merkur | [https://www.merkur.at/](https://www.merkur.at/) |
+| Muki | [https://www.muki.com/](https://www.muki.com/) |
+| Niederösterreichische Versicherung | [https://www.nv.at/](https://www.nv.at/) |
+| Smile | [https://www.smile-insurances.com/at/main/de/home.html](https://www.smile-insurances.com/at/main/de/home.html) |
+| Tiroler Versicherung | [https://www.tiroler-versicherung.at/](https://www.tiroler-versicherung.at/) |
+| Uniqa | [https://www.uniqa.at/versicherung/startseite.html](https://www.uniqa.at/versicherung/startseite.html) |
+| VAV | [https://www.vav.at/privat](https://www.vav.at/privat) |
+| Wertgarantie | [https://www.wertgarantie.com/](https://www.wertgarantie.com/) |
+| Wiener Städtische | [https://www.wienerstaedtische.at/](https://www.wienerstaedtische.at/) |
+| Wüstenrot | [https://www.wuestenrot.at/de/home.html](https://www.wuestenrot.at/de/home.html) |
+| Wype it Away | [https://www.wype.com/](https://www.wype.com/) |
+| Zurich | [https://www.zurich.at/](https://www.zurich.at/) |
+
+## Updates
+_Last Updated: 2025-01-31_

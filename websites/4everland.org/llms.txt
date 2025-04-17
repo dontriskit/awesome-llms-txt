@@ -1,0 +1,133 @@
+# 4EVERLAND Documents
+
+## 4EVERLAND Documents
+
+- [Welcome to 4EVERLAND](https://docs.4everland.org/welcome-to-4everland): We are delighted to have you here with us. Let us explore and discover new insights about Web3 development through 4EVERLAND!
+- [Our Features](https://docs.4everland.org/get-started/our-features)
+- [Quick Start Guide](https://docs.4everland.org/get-started/quick-start-guide): Introduction, Dashboard, and FAQs
+- [Registration](https://docs.4everland.org/get-started/quick-start-guide/registration)
+- [Login options](https://docs.4everland.org/get-started/quick-start-guide/login-options)
+- [MetaMask](https://docs.4everland.org/get-started/quick-start-guide/login-options/metamask): Metamask login
+- [OKX Wallet](https://docs.4everland.org/get-started/quick-start-guide/login-options/okx-wallet)
+- [Binance Web3 Wallet](https://docs.4everland.org/get-started/quick-start-guide/login-options/binance-web3-wallet)
+- [Bitget Wallet](https://docs.4everland.org/get-started/quick-start-guide/login-options/bitget-wallet)
+- [Phantom](https://docs.4everland.org/get-started/quick-start-guide/login-options/phantom): Phanton login
+- [Petra](https://docs.4everland.org/get-started/quick-start-guide/login-options/petra)
+- [Lilico](https://docs.4everland.org/get-started/quick-start-guide/login-options/lilico): Flow login
+- [Usage Introduction](https://docs.4everland.org/get-started/quick-start-guide/usage-introduction)
+- [Dashboard stats](https://docs.4everland.org/get-started/quick-start-guide/dashboard-stats)
+- [Account](https://docs.4everland.org/get-started/quick-start-guide/account): Account
+- [Linking Wallet to Your 4EVERLAND Account](https://docs.4everland.org/get-started/quick-start-guide/account/linking-wallet-to-your-4everland-account)
+- [Balance Alert](https://docs.4everland.org/get-started/quick-start-guide/account/balance-alert): Balance Alert Function Guide: Email and Telegram Notifications
+- [Billing and Pricing](https://docs.4everland.org/get-started/billing-and-pricing)
+- [What is LAND?](https://docs.4everland.org/get-started/billing-and-pricing/what-is-land)
+- [How to Obtain LAND?](https://docs.4everland.org/get-started/billing-and-pricing/how-to-obtain-land)
+- [Pricing Model](https://docs.4everland.org/get-started/billing-and-pricing/pricing-model)
+- [Q\&As](https://docs.4everland.org/get-started/billing-and-pricing/q-and-as)
+- [Tokenomics](https://docs.4everland.org/get-started/tokenomics)
+- [What is Hosting?](https://docs.4everland.org/hositng/what-is-hosting): Overview
+- [IPFS Hosting](https://docs.4everland.org/hositng/what-is-hosting/ipfs-hosting)
+- [Arweave Hosting](https://docs.4everland.org/hositng/what-is-hosting/arweave-hosting)
+- [Auto-Generation of Manifest](https://docs.4everland.org/hositng/what-is-hosting/arweave-hosting/auto-generation-of-manifest)
+- [Internet Computer Hosting](https://docs.4everland.org/hositng/what-is-hosting/internet-computer-hosting)
+- [Greenfield Hosting](https://docs.4everland.org/hositng/what-is-hosting/greenfield-hosting)
+- [Guides](https://docs.4everland.org/hositng/guides)
+- [Creating a Deployment](https://docs.4everland.org/hositng/guides/creating-a-deployment)
+- [With Git](https://docs.4everland.org/hositng/guides/creating-a-deployment/with-git)
+- [With IPFS Hash](https://docs.4everland.org/hositng/guides/creating-a-deployment/with-ipfs-hash)
+- [With a Template](https://docs.4everland.org/hositng/guides/creating-a-deployment/with-a-template)
+- [Site Deployment](https://docs.4everland.org/hositng/guides/site-deployment)
+- [Domain Management](https://docs.4everland.org/hositng/guides/domain-management)
+- [DNS Setup Guide](https://docs.4everland.org/hositng/guides/domain-management/dns-setup-guide): Custom Domain Setup Guide for 4EVERLAND Deployments
+- [ENS Setup Guide](https://docs.4everland.org/hositng/guides/domain-management/ens-setup-guide): ENS Domain Setup Guide for 4EVERLAND IPFS Deployments
+- [SNS Setup Guide](https://docs.4everland.org/hositng/guides/domain-management/sns-setup-guide): Solana Name Service (SNS) Domain Setup Guide for 4EVERLAND IPFS Deployments
+- [The gateway: 4sol.xyz](https://docs.4everland.org/hositng/guides/domain-management/sns-setup-guide/the-gateway-4sol.xyz): 4sol.xyz: The Enterprise-Grade SNS Gateway for Web3 Accessibility
+- [Project Setting](https://docs.4everland.org/hositng/guides/project-setting)
+- [Git](https://docs.4everland.org/hositng/guides/project-setting/git)
+- [Troubleshooting](https://docs.4everland.org/hositng/guides/troubleshooting)
+- [Common Frameworks](https://docs.4everland.org/hositng/guides/common-frameworks)
+- [Hosting Templates Centre](https://docs.4everland.org/hositng/hosting-templates-centre)
+- [Templates Configuration File](https://docs.4everland.org/hositng/hosting-templates-centre/templates-configuration-file): Description of the Configuration File: Config.json
+- [Quick Addition](https://docs.4everland.org/hositng/quick-addition)
+- [Implement Github 4EVER Pin](https://docs.4everland.org/hositng/quick-addition/implement-github-4ever-pin): 4EVER IPFS Pin contains code examples to help your Github project quickly implement file fixing and access on an IPFS network.
+- [Github Deployment Button](https://docs.4everland.org/hositng/quick-addition/github-deployment-button): The Deploy button allows you to quickly run deployments with 4EVERLAND in your Git repository by clicking the 'Deploy button'.
+- [Hosting API](https://docs.4everland.org/hositng/hosting-api)
+- [Create Project API](https://docs.4everland.org/hositng/hosting-api/create-project-api)
+- [Deploy Project API](https://docs.4everland.org/hositng/hosting-api/deploy-project-api)
+- [Get Task Info API](https://docs.4everland.org/hositng/hosting-api/get-task-info-api)
+- [IPNS Deployment Update API](https://docs.4everland.org/hositng/hosting-api/ipns-deployment-update-api): This API is used to update projects that have been deployed by IPNS.
+- [Hosting CLI](https://docs.4everland.org/hositng/hosting-cli)
+- [Bucket](https://docs.4everland.org/storage/bucket)
+- [IPFS Bucket](https://docs.4everland.org/storage/bucket/ipfs-bucket)
+- [Get Root CID - Snapshots](https://docs.4everland.org/storage/bucket/ipfs-bucket/get-root-cid-snapshots)
+- [Arweave Bucket](https://docs.4everland.org/storage/bucket/arweave-bucket)
+- [Path Manifests](https://docs.4everland.org/storage/bucket/arweave-bucket/path-manifests)
+- [Instructions for Building Manifest](https://docs.4everland.org/storage/bucket/arweave-bucket/path-manifests/instructions-for-building-manifest)
+- [Arweave Tags](https://docs.4everland.org/storage/bucket/arweave-bucket/arweave-tags): To add tags when uploading to Arweave
+- [Unleash Arweave](https://docs.4everland.org/storage/bucket/arweave-bucket/unleash-arweave): https://unleashar.4everland.org/
+- [Guides](https://docs.4everland.org/storage/bucket/guides)
+- [Bucket API - S3 Compatible](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible)
+- [Coding Examples](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples): Coding
+- [AWS SDK - Go (Golang)](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-go-golang)
+- [AWS SDK - Java](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-java)
+- [AWS SDK - JavaScript](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-javascript)
+- [AWS SDK - .NET](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-.net)
+- [AWS SDK - PHP](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-php)
+- [AWS SDK - Python](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-python)
+- [AWS SDK - Ruby](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/coding-examples/aws-sdk-ruby)
+- [S3 Tags Instructions](https://docs.4everland.org/storage/bucket/bucket-api-s3-compatible/s3-tags-instructions)
+- [4EVER Security Token Service API](https://docs.4everland.org/storage/bucket/4ever-security-token-service-api): Welcome to the 4EVERLAND Security Token Service API
+- [Bucket Tools](https://docs.4everland.org/storage/bucket/bucket-tools)
+- [Bucket Gateway Optimizer](https://docs.4everland.org/storage/bucket/bucket-gateway-optimizer)
+- [4EVER Pin](https://docs.4everland.org/storage/4ever-pin)
+- [Guides](https://docs.4everland.org/storage/4ever-pin/guides): Guides
+- [Pinning Services API](https://docs.4everland.org/storage/4ever-pin/pinning-services-api)
+- [IPFS Migrator](https://docs.4everland.org/storage/4ever-pin/ipfs-migrator): Easy and fast migration of CIDs to 4EVER Pin
+- [Storage SDK](https://docs.4everland.org/storage/storage-sdk)
+- [IPFS Gateway](https://docs.4everland.org/gateways/ipfs-gateway)
+- [IC Gateway](https://docs.4everland.org/gateways/ic-gateway)
+- [Arweave Gateway](https://docs.4everland.org/gateways/arweave-gateway)
+- [Dedicated Gateways](https://docs.4everland.org/gateways/dedicated-gateways)
+- [Gateway Access Controls](https://docs.4everland.org/gateways/dedicated-gateways/gateway-access-controls)
+- [Video Streaming](https://docs.4everland.org/gateways/dedicated-gateways/video-streaming)
+- [IPFS Image Optimizer](https://docs.4everland.org/gateways/dedicated-gateways/ipfs-image-optimizer)
+- [IPNS Manager](https://docs.4everland.org/gateways/ipns-manager): By utilizing advanced encryption technology, build and expand your projects with secure, customizable IPNS name records for your content.
+- [IPNS Manager API](https://docs.4everland.org/gateways/ipns-manager/ipns-manager-api): 4EVERLAND IPNS API can help with IPNS creation, retrieval, CID preservation and publishing, etc.
+- [Guides](https://docs.4everland.org/rpc/guides)
+- [API Keys](https://docs.4everland.org/rpc/api-keys)
+- [JSON Web Token (JWT)](https://docs.4everland.org/rpc/json-web-token-jwt)
+- [What's CUs/CUPS](https://docs.4everland.org/rpc/whats-cus-cups)
+- [WebSockets](https://docs.4everland.org/rpc/websockets)
+- [Archive Node](https://docs.4everland.org/rpc/archive-node)
+- [Debug API](https://docs.4everland.org/rpc/debug-api)
+- [Chains RPC](https://docs.4everland.org/rpc/chains-rpc)
+- [BSC / opBNB](https://docs.4everland.org/rpc/chains-rpc/bsc-opbnb)
+- [Ethereum](https://docs.4everland.org/rpc/chains-rpc/ethereum)
+- [Optimism](https://docs.4everland.org/rpc/chains-rpc/optimism)
+- [Polygon](https://docs.4everland.org/rpc/chains-rpc/polygon)
+- [Taiko](https://docs.4everland.org/rpc/chains-rpc/taiko)
+- [AI RPC](https://docs.4everland.org/ai/ai-rpc): RPC
+- [Quick Start](https://docs.4everland.org/ai/ai-rpc/quick-start)
+- [Models](https://docs.4everland.org/ai/ai-rpc/models)
+- [API Keys](https://docs.4everland.org/ai/ai-rpc/api-keys)
+- [Requests & Responses](https://docs.4everland.org/ai/ai-rpc/requests-and-responses)
+- [Parameters](https://docs.4everland.org/ai/ai-rpc/parameters)
+- [4EVER Chat](https://docs.4everland.org/ai/4ever-chat)
+- [What's Rollups?](https://docs.4everland.org/raas-beta/whats-rollups): Introduction Rollups, an Innovative Layer 2 Scaling Solution
+- [4EVER Rollup Stack](https://docs.4everland.org/raas-beta/4ever-rollup-stack)
+- [4EVER Network](https://docs.4everland.org/depin/4ever-network)
+- [Storage Nodes](https://docs.4everland.org/depin/storage-nodes): Nodestorage
+- [Use Cases](https://docs.4everland.org/more/use-cases)
+- [Livepeer](https://docs.4everland.org/more/use-cases/livepeer)
+- [Lens Protocol](https://docs.4everland.org/more/use-cases/lens-protocol)
+- [Optopia.ai](https://docs.4everland.org/more/use-cases/optopia.ai)
+- [Linear Finance](https://docs.4everland.org/more/use-cases/linear-finance)
+- [Snapshot](https://docs.4everland.org/more/use-cases/snapshot)
+- [Tape](https://docs.4everland.org/more/use-cases/tape)
+- [Taiko](https://docs.4everland.org/more/use-cases/taiko)
+- [Hey.xyz](https://docs.4everland.org/more/use-cases/hey.xyz)
+- [SyncSwap](https://docs.4everland.org/more/use-cases/syncswap)
+- [Community](https://docs.4everland.org/more/community)
+- [Tutorials](https://docs.4everland.org/more/tutorials)
+- [Security](https://docs.4everland.org/more/security): Learn about data security for objects stored on 4EVERLAND.
+- [4EVERLAND FAQ](https://docs.4everland.org/more/4everland-faq)

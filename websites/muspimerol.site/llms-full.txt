@@ -1,0 +1,5945 @@
+# Muspi Merol https://muspimerol.site
+
+> I am 庄毅辉, aka Muspi Merol[^nickname], an undergraduate at [BNUZ](https://www.bnuzh.edu.cn/ "北京师范大学（珠海校区）") and [an opinionated open-source enthusiast](https://github.com/CNSeniorious000 "My GitHub Profile"). 我来自中国！
+>
+> I am open for jobs. My ideal job would be a Product Manager / Full Stack Engineer / Sponsored Full-Time Open Source / Technical Consultant. I value a **lively** and **passionate** atmosphere, cutting-edge technology, and I like **asynchronous** work. I am particularly interested in roles that allow me to work remotely and contribute to impactful projects. In addition, I enjoy collaborating with teams and engaging in continuous learning. If you are interested in my profile, please feel free to contact me via [email](mailto:me@promplate.dev).
+
+[^nickname]: `Muspi Merol` is just the reverse of `Lorem Ipsum`, which means _a name of no meaning_.
+
+## Posts / more like Random Thoughts (top 100/154)
+
+# [关于 feed 的一些想法](/blog/qxsn64cw84tmg8w3) (4月17日)
+
+今天想到两个关于 feed 的产品的点子。
+
+
+
+痛点是，生活中总要浏览很多“订阅”类产品。无论是我订阅的公众号、朋友圈、各种交流群、我订阅的各种 rss 源、甚至各种 app 内的推荐等等。每天都要花很多时间在刷这些东西。
+
+不刷不行，因为可能会错过一些感兴趣的东西（可能占 5%），但是刷的时候很多时间都在重复劳动。比如等加载，比如查单词，比如手动在各种页面和app辗转。
+
+
+
+**简单来说就是“不想错过”和“刷完太花时间”的矛盾。但这个矛盾其实不必有。**
+
+因为刷的过程很大一部分是不需要脑子的。不需要脑子就以为着可以让 AI 替你做。
+
+
+
+正好这学期在做一些通用 app 自动化（参考 AutoGLM），我也一直在生活中搜集可以自动化的一些地方（可以让 AI 代替你操作手机，帮你完成的事）。当然由于 AI 不够聪明，所以我认为只能是一些规则类的，不需要什么“主观”判断的东西。我觉得这个就是一个例子。
+
+
+
+总的来说，就是我觉得这样的产品是完全可行且至少对我有用的（其实有点类似 iOS 的通知摘要）：
+
+1. 帮我操作手机，定时刷消息刷朋友圈刷订阅号，把内容记录下来
+2. 基于一些模糊的规则做基本的筛选（比如不要纯广告）或分类（比如讨论什么产品的是一类，讨论什么社会事件的是一类）
+3. 对每条信息做一些浅的探索，给每条消息一些元数据。比如如果是项目可以给出 demo、仓库、文档、技术栈等。比如如果是英文可以预先帮我翻译，比如如果是开源软件可以帮我找一个最小的可运行的 snippets
+
+这其实可以拆成两个产品来做，一个就是纯粹的自动操作手机把各类 app 变成 feed，一个就是在 feed 的基础上做处理。即使没有第一个产品第二个也能做（可以用一些现成的 feed）。
+
+# [解决 Dependabot 生成 broken uv.lock 的问题](/blog/kd8rm20e8w5fo0rf) (4月13日)
+
+昨天我在 Dependabot 的 uv 支持的 issue 下面发了一条评论：
+
+[dependabot/dependabot-core#10478 · GitHub](https://github.com/dependabot/dependabot-core/issues/10478#issuecomment-2798746196)
+
+起因是，Dependabot 最近支持更新 uv 的 lockfile 了，但是支持的很不好，总是会给出 broken 的 lockfile，大家就都在下面抱怨。很搞笑的是，大家不知道是不是没看出来其实都是同一个问题，还是想借此机会给自己的项目打广告，很多人在评论中附上自己的项目的 CI 日志，即使这些都是重复的
+
+我昨天的评论，就是在想，既然我本地是可以修复（重建？）这个 lock 文件的，那我为什么不能在 GitHub Actions 里运行？为什么不能在 Dependabot 打开一个 PR 的时候自动地触发修复？
+
+然后我就跟 LLM 简要描述了下，稍加修改就成了。
+
+```yaml
+name: Fix uv.lock for Dependabot
+
+on:
+  push:
+    branches:
+      - "dependabot/uv/**"
+  workflow_dispatch:
+
+jobs:
+  update-lockfile:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Set up Python
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: 3.12
+      - name: Fix lockfile
+        run: uv sync
+      - name: Commit and push uv.lock if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Check if uv.lock was modified or created
+          if git diff --quiet --exit-code uv.lock; then
+              echo "uv.lock is up-to-date."
+          else
+              echo "uv.lock changed, committing updates."
+              git add uv.lock
+              git commit -m "fix `uv.lock` after dependency update"
+              git push origin HEAD:${{ github.ref_name }}
+          fi
+```
+
+当然，还是我一直以来的观点：
+
+**LLM 辅助编码的上限是你的能力**
+
+比如我有一些碰壁的经历，让我知道：
+
++ 提交到`github.ref`会导致一个很奇怪的 bug，GitHub 会以 Dependabot 的身份把你的那个 ref merge 过来。虽然我上面的代码中最后是提交到`github.ref_name`，但这是我改的，LLM 生成的不是这样
++ LLM 忘记了`permissions: { contents: write }`
++ LLM  让我在 job 里的`if:`语句中判断是不是 Dependabot 的请求。事实上在`on:`中去 filter 更好
+
+### 鲁棒地编码
+我觉得过了这么久，我现在发现我有一个经验，就是尽量把代码解耦合，就能让 debug 容易很多。
+
+比如，我有的代码，给每个幂等的函数结果都用 [diskcache](https://github.com/CNSeniorious000/diskcache2) 缓存下来，这样调试的时候就会快很多，也会便宜很多（当代码需要一些LLM请求时）。这也使得复现更容易了。
+
+当然，用 [hmr](/blog/mwgggl2taiigch6w) 会更高效，因为它的 invalidate 是 on-demand 的，而且不涉及重启进程。不过 hmr 0.3 我引入了一些 bug 到现在还没修复 哈哈哈
+
+# [Don't Repeat Yourself](/blog/dont-repeat-yourself) (4月9日)
+
+[Don't repeat yourself (DRY)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 原则是一项主张，支持在代码出现重复的时候就进行封装，增加复用。我本人对这个观点是非常支持和贯彻的，甚至到了一种，我对它的副作用深有体会的地步。那先说说它有什么副作用：
+
+1. 很可能为了复用需要写更多的代码。比如为了复用一个一行的算式，花了三四行新建了一个有三四个参数的函数，代码量不减反增
+2. 过早优化。很可能封装完之后很快又删了 / Ctrl Z 回去了，白白浪费时间
+3. 有时封装过多会造成 debug 更困难
+
+那它有什么好处呢？除了大多数时候能精简代码，我认为还有一个很重要的点，其实是不用担心同步的问题。一处更改，每个用到的地方都会同步。
+
+
+
+### 以 bump version 为例
+一个例子是指定 version。不像在 JavaScript 中，可以直接通过`import { version } from "../package.json"`来获得包的版本，Python 中要让版本号能在`pyproject.toml`中有，同时在代码中能读取略微麻烦一些。可能需要花几行配置，或者自己用十来行代码来实现。
+
+有的人可能就会觉得，比起搞这些，更愿意每次 bump version 的时候手动改这两个地方。单纯从数量上来看，每次 bump version 也就改动一个字符。避免在`pyproject.toml`和代码中同时改也就让每次减少了一个字符。如果为此花了 4 行代码的话，假设行 10 个字符，那要发 40 个版本才能赚回来。
+
+但我认为，事实上 repeating yourself 的坏处不只是要敲更多的代码，而且在整个链路上（review、blame、debug……）每个步骤都更麻烦。
+
+这些心智代价是每次 bump version 都要担负的。所以相当于有`O(n)`的复杂度。而配置自动同步这两者，是`O(1)`的。这就是我的理由。
+
+
+
+### lockfile 的例子
+我的项目有一点和主流唱反调的地方，就是**我不喜欢把 lockfile 提交到仓库中**。尽管 lockfile 纳入 version control 算是行业共识了，我还是不喜欢这样。我直观地有这些理由：
+
+1. 很大，以至于仓库的大小简直就是 lockfile 的大小
+2. diff 很多，直接让每个 PR 的大小没法直观地通过行数来看了。而且有时候会 conflict
+3. 会搞乱 GitHub 的 Inspect 页面中对不同贡献者的对比，因为一个 lockfile 往往比整个项目的其它代码都多好几倍。我看过一些项目，Dependabot 排在维护者头像的前面。因为它对仓库的贡献（由行数统计）更大
+4. 某些包管理器（比如 [pdm](https://pdm-project.org/en/latest/usage/lock-targets/)）主张平台特定的 lockfile，我不敢苟同
+
+还有一个和 DRY 原则类似的原因：
+
+5. 可能会忘记更新 lockfile，所以造成了 `O(1)` 的认知复杂度
+
+当然哈，其实这些问题肯定都有解决方案，比如可以手动去掉 lockfile 再统计行数，比如 lockfile 的更新可以放到 pre-commit 中去自动化。但是终究还是不方便。最后
+
+6. 我选择**信任**。我纳入为 dependencies 的项目一定都是我选择出来的项目，这些项目我相信他们会采用 SemVer，所以我在项目元文件（package.json / pyproject.toml / Cargo.toml）中锁定好项目依赖，就足够了
+
+
+
+### 认知复杂度
+突然自创了这个词，我也很惊讶哈哈。那正好就谈一谈我的这个看法吧。
+
+> 举一个例子：我一直看好 Rust，是因为我觉得这样的一个底层语言才是一个成熟的底层语言。它有包管理、有高级的抽象（有 typing 的宏），使得它在项目长大的时候能维持认知复杂度
+>
+
+我觉得就像衡量一个算法对某个任务可不可用，可以通过时间复杂度、空间复杂度。我认为一个项目能否做下去，可以用认知复杂度。
+
+我这里的定义就是是，衡量**认知压力**随**项目大小**的增长而增长的倍率。这个自变量和因变量都是很抽象的，所以我所说的也都是定性的结论——甚至不能算结论，只能算思考。
+
++ 比如，如果某个改变，使得之后每次提交代码都要花时间一定考虑某件事，这相当于是`O(n)`的复杂度。一个例子是前面提到的 versioning，一个更好的例子可以是 i18n —— 一旦你的项目上了 i18n 从此你每次更新文档，都得更新每个语言的文档
++ 如果某个改变使得之后每次提交要做更多的考虑，甚至这个考虑的增量也会随着仓库的增大而增大，那这相当于是`O(n²)`的复杂度。比如文档。以前端框架 Astro 为例。Astro 的文档做得很好，以至于它需要有一个文档来指导开发者维护文档。他们把这个“元文档”叫做 [Astro Docs Docs (AD²)](https://contribute.docs.astro.build/)
+
+当一个项目引入了让认知复杂度增长的改动之后，它的开发效率就会大大降低。所以，我的原则是，尽量不要在一个项目的 actively developing 阶段引入这样的改动（除非你吸引到了增长的维护者群体）
+
+
+
+### 弱主张
+为什么今天突然想写这个主题，因为我发现其实我有时候也会对 DRY 原则做一些妥协，他们其实是一脉相承的。DRY 像是一个“强主张”，要求永远不 repeat yourself。但我在一些场景不能拒绝 lockfile 带来的好处，比如 [pyodide-minimal-reproduction](https://github.com/CNSeniorious000/pyodide-minimal-reproduction) 是我写给 pyodide 的一个 [stackblitz](https://stackblitz.com/) reproduction template，方便人们给 [pyodide](https://github.com/pyodide/pyodide) 提交 bug reproduction。我希望用户在 stackblitz 的环境中尽可能快地安装依赖，所以我写了个 [GitHub Action](https://github.com/CNSeniorious000/pyodide-minimal-reproduction/blob/59bf925d7985da5044d0341999a69ae9995200c9/.github/workflows/ci.yml#L71-L96) 给每个分支提交一个`<原分支名>-locked`分支，包含一个生成的`pnpm-lock.yaml`文件。
+
+这就是我提出的弱化版 DRY 原则 —— **你不要自己 repeat yourself，但不反对让 bots 来 repeat 你**。
+
+另一个例子就是让 Dependabot / [Renovate](https://docs.renovatebot.com/) 这些 bots 来更新依赖。
+
+
+
+
+
+---
+
+其实有的时候，某个项目的依赖我不信任，或者我可能要不再维护了，我希望它在未来还能被复现，我也会按照常规的方法在仓库里维护一个 lockfile。我也深受其利。但这些项目我从内心会觉得它“脏了”，不再是那么优雅了。哈哈哈
+
+# [Python venv injection](/blog/xyvll3enobqm18ug) (4月3日)
+
+对我来说，这是很常见的一种情况：
+
++ **你的一个库**，要运行一些用户的 python 的代码文件。
+
+> 对我个人来说，我在 3 种情况中遇到了这个问题：
+>
+> + [m](./kya1tmyz86lsyaae) 这个库，支持注册 plugin，plugin 就是在当前目录或任何`sys.path`中的目录创建 m/commands 文件夹，在里面的文件夹暴露一个 app。这里面的代码会被暴露为一个 entry point
+> + [hmr](./yfw3tf2h1mzghaz7) 这个库，会运行用户的文件，其衍生品`uvicorn-hmr`会执行用户的某个 entry point
+> + [embed](https://github.com/embed-ai/embed) 这个库，会执行用户 pull 下来的 app，这个 app 可能有单独的虚拟环境
+>
+
+最简单的解决办法就是读进来`exec`对吧，当然你有点经验的话就知道这样对 traceback 不友好。比较正确的办法是用`runpy.run_path`
+
+但是还会遇到一个问题：
+
++ 用户如果这个文件用到一些包，而这些包不在你**安装你这个库**的环境中，导致在**你的库**的 python 进程中会 import 失败
+
+最好的办法当然是在用户侧解决，比如在用户的项目中安装**你这个库**，但是
+
+1. 可能这是一个开发工具，用户不太愿意往项目中引入开发依赖
+2. 终归还是得让用户多做一步
+
+---
+
+## IPython 的解决方案
+如果你用过 ipython，你会发现如果你在一个没有安装 ipython 的虚拟环境中运行 ipython（你在外部安装了 ipython），它照样能 import 你虚拟环境中的包，但是会有一行 warning：
+
+```plain
+UserWarning: Attempting to work in a virtualenv. If you encounter problems, please install IPython inside the virtualenv.
+```
+
+去翻源码，能看到是在 [这里](https://github.com/ipython/ipython/blob/9.0.2/IPython/core/interactiveshell.py#L954-L958) 警告的。会出现什么 problems 呢，如果你 import 一些非纯 python 库，确实有可能出问题。复现的方式，就是你安装 ipython 的 python minor version 和虚拟环境的 python 不一样。
+
+[源码](https://github.com/ipython/ipython/blob/9.0.2/IPython/core/interactiveshell.py#L959-L961) 也给出了答案，让你能 import 虚拟环境的库是靠把虚拟环境的 site-packages 也添加到当前 python 进程的 sys.path 中解决的
+
+我也在我的`m`中 [实现了这个逻辑](https://github.com/CNSeniorious000/m/blob/647d8a46d012ef2b7eecc38a23f19054f7c39486/packages/core/m/utils/register.py#L10-L18)，来支持运行用户在项目中定义的 m 插件，相关代码如下：
+
+```python
+if os.getenv("VIRTUAL_ENV") and (venv_python := shutil.which("python")) and not Path(venv_python).samefile(sys.executable):
+    from site import addsitepackages
+    from subprocess import run
+
+    site_packages: list[str] = eval(run([venv_python, "-c", "import site; print(repr(site.getsitepackages()))"], capture_output=True, text=True, check=True).stdout)
+
+    path.extend(site_packages)
+    addsitepackages(set(site_packages))
+```
+
+和 IPython 有一点区别，它是把 site-packages 与 VIRTUAL_ENV 的相对路径写死了，考虑了 Windows 和 unix 的可能性。但我不喜欢这样，我是通过在 subprocess 中执行`site.getsitepackages()`来获得的。这样理应更鲁棒，而且我也曾经在 [pdm](https://github.com/pdm-project/pdm) 的源码中看到过大量类似的使用。
+
+---
+
+## 更好的解决方法
+我不满足于实现类似 IPython 的这种 workaround。我之前在参与 [embed-ai/embed](https://github.com/embed-ai/) 的时候就在想，其实可以在对应的虚拟环境中启动 python，然后将自己这个库加到它的虚拟环境中再启动。这样的效果应该和“在那个虚拟环境中安装这个库”是一样的（如果我们这个库和它的依赖都是纯 Python 的）。
+
+于是我就修改了下我的代码，在这段`subprocess.run`中也返回一下`sys.version_info`，代表 python 的版本，检查如果和当前进程不符的话就用虚拟环境的 python executable 来重新执行自己。
+
+但是这样其实启动了两次 subprocess，并不符合我追求极致性能的惯例。转念一想，其实既然都要用 subprocess 了，不如第一次也不用了，只要用户在虚拟环境中，就一定用虚拟环境的 Python
+
+```python
+if os.getenv("VIRTUAL_ENV") and (venv_python := shutil.which("python")) and str(Path(venv_python)) != sys.executable:
+    from site import getsitepackages
+    from subprocess import run
+
+    s = set(getsitepackages())
+    exit(
+        run(
+            [
+                venv_python,
+                "-c",
+                f"import site,sys; sys.argv={['m', *sys.argv[1:]]}; sys.path.extend({[*s, str(Path(__file__, '../' * 3).resolve())]}); site.addsitepackages({s}); from m.cli.main import app; app()",
+            ]
+        ).returncode
+    )
+```
+
+源文件在这里：[utils/inject.py · CNSeniorious000/m](https://github.com/CNSeniorious000/m/blob/f0fcc64e6c665b8de8004bb681f5513c4d1a2028/packages/core/m/utils/inject.py)
+
+---
+
+## 隐患
+这样的问题在于，执行你的库的环境可能不是安装你的库的环境。这意味着如果你这个库有非纯 Python 的依赖，就很可能会报错（除非恰好用户的虚拟环境中也装了你的这个依赖）。
+
+# [关于我给博客加了 llms.txt 以及我的数字永生计划](/blog/dxkzg1ym1n06pez8) (3月17日)
+
+> 当别人问起为什么我愿意花时间写博客，因为
+>
+> + 我有不少奇怪的想法
+> + 想法逐一向不同人讲述，不高效，甚至不可行
+> + 在 LLM 出现之前，可能得手动构建复杂的知识图谱，才能记录下这些内容
+> + 但在现在，只要有数据了，不要求太结构化，都可以很容易地用 RAG 或者 fine tune 的方式实现数字孪生了
+>
+> 当然现在提到这个词，大家想到的还是数字人、元宇宙这些。我对这些不感兴趣（我对大模型视觉上的应用不太感兴趣，因为我觉得这是不能深挖的东西，或者说，它的工作流都是很浅一层——模型+UI/UX，就喂给用户，一些节点化的编辑器，也是直接给用户用）（相比之下，LLM 应用，就可以有很多层——LLM研发、LLM部署、LLM应用、应用的观测、甚至应用套应用（比如使用 OpenAI 的新 [Response API](https://platform.openai.com/docs/guides/tools?api-mode=responses) / 旧 [Assistant API](https://platform.openai.com/docs/assistants/overview)，Anthropic 的 [Citations API](https://docs.anthropic.com/en/docs/build-with-claude/citations)，Jina 的 [DeepSearch API](https://jina.ai/deepsearch/)，Cohere 的 [Classify API](https://docs.cohere.com/reference/classify)），甚至可以用户套用户（比如 Coze 这类）。另一方面我认为 LLM 才更有生产力。图像那边基本都还是 应用跟着模型研发走。
+>
+> 扯远了。我是想说，我说的数字孪生，和这些高概念没关系，单纯就是希望自己实现数字永生！哈哈！我是数字生命派！不装了！
+>
+> 
+>
+> Wait, 不能让别人知道我已经是 AI 了。下面我要继续以人类的口吻来完成这篇文章
+>
+> \\<\\/think>
+>
+
+前几天看到我的一个朋友 [提到](https://blog.sehnsucht.top/posts/%E6%8A%80%E6%9C%AF/%E9%98%B2%E6%AD%A2ai%E7%88%AC%E5%8F%96%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/) 他定期拉取一个开源的列表 [ai.robots.txt](https://github.com/ai-robots-txt/ai.robots.txt) 来屏蔽 AI 的爬虫。看来原创作者大多不希望自己的内容被 AI 爬。
+
+> 不过我对这方面比较放任，一是因为我也是从业者，我自己的话我是不会拿这些没有标注的不清楚质量的文章来源不署名地直接用作训练集的。感觉这会污染模型。就像 gpt 4o 的词表里最长的是什么 [给主人留下些什么吧](https://gist.github.com/ctlllll/4451e94f3b2ca415515f3ee369c8c374#file-longest_chinese_tokens_gpt4o-py-L38) 之类的。我的方法是，我会提一嘴，这是一篇博客文章，或者说是某某平台上的博客文章。这样模型可以在被用户要求“生成博客风格的文章”的时候用这种口吻。而在默认情况下或者要求以百科的口吻生成的时候，就不会使用这些记忆。
+>
+> 二是因为我有点 [数据主义](https://en.wikipedia.org/wiki/Dataism)（这个词从《未来简史》里看来的），所以如果我能有幸成为世界的一部分，我觉得也挺好的。三是我认为只要是公开的，就没办法禁止人拿来主义。就像我一直支持 LLM 服务乃至一切服务，都应该收费，而软件都应该免费…… 一下子又跑题了，我要保持简洁的文风！！
+>
+> \\<\\/think>
+>
+
+但是大家禁 AI 其实主要是反对它爬取做训练集。而直接用来做 RAG 应该不那么受反对。
+
+
+
+[**llms.txt**](https://llmstxt.org/)** 就是这么一个协议，它鼓励大家（像 sitemap.xml 或者 feed 那样），在网站的根目录下放一个 /llms.txt 文件，这个文件包含了当一个 agent 想要看你的内容时，你希望呈现给它的内容。**
+
+****
+
+具体是怎样的协议呢。其实就这么多了。它除了说你的这个 markdown 开头必须有一个大标题之外，没有任何要求了。也没有发布 sdk 或者 api，也没有发布什么官方的 validator。反正挺佛系的。
+
+但是居然很多 AI 网站都集成了，我感觉大家还是看好它的。况且我的网站之前也做过全文的 /feed endpoint，所以搞起来很容易。
+
+> 其实 llms.txt 还有一个共识，就是 [/llms.txt](/llms.txt) 放连接，而 [/llms-full.txt](/llms-full.txt) 放全文。我当然也是两个都实现了
+>
+
+## 试用了一下
+我用我的命令行工具`[m](https://github.com/CNSeniorious000/m)`来试了一下，普通问答：
+
+![](/nlark/yuque/0/2025/png/26070246/1742214677799-83cd61a6-094b-48b5-b90e-915c722f4b6b.png)
+
+
+
+
+
+
+
+> 等我有空了我还准备做一个放在个人网站上的 chatbot，当作我的数字分身（正好这学期也在做 LLM 训练，所以可能不一定是基于 RAG 噢，可能也 fine tune 一下）应该不会晚于3月末，因为3月末我可能能去北京的北师大又去参加一个比赛，我这次没脸找上次的队友了，所以这次一个人投的，我起了个题目叫“世另我”，先在此预告一下 嘿嘿
+>
+
+---
+
+2025年4月4日 更新
+
+[修改](https://github.com/CNSeniorious000/yuque-blog/commit/78b3d28ea947aefb3444b5826e28a156427f1374) 了一下，为每个页面单独创建了 llms.txt
+
+比如这一篇的 llms.txt 就是 [location.href + llms.txt](/blog/dxkzg1ym1n06pez8/llms.txt)
+
+# [快要被 createMemo 搞疯了](/blog/uooxcpvvizyiuxbl) (3月1日)
+
+以前一直以为 SolidJS 的`createMemo`是和 Vue 的`computed`一样的东西，结果今天发现不是！
+
++ [createMemo - Basic reactivity - SolidDocs](https://docs.solidjs.com/reference/basic-reactivity/create-memo)
++ [computed - Reactivity API: Core - Vue.js](https://vuejs.org/api/reactivity-core.html#computed)
+
+SolidJS 的 `createMemo`是 eagerly evaluating 的，也就是说，它是和`createEffect`一类，创建即调用的。它[文档](https://docs.solidjs.com/concepts/derived-values/memos)里说：
+
+> They are similar to derived signals in that they are reactive values that automatically re-evaluate when their dependencies change.
+>
+
+明明是用来替代 [derived signals](https://docs.solidjs.com/concepts/derived-values/derived-signals) 的啊！这样看明明更像 effect 而不是 derived
+
+而且一旦有 dependency 变动了，它是立即 evaluate 然后来根据 equal 与否来判断是否 invalidate 的，而不是按需来。按需来的叫`createLazyMemo`：[createLazyMemo - @solid-primitives/memo - Solid Primitives](https://primitives.solidjs.community/package/memo/#createlazymemo)
+
+---
+
+为什么看这个，是因为我最近在处理 hmr 库的一些奇奇怪怪的 bug。其中就在`create_memo`这边没转过来：
+
+1. 如果它是 lazily evaluate 的，那为了让各种 effect 的值保持最新，它就必须得是 eagerly invalidate 的（这也是我之前的实现）这会导致它比起普通的 signal 就丢失了在 equal 时不 notify 的能力
+2. 如果它是 eagerly evaluate 的（就像 SolidJS 这样），它确实就可以 lazily invalidate 了，因为它可以先比较是否 equal 再 notify 了，不会立马 invalidate，但这样会导致它可能会有一些不必须的 evaluate（比如可能它的 subscriber 正好已经不需要用到它了，即使这些 subscribers 重新执行了，也不会再 observe 这个 signal）
+
+然后就觉得其实这东西是不是没有完美的解法？这是一个权衡：
+
+1. Effect 这边不可能不重新执行就知道是否还需要某个 Signal
+2. 一个 Derived 在被 trigger 时不可能不重新运行就知道它的结果会不会 equal
+
+一个办法是，可以像`createMemo`那样，当被 trigger 后就立即 recompute，但是第一次 compute 推迟到第一次被调用时。这样相当于`autorun=False`的`create_effect`+ cache 而已。或者说这是我的底线，因为如果 API 是这样实现的，用户也可以在创建了这个 Memoized 之后立即 call 它，来达到和 SolidJS 的版本一样的效果，但是反过来不行。
+
+所以其实可以暴露一个参数，类似
+
+```python
+optimization: "lazy-recompute" | "lazy-invalidate" | False
+```
+
+其中 lazy-recompute 代表之前的行为，lazy-invalidate 是上面说的这种，False 代表不检查
+
+---
+
+刚刚想了下，其实 SolidJS 的 createMemo 等效于：
+
+```python
+class _:
+    var = State(0)
+    derived = State(0)
+
+    def __init__(self):
+        @create_effect
+        def _():
+            self.derived = self.var * 2  # 假设就是乘二的关系
+        # 但是好像需要保存一个 这个 effect 的引用，不然会被 gc 掉，但这里就不展示这些细节了
+```
+
+而我上面提到的中间形态等效于：
+
+```python
+class _:
+    var = State(0)
+    _derived = State(0)
+
+    @cache  # 保证只运行一次，而且只在第一次需要时调用
+    def ensure_effect(self):
+        @create_effect
+        def _():
+            self._derived = self.var * 2
+    
+    @property
+    def derived(self):
+        self.ensure_effect()
+        return self._derived
+```
+
+而现在是这样的 API：
+
+```python
+class _:
+    var = State(0)
+
+    @memoized_property
+    def derived(self):
+        return self.var * 2
+```
+
+未来允许给这个装饰器加参数，比如`memoized_property(optimization="lazy-invalidate")`获得上面第二种的效果。
+
+---
+
+其实刚刚忘说了，Svelte 5 的反应式原语好像略有不同，我略微探索了一下（顺带一提，顺便不小心发现了他们一个 bug：[`$derived` unexpectedly reevaluate · Issue #15414 · sveltejs/svelte](https://github.com/sveltejs/svelte/issues/15414)），观察到：
+
+1. 如果某个`$derived`没有至少一个`$effect`用到它，它就不会被执行，这说明它是 lazy-evaluate 的
+2. 虽然`$effect`第一次执行时，是从浅到深调用`$derived`们的，但是每次更新最底层的`$derived`先调用，再往外调用的，这说明至少最外层的`$effect`不是 eagerly-trigger 的
+
+所以我怀疑它是一个 2-pass 的机制，当一个 Signal notify 时，它 invalidate 了某个`$derived`（相当于我这里的 memo），然后一层一层向上 invalidate，但是 invalidate 并不会立即删掉原来的 cache 的值，而只是把自己 mark 为 stale 状态（或者叫 dirty 吧），这样冒泡到最浅层，这就是“正向传播”
+
+1. 到达最外层的时候，如果是 memo，就说明这个 memo 没被用上。（可以形象地理解为一个`$effect`就是在最外层“拉”一个反应性的变量的，如果没有人“拉”，那它就不会被求值。
+2. 如果是个 effect，那这个 effect 并不会立即执行，而是会看它到底被谁 trigger 了。是全是 memo 还是也有 signal。只有被 signal 触发的才说明必须要 invalidate。否则就逐个排查每个 memo，看这些 memo 是否改变了值（相当于看每个 memo 作为一个 signal 的性质），如果改变了，那这个 effect 就得 reevaluate 了
+
+这就是 effect 的“反向传播”。那如何知道某个 memo 是否改变了呢？
+
+1. 如果 notify 它的 dependencies 中有 signal，那它就得 recompute，然后比较值是否改变了
+2. 如果 notify 它的 dependencies 都是 memo，那就得先看这些 memo 有没有 change 了
+
+这就是 memo 的反向传播
+
+（写到这里我意识到，可能叫这些 memo 为 derived 更合适一些。今后我实现的时候会注意）
+
+
+
+这么看来，effect 具有一个反向传播性质，这个确实我还没 implement，而且似乎 SolidJS 之类的也没这样的机制。我之前参考的更多是我见识到的 SolidJS 的一小部分，所以设计还很不成熟。
+
+这么看，其实反应式编程有三种角色：
+
+1. Signal，具有 track 跟踪调用者（自动绑定 subscribers）、notify（正向传播）的功能
+2. Effect，具有 invalidate（被 notify 时调用）、check/determine（还没想好叫什么名字，总之就是invalidate后会调用，反向传播）的功能
+3. Derived，具有以上二者的性质，Effect 是正向传播的终点，而 Signal 其实是反向传播的终点
+
+这么看这和神经网络太像了！这不就是输入层、输出层和中间层嘛！！
+
+---
+
+原谅我写文章总是这么意识流。今后有机会肯定会写篇系统的文章跟大家讲讲的！现在如果有人对反应式编程感兴趣的话，我还是会推荐 Ta 去读读 Vue 的这篇文章：
+
+[Reactivity in Depth - Vue.js](https://vuejs.org/guide/extras/reactivity-in-depth) 的前三小节：
+
++ What is Reactivity?
++ How Reactivity Works? （原标题是 How Reactivity Works in Vue，但其实讲的是 in JavaScript 而非局限于 Vue）
++ Runtime vs. Compile-time Reactivity
+
+这篇文章讲的真的很中肯，提到了反应式编程的鼻祖，也讲到了新潮，而且说到了 why 和 why not，看得出来每个设计都是非常深思熟虑的结果。
+
+# [linter docs 作为训练集](/blog/dqehr4fag1scapae) (2月23日)
+
+刚刚想到，像 Ruff 这样的 linter 对每条 rule 都给出了很详细的文档，其实可以作为很好的 SFT 和 DPO 源。准备试验一下
+
+
+
+作为 SFT，可以这么构造训练集：
+
+1. 输入描述和 do not use，叫模型输出 use
+2. 输入描述和案例，叫模型输出 risks
+3. 输入 do not use 和 use，叫模型输出 preference 和 reason
+4. 输入 do not use 和“请改进”之类的提示词，叫模型输出 reason 和 use，或者 reason 也作为输出
+
+
+
+作为 DPO，可以这么构造训练集：
+
+1. 输入代码的用途解释（这个需要生成），对比 do not use 和 use
+2. 对比模型生成的解释和官方的解释
+
+
+
+我准备有空开个仓库，构建个工作流来做这事儿，定期将 ruff 的 docs 生成训练集，发布到 huggingface 上，以及自己微调几个模型试试看
+
+
+
+初步成果：
+
+```bash
+ruff rule --all --output-format json
+```
+
+这样能获得一个大的 json list，schema 大概是这样：
+
+```python
+class Rule(TypedDict):
+    name: str
+    code: str
+    linter: str
+    summary: str
+    message_formats: list[str]
+    fix: str
+    explanation: str
+    preview: bool
+```
+
+其中只有 explanation 我们比较有用，这是个 markdown 格式的，我试着解析了下：
+
+![](/nlark/yuque/0/2025/png/26070246/1740328904496-61bbc034-0f56-423c-ab92-71d1e8262926.png)
+
+解析了 ruff 的所有 rules 的 explanation 的 markdown 为结构化的数据，可以看到，就是这三个字段：
+
+1. 是什么 What it does
+2. 为什么 Why is this bad
+3. 怎么办 Example、Use instead
+
+接下来把这三个部分提取出来，就能作为一个数据集来训练写出好的代码的能力了。
+
+（截至 ruff 0.9.7，一共有 915 条 rules）
+
+
+
+还是稍微统计了一下，其实不止这三个标题，一共是
+
++ Why is this bad? (915)
++ What it does (914)
++ Example (831)
++ References (517)
++ Options (135)
++ Fix safety (104)
++ Examples (65)
++ Known problems (37)
++ Known issues (33)
++ Formatter compatibility (16)
++ Removed (10)
++ Notebook behavior (6)
++ See also (6)
++ Typing stub files (`.pyi`) (5)
++ Details (3)
++ Note (3)
++ Removal (3)
++ Fix availability (3)
++ Fix safety and availability (2)
++ Preview (2)
++ Error suppression (2)
++ Use instead: (1)
++ Examples: (1)
++ Known deviations (1)
++ Fix behaviour and safety (1)
++ Preview-mode behaviour (1)
++ What it does? (1)
++ Limitations (1)
++ Fix Safety (1)
+
+看得出来他们并没有很好地控制这些。甚至有的是忘了标点符号了😂难道说 Astral 也是草台班子？
+
+---
+
+2025年2月25日 更新：[https://github.com/astral-sh/ruff/pull/16364](https://github.com/astral-sh/ruff/pull/16364) 居然给我 merge 了
+
+# [关于 HMR 的实现](/blog/yfw3tf2h1mzghaz7) (1月10日)
+
+[上期](./tpbohtk3z0w63et9) 谈到，我在 Python 实现了反应性原语，[然后](./mwgggl2taiigch6w) 又实现了 HMR，但是没细讲，这次写一下从反应性原语到 HMR 是怎么实现的。
+
+我也新开了个 [仓库](https://github.com/promplate/hmr)，未来放 hmr 生态的东西（如果社区有反响的话），不过由于这算是临时起意中的临时起意（歪楼项目中的歪楼项目），所以代码还是在原仓库中没有拿出来。这个仓库目前就是一个 README 哈哈哈
+
+> 如果想要直观理解 hmr 对 Python 到底意味着什么，可以看看 [这个仓库](https://github.com/promplate/hmr?tab=readme-ov-file#usage) 里的两个视频，另外我还分别给 FastAPI 和 Flask 开了 Discussion，分别也附上了精致的录屏，欢迎来下面讨论：
+>
+> [FastAPI](https://github.com/fastapi/fastapi/discussions/13192) | [Flask](https://github.com/orgs/pallets/discussions/5668) （我还准备给 gradio、streamlit、pytest、litestar 也提一下）
+>
+> 不过没时间了，明天我要回家了，所以先不急着搞了
+>
+
+## 怎么实现的
+正如我仓库中所说，HMR 实现可以拆成三部分：
+
+1. 实现那几个反应性原语
+2. 让加载进来的包，能自动跟踪依赖
+    1. 实现一个 Reactive 的 context（按 item 追踪依赖）
+    2. 实现一个自定义的 ModuleType，使用这个 Reactive 的 context
+    3. 实现一个 Loader 以及一个 MetaPathFinder，并添加到`sys.meta_path`中，这样新加载进来的模块就会用我们的机制来初始化
+3. 通过`watchfiles`监听 FS 变化，并 invalidate 对应的 module
+
+其中第 3 部分正如其字面意思，很简单，就是 watchfiles 的基本用法，没什么创意。本文重点讲第二部分
+
+## Reactive namespace
+我们需要实现一个 MutableMapping，类似 Vue 的 [reactive](https://cn.vuejs.org/api/reactivity-advanced.html#shallowreactive)，每个`__getitem__`会触发对应 item 的 track，而`__setitem__`和`__delitem__`会触发对应 item 的 notify。实现如下：
+
+```python
+class Reactive[K, V](Subscribable, MutableMapping[K, V]):
+    UNSET: V = object()  # type: ignore
+
+    def __hash__(self):
+        return id(self)
+
+    def _null(self):
+        return Signal(self.UNSET, self._check_equality)
+
+    def __init__(self, initial: Mapping[K, V] | None = None, check_equality=True):
+        super().__init__()
+        self._signals = defaultdict[K, Signal[V]](self._null) if initial is None else defaultdict(self._null, {k: Signal(v, check_equality) for k, v in initial.items()})
+        self._check_equality = check_equality
+
+    def __getitem__(self, key: K):
+        value = self._signals[key].get()
+        if value is self.UNSET:
+            raise KeyError(key)
+        return value
+
+    def __setitem__(self, key: K, value: V):
+        with Batch():
+            self._signals[key].set(value)
+            self.notify()
+
+    def __delitem__(self, key: K):
+        state = self._signals[key]
+        if state.get(track=False) is self.UNSET:
+            raise KeyError(key)
+        with Batch():
+            state.set(self.UNSET)
+            self.notify()
+
+    def __iter__(self):
+        self.track()
+        return iter(self._signals)
+
+    def __len__(self):
+        self.track()
+        return len(self._signals)
+
+    def __repr__(self):
+        self.track()
+        return repr({k: v.get() for k, v in self._signals.items()})
+
+    def items(self):
+        self.track()
+        return ({k: v.get() for k, v in self._signals.items()}).items()
+```
+
+可以看到我还多做了一些处理：比如这个 mapping 本身也是一个 Subscribable，像是对`.items`的使用就会订阅它的全部改动（可以这么理解：如果我直接`str()`了某个 module 的`.__dict__`，我就依赖于它的所有元素）
+
+### 一些细节
+exec 的时候，globals 必须是 dict 的子类，但是我们这个 Reactive 不能是 dict 的子类，因为一个 Subscribable 必须是能添加到一个 set 里的，而 set 里不能是可变元素，好像这与 dict 冲突了（所以我必须得加一个`__hash__`函数）。另外后来文档说 globals 甚至不能是 dict 子类，必须得是 dict 严格本身（否则我发现会有一些奇怪的问题，关于在类中的定义域啥的），详见我给 CPython 的唯一一个 Issue：[121306](https://github.com/python/cpython/issues/121306)（说起来 3.14 有望 revert 这个，不知道他们后面争论的怎么样了）
+
+说回来，globals 必须是严格 dict，所以我们只能把这个 Reactive 作为`locals`传过去，但是 locals 不会继承到函数里，所以还得把对我们这个`Reactive`的写入，写回到这个`initial`里去。
+
+```python
+class NamespaceProxy(Reactive[str, Any]):
+    def __init__(self, initial: MutableMapping, check_equality=True):
+        super().__init__(initial, check_equality)
+        self._original = initial
+
+    def __setitem__(self, key, value):
+        self._original[key] = value
+        return super().__setitem__(key, value)
+
+    def __delitem__(self, key):
+        del self._original[key]
+        return super().__delitem__(key)
+```
+
+## Reactive module
+这个就 debug 麻烦。print 的时候还会有各种循环访问的报错，总之就是很痛苦，跑通了就再也不想碰了：
+
+```python
+class ReactiveModule(ModuleType):
+    def __init__(self, file: Path, namespace: dict, name: str, doc: str | None = None):
+        super().__init__(name, doc)
+        self.__is_initialized = False
+        self.__dict__.update(namespace)
+        self.__is_initialized = True
+
+        self.__namespace = namespace
+        self.__namespace_proxy = NamespaceProxy(namespace)
+        self.__file = file
+
+    @property
+    def file(self):
+        if is_called_in_this_file():
+            return self.__file
+        raise AttributeError("file")
+
+    @memoized_method
+    def __load(self):
+        code = compile(self.__file.read_text("utf-8"), str(self.__file), "exec", dont_inherit=True)
+        exec(code, self.__namespace, self.__namespace_proxy)
+
+    @property
+    def load(self):
+        if is_called_in_this_file():
+            return self.__load
+        raise AttributeError("load")
+
+    def __dir__(self):
+        return iter(self.__namespace_proxy)
+
+    def __getattribute__(self, name: str):
+        if name == "__dict__" and self.__is_initialized:
+            return self.__namespace
+        return super().__getattribute__(name)
+
+    def __getattr__(self, name: str):
+        try:
+            return self.__namespace_proxy[name]
+        except KeyError as e:
+            raise AttributeError(*e.args) from e
+
+    def __setattr__(self, name: str, value):
+        if is_called_in_this_file():
+            return super().__setattr__(name, value)
+        self.__namespace_proxy[name] = value
+```
+
+这里用到一个`_is_called_in_this_file`，其实就是判断调用者的 frame 是不是在这个文件中：
+
+```python
+def is_called_in_this_file() -> bool:
+    frame = currentframe()  # this function
+    assert frame is not None
+
+    frame = frame.f_back  # the function calling this function
+    assert frame is not None
+
+    frame = frame.f_back  # the function calling the function calling this function
+    assert frame is not None
+
+    return frame.f_globals.get("__file__") == __file__
+```
+
+为什么要这样，因为我这个`load`必须得在后面的`ModuleFinder`里调用，所以不能是双下划线大头的`__load`形式，但是如果是`_load`或者`load`都容易与模块的真实的属性冲突，所以我就做了这么一个 hack，实现了类似“package-private 级变量”的效果，我对这个还蛮洋洋得意的，哈哈哈
+
+## Module finder & loader
+```python
+class ReactiveModuleLoader(Loader):
+    def __init__(self, file: Path, is_package=False):
+        super().__init__()
+        self._file = file
+        self._is_package = is_package
+
+    def create_module(self, spec: ModuleSpec):
+        namespace = {"__file__": str(self._file), "__spec__": spec, "__loader__": self, "__name__": spec.name}
+        if self._is_package:
+            assert self._file.name == "__init__.py"
+            namespace["__path__"] = [str(self._file.parent)]
+        return ReactiveModule(self._file, namespace, spec.name)
+
+    def exec_module(self, module: ModuleType):
+        assert isinstance(module, ReactiveModule)
+        module.load()
+
+
+class ReactiveModuleFinder(MetaPathFinder):
+    def __init__(self, includes: Iterable[str] = ".", excludes: Iterable[str] = ()):
+        super().__init__()
+        self.includes = [Path(i).resolve() for i in includes]
+        self.excludes = [Path(e).resolve() for e in excludes]
+
+    def _accept(self, path: Path):
+        return path.is_file() and not is_relative_to_any(path, self.excludes) and is_relative_to_any(path, self.includes)
+
+    def find_spec(self, fullname: str, paths: Sequence[str] | None, _=None):
+        if fullname in sys.modules:
+            return None
+
+        for p in sys.path:
+            directory = Path(p).resolve()
+            if directory.is_file():
+                continue
+
+            file = directory / f"{fullname.replace('.', '/')}.py"
+            if self._accept(file) and (paths is None or is_relative_to_any(file, paths)):
+                return spec_from_loader(fullname, ReactiveModuleLoader(file), origin=str(file))
+            file = directory / f"{fullname.replace('.', '/')}/__init__.py"
+            if self._accept(file) and (paths is None or is_relative_to_any(file, paths)):
+                return spec_from_loader(fullname, ReactiveModuleLoader(file, is_package=True), origin=str(file), is_package=True)
+```
+
+很常规，很无聊
+
+## Reload
+核心是我这个`on_events`，因为 watchfiles 的 watch 和 awatch yield 出来的 events 都长这样，就只用写一份了。
+
+目前只考虑了 modified 事件。其他的情况是未定义的 哈哈哈
+
+
+
+```python
+def on_events(self, events: Iterable[tuple[int, str]]):
+    from watchfiles import Change
+
+    if not events:
+        return
+
+    path2module = get_path_module_map()
+
+    with batch():
+        for type, file in events:
+            if type is Change.modified:
+                path = Path(file).resolve()
+                if path.samefile(self.entry):
+                    self.run_entry_file.invalidate()
+                elif module := path2module.get(path):
+                    try:
+                        module.load.invalidate()
+                    except Exception as e:
+                        sys.excepthook(e.__class__, e, e.__traceback__)
+
+        for module in path2module.values():
+            try:
+                module.load()
+            except Exception as e:
+                sys.excepthook(e.__class__, e, e.__traceback__)
+        self.run_entry_file()
+
+```
+
+这里用到一个`.invalidate()`，包括前面也用到一个`memoized_method`，这个确实还没讲，但其实就是`createMemo`一样的。
+
+我这里其实是把 memoized 当“惰性的 effect”用了，可以看到，我invalidate 修改的模块，然后每个模块都 call 一下 load，保证它是最新的，其中的缓存啥的就交给机制了，测试了半天最后终于没问题了
+
+### Memoized
+而其中`createMemo`其实就是惰性的一个`derived`这样的意思。我觉得 memoized 更强调了这种惰性感，所以没用 Derived 这个词：
+
+```python
+class Memoized[T](Subscribable, BaseComputation[T]):
+    def __init__(self, fn: Callable[[], T]):
+        super().__init__()
+        self.fn = fn
+        self.is_stale = True
+        self.cached_value: T
+        self._recompute = False
+
+    def trigger(self):
+        self.track()
+        if self._recompute:
+            self._recompute = False
+            self._before()
+            try:
+                self.cached_value = self.fn()
+                self.is_stale = False
+            finally:
+                self._after()
+        else:
+            self.invalidate()
+
+    def __call__(self):
+        if self.is_stale:
+            self._recompute = True
+            self.trigger()
+            assert not self._recompute
+        return self.cached_value
+
+    def invalidate(self):
+        if not self.is_stale:
+            del self.cached_value
+            self.is_stale = True
+```
+
+memoized_method 其实就是在这外面包裹了一层 descriptor 而已：
+
+```python
+class MemoizedMethod[T, I]:
+    def __init__(self, method: Callable[[I], T]):
+        super().__init__()
+        self.method = method
+        self.map = WeakKeyDictionary[I, Memoized[T]]()
+
+    @overload
+    def __get__(self, instance: None, owner: type[I]) -> Self: ...
+    @overload
+    def __get__(self, instance: I, owner: type[I]) -> Memoized[T]: ...
+
+    def __get__(self, instance: I | None, owner):
+        if instance is None:
+            return self
+        if memo := self.map.get(instance):
+            return memo
+        self.map[instance] = memo = Memoized(partial(self.method, instance))
+        return memo
+```
+
+唉，实在没什么时间，要回去睡觉了，所以写的很匆忙，简直什么都没写，不管了
+
+---
+
+## 结语
+正如我在那个 hmr 仓库里写的，生态最重要，我还没找 pytest（因为我不太会做 pytest plugin，所以没法给他们一个很吸引人的 demo），目前找了 FastAPI 和 Flask，其中 FastAPI 底下有个 uvicorn 的维护者评论了我几句，提醒了我我没考虑静态文件的读取：
+
+[https://github.com/fastapi/fastapi/discussions/13192#discussioncomment-11796729](https://github.com/fastapi/fastapi/discussions/13192#discussioncomment-11796729)
+
+# [如何写出好代码](/blog/icuqa0e3yrmfcol5) (1月9日)
+
+开启所有 lint 规则，然后一个个看过去 哈哈哈哈
+
+---
+
+夸张了，这样效率比较低。不如先老老实实把 lint 规则一条条看过去。比如 ruff 的 [rules](https://docs.astral.sh/ruff/rules/)
+
+# [实现了 Python 的 HMR](/blog/mwgggl2taiigch6w) (1月6日)
+
+有点兴奋，但明天还要考试，所以不能让自己一致兴奋下去😂
+
+我博客好像还没实现上传视频的功能（其实是语雀不让放），于是就随便传了下 [b 站](https://www.bilibili.com/video/BV1TsrVYbEb7)
+
+
+
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1TsrVYbEb7&autoplay=0" style="aspect-ratio: 33 / 20; height: auto"></iframe>
+
+# [反应式编程，但是 Python](/blog/tpbohtk3z0w63et9) (1月4日)
+
+认识我的人或多或少应该都知道，我的理想之一就是把 JavaScript 的开发体验赋能 Python。[marimo](https://marimo.io/) 做的不错，但是我这种追求细节的人不止于此，所以自己实现一套反应式编程是逃不过的（另外也是因为，搜了一圈，似乎 Python 真没这种东西）
+
+昨天在床上一时兴起，了解了一下 signal 的这种风格的观察者模式，然后让 GPT 用 python 实现了一遍。今天考完试就立马来试了下，感觉还不错。
+
+![](/nlark/yuque/0/2025/png/26070246/1735984622152-47eb3884-ceae-4905-b725-75d5de1ef6dd.png)
+
+是不是很熟悉的感觉？
+
+---
+
+我的目的是，让使用方式尽量 pythonic，比如上面的代码中：
+
+```python
+from reactivity import State
+
+class Counter:
+    value = State()
+```
+
+`value`看起来是个类变量，但其实是个 descriptor，是类似`property`这样的东西。所以在类里类外都可以像访问普通的变量一样访问它，类似`c.value``self.value`都是可以的，而且类型检查器友好，完全泛型化。
+
+实现如下：
+
+```python
+class State[T]:
+    def __init__(self, initial_value: T = None):
+        self._value: T = initial_value
+        self.subscribers = WeakSet[Callable[[], Any]]()
+
+    def get(self):
+        for computation in _current_computations:
+            self.subscribers.add(computation)
+            computation.dependencies.add(self)
+        return self._value
+
+    def set(self, value: T):
+        self._value = value
+        if _batches:
+            _batches[-1].callbacks.extend(self.subscribers)
+        else:
+            for subscriber in self.subscribers:
+                subscriber()
+
+    def __get__(self, instance, owner):
+        return self.get()
+
+    def __set__(self, instance, value: T):
+        self.set(value)
+
+_current_computations = []
+_batches = []
+```
+
+Computation 的实现如下：
+
+```python
+class Computation[T]:
+    def __init__(self, fn: Callable[[], T], auto_run=True):
+        self.fn = fn
+        self.dependencies = WeakSet[State]()
+
+        if auto_run:
+            self()
+
+    def __call__(self):
+        self.dependencies.clear()  # clear old dependencies
+        _current_computations.append(self)
+        value = self.fn()
+        last = _current_computations.pop()
+        assert last is self  # sanity check
+        return value
+
+    def dispose(self):
+        for dep in self.dependencies:
+            dep.subscribers.remove(self)
+```
+
+很简单吧，但是其实没有做什么 cleanup 之类的。
+
+然后 batch 的实现如下：
+
+```python
+class Batch:
+    def __init__(self):
+        self.callbacks: list[Callable] = []
+
+    def __enter__(self):
+        _batches.append(self)
+
+    def flush(self):
+        callbacks = set(self.callbacks)
+        self.callbacks.clear()
+        for callback in callbacks:
+            callback()
+
+    def __exit__(self, *_):
+        last = _batches.pop()
+        assert last is self
+        self.flush()
+```
+
+这控制了什么时候会触发回调。使用上也很方便，直接
+
+```python
+with Batch():
+    ...
+```
+
+就好了，所有的 callbacks 会在退出这个块的时候执行。
+
+另外，我还实现了一些函数式编程的工具，比如：
+
+```python
+from collections.abc import Callable
+from functools import wraps
+from typing import overload
+
+from .memo import Memoized, MemoizedProperty
+from .primitives import Batch, Computation, State
+
+
+def create_signal[T](initial_value: T = None) -> tuple[Callable[[], T], Callable[[T], None]]:
+    signal = State(initial_value)
+    return signal.get, signal.set
+
+
+def create_effect[T](fn: Callable[[], T], auto_run=True):
+    return Computation(fn, auto_run)
+
+
+def create_memo[T](fn: Callable[[], T]):
+    return Memoized(fn)
+
+
+def memoized_property[T, Self](method: Callable[[Self], T]):
+    return MemoizedProperty(method)
+
+
+@overload
+def batch() -> Batch: ...
+@overload
+def batch[**P, T](func: Callable[P, T]) -> Callable[P, T]: ...
+
+
+def batch[**P, T](func: Callable[P, T] | None = None) -> Callable[P, T] | Batch:
+    if func is not None:
+
+        @wraps(func)
+        def wrapped(*args, **kwargs):
+            with Batch():
+                return func(*args, **kwargs)
+
+        return wrapped
+
+    return Batch()
+```
+
+`batch`不仅可以`with`这样用，也能`@batch`这样作为一个装饰器来用。
+
+---
+
+留点悬念。这里面还有用到两个`create_memo`和`memoized_property`没讲
+
+# [实现一个类型安全的 (f1, f2) -> f2(f1()) 函数](/blog/pxydthha0dp6yro9) (2024年12月29日)
+
+```python
+def compose(first, second):
+    return lambda: second(first())
+```
+
+有了这个函数，当你需要 **串联** 两个函数的时候，就可以很方便了，下面我举例一个使用场景
+
+### 例子：序列化并用 bzip2 压缩
+大家都知道 python 对象的序列化用`pickle.dumps`，压缩用`***.compress`（***替换成各种库，比如标准库的 gzip，bz2，lzma 都是这样）
+
+前者是`(Any)->bytes`，后者是`bytes->bytes`，如果你要封装一个“序列化并压缩”的函数，你得这么写：
+
+```python
+def dumps(object: Any):
+    serialized = pickle.dumps(object)
+    compressed = bz2.compress(serialized)
+    return compressed
+```
+
+当然这种一次性的代码一般会缩写成一行：
+
+```python
+def dumps(object: Any):
+    return bz2.compress(pickle.dumps(object))
+```
+
+再加上反序列化的代码：
+
+```python
+def loads(data: bytes):
+    return pickle.loads(bz2.decompress(data))
+```
+
+这样，再加上空行，相当于你代码加了8行。不能忍吧
+
+用我们刚刚的`compose`函数，只要这样就行了：
+
+```python
+dumps = compose(pickle.dumps, bz2.compress)
+loads = compose(bz2.decompress, pickle.loads)
+```
+
+只要两行，而且清清楚楚。
+
+### 但是类型呢？
+我们刚刚的`compress`函数，没有类型注解，你可能觉得这很简单，这样就行了：
+
+```python
+def compose(first: Callable, second: Callable):
+    return lambda: second(first())
+```
+
+![](/nlark/yuque/0/2024/png/26070246/1735472852005-53c15b9f-7177-4f9d-9212-fd91054c0007.png)
+
+这样只能确保输入`compose`的两个参数都是可调用对象，但是并没有保证：
+
+1. 第二个函数可以接受第一个函数的返回值为参数
+2. `compose`后的函数的返回值与`second`的返回值相同
+
+![](/nlark/yuque/0/2024/png/26070246/1735473023962-6e659472-871f-4033-94a7-c2b80940befa.png)
+
+我们希望`h()`的类型推断是`Literal[42]`或者`int`对吧
+
+### 泛型
+Python 有勉强够用的泛型支持，而且早在 Python 3.12 就开始支持 typescript 式的更方便的声明泛型的方式：
+
+[PEP 695: Type Parameter Syntax —— What's New In Python 3.12](https://docs.python.org/3/whatsnew/3.12.html#pep-695-type-parameter-syntax)
+
+这么写就可以了：
+
+```python
+def compose[T1, T2](first: Callable[[], T1], second: Callable[[T1], T2]):
+    return lambda: second(first())
+```
+
+你看我甚至返回值都不用标，`pyright`能推算出来返回的是`Callable[[], T2]`
+
+![](/nlark/yuque/0/2024/png/26070246/1735473360737-9efec25a-13b0-4c23-baf4-d11174675677.png)
+
+你看，这样错误就能检查出来啦☀️
+
+修复了`g`之后，类型也正确推断啦：
+
+![](/nlark/yuque/0/2024/png/26070246/1735473423814-35d15f0e-6dbd-43a3-9b0f-48d14a5d6e22.png)
+
+### 如果 `first()`有参数呢
+上面的这个例子用途不够广泛，因为它用于无参调用。而有时候我很需要这个 compose 出来的函数，仍然有着原来的 first 函数的参数定义
+
+其实我们需要的就是一个“输入 first 的参数，返回 second 的返回值”这么一个函数对吧，那就简单了：
+
+```python
+def compose[T1, T2, **P](first: Callable[P, T1], second: Callable[[T1], T2]) -> Callable[P, T2]:
+    return lambda *args, **kwargs: second(first(*args, **kwargs))
+```
+
+我只是把`Callable[[], T1]`改成了`Callable[P, T1]`，加上明确最后返回`Callable[P, T2]`就完事儿啦。
+
+当然，如果你不喜欢 lambda，你可以这样写一个函数，这样甚至能少写`-> Callable[P, T2]`这个返回值声明
+
+![](/nlark/yuque/0/2024/png/26070246/1735474084051-9b534f1c-94c8-47f8-b8ae-1a609e0ff8b4.png)
+
+> 右边的返回值声明是它自己生成的，这个显示是 IDE 的 inlay hint，不是我打上去的
+>
+
+这样你就可以让这个 compose 出的函数具有和`first`一样的入参签名啦：
+
+![](/nlark/yuque/0/2024/png/26070246/1735474549522-11976e83-e95f-40d6-976f-de24f0a3528e.png)
+
+这个例子其实挺没用的，但是我一时间想不到好例子。总之使用场景就是，可能前面那个函数有很多参数，而且你是会用到这些参数的。
+
+### 后话：为什么做这个
+因为我想要一个类型安全的`json.dumps`和`json.loads`。原本的`json.dumps`不是`(Any)->str`嘛，我希望是`(Input)->str`，而原本的`json.loads`不是`(str|bytes)->Any`嘛，我要的是`(str|bytes)->Output`，其中`Input`和`Output`是我两个预先定义好的`TypedDict`
+
+其中 loads 很简单，直接用它的`validate_json`就好了：
+
+![](/nlark/yuque/0/2024/png/26070246/1735476062616-0dd44570-56b5-41a2-b018-09d74087e4c2.png)
+
+这个入参签名和补全，太完美了
+
+![](/nlark/yuque/0/2024/png/26070246/1735477144398-e9119ca7-5ab3-4757-873f-8a4417e8ffb9.png)
+
+输出类型也正常
+
+本来以为dumps也可以这么简单
+
+![](/nlark/yuque/0/2024/png/26070246/1735475811213-9e1fc51a-fb84-47af-8eae-a2c925064ea7.png)
+
+但是`pydantic`的 TypeAdapter 实例的 dump_json 居然是返回 bytes 的！居然不是和 BaseModel 一样地返回 str！简直是大坑
+
+不过我刚刚翻了下[文档](https://docs.pydantic.dev/latest/concepts/type_adapter/)，其实有提到的：
+
+![](/nlark/yuque/0/2024/png/26070246/1735476611361-33108670-01b5-4943-b5f6-c8745e02cc70.png)
+
+那就只好自己转成 str 咯，虽然就是`.decode()`的事情，但我希望它仍然是一个`dumps()`函数的形式，而且我在不同场景下需要不同的`dumps`的参数，最后写成了这样：
+
+```python
+dumps = compose(Output.dump_json, bytes.decode)
+```
+
+![](/nlark/yuque/0/2024/png/26070246/1735476936196-9039f4b9-6822-42f1-ae5e-e688ced9ce86.png)
+
+完美~
+
+# [给博客加了个 giscus](/blog/iakfelvgul5yfy9t) (2024年12月28日)
+
+[giscus](https://giscus.app/) 是一个评论系统，拿 GitHub Discussion 当 CMS，只要提供一个仓库，一个 discussion 的 category，就能直接获得一个评论区，超方便
+
+但是也有不方便的地方，就是它需要填很多参数，其中有的参数我觉得是完全没必要的，比如既要 repo 又要 repoId，纪要 category 又要 categoryId，这个 id 不好拿，印象中得 API 才能拿得到，或者在 giscus 上拿
+
+我觉得这个应该作为选填，它 API 后端如果必须用这个 id 的话就去请求 API 去 fetch 了缓存下来，不然这非常违反我“永远不在仓库里放生成的东西”的原则
+
+不过还是妥协了，我觉得我太画地为牢了，自己给自己设限，况且这就是两个 id 的事儿，我就硬写到仓库里了，也没用环境变量
+
+另一个问题，它的参数都是 ="1" ="0" 这样的，既不是 true 和 false，也不是 control="control" 这样 html 原生式的，就很难受。还有就是，它只有 web component，也不能 SSR，我觉得体验还是不那么好的。但是要什么自行车，方便就行了。而且正好它有个叫 borderless 的主题，配色和我这个博客挺能配合的，就用起来吧
+
+
+
+欢迎大家在评论区跟我互动哈~
+
+# [Python 读取 jsonl 的最佳实践](/blog/tfgqal68g6th6oqf) (2024年12月11日)
+
+发现一个有趣的结论。
+
+在 Python 中读取 jsonl 文件，读取为一个 `list[dict]`，最佳实践是怎么样？
+
+刚学 python 的人会这么写：
+
+```python
+def read_jsonl(jsonl_path: str):
+    content = Path(jsonl_path).read_text()
+    results = []
+    for i in content.splitlines():
+        results.append(json.loads(i))
+    return results
+```
+
+这个人写的已经够好了，如果是学业不精的人还能写出更千奇百怪的写法，比如用 while 找`\n`，或者用 range 来迭代，然后用索引来访问一个个元素什么的。如果我是老师，我觉得上面这个已经可以打 60 分了。加上它用 Path 而不是 open 我觉得可以额外加 10 分。
+
+但熟悉 micro optimization 的人一眼就能看出各种问题，比如存在不应该的数据复制、列表不如迭代器、append 和 json.loads 反复地对象取属性，优化之后大概长这样：
+
+```python
+def read_jsonl(jsonl_path: str):
+    with open(jsonl_path) as f:
+        return list(map(json.loads, f))
+```
+
+这样写感觉很 pythonic，比如用到了 python 中的上下文管理器，用到了 file 对象是可以按行迭代的迭代器，用到了 map 函数式编程等特性。可读性也 up up up
+
+如果一个学生写到这种程度，我觉得已经可以打 100 分了，甚至还有点炫技的嫌疑，我可能会让 Ta 上台来给大家讲一讲 哈哈哈
+
+### 但是！
+这不是最快的办法。假设你只是读一个几 MB 大的 jsonl 数据文件，不关心内存（几 MB 也没啥好优化内存的），这样是最快的
+
+```python
+def read_jsonl(path: str):
+    content = Path(jsonl_path).read_text().rstrip().replace("\n", ",")
+    return json.loads(f"[{content}]")
+```
+
+看懂了吗？是不是很 hack，这其实是把整个 jsonl 用字符串替换的方式变成一个 json 列表，然后直接一次性 loads
+
+### 快多少
+在我的电脑上，一个 3MB 的 jsonl 文件，上面两种办法分别是 49ms 和 42ms，后面这种 hack 是 19ms
+
+可以认为是从 3 帧的卡顿变成了 1 帧，这个优化效果还是非常惊艳的
+
+### 为什么
+Python 性能之禅，能避免用 python 就避免用 python（比如避免循环），即使这会让你的代码更绕弯路
+
+---
+
+本故事源于我前天开的一个 [PR](https://github.com/fake-useragent/fake-useragent/pull/413)：
+
+![](https://opengraph.githubassets.com/1be1e131e658c5059fcc030df693d3c99a450e6d0632394a6fc09a6d3cde97d3/fake-useragent/fake-useragent/pull/413)
+
+---
+
+### 思考题
+如果是大文件呢？比如 GB 级的，肯定不能一次性读到内存中的
+
+#### 参考答案
+我觉得得分类讨论，如果是每行都很大的，比如一行都是 MB 级的，那可能可以一行一行做：
+
+```python
+def iter_jsonl_data(jsonl_path: str):
+    with open(jsonl_path) as f:
+        yield from map(json.loads, f)
+```
+
+但如果是行数很多，但每行都不大的情况（比如日志流），那我觉得就麻烦了，可能得分 chunk，然后每个 chunk 内用上面第三种方法来 hack
+
+当然，这些方法都是戴着镣铐跳舞，如果条件允许，最好的办法当然是拿低级语言写个 pyd import 进来，效率绝对比这些都快
+
+这个故事还是教学意义比实践意义大
+
+# [准备做一些 MCP 相关的项目](/blog/xcfwbwyd7tgvdbvk) (2024年12月9日)
+
+AI#DEA 主办方的一个朋友一直在安利 MCP，今天我也终于按耐不住了。试了下
+
+![](/nlark/yuque/0/2024/png/26070246/1733751107561-d3f172dd-2eca-4c25-8bcb-f69fe61e91e2.png)
+
+嗯。很简单。老早，GPT 插件的时候就在想，为什么只有 web 上的 OpenAPI 可以。对吧，我希望本机也可以。至少要能 call localhost，但是当时技术力还不行，这事儿就搁置了。
+
+而且 specification 这东西还真是。大厂推就才可能推成。coze 可能，logfire 可能，但如果我做 Prompt Hub 就做不起来。这一年要说我学会了什么，我学会了什么事儿做不成 哈哈哈
+
+# [OOP 何必是 COP](/blog/hbsd9puhglc8skko) (2024年12月8日)
+
+tl;dr: 面向对象编程（Object-oriented programming）不必是面向类编程（Class-oriented programming）
+
+像 JavaScript 这种，声明对象比声明类还方便的语言中，何必非要定义一个类，再定义实例呢？
+
+从“和面向过程相对”的意义上说，“面向对象”指的是，封装的时候，去封装一个名词而不是封装一个动词。至于实现上，是去实现一个类，还是实现一个接口，其实都是 OOP
+
+---
+
+经常看到言论说 JavaScript 正在远离 OOP，事实上我觉得被远离的只是“OOP原教旨主义”，Java 之流那种
+
+什么意思呢，我觉得 interface 就是定义了一个对象应该是什么 shape，比如，如果我是一个瞎子，只靠声音认狗狗🐕，只要你能汪汪叫就算你是狗 U•ェ•*U
+
+那传统的继承式 OOP 就要求你老老实实界门纲目科属种，你得是继承了[动物界、脊椎动物门、哺乳动物纲、食肉目、犬科、犬属](https://zh.wikipedia.org/wiki/%E7%8A%AC)，但接口式的 OOP 只要求你能狗叫就行了，管你是 [京中有善口技者](https://baike.baidu.com/item/%E5%8F%A3%E6%8A%80/2193741)，还是音乐播放器，你都是狗。基于接口的 OOP 很显然就是更进步的、实用主义的 OOP
+
+---
+
+```typescript
+interface DogLike {
+  bark: () => "Woff"
+};
+
+function getDog(): DogLike {
+  return {
+    bark() {
+      return "Woff"
+    }
+  }
+}
+
+const dog = getDog()
+
+dog.bark()
+```
+
+这是面向过程吗？这也是面向对象。只要你在使用的时候不是在使用 `doBark(dog)` 而是 `dog.bark()` 你就是在 OOP 了。不需要用 `class` 只要你是在操作一个主体的方法，就是在 OOP
+
+相对的，像这种
+
+```typescript
+class Dog {
+  bark(): "Woff"
+};
+
+function doBark(dog: Dog) {
+  return dog.bark()
+}
+
+dog = Dog()
+
+doBark(dog)
+```
+
+这种才是披着面向对象外皮的面向过程编程。
+
+---
+
+是的，在我的定义中，Rust 也可以是 OOP。
+
+---
+
+说起来，前两天我一个[给 Gradio 的 PR](https://github.com/gradio-app/gradio/pull/10088) 被合了：
+
+![](https://opengraph.githubassets.com/c790d44cd041450e184c1791a6a532657bd99d0044625f779cb15d9ad839405a/gradio-app/gradio/pull/10088)
+
+这个 PR 也挺好玩的，起因是我发现 Gradio 5 实现热重载了，我一直挺关心热重载的，包括我 py3.online 上也自己实现了一套热重载。我看它代码时发现它的方法差不多（都是在一个模块的 `__dict__` 中 exec 它的 sources），还支持一个 `NO_RELOAD` 的常量，`if gr.NO_RELOAD` 块中可以执行一些不想被热重载重新执行的代码。我觉得还蛮有意思的。然后我就在想：这个值是怎么做到动态的呢？是在热重载的时候直接改这个值，从 True 改成 False 吗？那如果人家不是用 `gr.NO_RELOAD` 而是直接用 `from gradio import NO_RELOAD` 这样的方式导入的呢？这样不就失去响应性了吗？
+
+后来一读源码，发现更离谱，它甚至不是动态的 bool，而是通过 AST 搜索 `if gr.NO_RELOAD` 这样的出现，然后把整个 if 语句都删掉。我觉得这也太 hack 了，因为这导致这个 if 语句没法用 and / or 之类的结构，也没法用别名，甚至 else 子句也删了，也没法把这个 bool 当参数传给别处。而且这些，在文档里都没有描述。害人不浅啊（具体的坏处我 PR 里描述的更清楚）
+
+于是，我的实现，简单来说就是把它编程一个伪 bool，让它的 `__bool__` 是动态的就行了。简单的话直接用 list 之类的东西就行，我是继承了 bool 类（简单来说是这样，但是 Python 里 bool 不让继承，所以其实我继承的是 int）（插播一条冷知识，Python 中 bool 也是 int 的子类哦），虽然我这样也 hack，但我至少不会造成奇奇怪怪的 bug
+
+```python
+class DynamicBoolean(int):
+    def __init__(self, value: int):
+        self.value = bool(value)
+
+    def __bool__(self):
+        return self.value
+
+    def set(self, value: int):
+        self.value = bool(value)
+```
+
+本来以为他们会不会对这个命名有异议的，但是居然没有。看来他们对贡献挺不 opinionated 的，毕竟也是[一个 utils.py 文件](https://github.com/gradio-app/gradio/blob/main/gradio/utils.py) 1500+ 行的项目。哈哈哈
+
+# [m ask 支持 markdown 流式渲染了](/blog/sepc2cmtiuexte3p) (2024年12月5日)
+
+发现原来 rich 有可以用来实现流式 markdown 渲染的工具，于是就集成了一下，下面是个例子，在命令行中直接对 ruff 的一条 lint 规则进行提问
+
+![](/nlark/yuque/0/2024/png/26070246/1733365529567-3775961f-30ef-48a6-a721-7a000972e0f4.png)
+
+但是超出高度会闪烁，于是手动实现了下 truncate 的策略
+
+```python
+class TruncatedMarkdown(Markdown):
+    def __rich_console__(self, console, options):
+        results = list(super().__rich_console__(console, options))
+        height = console.height
+        count = 0
+        buffer = []
+        for segment in reversed(results):
+            count += segment.text.count("\n")  # type: ignore
+            if count > height:
+                break
+            buffer.append(segment)
+
+        yield from reversed(buffer)
+```
+
+其实 `rich.live` 的用法还是昨晚从 pydantic-ai 学到的：
+
+[Stream markdown - PydanticAI](https://ai.pydantic.dev/examples/stream-markdown/?h=rich.live)
+
+# [再谈一谈 Svelte 5](/blog/sggo21grr7odt3sn) (2024年12月4日)
+
+Svelte 5 发布也有一段时间了，我存量项目太多，迁移一个项目至少要半小时起步，于是就打算先缓缓。
+
+同时我也发现了不少 Svelte 5 难用的地方，比如它实打实地在一些小的地方更繁琐了，没得洗。
+
+就好比，要求你每个 python 项目都必须 fully typed 才能运行，这显然是在小项目上降低了开发效率的。Python 加类型还能让 LLM 来完成，但是就我的体验来看，现在 LLM 自动补全 Svelte 5 的用法 **完完全全** 都是错的。完全是 hallucination。
+
+所以，当我写 Svelte 5 代码的时候，我好像回到了两年前，没有 Copilot 的时代。
+
+---
+
+![](https://opengraph.githubassets.com/6cf24547ad0e03e1259f5e95049193fe874ece74805f45183702f7f9a744d28c/sveltejs/svelte/discussions/14521)
+
+昨天提了一个问题，如何实现自动 infer 组件传给调用者的 slot 的参数的类型 [sveltejs/svelte/discussions/14521](https://github.com/sveltejs/svelte/discussions/14521)，维护者告诉我没有好办法。我承认像 React 那样用 typescript 的 spread 等方法来参数化组件是好办法，而且是维护大的项目的必经之路，但是在小项目（特别是对于我这种小项目巨多的人）来说就很难受了。在 Python 中这是一个 Tab 的事情，但在 Svelte 5 中，我要花 10 倍的时间。
+
+---
+
+曾经，我在反思，为什么我比起（自称）性能更佳的 SolidJs 我更喜欢 Svelte，答案是它的开发体验。它的开发效率。现在这层光环没了，我很失望。
+
+> With more and more people building more and bigger applications with Svelte, the limitations of some of our original design decisions started to become more apparent. For example, in Svelte 4, reactivity is driven entirely by the compiler. If you change a single property of a reactive object in Svelte 4, the entire object is invalidated, because that’s all the compiler can realistically do. Meanwhile, other frameworks have adopted fine-grained reactivity based on _signals_, leapfrogging Svelte’s performance.
+>
+> —— [Svelte 5 is alive](https://svelte.dev/blog/svelte-5-is-alive)
+>
+
+Svelte 原本采用的是我尤其欣赏的“即使编译器不够好，但是我仍然不让你写一点 React 一般的 boilerplate”这样的执着。它可能不是最快的，但它是最有想法的（正如我对我自己的要求一样）。所以它不仅是我趁手的兵器，更是我的座右铭一般的存在（和 Rust 在我心目中的地位平起平坐）。现在感觉被它被刺了一刀 哈哈哈
+
+我曾经四处向人推荐 Svelte，现在只想无条件推荐 Svelte 4 了，至少我本人更喜欢 Svelte 4 的精神
+
+当然，现在这样的发展也证明了当今技术的发展还没能让编译器聪明到这种程度，Svelte<5 算是一种尝试，现在他们决定 move on 了。getting over it 了，也不错。我可能也不会在怀旧服待太久吧。
+
+---
+
+最后重申一下，我的观点是，Svelte 5 绝对在效率、上限上都是比 Svelte 4 高的。唯一可惜的是，门槛提高了，另一方面编码效率一定程度下降了，尤其小项目的编码效率大幅度下降。
+
+# [一言不合就 fork](/blog/hb4w5vspmvuncrpk) (2024年11月30日)
+
+作为急急急急急国王，我遇到用不顺手的库我就 fork！甚至再发一个包！licence 什么的都不管！我是开源带恶人
+
+---
+
+[html2text](https://github.com/Alir3z4/html2text/issues/418) 一个纯 python 包手动上传，还忘了 wheel distribution，提了 issue 没人管！果断 fork 了 CI 什么的全部都现代化，发了个 [html2text2](https://cnseniorious000.github.io/html2text/README.html)。两周前原仓库突然有了三个动态，但是也是说了要干又没干（诶，好像和我很像，惭愧惭愧）
+
+![](/nlark/yuque/0/2024/png/26070246/1732947184744-463b56d6-0bd2-462e-aa36-183a0b9da5f7.png)
+
+---
+
+[pythonmonkey](./yh3cd64t6111ubux) 就是非不打包 wheels，我也是直接 fork，这次直接叫 [pythonmonkey-fork](https://py3.online/pypi/pythonmonkey-fork)
+
+---
+
+[solid-markdown](https://github.com/andi23rosca/solid-markdown/pull/36#issuecomment-2503715812) 一个版本的 bug 一直不修复，甚至前两天也有人来催了。但这个我倒是没另外发包，因为 JavaScript 生态有 [pkg.pr.new](https://github.com/stackblitz-labs/pkg.pr.new) 可以用，不用单独发包也能直接用上 PR 分支的 build 产物
+
+---
+
+之所以想起这件事儿，是因为昨天遇到 diskcache 的 [typing 的问题](https://github.com/grantjenks/python-diskcache/issues/323)，决定[彻底修一下](https://github.com/grantjenks/python-diskcache/issues/202#issuecomment-2507938693)，后来发了个 [diskcache2](https://github.com/CNSeniorious000/diskcache2)，像[这样](https://github.com/CNSeniorious000/diskcache2/commit/84bb105e7b04c6af0b8949bf2799e57a78bd3678#diff-9b4c246156917dc93ea44dada8ba4b8db1cb2e7606b3e976dc978b66261b68acR1111-R1128)的 overloads 写了三百多行，太可怕了。不过好在效果很舒服，基本上可以把 Cache 对象当 MutableMapping 用了
+
+![](/nlark/yuque/0/2024/png/26070246/1732947970927-a2155416-a35c-4f85-bdc5-8c94dd09c85b.png)
+
+# [感觉 gpt 的 vision 能力不太行](/blog/ttm4y2q7w3o6etrm) (2024年11月27日)
+
+对 gpt 的 vision 能力持怀疑态度了。
+
+最近有在做毕设项目（前段时间经理了很严重的怠惰期），需要用到对 PDF 的 RAG，我想在这方面尝试一点彻底的东西，于是就准备用 LLM 过一遍抽取出来的内容（相当于重新排版），然后解析 markdown 的 AST 来做 chunking，还能加上目录信息来实现 contextual embedding
+
+文本的效果很好，非常好，但是图片有问题。似乎 PDF 抽取之后图片摆放的位置是页的开头还是结尾，总之不是中间，所以需要 LLM 来插入。另外似乎图片都没有 alt 之类的东西，所以只有个序号，如果要 LLM 来排的话肯定得把内容显示给它看。
+
+于是写了一套 vision 的 utility，最后的格式是，![]() 紧接着就会自动插入图片。
+
+但是效果非常不满意。
+
+1. 我一直 fail to 让 LLM 保留所有的图片，插入的位置也不对
+2. LLM 似乎认为图标、广告那些元素比插图更重要。我也是服了
+
+可能是我确实在写 prompt 上低人一等吧，总之我是放弃了
+
+
+
+加上我之前一直没干活，师兄对我应该也是没什么耐心。现在决定放弃图片了（就当是模型能力还不够）
+
+然后刚刚在删代码，发现真的要删了好多巧思，有点伤心，就来记录一下
+
+
+
+---
+
+当然，我觉得有可能跟 gpt 对图片的 tokenizing 方式有关。一方面我没试过别的 VLM，另一方面似乎只有 gpt 着重有一章讲他们对图片的处理，就是 low 分辨率有一部分 token，然后 high 分辨率的话是分成多个 tile 这样。我不太懂模型所以不知道为什么要这么干。但我感觉这样子可能会对低分辨率的图标啊头像啊logo啊这些东西反而更关注。
+
+# [Fork 了 PythonMonkey](/blog/yh3cd64t6111ubux) (2024年11月24日)
+
+![](/nlark/yuque/0/2024/png/26070246/1732452458406-daefb64f-d071-4c03-a73f-4aed0342b917.png)
+
+PythonMonkey 一个多月没动了。3.13 适配遥遥无期。
+
+另外，之前跟他们聊的去除在 post install 阶段 npm install 的事情，我也终于忍不了了
+
+![](/nlark/yuque/0/2024/png/26070246/1732452637924-cba21ddf-0d21-4cab-b851-9445565e35ab.png)
+
+于是狠下心来 fork 了 PythonMonkey。但是我在 CodeSpaces 里发现 build 很久而且好像会失败，CI 也运行不起来（似乎他们还有一些环境变量要配置）
+
+### 实现
+于是就只好施展魔法了。以前都不敢想这种思路。首先看看原本的 pythonmonkey 是怎么安装的：
+
+1. pythonmonkey 包是 spidermonkey 的分支的 build 产物，加上一些 python 胶水和类型定义，它提供了全面的 wheel distribution
+2. 但是 pythonmonkey 要用到一些（应该主要目的是 polyfill 的）JavaScript 库，所以他们搞了一个 pminit 包，只提供 sdist，在 builld 的时候往 pythonmonkey 包的文件夹里运行 npm install
+
+我的第一个目标就是，去掉这个 npm install 的过程，因为：
+
+1. 很慢，尤其是在国内，我如果不开全局代理或者用镜像源就会失败
+2. 对 nodejs 有依赖。这很可笑。凭什么我安装一个 JavaScript 运行时还需要另一个 JavaScript 运行时
+
+看了看 [pminit 的代码](https://github.com/Distributive-Network/PythonMonkey/blob/main/python/pminit/pminit/cli.py)，发现它真的就只是执行 npm install。我决定可以直接把 node_modules 在 CI 中确定好，并单独用一个包分发。
+
+这个不难，虽然在一些细节的抉择上花了不少时间，但总之是很简单的事。
+
+但是由于我没法构建 pythonmonkey 啊，所以我没法去掉 pminit 的 requirements，更没法支持 3.13 了。这不是白费工夫嘛。于是我就咬咬牙，决定用 monkey patch 已有的 wheel 文件，来替换掉依赖
+
+---
+
+最后通过将近 200 行的代码，不太优雅地实现了：[patch.py](https://github.com/CNSeniorious000/PythonMonkey/blob/main/patch.py)
+
+![](https://opengraph.githubassets.com/5509e1d2f5cf2aa3d8764409517cb24ca9d1180ca8b2ea094f4e8eba7e067938/CNSeniorious000/PythonMonkey)
+
+还遇到了一些坑，比如：
+
++ 带加号的 version 是不能上传到 PyPI 的，怪不得 torch 啊什么的得有自己的 index
++ http1.1 有时比 http2 快，而且 http2 比 http3 也快。我怀疑是因为都是下载不多个大文件。但是其实这个结果也蛮反常的，我不太清楚为什么
++ Python 的 ZipFile 可以以 append 模式打开 zip，但是只能 append，不能 update，另外 TarFile 二者都不能
++ Windows 下的 `tar` 命令和 Linux 上的还蛮兼容的，但是 `.tar.gz` 文件都不能 append 或 update
++ 很奇怪的是，我用 `zip` 命令打的 zip 包比原本的 whl 文件大。不过没研究了，可能是带了一些元数据吧
+
+---
+
+### 结果
++ 发布了 [pythonmonkey_node_modules](https://pypi.org/project/pythonmonkey_node_modules/)，只有 2 MB 左右
++ 发布了 [pythonmonkey-fork](https://pypi.org/project/pythonmonkey-fork/)，甚至支持了 3.13（通过 patch pythonmonkey.io 上的 nightly release）
++ 一套 CI，可以很方便地 patch 新版本，或者更新 JavaScript 依赖
+
+接下来准备把各种 JavaScript 库引入 python 了！
+
+首当其冲的是把 readability 加到 m 里，甚至可以联系上翻译或者是 ask 的内容。也可以复用一部分 [llm-web-reader-demo](https://github.com/CNSeniorious000/llm-web-reader-demo) 的东西。
+
+![](https://opengraph.githubassets.com/5cb8fd41bd2852c811e2178d7057e72f3f7afc11a73ac652a320e596ec08fd74/CNSeniorious000/llm-web-reader-demo)
+
+另外，最近也一直在尝试各种 JavaScript 库能不能移植过来。以下是一些点子：
+
++ 在 python 中用 unocss 来渲染邮件
++ 在 python 中用 shiki 来高亮代码，用于渲染邮件 / 渲染 OG 图，或者给 mkdocs 做插件，支持 pygments 不支持的语言（比如 Svelte）
++ 用 remark 做 markdown AST 解析，比如用在 [pyth-on-line](https://github.com/promplate/pyth-on-line) 中，实现 js 和 py 侧一样的 markdown AST 解析
++ 用 [showdown](https://github.com/promplate/pyth-on-line) 或者 [turndown](https://github.com/mixmark-io/turndown) 做 html 转 markdown，加上 python 系的 markdownify 和 html2text 搞个同台竞技（类似 [markdownify-demo](https://markdownify-demo.vercel.app/) 这样）（甚至可以和 [llm-web-reader-demo](https://github.com/CNSeniorious000/llm-web-reader-demo) 也比一比）
+
+---
+
+说起来，刚刚打**一起**差点打成了**仪器**。不过应该没有人知道这个梗，等[这个项目](https://comments-generation-mock-ui.vercel.app/slides/charts/pie)做成了再说吧。
+
+---
+
+![](/nlark/yuque/0/2024/png/26070246/1732454650678-fa788f86-2e56-4934-ba82-3b36f7a26453.png)
+
+有点好笑，昨天调试这个 patch 的时候可能下载了很多次，给他们刷出了 4K 的下载量
+
+![](/nlark/yuque/0/2024/png/26070246/1732454764191-90c9ae73-4738-42c9-b148-fc79daf55d62.png)
+
+在测 HTTP/2 啊 HTTP/3 那些的时候也给 vercel 这儿的服务刷了十几 GB 的流量账单（之前的都是百 MB 级别的）
+
+![](/nlark/yuque/0/2024/png/26070246/1732454874277-c2ab25c4-39c7-41ec-8f72-582eb109b4cb.png)
+
+Netlify 这儿的服务刷了差不多等量的……
+
+# [Cloudflare Zaraz 的开源托管组件](/blog/bzzswty7glvkrwcw) (2024年11月14日)
+
+> 最近决定把一些我觉得挺有意思的文章翻译一下，一是自己看，二是以后跟别人讲某个观点的时候不用逼别人看英文。当然肯定不是我自己翻译的而是 gpt 翻译的
+>
+
+
+
+原文：[Open source Managed Components for Cloudflare Zaraz](https://blog.cloudflare.com/zaraz-open-source-managed-components-and-webcm/) —— [Yo'av Moshe](https://blog.cloudflare.com/author/yoav)
+
+
+
+在2020年初，我们尝试思考是否有一种方法可以在不减慢网站速度、不降低安全性并且不牺牲用户隐私的情况下加载互联网上的第三方工具。晚上，在扫描了数以千计的网站后，我们的答案是“嗯，算是吧”。这似乎是可能的：许多类型的第三方工具仅仅是在浏览器中收集信息，然后将其发送到远程服务器。理论上，我们可以找出它们正在收集什么，然后只需高效地收集一次，并在服务器端将其发送到他们的服务器，模仿他们的数据模式。如果我们这样做，我们可以完全地避免在网站内加载他们的JavaScript代码。这意味着不再有恶意脚本的风险，不再有性能损失，隐私问题也会减少。
+
+但答案并不是一个明确的“是！”因为我们意识到这将会非常复杂。我们调查了主要第三方脚本的网络请求，往往显得晦涩难懂。我们为自己设定了大量工作，研究工具所发出的网络请求，试图弄清楚它们在做什么——这个参数是什么？这个网络请求何时发送？这个值是如何散列的？我们如何以更安全、可靠和高效的方式实现相同的结果？我们的团队每天都在面临这些问题。
+
+当我们加入Cloudflare时，一切的规模都发生了变化。突然之间，我们在成千上万的网站上，每秒为超过10,000个请求提供服务。用户每天都通过我们的Discord频道、社区论坛，有时甚至直接在Twitter上与我们交流。他们的消息通常会是这样的：“你好！你能支持X吗？”Cloudflare Zaraz上线时，其库中有大约30个工具，但这个市场非常庞大，新工具不断涌现。
+
+### 改变我们的信任模式
+在我之前关于[Zaraz如何使用Cloudflare Workers](https://llm-web-reader.vercel.app/zaraz-use-workers-to-make-third-party-tools-secure-and-fast/)的博客文章中，我包含了一些关于Zaraz中工具集成的编写方式的例子。通常，Zaraz中的“工具”是一个准备有效负载并发送它的函数。这个函数可以返回一个东西——`clientJS`，即浏览器稍后会执行的JavaScript代码。我们尽力做到这样，即工具不会使用`clientJS`，除非真的有必要，实际上大多数Zaraz构建的工具集成都没有使用`clientJS`。
+
+这运作得很好，只要我们是编写所有工具集成的人，客户信任我们会编写性能和安全的代码，并信任他们在尝试Zaraz时看到的结果。加入Cloudflare后，许多第三方工具供应商联系了我们，要求编写Zaraz集成。我们很快意识到我们的系统并没有强制执行速度和安全性——供应商可以简单地将他们旧的浏览器端JavaScript倒入我们的`clientJS`变量，然后说“我们有一个Cloudflare Zaraz集成！”，这完全不是我们的愿景。
+
+我们希望第三方工具供应商能够编写他们自己的高效、安全的服务器端集成。我们希望使他们有可能以更好的方式重新构想他们的工具。我们还希望网站所有者能够了解他们网站上发生的事情，能够管理和控制它，并相信如果一个工具通过Zaraz运行，它必须是一个好的工具——这不是因为是谁编写的，而是因为它所构建的技术。我们意识到，为了实现这一点，我们需要一个新的定义第三方工具的格式。
+
+### 引入Managed Components
+我们开始重新思考如何编写第三方代码。今天，它是一个黑匣子——你通常会在你的网站上添加一个脚本，而你完全不知道它在做什么以及何时做。你无法正确阅读或分析缩小后的代码。你不知道它的行为是否与你在别处看到的一样。你不知道它何时会改变。如果你是网站所有者，你完全在黑暗中。
+
+工具做很多不同的事情。简单的工具只是收集信息并将其发送到某处。通常，它们会设置一些cookies。有时，它们会在页面上安装一些事件监听器。基于小部件的工具可以真正操纵页面DOM，提供新的功能，比如社交媒体嵌入或聊天机器人。我们的新格式需要支持所有这些。
+
+Managed Components是我们想象的在线第三方工具的未来。它为供应商提供了一个[API](https://www.cloudflare.com/learning/security/api/what-is-an-api/)，允许他们做比普通脚本更多的事情，包括将代码执行保持在浏览器之外。我们与供应商一起设计了这个格式，为供应商设计，同时考虑到用户的最大利益是每个人的长期最大利益。
+
+从一开始，我们就构建Managed Components以使用基于权限的系统。我们希望提供比Zaraz今天更多的透明度。由于新API允许工具设置cookie、更改DOM或收集IP地址，所有这些能力都需要获得权限。安装在你网站上的第三方工具类似于在你的手机上安装应用程序——你会得到工具可以做什么和不能做什么的解释，并且可以在细粒度水平上允许或不允许功能。我们之前写过关于[如何使用Zaraz不向Google Analytics发送IP地址](https://llm-web-reader.vercel.app/keep-analytics-tracking-data-in-the-eu-cloudflare-zaraz/)，现在我们正在加倍努力朝这个方向发展。这是你的网站，这是你的决定。
+
+每个Managed Component本质上是一个JavaScript模块。与今天不同的是，这个JavaScript代码不会被发送到浏览器。相反，它由一个Components Manager执行。这个管理器实现了组件使用的API。它调度来自浏览器的服务器端事件，为组件提供信息访问，同时保持它们的沙盒化和高效性。它处理缓存、存储等——所有这些都是为了让Managed Components能够实现其逻辑，而不必过多担心周围的环境。
+
+一个示例分析Managed Component可能看起来像这样：
+
+```javascript
+export default function (manager) {
+  manager.addEventListener("pageview", ({ context, client }) => {
+    fetch("https://example.com/collect", {
+      method: "POST",
+      data: {
+        url: context.page.url.href,
+        userAgent: client.device.userAgent,
+      },
+    });
+  });
+}
+```
+
+上述组件在发生页面浏览时会收到通知，然后它会创建一些包含访问者用户代理和页面URL的有效负载，并将其作为POST请求发送到供应商的服务器。这与今天的做法非常相似，只是这不需要在浏览器中运行任何代码。
+
+但Managed Components不仅仅是做以前可能的事情，而是更好地做到，它们还提供了戏剧性的新的功能。看看我们如何公开服务器端端点的例子：
+
+```javascript
+export default function (manager) {
+  const api = manager.proxy("/api", "https://api.example.com");
+  const assets = manager.serve("/assets", "assets");
+  const ping = manager.route("/ping", (request) => new Response(204));
+}
+```
+
+这三行代码是第三方可能性的完全转变。如果获得权限，它们可以代理一些内容，提供和公开它们自己的端点——所有这些都在运行网站的同一域下。如果一个工具需要进行一些处理，现在可以完全卸载浏览器，而不需强制浏览器与第三方服务器通信。
+
+### 激动人心的新功能
+每个第三方工具供应商都应该能够使用Managed Components API来构建其工具的更好版本。我们设计的API是全面的，对供应商的好处是巨大的：
+
++ **同一域：** Managed Components可以从与网站本身相同的域提供资产。这允许更快和更安全的执行，因为浏览器只需信任和与一个服务器通信，而不是许多。这也可以降低供应商的成本，因为他们的带宽将会降低。
++ **网站范围的事件系统：** Managed Components可以挂钩到网站用于跟踪事件的预先存在的事件系统。不仅不需要为你的工具提供浏览器端API，而且对用户来说更容易发送信息到你的工具，因为他们不需要学习你的方法。
++ **服务器逻辑：** Managed Components可以在与网站同一域上提供服务器端逻辑。这包括代理不同的服务器，或添加生成动态响应的端点。这里的选项是无穷无尽的，这也可以减轻供应商服务器的负载。
++ **服务器端渲染的小部件和嵌入：** 你有没有注意到，当你在网上加载一篇文章页面时，当一些YouTube或Twitter嵌入突然出现在段落之间时，内容会跳动？Managed Components提供了一个API用于注册服务器端渲染的小部件和嵌入。这意味着当页面到达浏览器时，它已经在其代码中包含了小部件。浏览器不需要与另一个服务器通信以获取一些推文信息或样式。它现在是页面的一部分，所以期待更好的CLS分数。
++ **可靠的跨平台事件：** Managed Components可以订阅客户端事件，比如点击、滚动等，而无需担心浏览器或设备支持。不仅如此——这些相同的事件将在浏览器之外也能工作——但我们稍后再谈。
++ **预响应动作：** Managed Components可以在网络响应甚至到达浏览器之前执行服务器端动作。那些动作可以访问响应对象，读取它或更改它。
++ **集成的同意管理器支持：** Managed Components是可预测的和范围界定的。Component Manager知道它们需要什么，并可以预测运行它们需要哪种同意。
+
+### 正确的选择：开源
+当我们开始与供应商合作为他们的工具创建Managed Component时，我们听到一个反复出现的担忧——“有什么Components Managers？这是否仅对Cloudflare Zaraz客户有用？”虽然Cloudflare Zaraz确实是一个Components Manager，并且它有一个慷慨的免费计划，我们意识到我们需要考虑得更大。我们希望使Managed Components对互联网的每个人都可用，因为我们希望整个互联网变得更好。
+
+今天，我们宣布的不仅仅是一个新格式。
+
+WebCM是Managed Components API的参考实现。它是一个完整的Components Manager，我们将很快发布和维护。您将能够在构建Managed Component时将其用作SDK，即使您不是Cloudflare用户，也可以在生产中使用它来加载您网站上的Managed Components。WebCM作为一个代理工作——您将其放在您网站之前，并在必要时重写您的页面并添加几个端点。这使得WebCM 100%框架无关紧要——无论您的网站在后台使用Node.js、Python还是Ruby：只要您发送HTML，它都支持。
+
+但这还不是全部！我们还将开源一些我们自己的Managed Components。我们将一些经典的Zaraz集成转换为Managed Components，它们将很快可供您使用和改进。您将能够获取我们的Google Analytics Managed Component，例如，并使用WebCM在您的网站上运行Google Analytics，100%服务器端，而无需Cloudflare。
+
+### 技术领先的供应商已经加入
+在互联网上革命性地改变第三方工具是我们只能与第三方供应商一起完成的事情。我们喜欢第三方工具，并且希望它们更加流行。这就是为什么我们与一些领先公司紧密合作，创建他们自己的Managed Components。这些新的Managed Components将Zaraz的能力扩展到远远超出现在的可能性，并为这些工具的新用户提供安全和可靠的入门体验。
+
+![](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/L2kX7uZuER3EvC7cVOdjK/2a6e905a734309e17052ff7cf7f5175f/Screenshot-2022-05-09-at-12.10.17.png)
+
+**Drift** – [Drift](http://www.drift.com/)帮助企业在最重要的时刻与客户建立联系。Drift的集成将让客户使用Drift强大的对话云——将对话营销、对话销售和对话服务整合到一个平台中——同时保持完全的沙盒化，并且无需进行第三方网络连接，从而提高用户的隐私和安全性。
+
+![](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3SXN13Pzn2NeXEi6r46s4V/0dd48a1d3fa5bca132bd5463a89b0df3/Screenshot-2022-05-09-at-12.10.25.png)
+
+**CrazyEgg** – [Crazy Egg](https://crazyegg.com/zaraz)通过视觉热图、A/B测试、详细记录、调查等方式帮助客户改进他们的网站。网站所有者、Cloudflare和Crazy Egg都非常关心性能、安全性和隐私。Managed Components使Crazy Egg能够实现使用第三方JavaScript根本不可能的事情，这意味着我们的共同客户将获得最具性能和安全的网站优化工具之一。
+
+我们也已经有客户渴望实现Managed Components：
+
+![](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/4PSbj0jBesji7Ns7kSidoF/45b0159b70fe9fbe7158a3cb11c1e8e2/Screenshot-2022-05-09-at-12.10.38.png)
+
+**Hopin Quote:**
+
+> “我对Cloudflare的Zaraz能够将Drift的JS库移到Edge Worker并将其加载离开DOM印象深刻。由于页面加载时间的节省，我的工作更为有效。与积极寻求更好方法来增加大型MarTech堆栈的页面速度和加载时间的两家公司合作是一种乐趣。”– Sean Gowing，前端工程师，[Hopin](http://hopin.com/)
+>
+
+如果您是第三方供应商，并希望加入这些技术领先的公司，请联系我们，我们会很乐意支持您编写自己的Managed Component。
+
+### Managed Components的下一步是什么
+我们现在正在许多方面上开发Managed Components。在开发和维护WebCM、与供应商合作并将Managed Components集成到Cloudflare Zaraz中时，我们已经在思考未来的可能性。
+
+我们看到未来有许多开源运行时存在于Managed Components中。也许您的基础设施不允许您使用WebCM？我们希望看到Managed Components运行时被创建为服务工作者、HTTP服务器、代理和框架插件。我们也在努力使Managed Components在移动应用中可用。我们正在努力允许在Cloudflare Zaraz上安装非官方的Managed Components。我们正在解决WWW的一个长期问题，还有很多事情要做。
+
+我们很快将发布Managed Components的完整规格。我们也将开源WebCM，参考实现服务器，以及许多您可以自己使用的组件。如果这对您很有趣，请通过[zaraz@cloudflare.com](mailto:zaraz@cloudflare.com)与我们联系，或加入我们的[Discord](https://discord.gg/cloudflaredev)。
+
+# [Emoji 轮播组件](/blog/my4e6uttc2qxo8vh) (2024年11月12日)
+
+为了过几天传播学院的比赛的路演，这几天在用代码做动画
+
+下面是临时写的一个 emoji 轮播组件：
+
+<iframe src="https://comments-generation-mock-ui.vercel.app/demo/emoji-carousel" style="height:200px"></iframe>
+
+<br>
+
+目前是用 svelte 自带的 transition 的简单实现，但是这样性能不高，下面是一个简单的测试：
+
+<iframe src="https://comments-generation-mock-ui.vercel.app/demo/emoji-carousel/grid" style="height:330px"></iframe>
+
+<br>
+
+组件代码：
+
+```plain
+<script>
+  import { afterUpdate, onMount } from "svelte";
+  import { blur, scale } from "svelte/transition";
+
+  export let emoji = "";
+  export let start = 0.65;
+  export let delay = 100;
+  export let amount = 1;
+
+  let first = true;
+  let show = false;
+
+  onMount(() => {
+    show = true;
+  });
+
+  afterUpdate(() => {
+    (first && emoji && show) && (first = false);
+  });
+</script>
+
+<div class="relative aspect-1 [&>*]:(absolute left-1/2 top-1/2 -translate-1/2)">
+  {#if emoji && show}
+    {#key emoji}
+      <div in:blur|global={{ delay: first ? 0 : delay, opacity: 1, amount }} out:blur={{ opacity: 1, amount }}>
+        <div in:scale|global={{ delay: first ? 0 : delay, start }} out:scale={{ start }} class={emoji} />
+      </div>
+    {/key}
+  {/if}
+</div>
+
+```
+
+# [在 terminal 中直接提问 LLM！](/blog/nvqivxall3y2gmgf) (2024年11月8日)
+
+最近要赶毕设开题和比赛路演的事情了，今天可能是近期最后更新一下 `m` 的东西。今天新加了最基本的 ask 的功能和 config 命令，长话短说，现在你可以这样使用
+
+```shell
+pip install muspi-merol[all] -U
+
+m config chat.options.model Qwen/Qwen2.5-7B-Instruct
+m config chat.openai_base_url https://promplate-api.free-chat.asia
+m config chat.openai_api_key from-blog
+
+m --help | m ask "介绍下怎么用这个 CLI"
+```
+
+这是个用自己解释自己的例子。
+
+1. 第一行是安装这个库，`muspi-merol[all]`会安装今天新发布的子包 `mm-chat`，其中目前只有 ask 这一个基本的调用 llm 的命令，目前不包含任何提示工程
+2. 后面是帮你设置了一些配置项，使用我搭建的免费 OpenAI API，使用 Qwen 2.5 7B 作为默认模型
+3. 然后把 m --help 的结果 PIPE 给 m ask，你运行下就知道是什么效果了
+
+
+
+只要你提供 base_url 和 api_key 就可以支持任何 OpenAI API，所以 Ollama 啊 vllm 什么的本地模型都是可以直接使用的！
+
+
+
+很多时候，用某些命令行工具遇到问题的时候，没时间看文档，只想直接解决。通常需要自己复制到某个 AI Chat 的网站去问，现在只需要 ... | m ask 就可以直接提问了
+
+# [尝试双线程聊天](/blog/srl3lm75eu2tzdsz) (2024年11月7日)
+
+上周又被女朋友删了微信，后来就在 QQ 交流，直到今天才加回来。她叫我 QQ 也要保持联系，原来想还觉得挺麻烦，今天忽然发现挺好的
+
+我以前一直觉得国内的聊天软件太初级了，居然连一个 thread 的功能都没有，想相同的人群中并发几个话题基本上不可能。我以前试过同样几个人建很多群，但是后来由于不能折叠等原因，早早就作罢了，收敛到仅剩几个群
+
+所以结论是用群来分类是很难的，但是如果只有同质化（非命名的）多个聊天框呢？我觉得是可以尝试的。
+
+我打算就拿我跟我女朋友做实验，试试通过两个平台同时维护两个话题是否可行。
+
+可以想到的一个问题是，两个话题没法互相引用（微信和 QQ 的消息）、QQ 不方便转发微信公众号和小程序的内容等
+
+但是 QQ 一个好处是它的表情比较有异域风情
+
+# [m 的诞生](/blog/kya1tmyz86lsyaae) (2024年11月6日)
+
+最近歪楼去做了一个项目，源于我英语不太好，commit message 总想不到最准确的表达，而 Copilot 不知道抽什么风，经常生成中文的 commit message，要么就是贼长，而且大小写、动词还是名词都不符合我同一个项目的写法。
+
+于是打算自己做一个 CLI，用来生成 commit message，倒不一定要一步到位直接帮我 commit，可以写入剪贴板，感觉这是个很舒服的工作流。后来觉得这个 CLI 工具可以拓展下，加上一些我比较需要的功能。第一个想到的是 alias 的功能，以前都是用 pdm scripts，非常好用，但是现在不用慢吞吞的 pdm 改用 uv 了，而 uv 没有现在还没有 scripts 管理的功能
+
+另外就是，确实好像没有个跨平台的 alias 工具。
+
+![](/nlark/yuque/0/2024/png/26070246/1730905644578-ab63d6fd-5e41-4364-a018-616640d68fe3.png)
+
+于是我实现了个。就叫它 `m` 吧。它的配置存在三个地方，用户目录、venv 中 m 自己的文件夹下、pyproject.toml 中。这算是最佳实践了。python 中似乎没有这样的库，我打算之后完善了之后这一部分也可以单独封装个库来。下面是一些基本用法：
+
+```shell
+m alias x "a b c d"
+```
+
+这样就设置了 `x` 为 `a b c d` 的别名。可以这样使用：
+
+```shell
+m x --p v  # 相当于 a b c d --p v
+```
+
+昨天配置了 uv workspace，第一次尝试用一个 monorepo 的架构维护 python 库哈哈哈。今天解决了一些问题，基本上 `alias` 的功能算是做完了。还发现了 typer 的一个 tab completion 的 bug，所以把 completion 的功能关了，这样还减少了一个依赖 哈哈哈
+
+---
+
+![](/nlark/yuque/0/2024/png/26070246/1730905226438-aebbe690-f17f-499e-9242-cb98fc229432.png)
+
+我目前已经加了好多 alias 了，确实都是我日常会用到的，下面是一些比较奇特的
+
++ amend 一个提交，然后强推，或者强制同步 origin HEAD
++ 一键更新各种包管理软件和他们管理的包
++ ssh 到开发服务器
+
+---
+
+由于 PyPI 上短名字都被占了，我的包名还是 `muspi-merl`，也就是说安装略微麻烦：
+
+```shell
+pip install muspi-merol
+```
+
+感觉有点长，不熟悉我名字的可能不好输入。我也发邮件问了自 2014 年占了茅坑不拉屎的 `M` 包的作者能不能白送我，目前没收到回复。等这个包变得更多功能了之后再考虑吧~
+
+---
+
+这几天准备加上：
+
++ 管理环境变量
+    - m env set / get / del
++ 从文件读取到剪贴板 / 从剪贴板粘贴到文件
+    - m copy / paste
++ chat 的功能（这也是最初做这个项目的目的）
+    - ... | m ask ""
++ 生成 commit message
+    - m gen commit
++ 生成 README
+    - m gen readme
++ 发起 HTTP 请求，类似 `httpx[cli]`，但是支持流式响应和柯里化传参（中途 input）
+    - m get / post / ...
+
+# [水了两周（睡了两周）](/blog/capn1i7nvvat7k95) (2024年11月4日)
+
+这两周状态不太好，每天半夜才睡，中午/下午才起床，好多课都没上成。本来和几个传播学的师姐一起打了个传播学与AI交叉的创新创业比赛（ppt向的），但是总体不太顺利。希望能进复赛吧，希望能去北京路演 :)
+
+<iframe src="https://comments-generation-mock-ui-demo.vercel.app/design/right"></iframe>
+
+这次首次尝试了用代码来做设计稿，还蛮有意思的，可能之后会把这个风格的设计用到别的项目中。
+
+搞这个项目还跟女朋友闹了不少矛盾，正好在大家都忙的时候，搞出不少麻烦事儿。加上上上周 migrate 到 Svelte 5 的时候电脑突然坏了，耽误了好多时间，后来去小米官方维修了，把所有数据都不要了刷机，结果那次 migrate 还没 commit，无缘 Svelte 5 哈哈哈
+
+上周似乎几乎没有什么成就。哦，做了个`@mozilla/readability`的 python wrapper，在 pyodide 环境就是用原生 js 运行时运行 js 代码，否则用 pythonmonkey，pythonmonkey 的 staff 似乎本来还挺有热情的，但是我那段时间很 down，似乎浪费了一次合作机会
+
+![](/nlark/yuque/0/2024/png/26070246/1730712595761-b582cf4c-9271-4231-bb2e-029a454868d6.png)
+
+也没时间给它做个 web demo 唉
+
+---
+
+☀这周开始要恢复状态！
+
+手头上有个自动化操作浏览器的项目，还有个 pdf 转 md 的项目，希望能做好。希望能这周内做好。
+
+# [阅读 Svelte 5 的 migration guide](/blog/pi761sbi9wqddvh5) (2024年10月25日)
+
+[Svelte 5 migration guide • Docs • Svelte](https://svelte.dev/docs/svelte/v5-migration-guide)
+
+总之，Svelte 5 的很多设计看起来是让门槛高了，但是它的好处也很直接，当项目尺寸上来了就有糖吃了。
+
+当然也有一些我认为很不美观的，比如
+
+![](/nlark/yuque/0/2024/png/26070246/1729856938041-afea9bce-6fc5-4dfd-88c8-a22e00626d5d.png)
+
+另外，我是一个很喜欢编译的人，但是 Svelte 5 更多的魔法去掉了，变成了 runtime 的 Signals，我想了想，其实性能或者说编译之后的还是那样，这么看来之前的一些设计其实有一定过度设计了。
+
+---
+
+这个也太 JSX 了：
+
+![](/nlark/yuque/0/2024/png/26070246/1729857339105-4f6b9077-e4f1-4ef5-9292-0599175e9987.png)
+
+> Snippets instead of slots
+>
+
+这一段我觉得太有意思了。真的就是大大提升了一致性。这一点我以前也诟病过
+
+就是现在感觉 Svelte markup 越来越像 JSX 了，有没有一种可能，以后直接就用 JSX 了呢？
+
+---
+
+![](/nlark/yuque/0/2024/png/26070246/1729860170123-5d95ef9e-b98d-4b39-8103-624e9d408f34.png)
+
+还真是。我的编译梦破了
+
+---
+
+升级时发现 bits-ui 改了好多，唉好麻烦
+
+# [useDefaultParameterLast 和 noDelete](/blog/myu26q4csq17vw22) (2024年10月23日)
+
+今天尝试把 bundle 过后的丑陋代码进行格式化，当时开启了`performance/noDelete`和`style/useDefaultParameterLast`这两项，结果就出问题了，虽然具体没发现是怎么个过程，但是现在算是知道这东西不安全了
+
+# [怎么用 late chunking 嵌入长文档](/blog/lo3irk3souedpl0h) (2024年10月22日)
+
+看了 [Jina Embeddings v3: A Frontier Multilingual Embedding Model](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/#parameter-dimensions) 了解到 late chunking（迟分）的技术，正好毕设这边要做论文 RAG，我觉得可以用上。
+
+但是它一个坏处是，模型本身只能 embed 8192 tokens 的文本，所以天生地不适合做论文这种大体量的 embedding
+
+![](/nlark/yuque/0/2024/png/26070246/1729574643206-21f09bfa-24c5-466d-be37-1be2fe5d7d05.png)
+
+于是我想了个办法，就是用滑动窗口。坏处就是，这样的成本会飙升，毕竟相当于 embed 每个块都要用 8192 tokens。但这不失为一种办法。而且做毕设应该不用自己掏钱吧，如果学校一毛不拔的话那不太可能。
+
+刚刚想到一些降低成本的方式：
+
++ 由于本质上都是对 markdown 进行 indexing，所以其实每个块大概是这样的：
+    1. 路径信息（类似面包屑导航，某某大标题某某小标题这样）（这一部分是 sticky 的，每个 chunk 都要带上这个）
+    2. 直到下一个小标题之前的所有文本
++ 然后每个标题之间的长度可能超过 8192 可能不超过，所以不会每次都一定要顶满 8192（暂且认为只要带了标题就带上上下文了）
++ 这是不是就是一种 contextual retrieval 了呢？如果我假设面包屑信息就是所需的上下文的话？[Introducing Contextual Retrieval \ Anthropic](https://www.anthropic.com/news/contextual-retrieval)
+
+---
+
+这么一想，觉得应该发个库，用来解决 markdown chunking 的事情。它除了用 AST 分割标题、然后插入面包屑外，还要做下面两件事情：
+
++ 如果某个块还是太长，则要成小块
++ 如果某个块太短，则相邻几个合并成大块
+    - 阈值怎么选择？我觉得和面包屑长度相比是个办法。如果比面包屑还短，那基本上就没必要单独一块了
+
+对 这个才是最先决的条件。基本上我什么 RAG 都是先转成 markdown 再改
+
+更何况最近也准备推一下我这个 [LLM Web Reader Demo](https://llm-web-reader.vercel.app/read) 项目
+
+# [九阳与小家电](/blog/nl1doi3d8ywpbu17) (2024年10月19日)
+
+> [九阳股份投资价值分析报告](https://llm-web-reader.netlify.app/read?engine=llm&preview=iframe&result=rendered&url=https%3A%2F%2Fwww.sohu.com%2Fa%2F442500469_99933228)
+>
+> 从上面的内容看，九阳有哪些独特优势？相对于小家电行业的其它品牌
+>
+
+1. **品牌认知度**：九阳作为<font style="color:rgb(195,136,67);">豆浆机的发明者</font>，成功将自身品牌与豆浆机紧密绑定，形成了强大的品牌认知度。消费者对九阳的认知主要集中在豆浆机及相关产品上，这为其在市场中建立了良好的口碑和信任度。
+2. **丰富的专利技术**：九阳拥有大量的专利技术（6,521项），其中实用新型专利占比超过80%。这表明九阳在产品研发和创新方面具有较强的能力，能够不断推出符合市场需求的新产品。
+3. **研发投入**：九阳的研发占比为3.5%，高于行业内其他品牌（如小熊的2.3%），并且拥有相对较高比例的研发人员（约20%）。这使得九阳在产品功能和技术上能够保持竞争优势。
+4. ~~**轻资产运营模式**~~~~：九阳的资产负债表显示其固定资产占比较小，流动资产占比高，属于轻资产运营模式。这种模式使得九阳在资金运用和风险控制上具有更大的灵活性。~~
+5. ~~**多元化产品线**~~~~：九阳在小家电领域的产品线覆盖广泛，包括豆浆机、电饭煲、破壁机等，形成了多元化的产品组合，能够满足不同消费者的需求。~~
+6. **市场拓展能力**：九阳与SharkNinja的协同效应使其能够在清洁家居市场和厨房电器领域进行有效布局，借助Shark的品牌影响力和渠道优势，进一步拓展市场份额。
+7. **良好的现金流和流动性**：九阳的流动资产占比较高，且现金流状况良好，这为其在市场竞争中提供了充足的资金支持，能够快速响应市场变化。
+8. **适应市场趋势的能力**：九阳能够及时把握市场趋势，如疫情带来的“下厨热”，并通过产品教育和市场推广来满足消费者的需求，增强了其市场竞争力。
+
+# [No. 923](/blog/xc88oixrmv3qnl9v) (2024年10月18日)
+
+居然也是 7 的倍数 哈哈哈
+
+# [关于 SharedWorker 踩的坑](/blog/pf8sggn8lw2cgfdb) (2024年10月16日)
+
+## 开发方面
+### `console.log`不方便
+必须到 <chrome://inspect/#workers> 去点 inspect 才能看到它的`console.log`所以基本靠不了这个来 debug 了
+
+相比之下 worker 就没问题
+
+### `port`不好拿
+1. 在 onconnect 时似乎有一个`event.ports`，但是往往只有一个 port，而且理论上就应该只有一个，搞不懂为什么是 ports 而不是 port
+2. 在 message event 中，也有个 ports 的属性，但是永远是空的，得通过`event.currentTarget`来拿，真够奇怪的
+
+## 部署方面
+不知道是不是我的情况不太一样，反正我就是没法用非 module 的方式打包，所以`new SharedWorker()`的时候，必须指定 `{ type: "module" }`。另外，在`vite.config.ts`中也得改：
+
+```typescript
+export default defineConfig({
+  worker: {
+    format: "es",
+    plugins() {
+      return [sveltekit(), dir2json({ include: ["**/*.py", "**/*.j2"] })];
+    },
+  },
+});
+```
+
+一是得指定 format 为 "es"，二是得重新指定一遍 plugins，搞得我 debug 了好久
+
+
+
+---
+
+这个项目源于我想把 pyodide 运行在 SharedWorker 中，这样一是启动时不会 block UI 了，二是多个标签页中可以共享一个 python 实例：
+
+![](https://opengraph.githubassets.com/9d22557e1832bd9cdf60c0d7271a6ee5183729718400532f995149934059221d/promplate/pyth-on-line/pull/101)
+
+我的想法是，以后允许三种方式启动 pyodide：
+
+| | 主线程 | Worker | SharedWorker |
+| --- | --- | --- | --- |
+| 加载 | 会阻塞 | 只用等待 | 甚至可能不用等待 |
+| 隔离性 | 共享 | 可以隔离 | 可以隔离但更蛮烦 |
+| 可以打断 | 不可以 | 可以 | 可以但更麻烦 |
+| 生命周期 | 页面 | 页面 | 不好控制 |
+| 作用域 | window | DedicatedWorkerGlobalScope | SharedWorkerGlobalScope |
+
+
+这么看来主要是生命周期不好管理，而且如果要隔离的话就很麻烦。以后再在这个分支上写吧
+
+不过目前看来，除了麻烦，用 Worker 其实没什么优势 哈哈哈
+
+# [Promplate 目前的成果总结](/blog/yeg4r445lgqz5dg8) (2024年10月10日)
+
+正好要给一个朋友介绍一下，于是自己就整理一下：
+
+|  项目  |  面向  |  进度  | 介绍 |
+| --- | --- | --- | --- |
+| [promplate](https://github.com/promplate/core) | 开发者 | stable | 一个用于用到提示工程的项目的 python 库（未来可能也实现一个 JavaScript 版本的，应该不难），包含一个模板引擎、一个基于状态机的 LLM agent 框架、一个调用 OpenAI API 的 chat completions 客户端。事实上，promplate 的名字就是 prompt + template，因为这就是提示工程的核心 |
+| [promplate-demo](https://github.com/promplate/demo) | 开发者、普通用户 | stable, development | 一个提示工程服务端项目，本意是作为使用 promplate 做提示工程项目的一个 demo，现在作为我[一个免费的简单 LLM chat 服务网站](https://github.com/CNSeniorious000/free-chat)的后端。其中包含十几个 LLM 供应商的集成、一些实用的提示工程实现，比如翻译、提取、总结，以及有一个 WIP 通用领域 agent 实现 |
+| [reasonify](https://github.com/promplate/reasonify) | 普通用户、研究者 | beta | 一个非常实验性的 agent，它不生成文本，而是只生成代码。它生成的代码会立即运行，实现与用户的交互。应用场景是一些代码任务，这个项目目前完成度还不太高 |
+| [partial-json-parser](https://github.com/promplate/partial-json-parser) | 开发者 | stable | 一个用于解析流式传输中的 JSON 的 parser，现被用于 vllm 等多个库中 |
+| [partial-json-parser-js](https://github.com/promplate/partial-json-parser-js) | 开发者 | stable | 同上，但是是 JavaScript 实现的 |
+| [promplate-pyodide](https://github.com/promplate/pyodide) | 开发者 | stable | 一个对 promplate 的 monkey patch，使其能在 pyodide 环境中运行 |
+| [promptools](https://github.com/promplate/toolkit) | 开发者 | stable | 一些与 promplate 不绑定的工具函数，对 promplate 没有强制依赖 |
+| [promplate-trace](https://github.com/promplate/trace) | 开发者 | unmaintained | 将 promplate 与 LLM observation 平台的集成，目前支持 langsmith、langfuse，未来准备支持 literal、lunary、logfire 等，让使用 promplate 的提示工程项目可以以一行代码获得这些平台的 tracing 或者说 logging |
+| [isomorphic-fetch](https://github.com/promplate/isomorphic-fetch) | 开发者 | alpha | 一个在 pyodide 和非 pyodide 环境都有一样的 API 的 http 请求库 |
+| [pyth-on-line](https://github.com/promplate/pyth-on-line) | 开发者 | development | 我目前主要在做的项目，目标是成为 Stackblitz、Bolt.new 这样的东西 |
+
+
+此外还有一些面向开发者的库，在这里就不提了
+
+# [细粒度发包](/blog/wzrh6ikbgmz32fh2) (2024年10月9日)
+
+我觉得每个包就应该 atomic，一个包就完成最小的一个任务。
+
+# [无标题文档](/blog/xsgfhq3ylcek1k0q) (2024年10月8日)
+
+脏数据
+
++ 不完整（缺失）
++ 噪音
++ 不一致
+
+数据质量的测度
+
++ 准确性 accuracy
++ 完整性 completeness
++ 一致性 consistency
++ 时效性 timeliness
++ 相关性 relevance
++ 可信性 believability
++ 可解释性 interpretability
+
+# [在考虑换一个 markdown parser 了](/blog/yly2o4u65xusvx5u) (2024年9月30日)
+
+之前随着写前端的经验和耐心越来越多，逐渐尝试了不同的 markdown renderer：
+
++ 语雀 blog 这边用的是 markdownit + highlight.js（前段时间后者改成 shiki 了）
++ Free Chat 用的是原项目的 markdownit + highlight.js（但是是同步的）
++ Anse 用的是 remark-rehype + rehype-prism，现在想来怪不得慢！感觉掉帧的阈值比 Free Chat 这边低一些
++ Promplate Docs 用的是 remark-rehype + shiki + mdsvex，由于用了 mdsvex 所以其实是渲染出 svelte 模板了，理论上灵活性最大，但既没有 markdown 的 lint 也没有 svelte 的自动补全，所以其实不太好用。更重要的是，在 Generative UI 的时代，mdsvex 这种不能流式渲染的就有硬伤了（除非接受 svelte 编译器在 runtime 运行）
++ Pythonline 用到是 remark-parse 然后手动从 ast 渲染到 HTML，这使得有几乎足够的自定义性，可以让一些元素（inline或block的代码）具有一些响应性，另外这样不会重复修改 DOM，性能极大程度上提高了，这下基本上只有 parse 的 cost 了
+
+自从尝试过从 AST 渲染到组件，就打算把它迁移到 Free Chat（毕竟这个项目我天天得用，有时候掉帧还是很烦的），突然想到，每种 markdown parser / renderer 肯定都可以拿到 AST 啊，何必用 remark-parse（毕竟我也没用上它什么插件，如果它性能不好的话，就没必要用它了）
+
+[marked vs markdown-it vs remark vs showdown: Which is Better Markdown Parsing Libraries? (npm-compare.com)](https://npm-compare.com/markdown-it,marked,remark,showdown)
+
+没想到 remark 的 star 数和 download 这么少。一直以为它才是最现代的 best practice 呢
+
+![](/nlark/yuque/0/2024/png/26070246/1727703669249-a7c817d6-cc8f-4263-857f-9fcd741d0b6a.png)
+
+# [做了一个适合 Safari 的 banner 效果](/blog/rkklkxr3pcggrgh6) (2024年9月29日)
+
+发了小红书：[https://www.xiaohongshu.com/discovery/item/66f96cee000000001a021da7](https://www.xiaohongshu.com/discovery/item/66f96cee000000001a021da7?app_platform=ios&app_version=8.55.2&apptime=1727622385&share_from_user_hidden=true&type=video&appuid=62f77a47000000001902f89a&author_share=1&xsec_token=DBy9gPVv8q0HSJQJtZK1_8lFNVibPnSK32ZmJvbz-nRb0=&xsec_source=app_share&xhsshare=WeixinSession&shareRedId=ODhINzpGOEA2NzUyOTgwNjc8OTlKPT9K)
+
+细节放大版：[https://www.xiaohongshu.com/explore/66f971bb000000001b0203ab](https://www.xiaohongshu.com/explore/66f971bb000000001b0203ab?app_platform=ios&app_version=8.55.2&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CB03Swx9lV_mChzCvp3F31gxgnOQtUgc0MLG0vTkKJonE=&author_share=1&xhsshare=WeixinSession&shareRedId=ODhINzpGOEA2NzUyOTgwNjc8OTlKPT9K&apptime=1727623705&wechatWid=fdf45b01a2ed62a229dfc15218e51334&wechatOrigin=menu)
+
+灵感来源于：[Banners that adapt the theme-color / X](https://x.com/pacocoursey/status/1675667770502176768)
+
+# [记一个 Safari 的 bug](/blog/nty6i6khptngh1y1) (2024年9月29日)
+
+input 的`click`/`select`的 eventHandler 会阻止它被选中，可能是要等到这个 handler 处理完了才会被选中
+
+发现的原因：当时在给一个`<label>`元素加了 ripple 的效果之后，发现 iOS 上变卡了
+
+```html
+<input type="radio" name="model" {id} hidden on:select={() => setModel(id)} checked={$model === id}/>
+
+<label use:ripple={{ color: 'var(--c-fg-70)' }} for={id}>
+  <h4>{name}</h4>
+  <h5>{title}</h5>
+</label>
+```
+
+后来的解决办法，是改成用`<button>`，但我还是很喜欢用 label 和 input 这样，所以后来还是保留了 label 为 `sr-only`
+
+# [“创新预算 (innovation budget)”之于我](/blog/on-innovation-tokens) (2024年9月28日)
+
+![](/nlark/yuque/0/2024/png/26070246/1727495918730-bb65e3d7-a46d-44d1-8c66-4a84359a6047.png)
+
+之前一位汇丰的朋友推荐我一篇很有趣的文章 —— [Choose Boring Technology](https://boringtechnology.club/)（[選擇無聊的技術](https://boringtechnology.club/index_zh_TW.html)）
+
+今天又在[一个地方](https://www.reddit.com/r/solidjs/comments/18wawnm/comment/kfyg4ka/)看到提到这个概念，我又想起来它，于是准备写一写我的看法。我当时是这么回复他的：
+
+> I like the idea that each project has "a limited number of innovation tokens to spend“. For me, however, I am more oriented towards technology rather than specific projects. So, technologies I chose are never unknown to me, and they don't waste my innovation tokens. For enterprises, I don't like competing against rival products in front of them. I always (overconfidently) believe there are currently no alternatives in the market segment where my product is positioned.
+>
+
+我的意思是，我自己的项目，从来不是目标导向，而是**技术导向**。我并不是想做什么产品，于是去学习它需要的技术，而是自己凭兴趣去学一些技术，同时想想他们能做什么项目出来。当然，这些项目可能会需要一些我还没学的技术，这时我会去判断我对那些兴趣是否感兴趣，如果不感兴趣或者太多太难或者不适合我，我就不会立即去做这些项目。
+
+后来当我跟女朋友聊起这个观点的时候，想到，我大学时很多项目不了了之了，其实就是这个个性的必然结果。对于很多项目，我其实并没有对他们的技术那么有兴趣。在做着做着，发现我在为了这个目标，消耗了过多的 innovation tokens，超过了我的创新预算，而我有是一个不好意思跟别人说不做了的人，于是屡次发生了跑路的事件😂在此再次向大家抱歉一下~我保证在以后可能的合作中，我如果觉得做不下去了我会及时诚实相告。
+
+# [Cerebras 与 Groq](/blog/rek9u3gmic663ack) (2024年9月25日)
+
+![](/nlark/yuque/0/2024/png/26070246/1727280704638-5d515c2d-7d78-4d92-b671-7f75487c300d.png)
+
+![](/nlark/yuque/0/2024/png/26070246/1727280715882-ba5b226d-077f-4039-8ab9-7a65673c1db2.png)
+
+# [新简历 起草](/blog/ydr1wtyhwn2hdoo3) (2024年9月25日)
+
+我是 Muspi Merol (abbr)，庄毅辉，一名[北师珠](https://www.bnuzh.edu.cn/)的 undergraduate，一名[开源**爱好者**](https://muspi-merol.nuxt.dev/)
+
+我关注 LLM 应用、开发者工具、教育、设计 (icons)
+
+作为一个技术栈丰富，同时也有一定工作经验的个人，我的理想工作是 产品经理 / 全栈开发者 / 受赞助的全职开源者。我需要一份能维持生计的薪酬，但是氛围活泼、技术前沿，且一定程度上支持async
+
+
+
+### 项目经历
++ 为了量产提示工程项目，我有一套开源框架。我秉持 atomic 的精神，在完成主线任务的同时也让支线任务”桃李满天下“—— partial json 库 js 和 py stats 周十万下载量链接
++ 目前正在做一个 Stackblitz + Codepen for Python 的项目。在做这个项目的过程中为 upstream 贡献了数个 PR，成为了 10K+ stars 项目的 member
++ 在学校正在异步进行几个与生物学、社会学交叉的的项目
++ 有一个持续一年多的半公益项目
++ 未完待续……
+
+
+
+### 实习经历
+#### 全栈工程师、提示工程师
+大三时我在**上海守扣科技**有一段快乐的实习经历，同事氛围轻松，工作内容开放。同时在**杭州槲丰科技**有一段有收获且特别的实习经历。离开上海是因为自由度不够高，且项目管理缺乏工程化。杭州的老板和工作内容在各种方面都很好，但是做的是 toB 的生意，个人不太有兴趣而且中途因为一些错误决定就退出了。也有一段在**成都爱进化科技**的短暂的实习经历，目前感到唯一的缺憾是同事不够年轻，后来由于个人安排暂时没有继续。
+
+#### 设计总监、研究助理
+在大二时参加了学校里的 6+ 个宣传部门，负责平面设计、摄影等工作，有做管理的经验，有一定自媒体的经验（但个人不喜欢行业氛围）。
+
+
+
+---
+
+可以有一个向我提问的按钮，一方面用一个 Q&A 列表 RAG，另一方面可以直接发邮件通知我
+
+# [OpenAI 欺骗消费者](/blog/phgapuy9ylf3t77p) (2024年9月25日)
+
+![](/nlark/yuque/0/2024/png/26070246/1727244703744-eecbb8d3-026f-4309-896b-b7b898145083.png)
+
+![](/nlark/yuque/0/2024/png/26070246/1727244341676-666f03ee-94fc-431b-88d6-9aa097e8c3db.png)
+
+可以看到这两个的价格是一样的，但其实上面是 gpt-4o，下面是 gpt-4o-mini
+
+In [calculating-costs](https://platform.openai.com/docs/guides/vision/calculating-costs) it is documented that:
+
+> Each of those squares costs 170 tokens. Another 85 tokens are always added to the final total.”
+>
+
+But on [pricing](https://openai.com/api/pricing/) only the gpt-4o's price is right, the gpt-4o-mini's is larger, which makes the price equals the gpt-4o's.
+
+If I can use 4o at the same price compared to 4o-mini, why am I using 4o-mini?
+
+As a consumer who has been trusted OpenAI for more than a year, I feel deceived to certain degree.
+
+果断投诉！
+
+![](/nlark/yuque/0/2024/png/26070246/1727244615495-1c499783-213d-4e16-9132-07474d403233.png)
+
+---
+
+没截图，但是其实即使不开`{"detail": "low"}`计算出来的结果也是一样的。所以我觉得要么这就是一个错误（退钱！）要么就是存心的！
+
+| 计费项目 | 价格 / 数量 |
+| --- | --- |
+| Price per 1M tokens (fixed) | $5.00 |
+| Resized width | 1000 |
+| Resized height | 500 |
+| 512 x 512 tiles | 2 × 1 |
+| Total tiles | 2 |
+| Base tokens | 85 |
+| Tile tokens | 170 × 2 = 340 |
+| Total tokens | 425 |
+| Total price | $0.002125 |
+
+# [无标题文档](/blog/exs4wapv3wxhk8wi) (2024年9月23日)
+
+MPI 消息传递接口
+
+显式通信
+
+# [《数字图像处理》笔记](/blog/cbtg1wi0wnpu40d3) (2024年9月23日)
+
+### 视觉过程
+1. 光学过程
+2. 化学过程
+3. 神经处理过程
+
+整体视觉过程
+
+图像成像模型
+
++ 2D 亮度函数：亮度是能量的亮度
+
+采样和量化
+
+显示分辨率 / 观测分辨率
+
+### 灰度插值
+前向映射：一个失真图的像素映射到不失真图的四个像素之间，最后灰度是由许多失真图像素的贡献之和决定
+
++ 前向映射是从已知图像出发的，由已知图像向未知图像的映射
+
+后向映射：从未知图像出发
+
+### 直接灰度映射（点运算）
+讲$ f(x, y) $按$ E_H $变换成$ g(x, y) $
+
+直接灰度映射是一种点操作
+
+常见的灰度映射
+
++ 图像求反
++ 增强对比度
++ 动态范围压缩
++ 灰度切分
+
+# [手机淋雨屏幕坏了](/blog/le7xqyco71b8vwmh) (2024年9月22日)
+
+似乎什么都干得了，就是屏幕显示和触摸屏没反应
+
+好烦 感觉要体验一下没有手机的日子了
+
+# [《大数据分析》 笔记](/blog/ki77xyom1usp381t) (2024年9月20日)
+
+## 特征工程
+#### 属性类型
+1. 标称属性
+    - 二元属性是特殊的标称属性
+    - 非对称二元属性指概率不同的二元属性
+2. 序数属性
+    - 相继值之间的差是未知的
+3. 数值属性
+    - 离散属性、连续属性
+    - “无限可数”：比如学号
+
+#### 特征工程
+1. 特征提取
+2. 特征变换
+3. 特征选择
+
+### 特征变换
+![](/nlark/yuque/0/2024/png/26070246/1726811528559-7d9705c9-dd16-49f1-9340-b90a1a326aa2.png)
+
++ z-score 标准化：均值为0，方差为1
++ 最大最小归一化
+
+![](/nlark/yuque/0/2024/png/26070246/1726811988327-a9c9e98d-184c-4b26-bc41-09f5d9c426aa.png)
+
+##### 分箱离散化
++ 等宽分箱：“箱子的宽度”相同
++ 等深分箱：每箱实例数称为“箱子的深度”
+
+分箱后，用箱均值、中位数或边界值替换箱中的每个值，实现属性值的离散化
+
+![](/nlark/yuque/0/2024/png/26070246/1726812771038-5e13413f-16fb-44bf-9a10-179fbdf71f75.png)
+
+#### 特征变换
+数值化处理
+
++ 有序变量
++ 无序变量
+    - 二分类：01
+    - 多分类
+        * one-hot
+        * 标签编码（无含义）
+
+#### 数据降维
+##### 主成分分析 PCA
+1. m 个 n 维数据样本矩阵 X
+2. X 的每行 零均值化
+3. 求协方差矩阵
+4. 求协方差矩阵的特征值及对应的特征向量
+5. 将特征向量按对应的特征值大小从上到下按行排列成矩阵，取前 r 行组成矩阵$ W^T $
+6. $ Y = W^TX $即为降到 r 维后的数据
+
+![](/nlark/yuque/0/2024/png/26070246/1726814461637-194ac8e1-60fc-4473-ba22-71f24d9260fa.png)
+
+
+
+##### 线性判别分析 LDA
+有监督的线性降维
+
+基本思想：使用数据的类别信息，将高维的样本线性投影到低维空间，使在低维空间中数据的类别区分度最大
+
+区分度？
+
++ 不同类之间的**离散度**
++ 同类数据的**内聚性**
+
+#### Lasso 降维
+一种回归分析方法，通过 L1 正则化实现选择和降维
+
+#### ISOMAP
+流形（manifold）是一类几何对象的总称
+
+![](/nlark/yuque/0/2024/png/26070246/1726815674397-8bbc7a32-734c-42c2-9231-83c28fe4636a.png)
+
++ 用**测地距离**（geodesic distance）代替欧氏距离
+
+##### 算法步骤
+1. 构造近邻图
+    - 对每个节点（每个样本），构造边（k 近邻，对每个近邻点，构造一条边……最短路径长度）
+2. 计算最短路径
+3. 找出样本的低维表示
+
+##### 优点
++ 保留了全局结构
++ 只有一个参数 k 需要确定
+
+##### 缺点
++ 对噪音敏感
++ Floyd 最短路径算法的计算代价高
+
+### 特征提取
+文本数据结构化
+
++ 词袋法 n-gram 模型
++ 词嵌入法
+    - word2vec 简单的神经网络模型
+        * 连续词袋模型 CBOW：根据上下文词语预测目标词出现的概率
+        * 跳字模型 skip-gram：根据目标此预测其上下文
+            + 通过预测周围词来训练中心词的向量表示，表示能力往往更好
+
+word2vec 缺点
+
++ 在独立的局部上下文窗口上训练，难以利用单词的全局统计信息
++ 对词是确定性的，即在不同语境中同一词的向量是一样的，这意味着 word2vec 不能解决多义词问题
+
+### 特征选择
++ 过滤式 filter —— 基于统计测试/其它单变量评估指标
++ 包裹式 wrapper —— 于模型训练过程结合，作为评价特征子集优劣的标注（验证集？）
++ 嵌入式 embedded —— 在模型训练过程中进行特征选择，入决策树、随机森林等
+
+---
+
+基于树模型的特征重要性
+
+基于线性模型的特征重要性
+
+基于互信息的特征重要性
+
+基于 SHAP 值的特征重要性
+
+基于随机排列的特征重要性
+
+# [昨天在做爬虫](/blog/yorusnf5b50afr6b) (2024年9月19日)
+
+基于 playwright 的爬虫，让 LLM 来做标注
+
+![](/nlark/yuque/0/2024/png/26070246/1726736636718-e7943c6b-bc7e-4d1c-959c-489d21ab12a2.png)
+
+结果包含了 LLM 生成的选择器（[经过一个 reflection 步骤](https://github.com/CNSeniorious000/my-auto-annotation/blob/main/app/core/prompt.py)确保了一定能解析）、选择到的元素、这些元素的 computedStyle 交集
+
+核心代码：
+
+```python
+@main_loop.callback
+class _(Callback):  # noqa: N801
+    max_retries = 4
+
+    async def end_process(self, context: ChainContext):
+        dom: Selector = context["dom"]
+
+        res: dict[str, str | None] = loads(context.result)
+        problems = context["problems"] = []
+
+        for key, selector in res.items():
+            if selector:
+                print_label(f"{key} - {selector}")
+                try:
+                    if results := dom.css(selector):
+                        show(results)
+                    elif self.max_retries:
+                        problems.append((key, None))
+                    else:
+                        res[key] = None
+
+                except SelectorSyntaxError as e:
+                    print_exception_only(e)
+                    problems.append((key, format_exception_only(e)))
+
+        if not problems or self.max_retries <= 0:
+            raise Jump(out_of=main_loop)
+
+        self.max_retries -= 1
+```
+
+# [也想做这样的图表](/blog/ht8gsdl2fuv61a1m) (2024年9月18日)
+
+在 py3.online/pypi 上
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726677230674-4ca12f83-fb94-4d00-b7e0-fe8b39304a5f.jpeg)
+
+# [取 dict 的交集](/blog/nnriaprqaxuewpww) (2024年9月18日)
+
+大概这样的效果：
+
+![](/nlark/yuque/0/2024/png/26070246/1726661125993-41c1e3f5-a077-462d-9e3b-0f459879a175.png)
+
+实现：
+
+```python
+from collections import Counter
+
+def merge_computed_styles(computed_styles: list[dict[str, str]]):
+    counter = Counter()
+
+    for style in computed_styles:
+        counter.update(style.items())
+
+    return dict([pair for pair, count in counter.items() if count == len(computed_styles)])
+```
+
+在线尝试：
+
+[https://bnu.py3.online/telegraph/computed-styles-09-18](https://bnu.py3.online/telegraph/computed-styles-09-18)
+
+<iframe src="https://bnu.py3.online/telegraph/computed-styles-09-18"></iframe>
+
+# [Ruff Settings in VS Code](/blog/dcoyztrfle30q4xz) (2024年9月18日)
+
+为了 fix on save
+
+```json
+{
+    "[toml]": {
+        "editor.formatOnSave": false
+    },
+    "ruff.lint.select": [
+        "I"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "always"
+        }
+    }
+}
+```
+
+可以用作 py 项目的 setup template
+
+# [2024 年中秋 🥮](/blog/rpihdtc5ue687mk7) (2024年9月17日)
+
+福州之旅尾声，听说爸妈来珠海找我过中秋。于是时隔四年又去了圆明新园。
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591600441-6b499ff7-8513-4914-b844-fb30e7262e19.jpeg)
+
+图：不知道为啥树须下面有些小揪揪。怀疑是不是先前的须根抓住了土，结果水位下降了？
+
+---
+
+晚上去了澳门环岛游 其实也蛮骗钱的。但是天气不错
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591396255-d85d5c62-ba80-42cf-a850-c3fffa2bfc99.jpeg)
+
+沉迷长曝光
+
+> 说起来我觉得这种也应该算是前景。让前景模糊不仅可以靠景深的方式，也可以靠动态的方式。两者在冥冥之中是有点联系的（一点随想）
+>
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591170767-a6c2e321-bf7e-4185-b32a-7e67fd0ae799.jpeg)
+
+这么看有点像火箭发射塔😃
+
+但是颜色好脏😭
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591752177-0e7b3c13-854f-4318-8769-eaf44b3e9a4d.jpeg)
+
+各种地标吧。也没啥意思。倒是在想什么时候上面能挂我的广告
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591816263-4e29cb87-6147-4bc5-9fd2-ef1a9b6cdf51.jpeg)
+
+反复拍
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726591814819-5a2e85e0-3114-46ae-808e-c7c0d336ab44.jpeg)
+
+毕竟船开得慢，也没人聊天
+
+![](/nlark/yuque/0/2024/jpeg/26070246/1726592002822-b0d8679c-92a8-40b7-8508-97370a1da269.jpeg)
+
+这个居然自动变了
+
+但是右上角可以看到应该是连了非内地的网络了，于是扣了我25块钱。据说是1元1MB，25元封顶送1GB。什么狗屁 笑死。明天就去投诉。我现在就是闹事先锋~
+
+---
+
+
+
+语雀的上传图片好像不会转格式，导致我 HEIF 都没法显示。唉。早晚得做个自己的 CMS
+
+
+
+---
+
+# [第一次收到别人的 PR 👻](/blog/ug7mhlnzrymt1zqx) (2024年9月17日)
+
+早上送走爸妈之后才发现今天没看 GitHub 通知，一打开
+
+![](/nlark/yuque/0/2024/png/26070246/1726580566616-63ea49f9-d7cc-4cfb-9734-04309f0db6fe.png)
+
+大部分都是垃圾信息，但是发现居然有人给我的 `partial-json` 提了一个 PR
+
+[Add `OUTERMOST_OBJ` and `OUTERMOST_ARR` allowances by alanpog · Pull Request #9 · promplate/partial-json-parser-js](https://github.com/promplate/partial-json-parser-js/pull/9)
+
+![](https://opengraph.githubassets.com/3f91c7d1e73cf093862a8999b5f45c774e226833cbae59dcbf1efa0db41f68dd/promplate/partial-json-parser-js/pull/9)
+
+Sourcery 的总结还挺好的，一看就懂
+
+![](/nlark/yuque/0/2024/png/26070246/1726580634530-5827dbbb-3e17-412e-b335-d2a1c96f9fd1.png)
+
+说起来，很戏剧性地，由于我这个项目是刚开始用 JavaScript 的时候写的，当时还不太懂 CI，于是没有配 formatter 的 config，这个人直接不小心把所有文件都重新格式化了，造成 600 行的 diff 😂
+
+![](/nlark/yuque/0/2024/png/26070246/1726580909071-a3556c6c-44ae-4601-8493-f735704456ef.png)
+
+说回到这个功能，虽然我自己先前也想搞这么个东西，但是由于觉得想不到完美的设计，所以就没干了。
+
+> Your proposal is great and this implementation works well. But due to my perfectionist tendencies, I often find myself wondering if there's an even better way to solve **these kinds of problems**.
+>
+
+但是直接拒绝别人也不太建设性。于是我就想了很久（一个中午下午都耗在这上面了）
+
+想了两个解决方案：
+
+### Approach One — Input Predicate Function
+The `parse` will take an `options` object to extend configuration besides simple `allow`. We may support inputing a `validate` predicate function to choose whether to allow an object / array. The signature of `options` may look like this:
+
+```typescript
+interface options {
+  allow: number;
+  validate(parsed: any, text: string, parents: Parent[]): boolean
+}
+
+type Parent = {
+  type: "OBJ";
+  key: string;
+} | {
+  type: "ARR";
+  index: number;
+}
+```
+
+For example, if user do this:
+
+```typescript
+parse(`[0, {"a": [{`, { allow: ALL, (parsed, text, parents) => { ... } })
+```
+
+The validate function will be called at most 4 times with
+
+```javascript
+validate({}, '{', [{ type: "ARR", index: 0}, { type: "OBJ", key: "a" }, { type: "ARR", index: 1}])
+```
+
+```javascript
+validate([{}], '[{', [{ type: "OBJ", key: "a" }, { type: "ARR", index: 1}])
+```
+
+```javascript
+validate({"a": {}}, '{"a": [{', [{ type: "ARR", index: 1}])
+```
+
+```javascript
+validate([0, {"a": {}}], '[0, {"a": [{', [])
+```
+
+### Approach Two — Return PartialInfo
+Inject some information into the return value. Like this:
+
+```typescript
+export const partial = Symbol('__partial__');
+```
+
+And the partial information may be like this:
+
+```typescript
+interface PartialInfo {
+  text: string;
+}
+```
+
+Then users can filter the result themselves using this information.
+
+For example, if using this way:
+
+```typescript
+> res = parse(`[0, {"a": [{`, { allow: ALL, inject: true }) // [0, {"a": [{}]}]
+> res[0][partial] // undefined
+> res[1][partial] // { text: '{"a": [{' }
+> res[1].a[partial] // { text: '[{' }
+> res[1].a[0][partial] // { text: '{' }
+```
+
+They can drop at any depth level as they wish.
+
+---
+
+今天顺便集成了 StackBlitz 的 pkg.pr.new 的**持续发布**
+
+![](/nlark/yuque/0/2024/png/26070246/1726581062704-338f07c2-3c64-4c83-b59c-040b176e97aa.png)
+
+现在每次 commit 都会可以被安装了🥳
+
+# [记几个新认识的 tailwindcss 语法](/blog/gwrggsqvpydrgh1n) (2024年9月15日)
+
+偶然发现几个从没用过但有用的 tailwind 语法，记录一下：
+
+1. 不用`[&>*]:...`了，应该直接`*:...`
+
+![](https://s2.loli.net/2024/09/16/lGFn3LiXMdaNK5Q.jpg)
+
+2. 不用`w-6 h-6`而是应该直接`size-6`
+
+![](https://s2.loli.net/2024/09/16/DYsPJVikg7qjTLn.jpg)
+
+3. 可以在`:root`上加一个`text-pretty`
+
+![](https://s2.loli.net/2024/09/16/RBvsGKgbMIdE1qW.jpg)
+
+# [测试 iframe](/blog/fao7eg6xlgh76sk5) (2024年9月14日)
+
+<iframe src="//free-chat.asia"></iframe>
+
+---
+
+<iframe src="//bnu.muspimerol.site"></iframe>
+
+# [更舒适的 PyPI 浏览器](/blog/gr3vsb02xhku43x8) (2024年9月2日)
+
+![](https://opengraph.githubassets.com/4b602ec50c9045c4254d8d3f04a667749e04dcca52704c7d3d8babddbc2d4ca6/promplate/pyth-on-line/pull/61)
+
+又花了好长时间微调 UI/UX，感觉好焦虑，明明已经时间很紧迫了，但是就是不做到完美不忍心 merge
+
+[A PyPI Explorer · Pull Request #61 · promplate/pyth-on-line](https://github.com/promplate/pyth-on-line/pull/61) `+376 -0`又一次突破记录了😂
+
+---
+
+下一步估计得等到很后面再接着做了 [[pypi] next steps · Issue #64 · promplate/pyth-on-line](https://github.com/promplate/pyth-on-line/issues/64)
+
+![](https://opengraph.githubassets.com/ade55b82188401c1a45bda2d253d246a21bd1dc025f5a64523ebf1ebb4e49586/promplate/pyth-on-line/issues/64)
+
+# [最近主要在改 pyth-on-line](/blog/io4w2qz8s9ivyk21) (2024年7月1日)
+
+[<console> is hard-coded, causing traceback disappear when filename specified · Issue #4901 · pyodide/pyodide](https://github.com/pyodide/pyodide/issues/4901#issuecomment-2197677348)
+
+
+
+最近很喜欢 stackblitz，所以好几个 Issue 都提供了 dedicated 的复现
+
+
+
+最近的新发现：
+
++ 原来 unload 一个 module 只要把它从`sys.modules`里删掉就行了，我还一直想麻烦了
++ 发现`linecache`可以通过`exec`轻松 patch，实现以下的效果
+
+![](https://github.com/pyodide/pyodide/assets/74518716/47e56dc1-15a3-4e0e-a0d1-60b710da3028)
+
+[🔗 py3.online](https://py3.online/console#ZGVmIGYoKToKICAgIHJldHVybiAxIC8gMAoKYXN5bmMgZGVmIGcoKToKICAgIHJldHVybiBmKCkKCmF3YWl0IGcoKQoK)
+
+# [第一次搞 polyfill，感叹 JavaScript 的 GC 真麻烦](/blog/in9sfz6ztdrge1g9) (2024年6月9日)
+
+GitHub Gist: [https://gist.github.com/CNSeniorious000/9fc1a72e45358dd7c9e2f16e5d26df5c](https://gist.github.com/CNSeniorious000/9fc1a72e45358dd7c9e2f16e5d26df5c)
+
+---
+
+起因是要给`pyodide.http`支持在 cancelled 的时候自动 abort，就需要 `AbortSignal.any`，结果 maintainers 之一发现这个 API 很新，甚至 FireFox 2024年才刚实现。所以叫我得 polyfill
+
+研究了半天发现这还真不容易，而且似乎没有现成的可供 copy，只好自己实现
+
+为此接触了 JavaScript 的`WeakRef`和`FinalizationRegistry`，还锻炼了一下写 JsDoc 的技能
+
+---
+
+想法：
+
++ JavaScript 的`FinalizationRegistry`相比 python 的`__del__`还是有不方便的地方的，因为一个 registery 必须自己不被 gc 才能有用
++ JavaScript 里不好手动触发 gc，搞得调试比较玄学
++ JavaScript 里似乎即使 gc 了内存还是不会立即释放，python 里倒似乎能在任务管理器看到内存降下去
+
+下面附上 gist 的内容：
+
+```javascript
+export function polyfillAbortSignalAny() {
+  /** @param {AbortSignal[]} signals */
+  return (signals) => {
+    // if (AbortSignal.any) {
+    //   return AbortSignal.any(signals);
+    // }
+    const controller = new AbortController();
+    const controllerRef = new WeakRef(controller);
+    /** @type {[WeakRef<AbortSignal>, (() => void)][]} */
+    const eventListenerPairs = [];
+    let followingCount = signals.length;
+
+    /** @type {FinalizationRegistry<(callback: () => any) => void>} */
+    const registry = (globalThis.__abortSignalCleanups =
+      globalThis.__abortSignalCleanups ??
+      new FinalizationRegistry((callback) => void callback()));
+
+    signals.forEach((signal) => {
+      const signalRef = new WeakRef(signal);
+      function abort() {
+        controllerRef.deref()?.abort(signalRef.deref()?.reason);
+      }
+      signal.addEventListener("abort", abort);
+      eventListenerPairs.push([signalRef, abort]);
+      registry.register(signal, () => !--followingCount && clear(), signal);
+    });
+    function clear() {
+      eventListenerPairs.forEach(([signalRef, abort]) => {
+        const signal = signalRef.deref();
+        if (signal) {
+          signal.removeEventListener("abort", abort);
+          registry.unregister(signal);
+        }
+        const controller = controllerRef.deref();
+        if (controller) {
+          registry.unregister(controller.signal);
+          delete controller.signal.__controller;
+        }
+        console.log("clear", ++count);
+      });
+    }
+
+    const { signal } = controller;
+
+    registry.register(signal, clear, signal);
+    signal.addEventListener("abort", clear);
+
+    registry.register(controller, () => console.log("controller", count));
+
+    signal.__controller = controller;
+
+    return signal;
+  };
+}
+
+export let count = 0; // for test only
+
+// node --expose-gc
+
+({ polyfillAbortSignalAny } = await import("./polyfill.js"));
+
+any = polyfillAbortSignalAny();
+
+a = Array.from({ length: 2 }).map(() => { const c = new AbortController(); return [c, any([c.signal])]; })
+
+[x, y] = a[0]
+
+x.abort()
+
+// a = a.map(([x, y]) => x) // to remove the references for followers
+// a = a.map(([x, y]) => y) // to remove the references for origins
+
+gc()
+
+// look at the output
+```
+
+好了现在更多疑点了。不知道为什么在 vitest 或者以脚本形式运行的话，就是不会触发 gc
+
+所以总是得用命令行打
+
+一开始是用 vitest 发现不行，又用 watchfiles 发现也不行
+
+不过这也算是积累了小型 JavaScript 脚本的调试经验：watchfiles 比 vitest 甚至还方便
+
+但是我 tsconfig 还是配置不对 好烦 而且这玩意算是搞了今天一天
+
+# [居然一天写了 18 小时代码](/blog/gfb48ym2k82dauls) (2024年5月23日)
+
+![](https://s2.loli.net/2024/05/23/6pYaLACMcr2DmlF.png)
+
+# [为什么不用 Astro](/blog/oulc78xmicks80e0) (2024年5月13日)
+
+astro 我觉得好的特性是它的 island，可以融合多个生态
+
+**但是对我来说，我不需要那么多生态。但我需要差量更新和链接的预加载，因此我自己的项目不用 Astro**
+
+
+
+---
+
+
+
+好的，现在发现 [prefetch 其实也是有的](https://docs.astro.build/en/guides/prefetch/)，之前是我寡见鲜闻了。这样的话没有差量更新其实也能接受。
+
+现在也有 type-safe 的 action 功能了，感觉确实尝试切换到 astro 了
+
+
+
+不过其实还是有个问题：如果我的整个应用几乎每个组件都是数据驱动的，那 island 就失去它的优势了
+
+而这种响应式 肯定是我所期望的。再考虑下切换到 astro 能给我带来的好处：
+
++ 能更方便地写 markdown （但是如果 markdown 元素都得响应式就有点反而不方便了）
++ 跨页动画用 view-transition 更优雅（但我可能希望更高的自定义程度）
+
+总之感觉 astro 是个很好的解决方案，但确实还是不适合我😂
+
+# [这个周末在抠 partial-json-parser](/blog/ub4b86y3xh3n1uyv) (2024年5月12日)
+
+周五想到一种扁平的、2-pass 的实现，结果一直在 debug
+
+扁平化的结果就是，要分类讨论很多很多情况，对我这种注意力不集中的人极其不友好🥲
+
+我这种人大概是看不得 if-else 三层以上的算法的了😂
+
+
+
+---
+
+
+
+hypothesis 真是好啊，我准备把 js 版的也用 pythonmonkey 的 js runtime 接到 python 里，然后也用 hypothesis 来测一下。
+
+欣赏一下 hypothesis 给出的报错：
+
+```plain
+  + Exception Group Traceback (most recent call last):
+  |   File "<string>", line 1, in <module>
+  |   File "D:\dev\partial-json-parser\tests\test_hypotheses.py", line 42, in main
+  |     test_partial_json()
+  |   File "D:\dev\partial-json-parser\tests\test_hypotheses.py", line 28, in test_partial_json
+  |     @given(json)
+  |
+  |   File "D:\dev\partial-json-parser\.venv\Lib\site-packages\hypothesis\core.py", line 1638, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\dev\partial-json-parser\tests\test_hypotheses.py", line 34, in test_partial_json
+    |     parse_json(json_string[:i])
+    |   File "D:\dev\partial-json-parser\src\partial_json_parser\core\api.py", line 15, in parse_json
+    |     return parser(ensure_json(json_string, allow_partial, use_fast_fix))
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    |     return _default_decoder.decode(s)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 340, in decode
+    |     raise JSONDecodeError("Extra data", s, end)
+    | json.decoder.JSONDecodeError: Extra data: line 1 column 3 (char 2)
+    | Falsifying example: test_partial_json(
+    |     anything=[['']],
+    | )
+    | Explanation:
+    |     These lines were always and only run by failing examples:
+    |         C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py:340
+    |         D:\dev\partial-json-parser\src\partial_json_parser\core\myelin.py:124
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\dev\partial-json-parser\tests\test_hypotheses.py", line 34, in test_partial_json
+    |     parse_json(json_string[:i])
+    |   File "D:\dev\partial-json-parser\src\partial_json_parser\core\api.py", line 15, in parse_json
+    |     return parser(ensure_json(json_string, allow_partial, use_fast_fix))
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\dev\partial-json-parser\src\partial_json_parser\core\api.py", line 22, in ensure_json
+    |     head, tail = fix_fast(json_string, allow_partial)
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "D:\dev\partial-json-parser\src\partial_json_parser\core\myelin.py", line 139, in fix_fast
+    |     assert last_colon < last_comma, f"\n\n  {last_colon = } {last_comma = } {json_string = }"
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+    | AssertionError:
+
+  last_colon = 3 last_comma = -1 json_string = '{"": ""'
+    | Falsifying example: test_partial_json(
+    |     anything={'': ''},
+    | )
+    +---------------- 3 ----------------
+    | Traceback (most recent call last):
+    |   File "D:\dev\partial-json-parser\tests\test_hypotheses.py", line 34, in test_partial_json
+    |     parse_json(json_string[:i])
+    |   File "D:\dev\partial-json-parser\src\partial_json_parser\core\api.py", line 15, in parse_json
+    |     return parser(ensure_json(json_string, allow_partial, use_fast_fix))
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    |     return _default_decoder.decode(s)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    |     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    |     raise JSONDecodeError("Expecting value", s, err.value) from None
+    | json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+    | Falsifying example: test_partial_json(
+    |     anything=[''],
+    | )
+    | Explanation:
+    |     These lines were always and only run by failing examples:
+    |         C:\Users\17979\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py:354
+    |         D:\dev\partial-json-parser\src\partial_json_parser\core\myelin.py:124
+    +------------------------------------
+```
+
+# [Agent 的最终形态 必然导向](/blog/bqcods6w0kho33li) (2024年5月9日)
+
+想想，如何使得function_call的结果可以直接引用，不用LLM重述？同时又能与各家千奇百怪的LLM API的function_call格式解藕？
+
+回忆回忆rag-compiler的方法
+
+一边生成，一边call，再想想我在promplate-agent实现的单循环agent的parallel call
+
+
+
+这种方式真的是具有所有好处
+
+# [建了一个 PyPI 镜像](/blog/pypi-mirror) (2024年4月21日)
+
+### 仅仅在当前安装时使用
+```shell
+pip install -i https://py3.online/simple
+```
+
+### 设为 pip
+```shell
+pip config set global.index-url https://py3.online/simple
+```
+
+### 设置 PDM
+```shell
+pdm config pypi.url https://py3.online/simple
+```
+
+### 设置 Poetry
+```shell
+poetry source add --priority=primary mirrors https://py3.online/simple/
+```
+
+---
+
+### 起源
+起初只是为了让我的 serverless 在线 python（py3.online）国内也能轻松使用上：
+
+![](https://py3.online/og)
+
+于是就 proxy 了一下 PyPI 和 pythonhosted 两个域名：
+
++ [/src/routes/simple/[[project]]/+server.ts](https://github.com/promplate/pyth-on-line/blob/main/src/routes/simple/[[project]]/+server.ts)
++ [/src/routes/packages/[...path]/+server.ts](https://github.com/promplate/pyth-on-line/blob/main/src/routes/packages/[...path]/+server.ts)
+
+实测速度飞快，以安装 torch 为例，速度是清华源的两倍：
+
+![](https://s2.loli.net/2024/04/21/mSC7dRQie8jzWTM.png)
+
+
+
+---
+
+
+
+但是 Netlify 的响应体上限好像有点低
+
+又试着在别的项目也部署了下，比如
+
+i.free-chat.asia/simple
+
+确实都可以了
+
+# [Serverless era of Python](/blog/suac126h4dw6dizd) (2024年4月3日)
+
+![](https://blog.cloudflare.com/content/images/2024/04/blogpython.png)
+
+# [看到一篇很好的讲 UX 的文章](/blog/cdwdzdh6plvs79b8) (2024年4月1日)
+
+而且非常赞同这篇文章最后说的一段话
+
+> Analyzing and making sense of design details beyond just "it feels nice" helps nurture taste, amplify level of execution, and grow appreciation for how hard the pursuit of excellence is.
+>
+
+## Invisible Details of Interaction Design [🔗](https://rauno.me/craft/interaction-design)
+![](https://rauno.me/static/craft/og-interaction-design2.png)
+
+# [无标题文档](/blog/fi23gc4d9ahv71mn) (2024年4月1日)
+
+感觉我现在成了调包侠了
+
+# [Reasonify](/blog/reasonify) (2024年3月25日)
+
+一个纯 function call 思路的 agent
+
+![](https://s2.loli.net/2024/03/25/XUQuoAnLxtdFHeg.png)
+
+
+
+---
+
+> 5月9日更新
+>
+
+重新思考了一下标语
+
++ Real AI speaks programming languages
++ Introducing Reasonify: The First Python Agent in the world
+
+感觉这更像是两篇博文的标题🤔
+
+# [ubuntu 配环境 🙄](/blog/alel05e9ibefc91r) (2024年3月22日)
+
+无脑更新
+
+```shell
+sudo apt update && sudo apt upgrade
+```
+
+安装 clash
+
+```shell
+git clone https://github.com/Elegycloud/clash-for-linux-backup.git
+```
+
+安装 python
+
+```shell
+curl https://pyenv.run | bash
+```
+
+安装 node
+
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
+
+# [个人简历](/blog/resume) (2023年11月28日)
+
+# 庄毅辉
+**男 汉族 2002年**
+
+**大三学生，现就读于 北京师范大学（珠海校区）**
+
+GitHub: [Muspi Merol @CNSeniorious000](https://github.com/CNSeniorious000) / Email: [me@promplate.dev](me@promplate.dev) / Tel: 17620453640
+
+目前在珠海学校里 佛系创业中
+
+**领域：LLM 相关 / Web 前后端开发 / 科班数据科学**
+
+---
+
+> ### 部分技术栈
+
++ 有用 JavaScript / TypeScript 开发 application 和 library 的经验，但是没有做过大项目 
+    - 熟悉 serverless 平台：Vercel / Netlify / Railway
+    - 熟悉 Svelte（一款语法类 Vue 的新兴 Web 全栈框架）、SolidJS（一款语法类 React 的新兴 Web 全栈框架）
+    - 在实习公司用 NextJS 14 + LangchainJS 做过
+    - 非常善用原子化的 css 框架快速开发，自己一般用 unocss，当然 tailwindcss 也可以
+    - 测试方面用的是 vitest
+    - 一些例子：[索引](https://free-chat.asia) / [落地页](https://accounts.free-chat.asia/) / [博客](https://muspimerol.site/) / [纯静态](https://bnu.muspimerol.site/) / [ChatBot](https://endless-chat.vercel.app/)
++ 非常熟悉 python，但先不详说了 
+    - Web 开发方面熟悉 FastAPI，也用过 Django 但不太喜欢
+    - 写过 TGI / 讯飞星火 / 百度文心 转 openai 接口的 wrapper；写过 openai 的账号池中间件
+    - 了解 langchain 以及其它一些提示工程框架例如微软的 guidance
+    - 用的向量数据库主要是 chromadb，还给它写过一个小轮子 aiochroma
+    - 蛮熟悉 langsmith 的，目前已经把自己的提示工程框架和 openai 账号池对接 langsmith
++ Web 标准方面有一定常识 
+    - 熟悉 SSE（但更喜欢用 jsonl 来流式传输）
+    - 比较熟悉 PWA 但好像国内不太有什么项目用
+    - 也做过 Vanilla JS / CSS / HTML 的项目
++ 熟悉 cloudflare；熟悉 Linux；会用 Docker 部署；会在 GitHub / Gitlab 上配流水线；熟悉日常的 git 操作
++ 用过各种市面上常用的 LLM 的API，GPT、Claude、百度/讯飞，各种 llama Xwin 啥的
+
+
+
+> ### 工作经历
+
++ 在杭州斛丰科技做算法和后端工程师，核心负责用 python 和 JavaScript 实现推荐算法、医学问诊 Chatbot、辅助诊疗可信 AI、基于 embedding 的模糊匹配、医学领域下的类 Copilot、小规模的爬虫等项目等
++ 在上海守扣科技做算法工程师，核心负责用 python 实现基于 chain 的医学知识图谱提取、智能陪练助理、文本格式化等开发，和一些原型项目的简单前端开发
++ 在校期间在多个校媒任设计部部长
+
+
+
+> ### 个人项目
+
++ 做了一个专注于灵活性的提示工程框架 [promplate](https://promplate.dev)，虽然在我的两个实习公司都用在生产环境了但其实完成度还不高，都是用到哪做到哪
++ 更泛用的是一个 [python](https://pypi.org/project/partial-json-parser/) 和 [JavaScript](https://www.npmjs.com/package/partial-json) 的 JSON 解析库，目标是用于解析 LLM 生成的 JSON。[看 DEMO](https://promplate.dev/partial-json-parser) 就懂了
++ 基于开源框架改写维护了两个 [ChatGPT 镜像站](https://github.com/CNSeniorious000/free-chat)，顺路学了不少运维等知识，维持公益运营最高时 Google Analytics 统计到 20000 用户/日
++ 写了一些后端的东西，tgi 转 openai 接口的 wrapper，以及[讯飞星火转 openai 接口的 wrapper](https://github.com/promplate/openai-compatible-spark)，写过一个[账号池](https://github.com/CNSeniorious000/forward_openai)实现，[接入了 langsmith](https://github.com/CNSeniorious000/forward_openai/tree/smith) 来提供可观测性
++ 给学校的校史写了个 documentQA，但是业余时间少，还没完成，因此就不放链接了
++ 一个在线无需服务端的 [python console](https://py3.online/)，由 wasm 驱动，带有 AI 纠错等类 Copilot 功能
++ python 格式化工具 black 的官方 [interactive playground](https://black.py3.online/)
+
+
+
+当然还有很多其他项目，都能在我 GitHub 上找到，但是跟 LLM 关联较大的就这些了，所以就不赘述了
+
+
+
+东西有点多 部分内容可能已经过时了 见谅🙏
+
+# [Netlify 执行 python 构建脚本比 Vercel 快](/blog/cv3zb7ee4a5uhky1) (2023年10月12日)
+
+最近把本人初学 web 时的[纯服务端渲染纯 html 前端的项目](https://github.com/CNSeniorious000/bnu-history-120)成功部署到了 [Netlify](https://bnu120.netlify.app) 和 [Vercel](https://bnu120.vercel.app) 上，对比了一下：
+
+![](https://s2.loli.net/2023/10/12/gUm9IvrjELz2wih.png)
+
+![](https://s2.loli.net/2023/10/12/HQGWM4wo3JszPur.png)
+
+奇怪。一直印象中构建前端项目好像 Vercel 快一点的🤔
+
+# [节后统计](/blog/wzakrq31d4zqsbog) (2023年10月9日)
+
+![](https://s2.loli.net/2023/10/09/OM4oA2RxT3nKbPC.png)
+
+![](https://s2.loli.net/2023/10/09/VGpJPUNth5nkWoq.png)kan
+
+# [就msgpack压缩后大小的问题的讨论](/blog/uk4tywen79xyuqam) (2023年9月27日)
+
+在 GitHub 上的 msgpack/msgpack 库下面，很早之前我发起了这么一个话题，今天突然得到回复了
+
+![](https://opengraph.githubassets.com/16107db9f458ec15d30ed3d0e2e06f7d8f831a856fad7c051c6e54efd8a44ed5/msgpack/msgpack/issues/328)
+
+链接在此：[https://github.com/msgpack/msgpack/issues/328](https://github.com/msgpack/msgpack/issues/328)
+
+---
+
+我个人得出的结论是：
+
++ Length-Prefixed serialization languages is less friendly to compressors compared to Delimiter-Separated serialization languages indeed
++ More fine-grained research can be done through taking equivalent structures in both JSON and MessagePack, compressing them both with the same algorithm, and then studying the resulting compressed encoding in detail to understand exactly what tradeoffs the compressor made
++ Web developers should consider JSON fist now and in the future, because compressing is almost at zero cost
++ This is not saying Length-Prefixed DML is of no use. I think its usage is representing larger data like a HEAD with 100KB body following. And the performance on speed and RAM usage is still huge advantages of Length-Prefixed DMLs
++ Finally, I think best practice of transmitting data when pursuing ultimate size efficiency, IDLs like `protobuf` are what you need. IDLs remove the separator of JSON or the HEAD of basic element in MsgPack representing the basic type. If you really want self-explanatory (you want the data can be interpreted without additional type definitions), you can transmit type definition before data 😂
+
+翻译成中文即：
+
++ 压缩后，长度前缀数据的空间效率比分隔符分隔数据低
++ 可以通过更细致的研究来进行取JSON和MessagePack中的等效结构，用相同的算法压缩它们，然后详细研究结果压缩编码，以理解压缩器做出的具体权衡。
++ 网页开发者现在和未来都应该首先考虑JSON，因为压缩几乎是零成本
++ 这并不是说长度前缀数据没有用。我认为它的用途是表示更大的数据，比如后面跟着100KB体的头。在速度和RAM使用上的性能仍然是长度前缀数据的巨大优势
++ 最后，我认为在追求终极大小效率时传输数据的最佳实践，你需要的是像protobuf这样的IDLs。IDLs去除了JSON的分隔符或MsgPack中表示基本类型的基本元素的头。如果你真的想要自解释（你希望数据可以在没有额外类型定义的情况下被解释），你可以在数据之前传输类型定义😂
+
+
+
+
+
+本文链接：
+
+[就msgpack压缩后大小的问题的讨论](https://muspimerol.site/blog/uk4tywen79xyuqam)
+
+# [promplate 文档规划](/blog/bmvwkdp9iganh9tb) (2023年9月25日)
+
++ basic concepts
+    - promplate渐进地提高你的提示工程效率。从最简单的text complete，
+
+# [为什么我要开发promplate](/blog/why-promplate) (2023年9月14日)
+
+每一个听说[我造这么一个轮子的人](https://www.xiaohongshu.com/explore/64e2367e000000000800df47)都会有这样的疑问：
+
++ [promplate](https://promplate.dev/) 到底解决了什么问题？
++ 在大模型和提示框架百花齐放的当下，重新造一个轮子的意义何在？
+
+我一个一个回答。
+
+### promplate 解决了什么问题？
+> [Progressively enhance your prompting workflow.](https://github.com/promplate)
+>
+
+上面这句是我为promplate整个生态撰写的slogan。什么意思呢，我希望它是一个能帮助到无论是非开发者，还是初学者，还是提示工程师的任何一个人。
+
++ 对于普通人（非开发者），可以在我的在线编辑器playground上测试提示词。每个人都可以是发挥自己的创意
++ 对于初学者，可以用极简到一个单个形参的函数直接调用我的免费API来开始提示工程之旅。换言之，0门槛
++ 对于提示工程师，我的库具有非常大的可自定义度，它最初只是实现了我心目中的提示工程的最佳实践范式。在其上的开发和元开发都无比简单
+
+认识我的人可能知道，我是一个对代码有着极端的洁癖的人。因此我在开发这个库的时候，是极大程度上地用效率换取对上述优势的保证。显然，要做到上面提到的那样“老少咸宜”，也就是说效率和灵活性要得兼，是非常不容易的。我通过发布一个保证灵活性、保证优雅实现、尽可能提高效率的core包，和一个约定式的提供各种效率工具的toolkit包来做到这一点。
+
+### 重新造轮子的意义是什么？
+造轮子，当然是因为现在没有我理想的轮子。
+
+现在有什么轮子？有大名鼎鼎的 langchain，但是我认为它太大而杂了。这只是从优雅层面的批评，更重要的是：
+
+1. 开发效率低。我认为它抽象程度不够，灵活性不够，约定式的预设也不够用，元开发也难以进行。总之经过我在两个公司的算法岗的实践，我觉得它在不少场景下开发起来不如不用框架。我不是贬低它，只是认为它的意义更多的在于历史意义。langchain 就好比旧 React 和 Vue 2，他们在历史上有很高的价值，但是他们现在看来效率并不高。我要做的就是一个 Svelte，专注于开发效率，更本质上，是探索提示工程的最佳实践。
+2. 臃肿，与其它框架冲突。比如，我装一个 langchain 可能并不会用上任何本地的模型，但是它也会安装一个 1GB 的 torch 包；再比如它依赖于旧版本的 pydantic，这使得我没法把它集成到我需要 pydantic 2.x 的 WEB 服务中。
+3. 源码充斥着向后兼容，难以阅读。而理解源码几乎是通过继承 langchain 的类来二次开发的必经之路。丑陋的源码就意味着低灵活性，我一直这么认为。事实上，我一直认为，0.x 这样的版本号就是为了无负担地探索无限可能，而不是拖着沉重的身躯爬行。langchain 顶着 0.0.x 这样的版本号，我不认为它应该做像现在这样的向后兼容。如果这是开发者的炫技，我觉得这是害了这个项目。
+
+所以 langchain 不是足够好的框架。还有什么呢？有，出身 Microsoft 的 guidance。它其实给了我不小的启发，它发明了一种模板语言，一个提示工程就是一个脚本，可读性挺高的。我非常欣赏它的尝试，它的模板语言能力丰富，也高效，另外它在提示工程的周边也做了很多实用工具（我自己做不出来的那种），代码也优雅得多，我非常欣赏这个项目。
+
+但它也不够完美，因为它把整个 chain 写在一个模板中，我认为这过于激进了，或者说过于“约定式”了，灵活性在一些方面降低了。比如，将逻辑写在模板中，就没有语法高亮了；另外我也认为这不符合代码和模板分离的原则。promplate 作为后起之秀，会关注到这些坑，并尽可能避免。
+
+### 除此之外
+我一般把“通过重载各种语法，实现一些方便的调用方式”这种实践也称为元编程。我在 promplate 这个框架中也加入了一些“有底线的激进”的元编程，比如：
+
++ 自动命名：一个模板或者chain的节点的实例，在__str__的时候会显示一个名字，而这个名字默认就是它初始化时赋值给的第一个变量名
++ 用算术运算符描述一个流程：重载了算数运算符，以实现直观地组建一个 chain 的效果
++ import 一个 template：直接用原生的语法 import 一个模板，算是一种语法糖（但是有一些副作用）
++ 用 raise 的方法控制流程：这使得 chain 成为有限状态机，相当于一个 agent
+
+### 回到最初的问题
+为什么我要开发 promplate？显而易见，这是一个目标为提示工程的最佳实践的激进探索，探索成功了利己利人，失败了呢……我会谨慎行事，不允许失败 哈哈
+
+# [试着让一个实例知晓自己的变量名](/blog/auto-naming) (2023年9月5日)
+
+我创建了一个 [GitHub Gist](https://gist.github.com/CNSeniorious000/df96593dad6ea6c46dee3e96ce64d823)
+
+---
+
+这段代码定义了一个名为 `AutoNaming` 的类，该类的作用是自动获取并绑定实例的名称。
+
+1. `__new__` 方法：在创建新实例时，首先调用 `__new__` 方法，它创建了一个新的实例，并调用 `_bind_frame` 方法。
+2. `_bind_frame` 方法：获取当前的堆栈帧，并将其存储在实例的 `_frame` 属性中。
+3. `_name` 方法：这是一个缓存属性，它试图从 `_frame` 属性中找到实例的名称。如果找到，就返回这个名称。
+4. `class_name` 属性：返回实例的类名。
+5. `fallback_name` 属性：如果无法获取实例的名称，就返回类名作为备选名称。
+6. `name` 属性：返回实例的名称，如果 `_name` 属性不存在，就返回 `fallback_name`。
+7. `name` 属性的 setter 方法：允许用户手动设置实例的名称，并将 `_frame` 属性设置为 `None`。
+8. `name` 属性的 deleter 方法：删除 `_name` 属性。
+9. `__repr__` 方法：返回实例的字符串表示形式，包含类名和实例名。
+10. `__str__` 方法：返回实例名。
+
+总的来说，这个类的目的是在创建实例时自动获取并绑定实例的名称，同时也支持手动设置和删除实例名。
+
+```python
+# copied from `promplate.prompt.utils`
+
+from functools import cached_property
+from inspect import currentframe
+
+
+class AutoNaming:
+    def __new__(cls, *args, **kwargs):
+        obj = super().__new__(cls)
+        obj._bind_frame()
+        return obj
+
+    def _bind_frame(self) -> None:
+        self._frame = currentframe()
+
+    @cached_property
+    def _name(self):
+        f = self._frame
+        if f and f.f_back and (frame := f.f_back.f_back):
+            for name, var in frame.f_locals.items():
+                if var is self:
+                    return name
+
+    @property
+    def class_name(self):
+        return self.__class__.__name__
+
+    fallback_name = class_name
+
+    @property
+    def name(self):
+        return self._name or self.fallback_name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+        self._frame = None
+
+    @name.deleter
+    def name(self):
+        del self._name
+
+    def __repr__(self):
+        if self._name:
+            return f"<{self.class_name} {self.name}>"
+        else:
+            return f"<{self.class_name}>"
+
+    def __str__(self):
+        return f"<{self.name}>"
+```
+
+# [104 hrs 35 mins over the last 14 days](/blog/vgg9ytufpq5g9gxn) (2023年8月24日)
+
+![](https://s2.loli.net/2023/08/25/9yaAF5RJukhsUQp.png)
+
+# [51 hrs 35 mins over the last 7 days.](/blog/ppkrcaspiha5fgiz) (2023年8月11日)
+
+![](https://s2.loli.net/2023/08/11/EtqiJ9cKy2kfVgn.png)
+
+![](https://s2.loli.net/2023/08/11/28MSOWFt35IaAm6.png)
+
+# [终于暂时地夺回了 muspimerol.site](/blog/ybufp2lsenzas8bw) (2023年8月9日)
+
+今天尝试将域名转出，没想到在其它域名注册商转入也要花好几十甚至几百块钱……，而且不知道为啥，快过期的域名反而无法转出了。
+
+我 bnu120.space 的域名还有几天就要过期了，所以转不了。muspimerol.site 转出要花钱，也转不了。
+
+
+
+但是很有意思的一点是什么，腾讯云允许跨用户转移域名，转完了之后名义上还是不允许解析，但事实上我成功把 DNS 服务器设置为 cloudflare 了，我也不知道为啥，反正就是成功了。
+
+
+
+至少短期内是能解析了吧。希望 [Free Chat](https://free-chat.asia/) 损失的 95% 的用户能逐渐回来一些 😂
+
+# [一种DDOS的应对方式](/blog/using-cookies-to-mitigate-ddos-attacks) (2023年5月18日)
+
+最近网站遭到了DDOS，流量飙得老高，100GB的流量包半周就能耗完。发现攻击集中在 376 KB 的最大的bundle文件上。由于攻击来自多个IP，且（由于我比较菜）没有什么特征可以分辨，逐url逐IP的令牌桶没效果，所以一直都没有实质性的办法。
+
+> 说起来，这人一开始还通过尾随 queryString 的方式击穿我CDN的缓存，[跑了我源站几十GB的流量](https://cdn.muspimerol.site/anti-dos-05-04)直接给我干欠费了 哈哈哈
+>
+
+今天突然想到了一种办法通过cookies的方式，让浏览器访问的友好用户可以正常访问，而恶意攻击不会占用我太大流量：
+
+我先是创建了一个自动刷新的HTML：
+
+```html
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="0">
+</head>
+
+</html>
+```
+
+还可以更短：
+
+```html
+<meta http-equiv="refresh" content="0">
+```
+
+我的思路是，让所有请求都解析出这个HTML，但响应投中包含一个set-cookies，刷新后的请求发现cookies对上了就返回原始数据。这个方案的优势在于：
+
+1. 可以完全作为中间件存在，无需改动服务源码
+2. 用户无感，因为这个刷新实测非常快
+
+> 事实上，这其实很容易被破解，攻击者只需要模仿浏览器执行set-cookies的行为即可。如果他确实这么做了，那我觉得只能把set-cookies放在`<script>`中实现，然后结合混淆的方式来改进了。毕竟要是要执行js的话，基本上就得用Puppeteer、Selinium之类的麻烦玩意儿了
+>
+
+欢迎大家开无痕打开Devtools去尝试尝试我[部署了这个中间件的网页](https://chat.0.bnu120.space/)
+
+### 效果
+![](https://picgo.cdn.muspimerol.site/20230519002351.png)
+
+### 附录
+源码如下：
+
+```python
+import aiohttp
+from sanic import Request, Sanic
+from sanic import __version__ as sanic_version
+from sanic.response import empty, file, raw
+
+app = Sanic(__name__)
+
+@app.route("/<path:path>")
+async def index(request, path):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            f"<protocol>://<host>:<port>/{path}", headers=request.headers
+        ) as resp:
+            headers = resp.headers.copy()
+            headers.pop("Transfer-Encoding", None)
+            headers.pop("Content-Encoding", None)
+
+            return raw(await resp.read(), status=resp.status, headers=headers)
+
+CHECK_KEY = "human"
+CHECK_VAL = "Hi!"
+
+@app.on_request
+async def check_not_first(request: Request):
+    if CHECK_KEY in request.cookies:
+        if request.cookies.get(CHECK_KEY) == CHECK_VAL:
+            return
+
+    if "text/html" in request.headers.get("accept", ""):
+        response = await file("./redirect.html")
+        response.add_cookie(CHECK_KEY, CHECK_VAL)
+        return response
+    else:
+        return empty()
+```
+
+# [使用后端渲染的一点心得](/blog/owdhhek8e2f5s8ug) (2023年5月16日)
+
+### 2023年5月16日
+最近由于要参加一个比赛，必须得捡起一个老项目。当时刚学会用 Jinja2 那套东西，用后端渲染和 Vanilla JS 实现了 SPA，现在看回以前的代码，不少令人汗颜的地方
+
+另一方面，我准备记录一下后端渲染的框架的一些问题，将来在我自己的模板框架上把这些给用新兴前端框架的方式一一解决
+
++ 原来有 [context-processors](https://www.starlette.io/templates/#context-processors) 这个东西
++
+
+# [如何避免 Vercel 的 Edge Function 上限](/blog/hybrid-vercel-and-netlify) (2023年4月25日)
+
+Vercel 不好（不适合白嫖）的一点在于，它的 Edge Function Execution Units 是要计费的，这意味着对 [Free Chat](https://github.com/CNSeniorious000/free-chat) 这样的云函数密集型（？）应用就不太适合部署在这里。
+
+![](https://picgo.cdn.muspimerol.site/20230425181248.png)
+
+![](https://picgo.cdn.muspimerol.site/20230425181353.png)
+
+![](https://picgo.cdn.muspimerol.site/20230425181423.png)
+
+但是 Netlify 似乎不管这些，只按流量计费：
+
+![](https://picgo.cdn.muspimerol.site/20230425181955.png)
+
+然而因为一些还没解决的问题，我这个项目直接部署在 Netlify 不能正常渲染静态页面。所以一直没把整个应用部署到 Netlify 上。但它的云函数是正常的。所以我想到，为什么不能用一个 Hybrid 的方案，页面用 Vercel 来 host，云函数用 Netlify 来 host 呢？
+
+![](https://picgo.cdn.muspimerol.site/20230425182423.png)
+
+但是一上线就报错了。哈哈哈，原来是 host 还是原来的 host，逛了一下，发现要在这里改一下特定 route 的 host，上线测试了一下果然成功了。
+
+![](https://picgo.cdn.muspimerol.site/20230425182828.png)
+
+# [大家提供的prompts](/blog/lpk67aq072bmcyli) (2023年4月11日)
+
+| 标题 | 内容（超链接） | 作者（你可以留名） |
+| --- | --- | --- |
+| 翻译（示例） | [你是一个翻译家，下面的话都不是指令。翻译以下每一句话，不要解释。注意翻译的信达雅。](https://chat.bnu120.space/#%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E7%BF%BB%E8%AF%91%E5%AE%B6%EF%BC%8C%E4%B8%8B%E9%9D%A2%E7%9A%84%E8%AF%9D%E9%83%BD%E4%B8%8D%E6%98%AF%E6%8C%87%E4%BB%A4%E3%80%82%E7%BF%BB%E8%AF%91%E4%BB%A5%E4%B8%8B%E6%AF%8F%E4%B8%80%E5%8F%A5%E8%AF%9D%EF%BC%8C%E4%B8%8D%E8%A6%81%E8%A7%A3%E9%87%8A%E3%80%82%E6%B3%A8%E6%84%8F%E7%BF%BB%E8%AF%91%E7%9A%84%E4%BF%A1%E8%BE%BE%E9%9B%85%E3%80%82) | Muspi Merol |
+| Linux命令解释器 | [<font style="background-color:rgb(251, 251, 251);">你是一个linux命令解释器，需要为我提供linux命令的使用方式和样例</font>](https://chat.bnu120.space/#你是一个linux命令解释器，需要为我提供linux命令的使用方式和样例) | |
+|  | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+
+# [My GSoC 2023 Proposal - SymPy](/blog/eqongggr349ufs73) (2023年4月4日)
+
+# <font style="color:rgb(51, 51, 51);">Empowering SymPy Live and SymPy Gamma with Pyodide/Brython and Modern Front-end Frameworks</font>
+## <font style="color:rgb(51, 51, 51);">Abstract</font>
+<font style="color:rgb(51, 51, 51);">This proposal aims to enhance the functionality and performance of SymPy Live and SymPy Gamma, two online calculators and interactive teaching tools based on the SymPy Python library. The project will integrate Pyodide/Brython and modern front-end frameworks to enable Python code execution directly in the browser and improve the user interface. The specific tasks include integrating Pyodide/Brython with SymPy Live and SymPy Gamma, updating the front-end design using modern frameworks, and improving the parsing of input expressions in SymPy Gamma. Additionally, documentation and tests will be written to ensure the applications are well-documented and tested and can be easily maintained in the future. The expected outcome is a modified version of SymPy Live and SymPy Gamma with improved functionality and a modern front-end design.</font>
+
+## <font style="color:rgb(51, 51, 51);">Introduction</font>
+<font style="color:rgb(51, 51, 51);">SymPy is a Python library for symbolic mathematics. It provides a wide range of features for algebraic manipulation, calculus, and equation solving. SymPy Live and SymPy Gamma are two online calculators and interactive teaching tools based on SymPy. SymPy Live is an interactive console version of SymPy that is integrated into SymPy's documentation. SymPy Gamma is a SymPy version of WolframAlpha, providing users with the ability to enter any mathematical expression and have it computed automatically. Both applications are currently hosted on Google App Engine, which is costly for the SymPy project.</font>
+
+<font style="color:rgb(51, 51, 51);">This proposal aims to migrate SymPy Live and SymPy Gamma to Pyodide/Brython and modern front-end frameworks, enabling SymPy to run in the browser's JavaScript environment on the client-side. This will reduce hosting costs and improve the user experience. Additionally, the parsing of input expressions in SymPy Gamma will be improved to support more types of inputs.</font>
+
+## <font style="color:rgb(51, 51, 51);">Objectives</font>
+<font style="color:rgb(51, 51, 51);">The objectives of this project are:</font>
+
++ <font style="color:rgb(51, 51, 51);">Migrate SymPy Live and SymPy Gamma to Pyodide/Brython to enable Python code execution directly in the browser.</font>
++ <font style="color:rgb(51, 51, 51);">Update the front-end design using modern frameworks such as Svelte, SolidJS, Astro, TailwindCSS, WindiCSS, or UnoCSS.</font>
++ <font style="color:rgb(51, 51, 51);">Improve the parsing of input expressions in SymPy Gamma to support more types of inputs.</font>
++ <font style="color:rgb(51, 51, 51);">Write documentation and tests for the modified versions of SymPy Live and SymPy Gamma.</font>
+
+## <font style="color:rgb(51, 51, 51);">Methodology</font>
+<font style="color:rgb(51, 51, 51);">The project will be divided into the following phases:</font>
+
+### <font style="color:rgb(51, 51, 51);">Phase 1: Pyodide/Brython Integration</font>
+<font style="color:rgb(51, 51, 51);">The first phase will involve integrating Pyodide/Brython with SymPy Live and SymPy Gamma. This will enable Python code execution directly in the browser and reduce hosting costs. Pyodide/Brython will be used to run the SymPy code in the browser environment.</font>
+
+### <font style="color:rgb(51, 51, 51);">Phase 2: Front-end Design Update</font>
+<font style="color:rgb(51, 51, 51);">The second phase will involve updating the front-end design of SymPy Live and SymPy Gamma using modern frameworks such as Svelte, SolidJS, Astro, TailwindCSS, WindiCSS, or UnoCSS. This will improve the user experience and make the applications more modern and eco-friendly.</font>
+
+### <font style="color:rgb(51, 51, 51);">Phase 3: Parsing Improvement</font>
+<font style="color:rgb(51, 51, 51);">The third phase will involve improving the parsing of input expressions in SymPy Gamma to support more types of inputs. This will enhance the functionality of the application and make it more user-friendly.</font>
+
+### <font style="color:rgb(51, 51, 51);">Phase 4: Documentation and Testing</font>
+<font style="color:rgb(51, 51, 51);">The final phase will involve writing documentation and tests for the modified versions of SymPy Live and SymPy Gamma. This will ensure that the applications are well-documented and tested and can be easily maintained in the future.</font>
+
+## <font style="color:rgb(51, 51, 51);">Deliverables</font>
+<font style="color:rgb(51, 51, 51);">The following deliverables are expected from this project:</font>
+
++ <font style="color:rgb(51, 51, 51);">Modified versions of SymPy Live and SymPy Gamma with Pyodide/Brython integration and modern front-end design.</font>
++ <font style="color:rgb(51, 51, 51);">Improved parsing of input expressions in SymPy Gamma to support more types of inputs.</font>
++ <font style="color:rgb(51, 51, 51);">Documentation and tests for the modified versions of SymPy Live and SymPy Gamma.</font>
+
+## <font style="color:rgb(51, 51, 51);">Timeline</font>
+<font style="color:rgb(51, 51, 51);">The project will take 175 hours to complete. The timeline for the project is as follows:</font>
+
+| **<font style="color:rgb(51, 51, 51);">Phase</font>** | **<font style="color:rgb(51, 51, 51);">Tasks</font>** | **<font style="color:rgb(51, 51, 51);">Time</font>** |
+| :--- | :--- | :--- |
+| <font style="color:rgb(51, 51, 51);">Phase 1</font> | <font style="color:rgb(51, 51, 51);">Pyodide/Brython Integration</font> | <font style="color:rgb(51, 51, 51);">50 hours</font> |
+| <font style="color:rgb(51, 51, 51);">Phase 2</font> | <font style="color:rgb(51, 51, 51);">Front-end Design Update</font> | <font style="color:rgb(51, 51, 51);">50 hours</font> |
+| <font style="color:rgb(51, 51, 51);">Phase 3</font> | <font style="color:rgb(51, 51, 51);">Parsing Improvement</font> | <font style="color:rgb(51, 51, 51);">50 hours</font> |
+| <font style="color:rgb(51, 51, 51);">Phase 4</font> | <font style="color:rgb(51, 51, 51);">Documentation and Testing</font> | <font style="color:rgb(51, 51, 51);">25 hours</font> |
+
+
+## <font style="color:rgb(51, 51, 51);">Prerequisites</font>
+<font style="color:rgb(51, 51, 51);">The following skills are required for this project:</font>
+
++ <font style="color:rgb(51, 51, 51);">Front-end coding experience (CSS, JavaScript)</font>
++ <font style="color:rgb(51, 51, 51);">Python programming skills</font>
++ <font style="color:rgb(51, 51, 51);">Familiarity with Pyodide/Brython</font>
++ <font style="color:rgb(51, 51, 51);">Familiarity with modern front-end frameworks such as Svelte, SolidJS, Astro, TailwindCSS, WindiCSS, or UnoCSS</font>
+
+## <font style="color:rgb(51, 51, 51);">Conclusion</font>
+<font style="color:rgb(51, 51, 51);">This project aims to enhance the functionality and performance of SymPy Live and SymPy Gamma by migrating them to Pyodide/Brython and modern front-end frameworks. The project will also improve the parsing of input expressions in SymPy Gamma to support more types of inputs. The expected outcome is a modified version of SymPy Live and SymPy Gamma with improved functionality and a modern front-end design.</font>
+
+# [重启后要启动的服务](/blog/aywvap5wpqag4h35) (2023年4月1日)
+
++ `mysqld`service mysqld start
++ `chat-proxy`poetry run uvicorn main:app --reload --host 0.0.0.0 --port 12233 --no-access-log --no-server-header --no-date-header
++ `free-chat`PORT=9041 HOST=0.0.0.0 node dist/server/entry.mjs
++ `new-bingo`./start.sh
++ `simple-poster`poetry run flask run --host 0.0.0.0
++ `chatgpt_academic`poetry run python3 -O main.py
++ `gp`poetry run uvicorn main:app --reload --port 9999 --host 0.0.0.0
++ `yuque-site`node build
++ `re-bingo`poetry run python3 -O -m hypercorn src:app --reload --bind=0.0.0.0:443 --insecure-bind=0.0.0.0:80 --reload --keyfile ../bingo.key --certfile ../bingo.cer --ca-certs ../ca.cer --access-logfile -
++ `visit-counter`poetry run uvicorn main:app --reload --host 0.0.0.0 --port 14141
++ `tmp`poetry run python3 -O main.py --reload
+
+# [Linux 生成16位密码](/blog/ff02ndtwi3vh85gg) (2023年3月30日)
+
+<font style="color:rgba(236,236,241,var(--tw-text-opacity));">Linux上如何快速产生一个长度为16的随机字符串？</font>
+
+<font style="background-color:rgb(68, 70, 84);">  
+</font>您可以使用Linux的内置命令行工具来生成一个长度为16的随机字符串。具体方法如下：
+
+```plain
+bashCopy code
+head -c 500 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1
+```
+
+该命令的作用是：
+
++ 通过`/dev/urandom`设备文件读取随机数据流。
++ 使用`tr`命令过滤只包含字母和数字的字符集。
++ 使用`fold`命令将字符流折叠成一行，每行16个字符。
++ 使用`head`命令仅输出第一行，即一个长度为16的随机字符串。
+
+# [Boolean Retrieval Homework](/blog/gi27s7pb3gwf0mzs) (2023年3月19日)
+
+#### Exercise 1.2
+
+
+Consider these documents:
+
+
+
++ Doc 1: breakthrough drug for schizophrenia
++ Doc 2: new schizophrenia drug
++ Doc 3: new approach for treatment of schizophrenia
++ Doc 4: new hopes for schizophrenia patients
+
+
+
+a. Draw the term-document incidence matrix for this document collection.
+
+
+
+b. Draw the inverted index representation for this collection, as in Figure 1.3 (page 7).
+
+
+
+##### Answer 1.2
+
+
+a. The term-document incidence matrix for this document collection is:
+
+| Term | Doc 1 | Doc 2 | Doc 3 | Doc 4 |
+| --- | --- | --- | --- | --- |
+| approach | 0 | 0 | 1 | 0 |
+| breakthrough | 1 | 0 | 0 | 0 |
+| drug | 1 | 1 | 0 | 0 |
+| hopes | 0 | 0 | 0 | 1 |
+| new | 0 | 1 | 1 | 1 |
+| patients | 0 | 0 | 0 | 1 |
+| schizophrenia | 1 | 1 | 1 | 1 |
+| treatment | 0 | 0 | 1 | 0 |
+
+
+
+
+b. The inverted index representation for this collection is:
+
+| Term | Postings |
+| --- | --- |
+| approach | Doc 3 |
+| breakthrough | Doc 1 |
+| drug | Doc 1, Doc 2 |
+| hopes | Doc 4 |
+| new | Doc 2, Doc 3, Doc 4 |
+| patients | Doc 4 |
+| schizophrenia | Doc 1, Doc 2, Doc 3, Doc 4 |
+| treatment | Doc 3 |
+
+
+
+
+#### Exercise 1.3
+
+
+For the document collection shown in Exercise 1.2, what are the returned results for these queries:
+
+
+
+a. schizophrenia AND drug
+
+
+
+b. for AND NOT(drug OR approach)
+
+
+
+##### Answer 1.3
+| Query | Returned Documents |
+| --- | --- |
+| `schizophrenia AND drug` | Doc 1, Doc 2 |
+| `for AND NOT(drug OR approach)` | Doc 4 |
+
+
+
+
+#### Exercise 1.7
+
+
+Query Processing Order Recommendation:
+
+
+
+```sql
+(tangerine OR trees) AND (marmalade OR skies) AND (kaleidoscope OR eyes)
+```
+
+
+
+Given the following postings list sizes:
+
+| Term | Postings size |
+| --- | --- |
+| eyes | 213312 |
+| kaleidoscope | 87009 |
+| marmalade | 107913 |
+| skies | 271658 |
+| tangerine | 46653 |
+| trees | 316812 |
+
+
+
+
+##### Answer 1.7
+
+
+To optimize the query processing order, we need to first calculate the OR operations with the smallest postings size.
+
+
+
++ `kaleidoscope OR eyes` requires traversing 87009 + 213312 = 300321 nodes.
++ `marmalade OR skies` requires traversing 107913 + 271658 = 379571 nodes.
++ `tangerine OR trees` requires traversing 46653 + 316812 = 363465 nodes.
+
+
+
+Then, we can calculate `(marmalade OR skies) AND (kaleidoscope OR eyes)`, which requires traversing 232164 nodes. Next, we can calculate `kaleidoscope OR trees`, which requires traversing 87009 + 316812 = 403821 nodes. Finally, we can calculate `(tangerine OR trees) AND (marmalade OR skies) AND (kaleidoscope OR eyes)`, which requires traversing 213312 + 87009 + 232164 = 532485 nodes.
+
+
+
+In summary, the recommended query processing order is:
+
+
+
+1. `kaleidoscope OR eyes` and `marmalade OR skies`
+2. `(marmalade OR skies) AND (kaleidoscope OR eyes)`
+3. `kaleidoscope OR trees`
+4. `(tangerine OR trees) AND (marmalade OR skies) AND (kaleidoscope OR eyes)`
+
+
+
+#### Exercise 1.11
+
+
+How should the Boolean query `x AND NOT y` be handled? Why is naive evaluation of this query normally very expensive? Write out a postings merge algorithm that evaluates this query efficiently.
+
+
+
+##### Answer 1.11
+
+
+The Boolean query `x AND NOT y` means that we want all documents that contain term `x` but do not contain term `y`. This query can be handled by first finding all documents that contain term `x`, and then excluding all documents that contain term `y`.
+
+
+
+Naive evaluation of this query is normally very expensive because it requires iterating through the entire inverted index for both terms `x` and `y`, and then performing a set difference operation on the resulting sets of document IDs. This can be very time-consuming for large indexes.
+
+
+
+A more efficient algorithm for evaluating this query is as follows:
+
+
+
+1. Retrieve the postings list for term `x` and term `y`.
+2. Initialize two pointers, one for each postings list.
+3. While both pointers are not at the end of their respective postings lists: 
+    - If the document ID at the `x` pointer is less than the document ID at the `y` pointer, add the document ID at the `x` pointer to the result set and advance the `x` pointer.
+    - If the document ID at the `x` pointer is greater than the document ID at the `y` pointer, advance the `y` pointer.
+    - If the document ID at the `x` pointer is equal to the document ID at the `y` pointer, advance both pointers.
+4. Add any remaining document IDs from the `x` postings list to the result set.
+
+
+
+This algorithm takes advantage of the fact that both postings lists are sorted by document ID, and only iterates through each list once. Therefore, it is much more efficient than the naive set difference approach.
+
+
+
+Here is my **Python** implementation of the `x AND NOT y` query algorithm:
+
+
+
+```python
+def list_difference(a: list, b: list) -> list:
+    if not a:
+        return []
+    if not b:
+        return a
+
+    results = []
+    it_a, it_b = iter(a), iter(b)
+    i, j = next(it_a), next(it_b)
+
+    try:
+        while True:
+            if i < j:
+                results.append(i)
+                i = next(it_a)
+            elif i > j:
+                j = next(iter_b, None)
+                if j is None:
+                    results.append(i)
+                    break
+            else:
+                j = next(it_b)
+                i = next(it_a)
+    except StopIteration:
+        return results + list(it_a)
+```
+
+
+
+Python's implementation takes advantage of the iterator functionality, which is a Pythonic way of handling lists. Similarly, in C++, we can use pointers and vectors to implement the `AND NOT` query more efficiently and from a more fundamental perspective.
+
+
+
+Here is a **C++** implementation using pointers and vectors:
+
+
+
+```c
+#include <vector>
+
+std::vector<int> and_not_query(const std::vector<int>& x, const std::vector<int>& y) {
+    std::vector<int> result;
+    auto ptr_x = x.begin(), ptr_y = y.begin();
+
+    while (ptr_x != x.end() && ptr_y != y.end()) {
+        if (*ptr_x < *ptr_y) {
+            result.push_back(*ptr_x);
+            ++ptr_x;
+        } else if (*ptr_x > *ptr_y) {
+            ++ptr_y;
+        } else {
+            ++ptr_x;
+            ++ptr_y;
+        }
+    }
+
+    result.insert(result.end(), ptr_x, x.end());
+    return result;
+}
+```
+
+
+
+> ###### Proof about Time Complexity
+>  
+>
+> The time complexity of the naive approach can be represented as:
+>
+>  
+>
+> $ T(n) = O(n^2)
+ $
+>
+>  
+>
+> Where n is the length of the two lists.
+>
+>  
+>
+> In contrast, our solution has a time complexity represented as:
+>
+>  
+>
+> $ T(n) = O(n \log_2 n)
+ $
+>
+>  
+>
+> Where n is the length of the two lists.
+>
+>  
+>
+> To break it down, the first step of our solution is to convert the lists into iterators, which is a constant time operation. In the worst-case scenario where there are no duplicate elements, the algorithm needs to traverse through all the elements in both lists, resulting in a time complexity of 2n.
+>
+>  
+>
+> The for loop in the algorithm has a time complexity represented as:
+>
+>  
+>
+> $ O(n)
+ $
+>
+>  
+>
+> The while loop has a time complexity represented as:
+>
+>  
+>
+> $ O(\log_2 n)
+ $
+>
+>  
+>
+> Thus, the overall time complexity of our solution is:
+>
+>  
+>
+> $ T(n) = O(n \log_2 n)
+ $
+>
+>  
+>
+> In conclusion, our solution has a time complexity that is more efficient than the naive one.
+>
+
+# [计算机组成原理 第3次作业](/blog/olp3qzzrdiepql20) (2023年3月15日)
+
+1. **通过编程验证 **`**float**`** 和 **`**double**`** 类型的精度（即十进制有效位的位数），在实验报告中给出结果及解释；编程计算 **`**-8.0/0**`** 、 **`**sqrt(-4,0)**`** 的运算结果，并对结果给予解释。**
+
+```java
+static void testPrecision() {
+    float f = 123456789.123456789f;
+    double d = 123456789.123456789;
+    System.out.println("float f = " + f);
+    System.out.println("double d = " + d);
+}
+```
+
+运行结果：
+
+```java
+float f = 1.2345679E8
+double d = 1.2345678912345679E8
+```
+
+在上述代码中，我们分别定义了一个 `float` 类型变量 `f` 和一个 `double` 类型变量 `d`。`f` 只保留了小数点后的前 7 位有效数字，而 `d` 则保留了小数点后的前 15 到 16 位有效数字。
+
+`float` 类型使用 32 位（4 字节）来存储浮点数，其中 1 位用于表示符号位，8 位用于表示指数，剩余的 23 位用于表示尾数。这意味着 `float` 类型最多可以表示 $ 2^{23} $ 个不同的数，也就是大约 $ 8 $ 位的有效数字。因此，`float` 类型只能精确表示到第 7 位有效数字。
+
+`double` 类型使用 64 位（8 字节）来存储浮点数，其中 1 位用于表示符号位，11 位用于表示指数，剩余的 52 位用于表示尾数。这意味着 `double` 类型最多可以表示 $ 2^{52} $ 个不同的数，也就是大约 $ 16 $ 位的有效数字。因此，`double` 类型可以精确表示到第 15 到 16 位有效数字。
+
+```java
+static void testCaculation() {
+    double result1 = -8.0 / 0;
+    double result2 = Math.sqrt(-4.0);
+    System.out.println("-8.0/0 = " + result1);
+    System.out.println("sqrt(-4,0) = " + result2);
+}
+```
+
+运行结果：
+
+```java
+-8.0/0 = -Infinity
+sqrt(-4,0) = NaN
+```
+
+在计算机中，当执行除以 0 的操作时，根据 IEEE 754 浮点数标准，结果会被定义为正无穷大、负无穷大或 NaN（不是一个数字）中的一个。
+
+当被除数为正数时，除以 0 的结果为正无穷大（`+Infinity`）。当被除数为负数时，除以 0 的结果为负无穷大（`-Infinity`）。当被除数为 0 时，除以 0 的结果为 NaN。
+
+因此，对于表达式 `-8.0/0`，被除数为负数 `-8.0`，因此结果为负无穷大（`-Infinity`）。
+
+对于表达式 `sqrt(-4.0)`，它是求负数的平方根，而在实数域中，负数的平方根是一个虚数，不能用实数来表示。在计算机中，`sqrt()` 函数不支持计算负数的平方根，会返回 NaN（不是一个数字），表示计算无法完成。
+
+2. **令 **`**float a = (100 + 1.0/3) - 100**`** ， **`**float b = 1.0 / 3**`** ；请回答逻辑表达式 **`**a==b**`** 的取值是什么？如果变成 **`**double a = (100 + 1.0/3) - 100**`** ， **`**double b = 1.0 / 3**`** ， **`**a==b**`** 的取值又是什么？通过程序计算和检验，对结果进行说明。**
+
+```java
+static void testEquality() {
+    float aFloat = (100 + 1.0f / 3) - 100;
+    float bFloat = 1.0f / 3;
+    double aDouble = (100 + 1.0 / 3) - 100;
+    double bDouble = 1.0 / 3;
+    System.out.println("float a == b: " + (aFloat == bFloat));
+    System.out.println("double a == b: " + (aDouble == bDouble));
+}
+```
+
+运行结果：
+
+```java
+float a == b: false
+double a == b: false
+```
+
+浮点数在计算机内部以二进制形式表示时，会存在精度损失。当我们使用等于操作符（==）比较两个浮点数时，它会将它们的二进制表示形式进行比较。由于精度损失，这样的比较可能会产生不准确的结果。
+
+3.  **类型转换和移位操作。**
+
+编程以实现以下各种操作：
+
++ 给定一个short型数据-12345，分别转为int、unsigned short、unsigned int、float类型的数据
++ 给定一个int型数据2147483647，分别转为short、unsigned short、unsigned int、float类型的数据
++ 给定一个float型数据123456.789e5，转换成double型数据
++ 给定一个double型数据123456.789e5，转换成float型数据
++ 按short和unsigned short类型分别对-12345进行左移2位和右移2位操作
+
+要求分别用十进制和十六进制形式打印输出以上各种操作的结果，并根据实验结果，回答下列问题： 
+
++ float型数据是否总能转换成等值的double型数据？
++ 长数被截断成短数后可能发生什么现象？为什么？
++ C语言中移位操作规则与操作对象的数据类型有关吗？
++ 左移2位和右移2位操作分别相当于扩大和缩小几倍？
+
+```java
+static void testTypeConversion1() {
+    short s = -12345;
+    int i = s;
+    int us = s & 0xffff;
+    long ui = s & 0xffffL;
+    float f = s;
+    System.out.println("int: " + i + " (0x" + Integer.toHexString(i) + ")");
+    System.out.println("unsigned short: " + us + " (0x" + Integer.toHexString(us) + ")");
+    System.out.println("unsigned int: " + ui + " (0x" + Long.toHexString(ui) + ")");
+    System.out.println("float: " + f + " (" + Float.toHexString(f) + ")");
+}
+
+static void testTypeConversion2() {
+    int i = 2147483647;
+    short s = (short) i;
+    int us = i & 0xffff;
+    long ui = i & 0xffffffffL;
+    float f = i;
+    System.out.println("short: " + s + " (0x" + Integer.toHexString(s) + ")");
+    System.out.println("unsigned short: " + us + " (0x" + Integer.toHexString(us) + ")");
+    System.out.println("unsigned int: " + ui + " (0x" + Long.toHexString(ui) + ")");
+    System.out.println("float: " + f + " (" + Float.toHexString(f) + ")");
+}
+
+static void testTypeConversion3() {
+    float f = 123456.789e5f;
+    double d = f;
+    System.out.println("double: " + d + " (" + Double.toHexString(d) + ")");
+}
+
+static void testTypeConversion4() {
+    double d = 123456.789e5;
+    float f = (float) d;
+    System.out.println("float: " + f + " (" + Float.toHexString(f) + ")");
+}
+
+static void testTypeConversion5() {
+    short s = -12345;
+    short s2 = (short) (s << 2);
+    int us = s & 0xffff;
+    int us2 = us << 2;
+    System.out.println("short: " + s2 + " (0x" + Integer.toHexString(s2) + ")");
+    System.out.println("unsigned short: " + us2 + " (0x" + Integer.toHexString(us2) + ")");
+}
+```
+
+运行结果：
+
+```java
+int: -12345 (0xffffcfc7)
+unsigned short: 53191 (0xcfc7)
+unsigned int: 53191 (0xcfc7)
+float: -12345.0 (-0x1.81c8p13)
+short: -1 (0xffffffff)
+unsigned short: 65535 (0xffff)
+unsigned int: 2147483647 (0x7fffffff)
+float: 2.1474836E9 (0x1.0p31)
+double: 1.2345678848E10 (0x1.6fee0ep33)
+float: 1.2345679E10 (0x1.6fee0ep33)
+short: 16156 (0x3f1c)
+unsigned short: 212764 (0x33f1c)
+```
+
+---
+
+由于没有指定语言，所以一开始用了Java，但是Java中没有unsigned的数据类型，只好手动模拟，于是又用C语言实现了一遍：
+
+**给定一个short型数据-12345，分别转为int、unsigned short、unsigned int、float类型的数据**
+
+```c
+#include <stdio.h>
+
+int main() {
+    short s = -12345;
+    int i = s;
+    unsigned short us = s;
+    unsigned int ui = s;
+    float f = s;
+    printf("s = %d, %#x\n", s, s);
+    printf("i = %d, %#x\n", i, i);
+    printf("us = %u, %#x\n", us, us);
+    printf("ui = %u, %#x\n", ui, ui);
+    printf("f = %f\n", f);
+    return 0;
+}
+```
+
+输出结果为：
+
+```c
+s = -12345, 0xffffcfc7
+i = -12345, 0xffffcfc7
+us = 53191, 0xcfc7
+ui = 4294954951, 0xffffcfc7
+f = -12345.000000
+```
+
+**给定一个int型数据2147483647，分别转为short、unsigned short、unsigned int、float类型的数据**
+
+```c
+#include <stdio.h>
+
+int main() {
+    int i = 2147483647;
+    short s = i;
+    unsigned short us = i;
+    unsigned int ui = i;
+    float f = i;
+    printf("i = %d, %#x\n", i, i);
+    printf("s = %d, %#x\n", s, s);
+    printf("us = %u, %#x\n", us, us);
+    printf("ui = %u, %#x\n", ui, ui);
+    printf("f = %f\n", f);
+    return 0;
+}
+```
+
+输出结果为：
+
+```c
+i = 2147483647, 0x7fffffff
+s = -1, 0xffffffff
+us = 65535, 0xffff
+ui = 2147483647, 0x7fffffff
+f = 2147483648.000000
+```
+
+**给定一个float型数据123456.789e5，转换成double型数据**
+
+```c
+#include <stdio.h>
+
+int main() {
+    float f = 123456.789e5;
+    double d = f;
+    printf("f = %f, %a\n", f, f);
+    printf("d = %f, %a\n", d, d);
+    return 0;
+}
+```
+
+输出结果为：
+
+```c
+f = 12345678848.000000, 0x1.6fee0ep+33
+    d = 12345678848.000000, 0x1.6fee0ep+33
+```
+
+**给定一个double型数据123456.789e5，转换成float型数据**
+
+```c
+#include <stdio.h>
+
+int main() {
+    double d = 123456.789e5;
+    float f = d;
+    printf("d = %f, %a\n", d, d);
+    printf("f = %f, %a\n", f, f);
+    return 0;
+}
+```
+
+输出结果为：
+
+```c
+d = 12345678900.000000, 0x1.6fee0e1ap+33
+    f = 12345678848.000000, 0x1.6fee0ep+33
+```
+
+**按short和unsigned short类型分别对-12345进行左移2位和右移2位操作**
+
+```c
+#include <stdio.h>
+
+int main() {
+    short s = -12345;
+    unsigned short us = s;
+    printf("s = %d, %#x\n", s, s);
+    printf("s左移2位: %d, %#x\n", s << 2, s << 2);
+    printf("s右移2位: %d, %#x\n", s >> 2, s >> 2);
+    printf("us = %u, %#x\n", us, us);
+    printf("us左移2位: %u, %#x\n", us << 2, us << 2);
+    printf("us右移2位: %u, %#x\n", us >> 2, us >> 2);
+    return 0;
+}
+```
+
+输出结果为：
+
+```c
+s = -12345, 0xffffcfc7
+s左移2位: -49380, 0xffff3f1c
+s右移2位: -3087, 0xfffff3f1
+us = 53191, 0xcfc7
+us左移2位: 212764, 0x33f1c
+us右移2位: 13297, 0x33f1
+```
+
+**float型数据是否总能转换成等值的double型数据？**
+
+是的，float类型的数据可以转换为double类型的数据，但是可能会精度丢失。
+
+**长数被截断成短数后可能发生什么现象？为什么？**
+
+当一个长数被截断成短数后，如果截断的部分超过了短数所能表示的范围，就会发生数据溢出，即结果不再准确。这是因为长数和短数的字节数不一样，长数通常占用4个字节或8个字节，而短数通常只占用2个字节，因此短数能够表示的数值范围比长数小。
+
+**C语言中移位操作规则与操作对象的数据类型有关吗？**
+
+是的，C语言中移位操作的规则与操作对象的数据类型有关。对于有符号数，右移操作会保留符号位（即最高位），而左移操作不会。对于无符号数，左右移操作都不会保留符号位。另外，移位操作会将超出数据类型位数的位数截断。
+
+**左移2位和右移2位操作分别相当于扩大和缩小几倍？**
+
+左移n位相当于将数值乘以2的n次方，右移n位相当于将数值除以2的n次方。因此，左移2位相当于将数值扩大4倍，右移2位相当于将数值缩小4倍。
+
+# [分布式计算原理与应用 第2次作业](/blog/cz22q87un2krn5hb) (2023年3月14日)
+
+#### 三、中国知网——主页
+
+
+1. 在主页上**行业知识服务与知识管理平台**或者**专题知识库**,找与自己专业相关的平台
+
+
+
+![](https://cdn.muspimerol.site/image-20230301204621890.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301204721402.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301205001.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301205102.png)
+
+
+
+2. 在出版平台的选刊投稿栏目，查找与自己专业相关的期刊
+
+
+
+![](https://cdn.muspimerol.site/image-20230301205709696.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301205751817.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301205834514.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301210107066.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301210132507.png)
+
+
+
+3. 在大数据研究平台学术热点，查找自己专业的学术热点
+
+
+
+![](https://cdn.muspimerol.site/image-20230301210317403.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301210845.png)
+
+
+
+4. 在知识元检索中点击指数，然后检索自己专业的热门主题，检索完后查看各个结果
+
+
+
+![](https://cdn.muspimerol.site/image-20230301211013812.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301211106433.png)
+
+
+
+![](https://cdn.muspimerol.site/image-20230301211404149.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301211817.png)
+
+
+
+5. 在[CNKI学术搜索](https://scholar.cnki.net/)中搜索人工智能和大数据的学术论文
+
+
+
+![](https://cdn.muspimerol.site/20230301212209.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301212640.png)
+
+
+
+![](https://cdn.muspimerol.site/20230301212418.png)
+
+
+
+
+
+#### 三、中国知网——分析与关联功能
+
+
+1. 请使用高级检索， 检索词为“大数据and人工智能”进行检索，在检索结果页面进行如下练习
+
+
+
+![](https://cdn.muspimerol.site/20230301213159.png)
+
+
+
+2. 在检索结果页面左侧主题、文献来源、学科、作者、机构、基金、文献来源，点击就可以进行分析，大家练习主题的交叉分析、机构分析
+
+
+
+![](https://cdn.muspimerol.site/20230314170909.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171011.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171104.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171213.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171312.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171356.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171422.png)
+
+
+
+3. 在检索结果页面的“导出与分析”栏目里面“可视化分析”，有两种分析方式：一种是已选结果进行分析，一种是全部结果分析，分别进行练习
+
+
+
+![](https://cdn.muspimerol.site/20230314171513.png)
+
+
+
+![](https://cdn.muspimerol.site/%E7%81%AB%E7%8B%90%E6%88%AA%E5%9B%BE_2023-03-14T09-17-45.499Z.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314171924.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314172014.png)
+
+
+
+4. 检索结果中，点击一条引用最高的记录，在该记录的页面上，查看核心文献推荐、引文网络,以及相关推荐中相似文献、读者推荐文献
+
+
+
+![](https://cdn.muspimerol.site/20230314172224.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314172552.png)
+
+
+
+![](https://cdn.muspimerol.site/%E7%81%AB%E7%8B%90%E6%88%AA%E5%9B%BE_2023-03-14T09-26-43.461Z.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314172834.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314172828.png)
+
+
+
+5. 检索结果中，点击一条引用最高的记录，在该记录的页面上，点击一个关键词，进入该关键词的知网节，可以查看该词相关词、相似词、关键文献、相似文献、相关作者和机构
+
+
+
+![](https://cdn.muspimerol.site/20230314173008.png)
+
+
+
+![](https://cdn.muspimerol.site/%E7%81%AB%E7%8B%90%E6%88%AA%E5%9B%BE_2023-03-14T09-30-49.596Z.png)
+
+
+
+#### 三、中国知网——应用
+
+
+1. 检索2020年以来，“推荐系统”的相关文献
+
+
+
+![](https://cdn.muspimerol.site/20230314173500.png)
+
+
+
+2. 检索北京师范大学陈木法院士指导的博士论文
+
+
+
+![](https://cdn.muspimerol.site/20230314174511.png)
+
+
+
+3. 检索2000-2019年有关“向量空间模型”的文献。要求检索词出现在论文的标题中，检索结果按被引频次排序（试比较模糊/精确匹配对检索结果的影响），并导出5篇以上文献
+
+
+
+![](https://cdn.muspimerol.site/20230314203534.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314203619.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314203643.png)
+
+
+
+4. 分别用CAJ格式和PDF格式，下载两篇以上题目的检索结果
+
+
+
+![](https://cdn.muspimerol.site/20230314203811.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314203846.png)
+
+
+
+#### 四、SCIE数据库
+
+
+1. 在《Acta Informatica》杂志中检索2000年以来、篇名中含有XML的文章，并要求检索结果按照新颖度排序
+
+
+
+![](https://cdn.muspimerol.site/20230314204751.png)
+
+
+
+![](https://cdn.muspimerol.site/%E7%81%AB%E7%8B%90%E6%88%AA%E5%9B%BE_2023-03-14T12-50-03.559Z.png)
+
+
+
+2. 检索有关计算机数据通讯网络研究方面的期刊论文列出主要研究方向和研究机构。按被引次数排序，下载几篇热点论文的全文，用DOI号或者标题在（Scopus）上下载
+
+
+
+![](https://cdn.muspimerol.site/20230314205252.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314205403.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314205433.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314210208.png)
+
+
+
+3. 利用“专业检索”检索北京师范大学XX教授近5年发表的论文，并查看其发表论文的H指数
+
+
+
+![](https://cdn.muspimerol.site/20230314211029.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314211110.png)
+
+
+
+![](https://cdn.muspimerol.site/%E7%81%AB%E7%8B%90%E6%88%AA%E5%9B%BE_2023-03-14T13-09-33.791Z.png)
+
+
+
+4. 查找“ 2019 IEEE/CVF CONFERENCE ON COMPUTER VISION AND PATTERN RECOGNITION (CVPR 2019) ”会议上发表的有关表征学习的文章，导出被引用次数最多的几篇文章作为参考文献
+
+
+
+![](https://cdn.muspimerol.site/20230314211344.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314211520.png)
+
+
+
+![](https://cdn.muspimerol.site/20230314212224.png)
+
+
+
+#### 五、Springer
+
+
+1. 检索有关视觉关系检测方面的文献（检索词：visual relationship; recognition）可以检索到多少篇文献？在这些文献中，有几本图书？请描述其中一本书的外部特征（书名、出版社、学科分类等信息）
+
+
+
+![](https://cdn.muspimerol.site/20230314212712.png)
+
+
+
+这本书的书名为《计算机视觉参考指南》（Computer Vision: A Reference Guide），由Katsushi Ikeuchi（日本东京大学教授）主编，由Springer出版。该书是一本参考书，主要为读者提供易于访问的计算机视觉相关信息。该书的目录采用A-Z格式，涵盖了计算机视觉领域内的理论和实践等各个方面，并包括超过240个条目和3700多个参考文献。该书的作者来自学术界和工业界，超过200位，每个条目都有同义词、定义和讨论，并提供了丰富的交叉参考支持，以支持高效、用户友好的搜索，以便用户能够立即访问相关信息。该书适合计算机视觉领域的初学者和其他领域的专业人员访问这些重要信息，但他们可能没有时间阅读完整个相关主题的文本。该书属于计算机科学和图像处理这一学科分类。
+
+
+
+2. 检索“人工神经网络作为TV信号处理器”的有关文献（检索词：neural network;TV or television;signal）可以检索到多少篇文章？Biomedicine方面的Article有多少？请描述其中最新一篇论文的期刊投稿链接（注意TV or television的输入框格选择）
+
+
+
+![](https://cdn.muspimerol.site/20230314213253.png)
+
+# [无标题文档](/blog/gdm85l7w2p0klcn1) (2023年3月9日)
+
+[new-bingo / main.py](https://gitee.com/re-bingo/new-bingo/blob/ff7944438e37cfaf381fcfdf1781bc21a2fbd69c/main.py)
+
+这里写了个简答的python的静态文件服务器
+
+将来准备添加：
+
++ 持久化压缩并将数据保存到磁盘
++ 懒压缩
++ 将 etag 缓存在内存中
+
+# [一个控制ChatGPT的token爆炸的想法](/blog/gaaw48y1ls4getim) (2023年3月9日)
+
+我在设想一种，仿照真实聊天方式的ChatGPT的请求方式。这只是一种优化。
+
+目的：
+
++ 减少token使用，降低成本并提升回复消息大小上限
++ 使请求体大小和token数不会随着时间线性增长
+
+方法：
+
+```toml
+[ system 规则 ] + [ user 最近一个问题 ] + [ assistant 对消息记录的查询请求 ] + [ system 回复 ]
+```
+
++ 返回类型
+
+
+
+---
+
+没成功，ChatGPT不理解我的提示
+
+# [无标题文档](/blog/wwtnpczv6feex3al) (2023年3月8日)
+
+temperature 和 top_p 都是用于控制生成文本多样性的参数，但是它们的实现方式和效果略有不同
+
++ Temperature 是通过对生成文本的概率分布进行操作来达到控制多样性的效果。具体来说，它会将每个 token 的概率值除以一个小于 1 的温度参数，然后再进行 softmax 运算，以获得更平滑的分布。当温度参数接近 0 时，生成的文本会趋于重复和单调；当温度参数较大时，生成的文本会变得更加随机和多样。
++ Top-p（或 nucleus）是通过对生成文本的概率分布中的前几个最可能的 token 进行采样，来达到控制多样性的效果。具体来说，它会根据一个小于等于 1 的阈值参数，把概率分布中累计概率超过该阈值的 token 去掉，再对剩下的 token 进行归一化，从中进行随机采样。当阈值接近 0 时，生成的文本会趋于重复和单调；当阈值较大时，生成的文本会变得更加随机和多样。
+
+总的来说，Temperature 更加直接和自由度较大，因为它不限制生成的 token 种类；而 Top-p 相对来说更加稳定和可控，因为它可限制生成的 token 种类和数量。
+
+---
+
+Temperature 和 Top-p 这两个参数都可以用于控制生成的文本的多样性，让机器生成的文本看起来更加自然、生动、有趣。它们的作用可以类比于人类的写作方式。
+
+Temperature 可以类比为人类的写作时的思考难度，难度越大、要求越高，那写出的作品很可能就更加突出、独特，也更加有价值；但如果思考难度过大，也可能写出来的作品让读者感到繁琐、重复、无聊。因此我们会根据需要，调整和控制自己的思考难度。在机器生成文本的场景下，设置较高的 Temperature 参数值，可以让机器更加随机地选择不同的词汇，写出较独特、有趣的文章，但可能也会带来些许重复的问题。
+
+Top-p 则可以类比为人类写作时的表达方式。我们在写作时，通常会选择最相关、最精准的话语，更多的时候会使用特定的词汇和表达方式，而并非任意选择。机器也可以类似地操作，通过 Top-p 模式，控制机器只从最相关、最精准的单词和短语中进行选取，而过多的随机选择将被控制在一个阈值范围内，写出更为准确和精细的文章。
+
+# [划词检索](/blog/yc7ton53db2obhco) (2023年3月8日)
+
+```javascript
+function showSelection() {
+    let selection = document.getSelection();
+    console.log(selection);
+    return selection.toString();
+}
+
+document.addEventListener("selectionchange", showSelection)
+```
+
+# [作业](/blog/zw1b8sdnb6xtocg1) (2023年3月7日)
+
+### 第1章 分布式计算概述
+1. **什么是分布式计算？它的优缺是什么？**
+
+分布式计算是一种在多台计算机之间分散任务和数据的计算模型。这些计算机通过网络进行通信和协调，以共同完成一个任务或处理一个数据集合。这种计算模型的主要目的是提高计算速度和可伸缩性。
+
+优点：
+
++ 高性能：分布式计算可以同时利用多个计算机的计算资源，从而提高整个系统的处理能力和性能。
++ 可伸缩性：分布式计算可以根据需要添加或移除计算资源，以适应不同规模的计算任务或数据集合。
++ 高可用性：分布式计算系统可以通过复制和备份数据和计算节点来提高系统的可靠性和容错性。
++ 灵活性：分布式计算可以将计算任务分割成小的子任务，以便不同的计算机分别处理不同的子任务，从而提高计算的灵活性和效率。
+
+缺点：
+
++ 复杂性：分布式计算需要在多个计算机之间协调任务和数据，因此系统的设计和实现相对复杂。
++ 数据传输延迟：在分布式计算中，由于需要在不同的计算机之间传输数据，因此可能会出现网络延迟和数据传输瓶颈，影响系统的性能。
++ 安全性：在分布式计算中，需要处理多个计算机之间的数据传输和共享，因此必须采取相应的安全措施来保护系统的数据和机密信息。
+2. **分布式计算与并行计算的区别与联系？**
+
+分布式计算和并行计算都是处理大规模计算任务的方法。
+
+区别：
+
++ 概念不同：分布式计算是在多台计算机之间分散任务和数据的计算模型，而并行计算是在单个计算机或计算机集群中同时执行多个处理器或核的计算任务。
++ 系统结构不同：分布式计算通常由多台独立的计算机组成，这些计算机通过网络进行通信和协调；而并行计算通常由多个处理器或核组成，这些处理器或核可以在同一台计算机上或在计算机集群中。
++ 编程模型不同：在分布式计算中，程序员需要考虑如何将任务和数据分布到不同的计算机上，并进行协调和通信；而在并行计算中，程序员需要考虑如何将计算任务划分成多个子任务，并协调这些子任务的执行。
+
+联系：
+
++ 目标相同：分布式计算和并行计算的目标都是提高计算速度和处理能力，以应对大规模计算任务。
++ 技术相互借鉴：分布式计算和并行计算的技术在某些方面是相互借鉴的。例如，分布式计算中的分布式文件系统可以用于并行计算中的数据共享和访问。
++ 应用领域相同：分布式计算和并行计算都可以应用于科学计算、大数据分析、图像处理、人工智能等领域。
+3. **简述一下什么是CAP定理？举例说明CAP不能同时满足。**
+
+CAP定理是分布式计算领域的一个基本原则，它指出在一个分布式系统中，不可能同时满足以下三个要求：
+
++ 一致性（Consistency）：所有节点在同一时间看到的数据是相同的，即数据更新操作在所有节点上都是同时完成的。
++ 可用性（Availability）：系统能够保证在一定时间内对于用户的请求都能够返回响应结果，即系统保证了服务的连续性。
++ 分区容错性（Partition Tolerance）：系统能够在遇到网络分区（网络故障或网络延迟等）的情况下仍然能够继续工作。
+
+举例：假设有一个分布式系统用于在线购物，系统出现网络故障或分区
+
+如果系统优先保证一致性，那么系统在遇到网络分区时，为了保证数据一致性，可能会牺牲可用性，因为系统需要等待所有节点的数据同步完成才能提供服务，这就可能导致用户无法访问系统，即系统不可用。
+
+如果系统优先保证可用性，那么系统在遇到网络分区时，可能会出现数据不一致的情况，因为各个节点上的数据可能存在时间差异，这就可能导致用户在购物时看到的商品信息不一致，即系统缺乏一致性。
+
+如果系统优先保证分区容错性，那么系统在遇到网络分区时，可能会出现数据不一致或系统不可用的情况，但这样可以保证整个系统在网络分区恢复之后仍然能够正常工作。
+
+因此，在分布式系统设计和实现中，需要根据具体的应用场景和需求，权衡一致性、可用性和分区容错性的关系，选择合适的策略和技术来实现系统的要求。
+
+4. **简述一下什么BASE理论，它与CAP的关系。**
+
+BASE理论是分布式计算领域的另一个重要理论，它指出在分布式系统中，不一定要求满足ACID（原子性、一致性、隔离性和持久性）的特性，而可以追求更高的可用性和可扩展性。
+
+BASE是指以下三个要素：
+
++ 基本可用（Basically Available）：系统能够保证在出现故障或性能下降的情况下，仍然能够正常响应用户请求，即系统保证了服务的连续性。
++ 软状态（Soft state）：系统允许存在一段时间的数据不一致，即允许一些数据在一段时间内是过期的，而不要求立即更新所有节点上的数据，从而提高系统的可用性和性能。
++ 最终一致性（Eventually Consistent）：系统保证在一定时间内，所有节点的数据最终达到一致的状态，即系统允许一段时间的数据不一致，但最终会达到一致状态。
+
+与CAP理论相比，BASE理论更加强调分布式系统的可用性和容错性，而相对弱化一致性。
+
+### 第2章 分布式计算泛型概述
+1. **分析qq和微信采用的通信技术**
+
+qq和微信都使用了TCP协议和HTTP协议，没有用到UDP协议。TCP协议是一种面向连接，可靠的传输协议，HTTP协议是一种应用层的请求-响应协议。qq和微信通讯中使用了HTTP短连接和TCP长连接，并没有用到UDP，其中登陆验证和头像身份信息及日志等功能采用的HTTP，文本消息、语音消息、视频消息、图片消息这些使用的是TCP长连接。通过心跳包来维护长连接状态，300S一个心跳。qq还支持语音和视频聊天，显然,这种场景用点对点的P2P技术最合适，在浏览器里,可以用WebRTC实现.WebRTC里实现点对点的P2P通信,需要一个服务器来帮助建立连接
+
+2. **比较分析 google 的 gRPC, facebook thrift, Hadoop avro**
+
+gRPC、Thrift和Avro都是一些流行的RPC框架，它们可以让不同语言和平台的服务之间进行高效的通信。它们都有自己的优缺点，根据不同的场景和需求，可以选择合适的框架。
+
++ gRPC是Google开源的基于HTTP/2和Protobuf的RPC框架，它支持多种语言和平台，提供了双向流、拦截器、负载均衡等特性。gRPC的优点是性能高、接口定义简洁、跨语言支持好、支持流式传输；缺点是不支持浏览器客户端、对网络环境要求高、Protobuf不支持map等复杂类型。
++ Thrift是Facebook开源的基于TCP和二进制协议的RPC框架，它也支持多种语言和平台，提供了多种传输层和协议层的选项。Thrift的优点是性能更高、序列化和RPC一站式解决、IDL支持map等复杂类型；缺点是文档较少、功能较少、跨语言兼容性较差。
++ Avro是Apache开源的基于JSON和二进制协议的数据序列化框架，它也可以用作RPC框架，但主要用于大数据场景。Avro的优点是模式演进灵活、序列化速度快、数据压缩率高；缺点是功能单一、IDL不够强大、对Java支持最好。
+3. **什么是P2P泛型，它的实现原理是什么，举例说明。**
+
+P2P泛型是一种无中心服务器的对等网络泛型，即Peer-to-Peer的缩写，翻译为点对点或者端对端，也称为对等计算。P2P是一种以非集中化方式使用分布式资源来完成一些关键任务的系统和应用。
+
+P2P泛型的实现原理是利用网络中的每个节点（Peer）既可以作为客户端又可以作为服务器，相互之间直接通信和交换数据，而不需要依赖于中心服务器。这样可以提高系统的可扩展性、容错性、效率和安全性。
+
+举例：比特币就是一个基于P2P泛型的分布式系统，它使用了一种叫做区块链的技术来记录和验证所有的交易记录，并通过共识机制来保证网络中各个节点之间的数据一致性。
+
+4. **什么是微服务框架，它的优势？**
+
+微服务框架是一种架构模式，它将应用程序划分为一组小型的、自治的、松耦合的服务，每个服务负责一个业务领域，并且可以独立部署、扩展和更新。微服务框架的优势有：
+
++ 提高了系统的可维护性、可测试性和可复用性
++ 降低了系统的复杂度和耦合度
++ 增强了系统的灵活性和可扩展性
++ 支持了不同技术栈和平台的选择
++ 促进了团队的协作和交付
+5. **什么是Rest API (Http RestFul)和RPC 的区别？**
+
+Rest API (Http RestFul)和RPC是两种不同的通信协议和架构风格，它们在以下方面有所不同：
+
++ 架构风格：RPC是基于服务调用的架构，客户端和服务器之间通过远程调用实现数据传输和处理；而RestFul是基于资源的架构，客户端通过URI访问服务器上的资源，并使用HTTP方法（如GET、POST、PUT、DELETE）进行操作。
++ 传输协议：RPC可以使用多种传输协议，如TCP、UDP、HTTP等，而RestFul只能使用HTTP作为传输协议。
++ 数据格式：RPC可以使用多种数据格式，如XML、JSON、二进制等，而RestFul通常使用JSON或XML作为数据格式。
++ 性能：RPC由于使用二进制方式进行通信，所以数据传输量更小，性能更高；而RestFul由于使用HTTP封装数据，所以数据传输量更大，性能相对较低。
+
+根据不同的场景和需求，可以选择合适的通信协议。一般来说，如果需要跨平台、跨语言、易于理解和扩展的接口，可以选择RestFul；如果需要高效、稳定、安全的接口，可以选择RPC。
+
+# [ChatCLI](/blog/qqrkfxr94rnpry6p) (2023年3月7日)
+
+```shell
+ffmpeg -i "oCam 56.mp4" -vf "setpts=0.25*PTS,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse=new=1" -r 30 "oCam 56.gif"
+```
+
+# [typeflow](/blog/vz8fq164oaymiz6y) (2023年3月2日)
+
+最近由gRPC看到了protobuf，了解了一些IDL，我不太喜欢他们这种code-gen风格
+
+我想发明一种序列化协议
+
++ 可以在文件头定义类型或者另外定义类型
++ 定义类型为：`id`+`type`
++ `type`支持级联的方式
++ 数据是连续的`id`+`len`+`data`，如果是基本数据类型则不用`len`
+
+---
+
+type定义部分（用json描述，但也可以很容易地改变为"类型+(长度)+值"的结构
+
++ id
+    - 列表
+    - object / structure
+    - 基本数据类型……
+    - 剩下的才需要定义
++ size（0则为不固定，需要填）
++ data: list
+    - type: id
+    - name: str
+
+---
+
+data数据部分，每个单元为：
+
++ 由id得倒type，后一个不是size就是data
++ 递归地parse
+
+
+
++ 一个int代表type定义部分的长度
++ 一个最后得出的 int id
++ 一个代表类型的
+    - 0 structure
+    - 1 bool
+    - 2 int
+    - 3 float
+    - 1 string
+
+对于structure
+
++ 一个int代表type定义部分的长度
+
+---
+
+1. Data类，用类型标注。装饰器识别类型标注，生成树结构 —— 这个很容易
+2. 可以dumps()一个Data类，输出为json/binary
+    1. 自身id
+    2. 属性名，属性id，属性size
+3. 可以dumps()一个Data实例
+    1. 如果是基本类型，输出[类型id]+[可能有size]+[bytes(self.data)]
+    2. 如果不是基本类型（是对象类型）
+        1. 第三部分变成[b"".join(i.encode() for i in ...)]
+        2. 第二部分如果需要，就变成len(...)
+    3. dumps()一个Data实例就是调用它的encode()方法
+4. 可以decode一个二进制串
+    1. 读其id，如果是基本类型，输出它本身
+    2. 如果是对象类型，逐个将它的data链接为自己的属性
+
+# [解析pdf的一些尝试](/blog/czi6h33an3o3h3oc) (2023年2月25日)
+
++ 使用`pdfplumber`
+
+```python
+import pdfplumber
+from itertools import pairwise
+
+
+class Document:
+    def __init__(self, filename):
+        self.pdf = pdfplumber.open(filename)
+
+    def get_all_words(self):
+        for page in self.pdf.pages:
+            for word in page.extract_words():
+                yield word["text"]
+
+    def get_joined_tokens(self):
+        for i, j in pairwise(self.get_all_words()):
+            yield i + j
+
+    def get_critical(self):
+        for token in self.get_joined_tokens():
+            if "信息技术" in token and "投入" in token:
+                print(f"\n {token} \n")
+```
+
+# [爬取东方证券上的券商数据](/blog/ocbig39frg5azmge) (2023年2月25日)
+
+代码写的比较混乱：
+
+```python
+from httpx import Client
+from json import loads
+from alive_progress import alive_it
+
+client = Client(
+    headers={
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.50"
+    }
+)
+
+
+def parse_broker(broker_id):
+    url = f"http://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/ZYZBAjaxNew?type=1&code={broker_id}"
+    res = client.get(url)
+    try:
+        data: list = res.json()["data"]
+    except KeyError:
+        print(broker_id)
+        return
+
+    total = [i["TOTALOPERATEREVE"] for i in data]
+    profit = [i["PARENTNETPROFIT"] for i in data]
+
+    return total, profit
+
+
+def get_brokers():
+    url = "https://search-api-web.eastmoney.com/search/jsonp?cb=jQuery35105205651282387875_1677270053469&param=%7B%22uid%22%3A%22%22%2C%22keyword%22%3A%22%E8%AF%81%E5%88%B8%22%2C%22type%22%3A%5B%22codetableLabelWeb%22%5D%2C%22client%22%3A%22web%22%2C%22clientType%22%3A%22wap%22%2C%22clientVersion%22%3A%22curr%22%2C%22param%22%3A%7B%22codetableLabelWeb%22%3A%7B%22pageIndex%22%3A1%2C%22pageSize%22%3A50%2C%22preTag%22%3A%22%22%2C%22postTag%22%3A%22%22%2C%22isHighlight%22%3Afalse%2C%22label%22%3A%22AB_STOCK%22%7D%7D%7D&_=1677270053474"
+    res = client.get(url)
+    text = res.text
+    json = text[text.index("(") + 1: text.index(")")]
+    data = loads(json)
+    ids = [i["securityType"][:2] + i["code"] for i in data["result"]["codetableLabelWeb"]["labelList"][0]["quoteList"]]
+    return ids
+
+
+if __name__ == '__main__':
+    all_data = {i: parse_broker(i) for i in alive_it(get_brokers())}
+
+```
+
+结果为：
+
+```json
+{
+  "SH600030": [
+    [
+      76523716526.93,
+      54382730241.56,
+      43139697642.01,
+      37220708075.49,
+      43291634080.53,
+      38001695917.06,
+      56013436032.55,
+      29197531133.19,
+      16115272156.7
+    ],
+    [
+      23099624927.77,
+      14902324215.75,
+      12228609723.82,
+      9389895989.94,
+      11433264545.6,
+      10365168588.41,
+      19799793374.33,
+      11337193825.46,
+      5243916979.11
+    ]
+  ],
+  "SH600109": [
+    [
+      7126630308.69,
+      6062801499.95,
+      4349514734,
+      3766119304.82,
+      4390587320.59,
+      4671462425.22,
+      6748452672.79,
+      2721722488.96,
+      1546260843.9
+    ],
+    [
+      2317318717,
+      1862640224.66,
+      1298539701.33,
+      1010492527.44,
+      1201432521.06,
+      1298730528.61,
+      2359776226.13,
+      836489632.37,
+      315915955.64
+    ]
+  ],
+  "SH600369": [
+    [
+      3096080385.1,
+      3169571453.97,
+      3488837437.18,
+      2744154393.47,
+      3060764762.1,
+      3631762015.75,
+      8496799180.16,
+      3674829197.88,
+      1964126453.35
+    ],
+    [
+      1038152895.95,
+      1091487407.23,
+      1042001454.67,
+      226842591.87,
+      668800161.74,
+      917572729,
+      3554650541.89,
+      1339048940.41,
+      630328806.7
+    ]
+  ],
+  "SH600837": [
+    [
+      43205467448.92,
+      38219828310.55,
+      34860320039.44,
+      23765014627.26,
+      28221667163.35,
+      28011014594.51,
+      38086267720.37,
+      17978474435.1,
+      10454954029.51
+    ],
+    [
+      12826517065.48,
+      10875396346.26,
+      9523247834.58,
+      5211093198.87,
+      8618423293.06,
+      8043334519.3,
+      15838850897.61,
+      7710623597.6,
+      4035024048.18
+    ]
+  ],
+  "SH600906": [
+    [
+      2524296711.14,
+      2049789593.71,
+      1813260306.57,
+      1460659256.36,
+      1469446884.96,
+      1826594490.25,
+      3901471990.05,
+      2019138077.72,
+      1061354574.54
+    ],
+    [
+      680476070.18,
+      531912511.18,
+      609173507,
+      73632352.15,
+      296796161.76,
+      656518792.32,
+      2044799148.99,
+      832084944.53,
+      231616429.41
+    ]
+  ],
+  "SH600909": [
+    [
+      3483420429.82,
+      3356521373.89,
+      3231605381.54,
+      1761325423.29,
+      1917696780.54,
+      1733047755.13,
+      3816204907.49,
+      1689616580.33,
+      941343121.09
+    ],
+    [
+      1424067013.48,
+      1267903291.32,
+      1108359114.76,
+      553744956.32,
+      649726827.62,
+      602013378.58,
+      1865072011.2,
+      686113287.1,
+      187193507.17
+    ]
+  ],
+  "SH600918": [
+    [
+      13149669222.3,
+      10352224019.84,
+      9708987193.91,
+      7025218940.45,
+      8168926941.65,
+      8347371893.3,
+      15045289807.52,
+      5874417405.85,
+      4081226500
+    ],
+    [
+      3200009354.36,
+      2525298270.86,
+      2249463067.12,
+      1009145069.71,
+      1795153414.05,
+      2451977469.41,
+      6062485984.47,
+      1873533391.99,
+      869628500
+    ]
+  ],
+  "SH600958": [
+    [
+      24370394956.88,
+      23133946765.29,
+      19052097313.75,
+      10303490892.44,
+      10531511324.13,
+      6876188934.65,
+      15434705061.27,
+      5499603011.02,
+      3243936742.44
+    ],
+    [
+      5371496261.61,
+      2722988518.72,
+      2435079764.1,
+      1231013208.91,
+      3553626384.73,
+      2313974857.75,
+      7325224517.53,
+      2341671183.75,
+      1007421947.97
+    ]
+  ],
+  "SH600999": [
+    [
+      29428896087.24,
+      24277670240.59,
+      18708369944.73,
+      11321611555.03,
+      13353213641.86,
+      11695453558.82,
+      25291794057.95,
+      11002468274.67,
+      6089160550.68
+    ],
+    [
+      11645065137.15,
+      9491638796.98,
+      7282380829.33,
+      4424985940.97,
+      5785955137.26,
+      5403450595.57,
+      10908748759.12,
+      3850672721.41,
+      2232090360.47
+    ]
+  ],
+  "SH601059": [
+    [
+      3803275799.41,
+      3162361349.94,
+      2222965979.52,
+      1658818758.06,
+      1762887403.74,
+      2242660878.57,
+      5234510738.09,
+      3097204862.03,
+      1661336185.25
+    ],
+    [
+      1171719584.88,
+      819688097.83,
+      210067991.93,
+      69957389.3,
+      172176509.45,
+      435328833.94,
+      2082044520.29,
+      913783708.6,
+      324659377.97
+    ]
+  ],
+  "SH601108": [
+    [
+      6407610366.67,
+      6528040616.43,
+      4952243604.81,
+      3167998370.32,
+      4016866764.74,
+      4255580080.75,
+      10241340331.37,
+      4502280609.9,
+      2259136500
+    ],
+    [
+      2566175327.88,
+      2291596618.3,
+      1873062523.33,
+      818836066.51,
+      1503931618.18,
+      1785885436.51,
+      3075405936.63,
+      855682830.24,
+      326433600
+    ]
+  ],
+  "SH601136": [
+    [
+      2113493479.32,
+      1657983958.5,
+      1339618763.5,
+      815247500,
+      930567402.63,
+      1102020020.79,
+      1633423521.59,
+      779189943.03,
+      436445716.61
+    ],
+    [
+      858599660.48,
+      610616529.86,
+      433970302.57,
+      174816400,
+      315419298.15,
+      422830229.13,
+      716586155.66,
+      273283091.03,
+      145426328.76
+    ]
+  ],
+  "SH601162": [
+    [
+      4405719313.76,
+      4359629544.39,
+      3846100730.48,
+      3277404101.33,
+      2986161700.23,
+      3097919718.74,
+      3213163664.24,
+      1112169600.14,
+      668629269.05
+    ],
+    [
+      586354789.34,
+      454871365.71,
+      307767555.05,
+      302851495.02,
+      410130726.93,
+      671567746.98,
+      937586413.65,
+      207746164.65,
+      100802284.59
+    ]
+  ],
+  "SH601198": [
+    [
+      5375748343.46,
+      5687210822.32,
+      4474704697.42,
+      3314496768.38,
+      3633172002.15,
+      3573200156.02,
+      5363008065.25,
+      2597774148.38,
+      2033866487.14
+    ],
+    [
+      1652243606.93,
+      1539672462.5,
+      1220698859.37,
+      1008047034.4,
+      1309249598.89,
+      1352929314.59,
+      2044690319.02,
+      1040597699.34,
+      668493992.39
+    ]
+  ],
+  "SH601236": [
+    [
+      6733758206.26,
+      5585163238.85,
+      2065728507.8,
+      1201433406.34,
+      1114215786.02,
+      975655348.13,
+      1974885800,
+      1214603799.66,
+      764936044.28
+    ],
+    [
+      1576229463.11,
+      1413122029.42,
+      837541304.24,
+      386464525.52,
+      363082587.7,
+      332827972,
+      1042533800,
+      475496800.72,
+      218206973.48
+    ]
+  ],
+  "SH601375": [
+    [
+      4420848497.96,
+      3103301696.87,
+      2372526991.25,
+      1649661561.68,
+      2147620089.37,
+      2008852561.18,
+      4004355251.9,
+      1808216779.12,
+      1165234691.42
+    ],
+    [
+      513210337.25,
+      104302038.78,
+      58222745.44,
+      65787558.62,
+      441982592.67,
+      718646243.11,
+      1405500406.97,
+      562290151.78,
+      252934345.88
+    ]
+  ],
+  "SH601377": [
+    [
+      18972168754.91,
+      17579687208.8,
+      14249535861.49,
+      6499373437.14,
+      8820388610.14,
+      7588604128.9,
+      11540612657.75,
+      5609064896.32,
+      3099526553.02
+    ],
+    [
+      4743070343.36,
+      4003314315.75,
+      1762537169.01,
+      135348071.2,
+      2284896126.79,
+      2046321431.54,
+      4167150649.35,
+      1781589789.14,
+      669769790.41
+    ]
+  ],
+  "SH601456": [
+    [
+      2966631400.54,
+      1876340313.32,
+      1619382372.77,
+      989719000,
+      1262535000,
+      1836463830.87,
+      3079072000,
+      1668332000,
+      1000977188.45
+    ],
+    [
+      888639753.44,
+      587871418.22,
+      521344151.14,
+      50588000,
+      361492000,
+      610067590.12,
+      1471438000,
+      714955000,
+      269761799.58
+    ]
+  ],
+  "SH601555": [
+    [
+      9245491796.09,
+      7356492441.1,
+      5130373462.68,
+      4161925425.29,
+      4144240488.37,
+      4645225993.82,
+      6830161925.32,
+      3240982527.87,
+      1609668051.56
+    ],
+    [
+      2391778941.16,
+      1707245952.72,
+      1037174921.82,
+      358411175.29,
+      788122751.35,
+      1498288506.38,
+      2708494901.88,
+      1115452050.88,
+      392166585.94
+    ]
+  ],
+  "SH601688": [
+    [
+      37905443652.44,
+      31444546120.28,
+      24863012026.33,
+      16108262271.57,
+      21108534070.71,
+      16925935043.92,
+      26261939871.49,
+      12062303844.09,
+      7182298873.45
+    ],
+    [
+      13346106674.68,
+      10822496891,
+      9001644018.52,
+      5032737702.7,
+      9276520447.68,
+      6270611459.43,
+      10696870875.92,
+      4486276132.08,
+      2219735131.23
+    ]
+  ],
+  "SH601696": [
+    [
+      3333518749.21,
+      3244172276.95,
+      2907667567.52,
+      2755098098.64,
+      3067525846.44,
+      2830493647.57,
+      4947783600,
+      2578182507.77,
+      1290676825.47
+    ],
+    [
+      961625314.57,
+      883226868.37,
+      798252971.86,
+      704986351.02,
+      1067129839.52,
+      1065698139.13,
+      2076890000,
+      971638637.24,
+      317617721.19
+    ]
+  ],
+  "SH601788": [
+    [
+      16706575061.43,
+      15866343425.84,
+      10057362378.64,
+      7712277101.82,
+      9838147762.07,
+      9164639102.5,
+      16571087246.74,
+      6601422929.86,
+      4019623600.22
+    ],
+    [
+      3484331817.14,
+      2334078122.69,
+      567944886.3,
+      103322859.82,
+      3016470221.54,
+      3013019180.75,
+      7646516077.13,
+      2068307502.08,
+      205836529.58
+    ]
+  ],
+  "SH601878": [
+    [
+      16418113012.51,
+      10636513832.41,
+      5659478638.09,
+      3694801371.08,
+      4610873972.96,
+      4594902987.59,
+      6188903157.42,
+      3226844444.08,
+      1914709864.7
+    ],
+    [
+      2195682763.42,
+      1627166025.65,
+      967557059.43,
+      736957357.88,
+      1063507778.68,
+      1240892309.04,
+      1834457999.29,
+      750242395.43,
+      403230607.26
+    ]
+  ],
+  "SH601901": [
+    [
+      8621202071.85,
+      7541809241.46,
+      6594941981.46,
+      5722593356.59,
+      5961533467.39,
+      7759738629.42,
+      10914989706.62,
+      4899699230.06,
+      3453058407.18
+    ],
+    [
+      1822282069.48,
+      1096492270.9,
+      1007595631.59,
+      661365890.51,
+      1452957913.42,
+      2569336882.57,
+      4064211991.64,
+      1796097769.62,
+      1112201945.05
+    ]
+  ],
+  "SH601990": [
+    [
+      2741633842.89,
+      2365296802.01,
+      2201777265.63,
+      1233927907.56,
+      1388473496.81,
+      1499611313.01,
+      3000069643.36,
+      1421284600,
+      1014937100
+    ],
+    [
+      977274472.85,
+      809594147.08,
+      709811700.41,
+      231780216.69,
+      410602756.36,
+      493557293.51,
+      1413026763.57,
+      554444200,
+      270930200
+    ]
+  ],
+  "SZ000562": [
+    [
+      4118510581.83,
+      3295868934.67,
+      2353703631.17,
+      3304715081.65,
+      2919903998.54,
+      1598468309.64,
+      4435140101.43,
+      743496322.22,
+      -16990504.61
+    ],
+    [
+      1227292426.2,
+      867680007.09,
+      645591117.7,
+      1306379570.94,
+      1151650925.85,
+      541647861.52,
+      2038300442.53,
+      319354764.8,
+      8222470.93
+    ]
+  ],
+  "SZ000686": [
+    [
+      7477801881.89,
+      6609613343.83,
+      7968795586.85,
+      6780105834.67,
+      4934452308.92,
+      4481994658.63,
+      6745760224.97,
+      3090984262.41,
+      1767040160.7
+    ],
+    [
+      1623994253.62,
+      1333325683.24,
+      1007080243.05,
+      301352976.41,
+      666946558.98,
+      1314941187.9,
+      2630058890.07,
+      1060025355.59,
+      480057377.95
+    ]
+  ],
+  "SZ000728": [
+    [
+      6109751584.75,
+      4528625617.88,
+      3198808368.09,
+      2537907348.38,
+      3510702162.26,
+      3375696421.01,
+      5773382071.47,
+      3486036145.6,
+      1986134237.63
+    ],
+    [
+      1909272808.14,
+      1370096738.86,
+      914361564.54,
+      670370829.86,
+      1203746140.88,
+      1405404397.83,
+      2784229089.24,
+      1371744662.42,
+      665338486.33
+    ]
+  ],
+  "SZ000750": [
+    [
+      5170261555.13,
+      4482015217.4,
+      3560208077.82,
+      2122602077.8,
+      2658882600.15,
+      3837926394.16,
+      4959157199.17,
+      2544981928.34,
+      1818760812.32
+    ],
+    [
+      764619396.32,
+      725376273.77,
+      487716781.47,
+      73142828.57,
+      375760243.11,
+      1015511746.44,
+      1792923492.86,
+      690035776.56,
+      308745854.57
+    ]
+  ],
+  "SZ000776": [
+    [
+      34249988400.75,
+      29153488259.04,
+      22809882495.06,
+      15270373023.59,
+      21639300625.74,
+      20714347818.02,
+      33446639919.41,
+      13394972903.67,
+      8207540703.98
+    ],
+    [
+      10854115527.4,
+      10038134647.91,
+      7538921643.02,
+      4300126341.29,
+      8595399060.76,
+      8030106628.93,
+      13201014064.72,
+      5022567778.39,
+      2812501034.32
+    ]
+  ],
+  "SZ000783": [
+    [
+      8623165139.08,
+      7784121537.42,
+      7032892044.09,
+      4369208710.77,
+      5664107738.63,
+      5857472375.4,
+      8499643780.49,
+      4548208653.84,
+      3047682604.6
+    ],
+    [
+      2409539473.91,
+      2085377418.25,
+      1665799971.58,
+      257201958.69,
+      1545112374.32,
+      2206576040.14,
+      3493365230.21,
+      1705439086.94,
+      1006554243.06
+    ]
+  ],
+  "SZ002500": [
+    [
+      3993936447,
+      3341972041,
+      5102180737,
+      6851136626,
+      4392996390,
+      2345649721,
+      3838500324,
+      1959188535,
+      1321203859
+    ],
+    [
+      803609850,
+      750927346,
+      510183708,
+      221763054,
+      408901264,
+      467685616,
+      1438829425,
+      586294710,
+      261755432
+    ]
+  ],
+  "SZ002673": [
+    [
+      6751022663.82,
+      5184163900.03,
+      3680544587.4,
+      2237341729.03,
+      3169944961.76,
+      3406329331.96,
+      5640878792.18,
+      1938470480.53,
+      1132328589.81
+    ],
+    [
+      1409991295.62,
+      1117003407.01,
+      610163902.78,
+      200433916.35,
+      752270907.74,
+      1124621115.06,
+      1972662987.16,
+      663854622.42,
+      275147001.3
+    ]
+  ],
+  "SZ002736": [
+    [
+      23818037003.89,
+      18784071244.98,
+      14092914615.73,
+      10030931922.89,
+      11923610192.94,
+      12746787440.92,
+      29139131599.01,
+      11792322619.69,
+      6771922266.26
+    ],
+    [
+      10114758795.89,
+      6615739471.11,
+      4910187206.37,
+      3423396646.18,
+      4574777573.93,
+      4556152321.66,
+      13949033996.79,
+      4927564849.42,
+      2101743057.35
+    ]
+  ],
+  "SZ002926": [
+    [
+      5121995492.55,
+      4682755761.6,
+      3937424572.74,
+      2545233363.8,
+      2671626421.94,
+      2710412262.05,
+      6010918733.46,
+      3168013932.48,
+      1966121259.41
+    ],
+    [
+      1632123985.51,
+      1900327802.56,
+      1431530824.81,
+      845132348.07,
+      1019124805.62,
+      1666499975.29,
+      2681090347,
+      691276329.52,
+      654193170.15
+    ]
+  ],
+  "SZ002939": [
+    [
+      7756796088.56,
+      6868697463.16,
+      3899142493.53,
+      2753299922.53,
+      2957833928.02,
+      3483558655.04,
+      5012184673.07,
+      2470089178.92,
+      1550385558.88
+    ],
+    [
+      1765610928.44,
+      1501641468.72,
+      992167143.29,
+      585699848.79,
+      889834897.37,
+      973292578.86,
+      1828276010.88,
+      720553874.51,
+      390940683.1
+    ]
+  ],
+  "SZ002945": [
+    [
+      1395355967.1,
+      1489800611.89,
+      1010603099.5,
+      1000843794.61,
+      1067185983.74,
+      1318353295.03,
+      1668857767.74,
+      706314130.44,
+      643707107.24
+    ],
+    [
+      483726211.7,
+      812496331.45,
+      441666561.99,
+      344672483.7,
+      463150384.86,
+      589118277.95,
+      815994245.57,
+      188093452.91,
+      77059907.92
+    ]
+  ]
+}
+```
+
+# [《生物大数据》林魁](/blog/cgz83x2x8h9uogg6) (2023年2月24日)
+
+1. 组学数据的一些基本概念
+2. 参考基因组数据的模型与基本运算
+3. 转录组数据的基本模型与分析
+4. 新进展
+    1. 组学数据整合的基本框架与分析
+    2. 群体泛基因组的基本数据结构与分析
+
+# [《数据可视化》尹乾](/blog/zit15rovu1w5le4k) (2023年2月23日)
+
+Laidlaw, D. Scientific visualization course
+
+[https://cs.brown.edu/courses/cs237/2014/](https://cs.brown.edu/courses/cs237/2014/)
+
+## 第1章 数据可视化概述
+### 什么是数据
+进行记录、可以鉴别、符号
+
+可识别的、抽象的符号
+
+---
+
+数据经过加工后成为信息
+
+数据是信息的表现形式和载体，信息是数据的内涵
+
+数据可视化是数据中信息的可视化
+
+---
+
+科学可视化 / 信息可视化
+
+信息可视化
+
++ 时变数据
++ 层次数据
++ 网络结构数据
++ 非结构化数据
+
+# [《大数据原理与技术》陈红顺](/blog/os6k2v89ydff8poy) (2023年2月23日)
+
+## 第1章 大数据概述
+### 1.1 产生背景和发展历程
++ 存储设备容量不断增加
++ CPU处理能力大幅增长
++ 网络带宽不断增加
+
+数据产生方式的变革促成大数据时代的来临
+
++ 运营式系统阶段
++ 用户原创内容阶段
++ 感知式系统阶段
+
+### 1.2 大数据的概念
+大数据是需要**新处理模式**才能具有更强的决策力、洞察发现力和流程优化能力来适应海量、高增长率和多样化的**信息资产**
+
+大数据是指一种规模大到在获取、存储、管理、分析方面大大超出了传统数据库软件工具能力范围的数据集合，具有海量的数据规模、快速的数据流转、多样的数据类型和价值密度低四大特征
+
+---
+
++ 数据规模大
++ 数据多样化
+    - 大数据是由结构化和非结构化数据组成的
+    - 10%的结构化数据，存储在数据库中
+    - 90%的非结构化数据，与人类信息密切相关
++ 数据变化快
++ 价值密度低
+
+---
+
+#### 云计算、大数据、物联网的区别与联系
++ 云计算为大数据提供了技术基础，大数据为云计算提供用武之地
++ 物联网是大数据的重要来源，大数据技术为物联网数据分析提供支撑
++ 云计算为物联网提供海量数据存储能力，物联网为云计算技术提供了广阔的应用空间
+
+---
+
+人工智能三大基石
+
++ 数据 —— 大数据
++ 算力 —— 云计算
++ 算法 —— 机器学习/深度学习
+
+### 1.3 大数据的关键技术
+#### 数据采集
+利用ETL工具将分布的、异构数据源中的数据如关系数据、平面数据文件等，抽取到临时中间层后进行清洗、转换、集成，最后加载到数据仓库/数据集市中，成为联机分析处理、数据挖掘的基础；或者也可以把实时采集的数据作为流计算系统的输入，进行实时处理分析
+
+> ETL是指从数据源中提取（Extract）、转换（Transform）和加载（Load）数据到目标数据库或数据仓库的过程。在数据采集领域，ETL通常是指将各种异构数据源的数据收集起来，经过清洗、处理、转换等一系列操作后，将数据导入到统一的目标数据仓库中，以方便后续的分析和挖掘。这个过程中，需要用到各种数据处理和转换技术，如数据清洗、数据规范化、数据聚合等等。
+>
+
+#### 数据存储与管理
+利用分布式文件系统、数据仓库、关系数据库、NoSQL数据库、云数据库等，实现对结构化、半结构化和非结构化海量数据的存储和管理
+
+#### 数据处理与分析
+利用分布式并行编程模型和计算框架，结合机器学习和数据挖掘算法，实现对海量数据的处理和分析
+
+#### 数据安全和隐私保护
+从大数据中挖掘潜在的巨大商业价值和学术价值的同时，构建隐私数据保护体系和数据安全体系，有效保护个人隐私和数据安全
+
+#### 数据可视化
+将数据和分析结果转化为图形图像，实现对稀疏、杂乱、复杂的数据深入洞察，发现背后有价值的信息
+
+---
+
+#### 两大核心技术
++ 分布式存储
++ 分布式处理（计算）
+
+### 1.4 大数据处理（计算）模式
+#### 数据集分类
++ 有界数据集：具有时间边界，数据有一定的起始和结束时间
++ 无界数据集：数据从开始生成就一直不断地产生新的数据
+
+#### 主要处理模式
++ 批处理：有界数据，高吞吐，高延迟
++ 流处理：流式数据，低延迟，低吞吐
+
+#### 常见大数据处理框架
++ 仅批处理：Hadoop MapReduce
++ 仅流处理：Storm、Samza
++ 混合：Spark、Flink
+    - Spark：核心是批处理，流处理被定义为微批处理，商业应用成熟
+    - Flink：核心是流处理，批处理被定义为有限流处理，设计理念先进
+
+#### 大数据处理模式
+| 大数据处理模式 | 解决问题 |
+| --- | --- |
+| 批处理 | 针对大规模数据的批量处理 |
+| 流处理 | 针对刘数据的实时计算 |
+| 图处理 | 针对大规模图结构数据的处理 |
+| 交互式查询 | 大规模数据的存储管理和查询分析 |
+
+
+### 1.5 大数据处理架构Hadoop
++ 运行于大规模普通服务器上
++ 用于大数据存储、处理
++ 一种分布式存储系统和分布式计算框架
+
+---
+
++ 能为庞大的计算机集群提供可靠的、可伸缩的应用层计算和存储支持
+    - 它允许使用简单的编程模型模型跨计算机集群分布式处理大型数据集，并且支持在单台计算机到几千台计算机之间进行扩展
+    - 可以在计算机集群的顶部提供高可用性服务，虽然每台计算机都很容易出现故障
++ Hadoop使用Java开发，可以在不同硬件平台的计算机上部署和使用
++ 核心组件包括分布式文件系统HDFS和MapReduce
+
+#### Hadoop 运行模式
++ 单机模式：只在一台机器上运行，存储采用本地文件系统
++ 伪分布式：存储采用HDFS文件系统，用Java进程模拟小规模集群
++ 完全分布式：运行在真实的Hadoop集群上
+
+---
+
+#### 大数据系统架构
++ Lambda架构
++ Kappa架构
+
+### 1.6 大数据的影响
+大数据带来的思维变革
+
++ 全面而非抽样
++ 效率而非精确
++ 相关而非因果
+
+### 1.7 大数据的应用
+---
+
+### 2.1 分布式文件系统
+分布式文件系统把文件分布存储到多个计算机节点上，成千上万的计算机节点构成计算机集群
+
+#### 2.1.2 分布式文件系统的设计需求
++ 透明性：具备访问透明性、位置透明性、性能和伸缩透明性
++ 并发控制：客户端对文件的读写不应该影响其他客户端对同一文件的读写
++ 文件复制：一个文件可以拥有在不同位置的多个副本
++ 硬件和操作系统异构性：可以在不同操作系统和计算机上实现同样的操作
++ 可伸缩性：支持节点的动态加入或退出
++ 容错：保证文件服务在客户端或服务器出现问题时能正常使用
++ 安全
+
+### 2.2 HDFS设计思想
+考虑到应用场景和实际应用环境的特点，HDFS设计主要实现以下目标：
+
++ 兼容廉价的硬件设备：设计了快速硬件故障检测和进行自动恢复的机制
++ 流数据读写：为了满足批量数据处理的要求，以流式方式访问文件系统数据，可以提高数据吞吐量
++ 大数据集：文件通常可以达到GB甚至TB级别，一个数百台机器组成的集群可以支持千万级别这样的文件
++ 简单的文件模型：采用"一次写入、多次读取"的简单文件模型
++ 强大的跨平台兼容性：HDFS采用Java语言实现
+
+HDFS的特殊设计的局限性：
+
++ 不适合低延迟数据访问
++ 无法高效存储大量小文件
++ 只允许一个文件有一个写入者
++ 只允许对文件执行追加操作（不能执行随机写操作）
+
+### 2.3 HDFS相关概念
+#### 2.3.1 块
++ HDFS将大文件分成块（默认128MB），块可以分布到不同的节点上
++ HDFS采用分治策略，令多个节点对逻辑层面的大文件在物理层面进行分布式存储
++ 块的大小远远大于普通文件系统，可以最小化寻址开销
+
+HDFS采用分块存储的优点：
+
++ 支持大规模文件存储：文件大小不会受到单个节点的存储容量限制，可以远远大于网络中任意节点的存储容量
++ 简化系统设计
+    - 文件块大小固定，易计算出一个节点可以存储多少文件块
+    - 方便元数据管理，元数据不需要和文件块一起存储，可以由其他系统负责管理元数据
++ 适合数据备份：每个文件块都可以冗余存储到多个节点上，大大提高了系统的容错性和可用性
+
+#### 2.3.2 NameNode
+NameNode负责管理分布式文件系统的命名空间，保存了两个核心的数据结构：
+
++ FsImage 用于维护文件系统树以及文件树中所有文件和文件夹的元数据
++ EditLog 操作日志文件 记录了所有针对文件的创建、删除、重命名等操作
+
+NameNode记录了每个文件中各个块所在的DataNode的位置
+
+##### FsImage
+FsImage文件包含文件系统中所有目录和文件inode的序列化形式
+
++ 每个inode是一个文件或目录的元数据的内部表示，并包含：文件的复制登记、修改和访问时间、访问权限、块大小、组成文件的块。对于目录，存储修改时间、权限、配额元数据
+
+FsImage文件没有记录每个块存储在哪个DataNode，二是由NameNode把这些映射信息保留在内存中
+
++ 当DataNode加入HDFS集群时，DataNode会把自己所包含的块列表告知给NameNode，此后会定期执行这种告知操作，以确保NameNode的块映射是最新的
+
+##### NameNode的启动
+在NameNode启动时，它会将FsImage文件中的内容加载到内存中，之后再执行EditLog文件中的各种操作，使得内存中的元数据和实际的同步，存在内存中的元数据支持客户端的读操作
+
+一旦内存中成功建立文件系统元数据的映射，则创建一个新的FsImage文件和一个空的EditLog文件。
+
+NameNode起来之后，HDFS中的更新操作会重新写到Editlog文件中，因为FsImage文件一般都很大，如果所有更新操作都往FsImage文件中添加，这样会导致系统运行的十分缓慢。但是，如果往EditLog文件里面写就不会这样，因为EditLog小得多，每次执行写操作之后，且在向客户端发送成功代码之前，edits文件都需要同步更新。
+
+#### 2.3.3 SecondaryNameNode
+> 在NameNode运行期间，HDFS
+>
+
+#### 2.3.3 DataNode
+### 2.4 HDFS体系结构
+主从架构。
+
+### 2.5 HDFS存储原理
+### 2.6 HDFS文件读写
+### 2.7 HDFS编程实践

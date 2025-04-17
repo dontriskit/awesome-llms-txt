@@ -1,0 +1,25 @@
+# Starter Kit
+
+## Docs
+
+- [Live Shopping](https://docs.videowise.com/custom-events-ls.md): The Videowise Live Shopping now supports interception and tracking of custom events. This provides customers with a more comprehensive view of user interactions with video content
+- [Widgets](https://docs.videowise.com/custom-events-widget.md): The Videowise Widget now supports interception and tracking of custom events. This provides customers with a more comprehensive view of user interactions with video content
+- [Widget re-rendering](https://docs.videowise.com/init.md): How to manually trigger the rendering of widgets.
+- [Installation](https://docs.videowise.com/installation.md): Learn how to install the Videowise Widget on your site.
+- [Live stream rendering](https://docs.videowise.com/live-stream-rendering.md): How to manually trigger the live stream pop-up.
+- [Shopify](https://docs.videowise.com/pixel.md): Learn how to install the Videowise Widget on your site.
+- [Magento](https://docs.videowise.com/pixel/magento.md): Learn how to install the Videowise Order Tracking Pixel on your Magento store.
+- [Overview](https://docs.videowise.com/pixel/overview.md): Overview
+- [Salesforce Commerce Cloud](https://docs.videowise.com/pixel/sfcc.md): Learn how to install the Videowise Order Tracking Pixel on your SFCC instance.
+- [Authentication](https://docs.videowise.com/product-api/authentication.md): Learn how to authenticate with the Product API.
+- [Endpoints](https://docs.videowise.com/product-api/endpoints.md): This API handles operations related to importing, retrieving, and deleting products in bulk or individually.
+- [Overview](https://docs.videowise.com/product-api/overview.md): A high-level overview of the Product API.
+- [Welcome](https://docs.videowise.com/welcome.md): Use our documentation to seamlessly integrate with Videowise and unlock a world of possibilities.
+
+
+## Optional
+
+- [Partners](https://videowise.com/find-a-partner)
+- [Help Center](https://help.videowise.com/)
+- [Blog](https://videowise.com/blog)
+- [FAQ](https://videowise.com/faq)

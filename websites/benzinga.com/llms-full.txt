@@ -1,0 +1,4719 @@
+# GET Analyst Insights
+Source: https://docs.benzinga.com/benzinga-apis/analyst-insights/get-analyst-insights
+
+analyst-insights GET /analyst/insights
+Get the qualitative summaries of Analyst Research Reports
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+  "action": "Reiterates",
+  "analyst_insights": "This morning, HC Wainwright & Co. reiterated their Buy rating on Cybin's stock with a price target of $5.0000. - **Advancing Clinical Pipeline:** Cybin is making significant strides in its clinical development programs, with a focus on progressing CYB003 for major depressive disorder (MDD) and CYB004 for generalized anxiety disorder (GAD) into the next phases of clinical trials. The company plans to report three-month efficacy data from a Phase 2 trial of CYB003 and is preparing for an end-of-Phase 2 meeting with the FDA, demonstrating a clear path forward for these programs.\n\n- **Positive Valuation Model:** HC Wainwright & Co. employs a discounted cash flow (DCF)-based valuation methodology, assigning a 55% probability of success for CYB003 in treating MDD and a 45% probability for CYB004 in treating GAD. These probabilities, along with planned equity raises and a conservative discount rate, support a $5 price target, suggesting confidence in Cybin’s potential market value and future revenue generation capabilities from these treatments.\n\n- **Strategic Regulatory Milestones:** Cybin has received FDA clearance to initiate a Phase 2a trial evaluating CYB004 in GAD, expected to start in 1Q24. This clearance, coupled with the planned end-of-Phase 2 meeting for CYB003, indicates regulatory progress and positions Cybin favorably for advancing its therapeutic candidates through the clinical development process, ultimately enhancing shareholder value.",
+  "date": "2024-02-15",
+  "firm": "HC Wainwright & Co.",
+  "firm_id": "5c383d9b0448fc02d76b09d5",
+  "id": "65ce4cb3ba47d164700176bf",
+  "pt": "5.0000",
+  "rating": "Buy",
+  "rating_id": "65ce4c5d0ebf29000101f29b",
+  "security": {
+  "cik": "",
+  "exchange": "AMEX",
+  "isin": "",
+  "name": "Cybin",
+  "symbol": "CYBN"
+  },
+  "updated": 1708018876
+  }
+  ```
+</ResponseExample>
+
+
+# Historical Bar Data API Reference
+Source: https://docs.benzinga.com/benzinga-apis/bars/bars-v2
+
+Benzinga Historical Bar Rest API
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  The `token` authentication
+</ParamField>
+
+
+# GET bars
+Source: https://docs.benzinga.com/benzinga-apis/bars/get-bars
+
+bars-v2 GET /bars
+Get the delayed quotes
+
+<ResponseExample>
+  ```json Response (200 OK)
+  [
+    {
+      "symbol": "string",
+      "interval": "number",
+      "candles": [
+        {
+          "open": "number (float)",
+          "high": "number (float)",
+          "low": "number (float)",
+          "close": "number (float)",
+          "volume": "integer",
+          "time": "integer",
+          "dateTime": "string (YYYY-MM-DDTHH:MM:SS.mmm-ZZ:zz)"
+        }
+      ]
+    }
+  ]
+  ```
+</ResponseExample>
+
+
+# Bull vs. Bear
+Source: https://docs.benzinga.com/benzinga-apis/bull-bear/bull-bear-ref
+
+Empower users to “see both sides of the story” before investing. We simplify investment research for all, whether you’re a seasoned investor or just starting out, this product will simplify your investment decisions by distilling complex analyst reports into actionable insights. This API provides concise summaries of analyst reports, presenting both bullish and bearish arguments for a stock. Say goodbye to jargon-filled reports and hello to clear, insightful information. We analyze the details so you don’t have to. The “Bulls Say” summary highlights positive aspects, while the “Bears Say” summary points out potential risks.
+
+![Image Description](https://www.benzinga.com/apis/wp-content/uploads/2023/09/2023-09-20-at-17.45.53.png)
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  The `token` authentication
+</ParamField>
+
+
+# GET bull / bear
+Source: https://docs.benzinga.com/benzinga-apis/bull-bear/get-bull-bear
+
+bull-bear GET /bulls_bears_say
+Get the bullish and bearish statements
+
+<ResponseExample>
+  ```json Response (200 OK)
+  [
+  {
+    "id": "73b2b38d-6e60-0dbb-4f48-c9ffaae04dd9",
+    "ticker": "AAPL",
+    "exchange": "NASDAQ",
+    "bear_case": "Apple is  a well-known brand and its products are popular among consumers. However, the company's stock has been hit hard due to macroeconomic factors, such as the pandemic, and the uncertain global macroeconomic environment. Furthermore, Apple's product portfolio is highly competitive and its services are facing increasing competition from rival companies, which is limiting the potential for Apple to grow its market share. Additionally, Apple's current financials and future guidance suggest that its growth rate will slow and its margins will be impacted by rising costs. All of these factors contribute to our negative outlook on Apple's stock.",
+    "bull_case": "Apple is  a leading global technology company, well known for its innovative products and services. The company is well positioned to benefit from rising demand for its products and services across the world. Apple's diversified product portfolio, advanced technology, and wide distribution network give it an advantage in delivering value to its customers. Additionally, Apple's strong financials and cash position enable it to invest in research and development and capitalize on opportunities for growth. Apple also offers a competitive suite of services, providing customers with access to Apple Music, iCloud, Apple Care, Apple TV+, Apple Arcade, Apple Fitness, Apple Card, and Apple Pay, among others. Finally, Apple's focus on sustainability and corporate social responsibility, along with its strong brand recognition, further enhance its competitive positioning.",
+    "created_at": "1973-04-04T15:07:01.0Z",
+    "updated_at": "2007-10-29T07:20:49.0Z"
+  }
+  ]
+  ```
+</ResponseExample>
+
+
+# Calendar API Reference
+Source: https://docs.benzinga.com/benzinga-apis/calendar/calendar-v2
+
+This REST API returns structured data for conference calls, dividends, earnings (and future earnings dates), economics, pharmaceutical announcements, guidance, IPOs, secondary offerings, ratings, M&A activity, and splits.
+
+## Best Practices
+
+For optimal performance, we have a few recommendations.
+
+### Limit query, improve performance
+
+Limiting the scope of the query will directly improve the latency of the API. This can be accomplished by using parameters such as `parameters[tickers]` and `parameters[date]`, or (preferably) by using `parameters[updated]` for deltas.
+
+### Using Deltas
+
+A common pattern is to use a delta to query for the latest change in a dataset. By reducing the amount of data available in the query, it will produce results with the least amount of latency and limited data an application will have to traverse.
+
+In our case, we recommend tracking and querying by the latest updated timestamp.
+
+One caveat to allow for some latency and second-only timestamps: when querying, set `parameters[updated]` to a value 5 seconds earlier than you actually want. A query may look like:
+
+`/calendar/earnings?parameters[updated]=LAGGED_TIMESTAMP` Where `LAGGED_TIMESTAMP` is set to be five seconds less than the maximum value of the `updated` field in rows already pulled from our API.
+
+### FAQs
+
+<AccordionGroup>
+  <Accordion title="How many data objects can I recieve in one response?">
+    The number of results returned is limted to 1000 items per page.
+  </Accordion>
+
+  <Accordion title="Can I request data for a particular company?">
+    Yes, you can request one or more ticker symbols separated by a comma. Maximum of 50 ticker symbols can be passed in the request.
+  </Accordion>
+</AccordionGroup>
+
+### Authentication
+
+<ParamField query="token" type="apiKey">
+  The `token` authentication
+</ParamField>
+
+
+# GET Analysts
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-analysts
+
+calendar-v2 GET /calendar/ratings/analysts
+Returns the full list of analyst that are providing ratings
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "removed": [
+      {
+        "id": "string",
+        "firm_id": "string",
+        "firm_name": "string",
+        "name_first": "string",
+        "name_last": "string",
+        "name_full": "string",
+        "ratings_accuracy": {
+          "smart_score": "string (double)",
+          "overall_success_rate": "string (double)",
+          "overall_avg_return_percentile": "string (double)",
+          "total_ratings_percentile": "string (double)",
+          "total_ratings": "integer (int64)",
+          "overall_gain_count": "integer (int64)",
+          "overall_loss_count": "integer (int64)",
+          "overall_average_return": "string (double)",
+          "overall_stdev": "string (double)",
+          "1m_gain_count": "string (double)",
+          "1m_loss_count": "string (double)",
+          "1m_average_return": "string (double)",
+          "1m_stdev": "string (double)",
+          "3m_gain_count": "string (double)",
+          "3m_loss_count": "string (double)",
+          "3m_average_return": "string (double)",
+          "3m_stdev": "string (double)",
+          "9m_gain_count": "string (double)",
+          "9m_loss_count": "string (double)",
+          "9m_average_return": "string (double)",
+          "9m_stdev": "string (double)",
+          "1y_gain_count": "string (double)",
+          "1y_loss_count": "string (double)",
+          "1y_average_return": "string (double)",
+          "1y_stdev": "string (double)",
+          "2y_gain_count": "string (double)",
+          "2y_loss_count": "string (double)",
+          "2y_average_return": "string (double)",
+          "2y_stdev": "string (double)",
+          "3y_gain_count": "string (double)",
+          "3y_loss_count": "string (double)",
+          "3y_average_return": "string (double)",
+          "3y_stdev": "string (double)",
+          "updated": "integer (int64)"
+        },
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Conference Calls
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-conferenceCalls
+
+calendar-v2 GET /calendar/conference-calls
+Returns Conference call data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "conference": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD)",
+        "time": "string (HH:MM:SS)",
+        "name": "string",
+        "exchange": "string",
+        "ticker": "string",
+        "start_time": "string (HH:MM:SS)",
+        "phone_num": "string (NNN-NNN-NNNN)",
+        "international_num": "string (NNN-NNN-NNNN)",
+        "reservation_num": "string (NNN-NNN-NNNN)",
+        "access_code": "string",
+        "webcast_url": "string (URL)",
+        "importance": "integer",
+        "notes": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Consensus Ratings
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-consensus-ratings
+
+calendar-v2 GET /consensus-ratings
+Returns consensus ratings for a ticket
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+      "aggregate_ratings": {
+          "buy": 74,
+          "hold": 20,
+          "sell": 6
+      },
+      "aggregate_type": "percentage",
+      "low_price_target": 186,
+      "high_price_target": 300,
+      "consensus_price_target": 250.1784,
+      "consensus_rating_val": 3.68,
+      "consensus_rating": "BUY",
+      "updated_at": "2024-10-16T06:53:04Z",
+      "total_analyst_count": 50,
+      "unique_analyst_count": 1
+  }
+  ```
+</ResponseExample>
+
+
+# GET Dividends
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-dividends
+
+calendar-v2 GET /calendar/dividends
+Dividends Events
+
+Returns dividends data for a selected period and/or security.
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "dividends": [
+      {
+        "id": "string",
+        "date": "string (YYYY-DD-MM)",
+        "notes": "string",
+        "updated": "integer",
+        "ticker": "string",
+        "name": "string",
+        "exchange": "string",
+        "currency": "string",
+        "frequency": "integer",
+        "dividend": "string (double)",
+        "dividend_prior": "string (double)",
+        "dividend_type": "string",
+        "dividend_yield": "string (double)",
+        "ex_dividend_date": "string (YYYY-DD-MM)",
+        "payable_date": "string (YYYY-DD-MM)",
+        "record_date": "string (YYYY-DD-MM)",
+        "importance": "integer"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Dividends v2.2
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-dividends-v2-2
+
+calendar-v2-2 GET /calendar/dividends
+Dividends Events
+
+Returns dividends data for a selected period and/or security.
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "dividends": [
+      {
+        "id": "string",
+        "date": "string (YYYY-DD-MM)",
+        "notes": "string",
+        "updated": "integer",
+        "ticker": "string",
+        "name": "string",
+        "exchange": "string",
+        "currency": "string",
+        "confirmed":"boolean",
+        "period":"string",
+        "year":"integer",
+        "frequency": "integer",
+        "dividend": "string (double)",
+        "dividend_prior": "string (double)",
+        "dividend_type": "string",
+        "dividend_yield": "string (double)",
+        "ex_dividend_date": "string (YYYY-DD-MM)",
+        "payable_date": "string (YYYY-DD-MM)",
+        "record_date": "string (YYYY-DD-MM)",
+        "importance": "integer"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Earnings
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-earnings
+
+calendar-v2 GET /calendar/earnings
+Returns the earnings data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "earnings": [
+      {
+        "id": "string",
+        "date": "string (YYYY-DD-MM)",
+        "date_confirmed": "string (1/0)",
+        "time": "string (HH:MM:SS)",
+        "ticker": "string",
+        "exchange": "string",
+        "name": "string",
+        "currency": "string",
+        "period": "string",
+        "period_year": "integer",
+        "eps_type": "string",
+        "eps": "string (double)",
+        "eps_est": "string (double)",
+        "eps_prior": "string (double)",
+        "eps_surprise": "string (double)",
+        "eps_surprise_percent": "string (double)",
+        "revenue_type": "string",
+        "revenue": "string (integer)",
+        "revenue_est": "string (integer)",
+        "revenue_prior": "string (integer)",
+        "revenue_surprise": "string (integer)",
+        "revenue_surprise_percent": "string (double)",
+        "importance": "integer",
+        "notes": "string",
+        "updated": "integer"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Economics
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-economics
+
+calendar-v2 GET /calendar/economics
+Returns the economic calendar data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "economics": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD)",
+        "time": "string (HH:MM:SS)",
+        "country": "string",
+        "event_name": "string",
+        "event_period": "string",
+        "period_year": "integer (YYYY)",
+        "actual": "string (float)",
+        "actual_t": "string",
+        "consensus": "string (float)",
+        "consensus_t": "string",
+        "prior": "string (float)",
+        "prior_t": "string",
+        "importance": "integer",
+        "updated": "integer",
+        "description": "string"
+      }
+    ]
+  }
+
+  ```
+</ResponseExample>
+
+
+# GET FDA
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-fda
+
+calendar-v2 GET /calendar/fda
+FDA approvals, clinical trials, and PDUFA dates
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "fda": [
+      {
+        "id": "string",
+        "event_type": "string",
+        "date": "string (YYYY-DD-MM)",
+        "time": "string (HH:MM:SS)",
+        "companies": [
+          {
+            "id": "string",
+            "name": "string",
+            "cik": "string (10-digit integer)",
+            "securities": [
+              {
+                "exchange": "string",
+                "symbol": "string"
+              }
+            ]
+          }
+        ],
+        "drug": {
+          "id": "integer",
+          "name": "string",
+          "indication_symptom": [
+            "string"
+          ],
+          "generic": "boolean"
+        },
+        "status": "string",
+        "nic_number": "string (NCTXXXXXXXX)",
+        "target_date": "string (YYYY-MM-DD, YYYY-MM, YYYY-Q[1-4], YYYY-H[1-2], or YYYY-[EARLY, MID, LATE])",
+        "outcome_brief": "string",
+        "outcome": "string",
+        "commentary": "string",
+        "source_type": "string",
+        "source_link": "string",
+        "notes": "string",
+        "created": "integer",
+        "updated": "integer"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Firms
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-firms
+
+calendar-v2 GET /calendar/ratings/firms
+Returns the available firms providing analyst ratings
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "analyst_ratings_firm": [
+      {
+        "id": "string",
+        "currency": "string",
+        "homepage": "string",
+        "name": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Guidance
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-guidance
+
+calendar-v2 GET /calendar/guidance
+Returns guidance data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "guidance": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD)",
+        "time": "string (HH:MM:SS)",
+        "ticker": "string",
+        "exchange": "string",
+        "name": "string",
+        "currency": "string",
+        "period": "string",
+        "period_year": "integer (YYYY)",
+        "prelim": "string",
+        "is_primary": "string",
+        "eps_type": "string",
+        "eps_guidance_est": "string (float)",
+        "eps_guidance_max": "string (float)",
+        "eps_guidance_min": "string (float)",
+        "eps_guidance_prior_max": "string (float)",
+        "eps_guidance_prior_min": "string (float)",
+        "revenue_guidance_est": "string (float)",
+        "revenue_guidance_max": "string (float)",
+        "revenue_guidance_min": "string (float)",
+        "revenue_guidance_prior_max": "string (float)",
+        "revenue_guidance_prior_min": "string (float)",
+        "revenue_type": "string",
+        "importance": "integer",
+        "notes": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET IPOs
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-ipos
+
+calendar-v2 GET /calendar/ipos
+Returns ipo data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "ipos": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD, YYYY-QN, YYYY-MM, YYYY-HN, YYYY)",
+        "time": "string (HH:MM:SS)",
+        "ticker": "string",
+        "exchange": "string",
+        "name": "string",
+        "open_date_verified": "boolean",
+        "pricing_date": "string (YYYY-MM-DD)",
+        "currency": "string",
+        "price_min": "string (double)",
+        "price_max": "string (double)",
+        "price_public_offering": "string (double)",
+        "price_open": "string (double)",
+        "deal_status": "string",
+        "ipo_type": "string",
+        "insider_lockup_days": "integer",
+        "insider_lockup_date": "string (YYYY-MM-DD)",
+        "offering_value": "integer (int64)",
+        "offering_shares": "integer (int64)",
+        "shares_outstanding": "integer",
+        "lead_underwriters": [
+          "string"
+        ],
+        "other_underwriters": [
+          "string"
+        ],
+        "underwriter_quiet_expiration_days": "integer",
+        "underwriter_quiet_expiration_date": "string (YYYY-MM-DD)",
+        "notes": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Mergers and Acquisitions
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-ma
+
+calendar-v2 GET /calendar/ma
+Returns the mergers and acquisitions data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "ma": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD)",
+        "date_expected": "string (YYYY-MM-DD, YYYY-QN, YYYY-MM)",
+        "date_completed": "string (YYYY-MM-DD)",
+        "acquirer_ticker": "string",
+        "acquirer_exchange": "string",
+        "acquirer_name": "string",
+        "target_ticker": "string",
+        "target_exchange": "string",
+        "target_name": "string",
+        "currency": "string",
+        "deal_type": "string",
+        "deal_size": "string (double)",
+        "deal_payment_type": "string",
+        "deal_status": "string",
+        "deal_terms_extra": "string",
+        "importance": "integer",
+        "notes": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Offerings
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-offerings
+
+calendar-v2 GET /calendar/offerings
+Returns Secondary Offering data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  [
+    {
+      "id": "string",
+      "date": "string (YYYY-MM-DD, YYYY-QN, YYYY-MM, YYYY-HN, YYYY)",
+      "time": "string (HH:MM:SS)",
+      "ticker": "string",
+      "exchange": "string",
+      "name": "string",
+      "currency": "string",
+      "shelf": "boolean",
+      "price": "string (double)",
+      "proceeds": "string (double)",
+      "number_shares": "integer",
+      "importance": "integer",
+      "notes": "string",
+      "updated": "integer (int64)"
+    }
+  ]
+  ```
+</ResponseExample>
+
+
+# GET Ratings
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-ratings
+
+calendar-v2 GET /calendar/ratings
+Returns analyst ratings data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "ratings": [
+      {
+        "id": "string",
+        "date": "string (YYYY-MM-DD)",
+        "time": "string (HH:MM:SS)",
+        "ticker": "string",
+        "exchange": "string",
+        "name": "string",
+        "currency": "string",
+        "action_pt": "string",
+        "action_company": "string",
+        "rating_current": "string",
+        "pt_current": "string (float)",
+        "adjusted_pt_current": "string (float)",
+        "rating_prior": "string",
+        "pt_prior": "string (float)",
+        "adjusted_pt_prior": "string (float)",
+        "url": "string (URL)",
+        "url_calendar": "string (URL)",
+        "url_news": "string (URL)",
+        "analyst": "string",
+        "analyst_id": "string",
+        "analyst_name": "string",
+        "ratings_accuracy": {
+          "smart_score": "string (double)",
+          "overall_success_rate": "string (double)",
+          "overall_avg_return_percentile": "string (double)",
+          "total_ratings_percentile": "string (double)",
+          "total_ratings": "integer (int64)",
+          "overall_gain_count": "integer (int64)",
+          "overall_loss_count": "integer (int64)",
+          "overall_average_return": "string (double)",
+          "overall_stdev": "string (double)",
+          "1m_gain_count": "string (double)",
+          "1m_loss_count": "string (double)",
+          "1m_average_return": "string (double)",
+          "1m_stdev": "string (double)",
+          "3m_gain_count": "string (double)",
+          "3m_loss_count": "string (double)",
+          "3m_average_return": "string (double)",
+          "3m_stdev": "string (double)",
+          "9m_gain_count": "string (double)",
+          "9m_loss_count": "string (double)",
+          "9m_average_return": "string (double)",
+          "9m_stdev": "string (double)",
+          "1y_gain_count": "string (double)",
+          "1y_loss_count": "string (double)",
+          "1y_average_return": "string (double)",
+          "1y_stdev": "string (double)",
+          "2y_gain_count": "string (double)",
+          "2y_loss_count": "string (double)",
+          "2y_average_return": "string (double)",
+          "2y_stdev": "string (double)",
+          "3y_gain_count": "string (double)",
+          "3y_loss_count": "string (double)",
+          "3y_average_return": "string (double)",
+          "3y_stdev": "string (double)",
+          "updated": "integer (int64)"
+        },
+        "importance": "string",
+        "notes": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Removed
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-removed
+
+calendar-v2 GET /calendar-removed
+Returns the removed calendar data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "removed": [
+      {
+        "id": "string",
+        "type": "string",
+        "updated": "integer (int64)"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Splits
+Source: https://docs.benzinga.com/benzinga-apis/calendar/get-splits
+
+calendar-v2 GET /calendar/splits
+Retunrs the splits calendar data
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "splits": [
+      {
+        "id": "string",
+        "updated": "integer",
+        "date_announced": "string (YYYY-DD-MM)",
+        "ticker": "string",
+        "exchange": "string",
+        "ratio": "string (x:y)",
+        "optionable": "boolean",
+        "date_ex": "string (YYYY-MM-DD)",
+        "date_recorded": "string (YYYY-MM-DD)",
+        "date_distribution": "string (YYYY-MM-DD)",
+        "importance": "integer",
+        "notes": "string"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Conference Call Transcripts
+Source: https://docs.benzinga.com/benzinga-apis/conference-call-transcripts/get-conference-call-transcripts
+
+conference-call-transcripts GET /earnings-call-transcripts
+Get the transcripts from conference calls and their summaries.
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+  "id": "6697d8a6c180cee7aaafbdd7",
+  "security": {
+  "ticker": "EQBK",
+  "exchange": "NYS",
+  "company_name": "",
+  "cik": "1227500",
+  "isin": "US29460X1090"
+  },
+  "transcript_full": "Hello, everyone, and welcome to the Equity Bank Shares. second quarter 2024 Earnings Call. My name is Ezra and I will be coordinating your call today. If you would like to ask a question please press star followed by one on your telephone keypad and if you change your mind it would be star followed by two. I will now hand over to your host Brian Catsby, Director of Corporate Development and Investor Relations to begin. Brian, please go ahead. Good morning. Thank you for joining us today for Equity Bank Share's second quarter earnings call. Before we begin, let me remind you that today's call is being recorded and is available via webcast at investor.equitybank.com. along with our earnings release and presentation materials. Today's presentation contains forward-looking statements which are subject to certain risks, uncertainties, and other factors that could cause actual results to differ materially from those discussed. Following the presentation, we will allow time for questions and further discussion. Thank you all for joining us. With that, I'd like to turn the call over to our Chairman and CEO, Brad Elwes. Good morning and thank you for joining Equity Bank Share's earnings call. We are pleased to take you through our second quarter results including a set of new record high water marks. Integration of the Bank of Kirksville merger. and the announcement of our acquisition of Kansas Land Ventures. Joining me today are Rick Sims, our bank CEO. Chris Navratil, our CFO. and Christophe Lukaski, our Chief Credit Officer. It was another exciting quarter of improving operating performance for our company. excluding the impact of bullying. repositioning costs, and merger expenses. we outperform market expectations. With the momentum of rebalancing our portfolio last year and the Bank of Kirksville transaction in the first quarter. we realize expansion in both net interest income and net interest margin. We close the quarter with a loan deposit ratio below 80%. strong capital ratios, and significant liquidity to continue to drive earnings growth in 2024, both organically and via strategic M&A. During the quarter, we completed the integration of systems from the legacy bank of Kirksville location. and announced and received regulatory approval of our acquisition of Kansas land bank shares. The Kansas land transaction officially closed on July 1st, 2024. 71 days after announcement. We continue to emphasize shareholder return through our quarterly dividend. as well as active participation in our share repurchase program. During the quarter, we repurchased 152,982 shares under our current authorization of up to a million shares. At the close of the quarter, we have capacity to purchase an additional 637,427 shares under the authorization. During the quarter, we announced the promotions of Rick Sins to Bank CEO and Julie Humer to COO. These promotions strengthen the management team while reinforcing our operating structure. We are confident they will continue to excel in the expanded role. as we emphasized at our investor meeting in June. We're bullish about where our company is positioned. We have an excellent leadership team, motivated producers, and abundance of deployable capital to drive positive stakeholder return. I look forward to continuing our positive momentum. I'll let Chris talk you through our financial results. Thank you, Brad. Last night, we reported net income of 11.7 million or 76 cents per diluted share, adjusting for merger expenses incurred related to Bank of Kirksville and Kansas land transactions. and the cost of surrendering a portion of our BOLI portfolio, net income was $15.2 million, or $0.99 per diluted share. During the quarter, I realized the effective tax rate was 28.1 percent, driven up by one-time boldly surrendered charges of $1.8 million. As Brad alluded to, we repositioned approximately $60 million in BOLI into higher yielding contracts during the quarter. Realized losses are modeled to be recovered inside of two years through the non-interest income and tax line. Without the repositioning, the tax rate for the quarter would have been 17.5%. Net interest income was up $2.3 million last quarter. While net interest margin improved from 376 to 394. We will discuss margin dynamics in more detail later in this call. Non-interest income was in line with our outlook for the quarter and included a 6.3% link quarter increase in service charge line items. Non-interest expenses adjusted for one-time M&A charges totaling $37.0 million were uplinked quarter primarily attributable to Bank of Kirksville Additions. including CDI amortization, technology, and facility expenses. The purchase accounting for Bank of Kirksville was finalized during the quarter, resulting in an insignificant increase to the previously recognized gain on acquisition. As Brad noted, Equity announced our acquisition of Kansas land during the quarter and subsequently closed it on July 1. Kansas land has $50 million in assets operating out of two branches. We modeled 3 cents decretion for 2024 ad announcement, which remains the expectation. Our GAAP net income included a provision for credit loss of $265,000. We continue to hold reserve for potential economic challenges. However, to date, we have not seen specific concerns in our operating market. The June 30 coverage of ACAuto loans is 1.26%. I'll stop here for a moment and let Christophe talk through our asset quality for the quarter. Thanks, Chris. Asset quality metrics continue to screen at historically low levels, with total classified loans closing the quarter at 49.6 million or 8.8% of total bank regulatory capital. Non-accrual loans as a percentage of total loans remain below 75 basis. net charges annualized were 14 basis points for the quarter. Recognized charges have been reflected of specific circumstances related to individual credits rather than broader market concerns. The acquisition of Kansas Land Bank, mentioned earlier, will have a negligible impact on banks' problem asset position. We continue to utilize our portfolio monitoring tools to detect early signs of credit deterioration. At this point, we have not seen any systemic deterioration in any of our portfolios. Our continued stress testing confirms the resiliency of our CRE book. Our exposure to office space is very low and continues to perform well. Despite these positive indicators, we remain cautious in our underwriting and continue to monitor for any emerging risks while maintaining healthy levels of capital and reserves to face any future economic headwinds. Chris. Thanks, Kristoff. Average loans increased modestly during the quarter. Loan originations in the second quarter totaled $99 million with a weighted average coupon of 8.76% compared to $116 million with a weighted average coupon of 8.61% in the first quarter. During the quarter, the coupon yield on loans increased to 6.96% from 6.84%. Overall, loan yields improved 30 bps to 7.15%, driven by accretion from Kirksville, expiration of a pay fixed interest rate swap, and higher coupon origination. During the quarter, our bond portfolio yield improved to 3.99% from 3.89% reflecting the impact of repricing Kirkschild's bond portfolio at acquisition date. Cost of interest-bearing deposits were materially flat at 2.78%, while the contribution of average non-interest-bearing deposits to the average deposit mix increased to 22.7% from 21.7%. Net interest income totaled $46.4 million during the quarter, up $2.3 million from the prior quarter, as our earning streams benefited from previous periods' strategic decisioning and continued to outpace rising funding costs. We continue to carry excess cash balances, which are offset by wholesale borrowings. We are currently earning a positive spread on these positions, though it does have the effect of reducing margins. We calculate that the excess liquidity has the effect of reducing margin by nine basis points for the current quarter. Non-interest expense during the quarter was $37 million, excluding $2.3 million in realized merger charges. The integration of core banking systems following the Bank of Kirksville transaction took place in May. Kirksville operating costs including CDI amortization were the primary driver of expense expansion. Our outlook slide includes a forecast for the third quarter, as well as full year 2024. We do not include future rate changes, though our forecast still includes the effects of lagging repricing in both our loan and deposit portfolio. Our provision is forecast to be approximately 12 basis points at the average. Rick? Equity has grown during the first six months of 2024, and we are positioned to continue to do so. During the quarter, our team was able to successfully integrate the Bank of Kirkstall merger, while also assessing, negotiating, and announcing our acquisition of Kansas land. Credit goes to Julie Huber and her operation teams. for getting it done. Outside of M&A, our production teams remain focused on driving organic growth on both sides of the balance sheet. Following the company's annual meeting in late April, we rolled out a producer incentive program that is designed to award our team with ownership for hitting higher growth goals. The program kicked off in the quarter and we anticipate to yield benefit over the remainder of the year. We have also rolled out a comprehensive training program to help improve our commercial banking capabilities. In Q2, all of our commercial bankers have successfully completed round one of their training. In addition, the team has identified 1,200 prospect companies. which were called upon in Q2. We expect this expanded calling effort to lead to pipeline expansion in Q3 and Q4. During the quarter, we were able to grow average loan balances 2.3%. We expect pipelines to continue to grow and our sales teams are motivated to meet the needs of our customers and communities, which will drive organic growth. During the quarter, customer deposit balances were generally flat with immaterial levels of expected runoff from the Bank of Kirksville customer base. Our team continues to focus on net interest margin and managing a challenging yield curve. This focus has resulted in us passing on loan opportunities at lower yields as well as higher cost transactional deposits. As discussed in our investor materials from June, we believe there is meaningful opportunity to both maintain and grow our deposit base in our current market. Total deposits closed the quarter at $4.34 billion. Loans as a percentage of deposits closed at 79.6%, positioning our bank to be a capable lender for new and current customers in our footprint. As indicated in our Outlook slide, we expect to drive mid-single-digit organic loan growth in 2024. We have the strategy, discipline, tools, and people in place to realize this expectation. I look forward to assisting the team in execution. Service revenues improved quarter over quarter, including increasing contributions from cards, treasury and wealth management, service charges, and mortgage. Under the leadership of Andrew Musgrave, Trust and Wealth Management saw its best revenue quarter in over three years, as the team has been able to drive both AUM and pipeline growth. Our company is well capitalized, our asset quality metrics continue to run at historic lows. Our balance sheet structure is solid. Our team is experienced. and we have a granular deposit base. We look forward to continuing to redeploy assets into customer relationships that build franchise value. We see a lot of momentum on the M&A front and expect that to continue. Equity will remain disciplined in our approach in assessing these opportunities, emphasizing value while controlling dilution and the earn-back timeline. Thank you for joining the call and we're happy to take your questions at this time. Thank you very much. To ask a question, please press star followed by one on your telephone keypad. Now, when prepping to ask your question, please ensure your device is unmuted locally. And if you change your mind, please press star followed by two. Our first question is from Jeff Rulis. from D.A. Davidson and Co., Jeff. Your line is now open. Please go ahead. Thanks, good morning. The question on the margin front just It looks, you know, I think kind of flat to down for the second half and wanted to, I think there was a mention of the lagging effect of repricing deposits, is that the genesis for the... kind of the conservativeness on margin. I just wanted to double-check that. Yeah, I think it's two things, Jeff. One of it is just always that continuing potential pressure on deposits that we're recognizing in that number. But it's also the purchase accounting adjustments as it relates to Bank of Kirksville. That particular transaction, we realize the level of purchase accounting increase in about 10 basis points to loan, seven basis points to margin. During the quarter, if that normalizes down to five or six, that drives down margin a little bit. It's a little bit of both those things. It's leading to a little bit of conservatism in that number. OK, and the just wanted to make sure you do not have. rate cut expectations in that margin guide, and if not, what would that net effect be from your perspective? That's correct. We don't have any in the model itself or any of those four in that outlook. As our balance sheet sits today, we're in a modestly asset-sensitive position. So for small rate cuts, we expect a small adjustment down in terms of margin. But at the same time, we think we have ample opportunity on the liability side to be moving rates down to maintain or nearly maintain where we are from a margin perspective. So we think for small movements as we go forward, we won't see meaningful degradation in margin. If we start to see larger cuts, that's where there could be some challenge. But we're not forecasting or looking at that at the moment. Okay. And then hopping over to the loan growth outlook, I think you covered it well. I mean, the numbers and the outlook look fairly muted for the second half, despite some of that positivity in those incentive plans. But I think you kind of mentioned some cautiousness on underwriting and loan yield discipline. Um poking through those that uh... second half i think he talked about pipelines building but yet kind of a flattish outlook uh... any more color on the loan growth front in the second half and maybe trying to get to that those incentives that you launched. Is that more of a kind of a 2025 impact? Just trying to get the timing of of when you see that kick in. Yeah, I'll just say one thing, Jeff, in terms of the outlook is that average balance depiction is part of what's driving that. So the slower first half, we do think there's some meaningful opportunity going into the second half and expect year-over-year loan growth of kind of mid-single digits, 5-ish percent. So that's a little bit of that dynamic, but I'll let Rick further address expectations. Yeah, I mean, our expectations are we are going to see some growth here in the second half. You know, we've kind of gotten to a point where we think, and what we're seeing is some of the borrowers just a little slow to break loose and go ahead and commit to doing a deal, but we expect that to kind of click in in the second half. So we see loan growth, you know, into the late, you know, mid-late in this period. a quarter but probably into the fourth quarter and then really trying to drive it into 2025 with with what we're focused on with the incentives and the calling. OK, just the last one on the just want to confirm the and they're probably immaterial, but the loan, well, the loan balances from Kansas land that that is in the guidance and and maybe confirming that also just what were the 630 loan and deposit balances that at that. at Kansasland. Yeah, 35 million-ish on the loan side and 40-some million-ish on the deposit side. OK. All right, thank you. You Thank you. We've got another question from Andrew Leach from Piper Sandler. Andrew, your line is now open. Please go ahead. Hi. Thanks. Good morning, guys. Just a question on the swap that expired. Just curious what base point benefit to the margin did that generate? Yeah, thanks Andrew. The benefit for the quarter on that derivative transaction was eight basis points. I mean, potentially slightly greater as you look forward, so nine basis points on a go-forward basis. That expired in the middle of April. Got it. Alright, that's helpful. And then the excess liquidity that you mentioned, nine basis points last quarter, does the guide include that excess liquidity on there, on the balance sheet? Yeah, the guide includes the cash and it includes the margin. impact. God. All right. Okay, that's helpful. And then, Brad, just on the M&A front, just curious if you could provide some more commentary on what's gone on maybe over the last six weeks or so, like how have your conversations been tracking with prospective targets? Yeah, we've got, uh, there's actually several new conversations, uh, kicking up, uh, Andrew. And so there's lots of conversations going on, uh, as you know, that never means that anything, uh, is, isn't concrete going to happen, uh, but, uh, you know, we kick a lot of tires, have a lot of conversations, uh, model a lot of deals, uh, and then see if we're, uh, you know, the partner they want to pick. And so, uh, it's... I'm encouraged by the standpoint of, I think there's a lot of opportunities that we are able to talk with right now. I think people have realistic expectations. I think conversations are going well, and so stock price moving up probably helps some of those transactions. Some of those transactions are all cash, so it doesn't influence them at all, but I think there's... There's lots of positive momentum the second half of the year for conversation. All right. If you have any further questions, I'll step back. Bye. Thank you very much. We've got another question from Terry McEvoy from Stetson's. Terry, your line is now open. Please go ahead. Great. Thanks. Good morning, everyone. Chris, maybe a couple of questions for you. When we were together last month, you raised the outlook for the net interest margin, and I think you commented that there was some accretion behind the increase. Could you just maybe quantify the accretion last quarter, and how are you thinking about the second half of this year from an accretion perspective? Yeah, so through the second quarter, Terry, the accretion recognized their margin with seven basis points. As I look forward, I think it'll range between, I expect for this year, five and eight. So the higher end would be kind of more meaningful accretion from BOK plus some additional Kansas land. The lower end would just be slower accretion on the BOK side as well as Kansas land. So it'd be between five and eight basis points, I think, the rest of the way. And then just one other, Smanda, what are your thoughts on the tax rate in the fourth quarter in 2025? You Yeah, so for the rest of this year, the way the BOLI transaction works is basically factored into the effective tax rate for the year. So without any additional tax planning, we would see the tax rate yield realized year to date, which is about 24 to 24 and a half percent, that would be consistent the rest of the year. As you look at the outlook, we put 20 to 22 percent in there for quarter end of the year. And the reason for that is we do have some tax planning strategies we're working on that we think can lower that rate. So if we realize those benefits, we'll see a lower, we'll see that tax rate somewhere closer to 20 percent. If we don't, it'll be where it is today on a year to date basis, which is about 24 and  Thanks, Chris. And then, Brad, going back to the M&A discussion, what's the profile of a potential M&A partner today? What are the reasons for having a conversation with with equity? And are there any similar characteristics among some of those potential partners? Um, you know, there, there, there are similar characteristics. Some reasons are. Their age of ownership is in their 70s. Management's in their 70s. Some of the reasons are they're fighting the headwinds of margin compression, and it's continuing to get worse. They don't look like it's going to get better. And others are some regulatory pressure from different things in. not high-risk areas, but just things that their board is tired of dealing with. And so there's kind of a whole bag of stuff. Each one's kind of different. There's not a theme across the board. The only one theme is several of them are fighting the headwinds of margin compression. And even if the Fed starts cutting rates, it's not going to improve their margin enough to make a difference. And deposits have repriced on them faster than the assets are and the assets are still two or three years out. Perfect. Thanks for taking my questions. Appreciate it. Thank you and we've got the next question from Damon Del Monte. Damon, your line is now open, please go ahead. Hi, thanks. Good morning, everyone. So, quick question on the outlook for provision. You know, credit trends have been pretty stable, as Christophe provided a good overview. Do we kind of think of the reserve as just being flattish and provision just being driven by loan growth if net charge-offs are, you know, relatively modest? Yeah, David, I think that's a good way to put it, you know, always pending other things, right? So if we had some charge-offs work through, if we had some deterioration in credit quality, that's obviously going to drive provisioning and reserve levels. But if things continue on their current trajectory, that statement is correct. We would see really any meaningful provisioning coming through loan production and growth. Got it, okay. And then with regards to the buyback, again, active this quarter, we've seen a rally in the shares and the sector as a whole. I'm curious on your updated thoughts on current prices and if it's still attractive for you guys to remain active. I think we have to be strategic in thinking about, you know, that we always are we have a certain buyback and earn back that we do. And so we'll continue to look at that Damon to see if it still fits us. You know, we're getting to a level where it probably doesn't, which is a positive thing from the standpoint of the stock, you know, the prices performing, but we'll still we'll evaluate on a daily basis on on. within the parameters that the board sets on whether we should be buying shares back or not. Got it. Okay. Everything else I had was asked and answered, so thank you very much. Thank you. The next question is from Brett. Rabbiton from Hovde Group, LLC, Brett, your line is now open. Please go ahead. Hey guys, good morning. I joined a little bit late, but I just wanted to get a little flavor for what you're seeing on the competitive side on deposits and if you're adding new money, have the expectations come down at all in some of your markets and just maybe a flavor for what you're having to pay if you want to add new money to the balance sheet. Yeah, so this Rick, you know, we're seeing the pressure of a of it. I mean, every once in a while you, you know, you get requests. And things like that for, you know, for an exception, they come through, but we're clearly seeing the velocity of that decrease, and so that's good, because in a lot of the markets that we're in, you know, there aren't as many competitors, so we're able to, you know, kind of keep those rates down. It still happens, and the issue is really more, I think, on the individual circumstances of those banks. That's more of what we're seeing. So banks, you know, struggling with their loan-to-deposit ratio, all of a sudden somebody comes out of the blue because of, you know, issues that they have there, and then we're facing a rate that might be in the fives for, you know, for some money market or, you know, year-out rate, and we're just really not playing in that market at this point in time. So we, as far as the outlook of it goes, I think we'll continue to see, you know, sporadic or one-off competitors doing things like that, so we just take them one at a time. Okay, that's helpful. And then just thinking about, you know, M&A is obviously a strong topic with you guys, with your shock a little bit higher. You know, I know cash is something that you typically use in deals, but. You know, would we not expect you to maybe use more stock in a transaction from here? And how are you guys thinking about? tangible book dilution, payback, et cetera at this point. Yeah, so our metrics haven't changed since we started the company, and so they're not going to change today. So, you know, we're still going to be under a 3 year earn back stock does come more into play. Although we've had a lot of conversations with people about taking shares. all along the way, and some of it has to do with the smaller companies generally want cash just because they're less sophisticated, and they've had 90% of their assets tied up in the bank, and so one of the reasons they're selling is to get liquidity later on in life. So that's why the cash usually comes into play, but there are conversations currently happening with stock, and I think it will increase with the stock market recovery. OK. Great, thanks for taking my questions. Thank you very much. We currently have no further questions. Thank you everyone for joining. That concludes today's call. You may now disconnect your line.",
+  "m3u8_url": "https://broadcast2-use1-cdn.media.prod.tokbox.com/broadcast-6977cc94c7-7zng7.13077/broadcast-6977cc94c7-7zng7.13077_594041b4-19b9-48f3-94d3-3104c676d0aa_46842584.smil/playlist.m3u8",
+  "summaries": [
+  "Equity Bancshares Inc. has reported its Q2 2024 results, citing a record high and accelerated operating performance despite significant merger costs due to the integration of the Bank of Kirksville. Following the merger and several strategic plays, including purchasing Kansas Land Ventures, they anticipate strong growth in 2024. A shareholder return was maintained through dividends and a share repurchase program, with the capacity to repurchase 637,000 more shares. With a net income of $11.7 million after merger expenses, the Bank's effective tax rate stood at 28.1%. Other achievements included a surge in net interest income and a loan deposit ratio below 80%. Looking ahead, the company is optimistic about strategic M&As and organic growth as it repositions around $60 million into higher-yielding contracts."
+  ],
+  "summary_full": "",
+  "call_id": "667bb52f5b3ba10001e48a9c",
+  "start_time": "10:00:00",
+  "date": "2024-07-17"
+  },
+
+  ```
+</ResponseExample>
+
+
+# Corporate Logos v2.0 API Reference
+Source: https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/corporate-logos-ref
+
+The Benzinga Corporate Logo API is designed to be flexible with client sizing requirements. Custom filters can be applied to resize the logos and each logo returns a variety of identifiers like ISIN and CUSIP.
+
+![Image Description](https://www.benzinga.com/apis/wp-content/uploads/2019/04/BENZINGA-LOGOS-COVERAGE-copy-7-1.png)
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  The `token` authentication
+</ParamField>
+
+
+# GET Search
+Source: https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/get-search
+
+logos-v2 GET /search
+Search logos for market securities/companies and funds
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  [
+    {
+      "id": "string",
+      "search_key": "string",
+      "created_at": "string (RFC3339/ISO8601)",
+      "updated_at": "string (RFC3339/ISO8601)",
+      "colors": {
+        "background_light": "string (#000/#abc000)",
+        "background_dark": "string (#000/#abc000)"
+      },
+      "files": {
+        "logo_light": "string",
+        "logo_dark": "string",
+        "logo_vector_light": "string",
+        "logo_vector_dark": "string",
+        "mark_light": "string",
+        "mark_dark": "string",
+        "mark_composite_light": "string",
+        "mark_composite_dark": "string",
+        "mark_vector_light": "string",
+        "mark_vector_dark": "string"
+      },
+      "securities": [
+        {
+          "exchange": "string",
+          "symbol": "string",
+          "name": "string",
+          "cik": "string",
+          "cusip": "string",
+          "isin": "string"
+        }
+      ]
+    }
+  ]
+  ```
+</ResponseExample>
+
+
+# GET Sync
+Source: https://docs.benzinga.com/benzinga-apis/corporate-logos-v2/get-sync
+
+GET /sync
+Bulk sync logos.
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  [
+    {
+      "id": "string",
+      "search_key": "string",
+      "created_at": "string (RFC3339/ISO8601)",
+      "updated_at": "string (RFC3339/ISO8601)",
+      "colors": {
+        "background_light": "string (#000/#abc000)",
+        "background_dark": "string (#000/#abc000)"
+      },
+      "files": {
+        "logo_light": "string",
+        "logo_dark": "string",
+        "logo_vector_light": "string",
+        "logo_vector_dark": "string",
+        "mark_light": "string",
+        "mark_dark": "string",
+        "mark_composite_light": "string",
+        "mark_composite_dark": "string",
+        "mark_vector_light": "string",
+        "mark_vector_dark": "string"
+      },
+      "securities": [
+        {
+          "exchange": "string",
+          "symbol": "string",
+          "name": "string",
+          "cik": "string",
+          "cusip": "string",
+          "isin": "string"
+        }
+      ]
+    }
+  ]
+  ```
+</ResponseExample>
+
+
+# Analyst Insights Stream
+Source: https://docs.benzinga.com/benzinga-apis/data-websocket/get-analyst-insights-stream
+
+This WebSocket endpoint allows you to subscribe to real-time analyst insights for specific ticker symbols.
+
+## WebSocket `websocket/v1`:
+
+```txt
+wss://api.benzinga.com/api/v1/analyst/insights/stream
+```
+
+### Parameters:
+
+| Name      | Location |  Type  | Required |                                                    Description |
+| :-------- | :------: | :----: | -------: | -------------------------------------------------------------: |
+| `token`   |   query  | string |      Yes |                Benzinga websocket token (bz.production\*\*\*). |
+| `tickers` |   query  | string | Optional | List of tickers you want to subscribe for. Seperated by comma. |
+| `isins`   |   query  | string | Optional |       List of isins you want to filter by. Seperated by comma. |
+
+### Stream Response:
+
+When you subscribe to the stream, you'll receive updates about analyst insights in the following format:
+
+```json
+{
+  "id": "unique-uuid-for-response",
+  "api_version": "websocket/v1",
+  "kind": "stream_type",
+  "data": {
+    "action": "created/updated/deleted",
+    "id": "insight-id",
+    "content": {
+      "action": "Upgrades",
+      "analyst_insights": "The analyst has upgraded the stock...",
+      "date": "2024-10-08",
+      "firm": "Goldman Sachs",
+      "firm_id": "firm-uuid",
+      "id": "insight-uuid",
+      "pt": "150.00",
+      "rating": "Buy",
+      "rating_id": "rating-uuid",
+      "security": {
+        "cik": "0000320193",
+        "exchange": "NASDAQ",
+        "isin": "US0378331005",
+        "name": "Apple Inc.",
+        "symbol": "AAPL"
+      },
+      "updated": 1696790400000
+    },
+    "timestamp": "2024-10-08T10:00:00Z"
+  }
+}
+```
+
+#### Responses
+
+* **200 OK**
+  * **Description**: Success
+  * **Content Type**: `application/json`
+  * **Schema**: [AnalystInsightsWSResp](#analystinsightwsresp)
+
+### AnalystInsightWSResp
+
+| Property     | Type   | Description                                              |
+| ------------ | ------ | -------------------------------------------------------- |
+| id           | string | Unique UUID for the websocket response.                  |
+| api\_version | string | Websocket API version. Defaults to `websocket/v1`.       |
+| kind         | string | Websocket connection stream type.                        |
+| data         | object | Contains details about the websocket data.               |
+| - action     | string | Websocket data action (e.g., created, updated, deleted). |
+| - id         | string | Data ID for the analyst insight.                         |
+| - content    | object | Reference to `AnalystInsight` schema.                    |
+| - timestamp  | string | Timestamp of the data.                                   |
+
+### AnalystInsight
+
+| Property          | Type    | Description                                                          |
+| ----------------- | ------- | -------------------------------------------------------------------- |
+| action            | string  | Analyst's action on the stock (e.g., Maintains, Upgrades).           |
+| analyst\_insights | string  | Detailed insights from the analyst.                                  |
+| date              | string  | Date of the analyst insight (formatted as date).                     |
+| firm              | string  | Name of the firm providing the insight.                              |
+| firm\_id          | string  | Unique identifier for the firm.                                      |
+| id                | string  | Unique identifier for the analyst insight (formatted as UUID).       |
+| pt                | string  | Price target given by the analyst.                                   |
+| rating            | string  | Rating provided by the analyst.                                      |
+| rating\_id        | string  | Unique identifier for the rating.                                    |
+| security          | object  | Contains security details for which the insight is provided.         |
+| - cik             | string  | Central Index Key of the security.                                   |
+| - exchange        | string  | Exchange where the security is listed.                               |
+| - isin            | string  | International Securities Identification Number.                      |
+| - name            | string  | Name of the security.                                                |
+| - symbol          | string  | Ticker symbol of the security.                                       |
+| updated           | integer | Timestamp of when the insight was last updated (formatted as int64). |
+
+## Success Response
+
+* Success `101` - Websocket connection established successfully.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '700px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ✅ Connected to wss\://api.benzinga.com/api/v1/analyst/insights/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span><strong>Request URL:</strong> </span>
+
+    <p style={{ color: 'blue' }}>
+      "[https://api.benzinga.com/api/v1/analyst/insights/stream?token=bz](https://api.benzinga.com/api/v1/analyst/insights/stream?token=bz)"
+    </p>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"101 Switching Protocols"</span>
+  </div>
+</div>
+
+## Error Response
+
+* Unauthorized `401` - Invalid token, check the token provided.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v1/analyst/insights/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 401
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"401 Unauthorized"</span>
+  </div>
+</div>
+
+* Bad Gateway `502` - Either invalid route or server error.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v1/analyst/insights/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 502
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"502 Bad Gateway"</span>
+  </div>
+</div>
+
+
+# Bulls/Bears Stream
+Source: https://docs.benzinga.com/benzinga-apis/data-websocket/get-bulls-bears-say-stream
+
+Get bull say bear say stream.
+
+## WebSocket `websocket/v1`:
+
+```txt
+wss://api.benzinga.com/api/v1/analyst/insights/stream
+```
+
+#### Parameters
+
+| Name      | Location |  Type  | Required |                                                    Description |
+| :-------- | :------: | :----: | -------: | -------------------------------------------------------------: |
+| `token`   |   query  | string |      Yes |                Benzinga websocket token (bz.production\*\*\*). |
+| `tickers` |   query  | string | Optional | List of tickers you want to subscribe for. Seperated by comma. |
+| `isins`   |   query  | string | Optional |       List of isins you want to filter by. Seperated by comma. |
+
+### Stream Response:
+
+When you subscribe to the stream, you'll receive updates about analyst insights in the following format:
+
+```json
+{
+  "id": "websocket123",
+  "api_version": "websocket/v1",
+  "kind": "bull_bear_case",
+  "data": {
+    "action": "created",
+    "id": "case123",
+    "content": {
+      "bear_case": "Market downturn expected.",
+      "bull_case": "Positive earnings forecast.",
+      "id": "case123",
+      "ticker": "AAPL",
+      "updated": 1696153200
+    },
+    "timestamp": "2024-10-01T10:00:00Z"
+  }
+}
+```
+
+#### Responses
+
+* **200 OK**
+  * **Description**: Success
+  * **Content Type**: `application/json`
+  * **Schema**: [BullBearWSResp](#bullbearwsresp)
+
+### BullBearWSResp
+
+| Parameter    | Type   | Description                                           |
+| ------------ | ------ | ----------------------------------------------------- |
+| id           | string | Unique UUID for the WebSocket response                |
+| api\_version | string | WebSocket API version                                 |
+| kind         | string | WebSocket connection stream type                      |
+| data         | object | Contains the action and details of the bull/bear case |
+
+### Data Object (inside BullBearWSResp)
+
+| Parameter | Type   | Description                                             |
+| --------- | ------ | ------------------------------------------------------- |
+| action    | string | WebSocket data action (e.g., created, updated, deleted) |
+| id        | string | Data ID for the bull/bear case                          |
+| content   | object | The bull/bear case details (see below)                  |
+| timestamp | string | Timestamp of the data                                   |
+
+### BullBearCase Schema (inside data content)
+
+| Parameter  | Type    | Description                                                |
+| ---------- | ------- | ---------------------------------------------------------- |
+| bear\_case | string  | Description of the bear case scenario                      |
+| bull\_case | string  | Description of the bull case scenario                      |
+| id         | string  | Unique identifier for the bull/bear case (UUID format)     |
+| ticker     | string  | Stock ticker symbol related to the bull/bear case          |
+| updated    | integer | Timestamp of when the case was last updated (int64 format) |
+
+## Success Response
+
+* Success `101` - Websocket connection established successfully.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '700px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ✅ Connected to wss\://api.benzinga.com/api/v1/bulls\_bears\_say/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span><strong>Request URL:</strong> </span>
+
+    <p style={{ color: 'blue' }}>
+      "[https://api.benzinga.com/api/v1/bulls\_bears\_say/stream?token=bz](https://api.benzinga.com/api/v1/bulls_bears_say/stream?token=bz)"
+    </p>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"101 Switching Protocols"</span>
+  </div>
+</div>
+
+## Error Response
+
+* Unauthorized `401` - Invalid token, check the token provided.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v1/bulls\_bears\_say/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 401
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"401 Unauthorized"</span>
+  </div>
+</div>
+
+* Bad Gateway `502` - Either invalid route or server error.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v1/bulls\_bears\_say/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 502
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"502 Bad Gateway"</span>
+  </div>
+</div>
+
+
+# [Calendar] Earnings Stream
+Source: https://docs.benzinga.com/benzinga-apis/data-websocket/get-calendar-earnings-stream
+
+Get calendar earnings stream.
+
+## WebSocket `websocket/v1`:
+
+```txt
+wss://api.benzinga.com/api/v2.1/calendar/earnings/stream
+```
+
+### Parameters
+
+| Name      | Location |  Type  | Required |                                                    Description |
+| :-------- | :------: | :----: | -------: | -------------------------------------------------------------: |
+| `token`   |   query  | string |      Yes |                Benzinga websocket token (bz.production\*\*\*). |
+| `tickers` |   query  | string | Optional | List of tickers you want to subscribe for. Seperated by comma. |
+| `isins`   |   query  | string | Optional |       List of isins you want to filter by. Seperated by comma. |
+
+### Stream Response
+
+When you subscribe to the stream, you'll receive updates about analyst insights in the following format:
+
+```json
+{
+    "id": "839f1f45-fffe-4801-9284-11dae5c5dae4",
+    "api_version": "websocket/v1",
+    "kind": "data/v2.1/calendar/earnings",
+    "data": {
+        "action": "created",
+        "id": "66fffe978f3f630001a2ea56",
+        "content": {
+            "currency": "USD",
+            "cusip": "00401G109",
+            "date": "2024-10-04",
+            "date_confirmed": 0,
+            "eps": "",
+            "eps_est": "",
+            "eps_prior": "",
+            "eps_surprise": "",
+            "eps_surprise_percent": "",
+            "eps_type": "",
+            "exchange": "TSXV",
+            "id": "66fffe978f3f630001a2ea56",
+            "importance": 0,
+            "isin": "CA00401G1099",
+            "name": "ACADEMY METALS INC",
+            "notes": "",
+            "period": "Q3",
+            "period_year": 2023,
+            "revenue": "",
+            "revenue_est": "",
+            "revenue_prior": "",
+            "revenue_surprise": "",
+            "revenue_surprise_percent": "",
+            "revenue_type": "",
+            "ticker": "AM",
+            "time": "10:41:27",
+            "updated": 1728052946
+        },
+        "timestamp": "2024-10-04T14:42:27.167526889Z"
+    }
+}
+```
+
+#### Responses
+
+* **200 OK**
+  * **Description**: Success
+  * **Content Type**: `application/json`
+  * **Schema**: [EarningsWSResp](#earningswsresp)
+
+## Data Structures
+
+### EarningsWSResp
+
+The main response structure for earnings data.
+
+| Parameter    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
+| id           | string | Unique UUID for the WebSocket response               |
+| api\_version | string | WebSocket API version                                |
+| kind         | string | WebSocket connection stream type                     |
+| data         | object | Contains the action and details of the earnings data |
+
+### Data Object (inside EarningsWSResp)
+
+| Parameter | Type   | Description                                             |
+| --------- | ------ | ------------------------------------------------------- |
+| action    | string | WebSocket data action (e.g., created, updated, deleted) |
+| id        | string | Data ID for the earnings                                |
+| content   | object | The earnings details (see below)                        |
+| timestamp | string | Timestamp of the data                                   |
+
+### Earnings Schema (inside data content)
+
+| Parameter                  | Type    | Description                                                |
+| -------------------------- | ------- | ---------------------------------------------------------- |
+| id                         | string  | Unique identifier for the earnings                         |
+| date                       | string  | Announced Date on Calendar                                 |
+| date\_confirmed            | string  | If the report date was confirmed (1/0)                     |
+| time                       | string  | Announced Time on Calendar (24hr format)                   |
+| ticker                     | string  | Ticker Symbol (F, MSFT, etc...)                            |
+| exchange                   | string  | Exchange (NYSE, NASDAQ, etc...)                            |
+| name                       | string  | Name of the security                                       |
+| currency                   | string  | Currency the data is denominated in                        |
+| period                     | string  | Period of the earnings actual (Q1, Q2, Q3, Q4, FY, H1, H2) |
+| period\_year               | integer | Period Year of the earnings actual                         |
+| eps\_type                  | string  | EPS Type (Adj, GAAP, FFO)                                  |
+| eps                        | string  | Comparable and Adjusted Earnings Per Share                 |
+| eps\_est                   | string  | Adjusted EPS Consensus Aggregate Analyst Estimate          |
+| eps\_prior                 | string  | Adjusted EPS from Prior Period                             |
+| eps\_surprise              | string  | EPS deviation from estimate                                |
+| eps\_surprise\_percent     | string  | Deviation from estimate as a percentage                    |
+| revenue\_type              | string  | Revenue Type (Adj, GAAP, FFO)                              |
+| revenue                    | string  | Revenue                                                    |
+| revenue\_est               | string  | Revenue estimate                                           |
+| revenue\_prior             | string  | Revenue value for previous period                          |
+| revenue\_surprise          | string  | Revenue deviation from estimate                            |
+| revenue\_surprise\_percent | string  | Deviation from estimate as a percentage                    |
+| importance                 | integer | Importance of the event to the market (0-5)                |
+| notes                      | string  | Additional notes provided by the Benzinga Newsdesk         |
+| updated                    | integer | Last updated timestamp (UTC)                               |
+
+## Success Response
+
+* Success `101` - Websocket connection established successfully.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '700px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ✅ Connected to wss\://api.benzinga.com/api/v2.1/calendar/earnings?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span><strong>Request URL:</strong> </span>
+
+    <p style={{ color: 'blue' }}>
+      "[https://api.benzinga.com/api/v2.1/calendar/earnings/stream?token=bz](https://api.benzinga.com/api/v2.1/calendar/earnings/stream?token=bz)"
+    </p>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"101 Switching Protocols"</span>
+  </div>
+</div>
+
+## Error Response
+
+* Unauthorized `401` - Invalid token, check the token provided.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v2.1/calendar/earnings/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 401
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"401 Unauthorized"</span>
+  </div>
+</div>
+
+* Bad Gateway `502` - Either invalid route or server error.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v2.1/calendar/earnings/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 502
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"502 Bad Gateway"</span>
+  </div>
+</div>
+
+
+# [Calendar] Ratings Stream
+Source: https://docs.benzinga.com/benzinga-apis/data-websocket/get-calendar-ratings-stream
+
+get calendar ratings stream.
+
+## WebSocket `websocket/v1`:
+
+```txt
+wss://api.benzinga.com/api/v2.1/calendar/ratings/stream
+```
+
+#### Parameters
+
+| Name      | Location |  Type  | Required |                                                    Description |
+| :-------- | :------: | :----: | -------: | -------------------------------------------------------------: |
+| `token`   |   query  | string |      Yes |                Benzinga websocket token (bz.production\*\*\*). |
+| `tickers` |   query  | string | Optional | List of tickers you want to subscribe for. Seperated by comma. |
+| `isins`   |   query  | string | Optional |       List of isins you want to filter by. Seperated by comma. |
+
+### Stream Response
+
+When you subscribe to the stream, you'll receive updates about analyst insights in the following format:
+
+```json
+{
+    "id": "e9e75b31-604e-422c-a532-362725b2d59d",
+    "api_version": "websocket/v1",
+    "kind": "data/v2.1/calendar/ratings",
+    "data": {
+        "action": "created",
+        "id": "66fffdc08f3f630001a2ea51",
+        "content": {
+            "action_company": "Maintains",
+            "action_pt": "",
+            "adjusted_pt_current": "",
+            "adjusted_pt_prior": "154.00",
+            "analyst": "RBC Capital",
+            "currency": "USD",
+            "cusip": "037833100",
+            "date": "2024-10-04",
+            "exchange": "NASDAQ",
+            "firm_id": "57f832ab6b87f600016fa383",
+            "id": "66fffdc08f3f630001a2ea51",
+            "importance": 0,
+            "isin": "US0378331005",
+            "name": "Apple",
+            "notes": "",
+            "pt_current": "",
+            "pt_prior": "154.00",
+            "rating_current": "Buy",
+            "rating_prior": "Outperform",
+            "ticker": "AAPL",
+            "time": "10:37:52",
+            "updated": 1728069650,
+            "url": "https://www.benzinga.com/quote/AAPL/analyst-ratings",
+            "url_calendar": "https://www.benzinga.com/quote/AAPL/analyst-ratings",
+            "url_news": "https://www.benzinga.com/stock-articles/AAPL/analyst-ratings"
+        },
+        "timestamp": "2024-10-04T19:21:06.880730108Z"
+    }
+}
+```
+
+#### Responses
+
+* **200 OK**
+  * **Description**: Success
+  * **Content Type**: `application/json`
+  * **Schema**: [RatingsWSResp](#ratingswsresp)
+
+## Data Structures
+
+### RatingsWSResp
+
+| Property      | Type   | Description                                          |
+| ------------- | ------ | ---------------------------------------------------- |
+| `id`          | string | Unique UUID for the websocket response               |
+| `api_version` | string | Websocket API version                                |
+| `kind`        | string | Websocket connection stream type                     |
+| `data`        | object | Contains the ratings data. See below for properties. |
+
+### Data Properties
+
+| Property    | Type   | Description                                                             |
+| ----------- | ------ | ----------------------------------------------------------------------- |
+| `action`    | string | Websocket data action i.e., created, updated, deleted                   |
+| `id`        | string | Data ID for the rating                                                  |
+| `content`   | object | Details about the ratings. See [ratings](#ratings) for more properties. |
+| `timestamp` | string | Timestamp of the data                                                   |
+
+### Ratings
+
+| Property              | Type    | Description                                                                                   |
+| --------------------- | ------- | --------------------------------------------------------------------------------------------- |
+| `id`                  | string  | Unique ID of this entry                                                                       |
+| `date`                | string  | Date for rating                                                                               |
+| `time`                | string  | Time for rating                                                                               |
+| `ticker`              | string  | Ticker symbol of the company that is the subject of the rating                                |
+| `exchange`            | string  | Exchange (NYSE, NASDAQ, etc...)                                                               |
+| `name`                | string  | Name of the company that is the subject of the rating                                         |
+| `currency`            | string  | Currency the data is denominated in                                                           |
+| `action_pt`           | string  | Description of the change in price target from the firm's last price target                   |
+| `action_company`      | string  | Description of the change in rating from the firm's last rating                               |
+| `rating_current`      | string  | The analyst's current rating for the company                                                  |
+| `pt_current`          | string  | Analyst's current price target                                                                |
+| `adjusted_pt_current` | string  | Analyst's current price target, adjusted for stock splits and dividends                       |
+| `rating_prior`        | string  | Prior analyst rating for the company                                                          |
+| `pt_prior`            | string  | Analyst's prior price target                                                                  |
+| `adjusted_pt_prior`   | string  | Analyst's prior price target, adjusted for stock splits and dividends                         |
+| `url`                 | string  | URL for the analyst ratings page for this ticker on Benzinga.com                              |
+| `url_calendar`        | string  | URL for the analyst ratings page for this ticker on Benzinga.com                              |
+| `url_news`            | string  | URL for the analyst ratings news articles for this ticker on Benzinga.com                     |
+| `analyst`             | string  | Name of the analyst firm that published the rating                                            |
+| `analyst_id`          | string  | ID of the analyst                                                                             |
+| `analyst_name`        | string  | Name of the analyst (person) that published the rating                                        |
+| `ratings_accuracy`    | object  | Accuracy metrics for ratings. See [ratings\_accuracy](#ratings_accuracy) for more properties. |
+| `importance`          | string  | Subjective basis of how important the event is to the market (5 = High)                       |
+| `notes`               | string  | Additional notes provided by the Benzinga Newsdesk where applicable.                          |
+| `updated`             | integer | Last updated timestamp in UTC                                                                 |
+
+### Ratings Accuracy
+
+| Property                        | Type    | Description                                                                                                        |
+| ------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `smart_score`                   | string  | A weighted average of the total\_ratings\_percentile, overall\_avg\_return\_percentile, and overall\_success\_rate |
+| `overall_success_rate`          | string  | The percentage of gain/loss ratings that resulted in a gain overall                                                |
+| `overall_avg_return_percentile` | string  | The percentile of this analyst’s overall average return per rating in comparison to other analysts                 |
+| `total_ratings_percentile`      | string  | The percentile of this analyst’s total number of ratings in comparison to the total number of ratings published    |
+| `total_ratings`                 | integer | Number of recommendations made by this analyst                                                                     |
+| `overall_gain_count`            | integer | The number of ratings that have gained value since the date of recommendation                                      |
+| `overall_loss_count`            | integer | The number of ratings that have lost value since the date of recommendation                                        |
+| `overall_average_return`        | string  | The average percent price difference per rating since the date of recommendation                                   |
+| `overall_stdev`                 | string  | The standard deviation in percent price difference in the analyst’s ratings since the date of recommendation       |
+| `1m_gain_count`                 | string  | The number of ratings that have gained value over the last month                                                   |
+| `1m_loss_count`                 | string  | The number of ratings that have lost value over the last month                                                     |
+| `1m_average_return`             | string  | The average percent price difference per rating over the last month                                                |
+| `1m_stdev`                      | string  | The standard deviation in percent price difference in the analyst’s ratings over the last month                    |
+| `3m_gain_count`                 | string  | The number of ratings that have gained value over the last three months                                            |
+| `3m_loss_count`                 | string  | The number of ratings that have lost value over the last three months                                              |
+| `3m_average_return`             | string  | The average percent price difference per rating over the last three months                                         |
+| `3m_stdev`                      | string  | The standard deviation in percent price difference in the analyst’s ratings over the last three months             |
+| `9m_gain_count`                 | string  | The number of ratings that have gained value over the last nine months                                             |
+| `9m_loss_count`                 | string  | The number of ratings that have lost value over the last nine months                                               |
+
+## Success Response
+
+* Success `101` - Websocket connection established successfully.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '700px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ✅ Connected to wss\://api.benzinga.com/api/v2.1/calendar/ratings/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span><strong>Request URL:</strong> </span>
+
+    <p style={{ color: 'blue' }}>
+      "[https://api.benzinga.com/api/v2.1/calendar/ratings/stream?token=bz](https://api.benzinga.com/api/v2.1/calendar/ratings/stream?token=bz)"
+    </p>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"101 Switching Protocols"</span>
+  </div>
+</div>
+
+## Error Response
+
+* Unauthorized `401` - Invalid token, check the token provided.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v2.1/calendar/ratings/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 401
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"401 Unauthorized"</span>
+  </div>
+</div>
+
+* Bad Gateway `502` - Either invalid route or server error.
+
+<div
+  style={{
+border: '1px solid #ddd',
+borderRadius: '8px',
+padding: '16px',
+fontSize: '14px',
+boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+backgroundColor: '#f9f9f9',
+maxWidth: '500px',
+}}
+>
+  <div
+    style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}}
+  >
+    <div style={{ color: '#000000'}}>
+      ❗ Could not connect to wss\://api.benzinga.com/api/v2.1/calendar/ratings/stream?token=bz.p\*\*\*
+    </div>
+  </div>
+
+  <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+    Error: Unexpected server response: 502
+  </div>
+
+  <div style={{ color: 'grey', fontWeight: 'bold', marginBottom: '-4px' }}>
+    Handshake Details
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Request Method:</strong> </span><span style={{ color: 'blue' }}>"GET"</span>
+  </div>
+
+  <div style={{ marginBottom: '4px' }}>
+    <span> <strong>Status Code:</strong> </span><span style={{ color: 'blue' }}>"502 Bad Gateway"</span>
+  </div>
+</div>
+
+
+# Delayed Quote API Reference
+Source: https://docs.benzinga.com/benzinga-apis/delayed-quote/delayed-quote-v1
+
+Benzinga Delayed Quote REST API
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  The `token` authentication
+</ParamField>
+
+
+# GET Delayed Quote
+Source: https://docs.benzinga.com/benzinga-apis/delayed-quote/get-quoteDelayed
+
+delayed-quote-v2 GET /quoteDelayed
+Get the delayed quotes.
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+    "quotes": [
+      {
+        "security": {
+          "symbol": "string",
+          "cik": "string",
+          "valoren": "string",
+          "name": "string"
+        },
+        "quote": {
+          "date": "string",
+          "open": "number (float)",
+          "high": "number (float)",
+          "low": "number (float)",
+          "close": "number (float)",
+          "previousClose": "number (float)",
+          "change": "number (float)",
+          "changePercent": "number (float)",
+          "fiftyTwoWeekHigh": "number (float)",
+          "fiftyTwoWeekLow": "number (float)",
+          "currency": "string",
+          "last": "number (float)",
+          "tradingHalted": "boolean",
+          "volume": "integer (int64)",
+          "previousCloseDate": "string"
+        }
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Company
+Source: https://docs.benzinga.com/benzinga-apis/fundamentals/get-company
+
+fundamentals-v2.1 GET /fundamentals/company
+Get basic company information.
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  {
+    "primarySymbol": "string",
+    "primaryExchange": "string",
+    "cik": "string",
+    "valoren": "string",
+    "sedol": "string",
+    "standardName": "string"
+  }
+  ```
+</ResponseExample>
+
+
+# GET Trades
+Source: https://docs.benzinga.com/benzinga-apis/government-trades/get-trades
+
+government-trades GET /trades
+This REST API returns structured data for Government Trades - House & Senate.
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  {
+    "data": [
+      {
+        "id": "string",
+        "created": "string (double)",
+        "updated": "string (double)",
+        "ownership": "string",
+        "security": {
+          "name": "string",
+          "ticker": "string",
+          "type": "string"
+        },
+        "transaction_type": "string",
+        "transaction_date": "string",
+        "notification_date": "string",
+        "report_date": "string",
+        "amount": "string",
+        "chamber": "string",
+        "filer_info": {
+          "member_name": "string",
+          "status": "string",
+          "state": "string",
+          "district": "string"
+        }
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# GET Movers
+Source: https://docs.benzinga.com/benzinga-apis/movers/get-movers
+
+movers-v1 GET /movers
+Returns market movers
+
+
+
+# GET Stream
+Source: https://docs.benzinga.com/benzinga-apis/newsfeed-stream-v1/get-stream
+
+newsfeed-stream-v1 get /stream
+Stream Newsfeed
+
+<Info>
+  Our docs do not yet support Websocket streaming. To test the Newsfeed Websocket stream, please use Postman or websocketking.com.
+</Info>
+
+
+# Get News
+Source: https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsService-get
+
+newsfeed-v2 get /news
+Get the news items
+
+<Info>
+  To fetch longform News content, make sure the request is set to: `displayOutput=full`
+</Info>
+
+<ResponseExample>
+  ```JSON (200 OK)
+  [
+    {
+      "id": 37100544,
+      "author": "Shanthi Rexaline",
+      "created": "Tue, 13 Feb 2024 13:25:36 -0400",
+      "updated": "Tue, 13 Feb 2024 13:25:37 -0400",
+      "title": "Nvidia, AMD, Broadcom Among Biggest Beneficiaries Of AI Explosion To $400B Market: Analysts",
+      "teaser": "Mizuho predicts a market estimate of $400 billion for AI by 2027. One analyst said this company will likely win the AI race.",
+      "body": "<p>Mizuho Securities bumped up its price target for chipmakers leveraging artificial intelligence (AI), even as most of these stocks have run up sharply for the <a href=\"https://www.benzinga.com/news/24/02/37066704/nvidias-push-for-ai-advances-promises-lower-costs-challenges-7t-chip-initiative\">year-to-date period</a>.</p>\n\n\n\n<p><strong>Strong Ramp-Up: </strong>AI chip demand is likely to ramp up steadily in the first half of 2024 before accelerating further in the second half, said analyst <strong>Vijay Rakesh </strong>in a note. </p>\n\n\n\n<p>Ahead of <strong>Nvidia Corp.&#8217;s</strong> (NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/NVDA#NASDAQ\">NVDA</a>) quarterly results, due on Feb. 21, and <strong>Broadcom, Inc.&#8217;s </strong>(NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/AVGO#NASDAQ\">AVGO</a>), due on March 7, channel checks revealed tight supplies of former&#8217;s H100 AI accelerator chipset despite lead times contracting. </p>\n\n\n\n<p>That said, &#8220;overall demand far outstrips supply,&#8221; the analyst said.</p>\n\n\n\n<p>The analyst also noted that original design manufacturer <strong>Super Micro Computer, Inc. </strong>(NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/SMCI#NASDAQ\">SMCI</a>) said demand was up 40% from the second half of 2023, potentially reflecting AI ramps. </p>\n\n\n\n<p>Nvidia&#8217;s impending B100 launch bodes well for the company&#8217;s 2024 guidance, he added.</p>\n\n\n\n<p>Nvidia teased the new B100 Blackwell graphics processor last year. The company will reportedly more than double the performance of the newly announced H200.</p>\n\n\n\n<p><em>See Also: <a href=\"https://www.benzinga.com/money/best-artificial-intelligence-stocks\">Best Artificial Intelligence Stocks</a></em></p>\n\n\n\n<p><strong>Booming AI Market:</strong> Rakesh referred to Mizuho&#8217;s market potential estimate of $400 billion for AI by 2027. The analyst said Nvidia will likely win the AI race and therefore raised his 2025 AI revenue estimate for the company from $120 billion to $92 billion, ahead of the Street estimate of $80 billion. In 2027, AI revenue will likely ramp up to $280 billion, he said.</p>\n\n\n\n<p><a href=\"https://www.benzinga.com/news/earnings/24/01/36874612/amd-ceo-highlights-huge-ai-opportunity-its-going-to-change-everything-we-do\">For AMD,</a> the analyst estimates AI revenue of $18 billion by 2027, up from an estimated $3.5 billion+ in 2024. He also expects <strong>Intel Corp.&#8217;s </strong>(NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/INTC#NASDAQ\">INTC</a>) AI revenue to increase from an estimated $2 billion+ in 2024 to $10 billion. </p>\n\n\n\n<p>Broadcom&#8217;s AI revenue will likely grow from $8 billion in 2024 to $20 billion in the calendar year 2027, thanks to its custom ASIC AI portfolio, Rakesh said.</p>\n\n\n\n<p>The analyst is also positive on <strong>Credo Technology Group Holding Ltd </strong>(NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/CRDO#NASDAQ\">CRDO</a>). Total cost of ownership is a positive for the company, given it drives 50% lower Data Center power in AI/Compute server racks.</p>\n\n\n\n<p>&#8220;We continue to see NVDA as the best AI/ML play, pushing the tip of the spear in AI training performance, as it hosts GTC 2024 on 3/18-21,&#8221; the analyst said, adding &#8220;We see NVDA, AVGO, CRDO, AMD and INTC driving a strong AI wave.&#8221;</p>\n\n\n\n<p><strong>Semiconductor Price Target Revisions: </strong>The analyst maintained Buy ratings on Nvidia, AMD, Intel, Broadcom and Credo Technology. The upward adjustments to the price targets for the stocks are as follows:</p>\n\n\n\n<ul>\n<li>Nvidia: from $625 to $825</li>\n\n\n\n<li>AMD: from $175 to $200</li>\n\n\n\n<li>Broadcom: from $1,250 to $1,450</li>\n\n\n\n<li>Credo Technology: from $25 to $28</li>\n</ul>\n\n\n\n<p>Rakesh maintained his price target for Intel at $55.</p>\n\n\n\n<p><strong>Semiconductor Price Action: </strong>According to <a href=\"https://benzinga.grsm.io/lxquj26b2sag\">Benzinga Pro data:</a></p>\n\n\n\n<ul>\n<li>Nvidia last traded up 0.93% at $729.18.</li>\n\n\n\n<li>AMD rose 0.17% at $172.20.</li>\n\n\n\n<li>Broadcom fell 1.53% to $1,245.66.</li>\n\n\n\n<li>Credo Technology moved down 2.18% to $21.98.</li>\n\n\n\n<li>The <strong>Philadelphia Semiconductor Index </strong>(NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/stock/SOXX#NASDAQ\">SOXX</a>) slipped 1.20% to $620.76.</li>\n</ul>\n\n\n\n<p><em>Read Next: <a href=\"https://www.benzinga.com/analyst-ratings/analyst-color/24/02/37005660/no-imminent-ai-bubble-burst-says-munster-we-are-at-the-start-of-3-5-year-tech-run\">No Imminent AI Bubble Burst, Says Munster: &#8216;We Are At The Start Of 3-5 Year Tech Run&#8217;</a></em></p>\n\n\n\n<p><em>Image: Shutterstock</em></p>",
+      "url": "https://www.benzinga.com/analyst-ratings/analyst-color/24/02/37100544/nvidia-amd-broadcom-among-biggest-beneficiaries-of-ai-explosion-to-400b-market-anal",
+      "image": [
+        {
+          "size": "small",
+          "url": "https://cdn.benzinga.com/files/imagecache/1024x768xUP/images/story/2024/Hands-In-Gloves-Hold-Chip-Testing-Microe_0.jpeg"
+        },
+        {
+          "size": "large",
+          "url": "https://cdn.benzinga.com/files/imagecache/2048x1536xUP/images/story/2024/Hands-In-Gloves-Hold-Chip-Testing-Microe_0.jpeg"
+        },
+        {
+          "size": "thumb",
+          "url": "https://cdn.benzinga.com/files/imagecache/250x187xUP/images/story/2024/Hands-In-Gloves-Hold-Chip-Testing-Microe_0.jpeg"
+        }
+      ],
+      "channels": [
+        {
+          "name": "Analyst Color"
+        },
+        {
+          "name": "Equities"
+        },
+        {
+          "name": "News"
+        },
+        {
+          "name": "Price Target"
+        },
+        {
+          "name": "Reiteration"
+        },
+        {
+          "name": "Top Stories"
+        },
+        {
+          "name": "Analyst Ratings"
+        },
+        {
+          "name": "Tech"
+        }
+      ],
+      "stocks": [
+        {
+          "name": "AMD"
+        },
+        {
+          "name": "AVGO"
+        },
+        {
+          "name": "CRDO"
+        },
+        {
+          "name": "INTC"
+        },
+        {
+          "name": "NVDA"
+        },
+        {
+          "name": "SMCI"
+        },
+        {
+          "name": "SOXX"
+        }
+      ],
+      "tags": [
+        {
+          "name": "AI"
+        },
+        {
+          "name": "artificial intelligence"
+        },
+        {
+          "name": "Expert Ideas"
+        },
+        {
+          "name": "semiconductors"
+        },
+        {
+          "name": "Stories That Matter"
+        }
+      ]
+    }
+  ]
+  ```
+
+  ```JSON (400)
+  [
+    "Access denied for user 0 \"anonymous\""
+  ]
+  ```
+</ResponseExample>
+
+
+# Get Removed News
+Source: https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsServiceRemoved-get
+
+GET /news-removed
+Returns the news articles that have been deleted from the News database.
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  {
+    "removed": [
+      {
+        "id": "integer"
+      }
+    ]
+  }
+  ```
+</ResponseExample>
+
+
+# Newsfeed & Why is it Moving v2
+Source: https://docs.benzinga.com/benzinga-apis/newsfeed-v2/newsfeed-v2
+
+This REST API returns structured data for news items as well as Why is it Moving (WIIM) content.
+
+## Best Practices
+
+For optimal performance, we have a few recommendations.
+
+### Limit query, improve performance
+
+Limiting the scope of the query will directly improve the latency of the API. This can be accomplished by using parameters such as `tickers`, `date`, and `channels`, or (preferably) by using `updatedSince` for deltas.
+
+<Info>
+  The full list of News `channels` can be found in this endpoint: [https://www.benzinga.com/api/v2/channels](https://www.benzinga.com/api/v2/channels)
+</Info>
+
+<Info>
+  The full list of News `topics` can be found in this endpoint: [https://www.benzinga.com/files/terms-export/entities.csv](https://www.benzinga.com/files/terms-export/entities.csv)
+</Info>
+
+### Using Deltas
+
+A common pattern is to use a delta to query for the latest change in a dataset. By reducing the amount of data available in the query, it will produce results with the least amount of latency and limited data an application will have to traverse.
+
+In our case, we recommend tracking and querying by the latest updated timestamp.
+
+One caveat to allow for some latency and second-only timestamps: when querying, set `updatedSince` to a value 5 seconds earlier than you actually want. A query may look like: `/news?updatedSince=LAGGED_TIMESTAMP Where LAGGED_TIMESTAMP` is set to be five seconds less than the maximum value of the `updated` field (converted to a Unix timestamp) in rows already pulled from our API.
+
+### FAQs
+
+<AccordionGroup>
+  <Accordion title="How many News items can I recieve in one response?">
+    One page is limited to a pageSize of 100 News items.
+  </Accordion>
+
+  <Accordion title="Can I request News for a particular ticker?">
+    Yes, you can request one or more ticker symbols separated by a comma. Maximum of 50 ticker symbols can be passed in the request.
+  </Accordion>
+
+  <Accordion title="What is a News 'Channel'?">
+    News `Channels` are used to categorize different types of content that Benzinga's editorial team covers.
+  </Accordion>
+
+  <Accordion title="How can I query the News API by NodeID?">
+    To fetch an individual NodeID, you can append the ID in the path like this: [https://api.benzinga.com/api/v2/news/36406744?displayOutput=full](https://api.benzinga.com/api/v2/news/36406744?displayOutput=full).
+  </Accordion>
+</AccordionGroup>
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  Include the API key in either query or header
+</ParamField>
+
+
+# GET Insider Transactions
+Source: https://docs.benzinga.com/benzinga-apis/sec-filings/get-insider-filings
+
+GET /insider_transactions/filings
+Returns insider transactions data (SEC Form 4)
+
+
+
+# SEC Filings API Reference
+Source: https://docs.benzinga.com/benzinga-apis/sec-filings/sec-filings-ref
+
+SEC filings data
+
+The U.S. Securities and Exchange Commission (SEC) is a federal government watchdog formed during the Great Depression. Its mission is to protect investors, markets, and anyone who has a stake in securities by fostering transparency and the creation of reliable information.
+
+The SEC also enforces securities laws and pursues insider trading, dishonesty, and fraud cases. SEC filings are just one part of their strategy for more transparent markets. They require certain parties to prepare and return financial statements and other documents to the agency.
+
+The documents, with the exception of a handful of forms,  are then published on EDGAR - the Electronic Data Gathering, Analysis, and Retrieval System -  for the public to view. The goal is to empower investors and shareholders with information so they can make the best possible decisions.
+
+### FAQs
+
+<AccordionGroup>
+  <Accordion title="What types of filngs does Benzinga APIs offer">
+    At the moment, we ingest insider transactions and beneficial ownership interest (Form 3, 4, and 5).
+  </Accordion>
+
+  <Accordion title="Can I request News for a particular ticker?">
+    Yes, you can request one or more ticker symbols separated by a comma. Maximum of 50 ticker symbols can be passed in the request.
+  </Accordion>
+</AccordionGroup>
+
+## Authentication
+
+<ParamField query="token" type="apiKey">
+  Include key in either query or header
+</ParamField>
+
+
+# GET Short Interest
+Source: https://docs.benzinga.com/benzinga-apis/short-interest/short-interest
+
+GET /api/v1/shortinterest
+Returns short interest data for stocks, including data such as total short interest, days to cover, and more.
+
+<ResponseExample>
+  ```json Response (200 OK)
+  {
+      "shortInterestData": {
+          "AAPL": {
+              "data": [
+                  {
+                      "recordDate": "2022-01-11",
+                      "symbol": "AAPL",
+                      "company": "Apple Inc. Common Stock",
+                      "totalShortInterest": "95908325",
+                      "daysToCover": 1.01,
+                      "shortPercentOfFloat": 0.59,
+                      "shortPriorMo": "113277024",
+                      "percentChangeMoMo": -15.33,
+                      "sharesFloat": "16324519396",
+                      "averageDailyVolume": "95019341",
+                      "sharesOutstanding": "16334371000",
+                      "exchange": "NNM",
+                      "sector": "Technology",
+                      "industry": "Consumer Electronics",
+                      "exchangeReceiptDate": "2022-01-04",
+                      "settlementDate": "2021-12-31"
+                  },
+                  {
+                      "recordDate": "2022-01-26",
+                      "symbol": "AAPL",
+                      "company": "Apple Inc. Common Stock",
+                      "totalShortInterest": "90492581",
+                      "daysToCover": 1,
+                      "shortPercentOfFloat": 0.55,
+                      "shortPriorMo": "95908325",
+                      "percentChangeMoMo": -5.65,
+                      "sharesFloat": "16309589396",
+                      "averageDailyVolume": "90514428",
+                      "sharesOutstanding": "16319441000",
+                      "exchange": "NNM",
+                      "sector": "Technology",
+                      "industry": "Consumer Electronics",
+                      "exchangeReceiptDate": "2022-01-19",
+                      "settlementDate": "2022-01-14"
+                  },
+                  {
+                      "recordDate": "2022-02-09",
+                      "symbol": "AAPL",
+                      "company": "Apple Inc. Common Stock",
+                      "totalShortInterest": "91388112",
+                      "daysToCover": 1,
+                      "shortPercentOfFloat": 0.56,
+                      "shortPriorMo": "90492581",
+                      "percentChangeMoMo": 0.99,
+                      "sharesFloat": "16309589396",
+                      "averageDailyVolume": "120320268",
+                      "sharesOutstanding": "16319441000",
+                      "exchange": "NNM",
+                      "sector": "Technology",
+                      "industry": "Consumer Electronics",
+                      "exchangeReceiptDate": "2022-02-02",
+                      "settlementDate": "2022-01-31"
+                  },
+                  {
+                      "recordDate": "2022-02-25",
+                      "symbol": "AAPL",
+                      "company": "Apple Inc. Common Stock",
+                      "totalShortInterest": "108944701",
+                      "daysToCover": 1.32,
+                      "shortPercentOfFloat": 0.67,
+                      "shortPriorMo": "91388112",
+                      "percentChangeMoMo": 19.21,
+                      "sharesFloat": "16309589396",
+                      "averageDailyVolume": "82330433",
+                      "sharesOutstanding": "16319441000",
+                      "exchange": "NNM",
+                      "sector": "Technology",
+                      "industry": "Consumer Electronics",
+                      "exchangeReceiptDate": "2022-02-17",
+                      "settlementDate": "2022-02-15"
+                  }
+              ]
+          }
+      }
+  }
+  ```
+</ResponseExample>
+
+
+# GET Option Activity
+Source: https://docs.benzinga.com/benzinga-apis/signals/get-options-activity
+
+GET /signal/option_activity
+Returns option activity signals
+
+<ResponseExample>
+  ```JSON Response (200 OK)
+  [
+    {
+      "id": "string",
+      "date": "string (YYYY-MM-DD)",
+      "time": "string (HH:MM:SS)",
+      "ticker": "string",
+      "exchange": "string",
+      "description": "string",
+      "description_extended": "string",
+      "updated": "integer",
+      "sentiment": "string",
+      "aggressor_ind": "string (float)",
+      "option_symbol": "string (SPY190826P00292000)",
+      "underlying_type": "string",
+      "underlying_price": "string (float)",
+      "cost_basis": "string (float)",
+      "put_call": "string",
+      "strike_price": "string (float)",
+      "price": "string (float)",
+      "size": "string (integer)",
+      "date_expiration": "string (YYYY-MM-DD)",
+      "option_activity_type": "string",
+      "trade_count": "string (integer)",
+      "open_interest": "string (integer)",
+      "volume": "string (integer)",
+      "bid": "string (float)",
+      "ask": "string (float)",
+      "midpoint": "string (float)",
+      "execution_estimate": "string"
+    }
+  ]
+  ```
+</ResponseExample>
+
+
+# Squawk v3
+Source: https://docs.benzinga.com/benzinga-apis/squawk-v3
+
+Squawk is a realtime broadcast which includes important headlines, price movement and rumors as stories develop to give traders and investors news in the fastest and most convenient form."
+
+**Notes:** The squawk v3 version will be deprecated in near future. So it is suggested you use the v4 version if you are working on a new integration. Also, migrate your existing v3 integration to v4. Refer to [Squawk v4](/benzinga-apis/squawk-v4) API documentation for more details.
+
+## Connecting to Squawk
+
+There are two ways you can connect to Sqauwk:
+
+* [Using WebRTC](#using-webrtc)
+* [Using RTP](#using-rtp)
+
+**Notes for both WebRTC and RTP:**
+
+1. It is advised to add reconnect functionality for WebSocket. It is useful, in case socket connection drops for any reason (maybe the internet is down for a couple of minutes). So add a functionality to try reconnection at some regular interval after WebScoket gets disconnected.
+
+2. The ID field (id) in each request/message is a unique `UUID` string used to coordinate messages between client and server over WebSocket.
+
+3. Each response to a message sent from the client will have `Response` appended at the end of the message's type sent. For e.g. a message with type `joinRoom` will receive a response with type `joinRoomResponse`
+
+4. Following is the format of the generic error response. In event of any error to a sent request, you will get the following response:
+
+```JSON
+{
+    "error": "Cannot join room PRO",
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a"
+    "type": "joinRoomResponse"
+}
+```
+
+As stated earlier, the type indicates the response to the message earlier sent.
+
+## Using WebRTC
+
+Squawk is built on top of WebRTC. So one can connect to it through WebRTC supported browser using standard WebRTC API methods. The following are the methods that you will need to implement while writing a client for connecting to squawk.
+
+* [Create a socket connection](#create-a-socket-connection)
+* [Authenticate](#authenticate)
+* [Join Room](#join-room)
+* [Create peer connections](#create-peer-connections)
+* [Send ICE Candidate to peers](#send-ice-candidate-to-peers)
+* [Message Types](#message-types)
+* [Ping/Pong mechanism to keep alive the Web Socket](#ping-pong-mechanism-to-keep-alive-the-web-socket)
+* [Logout](#logout)
+
+### Create a socket connection
+
+First, create a web socket connection to squawk. The Benzinga Squawk WebRTC service WebSocket address is:
+
+**Address if using API key**
+
+wss\://squawk.benzinga.com/squawk
+
+**Address if using JWT**
+
+wss\://squawk.benzinga.com/webrtc
+
+### Authenticate
+
+There are couple of ways to authenticate:
+
+Using API key
+Once the socket connection is created, authenticate with your `apikey`.
+
+```JSON
+{
+    "apikey": "f5kec5x6gplwdv8o5dcn5aydtyx132u8",    
+    "role": "viewer",
+    "type": "auth",
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a"
+}
+```
+
+**Note:** If you do not yet have an API key (apikey), please get in touch with the Benzinga licensing team. This is a one-time process. Save this API key securely.
+
+**Using JWT**
+Benzinga APIs support asymmetric JWT (JSON Web Token) for authentication.
+
+To authenticate using JWT, send the token in query parameter when you open the WebSocket connection. Pseudo-code for connecting (and authenticating) would be as below:
+
+```JSON
+socket.connect("wss://squawk.benzinga.com/webrtc?jwt=<jwt_token>")
+```
+
+With JWT there is no need to send a separate auth message as the token includes all of the relevant properties. Make sure to send a unique uuid in `sub` of JWT, to identify each user.
+
+Please refer to [https://github.com/Benzinga/jwt](https://github.com/Benzinga/jwt) for more information on Benzinga JWT token. For JWT, you will need to share the hosting location/endpoint of your public key to Benzinga from where our authenticator service would be able to download the public key using key ID. At the moment this is a manual one time process.
+
+On successful authentication and connection, you should get the following response:
+
+```JSON
+{
+    "iceServers": [{
+        "urls": "turn:turnserver.benzinga.com:443",
+        "username": "1567755301:XQbpzZ0YzltGon1q6paqbfensmE\u003d",
+        "credential": "JfJBS295kI/5pjCQgGGJDgHv9ms\u003d"
+    }],
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a",
+    "type": "authResponse"
+}
+```
+
+The ice server details will be needed to share/obtain ICE candidates.
+
+### Join Room
+
+Once you have received the `iceServers` details, authentication is done. Next, send the join room request/message. The room name for benzinga broadcasts is `PRO`. Sample join room request format:
+
+```JSON
+{
+    "room": "PRO",
+    "type": "joinRoom",
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870"
+}
+```
+
+If the join room is successful, you should just get the same message id in response and no error. On success, you should create a room on client side.
+
+```JSON
+{
+    "existingPresenters": [{
+        "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    }, {
+        "userId": "5e7631ab-d88b-ec1c-1f14-55753629f80d:b:3db50b88-4181-4914-abcb-5e9c0624d86b",
+        "username": "Benzinga Newsdesk"
+    }],
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870",
+    "type": "joinRoomResponse"
+}
+```
+
+`existingPresenters` represents active broadcasters at the moment.
+
+### Create peer connections
+
+Add all the `existingPresenters` received in `joinRoom`'s response as participants in the room and create a peer connection with each of the presenters to start listening to them. To create a peer connection, send the SDP offer for each participant/presenter through `receiveMedia` request. Please note that the SDP offer should only contain audio attributes (no video attributes) and it should be a receive-only (`a=recvonly`). Meaning you won't be able to send anything and will receive audio-only from squawk.
+
+Sample `receiveMedia` (SDP offer) for peer connection will look like as below:
+
+```JSON
+{
+    "id": "ec187479-89e4-433e-8390-575291288733",
+    "sdpOffer": "v=0\r\no=- 5975111135793907654 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:phkg\r\na=ice-pwd:qqytnmYqdtsMsw9IUHT/amGV\r\na=ice-options:trickle\r\na=fingerprint:sha-256 36:CB:7C:70:0A:94:F1:87:7B:BE:D3:5C:1F:F6:65:2D:7B:2B:E6:49:DC:EF:C9:63:7F:7B:1D:EE:03:A3:0A:62\r\na=setup:actpass\r\na=mid:0\r\na=extmap:1 urn:ietf:params:rtp-hdrext:ssrc-audio-level\r\na=extmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na=extmap:3 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01\r\na=extmap:4 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=extmap:5 urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id\r\na=extmap:6 urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\na=rtpmap:103 ISAC/16000\r\na=rtpmap:104 ISAC/32000\r\na=rtpmap:9 G722/8000\r\na=rtpmap:0 PCMU/8000\r\na=rtpmap:8 PCMA/8000\r\na=rtpmap:106 CN/32000\r\na=rtpmap:105 CN/16000\r\na=rtpmap:13 CN/8000\r\na=rtpmap:110 telephone-event/48000\r\na=rtpmap:112 telephone-event/32000\r\na=rtpmap:113 telephone-event/16000\r\na=rtpmap:126 telephone-event/8000\r\n",
+    "type": "receiveMedia",
+    "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7"
+}
+```
+
+`userid` is the one from `existingPresenters`. On successful negotiation, you should get following SDP answer with the same id:
+
+```JSON
+{
+    "sdpAnswer": "v\u003d0\r\no\u003d- 3797240063 3797240063 IN IP4 0.0.0.0\r\ns\u003dKurento Media Server\r\nc\u003dIN IP4 0.0.0.0\r\nt\u003d0 0\r\na\u003dmsid-semantic: WMS\r\na\u003dgroup:BUNDLE 0\r\nm\u003daudio 1 UDP/TLS/RTP/SAVPF 111 0\r\na\u003dextmap:2 http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time\r\na\u003dsendonly\r\na\u003dmid:0\r\na\u003drtcp:9 IN IP4 0.0.0.0\r\na\u003drtpmap:111 opus/48000/2\r\na\u003drtpmap:0 PCMU/8000\r\na\u003dsetup:active\r\na\u003drtcp-mux\r\na\u003dfmtp:111 minptime\u003d10;useinbandfec\u003d1\r\na\u003dssrc:1502564752 cname:user3841312702@host-b8fb6ab5\r\na\u003dice-ufrag:kF3q\r\na\u003dice-pwd:/iwrTllaUFawOxIap1eRQz\r\na\u003dfingerprint:sha-256 B1:4C:EB:B5:9D:ED:68:D6:DE:EC:EE:41:B9:CC:62:12:27:EE:7A:F4:46:B6:2A:E8:73:64:C0:A4:C9:35:51:08\r\n",
+    "id": "ec187479-89e4-433e-8390-575291288733",
+    "type": "receiveMediaResponse"
+}
+```
+
+Process the received SDP answer with peer connection. If any error is received, reject the connection.
+
+If you want to know more about SDP negotiation and format, please refer a good blog at [https://www.kurento.org/blog/rtp-i-intro-rtp-and-sdp#sdp](https://www.kurento.org/blog/rtp-i-intro-rtp-and-sdp#sdp)
+
+### Send ICE Candidate to peers
+
+Typical request/message format to send `iceCandidate` from each participant's peer:
+
+```JSON
+{
+    "candidate": {
+        "candidate": "candidate:2561942037 1 udp 2113937151 4ae3ff30-68c5-4a75-9814-c79b1a0ae577.local 53234 typ host generation 0 ufrag F9Mq network-cost 999",
+        "sdpMLineIndex": 0,
+        "sdpMid": "0"
+    },
+    "id": "e9b93555-98fb-40a6-8594-aaea473cf2b6",
+    "type": "iceCandidate",
+    "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7"
+}
+```
+
+Response:
+
+```JSON
+{    
+    "id": "e9b93555-98fb-40a6-8594-aaea473cf2b6",
+    "type": "iceCandidateResponse"
+}
+```
+
+**Notifications from server**
+
+Add a handler for the following message/notification types, which will be sent by squawk server.
+
+* **newPresenterArrived**
+
+Indicates the new presenter/broadcaster has joined. Add new presenter creating a new peer connection. typical `newPresenterArrived` message will be as follow:
+
+```JSON
+{
+    "user": {
+        "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    },
+    "type": "newPresenterArrived"
+}
+```
+
+Upon receiving this notification, create a new participant and follow the [create a peer](#create-peer-connections) and [share ICE candidates](#send-ice-candidate-to-peers) to start receiving audio.
+
+```JSON
+{
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+    "candidate": {
+        "candidate": "candidate:2 2 TCP 1015021822 172.17.0.2 9 typ host tcptype active",
+        "sdpMid": "0",
+        "sdpMLineIndex": 0
+    },
+    "type": "iceCandidate"
+}
+```
+
+From `userId`, you can map the `iceCandidate` to the existing broadcaster/participant.
+
+* **presenterLeft**
+
+Upon receiving this notification, close the peer connection and remove the broadcaster/participant from room identifying received `userId` in the message. Typical `presenterLeft` message will be received in below format:
+
+```JSON
+{
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+    "type": "presenterLeft"
+}
+```
+
+* **mediaOverride**
+
+Meaning this user has started playing from another session (could be logged in from another browser/client). So discard all peer connections and disconnect from this session. The `mediaOverride` message will be in the following format:
+
+```JSON
+{
+    "type": "mediaOverride"
+}
+```
+
+### Ping/Pong mechanism to keep alive the Web Socket
+
+Implement the regular interval `ping` messages to keep the Web Socket connection alive. Every 25-30 seconds should be good enough. Ping request format:
+
+```JSON
+{
+    "type": "ping",
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13"
+}
+```
+
+In response, you should just get the same `id`:
+
+```JSON
+{
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13",
+    "type": "pingResponse",
+}
+```
+
+### Logout
+
+Send the logout message when you want to stop listening or your container application's session ends. The logout request/message should be:
+
+```JSON
+{
+    "type": "logout",
+    "id": "9461455c-6f4b-438d-b182-72cc2304521d"
+}
+```
+
+## Using RTP
+
+Squawk also supports RTP streaming, which can be useful if you are looking to re-broadcast from your media server or for any other RTP specific purpose. One can connect to squawk RTP by implementing the following mechanism.
+
+* [Create a socket connection](#create-a-socket-connection-2)
+* [Authenticate](#authenticate-2)
+* [SDP negotiation](#sdp-negotiation)
+* [Logout](#logout-2)
+* [Media Override Notification](#media-override-notification)
+* [Ping/Pong mechanism](#pingpong-mechanism)
+
+For RTP receiver sample implementation, you can refer [https://github.com/Benzinga/benzinga-squawk-client](https://github.com/Benzinga/benzinga-squawk-client). There are chances that more than one broadcaster active at the same time. In such a case, there will be multiple streams from each broadcaster. So keep around 5 ports open for incoming RTP streams and configure them as shown in `rtp-receiver` example. 5 open ports are more than enough.
+
+### Create a socket connection
+
+Similar to WebRTC, for RTP also, the authentication, joining room, SDP negotiation, and other message exchange happens over WebSocket. So first connect to WebSocket. The Benzinga Squawk RTP service WebSocket address is:
+
+```
+wss://squawk.benzinga.com/rtp
+```
+
+### Authenticate
+
+At the moment squawk supports only API key authentication for RTP.
+
+**Using API key**
+Once the socket connection is created, authenticate with your `apikey`.
+
+```JSON
+{
+    "id": "70572814-8ebb-11ea-b9d9-8bb3db575e99",
+    "role": "rtpreceiver",
+    "type": "auth",
+    "apikey": "f5kec5x6gplwdv8o5dcn5aydtyx132u8"
+}
+```
+
+Response:
+
+```JSON
+{
+    "id": "70572814-8ebb-11ea-b9d9-8bb3db575e99",
+    "type": "authResponse"
+}
+```
+
+**Note:** Please get in touch with the Benzinga licensing team for acquiring apiKey. This is a one-time process. Save this API key securely.
+
+**Join Room**
+Once authenticated, send the join room request/message. The room name for benzinga broadcasts is `PRO`. Sample join room request format:
+
+```JSON
+{
+    "room": "PRO",
+    "type": "joinRoom",
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870"
+}
+```
+
+If the join room is successful, you should just get the same message id in response and no error. On success, you should create a room on client side.
+
+```JSON
+{
+    "existingPresenters": [{
+        "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    }, {
+        "userId": "5e7631ab-d88b-ec1c-1f14-55753629f80d:b:3db50b88-4181-4914-abcb-5e9c0624d86b",
+        "username": "Benzinga Newsdesk"
+    }],
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870",
+    "type": "joinRoomResponse"
+}
+```
+
+`existingPresenters` represents active broadcasters at the moment. So if there are any existing broadcasters, you should start SDP negotiation with each broadcaster to receive the audio stream.
+
+### SDP negotiation
+
+Negotiate the SDP offer with each broadcaster using `userId` received in a presenter object. Sample format as shown below:
+
+```JSON
+{
+    "id": "ddd8a81e-8ec0-11ea-96a6-6339b9e47143",
+    "type": "receiveMedia",
+    "sdpOffer": "v=0\nt=0 0\nm=audio 8447 RTP/AVP 98\nc=IN IP4 127.0.0.1\na=recvonly\na=rtpmap:98 opus/48000/2\na=fmtp:98 stereo=0; sprop-stereo=0; useinbandfec=1",
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7"
+}
+```
+
+Some references for SDP: [Quick overview of SDP fields](https://en.wikipedia.org/wiki/Session_Description_Protocol) [RTP and SDP](https://www.kurento.org/blog/rtp-i-intro-rtp-and-sdp#sdp)
+
+Sample SDP offer:
+
+```
+v=0
+t=0 0
+m=audio 8449 RTP/AVP 98
+c=IN IP4 127.0.0.1
+a=recvonly
+a=rtpmap:98 opus/48000/2
+a=fmtp:98 stereo=0; sprop-stereo=0; useinbandfec=1
+```
+
+**Please note that to receive RTP stream on your end you must have a publicly accessible IP:Port**. As stated earlier, you should create a pool of 4-5 open ports and use them while you generate SDP offer for a broadcaster. For e.g. in the above SDP offer, the port is `8449`. Also when broadcaster left and the streaming session ends, you should return the used IP back to pool fr next time use.
+
+On successful negotiation you should get below response:
+
+```
+{
+    "sdpAnswer": "v\u003d0\r\no\u003d- 3797665759 3797665759 IN IP4 172.17.0.2\r\ns\u003dKurento Media Server\r\nc\u003dIN IP4 172.17.0.2\r\nt\u003d0 0\r\nm\u003daudio 18256 RTP/AVP 98\r\na\u003dsendonly\r\na\u003drtpmap:98 opus/48000/2\r\na\u003dfmtp:98 stereo\u003d0; sprop-stereo\u003d0; useinbandfec\u003d1\r\na\u003dssrc:2434529108 cname:user523588678@host-17c9a160\r\na\u003drtcp:18257\r\n",
+    "id": "ddd8a81e-8ec0-11ea-96a6-6339b9e47143",
+    "type": "receiveMediaResponse"
+}
+```
+
+`sdpAnswer` can be useful if you are aiming to re-broadcast the stream via WebRTC through any media server on your end. If not then simply ignore that. At this point, after successful SDP negotiation, you should start receiving RTP audio stream from Squawk.
+
+### Logout
+
+Send the logout message when you want to stop receiving RTP stream
+
+````JSON
+{
+    "type": "logout",
+    "id": "9461455c-6f4b-438d-b182-72cc2304521d"
+}
+```Ideally, you should send a logout message to Squawk before closing/shutting down your application.
+
+### Notifications
+Handle the following message/notification types, which will be sent by squawk server.
+
+- **newPresenterArrived**
+
+Indicates the new presenter/broadcaster has joined.
+```JSON
+{
+    "user": {
+        "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    },
+    "type": "newPresenterArrived"
+}
+````
+
+Upon receiving this notification, start [SDP negotiation](#sdp-negotiation) to receive RTP stream from this broadcaster.
+
+* **presenterLeft**
+
+Indicates that the presenter/broadcaster has left and streaming stopped. So should cutoff the RTP stream on receiving this notification and return the associated port to free pool for using on next incoming stream. Typical `presenterLeft` message will be received in below format:
+
+```JSON
+{
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+    "type": "presenterLeft"
+}
+```
+
+### mediaOverride
+
+This is the notification that will be sent from Squawk to WebSocket client in a case where you logged in from another session (somewhere else) using the same API key.
+
+```
+{
+    "type": "mediaOverride"
+}
+```
+
+Probably, you should close the socket connection in the current session on receiving the media override notification.
+
+### Ping/Pong mechanism
+
+Similar to WebRTC socket, implement the regular interval `ping` messages to keep the Web Socket connection alive. Every 25-30 seconds should be good enough. Ping request format:
+
+```JSON
+{
+    "type": "ping",
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13"
+}
+```
+
+In case if you are using a WebSocket library, it may already have this mechanism and in such a case, you don't need to add the ping message sending functionality.
+
+
+# Squawk v4
+Source: https://docs.benzinga.com/benzinga-apis/squawk-v4
+
+Squawk is a realtime broadcast which includes important headlines, price movement and rumors as stories develop to give traders and investors news in the fastest and most convenient form.
+
+## Connecting to Squawk
+
+There are two ways you can connect to Sqauwk:
+
+* [Using WebRTC](#using-webrtc)
+* [Using RTP](#using-rtp)
+
+**Notes for both WebRTC and RTP:**
+
+1. It is advised to add reconnect functionality for WebSocket. It is useful, in case socket connection drops for any reason (maybe the internet is down for a couple of minutes). So add a functionality to try reconnection at some regular interval after WebScoket gets disconnected.
+
+2. The ID field (id) in each request/message is a unique `UUID` string used to coordinate messages between client and server over WebSocket.
+
+3. Each response to a message sent from the client will have `Response` appended at the end of the message's type sent. For e.g. a message with type `joinRoom` will receive a response with type `joinRoomResponse`
+
+4. Following is the format of the generic error response. In event of any error to a sent request, you will get the following response:
+
+```JSON
+{
+    "error": "Cannot join room PRO",
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a"
+    "type": "joinRoomResponse"
+}
+```
+
+As stated earlier, the type indicates the response to the message earlier sent.
+
+## Using WebRTC
+
+Squawk is built on top of WebRTC. So one can connect to it through WebRTC supported browser using standard WebRTC API methods. The following are the methods that you will need to implement while writing a client for connecting to squawk.
+
+* [Create a socket connection](#create-a-socket-connection)
+* [Authenticate](#authenticate)
+* [Join Room](#join-room)
+* [Get Available Streams/Channels](#get-available-streamschannels)
+* [Create peer connections](#create-peer-connections)
+* [Send ICE Candidate to peers](#send-ice-candidate-to-peers)
+* [Message Types](#message-types)
+* [Ping/Pong mechanism to keep alive the Web Socket](#ping-pong-mechanism-to-keep-alive-the-web-socket)
+* [Logout](#logout)
+
+### Create a socket connection
+
+First, create a web socket connection to squawk. The Benzinga Squawk WebRTC service WebSocket address is:
+
+**Address if using API key**
+wss\://squawk.benzinga.com/ws/v4/squawk
+
+**Address if using JWT**
+wss\://squawk.benzinga.com/ws/v4/webrtc
+
+**Note:** API Key support is deprecated and new integrations should use JWT.
+
+### Authenticate
+
+**Using API key**
+
+```JSON
+{
+    "apikey": "f5kec5x6gplwdv8o5dcn5aydtyx132u8",    
+    "role": "viewer",
+    "type": "auth",
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a"
+}
+```
+
+**Note:** If you do not yet have an API key (`apikey`), please get in touch with the Benzinga licensing team at [licensing@benzinga.com](mailto:licensing@benzinga.com). This is a one-time process. Save this API key securely.
+
+**Using JWT**
+Benzinga APIs support asymmetric JWT (JSON Web Token) for authentication.
+
+To authenticate using JWT, send the token in query parameter when you open the WebSocket connection. Pseudo-code for connecting (and authenticating) would be as below:
+
+```
+socket.connect("wss://squawk.benzinga.com/ws/v4/webrtc?jwt=<jwt_token>")
+```
+
+With JWT there is no need to send a separate auth message as the token includes all of the relevant properties. Be sure to refer to Benzinga JWT documentation.
+
+Please refer to [https://github.com/Benzinga/jwt](https://github.com/Benzinga/jwt) for more information on Benzinga JWT token. For JWT, you will need to share the hosting location/endpoint of your public key to Benzinga from where our authenticator service would be able to download the public key using key ID. At the moment this is a manual one time process.
+
+On successful authentication and connection, you should get the following response:
+
+```JSON
+{
+    "iceServers": [{
+        "urls": "turn:turnserver.benzinga.com:443",
+        "username": "1567755301:XQbpzZ0YzltGon1q6paqbfensmE\u003d",
+        "credential": "JfJBS295kI/5pjCQgGGJDgHv9ms\u003d"
+    }],
+    "id": "4158f900-d652-483a-8147-866d99ed9f8a",
+    "type": "authResponse"
+}
+```
+
+The ice server details contains both STUN and TURN server.
+
+### Join Room
+
+Once you have received the `iceServers` details, authentication is done. Next, send the join room request/message. The room name for benzinga broadcasts is `PRO`. Sample join room request format:
+
+```JSON
+{
+    "room": "PRO",
+    "type": "joinRoom",
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870"
+}
+```
+
+If the join room is successful, you should just get the same message id in response and no error. On success, you should create a room on client side.
+
+```JSON
+{
+    "existingPresenters": [{
+        "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    }, {
+        "userId": "5e7631ab-d88b-ec1c-1f14-55753629f80d:b:3db50b88-4181-4914-abcb-5e9c0624d86b",
+        "username": "Benzinga Newsdesk"
+    }],
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870",
+    "type": "joinRoomResponse"
+}
+```
+
+`existingPresenters` represents active broadcasters at the moment.
+
+### Get Available Streams/Channels
+
+Fetch the list of available streams/channels in the room
+
+```
+{
+    "id": "9316ebd8-bc16-456d-b70f-415fbe4db1f2",
+    "type": "getAvailableStreams"
+}
+```
+
+The successful response should be:
+
+```
+{
+    "streams": [{
+        "id": 1,
+        "type": "live",
+        "description": "Pro Squawk English",
+        "metadata": "Pro Squawk channel for realtime audio updates related to headlines, price movement and rumors as stories develop",
+        "allowedListening": true,
+        "allowedBroadcasting": false
+    }],
+    "id": "9316ebd8-bc16-456d-b70f-415fbe4db1f2",
+    "type": "getAvailableStreamsResponse"
+}
+```
+
+You can subscribe to one or more stream for listening from the list. Note that, `allowedListening` and `allowedBroadcasting` indicates if this user has listening and broadcasting rights to the channel.
+
+### Subscribe to Stream
+
+Subscribe to a particular stream passing stream id.
+
+```JSON
+{
+    "id": "fb97854b-1291-467b-b518-e91dfb9d64b1",
+    "streamId": 1,
+    "restart": false,
+    "type": "subscribeToStream"
+}
+```
+
+Note that `restart` flag is used to indicate if there needs a peer re-negotiation (ICE Restart) for a stream. This should be used in case of peer connection is failing for any reason (e.g. change in network). It is optional if you are creating a new peer connection. A successful response should have SDP offer for subscribed stream:
+
+```
+{
+    "sdpOffer": "v\u003d0\r\no\u003d- 1598527749225841 1 IN IP4 192.168.2.6\r\ns\u003dMountpoint 1\r\nt\u003d0 0\r\na\u003dgroup:BUNDLE audio\r\na\u003dmsid-semantic: WMS janus\r\nm\u003daudio 9 UDP/TLS/RTP/SAVPF 111\r\nc\u003dIN IP4 192.168.2.6\r\na\u003dsendonly\r\na\u003dmid:audio\r\na\u003drtcp-mux\r\na\u003dice-ufrag://2Y\r\na\u003dice-pwd:zXU9lnCAIhI7S0/zZ5yAJT\r\na\u003dice-options:trickle\r\na\u003dfingerprint:sha-256 DE:29:EE:4D:80:64:2B:45:11:71:BC:9F:D0:68:25:71:4D:08:2D:5E:ED:32:C8:AB:DD:98:CA:AF:B8:6F:2F:94\r\na\u003dsetup:actpass\r\na\u003drtpmap:111 opus/48000/2\r\na\u003dextmap:1 urn:ietf:params:rtp-hdrext:sdes:mid\r\na\u003dmsid:janus janusa0\r\na\u003dssrc:658882346 cname:janus\r\na\u003dssrc:658882346 msid:janus janusa0\r\na\u003dssrc:658882346 mslabel:janus\r\na\u003dssrc:658882346 label:janusa0\r\na\u003dcandidate:1 1 udp 2013266431 192.168.2.6 35278 typ host\r\na\u003dend-of-candidates\r\n",
+    "streamId": 1,
+    "id": "fb97854b-1291-467b-b518-e91dfb9d64b1",
+    "type": "subscribeToStreamResponse"
+}
+```
+
+### Start Stream
+
+Now you have an SDP offer of the subscribed stream. So at this point, process the received SDP offer and send back SDP answer with `startStrea` request to start receiving and listening.
+
+```
+{
+    "id": "87d4945b-ec7f-4451-8281-cd3d20da7a47",
+    "sdpAnswer": "v=0\r\no=- 7051170108058563345 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:bBpg\r\na=ice-pwd:QflT1eESz7K2mIItHDjl8O+2\r\na=ice-options:trickle\r\na=fingerprint:sha-256 ED:9B:96:E5:1A:A0:C3:CA:5D:9D:70:6B:55:41:5D:F1:05:4A:51:DD:AA:81:BC:46:BD:3E:8B:CB:2E:B2:47:64\r\na=setup:active\r\na=mid:audio\r\na=extmap:1 urn:ietf:params:rtp-hdrext:sdes:mid\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=fmtp:111 minptime=10;useinbandfec=1\r\n",
+    "streamId": 1,
+    "type": "startStream"
+}
+```
+
+On success, the response should have the status of stream and at this point, the user should start receiving the audio stream:
+
+```
+{
+    "status": "starting",
+    "streamId": 1,
+    "id": "87d4945b-ec7f-4451-8281-cd3d20da7a47",
+    "type": "startStreamResponse"
+}
+```
+
+### Send ICE Candidate
+
+Typical request/message format to send `iceCandidate` from each stream's peer:
+
+```JSON
+{
+    "candidate": {
+        "candidate": "candidate:2561942037 1 udp 2113937151 99ac813a-15cb-47b5-8722-0cb0c1659d97.local 50388 typ host generation 0 ufrag c1ss network-cost 999",
+        "sdpMLineIndex": 0,
+        "sdpMid": "audio"
+    },
+    "id": "3f194659-7179-4a66-bb05-b7861063143f",
+    "streamId": 1,
+    "type": "iceCandidate"
+}
+```
+
+Response:
+
+```JSON
+{
+    "id": "3f194659-7179-4a66-bb05-b7861063143f",
+    "streamId": 1,
+    "type": "iceCandidateResponse"
+}
+```
+
+Also, add an event handler on stream's peer connection's [onicegatheringstatechange](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onicegatheringstatechange) event. And on `complete` state (when ICE gathering completed), send the following request to notify same:
+
+```JSON
+{
+    "id": "c17601e9-928e-4f7d-ac18-a2de3612f493",
+    "streamId": 1,
+    "type": "listenerIceGatheringCompleted"
+}
+```
+
+Success response should be:
+
+```JSON
+{
+    "id": "c17601e9-928e-4f7d-ac18-a2de3612f493",
+    "streamId": 1,
+    "type": "listenerIceGatheringCompletedResponse"
+}
+```
+
+### Stop Stream
+
+If you want to stop listening and disconnect from all channels/streams, you can send logout request. But in case, if you want to stop listening to a specific stream/channel, you can send `stopStream` request.
+
+```JSON
+{
+    "id": "0c346041-d0d7-4321-a0f6-caa45f29495b",
+    "streamId": 1,
+    "type": "stopStream"
+}
+```
+
+Success response should be:
+
+```JSON
+{
+    "id": "0c346041-d0d7-4321-a0f6-caa45f29495b",
+    "streamId": 1,
+    "type": "stopStreamResponse"
+}
+```
+
+Note that, if you are sending `subscribeToStream` on an existing peer connection fail event (meaning you are starting over again), then you must invoke `stopStream` first to dispose of the existing peer connection before a fresh `subscribeToStream`
+
+### Notifications from server
+
+Add a handler for the following message/notification types, which will be sent by squawk server.
+
+* **mediaOverride**
+
+Meaning this user has started playing the same stream from another session (could be logged in from another browser/client). So Squawk server discards the peer connections associated with that stream. The `mediaOverride` notification will be in the following format:
+
+```JSON
+{
+    "streamId": 1,
+    "type": "mediaOverride"
+}
+```
+
+### Ping/Pong mechanism to keep alive the Web Socket
+
+Implement the regular interval `ping` messages to keep the Web Socket connection alive. Every 25-30 seconds should be good enough. Ping request format:
+
+```JSON
+{
+    "type": "ping",
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13"
+}
+```
+
+In response, you should just get the same `id`:
+
+```JSON
+{
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13",
+    "type": "pingResponse",
+}
+```
+
+### Logout
+
+Send the logout message when you want to stop listening or your container application's session ends. The logout request/message should be:
+
+```JSON
+{
+    "type": "logout",
+    "id": "9461455c-6f4b-438d-b182-72cc2304521d"
+}
+```
+
+## Using RTP
+
+Squawk also supports RTP streaming, which can be useful if you are looking to re-broadcast from your media server or for any other RTP specific purpose. One can connect to squawk RTP by implementing the following mechanism.
+
+* [Create a socket connection](#create-a-socket-connection-2)
+* [Authenticate](#authenticate-2)
+* [SDP negotiation](#sdp-negotiation)
+* [Logout](#logout-2)
+* [Media Override Notification](#media-override-notification)
+* [Ping/Pong mechanism](#ping-pong-mechanism-)
+
+For RTP receiver sample implementation, you can refer [https://github.com/Benzinga/benzinga-squawk-client](https://github.com/Benzinga/benzinga-squawk-client). There are chances that more than one broadcaster active at the same time. In such a case, there will be multiple streams from each broadcaster. So keep around 5 ports open for incoming RTP streams and configure them as shown in `rtp-receiver` example. 5 open ports are more than enough.
+
+### Create a socket connection
+
+Similar to WebRTC, for RTP also, the authentication, joining room, SDP negotiation, and other message exchange happens over WebSocket. So first connect to WebSocket. The Benzinga Squawk RTP service WebSocket address is:
+
+```
+wss://squawk.benzinga.com/rtp
+```
+
+### Authenticate
+
+At the moment squawk supports only API key authentication for RTP.
+**Using API key**
+Once the socket connection is created, authenticate with your `apikey`.
+
+```JSON
+{
+    "id": "70572814-8ebb-11ea-b9d9-8bb3db575e99",
+    "role": "rtpreceiver",
+    "type": "auth",
+    "apikey": "f5kec5x6gplwdv8o5dcn5aydtyx132u8"
+}
+```
+
+Response:
+
+```JSON
+{
+    "id": "70572814-8ebb-11ea-b9d9-8bb3db575e99",
+    "type": "authResponse"
+}
+```
+
+**Note:** Please get in touch with the Benzinga licensing team for acquiring `apiKey`. This is a one-time process. Save this API key securely.
+
+**Join Room**
+Once authenticated, send the join room request/message. The room name for benzinga broadcasts is `PRO`. Sample join room request format:
+
+```JSON
+{
+    "room": "PRO",
+    "type": "joinRoom",
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870"
+}
+```
+
+If the join room is successful, you should just get the same message id in response and no error. On success, you should create a room on client side.
+
+```JSON
+{
+    "existingPresenters": [{
+        "userId": "c85d0de5-630e-532e-7208-a9e148c93a08:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    }, {
+        "userId": "5e7631ab-d88b-ec1c-1f14-55753629f80d:b:3db50b88-4181-4914-abcb-5e9c0624d86b",
+        "username": "Benzinga Newsdesk"
+    }],
+    "id": "a5fd1a15-17cf-4f66-83a2-0d77704e1870",
+    "type": "joinRoomResponse"
+}
+```
+
+`existingPresenters` represents active broadcasters at the moment. So if there are any existing broadcasters, you should start SDP negotiation with each broadcaster to receive the audio stream.
+
+### SDP negotiation
+
+Negotiate the SDP offer with each broadcaster using `userId` received in a presenter object. Sample format as shown below:
+
+```JSON
+{
+    "id": "ddd8a81e-8ec0-11ea-96a6-6339b9e47143",
+    "type": "receiveMedia",
+    "sdpOffer": "v=0\nt=0 0\nm=audio 8447 RTP/AVP 98\nc=IN IP4 127.0.0.1\na=recvonly\na=rtpmap:98 opus/48000/2\na=fmtp:98 stereo=0; sprop-stereo=0; useinbandfec=1",
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7"
+}
+```
+
+Some references for SDP: [Quick overview of SDP fields](https://en.wikipedia.org/wiki/Session_Description_Protocol) [RTP and SDP](https://www.kurento.org/blog/rtp-i-intro-rtp-and-sdp#sdp)
+
+Sample SDP offer:
+
+```
+v=0
+t=0 0
+m=audio 8449 RTP/AVP 98
+c=IN IP4 127.0.0.1
+a=recvonly
+a=rtpmap:98 opus/48000/2
+a=fmtp:98 stereo=0; sprop-stereo=0; useinbandfec=1
+```
+
+**Please note that to receive RTP stream on your end you must have a publicly accessible IP:Port**. As stated earlier, you should create a pool of 4-5 open ports and use them while you generate SDP offer for a broadcaster. For e.g. in the above SDP offer, the port is 8449. Also when broadcaster left and the streaming session ends, you should return the used IP back to pool fr next time use.
+
+On successful negotiation you should get below response:
+
+```
+{
+    "sdpAnswer": "v\u003d0\r\no\u003d- 3797665759 3797665759 IN IP4 172.17.0.2\r\ns\u003dKurento Media Server\r\nc\u003dIN IP4 172.17.0.2\r\nt\u003d0 0\r\nm\u003daudio 18256 RTP/AVP 98\r\na\u003dsendonly\r\na\u003drtpmap:98 opus/48000/2\r\na\u003dfmtp:98 stereo\u003d0; sprop-stereo\u003d0; useinbandfec\u003d1\r\na\u003dssrc:2434529108 cname:user523588678@host-17c9a160\r\na\u003drtcp:18257\r\n",
+    "id": "ddd8a81e-8ec0-11ea-96a6-6339b9e47143",
+    "type": "receiveMediaResponse"
+}
+```
+
+`sdpAnswer` can be useful if you are aiming to re-broadcast the stream via WebRTC through any media server on your end. If not then simply ignore that. At this point, after successful SDP negotiation, you should start receiving RTP audio stream from Squawk.
+
+### Logout
+
+Send the logout message when you want to stop receiving RTP stream
+
+```JSON
+{
+    "type": "logout",
+    "id": "9461455c-6f4b-438d-b182-72cc2304521d"
+}
+```
+
+Ideally, you should send a logout message to Squawk before closing/shutting down your application.
+
+**Notifications**
+Handle the following message/notification types, which will be sent by squawk server.
+
+* **newPresenterArrived**
+
+Indicates the new presenter/broadcaster has joined.
+
+```JSON
+{
+    "user": {
+        "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+        "username": "Charles Gross"
+    },
+    "type": "newPresenterArrived"
+}
+```
+
+Upon receiving this notification, start [SDP negotiation](#sdp-negotiation) to receive RTP stream from this broadcaster.
+
+* **presenterLeft**
+
+Indicates that the presenter/broadcaster has left and streaming stopped. So should cutoff the RTP stream on receiving this notification and return the associated port to free pool for using on next incoming stream. Typical `presenterLeft` message will be received in below format:
+
+```JSON
+{
+    "userId": "d26826c0-0ecb-9d68-a429-3e4159f49bab:b:071f00f9-8f2f-4479-8cd7-30804d689ca7",
+    "type": "presenterLeft"
+}
+```
+
+* **mediaOverride**
+  This is the notification that will be sent from Squawk to WebSocket client in a case where you logged in from another session (somewhere else) using the same API key.
+
+```JSON
+{
+    "type": "mediaOverride"
+}
+```
+
+Probably, you should close the socket connection in the current session on receiving the media override notification.
+
+### Ping/Pong mechanism
+
+Similar to WebRTC socket, implement the regular interval `ping` messages to keep the Web Socket connection alive. Every 25-30 seconds should be good enough. Ping request format:
+
+```JSON
+{
+    "type": "ping",
+    "id": "e4809b6b-319a-4fa9-94e0-94ae86a33f13"
+}
+```
+
+In case if you are using a WebSocket library, it may already have this mechanism and in such a case, you don't need to add the ping message sending functionality.
+
+
+# GET Webhook Test
+Source: https://docs.benzinga.com/benzinga-apis/test-trigger-webhook/get-webhook-test
+
+GET /webhook/test
+this endpoint will send data to your endpoint so you may test.
+
+### Responses
+
+<ResponseField name="200 OK" type="Responses">
+  success.
+</ResponseField>
+
+<ResponseField name="400 Bad Request" type="Responses">
+  Error Indicating that the Request received invalid. Inspect response body for details.
+</ResponseField>
+
+<ResponseField name="424 Failed Dependency" type="Responses">
+  Error Indicating that the system encountered an error delivering the test payload. Inspect response body for details.
+</ResponseField>
+
+<ResponseField name="500 Internal Server Error" type="Responses">
+  Internal System Error.
+</ResponseField>
+
+
+# Webhook v1
+Source: https://docs.benzinga.com/benzinga-apis/webhook-v1
+
+
+
+## What is a Webhook
+
+Put simply it's a message sent to a URL whenever something happens.
+
+Webhooks are a common communication mechanism used in many event-based systems. Inside Benzinga systems, an event is triggered when a piece of news is published or updated. For clients this means you can choose to have event data delivered from Benzinga to your system as soon as it happens inside our systems. This allows you to structure your system in a way that allows it to react to Benzinga Events without maintaining a connection or checking for updates.
+
+## Webhook Usage Examples
+
+* News events sent to Discord Server.
+* Benzinga Why Is It Moving (WIIM) published triggers AWS Lambda workflow.
+* Benzinga news published triggers [Zapier](https://zapier.com/page/webhooks/) Zap.
+* Press Release triggers machine-learning assisted trading bot.
+
+## REST API vs. Websocket Streaming vs Webhook
+
+We offer pull-based REST APIs, streaming Websocket, and push-based Webhook delivery mechanisms.
+
+The REST API is suitable for many use cases, but has the disadvantage of being subject to rate-limits and other complexity often found with REST APIs.
+
+The Websocket offers an always-on connection that provides data real-time as soon as it becomes available in our system. Webhooks offer the same realtime delivery, but the connection is not maintained between deliveries. In most cases this means \< 50ms of added latency which should be acceptable in most cases with the advantage of not needing to maintain an always-on connection and allowing clients to easily build event-driven systems.
+
+## Documentation
+
+**Example Webhook Receiver Code:**
+
+* [https://github.com/Benzinga/webhook-receiver-example](https://github.com/Benzinga/webhook-receiver-example)
+
+### System Requirements
+
+* Must accept `POST` requests on URL provided to Benzinga.
+* Must respond to Benzinga Webhook with HTTP status code `200-OK`, `201-Created`, `202-Accepted` or `204-NoContent`. Any other will result in redelivery.
+* Re-delivery attempts will happen using exponential backoff starting from `500 ms` for up to `5 minutes` at which point the system will retry every `5 minutes` to resume deliveries. Please provide an email address to notification of issues.
+* Events undeliverable for more than 24 hours will expire (or based on client agreement).
+* Must handle incoming webhook within `30 seconds`; payloads taking more than this time to deliver will timeout. If your system takes longer than this to process incoming deliveries you will need to store the payload and respond with a success status code to continue processing.
+* Must **NOT** send response body on success.
+* Must **NOT** send response greater than 5 KiB on error response.
+
+### System Notes
+
+* Benzinga will immediately cease deliveries and will not attempt redelivery if any status code in the range of `401-403` is received.
+* News events can sometimes happen in burst, the system will respect `429` rate limit status codes, but receivers should be capable of processing several events per second in peak periods dependending on content selections.
+
+### Delivery Details
+
+**HTTP `POST`**
+
+Can be delivered to any valid URL provided to Benzigna.
+
+**Headers**
+
+* `X-BZ-Delivery`: UUID string identifying delivery attempt; you can provide this for troubleshooting.
+* `User-Agent`: Identifies the system sending the message. ex. `Benzinga-Dispatch/<id> v1.0.0`
+* `Content-Type`: `application/json`. Identifies payload content type.
+
+**Body**
+**Fields:**
+
+```
+"id": UUID string identifying delivery attempt, you can provide this for troubleshooting, same as header 'X-BZ-Delivery' (string)
+"api_version": Indicates the payload format. Verifying this matches expectations is probably a good idea. (string)
+"kind": Identifies the message kind. Currently 'News/v1' is the only kind delivered. (string)
+"data": Contains message data payload, this may vary with 'apiVersion' and 'kind'. (object)
+    "action": Indicates the type of news_event. One of 'Created', 'Updated', or 'Removed'. (string)
+    "id": Benzinga News Event ID. (number)
+    "timestamp": Indicates event time. (string:RFC3339Milli)
+    "content": contains news content fields. (object)
+      "id": Article Identifier, will not update on subsequent revisions. (number)
+      "revision_id": Article revision id. This is updated with each revision and higher numbers indicate more recent revision. (number)
+      "type": Article type/source. ex. 'story'. (string)
+      "created_at": Publication timestamp. (string:RFC3339Milli)
+      "updated_at": Revision publication timestamp. (string:RFC3339Milli)
+      "title": The headline of the article. This will only be plain text. May be updated with revisions. (string)
+      "body": The article content. This field can contain html and html encoded
+        characters such as `&amp` or `.` etc. You may request plaintext only with HTML removed,
+        but this may impact formatting/style and produce results different from what the source intended. (string)
+      "authors": The authors of the article. (array:string)
+      "teaser": Depending on where the content is originated from (Benzinga.com or
+        Benzinga Pro terminal) the teaser functions in different ways. If the
+        article is a full length article from Benzinga.com, where the body
+        field is filled out, this will be the first sentence of the article up
+        to 256 characters. If this is a Benzinga Pro headline, this will
+        function like the body of an article and provide additional context to
+        the headline, usually no more than a few paragraphs. This field can
+        contain html and html encoded characters such as `&amp` or `.`. 
+        You may request plaintext only with HTML removed, but this may impact 
+        formatting/style and produce results different from what the source intended. (string)
+      "url": The publicly available URL for the content. (string)
+      "tags": Additional tags that are not channels or categories, but are
+      reoccuring themes including, but not limited to; analyst names, bills
+      being talked about in Congress (Dodd-Frank), specific products
+      (iPhone), politicians, celebrities, stock movements (i.e. 'Mid-day
+      Losers' & 'Mid-day Gainers'). (array:string)
+      "channels": The topic(s) or categories that relate to the article. Channels can
+      have sub-channels, but they will all be listed as their own item and
+      not as a sub-level of the array. Why Is It Moving (WIIM) data will be labeled with the `WIIM` channel. (array:string)
+      "securities": The securities that are listed within the article body. This will
+        not display competitor symbols unless they are specifically referenced
+        in the article. Additional fields beyond name are not enabled by default
+        and must be enabled by Benzinga staff. (array:object)
+        "symbol": Security symbol. (string)
+        "exchange": Exchange for security. (string)
+        "primary": Indicates that the security is the primary subject of the article. (boolean)
+```
+
+**Example:**
+
+```
+{
+  "id": "e33bd797-92e3-4923-b888-0f80ad9c3867",
+  "api_version": "webhook/v1",
+  "kind": "News/v1",
+  "data": {
+      "action": "Created",
+      "id": 1234567890,
+      "content": {
+        "id": 2353787,
+        "revision_id": 6421725,
+        "type": "story",
+        "created_at": "2012-02-17T21:01:39.000Z",
+        "updated_at": "2020-02-05T11:31:08.000Z",
+        "title": "Company A reports record earnings in Q1",
+        "body": "During a Pre-Market earnings annoucement Company A reported ...",
+        "authors": ["Scott Rubin"],
+        "teaser": "During a Pre-Market earnings annoucement ...",
+        "url": "https://www.benzinga.com/news/21/05/2353787/company-a-makes-big-moves",
+        "tags": [
+          "Earnings"
+        ],
+        "securities": [
+          {
+            "symbol":"GOOG",
+            "exchange":"NASDAQ",
+            "primary":false
+          }
+        ],
+        "channels": [
+          "News",
+          "Movers & Shakers"
+        ]
+      },
+      "timestamp": "2012-02-17T21:01:39.000Z"
+  }
+}
+```
+
+## Webhook Test API
+
+* [Webhook Test Trigger](https://docs.benzinga.io/benzinga/test-trigger-webhook-v1.html) Use this API to trigger test payload deliveries to your Webhook endpoint.
+
+
+# Home
+Source: https://docs.benzinga.com/home
+
+Welcome to Benzinga APIs Developer Documentation!
+
+Here in the [Benzinga Cloud](https://cloud.benzinga.com/) Developer Documentation portal, you will find documentation for our news, market, and company data APIs. If you have any questions please [reach out to us](mailto:partners@benzinga.com). We love to help.
+
+## About this Documentation
+
+For our REST APIs, this documentation is powered by OpenAPI specifications. You can view the raw yaml spec by viewing the public repository of this documentation application, [here](https://github.com/Benzinga/doc-site-mintlify).
+
+An integrated REST client is embedded directly in the "Playground" section of each page powered by OpenAPI. Once you have obtained an API key, you can test calls without leaving the documentation portal. Alternatively you can test calls with any other GUI REST clients ([Postman](https://www.getpostman.com/), [Insomnia](https://insomnia.rest/), [Paw](https://paw.cloud/)) or CLI tools like cUrl1.
+
+Finally, the OpenAPI specifications are compatible with tools in the Swagger ecosystem, so you can even [generate a client for the programming language of your choice](http://swagger.io/swagger-codegen/).
+
+<Info>
+  Our docs are AI enabled. Try asking a question using Ctrl + K (PC) or Cmd + K (Mac).
+</Info>
+
+## Acessing the data
+
+<Steps>
+  <Step title="Login to your account">
+    Click "[Get Started](https://www.benzinga.com/apis/licensing/register)" to create an account.
+  </Step>
+
+  <Step title="Copy your API Key">
+    Once logged into the user dashboard, copy your API key.
+  </Step>
+
+  <Step title="Start Building!">
+    Authentication is via API Key set as a URL query parameter "token".
+  </Step>
+</Steps>
+
+## Best Practices
+
+We suggest that customers use our Benzinga-provided clients when possible. Many endpoints are available in our [Python library](https://github.com/Benzinga/benzinga-python-client). And we provide example implementations and client libraries via our public [Github](https://github.com/benzinga).
+
+Finally, we highly recommend employing deltas while using the Calendar, Signals, and News APIs -- particularly while using them for real-time ingestion (as opposed to ingestion of historical data). This can be done by employing the `parameters[updated]` query parameter for the Calendar and Signals APIs, and the `updatedSince` query parameter for the News API. Use of these parameters ensures minimal latency.
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="API Status" icon="signal-bars" href="https://benzinga1.statuspage.io">
+    Check out Benzinga APIs Statuspage to stay aware of any Benzinga service outages.
+  </Card>
+
+  <Card title="Run in Postman" icon="signs-post" href="">
+    Run Benzinga APIs in your Postman environment
+  </Card>
+
+  <Card title="Events" icon="award" href="https://www.benzinga.com/events/fintech-awards?utm_source=bzapidocs&utm_medium=organic&utm_campaign=docs&utm_term=benzingaevents&utm_content=home">
+    Benzinga Events aims to connect traders, investors, and businesses with opportunity and growth.
+  </Card>
+
+  <Card title="Benzinga Research Terminal" icon="rectangle-pro" href="https://www.benzinga.com/pro/register?utm_source=bzapidocs&utm_medium=organic&utm_campaign=docs&utm_term=benzingapro&utm_content=home">
+    Benzinga Pro delivers dozens of breaking news alerts poised to move the market every single day.
+  </Card>
+</CardGroup>
+
+***
+
+## Get in Touch!
+
+<Info>
+  ## Contact Us
+
+  ### Support
+
+  If you have any questions or concerns, *we're listening*.
+
+  * Email: [partners@benzinga.com](mailto:partners@benzinga.com)
+
+  ### Licensing
+
+  * Website: [Benzinga Cloud](https://cloud.benzinga.com/)
+  * Email: [licensing@benzinga.com](mailto:licensing@benzinga.com)
+  * Call: +1-877-440-ZING (9464)
+</Info>
+
+<Info>
+  Did we mention [Benzinga is hiring](http://jobs.benzinga.com/)?
+</Info>
+
+
+# Introduction
+Source: https://docs.benzinga.com/introduction
+
+
+
+## Benzinga APIs
+
+From earnings reports to options activity, Benzinga focuses on information that moves the market. We offer a suite of channels that concentrates on breaking news so that your firm can be the first to lock in a trade. We offer two ways to receive our news, through a pull based Rest API or a push based TCP. Both offer unprecedented access to the markets.
+
+One of the foundations of Benzinga is to "obsess over our clients, not our competition."
+
+Quality relationships are the driving force behind successful business, and our commitment to this is always coming first.
+
+To get started with Benzinga's APIs please email us directly at [licensing@benzinga.com](mailto:licensing@benzinga.com) or give us a call: 877-440-9464. We will respond within a business day.
+
+## Authentication
+
+Include your API key/token as the token parameter in the request query string.
+
+## Best Practices
+
+We suggest that customers use our Benzinga-provided clients when possible. Many endpoints are available in our [Python library](/python-client). We provide reference implementations and client libraries via our public [Github](https://github.com/benzinga).
+
+Finally, we highly recommend employing deltas while using the Calendar, Signals, and News APIs -- particularly while using them for real-time ingestion (as opposed to ingestion of historical data). This can be done by employing the `parameters[updated]` query parameter for the Calendar and Signals APIs, and the `updatedSince` query parameter for the News API. Use of these parameters ensures minimal latency.
+
+## Max Offset
+
+Pagination for the News, Calendar, and Signals APIs cannot return result sets with more than 10,000 items. That is, if your page size is 1,000, you cannot request page 10.
+
+To work around this limitation, you should adjust the query size. For instance, you can restrict to a specific date range or ticker set that includes fewer than 10,000 items. After doing so, you can adjust your query to include another date range or ticker set that includes fewer than 10,000 items, combine the sets, and repeat until you obtain the entire result set that you seek.
+
+## Return Format
+
+The default format for Benzinga APIs is specified in individual API specs, but will be `JSON` unless otherwise specified.
+
+You can request `JSON` by setting the `accept` header to `application/json` or `XML` using `application/xml` where this is not deprecated.
+
+**New integrations using `XML` output format are not recommended.**
+
+### Example
+
+```JSON
+curl -X GET \
+'http://api.benzinga.com/api/v2/calendar/ratings?token=YOUR_TOKEN_HERE&ratings=Upgrades' \
+-H 'accept: application/json'
+```
+
+
+# null
+Source: https://docs.benzinga.com/javascript-client
+
+
+
+# Calendars manager
+
+Benzinga provides API for querying structured data for conference calls, dividends, earnings (and future earnings dates), economics, pharmaceutical announcements, government trades, guidance, IPOs, secondary offerings, ratings, M\&A activity, retail sales, and splits.
+
+There is a separate manager and module for each calendar resource, for example for conference calls:
+
+```ts
+import { ConferenceCallsCalendarManager } from '@benzinga/calendar-conference-calls-manager'
+```
+
+## Getting started
+
+As with other managers, you must use a session to obtain an instance of a calendar manager:
+
+```ts
+import { createSession } from '@benzinga/session';
+import { ConferenceCallsCalendarManager } from '@benzinga/calendar-conference-calls-manager';
+
+const session = createSession({
+  'benzinga-authentication': {
+    apiKey: '<YOUR BENZINGA API KEY GOES HERE>'
+  }
+});
+
+const manager = session.getManager(ConferenceCallsCalendarManager);
+```
+
+After that you may query data. All calendars share the same input parameters, that can be used for filtering data, and also the same name of methods:
+
+* `ConferenceCallsCalendarManager` has `getConferenceCalls(params)` method
+* `EconomicsCalendarManager` has `getEconomics(params)` method
+* etc...
+
+Example of selecting second page of data, filtered by symbols and date up to 20th January 2022:
+
+```ts
+const calendarDataResponse = await manager.getConferenceCalls({
+  page: 1,
+  symbols: ['AAPL', 'MSFT'],
+  dateTo: '2022-01-20'
+});
+
+if (calendarDataResponse.err) {
+  //handle error
+} else {
+  console.log(calendarDataResponse.ok);
+}
+```
+
+Some calendars may add additional filtering params, for example IPO:
+
+```ts
+await ipoManager.getConferenceCalls({
+  page: 1,
+  symbols: ['AAPL', 'MSFT'],
+  dateTo: '2022-01-20',
+  ipoType: 'Ordinary Shares'
+});
+```
+
+List of calendar resources and their modules:
+
+| Resource                 | Module                                         |
+| ------------------------ | ---------------------------------------------- |
+| Conference Calls         | `@benzinga/calendar-conference-calls-manager`  |
+| Dividends                | `@benzinga/calendar-dividends-manager`         |
+| Earnings                 | `@benzinga/calendar-earnings-manager`          |
+| Economics                | `@benzinga/calendar-economics-manager`         |
+| FDA                      | `@benzinga/calendar-fda-manager`               |
+| Government Trades        | `@benzinga/calendar-government-trades-manager` |
+| Guidance                 | `@benzinga/calendar-guidance-manager`          |
+| IPOs                     | `@benzinga/calendar-ipos-manager`              |
+| Mergers and Acquisitions | `@benzinga/calendar-ma-manager`                |
+| Offerings                | `@benzinga/calendar-offerings-manager`         |
+| Ratings                  | `@benzinga/calendar-ratings-manager`           |
+| Retail                   | `@benzinga/calendar-retail-manager`            |
+| Signals                  | `@benzinga/calendar-option-activity-manager`   |
+| Splits                   | `@benzinga/calendar-splits-manager`            |
+
+# Classes
+
+# Interfaces
+
+## CommonCalendarEventEntity
+
+Common calendar entity
+
+Most calendar entities extend this interface
+
+* `EntityType` (EntityType)
+
+* `id` (string) - Unique ID of this entry
+
+* `name` (string) - Name of record
+
+* `ticker` (string) - Ticker symbol of company
+
+* `type` (EntityType)
+
+* `updated` (number) - Last updated timestamp, UTC
+
+* `notes` (string) - Additional notes provided by the Benzinga Newsdesk where applicable.
+  Notes may include HTML.
+
+## GetCalendarDataEvent
+
+Event, emitted when calendar data was fetched
+
+* `Type` (Type)
+
+* `Entity` (Entity)
+
+* `result` (Entity\[])
+
+* `type` (`${Type}:fetched_data`)
+
+## CalendarErrorEvent
+
+Event, emitted when there was an error in calendar querying
+
+* `Type` (Type)
+
+* `type` (`${Type}:error`)
+
+* `error` (SafeError)
+
+* `errorType` (CommonCalendarErrorType)
+
+* `parameters` (CommonCalendarQueryParams)
+
+
+# Python Client
+Source: https://docs.benzinga.com/python-client
+
+Benzinga's Python Client Library's Documentation
+
+## Getting Started
+
+Benzinga's Python client library focuses on financial data methods, that can be used for quantitative analysis, and on news data from Benzinga, that can help give meaningful insights that complement quantitative data.
+
+The installation process varies depending on your python version and system used. The basic installation instructions are as follows:
+
+```python
+pip install benzinga
+```
+
+Alternatively, the package can be installed by using:
+
+```python
+pip3 install benzinga
+```
+
+Once you have successfully installed the package, you can either import the Financial Data module, for quantitative financial data:
+
+```python
+from benzinga import financial_data
+```
+
+or you can import the Benzinga News Data module, if you're looking into financial news:
+
+```python
+from benzinga import news_data
+```
+
+## Your Key
+
+**Api Key** To initiate a class, an API key is used, for authentication purposes. [Contact us](https://cloud.benzinga.com/data/) if you don't yet have a key, we will take care of you!
+
+*Sample API Key (type: str) : "testkey892834789s9s8abshtuy"*
+
+## Sample Test Financial Data Module
+
+1. Initiating the class:
+
+```python
+from benzinga import financial_data
+api_key = "testkey892834789s9s8abshtuy"
+fin = financial_data.Benzinga(api_key)
+```
+
+2. A sample test run to get ratings on a stock. (Returns a JSON object):
+
+```python
+stock_ratings = fin.ratings()
+```
+
+3. Since `fin.ratings()` returns a JSON dict, for a better view of the dict, you can call the `fin.output()` method on the result. Example:
+
+```python
+fin.output(stock_ratings)
+```
+
+## Sample Test News Data Module
+
+1. Initiating the class:
+
+```python
+from benzinga import news_data
+api_key = "testkey892834789s9s8abshtuy"
+paper = news_data.News(api_key)
+```
+
+2. A sample test run to get general news. (Returns a JSON Object)
+
+```python
+stories = paper.news()
+```
+
+3. Since `fin.news()` returns a JSON dict, for a better view of the dict, you can call the `fin.output()` method on the result. Example:
+
+```python
+paper.output(stories)
+```
+
+It is important to note that for both the Financial Data Module and the News Data Module, there are many **optional** parameters for the methods. Below is a detailed listing of possible methods for the Financial Data Module and the news Data Module, their method call names, arguments, and what they return.
+
+## Best Practices
+
+When possible, we **highly** recommend using `updated` parameters, particularly for ingestion of live data (as opposed to historical data). It shrinks the query universe much more efficiently than the other parameters, mitigating latency.
+
+## Financial Data methods
+
+### Bars
+
+```
+fin.bars()
+```
+
+Public Method: Benzinga Bars looks at detailed price values over a period of time.
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_from" type="str" required="true">
+    For date\_from, you can enter `YTD` for the first trading day of the year. `1d`, `5d` or `1m`. You can also enter the date from in the "YYYY-MM-DD" format.
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="interval" type="str" default="5M">
+    `1MONTH`, `1W`, `1D`, `1H`, `15M`, `5M`
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `open`, `high`, `low`, `close`, `volume`, `time`, `dateTime`
+</Accordion>
+
+### Delayed Quote
+
+```
+fin.delayed_quote()
+```
+
+Public Method: Benzinga Quote looks at many different attributes of the ticker like high, low, close etc
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+</Accordion>
+
+<Accordion title="Returns">
+  `date`, `previousClose`, `change`, `changePercent`, `fiftyTwoWeekHigh`, `fiftyTwoWeekLow`, `currency`, `last`, `tradingHalted`, `volume`, `previousCloseDate`
+</Accordion>
+
+### Dividends
+
+```
+fin.dividends()
+```
+
+Public Method: Benzinga Dividends looks at the relevant dividend information for a company.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="importance" type="int">
+    not tested yet
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Dividend date field to sort on (`ex`, `payable`, `record`)
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    Records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+
+  <ResponseField name="div_yield_operation" type="str">
+    To filter the div yield by for eg. `gt`, `gte`, `eq`, `lte`, `lt`. Not tested
+  </ResponseField>
+
+  <ResponseField name="div_yield" type="int">
+    Div yield amount fo filter by. `1` for 100% or above.
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  the `id`, `date`, `updated`, `ticker`, `name`, `exchange`, `frequency`, `dividend`, `dividend prior`, `dividend type`, `dividend yield`, `ex-dividend date`, `payable date`, `record date`, `importance`
+</Accordion>
+
+### Ratings
+
+```
+fin.ratings()
+```
+
+Public Method: Benzinga Ratings looks at ratings from different firms
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="importance" type="int">
+    not tested yet.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Ratings date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+
+  <ResponseField name="action" type="str">
+    Options are: `Downgrades`, `Maintains`, `Reinstates`, `Reiterates`, `Upgrades`, `Assumes`, `Initiates Coverage On`, `Terminates Coverage On`, `Removes`, `Suspends`, `Firm Dissolved`
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `time`, `ticker`, `exchange`, `name`, `action_pt`, `action_company`, `rating_current`, `pt_current`, `rating_prior`, `pt_prior`, `url`, `importance`, `updated`, `url_calendar`, `url_news`, `analyst`, `analyst_name`
+</Accordion>
+
+### Earnings
+
+```
+fin.earnings()
+```
+
+Public Method: Benzinga Earnings looks at the quarterly earnings reports for different companies.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="importance" type="int">
+    not tested yet.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Earnings date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `date confirmed`, `time`, `ticker`, `exchange`, `name`, `period`, `period_year`, `eps`, `eps_est`, `eps_prior`, `eps_surprise`, `eps_surprise_percent`, `revenue`, `revenue est`, `revenue_prior`, `revenue_surprise`, `revenue_surprise_percent`, `importance`, `updated`
+</Accordion>
+
+### Splits
+
+```
+fin.splits()
+```
+
+Public Method: Benzinga Splits looks at the stock splits calendar data
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="importance" type="int">
+    not tested yet.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Splits date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `updated`, `date`, `time`, `ticker`, `exchange`, `importance`, `ratio`, `optionable`, `date_ex`, `date_recorded`, `date_distribution`
+</Accordion>
+
+### Economics
+
+```
+fin.economics()
+```
+
+Public Method: Benzinga Economics looks at different economic events in a country.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="importance" type="int">
+    not tested yet.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Economics date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+
+  <ResponseField name="country" type="str">
+    3 digit country code
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `time`, `country`, `event_name`, `event_period`, `period_year`, `actual`, `actual_t consensus`, `consensus_t`, `prior`, `importance`, `updated`, `description`
+</Accordion>
+
+### Guidance
+
+```
+fin.guidance()
+```
+
+Public Method: Benzinga Guidance looks at different attributes like revenue guidance etc.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="importance" type="int">
+    not tested yet.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    Guidance date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+
+  <ResponseField name="country" type="str">
+    3 digit country code
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `time`, `ticker`, `exchange`, `name`, `period`, `period_year`, `prelim`, `eps_guidance_est`, `eps_guidance_max`, `eps_guidance_min`, `eps_guidance_prior_max`, `eps_guidance_prior_min`, `revenue_guidance_est`, `revenue_guidance_max`, `revenue_guidance_min`, `revenue_guidance_prior_max` , `revenue_guidance_prior_min`, `importance`, `updated`
+</Accordion>
+
+### IPO
+
+```
+fin.ipo()
+```
+
+Public Method: Benzing IPO looks at initial public offering data for companies.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str">
+    note: new tickers may not return results right away as we do not automatically link them to the underlying company's data. To obtain the most recent rows, send queries without this parameter specified.
+  </ResponseField>
+
+  <ResponseField name="date_sort" type="str">
+    IPO date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `time`, `ticker`, `exchange`, `name`, `pricing_date`, `currency`, `price_min`, `price_max`, `deal_status`, `ipo_type`, `insider_lockup_days`, `insider_lockup_date`, `offering_value`, `offering_shares`, `shares_outstanding`, `lead_underwriters`, `other_underwriters`, `underwriter_quiet_expiration_days`, `underwriter_quiet_expiration_date`, notes`, `updated\`
+</Accordion>
+
+### Conference Calls
+
+```
+fin.conference_calls()
+```
+
+Public Method: Benzinga Conference calls looks at conference calls.
+
+<Accordion title="Arguments">
+  <ResponseField name="page" type="int">
+    page offset
+  </ResponseField>
+
+  <ResponseField name="pagesize" type="int">
+    limit of results returned
+  </ResponseField>
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="date_sort" type="str">
+    Conference call date field to sort on
+  </ResponseField>
+
+  <ResponseField name="updated_params" type="int64">
+    records last updated unix time stamp. Forces the sort order to be greater or equal to the time stamp indicated.
+  </ResponseField>
+
+  <ResponseField name="country" type="str">
+    3 digit country code
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `id`, `date`, `time`, `ticker`, `exchange`, `name`, `start_time`, `phone_num`, `international_line`, `reservation_num`, `access_code`, `webcast_url`, `importance`, `updated`
+</Accordion>
+
+### Fundamentals
+
+```
+fin.fundamentals()
+```
+
+Public Method: Benzinga Fundamentals looks at overall financial data for a company.
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `company`, `companyProfile`, `shareClass`, `earningReports`, `financialStatements`, `operation earning and valuation ratios`, `alphaBeta`
+</Accordion>
+
+### Financials
+
+```
+fin.financials()
+```
+
+Public Method: Benzinga Financials looks at overall financial data like for a company.
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="period" type="str">
+    select from (`3M` , `6M` , `9M` , `12M` , `1Y`)
+  </ResponseField>
+
+  <ResponseField name="reporttype" type="str" default="A">
+    select from (`TTM`, `A`, `R`,`P`)
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `company`, financials such as balance sheet information, assets and liabilities
+</Accordion>
+
+### Valuation Ratios
+
+```
+fin.valuation_ratios()
+```
+
+Public Method: Benzinga Valuation Ratios looks at overall financial data like for a company.
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the valuation ratios
+</Accordion>
+
+### Earning Ratios
+
+```
+fin.earning_ratios()
+```
+
+Public Method: Benzinga Earning Ratios
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the earning ratios
+</Accordion>
+
+### Operation Ratios
+
+```
+fin.operation_ratios()
+```
+
+Public Method: Benzinga Operation Ratios
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the operation ratios
+</Accordion>
+
+### Share Class
+
+```
+fin.share_class()
+```
+
+Public Method: Benzinga Share Class
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the share class
+</Accordion>
+
+### Earning Reports
+
+```
+fin.earning_reports()
+```
+
+Public Method: Benzinga Earning Reports looks at overall earning reports for a company.
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the earning reports
+</Accordion>
+
+### Alpha Beta
+
+```
+fin.alpha_beta()
+```
+
+Public Method: Benzinga Alpha Beta
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of alphabeta
+</Accordion>
+
+### Company Profile
+
+```
+fin.company_profile()
+```
+
+Public Method: Benzinga Company Profile
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of company profile
+</Accordion>
+
+### Company
+
+```
+fin.company()
+```
+
+Public Method: Benzinga Company
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the company
+</Accordion>
+
+### Asset Classification
+
+```
+fin.asset_classification()
+```
+
+Public Method: Benzinga Asset Classification
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the asset classification
+</Accordion>
+
+### Summary
+
+```
+fin.summary()
+```
+
+Public Method: Summary
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the summary
+</Accordion>
+
+### Logos
+
+```
+fin.logos()
+```
+
+Public Method: Benzinga Logos
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="date_asof" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes of the logos
+</Accordion>
+
+### Options Activity
+
+```
+fin.options_activity()
+```
+
+Public Method: Benzinga Options Activity
+
+<Accordion title="Arguments">
+  <ResponseField name="company_tickers" type="str" required="true" />
+
+  <ResponseField name="pagesize" type="int">
+    Limit is set to 1000
+  </ResponseField>
+
+  <ResponseField name="page" type="int" />
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  different attributes for options activity
+</Accordion>
+
+## News Data
+
+### News
+
+```
+fin.news()
+```
+
+Public Method: Benzinga News
+
+<Accordion title="Arguments">
+  <ResponseField name="pagesize" type="int" default="15" />
+
+  <ResponseField name="page" type="int" default="0" />
+
+  <ResponseField name="display_output" type="str">
+    select from `full`, `abstract`, `headline`
+  </ResponseField>
+
+  <ResponseField name="base_date" type="str">
+    "YYYY-MM-DD" The date to query for calendar data. Shorthand for `date_from` and `date_to` if they are the same. Defaults for latest.
+  </ResponseField>
+
+  <ResponseField name="date_from" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="date_to" type="str">
+    "YYYY-MM-DD"
+  </ResponseField>
+
+  <ResponseField name="updated_since" type="str">
+    The last updated unix timestamp (UTC) to pull and sort by.
+  </ResponseField>
+
+  <ResponseField name="published_since" type="str">
+    The last published unix timestamp (UTC) to pull and sort by.
+  </ResponseField>
+
+  <ResponseField name="company_tickers" type="str" />
+
+  <ResponseField name="channel" type="str">
+    multiple channels separated by comma
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Returns">
+  `Author`, `created`, `updated`, `title`, `teaser`, `body`, `url`, `image`, `channels`, `stocks`, `tags`
+</Accordion>
+
+***
+
+[Benzinga News](https://www.benzinga.com/)
+
+[Benzinga Pro](https://pro.benzinga.com/)
+
+

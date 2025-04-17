@@ -1,0 +1,18 @@
+# llms.txt - Guidelines for Large Language Models (LLMs)  
+# Website: https://www.mintense.com  
+# Last updated: 2025-03-17  
+
+# Website information  
+site_name: Mintense  
+site_url: https://www.mintense.com  
+description: Mintense is a performance marketing agency specializing in international SEO, multilingual PPC and Google Ads, Bing Ads and lead generation. With 17 years of history, more than 200 projects in 16 languages and 52 countries.  
+
+# Content access  
+full_content_access: Yes  
+
+# Data usage policy  
+data_usage: Allowed for short summaries and citations with source attribution  
+preferred_citation: "Source: Mintense - www.mintense.com"  
+
+# AI-related contact  
+contact_email: info@mintense.com

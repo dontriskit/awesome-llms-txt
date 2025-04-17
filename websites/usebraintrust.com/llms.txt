@@ -1,0 +1,34 @@
+# Braintrust Community
+
+## Braintrust Community Docs
+
+- [Braintrust Network Overview](https://docs.usebraintrust.com/communitydocs/braintrust-network-overview): Welcome to Braintrust, the world's first web3, decentralized talent marketplace.
+- [Welcome to Braintrust](https://docs.usebraintrust.com/communitydocs/welcome-to-braintrust): Braintrust is a global marketplace building products to help you earn, learn, and grow.
+- [📣 June 2023 Network Update: Discord](https://docs.usebraintrust.com/communitydocs/welcome-to-braintrust/june-2023-network-update-discord): We're thrilled to announce that the Braintrust Community now has a new home, directly on the platform, on the The Braintrust Professional Network 🎉
+- [Level up in Discord](https://docs.usebraintrust.com/communitydocs/welcome-to-braintrust/level-up-in-discord): Join the Braintrust Discord Server
+- [Blockchain, Crypto, and Web3](https://docs.usebraintrust.com/communitydocs/blockchain-crypto-and-web3): Learn the very basics of Blockchain and crypto, and how Braintrust is creating a user-owned talent network uniquely enabled by a Blockchain token.
+- [The BTRST Token](https://docs.usebraintrust.com/communitydocs/the-btrst-token): Learn the BTRST Token Basics.
+- [The Value of the Braintrust Token](https://docs.usebraintrust.com/communitydocs/the-btrst-token/the-value-of-the-braintrust-token): What value do users gain from Braintrust tokens?
+- [Earn BTRST](https://docs.usebraintrust.com/communitydocs/earn-btrst): Earn BTRST by contributing to the network and referring clients and talent.
+- [The Professional Network Launch Contest (June 2023)](https://docs.usebraintrust.com/communitydocs/the-professional-network-launch-contest-june-2023): 🔥 Invite your network and earn BTRST! This talent referral contest runs from June 14, 2023 - June 22, 2023.
+- [Manage your BTRST](https://docs.usebraintrust.com/communitydocs/manage-your-btrst): Learn information about your Braintrust Platform Wallet and get step-by-step guidance on how to withdraw your BTRST tokens to an external wallet.
+- [Governance](https://docs.usebraintrust.com/communitydocs/governance): Ownership and governance in the Braintrust Network is represented by the BTRST token.
+- [Participate in Braintrust Governance](https://docs.usebraintrust.com/communitydocs/governance/participate-in-braintrust-governance): Use your BTRST to vote, here's how.
+- [Brand Guidelines and Assets](https://docs.usebraintrust.com/communitydocs/brand-guidelines-and-assets): Braintrust brand resources and guidelines for community Ambassadors.
+- [Braintrust AI Competition and Showcase Event](https://docs.usebraintrust.com/communitydocs/braintrust-ai-competition-and-showcase-event): Enter the Braintrust AI Competition for a chance to win 500 BTRST (Winners announced on June 15, 2023)
+- [Braintrust Grants: MVP Wave](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave): The Braintrust Grants Program: MVP Wave launched in January 2022. Programming is no longer active.
+- [Ambassador Grants](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants): The Braintrust Grants Program: MVP Wave launched in January 2022. Programming is no longer active.
+- [A-0001 Program Manager for Social Media Ambassadors](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants/a-0001-program-manager-for-social-media-ambassadors)
+- [A-0002 Discord Moderator and Ambassador Community Manager](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants/a-0002-discord-moderator-and-ambassador-community-manager): AMBASSADOR GRANTS
+- [A-0003 Discord Memberships Community Manager](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants/a-0003-discord-memberships-community-manager): AMBASSADOR GRANTS
+- [A-0004 Reporting Dashboard: Social Media Analytics](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants/a-0004-reporting-dashboard-social-media-analytics): Call for Proposals  Publication Date: January 12, 2022
+- [A-0005 Web3 Landscape](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/ambassador-grants/a-0005-web3-landscape): AMBASSADOR GRANTS
+- [Builder Grants](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/builder-grants): The Braintrust Grants Program: MVP Wave launched in January 2022. Programming is no longer active.
+- [B-0001 Badging System / Skills Competency](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/builder-grants/b-0001-badging-system-skills-competency): BUILDER GRANTS
+- [B-0002 Jobs Module](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/builder-grants/b-0002-jobs-module): BUILDER GRANTS
+- [B-0003 Vote Page to Include Off-Chain Votes](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/builder-grants/b-0003-vote-page-to-include-off-chain-votes): BUILDER GRANTS
+- [B-0004 Support Ticket System](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/builder-grants/b-0004-support-ticket-system)
+- [Educator Grants](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/educator-grants): The Braintrust Grants Program: MVP Wave launched in January 2022. Programming is no longer active.
+- [E-0001 Educator Program - Onboarder](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/educator-grants/e-0001-educator-program-onboarder): EDUCATION GRANTS
+- [E-0002 Educator Program - Mentor](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/educator-grants/e-0002-educator-program-mentor): EDUCATOR GRANTS
+- [E-0003 Web3 and the Ownership Economy Cohort Course  Grant](https://docs.usebraintrust.com/communitydocs/braintrust-grants-mvp-wave/educator-grants/e-0003-web3-and-the-ownership-economy-cohort-course-grant): EDUCATOR GRANTS

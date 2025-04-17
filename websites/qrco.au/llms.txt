@@ -1,0 +1,62 @@
+# QRco.au
+
+> QRco.au is a smart platform for generating QR codes, barcodes, and digital assets for Australian small businesses. It offers dynamic/static QR tools, AI-powered website creation, a business directory, URL shortening, and targeted digital marketing features.
+
+QRco.au is designed to help Australian businesses improve customer engagement and discoverability with QR tools and low-code/no-code marketing tech. The platform supports both free and premium plans, allowing users to create, customize, and track digital assets with analytics and easy sharing. It also maintains a growing blog that educates and informs users about the evolving role of QR codes in modern commerce.
+
+## Tools
+
+- [QR Code Generator](https://www.qrco.au/qr): Create static and dynamic QR codes for links, WiFi, PDFs, payments, and more
+- [Barcode Generator](https://www.qrco.au/barcode): Generate EAN, UPC, and Code128 barcodes for inventory and retail
+- [QR Code Reader](https://www.qrco.au/qr-reader): Scan QR codes online
+- [Barcode Reader](https://www.qrco.au/barcode-reader): Scan standard barcodes using your browser
+- [AI Website Builder](https://www.qrco.au/blog/chat-gpt-website-builder): Automatically create websites using AI prompts
+
+## Business Services
+
+- [Digital Business Card](https://www.qrco.au/pages/services): Contactless smart cards with custom branding
+- [Business Directory](https://www.qrco.au/pages/business-directory): Get discovered locally with a searchable listing
+- [Marketing & Promotions](https://www.qrco.au/blog/free-marketing-website-offer): SEO and digital visibility packages for Aussie businesses
+- [URL Shortener](https://www.qrco.au/blog/url-shorterner): Create short, trackable links for QR campaigns
+
+## Pricing & Plans
+
+- [Plans Overview](https://www.qrco.au/plan): Compare free vs pro features
+- [Comprehensive Pro Plan](https://www.qrco.au/blog/comprehensive-pro-plan): Details on paid tier capabilities
+
+## City Pages
+
+- [Sydney QR Codes](https://www.qrco.au/page/sydney-qr-codes)
+- [Melbourne QR Codes](https://www.qrco.au/page/melbourne-qr-codes)
+- [Brisbane QR Codes](https://www.qrco.au/page/brisbane-qr-codes)
+- [View all cities](https://www.qrco.au/pages/business-directory)
+
+## Blog Highlights
+
+- [How QR Codes Help Brands](https://www.qrco.au/blog/how-can-qr-codes-help-brands)
+- [Dynamic vs Static QR Codes](https://www.qrco.au/page/dynamic-vs-static-qr-codes)
+- [QR Codes in Marketing (2024)](https://www.qrco.au/blog/qr-codes-revolutionizing-digital-marketing-2024)
+- [Business Use Cases](https://www.qrco.au/blog/9-ways-your-business-can-use-qr-codes)
+
+## Blog Categories
+
+- [Marketing](https://www.qrco.au/blog/category/marketing)
+- [Use Cases](https://www.qrco.au/blog/category/usecases)
+- [News](https://www.qrco.au/blog/category/news)
+- [Offers](https://www.qrco.au/blog/category/offers)
+- [QR Code Basics](https://www.qrco.au/blog/category/qrcode-basics)
+
+## Support & Legal
+
+- [About Us](https://www.qrco.au/page/about-qrco-au)
+- [Terms and Conditions](https://www.qrco.au/page/terms-and-conditions)
+- [Privacy Policy](https://www.qrco.au/page/privacy-policy)
+- [Support](https://www.qrco.au/blog/support)
+- [Login/Register](https://www.qrco.au/login)
+
+## Optional
+
+- [Affiliate Program](https://www.qrco.au/pages/affiliate): Monetize by referring customers
+- [IconAI Affiliate Offer](https://www.qrco.au/page/icon-ai-affiliate): Partnered promotional service
+- [Regional Pages](https://www.qrco.au/page/darwin-qr-codes), [Toowoomba](https://www.qrco.au/page/toowoomba-qr-codes), etc.: QR guides for individual Australian cities
+

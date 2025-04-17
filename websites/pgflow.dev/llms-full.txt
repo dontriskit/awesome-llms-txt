@@ -1,0 +1,789 @@
+<SYSTEM>This is the full developer documentation for pgflow (Workflow Engine for Supabase)</SYSTEM>
+
+# Edge Worker
+
+> Supabase Background Tasks with superpowers
+
+
+
+# FAQ - Common Questions
+
+> Common questions about Edge Worker functionality, usage, and billing.
+
+## Will running Edge Worker 24/7 affect my billing?
+
+Short Answer: **Not really**
+
+Edge Worker should not affect your Supabase billing in any significant way, because Supabase charges for Edge Function invocations and data transfer, and Edge Worker does not do lot of invocations and data transfer depends on how many messages you process.
+
+Note
+
+Check official [Pricing](https://supabase.com/pricing) page for more details.
+
+Read more details about invocations and data transfer
+
+### Effect on Invocations
+
+Edge Worker lives in a regular Edge Function and function must be called with HTTP request to start it.
+
+Worker will also do that HTTP request to respawn itself. It does that when it detects that CPU or Clock soft limits were reached.
+
+But even if your Worker would process hundreds of jobs per second for the whole month without a stop and exceed limits every 6 seconds, it will still not exceed the invocation limits of the Free Tier, which is set to 500.000 per month.
+
+### Effect on Data Transfer
+
+The bandwidth used by a worker depends mostly on how many and how big messages it will get from the queue.
+
+Just polling without returning any messages eats a tiny amount of bandwidth, but shoul be negligible compared to retrieving actual data.
+
+Currently, Supabase offers 5GB of bandwidth per month in the Free Tier.
+
+## Can I dynamically set queue name per request?
+
+Short Answer: **No, it’s not supported**
+
+Edge Worker only supports one queue per worker. Each Edge Function can be configured with a single queue name, but cannot vary it at runtime based on the incoming request.
+
+Read more details about this limitation
+
+### Why only one queue per worker?
+
+* It simplifies the worker internals and debugging.
+* The Edge Functions environment is ephemeral and limited, so handling multiple queues in one worker is not recommended.
+* You can create additional workers for separate queues if needed.
+
+## How do I handle concurrency for multiple tenants?
+
+Short Answer: **Use multiple queues or multiple workers**
+
+If you want to process tasks for different tenants without interference, you can partition them by having more than one queue, each with its own worker (or multiple workers) to increase throughput.
+
+Read more about multiple queues and workers
+
+### Multiple queue strategy
+
+* Deploy a dedicated worker for each queue, e.g. `{ queueName: 'tasks-tenant1' }`.
+* Send tenant-specific messages to the appropriate queue.
+* This way, each tenant’s workload is isolated and won’t block others.
+
+## Can I force a new worker to spawn by calling the function again?
+
+Short Answer: **Not reliably**
+
+Spawning new worker instances is managed by the Supabase platform, and simply invoking the same Edge Function again doesn’t guarantee a new worker is started.
+
+Read more about the Supabase load balancer
+
+### Why can’t I control worker creation?
+
+* Workers are managed by an API gateway that decides when to start new instances based on load and availability.
+* Sending multiple HTTP requests to the same Edge Function will not necessarily create new workers.
+* For concurrency or throughput, run multiple Edge Functions or workers, each configured separately.
+
+# Configuration
+
+> Learn how to configure EdgeWorker with options for configuring Supabase Queues, message processing, polling behavior, and retries. Includes defaults and best practices.
+
+You can pass an optional configuration object as the second argument to `EdgeWorker.start()` to tweak the worker’s behavior.
+
+Zero Configuration
+
+Edge Worker comes with sensible defaults for all configuration options.
+
+You only need to provide a handler function:
+
+```ts
+EdgeWorker.start(console.log);
+```
+
+Configuration Validation
+
+Currently, configuration options are not validated at runtime. Please double-check your settings carefully.
+
+Runtime validation is planned as part of the upcoming [configuration system improvements](/edge-worker/project-status/#planned-architecture-improvements).
+
+### Default configuration
+
+```typescript
+EdgeWorker.start(handler, {
+  // name of the queue to poll for messages
+  queueName: 'tasks',
+
+
+  // how many tasks are processed at the same time
+  maxConcurrent: 10,
+
+
+  // how many connections to the database are opened
+  maxPgConnections: 4,
+
+
+  // in-worker polling interval
+  maxPollSeconds: 5,
+
+
+  // in-database polling interval
+  pollIntervalMs: 200,
+
+
+  // how long to wait before retrying a failed job
+  retryDelay: 5,
+
+
+  // how many times to retry a failed job
+  retryLimit: 5,
+
+
+  // how long a job is invisible after reading
+  // if not successful, will reappear after this time
+  visibilityTimeout: 3,
+});
+```
+
+## Queue configuration
+
+You don’t need to create queues manually
+
+The worker will automatically create a logged, non-partitioned queue with configured name during startup if it does not exist.
+
+### `queueName`
+
+**Type:** `string` **Default:** `'tasks'`
+
+The name of the PGMQ queue to listen to for messages.
+
+```ts
+EdgeWorker.start(handler, {
+  queueName: 'my_custom_queue'
+});
+```
+
+## Message Processing
+
+### `visibilityTimeout`
+
+**Type:** `number` **Default:** `3`
+
+The duration (in seconds) that a message remains invisible to other consumers while being processed.
+
+Message Visibility and Processing
+
+Keep `visibilityTimeout` higher than your task’s maximum processing time.
+
+Here’s why:
+
+* When a worker picks up a message, it becomes invisible for `visibilityTimeout` seconds
+* If processing takes longer than `visibilityTimeout`, the message becomes visible again
+* Other workers can then pick up and process the same message
+* This leads to duplicate processing of the same task
+* For example: with `visibilityTimeout: 3` and a task that takes 5 seconds, the message could be processed twice
+
+```ts
+EdgeWorker.start(handler, {
+  visibilityTimeout: 5 // message will re-appear in queue after 5 seconds if not processed
+});
+```
+
+### `maxConcurrent`
+
+**Type:** `number` **Default:** `10`
+
+This option limits concurrency - the maximum number of messages that can be processed at the same time. Increase for IO-heavy tasks (network or db calls), decrease for CPU-heavy tasks.
+
+```ts
+EdgeWorker.start(handler, {
+  maxConcurrent: 10 // Process up to 10 messages at once
+});
+```
+
+### `maxPgConnections`
+
+**Type:** `number` **Default:** `4`
+
+Maximum number of concurrent database connections. Increase for IO-heavy tasks (network or database operations), decrease for CPU-heavy tasks.
+
+```ts
+EdgeWorker.start(handler, {
+  maxPgConnections: 10 // Use up to 10 connections to the database
+});
+```
+
+## Polling Behavior
+
+### `maxPollSeconds`
+
+**Type:** `number` **Default:** `5`
+
+Amount of seconds to wait for a message to be available in the queue.
+
+Polling and Worker Health
+
+Keep `maxPollSeconds` at 5 seconds or lower.
+
+Here’s why:
+
+* Heartbeats are sent once per main loop iteration
+* Each iteration can take up to `maxPollSeconds` to complete
+* Workers are considered inactive after 6 seconds without a heartbeat
+* Therefore, `maxPollSeconds` must be lower than 5 seconds to account for any additional delays
+
+```ts
+EdgeWorker.start(handler, {
+  maxPollSeconds: 5 // Long-poll for 5 seconds waiting for a message
+});
+```
+
+### `pollIntervalMs`
+
+**Type:** `number` **Default:** `200`
+
+The interval (in milliseconds) between database polling attempts by `pgmq.read_with_poll`. The default value is suitable for most use cases.
+
+Polling Intervals
+
+Keep `pollIntervalMs` lower than `maxPollSeconds * 1000`.
+
+Here’s why:
+
+* The worker polls the database every `pollIntervalMs` milliseconds
+* This polling continues until `maxPollSeconds` is reached
+* If `pollIntervalMs` is too high, the worker might exit after just one poll
+* For example: with `maxPollSeconds: 5` and `pollIntervalMs: 6000`, only one poll would occur
+
+```ts
+EdgeWorker.start(handler, {
+  pollIntervalMs: 300 // Poll every 300ms
+});
+```
+
+## Retries
+
+### `retryDelay`
+
+**Type:** `number` **Default:** `5`
+
+Amount of seconds to wait between retry attempts.
+
+```ts
+EdgeWorker.start(handler, {
+  retryDelay: 5 // Wait 5 seconds between retries
+});
+```
+
+### `retryLimit`
+
+**Type:** `number` **Default:** `5`
+
+Maximum number of retry attempts for failed message processing before marking the message as dead.
+
+Set to `0` to disable retries.
+
+```ts
+EdgeWorker.start(handler, {
+  retryLimit: 0 // retries are disabled
+});
+```
+
+# Create your first worker
+
+> Build a web scraping worker with EdgeWorker in minutes. Step-by-step tutorial to process queues on top of Supabase Background Tasks in a reliable way
+
+We will create a simple **web scraping worker** that listens for URLs to scrape, fetches the content, and logs the results.
+
+Web scraping is a perfect use case for task queue workers, because of built in retries and ability to fetch websites in parallel.
+
+Setting it up is straightforward and takes just a few minutes.
+
+Requirements
+
+Before starting, please read the [Install Edge Worker](/edge-worker/getting-started/install-edge-worker/) guide.
+
+1. ### Create your worker
+
+   First, create a new Edge Function using the Supabase CLI. Then, replace its content with this code:
+
+   ```typescript
+   import { EdgeWorker } from "jsr:@pgflow/edge-worker@0.0.4";
+
+
+   EdgeWorker.start(async (payload: { url: string }) => {
+     const response = await fetch(payload.url);
+
+
+     console.log("Scraped website!", {
+       url: payload.url,
+       status: response.status,
+     });
+   });
+   ```
+
+2. ### Start Edge Runtime
+
+   Start the Edge Runtime with the following command:
+
+   ```bash
+   npx supabase functions serve
+   ```
+
+   This makes Supabase listen for incoming HTTP requests, but does not start your worker yet.
+
+   Restarting Edge Runtime
+
+   You must stop and start the Edge Runtime every time you make changes to your workers because of the `per_worker` policy.
+
+3. ### Start your worker
+
+   Start the worker by sending an HTTP request to your new Edge Function (replace `<function-name>` with your function name):
+
+   ```bash
+   curl http://localhost:54321/functions/v1/<function-name>
+   ```
+
+   This will boot a new instance and start your worker:
+
+   ```bash
+   [Info] worker_id=<uuid> [WorkerLifecycle] Ensuring queue 'tasks' exists...
+   ```
+
+4. ### Process your first message
+
+   Your worker is now polling for messages on the `tasks` queue (which was automatically created during startup).
+
+   Send a test message:
+
+   ```sql
+   SELECT pgmq.send(
+     queue_name => 'tasks',
+     msg => '{"url": "https://example.com"}'::jsonb
+   );
+   ```
+
+   The message will be processed immediately and you should see the following output:
+
+   ```bash
+   [Info] worker_id=<uuid> [ExecutionController] Scheduling execution of task 1
+
+
+   [Info] Scraped website! { url: "https://example.com", status: 200 }
+   ```
+
+   Queue Name
+
+   By default, your worker uses a queue named `tasks`. You can change this by setting the [`queueName` option](/edge-worker/getting-started/configuration/#queuename) - useful when running multiple workers or integrating with existing queues.
+
+# Install Edge Worker
+
+> Quick setup guide for EdgeWorker on Supabase Background Tasks. Configure connection pooling, migrations, and environment in 5 simple steps.
+
+Let’s set up a few things before working with Edge Worker. This setup needs to be done only once per project.
+
+Not production ready
+
+**Edge Worker** is currently in **Alpha** stage and not yet production ready. See [Project Status](/edge-worker/project-status/) page for more details.
+
+Prerequisites
+
+* Supabase CLI version **2.0.2** or higher (check with `supabase -v`)
+* A local Supabase project set up
+
+If you haven’t installed the CLI yet or need to upgrade, see Supabase’s [installation guide](https://supabase.com/docs/guides/cli).
+
+1. ### Install migration
+
+   Run this command to download the migration file to your project (replace `supabase/migrations` with your migrations folder):
+
+   ```bash
+   wget -P supabase/migrations \
+       https://raw.githubusercontent.com/pgflow-dev/pgflow/refs/heads/main/pkgs/core/supabase/migrations/000_edge_worker_initial.sql
+   ```
+
+   Then apply the migration:
+
+   ```bash
+   npx supabase migration up
+   ```
+
+2. ### Prepare connection string
+
+   Your worker needs to connect to your Supabase project’s database.
+
+   Edge Worker looks for the connection string in the `EDGE_WORKER_DB_URL` environment variable.
+
+   For local development, put this in `supabase/functions/.env`:
+
+   ```shell
+   EDGE_WORKER_DB_URL="postgresql://postgres.pooler-dev:postgres@pooler:6543/postgres"
+   ```
+
+   Special Characters in Passwords
+
+   If your database password contains special characters (`@`, `&`, `:`, etc.), you must URL-encode them to avoid authentication errors. See our [DB Connection URLs](/edge-worker/how-to/prepare-db-string/) guide for detailed instructions.
+
+3. ### Setup Connection Pool
+
+   Modify the `db.pooler` section in your `supabase/config.toml` file to enable pooler and make sure that `db.pool_mode` is set to `"transaction"`.
+
+   ```toml
+   [db.pooler]
+   enabled = false
+   enabled = true
+   # Port to use for the local connection pooler.
+   port = 54329
+   # Specifies when a server connection can be reused by other clients.
+   # Configure one of the supported pooler modes: `transaction`, `session`.
+   pool_mode = "transaction"
+   # How many server connections to allow per user/database pair.
+   default_pool_size = 20
+   # Maximum number of client connections allowed.
+   max_client_conn = 100
+   ```
+
+   Transaction Mode
+
+   Edge Worker requires **transaction mode** connection because of Edge Function early termination. This will change in the future.
+
+4. ### Setup Edge Runtime policy
+
+   We need to change the Edge Runtime policy to `per_worker` to enable Background Tasks (see more in [Testing background tasks locally](https://supabase.com/docs/guides/functions/background-tasks#testing-background-tasks-locally)).
+
+   ```toml
+   [edge_runtime]
+   enabled = true
+   # Configure one of the supported request policies: `oneshot`, `per_worker`.
+   # Use `oneshot` for hot reload, or `per_worker` for load testing.
+   policy = "oneshot"
+   policy = "per_worker"
+   # Port to attach the Chrome inspector for debugging edge functions.
+   inspector_port = 8083
+   ```
+
+5. ### Restart Supabase
+
+   To apply the changes, restart Supabase:
+
+   ```bash
+   npx supabase stop
+   npx supabase start
+   ```
+
+That’s it! You’re ready to create your first worker and start processing messages 🥳
+
+# Observability
+
+> Learn how to monitor Edge Worker with logging and heartbeat tracking. Configure log levels and track worker status using built-in SQL views.
+
+## Logging
+
+Edge Worker logs various events to the console. You can change the log level by setting `EDGE_WORKER_LOG_LEVEL` environment variable:
+
+supabase/functions/.env
+
+```bash
+EDGE_WORKER_LOG_LEVEL=debug
+```
+
+Available log levels are:
+
+* `debug`
+* `info`
+* `error`
+* (more will come)
+
+By default, Edge Worker’s log level is `info`.
+
+## Heartbeats
+
+Edge Worker sends heartbeats every 5 seconds and updates `last_heartbeat_at` column in `edge_worker.workers` table.
+
+### List of active workers
+
+In order to get a list of active workers, we need to fetch those that have pinged in the last 6 seconds (+1s to account for delays):
+
+```sql
+SELECT *
+FROM edge_worker.workers
+WHERE last_heartbeat_at > now() - make_interval(secs => 6)
+```
+
+### Helper SQL Views
+
+Alterntively, use following SQL views to simplify those queries:
+
+#### Active Workers
+
+```sql
+-- Active workers are workers that have sent a heartbeat in the last 6 seconds
+create or replace view edge_worker.active_workers as
+select
+    worker_id,
+    queue_name,
+    function_name,
+    started_at,
+    stopped_at,
+    last_heartbeat_at
+from edge_worker.workers
+where last_heartbeat_at > now() - make_interval(secs => 6);
+```
+
+#### Inactive Workers
+
+```sql
+-- Inactive workers are workers that have not sent
+-- a heartbeat in the last 6 seconds
+create or replace view edge_worker.inactive_workers as
+select
+    worker_id,
+    queue_name,
+    function_name,
+    started_at,
+    stopped_at,
+    last_heartbeat_at
+from edge_worker.workers
+where last_heartbeat_at < now() - make_interval(secs => 6);
+```
+
+# How it works?
+
+> Discover how Edge Worker enhances Supabase Background Tasks with retries, concurrency control, and automatic scaling while ensuring zero message loss.
+
+**Edge Worker** is a task queue worker that gets messages from a queue and calls user functions with their payload.
+
+[![](https://mermaid.ink/img/pako:eNplkcFugzAMhl8lyrl9AQ47VLBxqdSqlZAGHEziASokyEkmTaXvvoR0o1VziGL_n_9Y9pULLZEnvFItwdSxc1op5o9xTUxU_OQmaMAgy2SL7N0pYXutTMUjGU5WlItYaLog1VFAJSv14paCXdweyw8f-2MZLnZ06LBelXxXRk_DztAM-Gp9KA-kpRP-W7bdvs3Ga4aNaAy0OC_WdzD4B4IQVsLMvvkIZMUiA4mu_8ZHYjW5MxNp4dUnKC9zUHJA-h9R_VQTG-sQyDYINlTs-IaPSCP00q_gGvCK2w5HP53EPyXQJczp5jlwVp9-lOCJJYcbTtq13V_gJgkW0x78lEeefMFgfHYC9an1GqPsraZ9XPiy99svlAqmtA?type=png)](https://mermaid.live/edit#pako:eNplkcFugzAMhl8lyrl9AQ47VLBxqdSqlZAGHEziASokyEkmTaXvvoR0o1VziGL_n_9Y9pULLZEnvFItwdSxc1op5o9xTUxU_OQmaMAgy2SL7N0pYXutTMUjGU5WlItYaLog1VFAJSv14paCXdweyw8f-2MZLnZ06LBelXxXRk_DztAM-Gp9KA-kpRP-W7bdvs3Ga4aNaAy0OC_WdzD4B4IQVsLMvvkIZMUiA4mu_8ZHYjW5MxNp4dUnKC9zUHJA-h9R_VQTG-sQyDYINlTs-IaPSCP00q_gGvCK2w5HP53EPyXQJczp5jlwVp9-lOCJJYcbTtq13V_gJgkW0x78lEeefMFgfHYC9an1GqPsraZ9XPiy99svlAqmtA)
+
+### Features
+
+Under the hood, it wraps [Supabase Background Tasks](https://supabase.com/docs/guides/functions/background-tasks) and adds a lot of useful features:
+
+* retries with delays
+* concurrency control
+* observability (heartbeats, logging)
+* horizontal scaling (by deploying multiple edge functions for the same queue)
+
+### CPU/clock limits
+
+Edge Worker treats Edge Function termination due to CPU/clock limits as an expected occurrence and includes extra measures to handle it as part of normal operations:
+
+* stops polling as soon as the soft limit is reached
+* makes extra effort to gracefully abort pending tasks with abort signals
+* uses PGMQ’s visibility timeout to ensure **no message is ever lost**
+* **spawns new instances** automatically for **continuous operations**
+* pings the database with **heartbeats** to ensure the worker’s health
+
+# Deploy to Supabase.com
+
+> Learn how to deploy, manage and monitor Edge Worker on Supabase Background Tasks. Step-by-step guide for deployment, starting, and maintaining workers.
+
+This guide explains the current process for deploying and maintaining workers in hosted environment.
+
+Not production ready
+
+**Edge Worker** is currently in **Alpha** stage and not yet production ready. See [Project Status](/edge-worker/project-status/) page for more details.
+
+Note
+
+Running Edge Worker on Supabase.com currently requires a few additional setup steps. Thanks to ongoing collaboration with the Supabase team, these requirements will be simplified in future releases.
+
+## Deploying workers
+
+Workers are just regular Edge Functions that run for few minutes and auto-respawn when CPU or Wall clock limits are reached (read more on those [Limits | Supabase Docs](https://supabase.com/docs/guides/functions/limits)).
+
+Deploying new version is straightforward - you just update worker code and call `npx supabase functions deploy worker-name` to deploy it.
+
+When deploying a new version of your worker, be aware of the following:
+
+Version Management
+
+Currently, deploying a new version **does not automatically terminate** the previous version. This behavior will be improved in future releases.
+
+## Starting Workers
+
+Just like in local development, workers are started with a simple HTTP request. However, you need to pass Authorization header with your ANON\_KEY when calling function. Consult this Supabase Docs page for details: [Invoking remote functions](https://supabase.com/docs/guides/functions/deploy#invoking-remote-functions)
+
+After the initial request, the worker will auto-respawn if terminated.
+
+## Stopping Workers
+
+Currently, there’s no built-in way to gracefully stop a running worker. You need to remove it from the Supabase Dashboard and wait for its CPU or clock limits to be reached for it to stop.
+
+**This will change in future releases.**
+
+## Ensuring Worker Availability
+
+To ensure your worker stays active, it’s recommended to use Cron to ping your worker edge function every few seconds. This is recommended in case there are any bugs in the respawn process, which currently is triggered from withing the worker that is shutting down.
+
+Use this Supabase guide [Invoking Supabase Function ever few seconds](https://supabase.com/docs/guides/cron/quickstart#invoke-supabase-edge-function-every-30-seconds). but use `5 seconds` instead of `30 seconds`.
+
+Note
+
+Make sure to **set your own ANON key** in the `Authorization` header!
+
+# Prepare DB Connection URL
+
+> How to handle special characters in passwords for Edge Worker connection strings
+
+When setting up Edge Worker with a database password containing special characters, you must URL-encode these characters to avoid authentication errors like:
+
+```plaintext
+Error: SASL_SIGNATURE_MISMATCH: The server did not return the correct signature
+```
+
+## Common Characters That Need Encoding
+
+Check if your password contains any of these characters that require encoding:
+
+| Character | Encoding | Character | Encoding |
+| --------- | -------- | --------- | -------- |
+| `@`       | `%40`    | `&`       | `%26`    |
+| `:`       | `%3A`    | `/`       | `%2F`    |
+| `?`       | `%3F`    | `#`       | `%23`    |
+| `%`       | `%25`    | ``(space) | `%20`    |
+
+[Full list at MDN Web Docs](https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding)
+
+## Quick Guide
+
+### 1. Encode Your Password
+
+Special characters (`@`, `&`, `:`, etc.) in passwords must be percent-encoded to be correctly interpreted in connection strings.
+
+Use one of these methods:
+
+```javascript
+// JavaScript
+const encodedPassword = encodeURIComponent("my@complex&password!");
+// Result: "my%40complex%26password%21"
+```
+
+```python
+# Python
+import urllib.parse
+encoded_password = urllib.parse.quote("my@complex&password!")
+# Result: "my%40complex%26password%21"
+```
+
+```bash
+# Linux (requires jq)
+encoded_password=$(printf %s "my@complex&password!" | jq -sRr @uri)
+# Result: "my%40complex%26password%21"
+```
+
+### 2. Construct Your Connection String
+
+Tip
+
+Only encode the password portion, not the entire URL.
+
+```plaintext
+postgresql://username:ENCODED_PASSWORD@host:port/database
+```
+
+Example:
+
+```plaintext
+postgresql://postgres.pooler-dev:my%40complex%26password%21@db.example.com:6543/postgres
+```
+
+Caution
+
+Because we are using a DB pool connection, the user in the connection string is `postgres.pooler-dev` not `postgres` and the port is `6543` not `5432`.
+
+For production, copy-paste a **Transaction Mode Connection String** from Supabase Dashboard
+
+### 3. Add to Environment
+
+#### Local development:
+
+supabase/functions/.env
+
+```bash
+EDGE_WORKER_DB_URL="postgresql://postgres.pooler-dev:my%40complex%26password%21@db.example.com:6543/postgres"
+```
+
+#### Deployment:
+
+```bash
+npx supabase secrets set EDGE_WORKER_DB_URL="postgresql://postgres:my%40complex%26password%21@db.example.com:5432/postgres"
+```
+
+## Security Considerations
+
+Password Security
+
+When working with database passwords:
+
+* **Never** paste your database password into untrusted websites for encoding
+* **Avoid** sharing your database password with third-party services
+* **Don’t** commit your database password to Git repositories
+* Use environment variables and secrets management tools instead
+
+# Project Status
+
+> Current status of Edge Worker on Supabase Background Tasks, including known issues, stability notes, and planned architectural improvements.
+
+Not ready for production!
+
+**Edge Worker** is currently in **Alpha** stage.
+
+API Stability
+
+The core `EdgeWorker.start()` API will remain stable. However, the configuration options structure will be reorganized into logical sub-configurations. The current configuration shape should not be considered stable and will change in future releases.
+
+This page is an overview of the issues that are observed but not yet resolved fully.
+
+> I am actively working and communicating with Supabase Edge Runtime team to make the worker as robust as possible, so it can be a solid foundation for the Workflow Orchestration Engine I am building.
+
+### Connection Pool Saturation Under High Load
+
+**Scenario:**\
+A large volume of messages is processed continuously at high concurrency (10 or more) with fast handlers (<50ms execution time).
+
+**Observed Behavior:**
+
+* Some connections are not properly closed by the worker before being hard-terminated
+* This results in zombie connections
+* The connection pooler should reclaim these connections after `client_idle_timeout`
+* However, if the worker respawns too quickly, the pooler cannot keep up
+* This can trigger **“Max client connections reached”** errors
+* These errors automatically resolve after zombie connections are reclaimed, but will reoccur if high load persists
+
+**Impact:**\
+Most users under normal operating conditions will not encounter this behavior.
+
+**Next Steps:**\
+An RFC for updates to Supabase Edge Runtime is in progress.
+
+### Planned Architecture Improvements
+
+Following the resolution of current issues, a major architectural refactor is planned. The main goals are to:
+
+#### Implement proper dependency injection
+
+* Introduce a factory/builder pattern
+
+* Enable easy component swapping, including:
+
+  * MessageExecutor (required for pgflow orchestrator integration)
+  * Polling mechanism (replacing ReadWithPollPoller with ListenNotifyPoller for improved performance)
+
+#### Improve configuration handling
+
+* Split the configuration into logical sub-configurations
+* Add configuration validation
+
+# What is pgflow?
+
+> Simple, Postgres-First Workflow Orchestration for Supabase
+
+**pgflow** is a Postgres-first workflow engine I began building in November. I wanted a **deeply integrated**, open-source solution that **runs entirely on Supabase—no external workers or self-hosting required**. Since I couldn’t find one, I decided to build it.
+
+##### Can I use it?
+
+**Not yet** - I’ve released [Edge Worker](/edge-worker/how-it-works/) first and the flow engine will follow after gathering some feedback and improving the worker.
+
+I’m aiming to have the alpha version and docs ready in Q1 2025 (soft deadline :-)).
+
+##### Have questions or want to say Hi?
+
+I’m [u/jumski](https://reddit.com/u/jumski) on Reddit, [@jumski](https://github.com/jumski) on GitHub and `@jumski` on Supabase Discord.
+
+Follow **pgflow** on [Twitter / X](https://twitter.com/pgflow_dev) and [BlueSky](https://bsky.app/profile/pgflow.bsky.social).

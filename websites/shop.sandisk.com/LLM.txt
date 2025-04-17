@@ -1,0 +1,571 @@
+﻿# SanDisk – Comprehensive Product & Category Guide
+
+
+> This document provides an in-depth representation of SanDisk’s brand, its diverse storage products, and its extensive support ecosystem. Organized by product category and subcategory, it includes detailed descriptions, representative product pages, dedicated support links, additional educational “topics” and “solutions” pages, and a comprehensive list of category pages. Use this guide to extract, prioritize, and understand high-quality content from SanDisk’s official website.
+
+
+---
+
+
+## 1. Introduction & Brand Overview
+
+
+SanDisk is a global leader in digital storage solutions—renowned for its innovative, reliable, and high-performance products. Its offerings span consumer, professional, and enterprise markets, with an emphasis on durability, speed, and cutting-edge technology. Beyond its diverse product portfolio, SanDisk provides robust technical support, detailed datasheets, firmware/software updates, and educational resources that empower customers to maximize their storage solutions.
+
+
+---
+
+
+## 2. Product Categories & Subcategories
+
+
+### A. SSDs
+
+
+SanDisk’s SSDs deliver high-speed storage solutions for every need—from internal upgrades in high-performance PCs to robust external and portable storage for on-the-go professionals and enterprise applications.
+
+
+#### A.1 Internal SSD
+**Overview:**  
+Internal SSDs are engineered for peak performance and reliability in desktops, laptops, and workstations. They are ideal for gamers, creative professionals, and enterprise applications that require fast read/write speeds and endurance.
+
+
+**Product Pages (5 examples):**
+- [WD Black SN850X NVMe SSD](https://shop.sandisk.com/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd): Flagship drive offering cutting-edge speed and performance.
+- [WD Black SN770 NVMe SSD](https://shop.sandisk.com/products/ssd/internal-ssd/wd-black-sn770-nvme-ssd): Optimized for next-generation computing.
+- [SanDisk SSD Plus SATA III SSD](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-ssd-plus-sata-iii-ssd): A reliable, cost-effective solution.
+- [SanDisk Ultra 3D SATA III SSD](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-ultra-3d-sata-iii-ssd): Designed for stability and sustained performance.
+- [SanDisk DC SN860 Enterprise SSD](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-dc-sn860-ssd): Built for enterprise applications with high endurance.
+
+
+**Support:**  
+- [Internal SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=internal-ssd)
+
+
+**Additional Reading:**  
+- [PS5 NVMe SSD Expansion](https://shop.sandisk.com/topics/ssd/ps5-nvme-ssd-expansion)
+
+
+---
+
+
+#### A.2 External SSD
+**Overview:**  
+External SSDs offer fast, portable storage for mobile professionals, content creators, and backup solutions. They combine rugged design with high-speed interfaces for reliable use on the move.
+
+
+**Product Pages (5 examples):**
+- [Portable SSD Sandisk Extreme USB 3.2](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-usb-3-2): Rugged drive built for speed.
+- [Sandisk Extreme Pro External SSD](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-pro-usb-3-2): Premium external storage for professionals.
+- [Sandisk USB 3.2 External SSD](https://shop.sandisk.com/products/ssd/portable-ssd/sandisk-usb-3-2-ssd): Balances high performance with portability.
+- [External SSD – Variant Edition](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-usb-3-2?sku=SDSSDE61-2T00-G25): Differentiated by capacity and performance.
+- [Sandisk Extreme Pro USB 4 Portable SSD](https://shop.sandisk.com/products/ssd/portable-ssd/sandisk-extreme-pro-usb-4-portable-ssd): Next-gen drive featuring USB 4 technology.
+
+
+**Support:**  
+- [External SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=external-ssd)
+
+
+**Additional Reading:**  
+- [Sandisk Desk Drive SSD](https://shop.sandisk.com/topics/ssd/sandisk-desk-drive-ssd)
+
+
+---
+
+
+#### A.3 Portable SSD
+**Overview:**  
+Portable SSDs combine extreme portability with rapid data transfer, making them ideal for travelers, creatives, and quick backup tasks. They are engineered to endure shocks and maintain high performance on the go.
+
+
+**Product Pages (5 examples):**
+- [Portable SSD Sandisk Extreme USB 3.2](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-usb-3-2): A core model emphasizing portability.
+- [Portable SSD Sandisk Extreme Pro USB 3.2](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-pro-usb-3-2): Offers enhanced durability and speed.
+- [Portable SSD – Variant A](https://shop.sandisk.com/products/ssd/portable-ssd/portable-ssd-sandisk-extreme-usb-3-2?sku=SDSSDE61-2T00-G25): Tailored for performance and capacity.
+- [Sandisk Professional Pro G40 SSD](https://shop.sandisk.com/products/ssd/portable-ssd/sandisk-professional-pro-g40-ssd): Designed for creative professionals on the move.
+- [Portable SSD – USB 4 Edition](https://shop.sandisk.com/products/ssd/portable-ssd/sandisk-extreme-pro-usb-4-portable-ssd): Incorporates USB 4 for rapid transfers.
+
+
+**Support:**  
+- [Portable SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=portable-ssd)
+- [Portable SSD Topics](https://shop.sandisk.com/topics/sandisk/portable-ssd)
+
+
+**Solutions:**  
+- [SSD Home Backup Solutions](https://shop.sandisk.com/solutions/ssd-home-backup)
+
+
+---
+
+
+#### A.4 Enterprise SSD
+**Overview:**  
+Enterprise SSDs are built for data centers and mission-critical applications. They emphasize high endurance, reliability, and stable performance even under heavy workloads.
+
+
+**Product Pages (5 examples):**
+- [SanDisk DC SN860 Enterprise SSD](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-dc-sn860-ssd): A robust solution for enterprise environments.
+- [Enterprise Pro SSD – Model A](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-enterprise-pro-ssd): Designed for continuous high-volume operations.
+- [Enterprise Series SSD – Model B](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-dc-sn850-ssd-for-ps5): Adapted for high-performance enterprise use.
+- [SanDisk Data Center SSD – Variant](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-dc-sn720-ssd): Optimized for reliability and endurance.
+- [Enterprise SSD – Premium Edition](https://shop.sandisk.com/products/ssd/internal-ssd/sandisk-dc-sn860-ssd): Reinforces data integrity in challenging conditions.
+
+
+**Support:**  
+- [Enterprise SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=internal-ssd)
+
+
+**Solutions:**  
+- [Network Attached Storage Solutions](https://shop.sandisk.com/solutions/network-attached-storage)
+
+
+---
+
+
+### B. Memory Cards
+
+
+SanDisk memory cards set industry standards in speed, capacity, and reliability for digital imaging, videography, and mobile storage.
+
+
+#### B.1 SD Cards
+**Overview:**  
+SD cards are versatile and widely used in digital cameras, camcorders, and portable devices. SanDisk’s SD cards range from consumer-grade to professional-level models such as the Extreme Pro series.
+
+
+**Product Pages (5 examples):**
+- [Sandisk Extreme Pro UHS-I SD Card](https://shop.sandisk.com/products/memory-cards/sd-cards/sandisk-extreme-pro-uhs-i-sd): A premium option for professional imaging.
+- [Sandisk Ultra Plus SD Card](https://shop.sandisk.com/products/memory-cards/sd-cards/sandisk-ultra-plus-sd): A balance of performance and affordability.
+- [Sandisk Extreme UHS-II SD Card](https://shop.sandisk.com/products/memory-cards/sd-cards/sandisk-extreme-uhs-ii-sd): Designed for high-speed burst shooting.
+- [Sandisk Pro SD Card – Model A](https://shop.sandisk.com/products/memory-cards/sd-cards/sandisk-pro-sd-card): Tailored for advanced photography.
+- [Sandisk SD Card – Legacy Edition](https://shop.sandisk.com/products/memory-cards/sd-cards/sandisk-extreme-sd): Reliable and compatible with a wide range of devices.
+
+
+**Support:**  
+- [SD Cards Support](https://shop.sandisk.com/support/category-selection?sub-cat=sd-cards)
+
+
+**Topics:**  
+- [HD Video Definitions](https://shop.sandisk.com/topics/sandisk/hd-video-definitions)
+
+
+**Solutions:**  
+- [Memory Cards Solutions Overview](https://shop.sandisk.com/solutions/memory-cards)
+
+
+---
+
+
+#### B.2 microSD
+**Overview:**  
+microSD cards offer compact, high-speed storage for smartphones, tablets, action cameras, and drones. They are ideal for high-resolution video recording and rapid-fire imaging.
+
+
+**Product Pages (5 examples):**
+- [Sandisk Ultra UHS-I microSD Card](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd): A versatile option for everyday mobile storage.
+- [Sandisk Extreme UHS-I microSD Card](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-extreme-uhs-i-microsd): Optimized for intensive video and photography.
+- [Sandisk Ultra UHS-I microSD – 256GB](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQXAV-256G-AN6MA): High-capacity for extensive data.
+- [Sandisk Extreme UHS-I microSD – 512GB](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-extreme-uhs-i-microsd?sku=SDSQXCD-1T00-GN6MA): For intensive storage demands.
+- [Sandisk Ultra UHS-I microSD – Variant Edition](https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-ultra-uhs-i-microsd?sku=SDSQXAV-2T00-GN6MA): Balances performance and capacity.
+
+
+**Support:**  
+- [microSD Cards Support](https://shop.sandisk.com/support/category-selection?sub-cat=microsd-cards)
+
+
+**Solutions:**  
+- [Gaming Memory Cards for Nintendo Switch](https://shop.sandisk.com/solutions/gaming/nintendo-switch-memory-cards)
+
+
+---
+
+
+#### B.3 Compact Flash
+**Overview:**  
+Compact Flash cards are designed for high-end professional cameras that demand rapid data capture and sustained performance. They are the choice for professional photographers using high-resolution equipment.
+
+
+**Product Pages (5 examples – placeholders):**
+- [Sandisk Pro Compact Flash Card](https://shop.sandisk.com/products/memory-cards/compact-flash/sandisk-pro-compact-flash): Engineered for professional imaging.
+- [Sandisk Extreme Compact Flash](https://shop.sandisk.com/products/memory-cards/compact-flash/sandisk-compact-flash-extreme): High-speed performance for rapid shooting.
+- [Sandisk Compact Flash Premium](https://shop.sandisk.com/products/memory-cards/compact-flash/sandisk-compact-flash-premium): Focuses on durability and data integrity.
+- [Sandisk Compact Flash Legacy](https://shop.sandisk.com/products/memory-cards/compact-flash/sandisk-compact-flash-legacy): Trusted option for legacy systems.
+- [Sandisk Compact Flash – Model X](https://shop.sandisk.com/products/memory-cards/compact-flash/sandisk-compact-flash-pro): Advanced performance for high-resolution imaging.
+
+
+**Support:**  
+- [Cfast/Cfexpress/Compact Flash Support](https://shop.sandisk.com/support/category-selection?sub-cat=cfast-cfexpress-compactflash)
+
+
+---
+
+
+#### B.4 Cfast
+**Overview:**  
+Cfast cards are designed for ultra-high-speed video production and burst photography, delivering the rapid transfer rates necessary for 4K/8K recording.
+
+
+**Product Pages (5 examples – placeholders):**
+- [Sandisk Extreme Pro Cfast Card](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-extreme-pro-cfexpress-type-b): Flagship model for maximum speed.
+- [Sandisk Cfast Premium](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfast-premium): Balances performance with affordability.
+- [Sandisk Cfast Extreme](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfast-extreme): Optimized for professional workflows.
+- [Sandisk Cfast Ultimate](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfast-ultimate): Designed for rapid burst shooting.
+- [Sandisk Cfast Pro](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfast-pro): For maximum reliability and speed.
+
+
+**Support:**  
+- [Cfast/Cfexpress/Compact Flash Support](https://shop.sandisk.com/support/category-selection?sub-cat=cfast-cfexpress-compactflash)
+
+
+---
+
+
+#### B.5 Cfexpress
+**Overview:**  
+Cfexpress cards offer the latest in ultra-high-speed memory technology, meeting the demands of high-end videography and rapid-fire photography with unmatched transfer rates.
+
+
+**Product Pages (5 examples – placeholders):**
+- [Sandisk Extreme Pro Cfexpress](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-extreme-pro-cfexpress-type-b): A leader in performance for creative professionals.
+- [Sandisk Cfexpress Elite](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfexpress-elite): Offers exceptional transfer speeds.
+- [Sandisk Cfexpress Premium](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfexpress-premium): Combines high performance with durability.
+- [Sandisk Cfexpress Ultra](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfexpress-ultra): A breakthrough solution for high-resolution workflows.
+- [Sandisk Cfexpress Pro](https://shop.sandisk.com/products/memory-cards/cfast-cfexpress-compactflash/sandisk-cfexpress-pro): Built for the most demanding creative environments.
+
+
+**Support:**  
+- [Cfexpress Support](https://shop.sandisk.com/support/category-selection?sub-cat=cfast-cfexpress-compactflash)
+
+
+**Additional Solutions:**  
+- [Memory Cards – Specialty Solutions](https://shop.sandisk.com/solutions/memory-cards/specialty)
+
+
+---
+
+
+### C. USB Flash Drives
+
+
+SanDisk’s USB flash drives offer fast, secure, and versatile portable storage in a range of connector formats to meet modern and legacy device needs.
+
+
+#### C.1 USB A
+**Overview:**  
+USB-A flash drives are popular for their universal compatibility, ideal for everyday file transfers, backups, and secure storage.
+
+
+**Product Pages (5 examples):**
+- [Sandisk Ultra USB 3.0 Flash Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-usb-3-0): High-capacity drive for fast file transfer.
+- [Sandisk Cruzer Blade USB 2.0](https://shop.sandisk.com/products/usb-flash-drives/sandisk-cruzer-blade-usb-2-0): Compact and reliable for basic storage.
+- [Sandisk Ultra Dual Drive Go USB 3.0](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-dual-drive-go-usb-3-0): Versatile connectivity with dual interfaces.
+- [Sandisk Ultra Flair USB 3.0](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-flair-usb-3-0): Stylish design with rapid data transfer.
+- [Sandisk Ultra Shift USB](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-shift-usb): A sleek drive for efficient data storage.
+
+
+**Support:**  
+- [USB Flash Drives Support](https://shop.sandisk.com/support/category-selection?sub-cat=usb-flash-drives)
+
+
+**Topics:**  
+- [What Is a USB Flash Drive?](https://shop.sandisk.com/topics/usb-flash-drives/what-is-a-usb-flash-drive)
+
+
+**Solutions:**  
+- [USB Flash Drives Solutions](https://shop.sandisk.com/solutions/usb-flash-drives)
+
+
+---
+
+
+#### C.2 USB C
+**Overview:**  
+USB-C flash drives feature reversible connectors and high-speed performance, making them ideal for modern devices that support USB-C for fast and secure data transfers.
+
+
+**Product Pages (5 examples):**
+- [Sandisk iXpand Luxe USB 3.1 Type-C](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-luxe-usb-3-1-type-c): Premium design with rapid transfer rates.
+- [Sandisk Ultra Dual Drive Go USB 3.1 Type-C](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-dual-drive-go-usb-3-1-type-c): Offers dual connectivity for enhanced versatility.
+- [Sandisk Ultra Fit USB 3.1 Type-C](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ultra-fit-usb-3-1): Compact, efficient storage solution.
+- [Sandisk iXpand Premium USB-C](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-premium-usb-3-1-type-c): Enhanced performance for demanding users.
+- [Sandisk USB-C Variant Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-go-usb-3-0-type-c): Versatile and reliable for USB-C devices.
+
+
+**Support:**  
+- [USB Flash Drives Support](https://shop.sandisk.com/support/category-selection?sub-cat=usb-flash-drives)
+
+
+---
+
+
+#### C.3 Lightning
+**Overview:**  
+Lightning-compatible flash drives are designed specifically for Apple devices, enabling seamless data exchange with iPhones and iPads and optimized for iOS ecosystems.
+
+
+**Product Pages (5 examples):**
+- [Sandisk Phone Drive for iPhone](https://shop.sandisk.com/products/usb-flash-drives/sandisk-phone-drive-iphone): Dedicated solution for expanding iPhone storage.
+- [Sandisk Lightning USB Flash Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-lightning-usb-drive-iphone): Engineered for rapid transfers on iOS.
+- [Sandisk iXpand Drive for iPhone](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-drive-iphone): Combines storage with built-in Lightning connector.
+- [Sandisk iXpand Go for iPhone](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-go-iphone): Compact and versatile for on-the-go storage.
+- [Sandisk iXpand Luxe for iOS](https://shop.sandisk.com/products/usb-flash-drives/sandisk-ixpand-luxe-iphone): Premium design optimized for Apple devices.
+
+
+**Support:**  
+- [USB Flash Drives Support](https://shop.sandisk.com/support/category-selection?sub-cat=usb-flash-drives)
+- [iPhone Compatibility Topics](https://shop.sandisk.com/topics/usb-flash-drives/iphone-15-compatible-drives)
+
+
+---
+
+
+#### C.4 Micro B
+**Overview:**  
+Micro B USB flash drives cater to legacy devices and specialized applications, providing compact storage solutions for older hardware.
+
+
+**Product Pages (5 examples – placeholders):**
+- [Sandisk Legacy Micro B Flash Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-legacy-micro-b): A trusted option for older devices.
+- [Sandisk Micro B USB Flash Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-micro-b-usb-flash-drive): Compact storage solution for Micro B ports.
+- [Sandisk Micro B Mini Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-micro-b-mini-drive): Optimized for ease of use and portability.
+- [Sandisk Micro B Compact Drive](https://shop.sandisk.com/products/usb-flash-drives/sandisk-micro-b-compact-drive): Reliable performance in a small form factor.
+- [Sandisk Micro B Travel Flash](https://shop.sandisk.com/products/usb-flash-drives/sandisk-micro-b-travel-flash): Designed for secure and portable data transfer.
+
+
+**Support:**  
+- [USB Flash Drives Support](https://shop.sandisk.com/support/category-selection?sub-cat=usb-flash-drives)
+
+
+---
+
+
+## 3. Support & General Pages
+
+
+SanDisk provides extensive support resources and corporate information to assist customers throughout their experience—from product selection to troubleshooting.
+
+
+### 3.1 Support Resources
+- [SanDisk Support Home](https://shop.sandisk.com/support): Central hub for technical support, FAQs, troubleshooting guides, and live chat.
+- [USB Flash Drives Support](https://shop.sandisk.com/support/category-selection?sub-cat=usb-flash-drives)
+- [Cfast/Cfexpress/Compact Flash Support](https://shop.sandisk.com/support/category-selection?sub-cat=cfast-cfexpress-compactflash)
+- [microSD Cards Support](https://shop.sandisk.com/support/category-selection?sub-cat=microsd-cards)
+- [SD Cards Support](https://shop.sandisk.com/support/category-selection?sub-cat=sd-cards)
+- [Memory Card Readers Support](https://shop.sandisk.com/support/category-selection?sub-cat=memory-card-readers)
+- [External SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=external-ssd)
+- [Portable SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=portable-ssd)
+- [Internal SSD Support](https://shop.sandisk.com/support/category-selection?sub-cat=internal-ssd)
+
+
+### 3.2 Corporate & Technical Information
+- [Corporate News & Press Releases](https://www.sandisk.com/company/newsroom/press-releases): Latest announcements and innovations.
+- [Datasheets & Technical Documents](https://www.sandisk.com/content/dam/sandisk-main/en_us/assets/resources/enterprise/data-sheets/): Detailed technical PDFs.
+- [Behind the Design](https://shop.sandisk.com/topics/blog/behind-the-design): Insights into SanDisk’s design philosophy.
+
+
+---
+
+
+## 4. Use Cases & Applications
+
+
+SanDisk’s products are designed for a wide range of applications and use cases, catering to professionals, gamers, enterprises, and everyday users.
+
+
+**SSDs:**  
+- _Gaming & Creative Work:_ Internal SSDs power high-end PCs, while external and portable SSDs offer rapid transfers and reliable backups.
+- _Enterprise Applications:_ Enterprise SSDs provide continuous, high-volume performance for data centers.
+- _Solutions:_  
+  - [PS5 NVMe SSD Expansion](https://shop.sandisk.com/topics/ssd/ps5-nvme-ssd-expansion)  
+  - [Xbox Gaming Console Storage](https://shop.sandisk.com/solutions/gaming/xbox-gaming-console-storage)  
+  - [SSD Home Backup](https://shop.sandisk.com/solutions/ssd-home-backup)
+
+
+**Memory Cards:**  
+- _Professional Imaging:_ SD, Cfast, and Cfexpress cards are essential for high-speed capture in digital cameras.
+- _Mobile & Everyday Use:_ microSD cards boost device performance and enable high-resolution imaging.
+- _Solutions:_  
+  - [Gaming Memory Cards for Nintendo Switch](https://shop.sandisk.com/solutions/gaming/nintendo-switch-memory-cards)  
+  - [Creator Series Memory Cards](https://shop.sandisk.com/solutions/creator-series)  
+  - [Specialty Memory Cards](https://shop.sandisk.com/solutions/memory-cards/specialty)  
+  - [HD Video Capacity Charts](https://shop.sandisk.com/topics/sandisk/hd-video-capacity-charts)
+
+
+**USB Flash Drives:**  
+- _Portable & Versatile:_ Available in USB-A, USB-C, Lightning, and Micro B configurations to suit any device.
+- _Apple Ecosystem:_ Lightning-compatible drives expand storage options for iOS devices.
+- _Solutions:_  
+  - [USB Flash Drives Solutions](https://shop.sandisk.com/solutions/usb-flash-drives)  
+  - [What Is a USB Flash Drive?](https://shop.sandisk.com/topics/usb-flash-drives/what-is-a-usb-flash-drive)  
+  - [Memory Zone 2.0 Backup](https://shop.sandisk.com/topics/accessories/memory-zone-2-0-backup)
+
+
+**Additional Solutions & Use Cases:**  
+- [Nintendo Switch Memory Cards](https://shop.sandisk.com/solutions/gaming/nintendo-switch-memory-cards)  
+- [PlayStation 5 Gaming Storage](https://shop.sandisk.com/solutions/gaming/playstation-5-gaming-storage)  
+- [Network Attached Storage](https://shop.sandisk.com/solutions/network-attached-storage)  
+- [Cloud Storage Solutions](https://shop.sandisk.com/solutions/cloud-storage)  
+- [Memory Cards – Gaming](https://shop.sandisk.com/solutions/memory-cards/gaming)  
+- [Memory Cards – Specialty](https://shop.sandisk.com/solutions/memory-cards/specialty)
+
+
+---
+
+
+## 5. Category Pages
+
+
+This section lists the key category landing pages to provide an overview of SanDisk’s complete product portfolio.
+
+
+### A. SSDs – Category Pages
+- [All SSDs](https://shop.sandisk.com/product-portfolio/ssd): Overview of all SSD offerings.
+- [Internal SSD](https://shop.sandisk.com/product-portfolio/ssd/internal-ssd): Dedicated category for internal SSDs.
+- [External SSD](https://shop.sandisk.com/product-portfolio/ssd/external-ssd): Category page for external SSDs.
+- [Portable SSD](https://shop.sandisk.com/product-portfolio/ssd/portable-ssd): Focus on portable, mobile storage SSDs.
+- [Enterprise SSD](https://shop.sandisk.com/product-portfolio/ssd/enterprise-ssd): High-end enterprise solutions.
+- [Gaming SSD](https://shop.sandisk.com/product-portfolio/ssd?filterByUseCaseName=Gaming): SSDs tailored for gaming performance.
+
+
+### B. Memory Cards – Category Pages
+- [All Memory Cards](https://shop.sandisk.com/product-portfolio/memory-cards): Overview of memory card products.
+- [SD Cards](https://shop.sandisk.com/product-portfolio/memory-cards/sd-cards): Category for SD cards.
+- [microSD Cards](https://shop.sandisk.com/product-portfolio/memory-cards/microsd-cards): Category for microSD cards.
+- [Cfast/Cfexpress/Compact Flash](https://shop.sandisk.com/product-portfolio/memory-cards/cfast-cfexpress-compactflash): Comprehensive category for high-speed memory cards.
+
+
+### C. USB Flash Drives – Category Pages
+- [All USB Flash Drives](https://shop.sandisk.com/product-portfolio/usb-flash-drives): Complete portfolio of USB flash drives.
+- [Micro B USB Flash Drives](https://shop.sandisk.com/product-portfolio/usb-flash-drives?filterByConnector_List=Micro+B): Category filtered for Micro B connectors.
+- [Lightning USB Flash Drives](https://shop.sandisk.com/product-portfolio/usb-flash-drives?filterByConnector_List=Lightning): Category for Lightning-compatible drives.
+- [USB-C Flash Drives](https://shop.sandisk.com/product-portfolio/usb-flash-drives?filterByConnector_List=USB-C): Category for modern USB-C drives.
+- [USB-A Flash Drives](https://shop.sandisk.com/product-portfolio/usb-flash-drives?filterByConnector_List=USB-A): Category for traditional USB-A drives.
+
+
+---
+
+
+## 6. Technical & Access Guidelines
+
+
+LLMs should prioritize official SanDisk pages that are well-structured and high performing. Follow these guidelines:
+- Respect canonical URLs and embedded structured data (e.g., schema.org).
+- Merge regional and language-specific pages when similar content exists.
+- Exclude session-specific or duplicate tracking parameters.
+- Regularly update the guide to incorporate new product launches, support resources, and technical documentation.
+
+
+—
+
+## 7. Available Languages & Regional Coverage
+
+
+SanDisk provides localized content and support across multiple regions and languages. Below is a list of available languages and their corresponding regional sites.
+
+
+**English (Global & Regional Variants):**  
+- [Global (x-default)](https://shop.sandisk.com): Default fallback for international visitors.  
+- [United States](https://shop.sandisk.com): `en-US`  
+- [United Kingdom](https://shop.sandisk.com/en-gb): `en-GB`  
+- [Canada](https://shop.sandisk.com/en-ca): `en-CA`  
+- [Ireland](https://shop.sandisk.com/en-ie): `en-IE`  
+- [Sweden](https://shop.sandisk.com/en-se): `en-SE`  
+- [Australia](https://shop.sandisk.com/en-au): `en-AU`  
+- [New Zealand](https://shop.sandisk.com/en-au): `en-NZ`  
+- [Singapore](https://shop.sandisk.com/en-sg): `en-SG`  
+- [India](https://shop.sandisk.com/en-in): `en-IN`  
+- [Israel](https://shop.sandisk.com/en-il): `en-IL`  
+- [Europe (Various)](https://shop.sandisk.com/en-ie): `en-BE`, `en-AT`, `en-PT`, `en-DK`, `en-FI`, `en-NO`  
+- [Asia Pacific](https://shop.sandisk.com/en-ap): Covers multiple regions, including Malaysia, Philippines, Vietnam, and more.  
+
+
+**French:**  
+- [France](https://shop.sandisk.com/fr-fr): `fr`  
+- [Canada (French)](https://shop.sandisk.com/fr-ca): `fr-CA`  
+
+
+**Spanish:**  
+- [Spain](https://shop.sandisk.com/es-es): `es-ES`  
+- [Latin America](https://shop.sandisk.com/es-la): `es`, `es-MX`, `es-AR`, `es-PE`, `es-CL`, `es-CO`, `es-EC`  
+
+
+**German:**  
+- [Germany](https://shop.sandisk.com/de-de): `de`  
+- [Austria](https://shop.sandisk.com/de-at): `de-AT`  
+
+
+**Italian:**  
+- [Italy](https://shop.sandisk.com/it-it): `it`  
+
+
+**Dutch:**  
+- [Netherlands](https://shop.sandisk.com/nl-nl): `nl`  
+
+
+**Portuguese:**  
+- [Brazil](https://shop.sandisk.com/pt-br): `pt`  
+
+
+**Polish:**  
+- [Poland](https://shop.sandisk.com/pl-pl): `pl`  
+
+
+**Czech:**  
+- [Czech Republic](https://shop.sandisk.com/cs-cz): `cs`  
+
+
+**Greek:**  
+- [Greece](https://shop.sandisk.com/el-gr): `el`  
+
+
+**Russian:**  
+- [Russia](https://shop.sandisk.com/ru-ru): `ru`  
+
+
+**Turkish:**  
+- [Turkey](https://shop.sandisk.com/tr-tr): `tr`  
+
+
+**Chinese:**  
+- [China (Simplified)](https://shop.sandisk.com/zh-cn): `zh`  
+- [Taiwan (Traditional)](https://shop.sandisk.com/zh-tw): `zh-TW`  
+
+
+**Japanese:**  
+- [Japan](https://shop.sandisk.com/ja-jp): `ja`  
+
+
+**Korean:**  
+- [South Korea](https://shop.sandisk.com/ko-kr): `ko`  
+
+
+**Thai:**  
+- [Thailand](https://shop.sandisk.com/th-th): `th`  
+
+
+**Indonesian:**  
+- [Indonesia](https://shop.sandisk.com/in-id): `id`  
+
+
+**Arabic:**  
+- [Saudi Arabia](https://shop.sandisk.com/ar-sa): `ar`  
+- [United Arab Emirates](https://shop.sandisk.com/ar-sa): `ar-AE`  
+- [Egypt](https://shop.sandisk.com/ar-sa): `ar-EG`  
+- [Qatar](https://shop.sandisk.com/ar-sa): `ar-QA`  
+- [Algeria](https://shop.sandisk.com/ar-sa): `ar-DZ`  
+
+
+---
+
+
+
+
+
+
+For improvements or clarifications, please consult SanDisk’s official web content team or review the latest press releases and technical datasheets.
+
+
+---
+
+
+*End of Document*

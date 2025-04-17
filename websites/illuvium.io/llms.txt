@@ -1,0 +1,31 @@
+# Illuvium Staking Docs
+
+## Illuvium Staking Docs
+
+- [Illuvium Staking v2](https://docs.illuvium.io/staking-v2/illuvium-staking-v2)
+- [Overview](https://docs.illuvium.io/staking-v2/staking-v2-app/overview): Explanation of the different features of the Overview page
+- [Dashboard](https://docs.illuvium.io/staking-v2/staking-v2-app/dashboard)
+- [Staking](https://docs.illuvium.io/staking-v2/staking-v2-app/staking)
+- [Rewards](https://docs.illuvium.io/staking-v2/staking-v2-app/rewards)
+- [Vesting](https://docs.illuvium.io/staking-v2/staking-v2-app/vesting)
+- [New Users](https://docs.illuvium.io/staking-v2/user-guides/new-users)
+- [Connect Wallet](https://docs.illuvium.io/staking-v2/user-guides/new-users/connect-wallet)
+- [How to Stake](https://docs.illuvium.io/staking-v2/user-guides/new-users/how-to-stake)
+- [Claim Rewards](https://docs.illuvium.io/staking-v2/user-guides/new-users/claim-rewards)
+- [Withdrawals ](https://docs.illuvium.io/staking-v2/user-guides/new-users/withdrawals)
+- [Existing Users](https://docs.illuvium.io/staking-v2/user-guides/existing-users)
+- [Upgrading to Staking v2](https://docs.illuvium.io/staking-v2/user-guides/existing-users/upgrading-to-staking-v2)
+- [Flexible Deposits](https://docs.illuvium.io/staking-v2/user-guides/existing-users/flexible-deposits)
+- [About Illuvium Staking](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking)
+- [How does Governance Work?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/how-does-governance-work)
+- [What are the staking pools in the protocol?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-are-the-staking-pools-in-the-protocol)
+- [What is the difference between the ILV pool and the ILV/ETH pool?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-is-the-difference-between-the-ilv-pool-and-the-ilv-eth-pool)
+- [What is variable locking?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-is-variable-locking)
+- [What happens when I vest my rewards?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-happens-when-i-vest-my-rewards)
+- [How long should I wait before vesting?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/how-long-should-i-wait-before-vesting)
+- [What happens to tokens after they are unlocked?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-happens-to-tokens-after-they-are-unlocked)
+- [What happens to vested tokens after they are unlocked?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-happens-to-vested-tokens-after-they-are-unlocked)
+- [What is sILV2?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-is-silv2)
+- [What is the Vault?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-is-the-vault)
+- [What are distributions?](https://docs.illuvium.io/staking-v2/user-guides/about-illuvium-staking/what-are-distributions)
+- [Glossary](https://docs.illuvium.io/staking-v2/glossary)

@@ -1,0 +1,41 @@
+# Arcade Knowledge Base
+
+## Arcade Knowledge Base
+
+- [Welcome! 👋](https://docs.arcade.software/kb/readme)
+- [Quick Start](https://docs.arcade.software/kb/readme/quick-start): Getting set up on Arcade.
+- [Your Feedback](https://docs.arcade.software/kb/readme/your-feedback)
+- [Record](https://docs.arcade.software/kb/build/record): Recording is the first step in creating an Arcade. Whether you're using the Chrome extension, the desktop app, or uploading media, this guide walks you through all the options and best practices for r
+- [Edit](https://docs.arcade.software/kb/build/edit): Once you've recorded your Arcade, you can start editing: add and remove steps, add context, trim video, highlight features, and more.
+- [Hotspots and Callouts](https://docs.arcade.software/kb/build/edit/hotspots-and-callouts)
+- [Audio and Video](https://docs.arcade.software/kb/build/edit/audio-and-video)
+- [Synthetic Voiceovers](https://docs.arcade.software/kb/build/edit/synthetic-voiceovers): Our AI synthetic voices, provided by Eleven Labs, have a high degree of customizability. Read below to understand more about how to change the pausing, pacing, emotion, pronunciation, and more.
+- [Personalization](https://docs.arcade.software/kb/build/edit/personalization): Check out Page Morph, Custom Variables, and Choose Your Own Adventure!
+- [Cover and Fit](https://docs.arcade.software/kb/build/edit/cover-and-fit): Cover and Fit will allow you to upload pictures, screenshots, Arcades etc. of different sizes and dimensions (landscape vs. portrait) and ensure that they all fit within your Arcade and look great!
+- [Translations](https://docs.arcade.software/kb/build/edit/translations): Translate your Arcades to let your viewers experience them in their preferred language
+- [Post-capture edit](https://docs.arcade.software/kb/build/edit/post-capture-edit): Our HTML Capture allows you to save the underlaying HTML of every step that you capture, allowing you to modify each image post recording. You can change text, swap images, or delete entire parts.
+- [Design](https://docs.arcade.software/kb/build/design): Arcades can look just like your brand: you can add your logo as a watermark, customize the colors, fonts, buttons on the share page, and more!
+- [Arcade Experts 🏆](https://docs.arcade.software/kb/build/design/arcade-experts): If you are in the last mile of building your Arcade and want to add that extra design polish for your homepage or website, we have a few suggestions for you.
+- [Share](https://docs.arcade.software/kb/build/share): Different methods for sharing your Arcades with viewers.
+- [Embeds](https://docs.arcade.software/kb/build/share/how-to-embed-your-arcades): Arcades can be embedded inside anything that supports iframes. Here, we cover embedding basics and sample instructions for specific sites.
+- [Collections](https://docs.arcade.software/kb/build/share/collections)
+- [Downloads](https://docs.arcade.software/kb/build/share/downloads)
+- [Share Page](https://docs.arcade.software/kb/build/share/share-page)
+- [Mobile](https://docs.arcade.software/kb/build/share/mobile)
+- [Use Cases](https://docs.arcade.software/kb/learn/use-cases)
+- [Features](https://docs.arcade.software/kb/learn/how-to-embed-your-arcades)
+- [Insights](https://docs.arcade.software/kb/learn/how-to-embed-your-arcades/insights): Insights allow you to understand how viewers and players interact with your Arcade.
+- [Leads](https://docs.arcade.software/kb/learn/how-to-embed-your-arcades/leads)
+- [Advanced Branching](https://docs.arcade.software/kb/learn/how-to-embed-your-arcades/advanced-branching): How-To Guide: Incorporating Advanced Branching into your Arcades to deliver more relevant experiences.
+- [Integrations](https://docs.arcade.software/kb/learn/how-to-embed-your-arcades/integrations): Arcade integrates with some of your favorite tools.
+- [Advanced Features](https://docs.arcade.software/kb/learn/advanced-features)
+- [Event Propagation](https://docs.arcade.software/kb/learn/advanced-features/in-arcade-event-propagation)
+- [Remote Control](https://docs.arcade.software/kb/learn/advanced-features/arcade-remote-control)
+- [REST API](https://docs.arcade.software/kb/learn/advanced-features/rest-api)
+- [Webhooks](https://docs.arcade.software/kb/learn/advanced-features/webhooks)
+- [Team Management](https://docs.arcade.software/kb/admin/team-management)
+- [General Security](https://docs.arcade.software/kb/admin/general-security)
+- [SSO using SAML](https://docs.arcade.software/kb/admin/general-security/sso-using-saml): Integrate your SAML identity provider with Arcade
+- [GDPR Requirements](https://docs.arcade.software/kb/admin/general-security/gdpr-requirements)
+- [Billing and Subscription](https://docs.arcade.software/kb/admin/billing-and-subscription)
+- [Plans](https://docs.arcade.software/kb/admin/plans)

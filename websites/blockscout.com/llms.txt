@@ -1,0 +1,179 @@
+# Blockscout
+
+## Blockscout
+
+- [Blockscout Open-Source Explorer](https://docs.blockscout.com/readme): Blockchain explorer for inspecting, analyzing, and interacting with EVM chains and optimistic rollups and zkrollups.
+- [Features](https://docs.blockscout.com/about/features): Blockscout is a full-featured, open-source blockchain explorer
+- [Ethereum Bytecode Database Microservice](https://docs.blockscout.com/about/features/ethereum-bytecode-database-microservice): Database with shared contract information
+- [Blockscout Redesign](https://docs.blockscout.com/about/features/blockscout-2.0): The Blockscout redesign brings new functionality, a reimagined UI and many more optimizations to the #1 open-source block explorer.
+- [Chains Using Blockscout](https://docs.blockscout.com/about/chains): List of projects and links
+- [Partners & Integrations](https://docs.blockscout.com/about/partners-and-integrations): Blockscout featured integrations
+- [RaaS Providers](https://docs.blockscout.com/about/partners-and-integrations/raas-providers): Rollup-as-a-Service Providers using Blockscout
+- [Vera: Verifier Alliance](https://docs.blockscout.com/about/partners-and-integrations/vera-verifier-alliance)
+- [Adding your chain to the Vera database](https://docs.blockscout.com/about/partners-and-integrations/vera-verifier-alliance/adding-your-chain-to-the-vera-database)
+- [Programmatic verification via the API](https://docs.blockscout.com/about/partners-and-integrations/vera-verifier-alliance/programmatic-verification-via-the-api)
+- [News & Media](https://docs.blockscout.com/about/announcements)
+- [Newsletter & Blog](https://docs.blockscout.com/about/announcements/newsletter-and-blog)
+- [Funding](https://docs.blockscout.com/about/funding)
+- [L2 Funding Proposal](https://docs.blockscout.com/about/funding/l2-funding-proposal): Seeking funds for a next generation L2 explorer
+- [Aux Funding Images](https://docs.blockscout.com/about/funding/l2-funding-proposal/aux-funding-images)
+- [Roadmap](https://docs.blockscout.com/about/roadmap): Upcoming enhancements and updates to Blockscout
+- [Getting Started](https://docs.blockscout.com/using-blockscout/overviews)
+- [Glossary of Terms](https://docs.blockscout.com/using-blockscout/overviews/glossary-of-terms)
+- [Main Menu](https://docs.blockscout.com/using-blockscout/overviews/top-menu)
+- [Blocks](https://docs.blockscout.com/using-blockscout/overviews/blocks)
+- [Transaction Types](https://docs.blockscout.com/using-blockscout/overviews/transaction-types)
+- [Beacon Chain Withdrawal Views](https://docs.blockscout.com/using-blockscout/overviews/beacon-chain-withdrawal-views): Coming Soon
+- [My Account](https://docs.blockscout.com/using-blockscout/my-account)
+- [Watch list](https://docs.blockscout.com/using-blockscout/my-account/watchlist)
+- [Private tags](https://docs.blockscout.com/using-blockscout/my-account/private-tags)
+- [Public tags](https://docs.blockscout.com/using-blockscout/my-account/public-tags): Request a tag or report an incorrect tag
+- [API keys](https://docs.blockscout.com/using-blockscout/my-account/api-keys)
+- [Custom ABI](https://docs.blockscout.com/using-blockscout/my-account/custom-abi)
+- [Verified addresses](https://docs.blockscout.com/using-blockscout/my-account/verified-addresses)
+- [Copy and Sign Message](https://docs.blockscout.com/using-blockscout/my-account/verified-addresses/copy-and-sign-message)
+- [For developers](https://docs.blockscout.com/using-blockscout/my-account/for-developers): When setting up My Account for your chain
+- [Dappscout Apps Marketplace](https://docs.blockscout.com/using-blockscout/blockscout-apps): Dappscout is a curated collection of on-chain applications
+- [DApp Integration](https://docs.blockscout.com/using-blockscout/blockscout-apps/dapp-integration): Prepare your DApp for submission to the DAppscout marketplace
+- [Swapscout](https://docs.blockscout.com/using-blockscout/swapscout): Swapscout swap and bridge multi-chain application for Blockscout users
+- [Earn Merits when using Swapscout](https://docs.blockscout.com/using-blockscout/swapscout/earn-merits-when-using-swapscout)
+- [Revokescout](https://docs.blockscout.com/using-blockscout/revokescout): Check, manage and revoke your token approvals
+- [CSV Exports](https://docs.blockscout.com/using-blockscout/export-to-csv): Export of blockchain entities related to address into a CSV file
+- [Token Support](https://docs.blockscout.com/using-blockscout/token-support)
+- [ERC-1155 Support](https://docs.blockscout.com/using-blockscout/token-support/erc-1155-support): Basic support for ERC-1155s
+- [Merits](https://docs.blockscout.com/using-blockscout/merits)
+- [Streak rewards](https://docs.blockscout.com/using-blockscout/merits/streak-rewards): Connecting to Blockscout on consecutive days increases your streak and your Merits
+- [Activity Pass](https://docs.blockscout.com/using-blockscout/merits/activity-pass): Get you pass and earn more Merits
+- [Leaderboard](https://docs.blockscout.com/using-blockscout/merits/leaderboard): View accounts by Merits
+- [Badges](https://docs.blockscout.com/using-blockscout/merits/badges): Earn and collect NFT Scout badges by engaging and exploring the blockchain with Blockscout.
+- [FAQs](https://docs.blockscout.com/using-blockscout/merits/faqs)
+- [For Web3 Developers](https://docs.blockscout.com/devs/for-web3-developers)
+- [Link to Blockscout](https://docs.blockscout.com/devs/replace-links): Easily replace your current explorer links with Blockscout explorer links
+- [Blockscout APIs](https://docs.blockscout.com/devs/apis)
+- [Requests & Limits](https://docs.blockscout.com/devs/apis/requests-and-limits)
+- [REST API Endpoints](https://docs.blockscout.com/devs/apis/rest)
+- [Stats API](https://docs.blockscout.com/devs/apis/rest/stats-api)
+- [Interpreter API](https://docs.blockscout.com/devs/apis/rest/interpreter-api)
+- [JSON RPC & ETH Compatible RPC Endpoints](https://docs.blockscout.com/devs/apis/rpc): API designed for ease of use
+- [Account](https://docs.blockscout.com/devs/apis/rpc/account): ?module=account
+- [Block](https://docs.blockscout.com/devs/apis/rpc/block): ?module=block
+- [Contract](https://docs.blockscout.com/devs/apis/rpc/contract): ?module=contract
+- [Logs](https://docs.blockscout.com/devs/apis/rpc/logs): ?module=logs
+- [Stats](https://docs.blockscout.com/devs/apis/rpc/stats): ?module=stats
+- [Token](https://docs.blockscout.com/devs/apis/rpc/token): ?module=token
+- [Transaction](https://docs.blockscout.com/devs/apis/rpc/transaction): ?module=transaction
+- [ETH RPC API](https://docs.blockscout.com/devs/apis/rpc/eth-rpc)
+- [GraphQL in Blockscout](https://docs.blockscout.com/devs/apis/graphql)
+- [Smart Contract Verification](https://docs.blockscout.com/devs/verification): Verifying your deployed contract using contract source code, JSON input, Sourcify and more.
+- [Blockscout UI](https://docs.blockscout.com/devs/verification/blockscout-ui)
+- [Blockscout smart-contract verification API](https://docs.blockscout.com/devs/verification/blockscout-smart-contract-verification-api): Blockscout also offers a contract verification API.
+- [Hardhat Verification Plugin](https://docs.blockscout.com/devs/verification/hardhat-verification-plugin)
+- [Sourcify Plugin for Hardhat](https://docs.blockscout.com/devs/verification/hardhat-verification-plugin/sourcify-plugin-for-hardhat)
+- [Foundry Verification](https://docs.blockscout.com/devs/verification/foundry-verification)
+- [Sourcify Verification](https://docs.blockscout.com/devs/verification/contracts-verification-via-sourcify)
+- [OpenZeppelin Contract Verification](https://docs.blockscout.com/devs/verification/openzeppelin-contract-verification): Instructions for various development environments
+- [Automate verifications with Catapulta](https://docs.blockscout.com/devs/verification/automate-verifications-catapulta): Deploy smart contracts and get verified automatically with Catapulta
+- [Verification via thirdweb](https://docs.blockscout.com/devs/verification/verification-via-thirdweb)
+- [Interacting with Smart Contracts](https://docs.blockscout.com/devs/verification/interacting-with-smart-contracts): Use Blockscout to Read and Write to Smart Contracts
+- [Autoscout cloud deployment](https://docs.blockscout.com/devs/autoscout): Deploy a production-ready instance on the cloud in 5 minutes
+- [Chainscout chains list](https://docs.blockscout.com/devs/chainscout-chains-list): List of EVM networks supported by Blockscout
+- [General Overview](https://docs.blockscout.com/setup/information-and-settings)
+- [Separate Indexer, Web App, and API](https://docs.blockscout.com/setup/information-and-settings/separate-indexer-web-app-and-api)
+- [Umbrella Project Organization](https://docs.blockscout.com/setup/information-and-settings/untitled): How the BlockScout project is organized
+- [Indexer Architecture Overview](https://docs.blockscout.com/setup/information-and-settings/indexer-architecture-overview): Learn how the indexing architecture works in Blockscout
+- [ShareLock](https://docs.blockscout.com/setup/information-and-settings/sharelock): ShareLock is the row-level locking mechanism used internally by PostgreSQL.
+- [EVM Version Information](https://docs.blockscout.com/setup/information-and-settings/evm-version-information)
+- [L2 -> L1 JSON-RPC Method Requests](https://docs.blockscout.com/setup/information-and-settings/l2-greater-than-l1-json-rpc-method-requests)
+- [Requirements](https://docs.blockscout.com/setup/requirements)
+- [General Backend Requirements / Blockscout Backend Prerequisites](https://docs.blockscout.com/setup/requirements/requirements)
+- [Backend/Frontend Compatibility Matrix](https://docs.blockscout.com/setup/requirements/back-front-compatibility-matrix)
+- [Hardware & Hosting Requirements](https://docs.blockscout.com/setup/requirements/resource-requirements)
+- [Database Storage Requirements](https://docs.blockscout.com/setup/requirements/database-storage-requirements)
+- [Client Setting Requirements](https://docs.blockscout.com/setup/requirements/client-settings)
+- [Node Tracing / JSON RPC Requirements](https://docs.blockscout.com/setup/requirements/node-tracing-json-rpc-requirements)
+- [ENV Variables](https://docs.blockscout.com/setup/env-variables)
+- [Backend ENVs: Common](https://docs.blockscout.com/setup/env-variables/backend-env-variables)
+- [Backend ENVs: Chain-Specific](https://docs.blockscout.com/setup/env-variables/backend-envs-chain-specific): ENVS for specific chains and rollups
+- [Backend ENVs: Integrations](https://docs.blockscout.com/setup/env-variables/backend-envs-integrations)
+- [Frontend ENVs: Common](https://docs.blockscout.com/setup/env-variables/frontend-common-envs)
+- [ENVs](https://docs.blockscout.com/setup/env-variables/frontend-common-envs/envs)
+- [Deprecated ENVs](https://docs.blockscout.com/setup/env-variables/frontend-common-envs/deprecated-envs)
+- [Deprecated Backend ENVs](https://docs.blockscout.com/setup/env-variables/deprecated-env-variables)
+- [Previous ENV Variable Home Page](https://docs.blockscout.com/setup/env-variables/deprecated-env-variables/env-variables): Previous home page for archival purposes.
+- [Deployment](https://docs.blockscout.com/setup/deployment): Blockscout deployment options
+- [Manual Deployment Guide](https://docs.blockscout.com/setup/deployment/manual-deployment-guide): Deploy Blockscout with a user-friendly UI and all microservices
+- [Ubuntu Setup](https://docs.blockscout.com/setup/deployment/manual-deployment-guide/ubuntu-setup)
+- [MacOS setup](https://docs.blockscout.com/setup/deployment/manual-deployment-guide/macos-setup)
+- [Docker-compose Deployment](https://docs.blockscout.com/setup/deployment/docker-compose-deployment): For local builds
+- [Kubernetes Deployment](https://docs.blockscout.com/setup/deployment/kubernetes-deployment)
+- [Rollup Deployment](https://docs.blockscout.com/setup/deployment/rollup-deployment)
+- [Cosmos-based chains](https://docs.blockscout.com/setup/deployment/cosmos-based-chains)
+- [Autoscout Deployment](https://docs.blockscout.com/setup/deployment/autoscout-deployment): Self-service explorer hosted by Blockscout
+- [Upgrade Guide (v7.0)](https://docs.blockscout.com/setup/deployment/upgrade-guide-v7.0)
+- [Frontend Migration](https://docs.blockscout.com/setup/deployment/frontend-migration)
+- [All-In-One Container](https://docs.blockscout.com/setup/deployment/frontend-migration/all-in-one-container): Migrate to the new frontend using Docker
+- [Separate Frontend](https://docs.blockscout.com/setup/deployment/frontend-migration/separate-frontend)
+- [Customized Backend](https://docs.blockscout.com/setup/deployment/frontend-migration/customized-backend)
+- [Proxy Setup](https://docs.blockscout.com/setup/deployment/frontend-migration/proxy-setup): NGINX default template
+- [FAQs](https://docs.blockscout.com/setup/deployment/frontend-migration/faqs)
+- [Manual Deployment (backend + old UI)](https://docs.blockscout.com/setup/deployment/manual-old-ui): General deployment instructions for a hardware or cloud services environment
+- [Manual cleaning an instance from the previous deployment](https://docs.blockscout.com/setup/deployment/manual-old-ui/check-your-manual-deployment-instance)
+- [Terraform Deployment](https://docs.blockscout.com/setup/deployment/terraform-deployment): Supernets deployment configs
+- [Ansible Deployment (AWS Cloud)](https://docs.blockscout.com/setup/deployment/ansible-deployment): Deployment with Playbooks on AWS
+- [Overview](https://docs.blockscout.com/setup/deployment/ansible-deployment/overview)
+- [Prerequisites](https://docs.blockscout.com/setup/deployment/ansible-deployment/prerequisites)
+- [AWS Permissions & Settings](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-permissions): AWS requirements for deployment
+- [Creating a Secret Key Pair](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-permissions/creating-a-secret-key-pair): An access key is needed to utilize the aws cli
+- [Login with AWS CLI](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-permissions/login-with-aws-cli)
+- [Creating an AWS certificate for SSL](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-permissions/creating-an-aws-certificate-for-ssl): Optional process if you want to use SSL with your BlockScout instance
+- [Manually Cleaning Terraform Related Instances](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-permissions/manually-cleaning-terraform-related-instances): AWS cleaning resources
+- [Variables](https://docs.blockscout.com/setup/deployment/ansible-deployment/variables): ENV variables must be configured per chain
+- [Deploying the Blockscout Infrastructure](https://docs.blockscout.com/setup/deployment/ansible-deployment/deploying-the-blockscout-infrastructure)
+- [Deploying Blockscout](https://docs.blockscout.com/setup/deployment/ansible-deployment/deploying-blockscout)
+- [Destroying Provisioned Infrastructure](https://docs.blockscout.com/setup/deployment/ansible-deployment/destroying-provisioned-infrastructure)
+- [Common Additional Tasks](https://docs.blockscout.com/setup/deployment/ansible-deployment/common-additional-tasks)
+- [Common Errors and Questions](https://docs.blockscout.com/setup/deployment/ansible-deployment/common-errors-and-questions)
+- [AWS Marketplace (deprecated)](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace): BlockScout is now available in the Amazon Marketplace.
+- [Overview](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/overview)
+- [CloudFormation Template](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/cloudformation-template)
+- [Prerequisites & Install Parameters](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/aws-marketplace-installation): Prerequisites and installation parameters
+- [Install from AWS Marketplace](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/install-from-aws-marketplace): AWS Marketplace provides an easy install option for BlockScout
+- [AWS EC2 archive node setup with OpenEthereum (formerly Parity)](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/aws-ec2-archive-node-setup): The following provides an example node setup. Performance related parameters will vary per chain.
+- [Updating & Redeploying in AWS](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/updating-and-redeploying-in-aws)
+- [Customizing CSS](https://docs.blockscout.com/setup/deployment/ansible-deployment/aws-marketplace/customizing-css)
+- [Microservices](https://docs.blockscout.com/setup/microservices)
+- [Blockscout ENS (BENS) Name Service Integration](https://docs.blockscout.com/setup/microservices/blockscout-ens-bens-name-service-integration): BENS service extends Blockscout support for name services
+- [Smart Contract Verification](https://docs.blockscout.com/setup/microservices/smart-contract-verification): Details about the verification microservice
+- [Configuration Options](https://docs.blockscout.com/setup/configuration-options)
+- [Automating Restarts](https://docs.blockscout.com/setup/configuration-options/automating-restarts)
+- [Branding Configs](https://docs.blockscout.com/setup/configuration-options/branding-configs)
+- [Circle CI Updates](https://docs.blockscout.com/setup/configuration-options/circle-ci-updates)
+- [Charts and Stats](https://docs.blockscout.com/setup/configuration-options/charts-and-stats): New Blockscout stats service
+- [CSS Configuration & Presets](https://docs.blockscout.com/setup/configuration-options/css-configuration-and-presets)
+- [Exchange Rates](https://docs.blockscout.com/setup/configuration-options/exchange-rates)
+- [Front-end Config Files](https://docs.blockscout.com/setup/configuration-options/front-end-config-files)
+- [haproxy Settings for Blockscout.com](https://docs.blockscout.com/setup/configuration-options/haproxy-settings-for-blockscout.com): Blockscout.com uses haproxy for all BlockScout hosted and external instances.
+- [Internationalization](https://docs.blockscout.com/setup/configuration-options/internationalization)
+- [Logger Configs](https://docs.blockscout.com/setup/configuration-options/logger-configs): Adjust # of files and max size to impact disc space
+- [Memory Usage](https://docs.blockscout.com/setup/configuration-options/memory-usage)
+- [Metrics](https://docs.blockscout.com/setup/configuration-options/untitled-2)
+- [My Account Settings](https://docs.blockscout.com/setup/configuration-options/my-account-settings)
+- [Sorting and Pagination](https://docs.blockscout.com/setup/configuration-options/sorting-and-pagination)
+- [Tracing](https://docs.blockscout.com/setup/configuration-options/tracing)
+- [WalletConnect Project ID for contract Read/Write](https://docs.blockscout.com/setup/configuration-options/walletconnect-project-id-for-contract-read-write)
+- [Indexing](https://docs.blockscout.com/setup/indexing)
+- [How do I fix indexer timeouts?](https://docs.blockscout.com/setup/indexing/how-do-i-fix-indexer-timeouts)
+- [How do I update memory consumption to fix indexer memory errors?](https://docs.blockscout.com/setup/indexing/how-do-i-update-memory-consumption-to-fix-indexer-memory-errors)
+- [Testing](https://docs.blockscout.com/setup/testing)
+- [DB schema](https://docs.blockscout.com/setup/db-schema)
+- [User FAQs](https://docs.blockscout.com/faqs/faqs)
+- [Developer FAQs](https://docs.blockscout.com/faqs/developer-faqs)
+- [EaaS: Hosting with Blockscout](https://docs.blockscout.com/resources/premium-features): Explorer as a Service offerings from Blockscout
+- [Contributing to Blockscout](https://docs.blockscout.com/resources/contributing-to-blockscout)
+- [Bug Bounty Program](https://docs.blockscout.com/resources/bug-bounty-program)
+- [Media kit](https://docs.blockscout.com/resources/media-kit): Branding and Logos
+- [Release Notes](https://docs.blockscout.com/resources/release-notes)
+- [v5.3.0: 10/23/23](https://docs.blockscout.com/resources/release-notes/v5.3.0-10-23-23)
+- [v5.2.0: 6/20/23](https://docs.blockscout.com/resources/release-notes/v5.2.0-6-20-23)
+- [v5.1.0: 2/13/23](https://docs.blockscout.com/resources/release-notes/v5.1.0-2-13-23)
+- [v5.0.0: 1/11/23](https://docs.blockscout.com/resources/release-notes/v5.0.0-1-11-23)

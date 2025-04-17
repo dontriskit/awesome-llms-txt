@@ -1,0 +1,254 @@
+# KyberSwap Docs
+
+## KyberSwap Docs
+
+- [Introduction to KyberSwap](https://docs.kyberswap.com/readme): DeFi's Open and Permissionless Liquidity Backbone
+- [Quickstart](https://docs.kyberswap.com/getting-started/quickstart): Jump Right Into The KyberSwap Ecosystem
+- [FAQ](https://docs.kyberswap.com/getting-started/quickstart/faq): Your KyberSwap Questions Answered
+- [Supported Exchanges And Networks](https://docs.kyberswap.com/getting-started/supported-exchanges-and-networks): 14 Chains, 400+ DEXs, and we're just getting started...
+- [Foundational Topics](https://docs.kyberswap.com/getting-started/foundational-topics): DeFi For Everyone: Understanding The Building Blocks
+- [Decentralized Finance](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance): An Open And Permissionless Financial System For Everyone
+- [Tokens](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/tokens): Digital Representation Of Value
+- [Stablecoins](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/stablecoins): Stable Unit Of Accounting
+- [DEX/DeFi Aggregator](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/dex-aggregator): DeFi's Liquidity Backbone
+- [Slippage](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/slippage): Securing Your Trades Against Market Fluctuations
+- [Price Impact](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/price-impact): Avoid The Pitfalls Of Low Liquidity
+- [Zap](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/zap)
+- [Maximal Extractable Value (MEV)](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-finance/maximal-extractable-value-mev): DeFi's Scalpers
+- [Decentralized Technologies](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies): Without Which None Of This Would Be Possible
+- [Wallets](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies/wallets): Be Your Own Bank
+- [Dapps](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies/dapps): Decentralized Applications Powered By The Community
+- [RPC](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies/rpc): Connecting Dapps To The Blockchain
+- [Oracles](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies/oracles): Linking Blockchains To The World
+- [On-Chain vs Off-Chain Data](https://docs.kyberswap.com/getting-started/foundational-topics/decentralized-technologies/on-chain-vs-off-chain-data): Making Sense Of Data
+- [Other Valuable Resources](https://docs.kyberswap.com/getting-started/foundational-topics/other-valuable-resources): External Resources
+- [KyberSwap Interface](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface): One Stop Liquidity Gateway
+- [User Guides](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides): Simple Step-By-Step Tutorials
+- [Connect Your Wallet](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/connect-your-wallet): Your keys, your crypto
+- [Switching Networks](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/selecting-preferred-network): Supported across 15 chains and counting
+- [Instantly Swap At Superior Rates](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/instantly-swap-at-superior-rates): Sourcing Capitally Efficient Liquidity For Your Trade
+- [Swap At Your Preferred Rates](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/trade-at-your-preferred-rates): Trade On Your Own Terms
+- [Add Your Favourite Tokens](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/add-your-favourite-tokens): Import Custom ERC20 Tokens
+- [Get Crypto With Fiat](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/get-crypto-with-fiat): Buy crypto easily with over 50+ currencies
+- [Bridge Your Assets Across Multiple Chains](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/bridge-your-assets-across-multiple-chains): Easily Transfer Tokens From One Chain To Another
+- [Swap Between Different Tokens Across Chains](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/user-guides/swap-between-different-tokens-across-chains): Access Any Token On Any Chain All Via A Single Swap
+- [Profiles](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/profiles): Secure Personalized Experiences Across All Devices
+- [Profile Creation](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/profiles/profile-creation): Your Keys, Your Profile, Your Way
+- [Profile Customization](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/profiles/profile-customization): Experience Trading Your Way
+- [Sync Profile Across Devices](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/profiles/sync-profile-across-devices): Multiple Devices, The Same Great Trading Experience
+- [Notifications](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/notifications): Stay On Top Of The Market That Never Sleeps
+- [Notification Center](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-interface/notifications/notification-center): Customize Your Notification Preferences
+- [KyberSwap Aggregator](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator): Connecting Siloed Liquidity Across DEXs and Chains
+- [Concepts](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/concepts): Dynamic Trade Routing
+- [Dynamic Trade Routing](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/concepts/dynamic-trade-routing): Sourcing Optimal Liquidity For Your Trade
+- [User Guides](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/user-guides): Simple Step-By-Step Tutorials
+- [Developer Guides](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/developer-guides): Code Samples To Get You Started
+- [Execute A Swap With The Aggregator API](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/developer-guides/execute-a-swap-with-the-aggregator-api): Interacting With KyberSwap Aggregator Router Contract
+- [Upgrading To APIv1](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/developer-guides/upgrading-to-apiv1): More Performant Routing And Encoding
+- [Aggregator API Specification](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/aggregator-api-specification): Query Superior Swap Rates
+- [EVM Swaps](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/aggregator-api-specification/evm-swaps): KyberSwap Aggregator EVM APIs
+- [Permit](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/aggregator-api-specification/permit): For swaps from supported EIP-2616 tokens, the \`permit\` parameter allows swapping without an approval transaction beforehand.
+- [Contracts](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/contracts): In Code We Trust
+- [Aggregator Contract Addresses](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/contracts/aggregator-contract-addresses)
+- [DEX IDs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/dex-ids): KyberSwap DEX Mapping
+- [Subgraphs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/subgraphs): Indexing And Querying Blockchain Data
+- [FAQ](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator/faq): Your KyberSwap Aggregator Questions Answered
+- [KyberSwap Zap as a Service](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service): Introducing Zap as a Service API (ZaaS) and Liquidity Widget, streamlining decentralized liquidity provision. Effortlessly add liquidity with a single token for enhanced DeFi engagement.
+- [KyberSwap Zap as a Service (ZaaS) API](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/kyberswap-zap-as-a-service-zaas-api): Partners can directly integrate the API in their dapps. They will have to build their own front-end.
+- [ZaaS HTTP API](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/kyberswap-zap-as-a-service-zaas-api/zaas-http-api): HTTP API doc for ZaaS API
+- [ZaaS GRPC API](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/kyberswap-zap-as-a-service-zaas-api/zaas-grpc-api): GRPC API doc for ZaaS API
+- [KyberSwap Zap Liquidity Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/kyberswap-zap-liquidity-widget): The widget will integrate with ZaaS API. Partners can simply plug-and-play the Zap widget in their dapps for their users.
+- [Zap Fee Model](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/zap-fee-model)
+- [Zap's Supported Chains/Dexes](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/zaps-supported-chains-dexes): This page list all the currently supported dexes on different chains
+- [Zap's Deployed Contract Addresses](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/zaps-deployed-contract-addresses): This page list all zap's currently deployed contract addressses.
+- [Zap's DEX IDs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-zap-as-a-service/dex-ids)
+- [KyberSwap Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget): Plug And Play Superior Rates Straight From Your App
+- [Developer Guides](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget/developer-guides): Code Samples To Get You Started
+- [Integrating The KyberSwap Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget/developer-guides/integrating-the-kyberswap-widget): Superior Rates With Minimal Code
+- [Customizing The KyberSwap Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget/developer-guides/customizing-the-kyberswap-widget): Endlessly Customizable
+- [iFrame Alternative](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget/iframe-alternative)
+- [Widget/iFrame Fee](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-widget/widget-iframe-fee): Users trading directly on KyberSwap.com UI are not subject to this fee structure.
+- [KyberSwap Liquidity Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-liquidity-widget): The widget will integrate with ZaaS API. Partners can simply plug-and-play the Zap widget in their dapps for their users.
+- [Integrating The KyberSwap Liquidity Widget](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-liquidity-widget/integrating-the-kyberswap-liquidity-widget): Zap into a Liquidity Protocol With Minimal Code
+- [Limit Order](https://docs.kyberswap.com/kyberswap-solutions/limit-order): Trade On Your Own Terms
+- [Concepts](https://docs.kyberswap.com/kyberswap-solutions/limit-order/concepts): Off-Chain Relay, On-Chain Settlement
+- [Off-Chain Relay, On-Chain Settlement](https://docs.kyberswap.com/kyberswap-solutions/limit-order/concepts/off-chain-relay): Gas Efficient Pre-committed Limit Orders
+- [Gasless Cancellation](https://docs.kyberswap.com/kyberswap-solutions/limit-order/concepts/gasless-cancellation): Decentralized Trading Without The Gas Fees
+- [User Guides](https://docs.kyberswap.com/kyberswap-solutions/limit-order/user-guides): Simple Step-By-Step Tutorials
+- [Update Limit Orders](https://docs.kyberswap.com/kyberswap-solutions/limit-order/user-guides/update-limit-orders): Manage Your Positions Effortlessly
+- [Cancel Limit Orders](https://docs.kyberswap.com/kyberswap-solutions/limit-order/user-guides/cancel-limit-orders): Manage Your Positions Effortlessly
+- [Developer Guides](https://docs.kyberswap.com/kyberswap-solutions/limit-order/developer-guides): Code Samples To Get You Started
+- [Create Limit Order](https://docs.kyberswap.com/kyberswap-solutions/limit-order/developer-guides/create-limit-order)
+- [Gasless Cancel](https://docs.kyberswap.com/kyberswap-solutions/limit-order/developer-guides/gasless-cancel)
+- [Hard Cancel](https://docs.kyberswap.com/kyberswap-solutions/limit-order/developer-guides/hard-cancel)
+- [Fill Limit Order](https://docs.kyberswap.com/kyberswap-solutions/limit-order/developer-guides/fill-limit-order)
+- [Contracts](https://docs.kyberswap.com/kyberswap-solutions/limit-order/contracts): In Code We Trust
+- [Limit Order Contract Addresses](https://docs.kyberswap.com/kyberswap-solutions/limit-order/contracts/limit-order-contract-addresses): Create Orders Across Multiple Chains
+- [Limit Order API Specification](https://docs.kyberswap.com/kyberswap-solutions/limit-order/limit-order-api-specification): Create, Fill, And Manage Limit Orders
+- [General APIs](https://docs.kyberswap.com/kyberswap-solutions/limit-order/limit-order-api-specification/general-apis): KyberSwap Limit Order General APIs
+- [Maker APIs](https://docs.kyberswap.com/kyberswap-solutions/limit-order/limit-order-api-specification/maker-apis): KyberSwap Limit Order Maker APIs
+- [Taker APIs](https://docs.kyberswap.com/kyberswap-solutions/limit-order/limit-order-api-specification/taker-apis): KyberSwap Limit Order Taker APIs
+- [FAQ](https://docs.kyberswap.com/kyberswap-solutions/limit-order/faq): Your KyberSwap Limit Order Questions Answered
+- [KyberSwap OnChain Price Service](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-onchain-price-service)
+- [Fee Schedule](https://docs.kyberswap.com/kyberswap-solutions/fee-schedule)
+- [KyberDAO](https://docs.kyberswap.com/governance/kyberdao): Be Part Of The Future Kyber Is Building
+- [User Guides](https://docs.kyberswap.com/governance/kyberdao/user-guides): Simple Step-By-Step Tutorials
+- [Participating in KyberDAO](https://docs.kyberswap.com/governance/kyberdao/user-guides/participating-in-kyberdao): Determine The Future Of Kyber
+- [Staking](https://docs.kyberswap.com/governance/kyberdao/user-guides/staking): Register Your Voting Power
+- [Voting](https://docs.kyberswap.com/governance/kyberdao/user-guides/voting): Earn Rewards For Governance Participation
+- [Stake KNC And Enjoy Gas Savings](https://docs.kyberswap.com/governance/kyberdao/user-guides/stake-knc-and-enjoy-gas-savings)
+- [Fees to KyberDAO](https://docs.kyberswap.com/governance/kyberdao/fees-to-kyberdao): Growing Together With Kyber
+- [KyberDAO Operator MultiSig](https://docs.kyberswap.com/governance/kyberdao/kyberdao-operator-multisig)
+- [Contracts](https://docs.kyberswap.com/governance/kyberdao/contracts): In Code We Trust
+- [KyberDAO Contract Repo](https://docs.kyberswap.com/governance/kyberdao/contracts/kyberdao-contract-repo): View Our Code Repositories
+- [KyberDAO Contract Addresses](https://docs.kyberswap.com/governance/kyberdao/contracts/kyberdao-contract-addresses): Governance Contracts
+- [FAQ - Others](https://docs.kyberswap.com/governance/kyberdao/faq): Your KyberDAO Questions Answered
+- [KNC Token](https://docs.kyberswap.com/governance/knc-token)
+- [KNC Tokenomics & Utility](https://docs.kyberswap.com/governance/knc-token/knc-tokenomics): Kyber Network Crystal
+- [Gas Refund Program](https://docs.kyberswap.com/governance/knc-token/gas-refund-program): Stake KNC And Enjoy "Gasback"
+- [KNC Contract Addresses](https://docs.kyberswap.com/governance/knc-token/knc-contract-addresses): Trade KNC On Multiple Chains
+- [Audits](https://docs.kyberswap.com/security/audits): Committed To Security
+- [Legacy](https://docs.kyberswap.com/reference/legacy): Restless Innovation
+- [KyberSwap Classic](https://docs.kyberswap.com/reference/legacy/kyberswap-classic)
+- [Concepts](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/concepts)
+- [Programmable Pricing Curves](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/concepts/programmable-pricing-curves)
+- [Dynamic Auto-Adjusting Fees](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/concepts/dynamic-auto-adjusting-fees)
+- [Virtual Balances](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/concepts/virtual-balances)
+- [Protocol Fees](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/concepts/protocol-fees): Configurable Fees
+- [Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/contracts)
+- [Classic Contract Repo](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/contracts/classic-contract-repo)
+- [Classic Contract Addresses](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/contracts/classic-contract-addresses)
+- [Classic Contract Farming Addresses](https://docs.kyberswap.com/reference/legacy/kyberswap-classic/contracts/classic-contract-farming-addresses)
+- [KyberSwap Elastic](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic): Customized Liquidity Positions With Auto-Compounding Yields
+- [Concepts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts): Dynamic Market Making v2
+- [Concentrated Liquidity](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/concentrated-liquidity): User Defined Liquidity Distribution
+- [Reinvestment Curve](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/reinvestment-curve): Auto-Compounding LP Fees
+- [Tick-Range Mechanism](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/tick-range-mechanism): Sorting And Tracking Liquidity Distribution
+- [Pool Process Flows](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/pool-process-flows): Automating Tried And Tested Procedures
+- [Anti-Sniping Mechanism](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/anti-sniping-mechanism): Protecting Against Front-Runners
+- [Tick-Based Farming](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/tick-based-farming): Concentrated Liquidity Farms
+- [Elastic Zap](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/elastic-zap)
+- [TWAP Oracle](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/twap-oracle): Trustless On-Chain Price And Liquidity Data
+- [Elastic APR Calculations](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/concepts/apr-calculations): Understanding KyberSwap Elastic APRs
+- [Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts): In Code We Trust
+- [Elastic Contract Repo](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-contract-repo): View Our Code Repositories
+- [Elastic Contract Addresses](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-contract-addresses): Liquidity Mining Across Multiple Chains
+- [Elastic Farming Contract Addresses](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-farming-contract-addresses): Additional Rewards Across Multiple Chains
+- [Elastic Zap Contract Addresses](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-zap-contract-addresses)
+- [Elastic Core Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-core-contracts)
+- [Elastic Core Libraries](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-core-libraries)
+- [Elastic Periphery Core Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-periphery-core-contracts)
+- [Elastic Peripheral Library Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-peripheral-library-contracts)
+- [Elastic Peripheral Base Contracts](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/contracts/elastic-peripheral-base-contracts)
+- [Subgraphs](https://docs.kyberswap.com/reference/legacy/kyberswap-elastic/subgraphs): Indexing And Querying Blockchain Data
+- [Whitepapers](https://docs.kyberswap.com/reference/legacy/whitepapers): Trailblazing Liquidity Solutions
+- [Audits](https://docs.kyberswap.com/reference/legacy/audits)
+- [KyberAI](https://docs.kyberswap.com/reference/legacy/kyberai): Ape Smart
+- [KyberScore](https://docs.kyberswap.com/reference/legacy/kyberai/kyberscore): AI-Powered Trading Insights For All
+- [Concepts](https://docs.kyberswap.com/reference/legacy/kyberai/concepts): Trade Faster And Smarter
+- [On-Chain Indicators](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators): Making Sense Of Raw Trustless Data
+- [Number Of Trades](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/number-of-trades)
+- [Trading Volume](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/trading-volume)
+- [Netflow To Whale Wallets](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/netflow-to-whale-wallets)
+- [Netflow To CEX](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/netflow-to-cex)
+- [Number Of Transfers](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/number-of-transfers)
+- [Volume Of Transfers](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/volume-of-transfers)
+- [Number Of Holders](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/number-of-holders)
+- [Top Holders](https://docs.kyberswap.com/reference/legacy/kyberai/on-chain-indicators/top-holders)
+- [Technical Indicators](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators): Charting Price Trends
+- [Live Charts](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators/live-charts)
+- [Support & Resistance Levels](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators/support-and-resistance-levels)
+- [Live Trades](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators/live-trades)
+- [Funding Rate On CEX](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators/funding-rate-on-cex)
+- [Liquidations On CEX](https://docs.kyberswap.com/reference/legacy/kyberai/technical-indicators/liquidations-on-cex)
+- [Liquidity Analysis](https://docs.kyberswap.com/reference/legacy/kyberai/liquidity-analysis): All The Markets In A Single Page
+- [Elastic Legacy](https://docs.kyberswap.com/reference/legacy/elastic-legacy)
+- [Elastic Legacy Contract Repo](https://docs.kyberswap.com/reference/legacy/elastic-legacy/elastic-contract-repo): View Our Code Repositories
+- [Elastic Legacy Contract Addresses](https://docs.kyberswap.com/reference/legacy/elastic-legacy/elastic-contract-addresses): Liquidity Mining Across Multiple Chains
+- [Elastic Legacy Farming Contract Addresses](https://docs.kyberswap.com/reference/legacy/elastic-legacy/elastic-farming-contract-addresses): Additional Rewards Across Multiple Chains
+- [Remove Elastic Legacy Liquidity](https://docs.kyberswap.com/reference/legacy/elastic-legacy/remove-elastic-legacy-liquidity): Retrieve Elastic Legacy Funds
+- [Protocol](https://docs.kyberswap.com/reference/legacy/protocol)
+- [Overview](https://docs.kyberswap.com/reference/legacy/protocol/overview)
+- [Smart Contract Architecture](https://docs.kyberswap.com/reference/legacy/protocol/smart-contract-architecture)
+- [Trust and Security Model](https://docs.kyberswap.com/reference/legacy/protocol/trust-and-security-model)
+- [Integrations](https://docs.kyberswap.com/reference/legacy/integrations)
+- [Getting Started](https://docs.kyberswap.com/reference/legacy/integrations/getting-started)
+- [Use Cases](https://docs.kyberswap.com/reference/legacy/integrations/use-cases)
+- [Integration Types](https://docs.kyberswap.com/reference/legacy/integrations/integration-types)
+- [Smart Contracts](https://docs.kyberswap.com/reference/legacy/integrations/smart-contracts)
+- [Ethers JS](https://docs.kyberswap.com/reference/legacy/integrations/ethers-js)
+- [RESTful API](https://docs.kyberswap.com/reference/legacy/integrations/restful-api)
+- [Slippage Rate Protection](https://docs.kyberswap.com/reference/legacy/integrations/slippage-rate-protection)
+- [Price Feed Security](https://docs.kyberswap.com/reference/legacy/integrations/price-feed-security)
+- [Contract Events](https://docs.kyberswap.com/reference/legacy/integrations/contract-events)
+- [Platform Fees](https://docs.kyberswap.com/reference/legacy/integrations/platform-fees)
+- [Reserves](https://docs.kyberswap.com/reference/legacy/reserves)
+- [Getting Started](https://docs.kyberswap.com/reference/legacy/reserves/getting-started)
+- [Overview](https://docs.kyberswap.com/reference/legacy/reserves/getting-started/overview)
+- [Why Develop On Kyber](https://docs.kyberswap.com/reference/legacy/reserves/getting-started/why-develop-on-kyber)
+- [Create New Reserve](https://docs.kyberswap.com/reference/legacy/reserves/getting-started/create-new-reserve)
+- [Existing Reserves](https://docs.kyberswap.com/reference/legacy/reserves/getting-started/existing-reserves)
+- [Customising Existing Reserves](https://docs.kyberswap.com/reference/legacy/reserves/getting-started/customising-existing-reserves)
+- [Development Guides](https://docs.kyberswap.com/reference/legacy/reserves/development-guides)
+- [Fed Price Reserve](https://docs.kyberswap.com/reference/legacy/reserves/development-guides/fed-price-reserve)
+- [Automated Price Reserve](https://docs.kyberswap.com/reference/legacy/reserves/development-guides/automated-price-reserve)
+- [Reserves with Ganache](https://docs.kyberswap.com/reference/legacy/reserves/development-guides/reserves-with-ganache)
+- [Orderbook Reserve](https://docs.kyberswap.com/reference/legacy/reserves/development-guides/orderbook-reserve)
+- [Operations](https://docs.kyberswap.com/reference/legacy/reserves/operations)
+- [Listing Policies](https://docs.kyberswap.com/reference/legacy/reserves/operations/listing-policies)
+- [Reserve IDs](https://docs.kyberswap.com/reference/legacy/reserves/operations/reserve-ids)
+- [Reserve Rebates](https://docs.kyberswap.com/reference/legacy/reserves/operations/reserve-rebates)
+- [Sanity Rates](https://docs.kyberswap.com/reference/legacy/reserves/operations/sanity-rates)
+- [Addresses](https://docs.kyberswap.com/reference/legacy/addresses)
+- [Introduction](https://docs.kyberswap.com/reference/legacy/addresses/introduction)
+- [Mainnet](https://docs.kyberswap.com/reference/legacy/addresses/mainnet)
+- [Kovan](https://docs.kyberswap.com/reference/legacy/addresses/kovan)
+- [Rinkeby](https://docs.kyberswap.com/reference/legacy/addresses/rinkeby)
+- [Ropsten](https://docs.kyberswap.com/reference/legacy/addresses/ropsten)
+- [API/ABI](https://docs.kyberswap.com/reference/legacy/api-abi)
+- [Introduction](https://docs.kyberswap.com/reference/legacy/api-abi/introduction)
+- [RESTful API](https://docs.kyberswap.com/reference/legacy/api-abi/restful-api)
+- [RESTful API Overview](https://docs.kyberswap.com/reference/legacy/api-abi/restful-api/restful-api-overview)
+- [RESTful API](https://docs.kyberswap.com/reference/legacy/api-abi/restful-api/restful-api)
+- [Core Smart Contracts](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts)
+- [IKyberNetworkProxy](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikybernetworkproxy)
+- [KyberNetworkProxy](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kybernetworkproxy)
+- [IKyberNetwork](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikybernetwork)
+- [ISimpleKyberProxy](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/isimplekyberproxy)
+- [IKyberMatchingEngine](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikybermatchingengine)
+- [KyberMatchingEngine](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kybermatchingengine)
+- [IKyberHint](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberhint)
+- [KyberHintHandler](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberhinthandler)
+- [IKyberHintHandler](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberhinthandler)
+- [IKyberFeeHandler](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberfeehandler)
+- [IKyberStaking](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberstaking)
+- [KyberStaking](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberstaking)
+- [IKyberDao](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberdao)
+- [KyberDao](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberdao)
+- [IKyberStorage](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberstorage)
+- [KyberStorage](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberstorage)
+- [IKyberHistory](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberhistory)
+- [KyberHistory](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberhistory)
+- [IKyberReserve](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/ikyberreserve)
+- [KyberReserve](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberreserve)
+- [ConversionRates](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/conversionrates)
+- [LiquidityConversionRates](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/liquidityconversionrates)
+- [EpochUtils](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/epochutils)
+- [IEpochUtils](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/iepochutils)
+- [KyberFeeHandler](https://docs.kyberswap.com/reference/legacy/api-abi/core-smart-contracts/kyberfeehandler)
+- [Contract ABIs](https://docs.kyberswap.com/reference/legacy/api-abi/contract-abis)
+- [ABIs](https://docs.kyberswap.com/reference/legacy/api-abi/contract-abis/abis)
+- [Code Snippets](https://docs.kyberswap.com/reference/legacy/api-abi/code-snippets)
+- [Token Quantity Conversion](https://docs.kyberswap.com/reference/legacy/api-abi/code-snippets/token-quantity-conversion)
+- [Misc Contracts](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts)
+- [KyberNetwork](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/kybernetwork)
+- [ConversionRatesInterface](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/conversionratesinterface)
+- [PermissionGroups](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/permissiongroups)
+- [SanityRates](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/sanityrates)
+- [Withdrawable](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/withdrawable)
+- [OrderbookReserveInterface](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/orderbookreserveinterface)
+- [OrderbookReserveLister](https://docs.kyberswap.com/reference/legacy/api-abi/misc-contracts/orderbookreservelister)
+- [KyberSwap Operator MultiSig](https://docs.kyberswap.com/reference/kyberswap-operator-multisig)
+- [Permitable Tokens](https://docs.kyberswap.com/reference/permitable-tokens): Gasless Approval Of Smart Contract Allowances
+- [Third-Party Integrations](https://docs.kyberswap.com/reference/third-party-integrations)
+- [Complaints Handling Process](https://docs.kyberswap.com/support/complaints-handling-process)

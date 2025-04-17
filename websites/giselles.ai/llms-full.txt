@@ -1,0 +1,1763 @@
+# Account FAQ
+Source: https://docs.giselles.ai/faq/account-billing/accounts
+
+Frequently asked questions about Giselle accounts
+
+TBD
+
+
+# Billing FAQ
+Source: https://docs.giselles.ai/faq/account-billing/billing
+
+Frequently asked questions about billing and payments for Giselle
+
+TBD
+
+
+# Plan FAQ
+Source: https://docs.giselles.ai/faq/account-billing/plan
+
+Frequently asked questions about Giselle plans and features
+
+TBD
+
+
+# AI Models FAQ
+Source: https://docs.giselles.ai/faq/application/ai-models
+
+Frequently asked questions about AI models and their usage in Giselle
+
+TBD
+
+
+# Workspace FAQ
+Source: https://docs.giselles.ai/faq/application/workspaces
+
+Frequently asked questions about Giselle workspaces
+
+TBD
+
+
+# Privacy & Security FAQ
+Source: https://docs.giselles.ai/faq/security-support/privacy-security
+
+Frequently asked questions about Giselle7s privacy and security measures
+
+TBD
+
+
+# Support FAQ
+Source: https://docs.giselles.ai/faq/security-support/support
+
+Frequently asked questions about Giselle support services
+
+TBD
+
+
+# AI Parameters
+Source: https://docs.giselles.ai/glossary/ai-parameters
+
+Dictionary of Generation Parameters Used Across AI Models in Giselle.
+
+This document provides a detailed overview of common generation parameters ("Generation Parameters") that can be configured within Giselle's Generator Nodes to fine-tune outputs from various multimodal AI models such as Claude, Gemini, GPT-4o, Sonar, and Fal AI.
+
+Please note that definitions and availability of generation parameters may vary depending on the AI provider and specific models. Additionally, Giselle does not currently implement all parameters supported by each provider's API. This document primarily covers general definitions and typical usages of the parameters that are available. If you have suggestions for parameters you would like Giselle to support, please feel free to contact us.
+
+## Common AI Parameters
+
+### Temperature
+
+* **Definition:** Controls randomness in text or image generation.
+* **Range:** 0 (less random, deterministic) to 1 (highly random, creative).
+* **Recommended use:**
+  * Lower values (0–0.3) for precise, factual outputs.
+  * Higher values (0.7–1.0) for creative or exploratory outputs.
+
+### Top-p (Nucleus Sampling)
+
+* **Definition:** Limits token selection to the smallest set whose cumulative probability exceeds a threshold (p).
+* **Range:** Typically 0.0 to 1.0.
+* **Recommended use:**
+  * Lower values (0.7–0.9) for focused, consistent outputs.
+  * Higher values (\~1.0) for broader, diverse content generation.
+
+### Max Tokens
+
+* **Definition:** Maximum number of tokens generated in a response.
+* **Recommended use:**
+  * Adjust based on desired response length and API/model token limits.
+  * Essential for cost management and resource optimization.
+
+## Text-Specific Parameters
+
+### Frequency Penalty
+
+* **Definition:** Reduces repetition by penalizing repeated tokens.
+* **Range:** Typically 0.0 (no penalty) to 1.0 (strong penalty).
+* **Recommended use:**
+  * Increase when repetitive outputs are undesirable.
+
+### Presence Penalty
+
+* **Definition:** Encourages new content by penalizing tokens previously used.
+* **Range:** Typically 0.0 (no penalty) to 1.0 (strong penalty).
+* **Recommended use:**
+  * Helpful for generating more diverse text outputs.
+
+### Stop Sequences
+
+* **Definition:** Tokens or phrases indicating where the model should stop generating.
+* **Recommended use:**
+  * Define clearly when structured or partial outputs are required.
+
+## Image Generation Parameters
+
+### Guidance Scale
+
+* **Definition:** Influences how closely the generated image follows the provided prompt.
+* **Range:** Typically 1 (less strict adherence) to 20 (highly strict adherence).
+* **Recommended use:**
+  * Lower values for exploratory, abstract outputs.
+  * Higher values for precise, detailed adherence to prompts.
+
+### Inference Steps
+
+* **Definition:** Number of steps in the diffusion process.
+* **Recommended use:**
+  * Lower values (1–4 steps with flux/schnell) for rapid prototyping.
+  * Higher values (\~28 steps with stable-diffusion) for detailed, high-quality images.
+
+## Multimodal Parameters
+
+### Context Window
+
+* **Definition:** Maximum tokens/models can "remember" or process at once.
+* **Typical values:**
+  * Gemini: up to 1M tokens.
+  * GPT-4o: 128k tokens.
+  * Claude: up to 200k tokens.
+* **Recommended use:**
+  * Use larger context windows for extensive documents, multimodal data analysis, and tasks requiring detailed understanding.
+
+### Input Modalities
+
+* **Definition:** Types of inputs supported by the model (text, images, audio, video).
+* **Models:**
+  * Gemini 2.5 Pro and GPT-4o support extensive multimodal inputs.
+  * Choose models based on required input modalities.
+
+## Web-Search Parameters
+
+### Grounding
+
+* **Definition:** Enables the model to incorporate real-time web-search results into generated responses.
+* **Recommended use:**
+  * Enable for up-to-date, fact-based research tasks or informational queries.
+
+## Practical Recommendations for Giselle
+
+* **Experimentation and Adjustment:** Regularly adjust parameters based on task-specific results.
+* **Node Integration:** Use parameters strategically across chained nodes to maximize workflow effectiveness.
+* **Document Settings Clearly:** Clearly document chosen parameter settings within your Giselle workflow for team clarity and reproducibility.
+
+
+# Nodes in Giselle
+Source: https://docs.giselles.ai/glossary/node
+
+Learn about nodes, the building blocks of AI apps on Giselle. Connect nodes with various functions to visually design powerful AI workflows.
+
+## Giselle’s AI Agents Can Be Built by Combining “Nodes”
+
+Giselle is a platform that allows you to build powerful AI agents through an intuitive node-based interface. By connecting "nodes" with various functions, like assembling building blocks, you can visually design complex AI workflows. This makes it easy for anyone, even without specialized knowledge, to achieve automation with AI agents.
+
+## Introducing Giselle's Key Nodes
+
+Here are some of the fundamental nodes available in Giselle. By combining these nodes, you can build various AI workflows.
+
+### Text Generator Node
+
+Text Generator node calls a text generation model and generates text. By setting prompts and conditions, you can generate text tailored to your purpose. It can be used for various applications such as document creation, writing blog posts, and generating research reports. Giselle's text generation utilizes the LLM API, allowing for the generation of high-quality and natural-sounding text.
+
+### Text Node
+
+Text node is used to hold text data. It can be used to record prompts, instructions, annotations, and more. It helps manage and organize text data within the workflow, streamlining input to text generation nodes and data usage in other nodes.
+
+### File Node
+
+File node is used to handle file data. You can read files, use them as input for AI models, and save output results to files. It is useful for various tasks that involve utilizing file data, such as data-based analysis and report generation.
+
+Currently, the File node supports reading PDF files. We plan to support a wider variety of file formats in the future.
+
+## Future Node Expansion Plans
+
+We plan to expand node functionality to further empower our users to build AI workflows. Here's a look at what our team is currently considering:
+
+### Addition of New Nodes
+
+* **Image Generation node:** We will add a node that generates images from text prompts. This will enable creative content creation and the building of AI workflows that utilize visual data.
+
+### Expansion of the File Node
+
+We plan to expand the file formats supported by the File node, adding support for:
+
+* **Image Files** (PNG, JPEG, etc.)
+* **Tabular Files** (CSV, Excel, etc.)
+* **Audio Files**
+
+### Integration of Web Search Functionality
+
+* **Web Search:** We will add web search functionality to the existing Text Generator node.
+  * For example, we aim to allow the direct use of the Gemini API's Grounding with Google Search feature from within a Giselle node.
+
+Stay tuned for Giselle's product updates!
+
+
+# My Apps
+Source: https://docs.giselles.ai/guides/apps/myapp
+
+Create and manage your personal AI applications
+
+My Apps are personal AI applications that you can create and manage on the Giselle AI App Builder platform. You can build powerful AI applications by combining multiple AI models and data sources, and run them as many times as needed.
+
+## Key Features
+
+### Application Building
+
+* **AI Model Integration**: Combine various AI models to create custom applications
+* **Data Source Connectivity**: Leverage information from multiple data sources to enhance AI capabilities
+* **Repeated Execution**: Run your built applications as many times as necessary
+
+### Team Utilization through GitHub Integration
+
+While My App is primarily intended for personal use, you can utilize it with teams through GitHub integration:
+
+* **Repository Integration**: Connect with repositories such as GitHub
+* **Automatic Execution Triggers**: Set up automatic application execution triggered by issue creation or pull request submission
+* **Output Sharing**: Functions as a GitHub App, allowing all team members with access to the connected repository to share output results
+
+This enables you to incorporate functions from your personally created My App into your entire team's workflow.
+
+## Differences Between My App and Team App
+
+My App has the following limitations:
+
+* **Editing Permissions**: Only the creator of the app can edit the application itself
+* **Viewing Restrictions**: Viewing the application settings and configuration is also limited to the creator
+
+To remove these restrictions and enable collaborative editing and viewing of applications with multiple members, you need to become a Pro user and create a team. After creating a team, collaborative management becomes possible as a Team App.
+
+## Use Cases for My App
+
+* **Personal Productivity Enhancement**: Create AI applications that assist with daily work and research
+* **Project Automation**: Automate development processes through GitHub integration
+* **Code Review Support**: Automatically run code analysis when pull requests are created
+
+## Getting Started
+
+1. Create a [Giselle account](https://studio.giselles.ai/signup)
+2. Create a new My App from "New App+"
+3. Select and configure the necessary AI models and data sources
+4. [Build](workspaces/build) and Preview(workspaces/preview) your application
+5. Integrate(workspaces/integrate) with GitHub as needed to expand team utilization
+
+
+# Team Apps
+Source: https://docs.giselles.ai/guides/apps/teamapp
+
+Collaborate and manage AI applications with your team
+
+Team Apps are collaborative AI applications that enable multiple team members to create, edit, and manage applications together on the Giselle AI App Builder platform. With Team Apps, you can leverage the collective expertise of your team to build more sophisticated AI solutions by combining multiple AI models and data sources.
+
+## Key Features
+
+### Collaborative Application Building
+
+* **Shared Editing Access**: Multiple team members can edit and refine the same application
+* **Collaborative Configuration**: Team members can jointly configure AI models and data sources
+* **Version History**: Track changes and contributions from different team members
+
+### Team Management
+
+* **Permission Controls**: Assign different roles and access levels to team members
+* **Shared Visibility**: All team members can view application settings and configurations
+* **Collective Ownership**: Applications belong to the team rather than a single creator
+
+### Enhanced Integration Capabilities
+
+Team Apps include all the GitHub integration features available in My Apps:
+
+* **Repository Integration**: Connect with repositories such as GitHub
+* **Automatic Execution Triggers**: Set up automatic application execution triggered by issue creation or pull request submission
+* **Output Sharing**: Functions as a GitHub App, allowing all team members with access to the connected repository to share output results
+
+## Differences Between My Apps and Team Apps
+
+Team Apps offer several advantages over My Apps:
+
+* **Collaborative Editing**: Multiple team members can edit the application, unlike My Apps where only the creator has edit access
+* **Shared Viewing**: All team members can view application settings and configurations
+* **Seamless Handoffs**: Team members can continue work started by colleagues
+
+## Requirements for Team Apps
+
+* **Pro Subscription**: Team Apps are only available to Pro users
+* **Team Creation**: You must create a team before you can start using Team Apps
+* **Team Members**: Invite colleagues to join your team through the team management interface
+
+## Getting Started
+
+1. Upgrade to a [Pro subscription](https://studio.giselles.ai/pricing)
+2. Create a team from the "Teams" section in your account
+3. Invite team members to join
+4. Create a new Team App from "New App+" within your team workspace
+5. Collaborate with your team to build, preview, and integrate your application
+
+
+# Quickstart
+Source: https://docs.giselles.ai/guides/get-started/quickstart
+
+Build your first AI agent with Giselle in minutes! This quick start guide covers signup to running a workflow.
+
+## Build Your First AI Agent with Giselle
+
+Get up and running with Giselle in minutes! This quick start guide walks you through creating your first AI agent, step by step, from signup to running a complete workflow. Learn to build and test agents with our user-friendly interface.
+
+<Steps>
+  <Step title="Sign Up">
+    Unlock the power of Giselle! If you're joining us for the first time, create your account on the [sign up](https://studio.giselles.ai/signup) page. If
+    you're already part of the Giselle community, [log in](https://studio.giselles.ai/login) to jump right in.
+  </Step>
+
+  <Step title="Build an Agent">
+    <AccordionGroup>
+      <Accordion title="Create an Agent" defaultOpen={true}>
+        Go to the [Giselle Agents](https://studio.giselles.ai/agents) page and click the "New Agent" button to start creating your first Agent.
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/new-agent.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Place a Node" defaultOpen={true}>
+        From the toolbar at the bottom, drag and drop a "Text Generator" node onto the canvas to place it. This will be the first node in your workflow.
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/place-text-generator.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Give Instructions to Your Agent" defaultOpen={true}>
+        In the "Instruction" text area, enter the prompt that you would like to give to the Agent. This text will guide how your Agent works.
+
+        ```markdown
+        Suggest one interesting topic related to animals.
+        ```
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/give-instructions-to-your-agent.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Test Out Your Agent" defaultOpen={true}>
+        Click the "Generate" button located in the top right corner of the "Text Generator" node. This will execute only this node, allowing you to test your prompt and see the output.
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/run-a-test-drive-of-your-agent.png" />
+        </Frame>
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/run-a-test-drive-of-your-agent-result.png" />
+        </Frame>
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+
+  <Step title="Run the Agent as a Workflow">
+    <AccordionGroup>
+      <Accordion title="Add Another Node" defaultOpen={true}>
+        To run the Agent as a workflow, let's add another Node. Drag the "Text Generator" node from the bottom toolbar and place it on the canvas.
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/add-another-node.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Connect the Nodes" defaultOpen={true}>
+        To connect the two Nodes, select the first Node from the "Sources" menu in the right panel of the second Node.
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/connect-the-nodes.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Give Instructions to the Second Node" defaultOpen={true}>
+        Provide instructions to the second Node by entering the following into the "Instruction" text area. By feeding the output of the first Node into the second Node, the second Node will generate its output based on the first Node's output.
+
+        ```markdown
+        Please research on the following topics:
+        ```
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/give-instructions-to-the-second-node.png" />
+        </Frame>
+      </Accordion>
+
+      <Accordion title="Run Your Agent" defaultOpen={true}>
+        Finally, click the "Run" button in the upper right corner to execute the Agent as a workflow. This will run both Nodes and generate the final output. Congratulations, you've run your first Agent as a workflow in Giselle!
+
+        <Frame>
+          <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/quickstart/run-the-agent-as-a-workflow.png" />
+        </Frame>
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+</Steps>
+
+
+# About Giselle
+Source: https://docs.giselles.ai/guides/introduction
+
+Welcome to the home of Giselle documentation!
+
+Giselle is your intuitive, no-code AI application builder designed to unlock the full potential of generative AI. Whether you're automating research, streamlining team workflows, or building custom AI agents, Giselle helps you go from idea to production—fast.
+
+Built with a powerful visual editor and seamless integrations, Giselle empowers individuals and teams to collaborate with AI like never before.
+
+<Frame>
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/giselle/images/introduction/screen.png" />
+</Frame>
+
+***
+
+## Core Features
+
+Giselle helps you create, deploy, and manage AI apps in minutes with no code. Here's how it fits into your workflow:
+
+### Visual Node Editor
+
+Design your AI applications using our drag-and-drop system. Automate complex tasks with clear, modular logic.
+
+### Multi-Model AI Collaboration
+
+Use OpenAI, Anthropic, Google Gemini, and more—together in a single app. Create powerful workflows by combining the best of each model.
+
+### GitHub Integration
+
+Trigger your AI apps with GitHub events—automate code reviews, documentation, or issue triaging.
+
+### Team Knowledge Sharing
+
+Build and refine AI agents collaboratively. Share your apps and agents with your team to scale your expertise.
+
+***
+
+
+# Billing
+Source: https://docs.giselles.ai/guides/learn-about/billing
+
+Manage your personal account billing and payments
+
+## Payment Guide
+
+This guide explains how Giselle's pricing system works, including subscription management, billing cycles, and secure payments. Giselle uses [Stripe](https://stripe.com) for simplified billing to ensure safe and reliable transactions.
+
+***
+
+## How to Access Billing Settings
+
+After logging in, you can access　[Settings > Team > Billing](https://studio.giselles.ai/settings/team/billing) by selecting "Billing" from the sidebar menu.
+
+From this page, you can access the dedicated billing portal provided by Stripe.
+In the Stripe billing portal, you can:
+
+View your current subscription details
+Update your payment method
+View invoice history
+Cancel your subscription
+
+Subscription cancellation is possible through the Stripe management screen. You cannot cancel directly from the Giselle management interface.
+
+***
+
+## About the Billing Cycle
+
+* Subscriptions are billed on a monthly recurring basis, starting from your subscription date
+* Your subscription automatically renews on the same day each month (e.g., May 5)
+* Payments are processed automatically through your registered payment method
+
+***
+
+## Current Plans and Pricing
+
+For detailed information about our current plans and pricing options, please visit [Our Pricing page](https://giselles.ai/pricing)
+
+Alternatively, you can refer to our documentation at [Plan](plan) for comprehensive plan details and feature comparisons.
+
+For any specific pricing questions not covered on these pages, please contact our support team.
+
+***
+
+## How AI Model Usage is Billed
+
+* The Free Plan includes 30 minutes of AI usage per month (limited-time offer)
+* The Pro Plan includes unlimited AI model usage during the promotional period
+* Users will be notified one month before the promotion ends
+
+***
+
+## How to View and Download Invoices
+
+You can view and download your invoice history in the Stripe billing portal. Each invoice shows:
+
+* Date of payment
+* Amount charged
+* Payment status
+* Description of services
+
+From the Stripe portal, you can download both invoices and receipts for your records or accounting purposes. Simply locate the invoice you need and use the download options provided.
+
+***
+
+## How to Update Payment Method
+
+To update your payment information:
+
+1. Go to the [Billing section](https://studio.giselles.ai/settings/team/billing) in Settings
+2. Access the Stripe billing portal
+3. Look for the "Payment Method" section
+4. Modify your payment details, where you can:
+   * Update your credit card information
+   * Change to a different payment method
+
+All changes to your payment information will be securely processed and stored by Stripe.
+
+***
+
+## How to Cancel a Subscription
+
+To cancel your subscription:
+
+1. Go to [Billing settings](https://studio.giselles.ai/settings/team/billing)
+2. Click "Cancel subscription"
+3. Review the cancellation information
+4. Click the "Cancel subscription" button to confirm
+
+Your subscription will remain active until the end of your current billing period. If you change your mind before the end date, you can renew your subscription.
+
+***
+
+## Payment Processing
+
+* All payments are processed securely through Stripe
+* Supported payment methods include major credit cards
+* Payment information is stored securely by Stripe, not by Giselle
+
+If you have questions not covered in this guide or encounter any billing-related issues, please contact: **[support@giselles.ai](mailto:support@giselles.ai)**
+
+Include your account information and a description of your issue for prompt assistance.
+
+
+# Open Source License
+Source: https://docs.giselles.ai/guides/learn-about/open-source-license
+
+Learn about Giselle's open-source license and how it applies to your usage
+
+Giselle Community Edition is open-source and released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). This allows you to freely use, modify, and distribute the software, with certain conditions. For complete terms, please refer to the [`LICENSE`](https://github.com/giselles-ai/giselle/blob/main/LICENSE) file in the GitHub repository.
+
+This license grants you:
+
+* Commercial and non-commercial usage
+* Modification and redistribution
+* Use in proprietary products (with attribution)
+
+However, it **does not** grant use of Giselle's **name, logo, or trademarks** without explicit permission, as outlined in section 6 of the license.
+
+If you have any questions or concerns regarding licensing or usage rights, please contact: **[support@giselles.ai](mailto:support@giselles.ai)**
+
+We appreciate contributions from the community. For details on how to contribute, please refer to our [Contributing Guide](https://github.com/giselles-ai/giselle/blob/main/CONTRIBUTING.md).
+
+
+# Plans
+Source: https://docs.giselles.ai/guides/learn-about/plans
+
+Understand your Giselle subscription.
+
+## Available Plans
+
+For the latest information about our plans and pricing options,please visit [Our Pricing page](https://giselles.ai/pricing)
+
+### Free Plan
+
+Ideal for solo developers exploring AI agents.
+
+* **30 minutes** of AI model usage per month (\$3 monthly credit)
+* Access to basic AI models
+* Create and deploy agents with no-code builder
+* Single-user account
+* Managed cloud deployment
+
+### Pro Plan
+
+Built for growing development teams.
+
+* **\$20/month per user**
+* **Unlimited** AI model usage (limited-time promotional offer)
+* Access to all premium AI models
+* All Free plan features included
+* Team collaboration (unlimited team size, additional user seats at \$20/user/month)
+* Managed cloud deployment
+* Email support
+
+## Monthly AI Model Usage Details
+
+Each Giselle subscription includes monthly AI model usage credits:
+
+* **Free Plan:** Monthly limit of 30 minutes of AI usage. Once the monthly limit is reached, AI usage pauses until the next billing cycle.
+* **Pro Plan:** Includes \$20 worth of monthly AI usage credits. During the current limited-time promotion, all usage beyond the standard monthly credits is unlimited at no additional cost.
+
+AI model usage credits are refreshed monthly and unused credits do not roll over.
+
+## Plan Changes & Billing Information
+
+### Upgrading from Free to Pro
+
+* When upgrading, Free plan unused credits are discarded.
+* Pro plan benefits, including unlimited promotional usage, become immediately available upon upgrade.
+
+### Downgrading from Pro to Free
+
+* Downgrades take effect at the end of the current billing cycle.
+* Pro benefits remain available until the downgrade takes effect.
+
+### Team Membership
+
+* **Free Plan:** Limited to a single user, with membership to only one Free team.
+* **Pro Plan:** Allows multiple team memberships and unlimited team size. Each additional team member incurs a monthly fee of \$20.
+
+### Additional Usage Costs (Pro Plan)
+
+* During standard (non-promotional) periods, Pro plan users exceeding the \$20 monthly usage credit incur reasonable additional charges (10% fee), billed automatically at the next subscription payment cycle.
+
+### Promotional Period
+
+* Current unlimited usage offer for the Pro plan is temporary. Users will be notified one month before this promotion ends.
+
+***
+
+For detailed pricing and further information, visit the [Giselle Pricing page](https://giselles.ai/pricing) or contact [support@giselles.ai](mailto:support@giselles.ai).
+
+
+# Privacy & Security
+Source: https://docs.giselles.ai/guides/learn-about/privacy-security
+
+Manage your account security and privacy settings
+
+A guide to Giselle’s privacy settings, data handling, security practices, and our commitment to information protection.
+
+Giselle is developed and operated by [ROUTE06, Inc.](https://route06.com), a company that has obtained **ISO/IEC 27001:2013 (JIS Q 27001:2014)** [certification(IS 779274)](https://www.bsigroup.com/en-US/products-and-services/assessment-and-certification/validation-and-verification/client-directory-profile/ROUTE0-0047877345-000) for its **Information Security Management System (ISMS)**. This means your data is protected not only by modern infrastructure and encryption standards but also by strict organizational policies that meet global compliance benchmarks.
+
+***
+
+## Quick Links
+
+* [Privacy Policy](https://giselles.ai/legal/privacy)
+* [Terms of Service](https://giselles.ai/legal/terms)
+* [Billing Portal](https://studio.giselles.ai/settings/team/billing)
+* [ROUTE06 ISMS Certification Announcement](https://route06.com/news/isms)
+
+***
+
+## ISMS Certification
+
+ROUTE06 is officially certified under the **ISO/IEC 27001** standard by **BSI Group Japan K.K.**
+
+* **Certification ID**: IS 779274
+* **Scope**: Enterprise software provision, digital product design and development, DX consulting, and more
+* **Date of Initial Certification**: February 12, 2023
+
+> This certification demonstrates ROUTE06’s commitment to **confidentiality, integrity, and availability** of data. We continually monitor and improve our systems to maintain high standards of information security.
+
+***
+
+## Security Overview
+
+Giselle benefits from ROUTE06’s ISMS-backed security infrastructure, including:
+
+### Organizational Security
+
+* ISMS certification under **ISO/IEC 27001:2013**
+* Role-based access control for internal staff
+* Regular audits, internal self-assessments, and third-party penetration tests
+
+### Administrative Measures
+
+* Confidentiality agreements and security training for employees
+* Defined procedures for incident reporting and escalation
+* Data protection roles clearly defined
+
+### Technical Safeguards
+
+* TLS encryption in transit
+* Strict access controls and API rate limiting
+* Secure cloud infrastructure (AWS, Supabase, Vercel)
+
+### Physical Safeguards
+
+* Secure facilities via our cloud providers
+* Hardware and device-level protection policies for remote-first teams
+
+***
+
+Submit requests via your account or by emailing [support@giselles.ai](mailto:support@giselles.ai).
+
+
+# Usage
+Source: https://docs.giselles.ai/guides/learn-about/usage
+
+Monitor and manage your team's resource usage
+
+## Usage Overview
+
+Giselle monitors and manages your team's use of its features and resources to ensure optimal performance and availability.
+
+### Resource Metrics
+
+Giselle internally tracks detailed metrics related to AI model utilization, distinguishing between Free and Pro plan allocations.
+
+## Usage Limits
+
+Each subscription plan has defined usage limits to maintain consistent service levels.
+
+### Current Plan Limits
+
+Subscription plans include:
+
+* **Free plan**: Limited-time offer of 30 minutes of AI model usage (normally \$3 worth of credits per month)
+* **Pro plan**: \$20 per month per member with limited-time unlimited AI model usage during the promotional period
+* **Team member seats**: 1 user for Free plans; multiple users available with Pro plans at \$20/month per additional user
+
+## Usage Reports
+
+Giselle generates detailed internal reports on resource usage for analysis and planning.
+
+## Usage Monitoring
+
+Giselle regularly reviews usage data to ensure accuracy. The usage information displayed in the system is updated throughout the day, but discrepancies may occur due to API issues or other technical factors affecting the AI model.
+
+If Giselle detects significant inconsistencies or unusual patterns in your usage data, the support team may contact you directly. Likewise, if you notice any discrepancies or have questions about your reported usage, please don't hesitate to reach out to the support team at [support@giselles.ai](mailto:support@giselles.ai).
+
+Giselle is continuously improving its monitoring systems to provide you with the most accurate and up-to-date information possible.
+
+
+# Authentication
+Source: https://docs.giselles.ai/guides/settings/account/Authentication
+
+Connect your Giselle account with third-party services to simplify login.
+
+<Info>
+  You can access the Authentication settings page by navigating to [Settings > Account > Authentication](https://studio.giselles.ai/settings/account/authentication).
+</Info>
+
+### Connecting External Services
+
+You can connect your Giselle account with external services such as Google and GitHub to streamline the login process. You can easily manage these connections:
+
+* **Google**\
+  Connect or reconnect your Giselle account with your Google account.
+
+* **GitHub**\
+  Connect or disconnect your Giselle account with your GitHub account.
+
+You can manage your connections directly from the Authentication settings page.
+
+
+# General
+Source: https://docs.giselles.ai/guides/settings/account/general
+
+Configure your account basic settings and preferences
+
+<Info>
+  You can access the General settings page by navigating to [Settings > Account > General](https://studio.giselles.ai/settings/account/general).
+</Info>
+
+### Display Name
+
+You can edit your display name by clicking the "Edit" button on the General Settings page, entering your preferred name, and clicking "Save".
+
+### Email Address
+
+Your email address is displayed here and is used for account-related notifications. This email address cannot be edited directly in this view.
+
+### Session Management
+
+You can securely log out of all active sessions by clicking the "Log Out" button in the Session section.
+
+Our team is actively working to bring additional configuration options to you soon. Stay tuned for updates!
+
+
+# Overview
+Source: https://docs.giselles.ai/guides/settings/account/overview
+
+View and manage your teams
+
+<Info>
+  You can view and manage your teams on the [Settings > Account > Overview](https://studio.giselles.ai/settings/account) page.
+</Info>
+
+### Teams
+
+* View a list of your current teams.
+* Create new teams from the Account Overview page.
+
+<Note>
+  **Note**: Creating multiple teams requires upgrading to a paid (Pro) plan.
+</Note>
+
+We're actively working to bring additional configuration options soon. Stay tuned for updates!
+
+
+# Billing
+Source: https://docs.giselles.ai/guides/settings/team/billing
+
+Check your current subscription status.
+
+<Info>
+  You can access the Billing page by navigating to [Settings > Team > Billing](https://studio.giselles.ai/settings/team/billing).
+</Info>
+
+### Your Current Plan
+
+On this page, you can view the status of your subscription plan.
+
+You can manage your subscription, including cancellations, payment method changes, and accessing receipts or invoices through the Stripe dashboard. To access Stripe, go to [Settings > Team > Billing](https://studio.giselles.ai/settings/team/billing) and select "Update" under the payment information section.
+
+If you have any questions about your subscription, please visit our [plans and pricing page](https://studio.giselles.ai/settings/team/billing).
+
+Our team is continuously working on additional enhancements and options to better support your billing needs. Stay tuned for updates.
+
+
+# General
+Source: https://docs.giselles.ai/guides/settings/team/general
+
+Configure your teams basic settings and preferences
+
+<Info>
+  You can access the General settings page by navigating to [Settings > Team > General](https://studio.giselles.ai/settings/team).
+</Info>
+
+### Team Name
+
+You can edit your team name by clicking the "Edit" button on the General Settings page.
+
+### Team Deletion
+
+If needed, you can permanently delete your team and all associated data from the Giselle platform. This action cannot be undone, so please proceed with caution.
+
+Our team is actively working to bring these additional configuration options to you soon. Stay tuned for updates!
+
+
+# Integrations
+Source: https://docs.giselles.ai/guides/settings/team/integrations
+
+Configure, manage, and oversee integrations with your Giselle AI apps.
+
+<Info>
+  You can access the Integrations page by navigating to [Settings > Team > Integrations](https://studio.giselles.ai/settings/team/integrations).
+</Info>
+
+## Integrations Overview
+
+The Integrations page enables administrators and team owners to efficiently connect and manage third-party integrations with your Giselle AI apps. You can link new integrations, adjust integration permissions, and remove integrations as needed.
+
+## Managing Integrations
+
+### Configure New Integrations
+
+To configure a new integration:
+
+1. Click **Configure Giselle's GitHub App** or the relevant integration option.
+2. Follow the prompts to authorize and link your external accounts or services.
+
+### Integration Permissions
+
+* **Public**: Accessible to all team members with appropriate roles.
+* **Private**: Restricted access, visible and manageable only by specific users or administrators.
+
+### Adjusting Integration Settings
+
+To change settings or permissions for an integration:
+
+* Select the integration you want to modify and adjust permissions or settings as necessary.
+
+### Removing Integrations
+
+To remove a GitHub integration:
+
+1. Go to your GitHub account settings.
+2. Navigate to **Settings > Applications > Installed GitHub Apps**.
+3. Locate the Giselle AI integration and click **Uninstall** under the Danger Zone section.
+
+<Warning>
+  Removing an integration will revoke all related permissions and access immediately.
+</Warning>
+
+## Integration Details
+
+Each integration entry displays the integration's name and access level (Public or Private). Integrations without specified details will appear clearly labeled with their default settings.
+
+For assistance or if you encounter issues managing integrations, please contact our support team at [support@giselles.ai](mailto:support@giselles.ai).
+
+
+# Members
+Source: https://docs.giselles.ai/guides/settings/team/members
+
+Invite, manage, and oversee team members' access to your Giselle AI apps.
+
+<Info>
+  You can access the Members page by navigating to [Settings > Team > Members](https://studio.giselles.ai/settings/team/members).
+</Info>
+
+## Members Overview
+
+The Members page allows administrators and team owners to manage and organize member access within your Giselle AI apps efficiently. You can invite new members, modify roles, and remove users as needed.
+
+## Managing Members
+
+### Invite New Members
+
+To add a new member:
+
+1. Enter the member's email address in the input field provided.
+2. Select the appropriate role (e.g., Member or Admin).
+3. Click **Invite** to send the invitation.
+
+### Member Roles
+
+* **Admin**: Full access to manage members, integrations, billing, and other settings.
+* **Member**: Standard user access to AI apps without administrative privileges.
+
+### Modify Member Access
+
+To change a member’s access:
+
+* Click the **Manage Access** button next to the user's name to adjust their role or permissions.
+
+### Removing Members
+
+To remove a member from your team:
+
+1. Click on the options icon (**...**) next to the member’s name.
+2. Select **Remove from Team**.
+
+<Warning>
+  Removing a member will revoke all their access to Giselle AI apps immediately.
+</Warning>
+
+## Member Details
+
+Each member entry displays the user's email address and assigned role. Members without a specified display name will appear as **No display name**.
+
+For assistance or if you encounter issues managing team members, please contact our support team at [support@giselles.ai](mailto:support@giselles.ai).
+
+
+# Usage
+Source: https://docs.giselles.ai/guides/settings/team/usage
+
+Monitor and manage your team's AI app usage
+
+<Info>
+  You can access the Usage page by navigating to [Settings > Team > Usage](https://studio.giselles.ai/settings/team/usage).
+</Info>
+
+## Usage Overview
+
+Monitor your team's AI app usage clearly and efficiently. Recently, we've transitioned from calculating usage based on minutes to a credit-based system.
+
+### Resource Metrics
+
+Giselle tracks your team's AI app runtime in minutes for informational purposes only. This monitoring currently does not directly relate to your billing, as billing is now calculated through credits.
+
+## Usage Limits
+
+Your subscription plan includes AI model usage credits each month:
+
+* **Free Plan**: 30 minutes per month (limited-time promotion)
+* **Pro Plan**: Unlimited usage during the promotional period
+
+Note: App runtime displayed in minutes is separate from your actual billed credits.
+
+## Usage Reports
+
+Detailed logs of recent app activities, including start time, end time, and total duration, are provided for easy tracking.
+
+## Usage Monitoring
+
+<Warning>
+  Giselle continuously updates app usage throughout the day. We are currently transitioning from time-based to credit-based monitoring. Parts of the previous UI remain and might cause confusion.
+</Warning>
+
+If you find anything unclear or have concerns regarding your usage, please contact our support team at [support@giselles.ai](mailto:support@giselles.ai).
+
+
+# Build
+Source: https://docs.giselles.ai/guides/workspaces/build
+
+Learn how to build and configure workspaces in Giselle
+
+TBD
+
+
+# Integrate
+Source: https://docs.giselles.ai/guides/workspaces/integrate
+
+Connect your Giselle workspace with external services
+
+TBD
+
+
+# Preview
+Source: https://docs.giselles.ai/guides/workspaces/preview
+
+Configure and use preview environments for your workspace
+
+TBD
+
+
+# Anthropic
+Source: https://docs.giselles.ai/models/providers/anthropic
+
+Available Anthropic AI Models Overview.
+
+## Claude Models
+
+The following Claude models are available in the Anthropic workspace. Each model offers specific capabilities and features tailored to match your use case requirements. The "Reasoning" (Extended Thinking) capability is available only in the latest Claude 3.7 Sonnet model.
+
+| Models                     | Generate Text | Reasoning | Input PDF | Input Image | Context Window | Max Output                         | Plan\@Giselle |
+| -------------------------- | ------------- | --------- | --------- | ----------- | -------------- | ---------------------------------- | ------------- |
+| claude-3-7-sonnet-20250219 | ✅             | ✅         | ✅         | ✅           | 200k tokens    | 8192 tokens (Extended: 64k/128k β) | Pro           |
+| claude-3-5-sonnet-20241022 | ✅             | ❌         | ✅         | ✅           | 200k tokens    | 8192 tokens                        | Pro           |
+| claude-3-5-haiku-20241022  | ✅             | ❌         | ✅         | ✅           | 200k tokens    | 8192 tokens                        | Free          |
+
+Please note that some features may not be available within Giselle even if they are offered in the official API.
+
+### claude-3-7-sonnet-20250219
+
+The most advanced model offering superior intelligence and reasoning capabilities. Ideal for handling complex tasks, extended reasoning, detailed analyses, and multimodal tasks involving PDFs and images. It includes an extensive context window of up to 200k tokens with optional extended thinking capabilities allowing outputs up to 64k tokens (128k tokens available in beta).
+
+### claude-3-5-sonnet-20241022
+
+High-level intelligence model providing excellent general-purpose performance without extended reasoning capabilities. It supports multimodal inputs (PDF, images) and delivers robust text generation suitable for a wide range of applications with a context window of 200k tokens.
+
+### claude-3-5-haiku-20241022
+
+Optimized for speed, this model is ideal for real-time responsiveness. It supports PDF and image inputs with rapid text generation, suitable for fast interactions and scenarios requiring quick, concise responses within a 200k token context window.
+
+## Model Selection Guide
+
+Guidelines for selecting the optimal Claude model:
+
+* **For best overall intelligence and complex reasoning**: claude-3-7-sonnet-20250219
+* **For general-purpose high-quality performance**: claude-3-5-sonnet-20241022
+* **When speed and immediate responsiveness matter**: claude-3-5-haiku-20241022
+
+## Practices for Giselle
+
+We recommend claude-3-7-sonnet-20250219 as your primary model in Giselle. It excels not only at code generation, architectural design, and technical reviews, but also produces remarkably natural text that reads authentically to human audiences. This versatile model can be effectively utilized across a broad spectrum of tasks, from creating engaging blog articles to writing complex code implementations.
+
+For detailed specifications, performance benchmarks, or additional assistance, please refer to the [Anthropic API Documentation](https://docs.anthropic.com/en/docs/about-claude/models/all-models).
+
+
+# fal.ai
+Source: https://docs.giselles.ai/models/providers/fal
+
+Overview of Available fal.ai Image Generation Models.
+
+## fal.ai Image Generation Models
+
+The following image generation models are available in the fal.ai workspace. Each model provides distinct features suited to different use cases, balancing speed, detail, and artistic fidelity.
+
+| Models                     | Text-to-Image | Speed      | Detail & Fidelity | Typography   | Inference Steps  | Safety Checker           | Plan\@Giselle |
+| -------------------------- | ------------- | ---------- | ----------------- | ------------ | ---------------- | ------------------------ | ------------- |
+| flux-pro/v1.1              | ✅             | ⚡️ High    | ⭐️⭐️⭐️⭐️⭐️        | ✅            | Optimized        | ✅ (Tolerance levels 1-6) | Free          |
+| flux/schnell               | ✅             | ⚡️⚡️ Turbo | ⭐️⭐️⭐️⭐️          | ✅            | 1-4 steps        | Pro                      | ✅             |
+| stable-diffusion-v3-medium | ✅             | Moderate   | ⭐️⭐️⭐️⭐️⭐️        | ✅ (Enhanced) | Default 28 steps | ✅                        | Pro           |
+
+Please note that some features may not be available within Giselle even if they are offered in the official API.
+
+### flux-pro/v1.1
+
+Enhanced version of FLUX.1, offering superior composition, detail, and artistic fidelity. With significantly accelerated speeds (up to 10x), it provides excellent results for professional-grade visual content. Includes adjustable safety tolerance levels, detailed typography support, and optimized inference steps for efficiency.
+
+### flux/schnell
+
+A highly efficient 12-billion-parameter model, optimized for extremely fast image generation (1-4 steps). Ideal for use-cases requiring rapid image production without significant compromise on quality. Suitable for both personal and commercial purposes, with built-in safety checking.
+
+### stable-diffusion-v3-medium
+
+An advanced Multimodal Diffusion Transformer (MMDiT) model that significantly improves image quality, typography handling, prompt comprehension, and overall efficiency. Provides excellent balance between quality and speed with enhanced typography capabilities and standard inference steps.
+
+## Model Selection Guide
+
+Guidelines for selecting the optimal fal.ai model:
+
+* **For highest artistic fidelity and professional results**: flux-pro/v1.1
+* **For fastest image generation**: flux/schnell
+* **For balanced image quality, typography, and efficiency**: stable-diffusion-v3-medium
+
+## Practices for Giselle
+
+We recommend flux-pro/v1.1 as your primary choice when exceptional detail, artistic accuracy, and overall superior image quality are essential. For real-time applications or projects requiring quick visual feedback, flux/schnell provides the necessary speed. When needing a versatile balance of quality, efficiency, and typographic precision, stable-diffusion-v3-medium is highly recommended.
+
+For detailed specifications, integration guides, and further assistance, please refer to the [fal.ai API Documentation](https://fal.ai/models).
+
+
+# Google
+Source: https://docs.giselles.ai/models/providers/google
+
+Available Google AI Models Overview.
+
+## Gemini
+
+The following Gemini models are available in the Giselle workspace. Each model offers specific capabilities and features to match your use case requirements.
+
+| Models                              | Generate Text | Web Search | Reasoning | Input PDF | Input Image | Input Audio | Input Video | Context Window      | Plan\@Giselle |
+| ----------------------------------- | ------------- | ---------- | --------- | --------- | ----------- | ----------- | ----------- | ------------------- | ------------- |
+| gemini-2.5-pro-exp-03-25            | ✅             | ✅          | ✅         | ✅         | ✅           | ✅           | ✅           | 1M tokens (2M soon) | Free          |
+| gemini-2.0-flash-001                | ✅             | ✅          | ❌         | ✅         | ✅           | ✅           | ✅           | 1M tokens           | Pro           |
+| gemini-2.0-flash-thinking-exp-01-21 | ✅             | ❌          | ✅         | ✅         | ✅           | ✅           | ✅           | 1M tokens           | Free          |
+| gemini-2.0-pro-exp-02-05            | ✅             | ✅          | ❌         | ✅         | ✅           | ✅           | ✅           | 1M tokens           | Free          |
+
+Please note that some features may not be available within Giselle even if they are offered in the official API.
+
+### gemini-2.5-pro-exp-03-25
+
+The latest comprehensive model supporting all features, with state-of-the-art capabilities. It offers text generation, web search, advanced reasoning, and robust coding features. It supports a wide range of input formats including PDF, images, audio, and video, and includes a context window of up to 1 million tokens (with expansion to 2 million tokens planned). Ideal for handling complex problems, deep multimodal understanding, and tasks requiring extensive data analysis.
+
+### gemini-2.0-flash-001
+
+Optimized for speed, this model provides fast text generation and efficient web search functionality with support for PDF, image, audio, and video inputs, but lacks complex reasoning capabilities. With a context window of 1 million tokens, it's best suited for scenarios requiring quick, responsive interactions and moderate multimodal input handling.
+
+### gemini-2.0-flash-thinking-exp-01-21
+
+A reasoning-focused, rapid-response model featuring advanced logical reasoning capabilities and multimodal support (PDF, images, audio, and video). This model does not include web search functionality but is optimized for tasks requiring analytical depth, critical thinking, and efficient multimodal reasoning within a context window of 1 million tokens.
+
+### gemini-2.0-pro-exp-02-05
+
+A balanced, professional-level model offering robust text generation and effective web search capabilities. Supports multiple inputs such as PDF, image, audio, and video but excludes advanced reasoning capabilities. With a context window of 1 million tokens, it is well-suited for general multimodal generation and standard use cases.
+
+## Model Selection Guide
+
+Guidelines for selecting the optimal model:
+
+* **For best overall performance and complex tasks**: gemini-2.5-pro-exp-03-25
+* **When speed and efficiency are a priority**: gemini-2.0-flash-001
+* **For advanced reasoning and logical analysis**: gemini-2.0-flash-thinking-exp-01-21
+* **For balanced general-purpose performance**: gemini-2.0-pro-exp-02-05
+
+## Practices for Giselle
+
+We recommend gemini-2.5-pro-exp-03-25 as your primary model in Giselle. It's the most powerful option available, capable of processing large volumes of data, executing complex code reviews, and handling a wide variety of business tasks. By enabling the Search grounding feature, you can access web search functionality, allowing you to supplement your workflows with the most current information available.
+
+For detailed specifications, performance benchmarks, or additional assistance, please check [Google AI for Developers](https://ai.google.dev/gemini-api/docs/models).
+
+
+# OpenAI
+Source: https://docs.giselles.ai/models/providers/openai
+
+Available OpenAI Models Overview.
+
+## GPT Models
+
+The following GPT models are available in the OpenAI workspace. Each model offers specific capabilities and features tailored to match various use cases.
+
+| Models      | Generate Text | Input Image    | Web Search | Reasoning   | Context Window | Pricing (Input/Output per 1M tokens) | Availability |
+| ----------- | ------------- | -------------- | ---------- | ----------- | -------------- | ------------------------------------ | ------------ |
+| gpt-4o      | ✅             | ✅ (input only) | ✅          | ✅ (high)    | 128k tokens    | $2.50 / $10.00                       | Pro          |
+| gpt-4o-mini | ✅             | ✅ (input only) | ❌          | ✅ (average) | 128k tokens    | $0.15 / $0.60                        | Free         |
+| o3-mini     | ✅             | ❌              | ❌          | ✅ (higher)  | 200k tokens    | $1.10 / $4.40                        | Pro          |
+
+Please note that some features may not be available within Giselle even if they are offered in the official API.
+
+### gpt-4o
+
+The flagship GPT model providing comprehensive capabilities including advanced text generation, multimodal image input, integrated web search, and high-level reasoning features. It supports structured outputs, function calling, and fine-tuning. With a context window of 128,000 tokens and output limit of 16,384 tokens, it is ideal for complex analytical tasks, multimodal understanding, and general-purpose advanced applications.
+
+### gpt-4o-mini
+
+A fast, affordable small model optimized for focused tasks. Supports both text and image inputs with structured outputs and function calling capabilities. Ideal for efficient fine-tuning and tasks requiring moderate intelligence and rapid responses. Offers a context window of 128,000 tokens and output limit of 16,384 tokens.
+
+### o3-mini
+
+A fast, flexible small reasoning model offering high intelligence suitable for structured outputs, function calling, and batch processing tasks. With a context window of 200,000 tokens and a maximum output of 100,000 tokens, it's optimized for intelligent reasoning, structured data extraction, and tasks demanding high token limits.
+
+## Model Selection Guide
+
+Guidelines for selecting the optimal OpenAI GPT model:
+
+* **For comprehensive, high-intelligence tasks**: gpt-4o
+* **For cost-effective, focused multimodal tasks**: gpt-4o-mini
+* **For advanced reasoning and high token limits**: o3-mini
+
+## Practices for Giselle
+
+We recommend GPT-4o as your primary model in Giselle. It offers excellent balance and versatility across various tasks, including business document creation, analysis, and research. With GPT-4o, you can produce professional-quality content while maintaining efficiency in both simple and complex workflows.
+
+For detailed specifications, performance benchmarks, or additional assistance, please check [OpenAI Documentation](https://platform.openai.com/docs/models).
+
+
+# Overview
+Source: https://docs.giselles.ai/models/providers/overview
+
+AI Model Providers.
+
+This document provides an overview of the AI providers available through Giselle's Generator Nodes. Giselle integrates with multiple AI providers' APIs to offer you a diverse range of capabilities for your workflows.
+
+## Provider Overview
+
+### Anthropic
+
+Anthropic focuses on developing AI systems that are reliable, interpretable, and steerable. Their Claude models are designed with an emphasis on helpfulness, harmlessness, and honesty, making them excellent for applications requiring nuanced understanding and safe outputs.
+
+**Key models:**
+
+* Claude 3.7 Sonnet - Latest model with advanced reasoning capabilities
+* Claude 3.5 Sonnet - Balanced model for general applications
+* Claude 3.5 Haiku - Speed-optimized model for rapid responses
+
+### Google AI
+
+Google's Gemini models represent their most capable and versatile AI systems. These models excel at multimodal tasks and offer extensive context windows, making them suitable for complex, context-rich applications and varied input types.
+
+**Key models:**
+
+* Gemini 2.5 Pro - Comprehensive model with multimodal capabilities and web search
+* Gemini 2.0 Flash - Speed-optimized model for quick responses
+* Gemini 2.0 Flash Thinking - Reasoning-focused rapid response model
+
+### OpenAI
+
+OpenAI provides a range of powerful models with particular strengths in code generation, creative content, and structured outputs. Their models feature robust function calling capabilities and strong performance across diverse domains.
+
+**Key models:**
+
+* GPT-4o - Flagship multimodal model with comprehensive capabilities
+* GPT-4o-mini - Fast, affordable small model for focused tasks
+* o3-mini - Reasoning-optimized small model with large token limits
+
+### Perplexity AI
+
+Perplexity specializes in search-augmented generation, providing models that can access and synthesize information from the web in real-time. Their models are particularly valuable for research tasks, fact-finding, and generating up-to-date content.
+
+**Key models:**
+
+* Sonar Pro - Advanced search model with detailed responses and accurate citations
+* Sonar - Lightweight search model optimized for quick, factual answers
+
+### Fal AI
+
+Fal AI focuses on image generation models that balance quality, speed, and versatility. Their models are designed for various creative and commercial applications, offering different optimization profiles to suit diverse needs.
+
+**Key models:**
+
+* flux-pro/v1.1 - High-quality image generation with superior composition and detail
+* flux/schnell - Ultra-fast image generation for time-sensitive applications
+* stable-diffusion-v3-medium - Balanced model with enhanced typography capabilities
+
+## Use Cases in Giselle
+
+### Content Creation Workflows
+
+* **Anthropic (Claude)**: Ideal for drafting nuanced business documents, creating policy content, and generating well-reasoned explanations in Giselle workflows. Claude models are particularly effective when handling sensitive subject matter or when ethical considerations are paramount.
+
+* **Google (Gemini)**: Perfect for Giselle workflows involving mixed media inputs. Use Gemini models when your workflow processes documents containing text, images, and other media formats simultaneously. Their large context window makes them excellent for analyzing extensive documentation or research materials.
+
+* **OpenAI (GPT)**: Excellent choice in Giselle for technical documentation workflows, code generation pipelines, and creative content production. The structured output capabilities make GPT models particularly useful when your Giselle workflow needs to generate content in specific formats or extract structured data.
+
+* **Perplexity (Sonar)**: Optimal for Giselle research workflows that require up-to-date information. Integrate Sonar models when your workflow needs to incorporate recent developments, verify facts, or compile information from multiple sources with proper attribution.
+
+### Visual Content Workflows
+
+* **Fal AI**: Essential for Giselle workflows involving image generation tasks. Use flux-pro for high-quality marketing visuals, flux/schnell for rapid prototyping and iterative design processes, and stable-diffusion for balanced results with typography requirements.
+
+### Multi-Provider Workflows
+
+One of Giselle's strengths is the ability to combine different providers in a single workflow:
+
+* Use Perplexity to gather recent information, Claude to analyze ethical implications, and GPT to format the findings into structured documentation
+* Combine Gemini's multimodal analysis with Fal AI's image generation to create visual content based on document analysis
+* Leverage different models' strengths in sequential nodes to optimize cost/performance at each workflow stage
+
+## Future Roadmap
+
+At Giselle, we're committed to continuously expanding our provider integrations and updating our supported models as the AI landscape evolves. We regularly assess new models and capabilities to ensure you have access to cutting-edge AI technology that best serves your needs.
+
+We value your input on which models and providers you'd like to see added to our platform. If you have specific requests or feedback about our current offerings, please don't hesitate to contact us.
+
+## Additional Resources
+
+For detailed specifications and documentation on each provider's models:
+
+* [Anthropic Documentation](https://docs.anthropic.com/)
+* [Google AI for Developers](https://ai.google.dev/)
+* [OpenAI Documentation](https://platform.openai.com/docs)
+* [Perplexity AI Documentation](https://docs.perplexity.ai)
+* [Fal.ai Models](https://fal.ai/models)
+
+
+# Perplexity AI
+Source: https://docs.giselles.ai/models/providers/perplexity
+
+Available Perplexity AI Models Overview.
+
+## Perplexity AI Models
+
+The following Perplexity AI models are available. Each model offers distinct capabilities tailored for various applications and needs.
+
+| Models    | Generate Text | Web Search | Reasoning | Research Depth | Context Window | Max Output Tokens | Availability |
+| --------- | ------------- | ---------- | --------- | -------------- | -------------- | ----------------- | ------------ |
+| sonar-pro | ✅             | ✅          | ❌         | High           | 200k tokens    | 8k tokens         | Pro          |
+| sonar     | ✅             | ✅          | ❌         | Medium         | 128k tokens    | -                 | Free         |
+
+Please note that some features may not be available within Giselle even if they are offered in the official API.
+
+### sonar-pro
+
+An advanced search model offering detailed responses with enhanced citation accuracy. Optimized for multi-step queries and tasks that require deep content understanding and comprehensive sourcing. Ideal for academic research, market analysis, and complex informational tasks.
+
+### sonar
+
+A lightweight, cost-effective search model optimized for quick, accurate answers utilizing real-time web search with citations. Suitable for everyday queries, quick fact-checking, summarizations, and general-purpose use.
+
+## Model Selection Guide
+
+Guidelines for selecting the optimal Perplexity AI model:
+
+* **For advanced multi-step research queries with citations**: sonar-pro
+* **For everyday quick searches and cost-effective queries**: sonar
+
+## Practices for Giselle
+
+In Giselle, you can set up multiple sonar-pro nodes to approach different perspectives, creating detailed, multifaceted research outputs similar to original deep-research reports.
+
+For detailed specifications or additional assistance, please refer to [Perplexity AI Documentation](https://docs.perplexity.ai).
+
+
+# Examples
+Source: https://docs.giselles.ai/prompts/examples
+
+Effective Prompt Examples in Giselle’s Generator Nodes.
+
+This document provides effective and concrete prompt examples tailored specifically for Giselle’s Generator Nodes, leveraging various multimodal AI models including Anthropic's Claude, Google's Gemini, OpenAI's GPT-4o, Perplexity’s Sonar, and Fal AI for image generation.
+
+## Basic Examples
+
+### 1. Technical Query using GPT-4o
+
+```plaintext
+Role: Experienced programmer
+
+Task:
+Explain the most efficient way to extract unique elements from a Python list.
+
+Output Format:
+- Brief explanation
+- Python code example demonstrating the method clearly
+```
+
+**Why this prompt is effective:**
+
+* Clear role definition aligns the AI’s perspective.
+* Explicit instruction and clear output expectations.
+* Specifies programming language explicitly.
+
+### 2. Image Generation with Fal AI
+
+```plaintext
+Role: Graphic designer
+
+Task:
+Generate a high-quality, minimalist logo for a technology startup named "QuantumLeap."
+
+Constraints:
+- Model: flux-pro/v1.1
+- Color scheme: Blue and white
+- Style: Modern, minimalistic
+
+Output Format:
+- PNG image (1024x1024)
+```
+
+**Why this prompt is effective:**
+
+* Clearly defines role and creative constraints.
+* Utilizes specific Fal AI model for high-quality outputs.
+* Precise output format suitable for immediate use.
+
+## Advanced Examples
+
+### 1. Multimodal Analysis with Gemini
+
+```plaintext
+Role: Industry analyst
+
+Task:
+Analyze the attached PDF industry report and the accompanying infographic image.
+
+Steps:
+1. Summarize key findings from the PDF.
+2. Identify and explain trends visible in the infographic.
+3. Recommend strategic actions based on combined insights.
+
+Constraints:
+- Model: Gemini 2.5 Pro
+
+Output Format:
+- Concise summary
+- Clearly explained visual trends
+- Strategic recommendations as bullet points
+```
+
+**Why this prompt is effective:**
+
+* Clearly utilizes Gemini’s multimodal capabilities.
+* Sequential and structured instructions.
+* Explicitly states the model to ensure precise capability usage.
+
+### 2. Ethical Analysis and Content Structuring with Claude
+
+```plaintext
+Role: Ethics consultant
+
+Task:
+Review the provided research paper on AI surveillance technologies.
+
+Steps:
+1. Identify ethical implications.
+2. Suggest practical ethical guidelines for deployment.
+
+Constraints:
+- Model: Claude 3.7 Sonnet
+
+Output Format:
+- Ethical implications listed clearly
+- Practical guidelines structured as actionable points
+```
+
+**Why this prompt is effective:**
+
+* Aligns task specifically with Claude's strengths in nuanced understanding.
+* Structured clearly to maximize Claude's reasoning and analytical capabilities.
+
+## Integrated Workflow Examples
+
+### 1. Comprehensive Market Research Workflow
+
+```plaintext
+Step 1 (Perplexity Sonar Pro):
+Role: Market researcher
+Task: Gather the latest market insights on sustainable food packaging from web sources.
+Output Format: Fact-based summary with citations.
+
+Step 2 (Claude 3.7 Sonnet):
+Role: Sustainability analyst
+Task: Analyze insights from Step 1 for ethical and sustainability implications.
+Output Format: Analysis summary and recommendations.
+
+Step 3 (GPT-4o):
+Role: Technical writer
+Task: Format the insights and recommendations into a structured industry report.
+Output Format: Professional document in markdown format.
+
+Step 4 (Fal AI flux-pro/v1.1):
+Role: Graphic designer
+Task: Generate a compelling visual cover image for the final report.
+Constraints: Sustainability theme, professional style
+Output Format: High-quality cover image (PNG, 1200x800)
+```
+
+**Why this prompt is effective:**
+
+* Clearly leverages strengths of multiple AI models sequentially.
+* Structured, integrated steps with explicit model assignments.
+* Produces comprehensive, ready-to-use workflow outputs.
+
+## Key Effective Elements in Giselle Prompts
+
+Effective Giselle Generator Node prompts typically include:
+
+* **Explicit Role Definitions**
+* **Clear Constraints and Context**
+* **Structured Output Formats**
+* **Sequential or Stepwise Instructions**
+* **Specific Model Selections for Capabilities**
+
+For additional guidance and practical tips on creating impactful prompts, refer to [tips.mdx](./tips).
+
+
+# Overview
+Source: https://docs.giselles.ai/prompts/overview
+
+Prompt Engineering in Giselle’s Node-Based UI.
+
+Prompt engineering involves crafting and refining prompts—structured instructions designed to guide AI models toward precise and high-quality outputs. Giselle enhances this practice through a rich node-based UI called Generator Nodes, enabling intuitive, visual, and efficient prompt construction.
+
+## What is a Prompt in Giselle?
+
+In Giselle, prompts are carefully structured instructions provided individually within each Generator Node through a rich text editor. Unlike conversational interfaces, Giselle primarily uses one-shot prompting, allowing each node to independently deliver precise instructions and receive AI-generated outputs tailored to specific tasks.
+
+Each prompt typically includes:
+
+* **Role Definition**: Specifies the AI model’s intended expertise or persona.
+* **Task Instructions**: Clearly states the task the model needs to perform.
+* **Context**: Provides relevant background information and supporting data.
+* **Input Data**: Delivers specific information or data sources for processing.
+* **Output Format**: Defines the required format and structure of the AI’s response.
+
+## Why Effective Prompts Matter
+
+Creating effective prompts in Giselle's Generator Nodes significantly enhances AI-driven workflows by:
+
+* **Improving Output Quality**: Clearly articulated prompts result in accurate and relevant responses.
+* **Minimizing Errors**: Reduces the likelihood of misunderstandings or incorrect outputs.
+* **Ensuring Consistency**: Promotes uniformity and reliability in outputs, crucial for downstream tasks.
+* **Optimizing Resources**: Well-crafted prompts reduce token consumption and processing time, enhancing cost efficiency.
+
+## Leveraging Giselle’s Generator Nodes
+
+Giselle’s Generator Nodes provide a robust platform for prompt engineering, allowing teams to:
+
+* **Adjust Model Parameters**: Fine-tune various LLM settings to suit specific task requirements.
+* **Integrate Diverse Data Sources**: Incorporate multiple data inputs and seamlessly manage them across nodes.
+* **Share Data Between Nodes**: Reuse outputs generated in one node as inputs for subsequent nodes, enabling sophisticated workflow automation.
+* **Visualize Workflows**: Clearly map out intellectual production processes for improved transparency, collaboration, and understanding within teams.
+
+## Recommended Practices
+
+To maximize the effectiveness of Giselle’s Generator Nodes, adhere to the following practices:
+
+* **Clearly Define Roles**: Explicitly establish the AI’s expected perspective or expertise.
+* **Write Precise Instructions**: Avoid ambiguity by providing clear, concise task descriptions.
+* **Provide Relevant Context**: Supply comprehensive background information to enhance understanding.
+* **Specify Structured Outputs**: Always include detailed output formatting to maintain consistency.
+* **Iteratively Refine Prompts**: Regularly test and refine prompts within the node-based UI to continuously improve outputs.
+
+Understanding the fundamentals of prompt engineering is crucial, as effectively designed prompts significantly influence the quality and reliability of AI-generated outputs.
+
+For detailed prompt examples, see [examples.mdx](./examples). For additional practical tips, refer to [tips.mdx](./tips).
+
+
+# Tips
+Source: https://docs.giselles.ai/prompts/tips
+
+Practical Tips for Effective Prompt Creation in Giselle’s Generator Nodes.
+
+This document provides concrete, actionable tips tailored specifically for creating effective prompts within Giselle’s Generator Nodes. Unlike conversational UIs, Giselle uses a single-shot prompting model, meaning each prompt must be precise and complete on its own. While direct iterative refinement through conversation within a single node isn't possible, strategically chaining multiple nodes can significantly elevate the output quality through careful node integration and diverse data sourcing.
+
+## Essential Principles
+
+### 1. Ensure Clarity and Precision
+
+* Clearly define the AI model’s role.
+* Provide explicit, focused instructions without ambiguity.
+
+```plaintext
+❌ Poor example:
+"Describe a useful invention."
+
+✅ Good example:
+"Role: Technology historian
+
+Task: Provide a concise summary (100 words max) of the invention of the telephone, highlighting its historical significance and modern impact.
+
+Output Format:
+- Summary paragraph
+- Clearly stated historical context and modern relevance"
+```
+
+### 2. Include Comprehensive Context
+
+* Provide necessary background and purpose clearly in your prompt.
+* Explicitly state constraints or expectations relevant to the task.
+
+### 3. Specify Structured Outputs
+
+* Clearly outline the desired response structure, length, and style.
+* Define formats explicitly (e.g., bullet points, structured paragraphs, JSON, image dimensions).
+
+## Advanced Node Integration Techniques
+
+### 1. Effective Role Definition
+
+Defining roles guides the AI to produce contextually accurate outputs:
+
+```plaintext
+✅ Example:
+"Role: UX Designer
+
+Task: Evaluate the provided web interface design for usability issues.
+
+Output Format:
+- List identified issues clearly
+- Provide specific recommendations for improvements"
+```
+
+### 2. Sequential Node Chaining
+
+Although Giselle nodes are single-shot, you can achieve iterative refinement by chaining multiple nodes:
+
+1. **Ideation Node**: Generate initial ideas or concepts.
+2. **Drafting Node**: Develop detailed drafts from initial concepts.
+3. **Review Node**: Critically evaluate drafts and suggest improvements.
+
+### 3. Leveraging Multi-Node Workflows
+
+Combine diverse AI models across nodes to maximize output quality:
+
+* **Perplexity Sonar** for research and fact verification.
+* **Claude** for nuanced analysis and ethical considerations.
+* **GPT-4o** for structured and creative content creation.
+* **Fal AI** for high-quality image and visual content generation.
+
+## Common Pitfalls to Avoid
+
+### 1. Overly Restrictive Instructions
+
+Avoid excessively rigid constraints:
+
+```plaintext
+❌ Avoid:
+"Create a detailed report exactly 200 words, including exactly four examples."
+```
+
+### 2. Contradictory or Confusing Instructions
+
+Ensure instructions remain logically consistent:
+
+```plaintext
+❌ Avoid:
+"Provide a highly detailed yet simple explanation using advanced terminology."
+```
+
+### 3. Ambiguous or Incomplete Prompts
+
+Avoid vague instructions that lead to unclear outputs:
+
+```plaintext
+❌ Avoid:
+"Explain something useful."
+```
+
+## Optimizing Giselle Workflows
+
+### 1. Iterative Node Refinement
+
+* Regularly review outputs from each node to optimize subsequent prompts.
+* Use multiple nodes strategically to iteratively refine concepts, drafts, and final outputs.
+
+### 2. Strategic Use of Templates
+
+Leverage prompt templates for consistent, effective outputs:
+
+```plaintext
+✅ Giselle Template:
+
+Role: [Defined AI role]
+
+Task: [Explicit, precise task description]
+
+Constraints:
+- [Specific constraint or limitation]
+- [Additional constraints as necessary]
+
+Input Data:
+- [Clearly referenced or provided data]
+
+Output Format:
+- [Detailed expected structure of response]
+```
+
+## Giselle-Specific Recommendations
+
+### 1. Select Appropriate AI Models
+
+Choose AI models carefully according to task requirements and capabilities:
+
+* **Claude**: nuanced, ethical analyses.
+* **Gemini**: complex multimodal inputs.
+* **GPT-4o**: structured outputs and creative content.
+* **Fal AI**: image generation tasks.
+
+### 2. Visualize and Collaborate
+
+* Clearly map your workflows visually within Giselle’s UI.
+* Share your workflows with teams to enhance collaboration and clarity.
+* Experiment with node combinations to achieve advanced, high-quality results beyond standard conversational interfaces.
+
+## Key Points for Effective Giselle Prompts
+
+* **Role Definition**: Clearly articulate the AI model’s role.
+* **Precision**: Provide exact, detailed instructions.
+* **Contextual Completeness**: Include essential context and constraints.
+* **Output Structure**: Clearly define response formats.
+* **Workflow Optimization**: Strategically chain multiple nodes to enhance output quality.
+
+
+# Product Notes
+Source: https://docs.giselles.ai/releases/product-notes
+
+This document outlines key updates, improvements, and future prospects of our product.
+
+## Latest Product Updates
+
+### Public Beta
+
+Giselle is currently available as a public beta, allowing users to test and provide feedback on our AI app building platform.
+We're excited to announce that we will be officially launching on Product Hunt soon at [https://www.producthunt.com/products/giselle](https://www.producthunt.com/products/giselle).
+This launch will introduce our open-source visual editor for building custom AI applications to a wider audience.
+Stay tuned for the official launch date and be among the first to explore the full capabilities of Giselle.
+
+
+# Release Notes
+Source: https://docs.giselles.ai/releases/release-notes
+
+This page provides chronological information about the latest releases and updates of our product.
+
+TBD
+
+## Community-Driven
+
+We believe in building with our community. Your feedback and suggestions are essential to shaping our product direction. We actively welcome feature requests, improvement suggestions, bug reports, and use case scenarios. Please share your thoughts through [GitHub Issues](https://github.com/giselles-ai/giselle) or [GitHub Discussions](https://github.com/giselles-ai/giselle/discussions).
+
+
+# Roadmap
+Source: https://docs.giselles.ai/releases/roadmap
+
+Discover our product development plans and upcoming milestones.
+
+Our roadmap is currently under active development. We are working to provide a clear vision of our future plans and milestones.
+
+## Community-Driven
+
+We believe in building with our community. Your feedback and suggestions are essential to shaping our product direction.
+
+We actively welcome:
+
+* Feature requests
+* Improvement suggestions
+* Bug reports
+* Use case scenarios
+
+Please share your thoughts through:
+
+* [GitHub Issues](https://github.com/giselles-ai/giselle)
+* [GitHub Discussions](https://github.com/giselles-ai/giselle/discussions)
+
+## What's Next
+
+Stay tuned as we formalize our roadmap with specific timelines and feature sets. We'll be updating this page regularly as our plans evolve.
+
+<Info>
+  Note: This roadmap is subject to change without notice based on user feedback and development priorities.
+</Info>
+
+

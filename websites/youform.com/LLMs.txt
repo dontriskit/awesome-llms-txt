@@ -1,0 +1,1506 @@
+# About
+Name: Youform
+Description: The most affordable Typeform alternative
+URL: https://youform.com/blog
+
+# Navigation Menu
+- Create free account: https://app.youform.com/register
+- Go to Youform's website: https://youform.com
+
+# Blog Posts
+## Tally forms vs Youform
+Author: Davis Baer
+Published: 2025-02-17
+URL: https://youform.com/blog/tally-forms-vs-youform-cm78l24ne001p1188wueqp8qx
+
+Tally is a nice tool to create forms in a Notion-like structure. The pricing also resonates with our philosophy, and it doesn't cost a bank to get submissions in Tally unlike other form builders like Typeform. That being said, there are few things where Youform stands apart from Tally:   
+
+### Not a Notion like builder. 
+
+Tally's Notion like builder flow is not for everyone. In Tally, you need to remember lots of keyboard shortcuts and the builder follows the keyboard-first approach. This philosophy resonates well with certain groups of people (like techies) but not with others. In Youform, the builder is pretty intuitive and follows point-and-click structure.  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/exportedimage-4-1739768596373-compressed.png)
+
+That's why people love to use Youform.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/exportedimage-5-1739769401030-compressed.png)
+
+  
+One-question-at-a-time form structure
+
+Tally's builder is not made for "one question at a time" form structure. Sure, you can add pages, but the flow of the final form doesn't feel like as smooth  as other builders like Typeform or Youform. 
+
+Especially, if you are coming from Typeform and looking for a true alternative, Youform is closer to Typeform than Tally.
+
+Try out a sample form below:
+
+This natural one-question-at-a-time flow of Youform helps in better conversion.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/exportedimage-6-1739769654783-compressed.png)
+
+  
+
+What about features and pricing?
+
+Tally and Youform are similar in terms of features and pricing. Whatever you use in Tally, you won't be missing in Youform. 
+
+Moreover, the pricing is also the same. **Youform also offers a very generous free plan with unlimited submissions**. If you need some advanced features then [Youform Pro is just $29 per month](https://youform.com/pricing/).
+
+Apart from this we have a comprehensive library of templates to get you started in no time. Check out Youform templates library [here](https://youform.com/templates/).​
+
+​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## How we used Sean Ellis test to find out our product-market fit 
+Author: Davis Baer
+Published: 2025-02-14
+URL: https://youform.com/blog/how-we-used-sean-ellis-test-to-find-out-our-product-market-fit-cm74d09bu008tr1l2ll8yszxc
+
+Youform is a form builder which is an affordable Typeform alternative. 
+
+We are building this since last two years and now successfully service 1000s of users.
+
+Last week, we decided to conduct a **Sean Ellis Test** to understand our product market fit. 
+
+**We already have a 20,000+ registered users**, but still we thought that finding the PMF with data backed by a proven test methodology won't harm. 
+
+Sean Ellis, who coined the term "growth hacker" and was early growth in companies like Dropbox and Eventbrite devised this test. According to Sean Ellis test, you ask your users the following question: 
+
+"_How would you feel if you could no longer use the product?_" and give them three options:   
+\- very disappointed,  
+\- somewhat disappointed  
+\- not disappointed at all. 
+
+The findings of the test says that if at least 40% of your users respond with "very disappointed", then it's a strong signal for product market fit. 
+
+Hence we used this test and obviously used [Youform](https://youform.com/) to create the survey. 
+
+We added it on our dashboard and only showed it to the repeated users. We kept it for a week and after a week, almost 105 users responded to the survey. 
+
+Our finding was that 64% of the responders said that they will be very disappointed. So if we go by Sean Ellis test, Youform has passed the product market fit survey. 
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/exportedimage-3-1739513660569-compressed.png)
+
+  
+
+Do you want to conduct this survey for your product? You can use [this template](https://youform.com/templates/t/sean-ellis-test-product-market-fit-survey/) we have created so that you can set this up in 2 minutes.
+
+Frequently Asked Questions:
+---------------------------
+
+1.  **What is the Sean Ellis test?**   
+    Sean Ellis test is a popular test framework to conduct a Product Market Fit Survey by asking a question "How would you feel if you could no longer use \[the product\]?". If 40% of users respond with "Very Disappointed" then it is a strong signal for Product Market Fit.
+2.  **What is the 40% rule for product market fit?  
+    **According to Sean Ellis test, if 40% of your users respond with "very disappointed" when asked the question, "How would they feel if they could no longer use your product?", then it means a strong signal for product-market fit. 
+3.  **Who designed the Sean Ellis Test?  
+    **_Sean Ellis Test_ was designed by Sean Ellis, who also coined the term _Growth Hacker_. He was one of the early growth hackers in companies like Dropbox and Eventbrite. His test is considered one of the popular tests to gauge product-market fit for a new product or service in the market.
+4.  **Which tool can I use to conduct Sean Ellis Test?**​  
+    You can use various survey tools available in the market. We have created a [template for Sean Ellis Product Market Fit survey](https://youform.com/templates/t/sean-ellis-test-product-market-fit-survey/) so that you can start in 2 minutes for free.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## How to find my Bookmarks on Linkedin?
+Author: Davis Baer
+Published: 2025-01-10
+URL: https://youform.com/blog/how-to-find-my-bookmarks-on-linkedin-cm5qez59x003yw1st7scmqrtk
+
+How to view the bookmarks on Linkedin? For some reason LinkedIn has made it hard to find your bookmarks. 
+
+![LinkedIn Bookmarks](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/kelsy-gagnebin-gdein8lstzs-unsplash-1736493486878-compressed.jpg)
+
+Here is how to find bookmarks in LinkedIn on Desktop:
+-----------------------------------------------------
+
+Just open this link: [LinkedIn Bookmarks or Saved Items](https://www.linkedin.com/my-items/saved-posts/) 
+
+Tip: bookmark the above bookmark URL. 😅
+
+Here is how to find bookmarks in LinkedIn on mobile:
+----------------------------------------------------
+
+1.  Tap on your profile picture on top left.  
+    
+2.  Tap on "view profile".
+3.  Then scroll down to "Resources" section.
+4.  Tap on view all resources
+5.  Tap on "saved items".
+6.  Tap on "Saved posts and articles" option.
+
+... and this way you see your bookmarks on LinkedIn. Pheww 😫. Sorry we don't make rules.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Stripe payments in Youform
+Author: Davis Baer
+Published: 2024-12-04
+Category: Payment
+Tags: stripe, integrations
+URL: https://youform.com/blog/stripe-payments-in-youform-cm49spjxt0020dm7geg6ajzsb
+
+With Youform you can collect payments using Stripe.
+
+Just add a payment block to your form and connect with your Stripe account.  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-12-04-at-4-1733311250960-compressed.png)
+
+  
+
+You need to have a Youform PRO account and an active Stripe account to start collecting payments. 
+
+### What amount I can collect from forms?
+
+You can either collect a fixed amount or collect the dynamically calculated value from the @price variable (using logic).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-12-04-at-4-1733311635330-compressed.png)
+
+  
+
+### Which currencies are supported?  
+
+Currently we support following currencies:
+
+1.  US Dollars
+2.  Euros
+3.  Sterling
+4.  Canadian Dollars
+5.  Australian Dollars
+6.  Swiss Francs
+7.  Norwegian Krone
+8.  Swedish Krona
+9.  Danish Krone
+10.  Mexican Peso
+11.  Brazilian Real  
+    
+
+If your currency isn't listed let us know and we will add it.  
+
+  
+
+### How to send receipts to people when they pay via form?
+
+For this you need to add at least one email field in your form. Then you can enable it from your payment block editor in the right.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-12-04-at-4-1733311441945-compressed.png)
+
+Here I added a contact block and used the email collected from there in the send receipt email option. When the user pays they will receive an email of payment receipt.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Facebook Conversion tracking with Youform
+Author: Davis Baer
+Published: 2024-11-20
+Category: Helpdesk
+Tags: Google Tag Manager, Facebook Pixel, Form Conversion
+URL: https://youform.com/blog/facebook-conversion-tracking-with-youform-cm3puklwi000kouxj62h0wdle
+
+This tutorial provides a detailed step-by-step guide to setting up conversion tracking on your Youform using Google Tag Manager and Facebook Pixel.
+
+Step 1: Connect Google Tag Manager in Youform
+---------------------------------------------
+
+The first step is to add Google Tag Manager to your Youform account.
+
+Ensure you have a Google Tag Manager account set up. If you don’t have one, please [create it first](https://support.google.com/tagmanager/answer/6103696?hl=en).
+
+Once done please follow this guide to add [GTM to your Youform account](https://youform.com/blog/google-tag-manager-in-youform-cm1hzi7yf003sfw5sc3hhde1l).
+
+Step 2: Create Triggers in Google Tag Manager
+---------------------------------------------
+
+If you have added your GTM ID as mentioned in the previous step Youform will send custom events to Google Tag Manager.
+
+To use these events, we need to create Triggers within Google Tag Manager. 
+
+For brevity, We will only cover 2 use cases: Form view and Form submission but as mentioned in the [Google Tag Manager in Youform](https://youform.com/blog/google-tag-manager-in-youform-cm1hzi7yf003sfw5sc3hhde1l) help article Youform triggers total 3 events.
+
+### Creating Triggers for Form View:  
+
+1.  Go to ********************Tag Manager******************** → Triggers → New.
+2.  Search ************************Custom Event************************ as the Trigger Type.
+3.  For **Event Name** fill in **formViewed**
+4.  Name your trigger for example Youform View
+5.  Save the trigger
+
+### Creating Triggers for Form Submission:
+
+This is the most common use case. You will need this if you want to mark your conversion when a form has been fully submitted. Here are the steps (same as above just with different trigger):
+
+1.  Go to ********************Tag Manager******************** → Triggers → New.
+2.  Search ************************Custom Event************************ as the Trigger Type.
+3.  For **Event Name** fill in **formSubmitted**
+4.  Name your trigger for example Youform Submission
+5.  Save the trigger
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732106727130-compressed.png)
+
+  
+
+Step 3: Set up Conversion Tracking for Triggers
+-----------------------------------------------
+
+Now that we have created our triggers, we will now connect it with Facebook Conversion API. It's super easy just follow these steps:
+
+1.  First we will get the Tag Template for Facebook Pixel. In your Google Tag Manager dashboard, go to Templates → Tag Templates → Search Gallery.  
+    
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732107064420-compressed.png)
+
+3.  Search for Facebook Pixel and add the template by _facebookarchive_ to your workspace.  
+    
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732107123825-compressed.png)
+
+5.  Now setup the tag:
+
+*   Go to **Tags** \-> New.  
+    
+*   Select **Facebook Pixel** as the Tag Type.
+*   Add your **Pixel ID** and select the Event Name you want to use. If you want to track the form view simply select the **PageView**  but you can select other events like **CompleteRegistration** or **SubmitApplication** etc. This depends on your use case.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732107338462-compressed.png)
+
+Now select your Trigger. Most commonly used trigger is **formSubmitted** (should appear with the name you selected. I added it as Youform Submission in above steps).  
+
+Give this tag a name and save it.
+
+Step 4: Test and Publish
+------------------------
+
+Now lets test your integration. 
+
+Go to your [Facebook events manager](https://business.facebook.com/events_manager2) and make sure you have selected the correct business account.
+
+Go to **Data Sources** \-> **Test events** and paste your Youform page URL inside the input to test it.
+
+Submit your form to view the test event appear on this page.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732108454452-compressed.png)
+
+  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-20-at-6-1732108472915-compressed.png)
+
+Please note: This test data will appear immediately but live data takes upto 30 minutes to appear.  
+
+All done. Your FB Pixel integration in Youform is now complete.
+
+​
+
+**​**  
+
+​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Youform: a free Typeform alternative that doesn't suck
+Author: Davis Baer
+Published: 2024-11-06
+URL: https://youform.com/blog/free-typeform-alternative
+
+We get it. Typeform is expensive and has ridiculously low limits on responses 👎
+
+**[Youform](http://www.youform.com)** is the free Typeform alternative you've been looking for.
+
+Youform offers **unlimited forms** and **unlimited responses** for free.
+
+Here's a comparison between the two:
+
+Features
+
+Youform
+
+Typeform
+
+**Unlimited forms**
+
+✅ Free
+
+✅ $29/mo
+
+**Unlimited responses**
+
+✅ Free
+
+❌ $29/mo for 100
+
+**Unlimited questions**
+
+✅ Free
+
+✅ Free
+
+**Form design (font, colors, background)**
+
+✅ Free
+
+✅ Free for limited design options
+
+**Add a logo or cover image**
+
+✅ Free
+
+✅ $29/mo
+
+**Text formatting**
+
+✅ Free
+
+✅ Free
+
+**Form templates**
+
+✅ Free
+
+✅ Free
+
+**Embed images and video**
+
+✅ Free
+
+✅ Free
+
+**Embed forms online**
+
+✅ Free
+
+✅ Free
+
+**Close forms on limit or date**
+
+✅ Free
+
+✅ $99/mo
+
+**Prevent duplicate submissions**
+
+✅ Free
+
+✅ $349/mo
+
+**Receive file uploads**
+
+✅ Free for 10MB/file
+
+✅ $29/mo for 10MB/file
+
+**Conditional logic**
+
+✅ Free
+
+✅ Free
+
+**Accept payments**
+
+✅ $29/mo
+
+✅ $29/mo
+
+**Answer piping**
+
+✅ Free
+
+✅ Free
+
+**Hidden fields**
+
+✅ Free
+
+✅ Free
+
+**Calculations**
+
+✅ Free
+
+✅ Free
+
+**Custom Thank You screens**
+
+✅ Free
+
+✅ Free
+
+**Multiple language support**
+
+✅ Free
+
+✅ $99/mo
+
+**Redirect on completion**
+
+✅ $29/month
+
+✅ $59/mo
+
+**Self email notifications**
+
+✅ Free
+
+✅ Free
+
+**reCAPTCHA**
+
+✅ Free
+
+✅ $199/mo
+
+**Google Sheets integration**
+
+✅ Free  
+
+✅ Free  
+
+**Slack integration**
+
+✅ Free
+
+✅ Free
+
+**Webhooks**
+
+✅ Free
+
+✅ Free
+
+**Zapier integration**
+
+✅ Free
+
+✅ Free
+
+**Removal of branding**
+
+✅ $29/mo
+
+✅ $59/mo
+
+**Custom domains**
+
+✅ $29/mo
+
+✅ Enterprise plan ($99+)
+
+**Unlimited file uploads**
+
+✅ $29/mo
+
+❌ $29/mo for max 1GB
+
+**No commission on payments**
+
+✅ $29/mo
+
+✅ $29/mo
+
+**Respondent email notifications**
+
+✅ $29/mo
+
+✅ $29/mo
+
+**Partial submissions**
+
+✅ $29/mo
+
+❌
+
+  
+
+  
+
+  
+
+  
+
+  
+
+### **Youform vs Typeform: Which is best for you?**
+
+If you love paying a ton each month, Typeform will be great for you.
+
+  
+
+If you want a form builder that allows unlimited forms and responses on the free plan (and a reasonably priced Pro plan), come on over to Youform 🤓
+
+  
+
+  
+
+  
+
+### FAQs
+
+**Is Youform really free?**
+
+Yep! Youform allows unlimited forms and unlimited responses on the free plan. If you need advanced features like a custom domain, the Pro plan is $29/month.
+
+#### [](https://tally.so/help/tally-a-free-typeform-alternative#f6aa5c3d0c4d482396ca32b4be3d4c64)Can I create a Youform form that looks like Typeform?
+
+Yep! We've made Youform in a such a way that if you're coming from Typeform, you'll feel right at home using Youform
+
+#### [](https://tally.so/help/tally-a-free-typeform-alternative#10643b0a29804b5abeadceb05736d3c1)Can I create a free quiz with Youform?
+
+Yep, you can create quizzes and assign scoring calculations for each answer in Youform.
+
+#### [](https://tally.so/help/tally-a-free-typeform-alternative#bbf16440b7c0444d8a6148411d814312)**Are Youform forms beginner-friendly?**
+
+Yes, if you know how to turn on a computer, you'll be able to use Youform 🤓
+
+#### [](https://tally.so/help/tally-a-free-typeform-alternative#9eed00d5f54f4e10ada2697f9aa79c5c)**Can I customize a Youform form to fit my brand?**
+
+Yes, you can customize your Youform form however you'd like. Upload images, choose colors, fonts, and more.
+
+  
+
+Have a Typeform? You can [convert it to Youform here](https://app.youform.com/typeform-to-youform).​
+
+Youform's website: [www.youform.com](http://www.youform.com)​
+-------------------------------------------------------------
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Multi-language support
+Author: Davis Baer
+Published: 2024-11-04
+URL: https://youform.com/blog/multi-language-support-cm32pncrl00ev13fewdjnvew7
+
+**🌍 Youform Now Speaks Your Language! Multi-Language Support is Here!** 
+-------------------------------------------------------------------------
+
+We’re thrilled to introduce a feature that brings Youform even closer to your global audience: multi-language support! Now, you can set up your forms to speak directly to your users in their preferred language, making the experience smoother and more welcoming for everyone.
+
+### 🌎 Supported Languages
+
+We’ve added a huge range of languages to Youform, so now you can pick from:
+
+🇧🇬 Bulgarian, 🏳️ Catalan, 🇨🇳 Chinese (Simplified), 🇹🇼 Chinese (Traditional), 🇭🇷 Croatian, 🇨🇿 Czech, 🇩🇰 Danish, 🇳🇱 Dutch, 🇺🇸 English, 🇪🇪 Estonian, 🇵🇭 Filipino, 🇫🇮 Finnish, 🇫🇷 French, 🇩🇪 German, 🇮🇳 Hindi, 🇮🇩 Indonesian, 🇮🇹 Italian, 🇯🇵 Japanese, 🇰🇷 Korean, 🇵🇱 Polish, 🇵🇹 Portuguese, 🇧🇷 Portuguese (Brazil), 🇷🇺 Russian, 🇸🇰 Slovak, 🇸🇮 Slovenian, 🇪🇸 Spanish, 🇲🇽 Spanish (Mexico), 🇸🇪 Swedish, 🇹🇭 Thai, 🇹🇷 Turkish, 🇺🇦 Ukrainian, 🇻🇳 Vietnamese
+
+### Setting Up Your Form's Language
+
+It’s easy to set your form’s language. Just go to the **Settings** in your form dashboard and select your default language from the list. With one click, all system messages (like hints, error alerts, and instructions) will automatically translate into your chosen language.
+
+**Note:** While Youform will handle the system messages, keep in mind thatquestions and any unique text you add won’t be automatically translated. But don’t worry—you can easily input these directly in your preferred language through the builder!
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-11-04-at-1-1730706609760-compressed.png)
+
+Youform Language Settiings
+
+### Make It Truly Yours: Customize System Messages
+
+Want your messages to have a personal touch? Head to the **Language Settings** tab, where you can change system messages to better fit your brand’s voice or add specific guidance for your users. Customize error messages, hints, or any other text so your form feels just right.
+
+### Missing a Language? Let Us Know!
+
+We’re here to make Youform work for you. If there’s a language you need that’s not on the list, just reach out! We’re always adding new languages and would love to hear your requests.
+
+With Youform’s multi-language support, your forms can now reach more people, in more places, with less hassle. 🌐
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Google Tag Manager in Youform
+Author: Davis Baer
+Published: 2024-09-25
+Category: Helpdesk
+Tags: Google Tag Manager
+URL: https://youform.com/blog/google-tag-manager-in-youform-cm1hzi7yf003sfw5sc3hhde1l
+
+You can now add GTM to your forms in Youform. 
+
+Please make sure you have a [GTM account](https://support.google.com/tagmanager/answer/14842164?visit_id=638677055718606773-3126608303&hl=en&ref_topic=14841964&rd=2) and a [Youform PRO plan](https://youform.com/pricing/).​
+
+### Steps to add GTM in Youform
+
+1\. Pick your GTM id from your Google Tag Manager dashboard.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/google-tag-manager-youform-1727783244114-compressed.png)
+
+2\. Go to your Form in Youform and then go to "Integration" tab. You will find the GTM integration connect button  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-09-25-at-8-1727276248911-compressed.png)
+
+  
+
+3\. Click the connect button. A modal will open. Paste your GTM ID in the input box.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-09-25-at-8-1727276293725-compressed.png)
+
+  
+
+Now all your form events will be sent to your GTM account.
+
+We send the following events:  
+1\. formViewed - (data sent: formId)
+
+2\. formBlockViewed - (data sent: formId, blockId, question type and question title)
+
+3\. formFillupStarted - (data sent: formId)
+
+4\. formSubmitted - (data sent: formId)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Google forms searchable dropdown - 2 solutions
+Author: Davis Baer
+Published: 2024-09-06
+Meta Title: Google forms searchable dropdown - 2 solutions
+URL: https://youform.com/blog/google-forms-searchable-dropdown-cm0qnsmvn00j0syrxh9idh8f2
+
+​​​​​​​​​​
+
+Google Form's dropdown is already searchable. You can just open the dropdown and start typing. That being said, it's not quite intuitive for a user to know that they can type and search as there are no search input.
+
+How to make dropdown in Google forms searchable? There are 2 solutions available:
+
+1\. Use Pretty Forms Designer extension 
+----------------------------------------
+
+First you need to install the [pretty forms extension](https://workspace.google.com/marketplace/app/pretty_forms_designer/1077249372154). 
+
+After you have installed the extension, go to your Google form and make sure the extension is activated by clicking on the puzzle (extension icon) at the top.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2025-03-06-at-9-1741234338413-compressed.png)
+
+Then click on the Pretty Forms Designer from the puzzle dropdown and open the designer from the "Open Form Designer".  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2025-03-06-at-9-1741234438768-compressed.png)
+
+In the popup designer you can then select your dropdown question and click on the button "Options for item" as shown below:  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2025-03-06-at-9-1741234526166-compressed.png)
+
+Then select the "Make Dropdown Searchable" from the list. You can now preview and save this. Your form will start having the searchable dropdown. 
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2025-03-06-at-9-1741234610662-compressed.png)
+
+Cons of using this approach:
+
+Remember two things while you use this add-on: 
+
+1.  This isn't entirely free. This is a paid add-on. You can use two forms and up to 10 responses in the free version. But if you need more, you need to go for one of their paid plans.
+2.  The design limitations are there. The searchable dropdown when opened is not focused, so the user has to click on the input to start typing, which isn't great for user experience in my opinion.
+
+2\. Use a better alternative: Youform
+-------------------------------------
+
+Using [Youform](https://write.superblog.ai/sites/supername/youform/posts/cm0qnsmvn00j0syrxh9idh8f2/youform.com) is no brainer as it not only provides the searchable dropdown (try it [here](https://app.youform.com/forms/hetvrn9j)) but also has much better user experience than Google Forms. Moreover, Youform is free for unlimited responses and provides much more features than Google Forms like 
+
+*   Partial submissions (you can view submissions even if your users left the form without submitting)
+*   Multi language support
+*   Custom domains
+*   Better designed forms
+*   Lots of integrations
+*   ... and much more which you can check [here](https://youform.com/pricing). 
+
+You can check a sample Youform below:
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Laravel Raises $57M Series A
+Author: Davis Baer
+Published: 2024-09-05
+URL: https://youform.com/blog/laravel-funding
+
+The shining star framework in the PHP world, Laravel, has just raised $57M in Series A funding in partnership with Accel.
+
+Recently at Laracon US the [Laravel cloud](https://cloud.laravel.com/) was announced. 
+
+We believe these things will encourage more large-scale enterprises to trust and use Laravel.
+
+We've been using Laravel since 2014, back when it was in version 4, and it’s been a key part of our development journey. Currently, at [Youform](https://write.superblog.ai/sites/supername/youform/posts/cm0pc9ahx00ffsyrxzz9064mr/youform.com), Laravel powers our platform, and we’re excited to see what new features and improvements this funding will bring to the table.
+
+Cheers to the Laravel team!
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Youform friendly refund policy
+Author: Davis Baer
+Published: 2024-08-09
+Category: Helpdesk
+URL: https://youform.com/blog/youform-friendly-refund-policy-clzmrssx6006878t2v0nchzsj
+
+If you want a refund, just ask within 7 days after purchase and we'll issue a 100% refund, no questions asked\*  
+
+  
+
+_\*Only question we might ask is how can we improve Youform_ 🤓
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## SavvyCal integration in Youform
+Author: Davis Baer
+Published: 2024-07-01
+URL: https://youform.com/blog/savvycal-integration-in-youform-cly3306z9001x52otg0px4jer
+
+Youform is a powerful and intuitive form builder which provides native SavvyCal integration for meeting and appointment scheduling.
+
+### How to setup SavvyCal in Youform?  
+
+1\. First go to Youform [dashboard](https://app.youform.com/dashboard) and open the form where you want to add SavvyCal. Obviously you can create a new form as well.
+
+2\. Click on the new block button and then select the **scheduler** block from the block selection modal.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845099616-compressed.png)
+
+  
+
+3\. Choose SavvyCal from the "Schedule with" selector and fill SavvyCal link (next step for how to find it).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845120621-compressed.png)
+
+  
+
+4\. Go to your [SavvyCal dashboard](https://savvycal.com/links) and copy the link as shown below. You can copy the "Direct link" or "Event Specific link".
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719846403238-compressed.png)
+
+  
+
+5\. Now paste it inside your Youform dashboard.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719846467474-compressed.png)
+
+  
+
+6\. Change the calendar opener button text if you want and publish the form. You can only view the calendar working in the published form only.  
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719846509564-compressed.png)
+
+​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Cal.com integration in Youform
+Author: Davis Baer
+Published: 2024-07-01
+URL: https://youform.com/blog/cal-integration-in-youform-cly3306z9001x52otg0px4jer
+
+Youform is a powerful and intuitive form builder which provides native Cal.com integration for meeting and appointment scheduling.
+
+### How to setup Cal.com in Youform?  
+
+1\. First go to Youform [dashboard](https://app.youform.com/dashboard) and open the form where you want to add Cal.com. Obviously you can create a new form as well.
+
+2\. Click on the new block button and then select the **scheduler** block from the block selection modal.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845099616-compressed.png)
+
+  
+
+3\. Choose Cal.com from the "Schedule with" selector and fill Cal.com link (next step for how to find it).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845120621-compressed.png)
+
+  
+
+4\. Go to your [Cal.com dashboard](https://app.cal.com/event-types) and copy the link as shown below. You can copy the "Direct link" or "Event Specific link".
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845740637-compressed.png)
+
+  
+
+5\. Now paste it inside your Youform dashboard.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845808559-compressed.png)
+
+  
+
+6\. Change the calendar opener button text if you want and publish the form. You can only view the calendar working in the published form only.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845847953-compressed.png)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Calendly integration in Youform
+Author: Davis Baer
+Published: 2024-07-01
+URL: https://youform.com/blog/calendly-integration-in-youform-cly3306z9001x52otg0px4jer
+
+Youform is a powerful and intuitive form builder which provides native Calendly integration for meeting and appointment scheduling.
+
+### How to setup Calendly in Youform?  
+
+1\. First go to Youform [dashboard](https://app.youform.com/dashboard) and open the form where you want to add Calendly. Obviously you can create a new form as well.
+
+2\. Click on the new block button and then select the **scheduler** block from the block selection modal.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845099616-compressed.png)
+
+  
+
+3\. Keep the "Schedule with" option as Calendly and fill then Calendly link (next step for how to find it).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845120621-compressed.png)
+
+  
+
+4\. Go to your [Calendly dashboard](https://calendly.com/event_types/user/me) and copy the link as shown below. You can copy the "Direct link" or "Event Specific link".
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845137661-compressed.png)
+
+  
+
+5\. Now paste it inside your Youform dashboard.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845194008-compressed.png)
+
+  
+
+6\. Change the calendar opener button text if you want and publish the form. You can only view the calendar working in the published form only.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-07-01-at-8-1719845237131-compressed.png)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Submission Refill link in Youform
+Author: Davis Baer
+Published: 2024-06-21
+URL: https://youform.com/blog/submission-refill-link-in-youform-clxoeod6s001tagmd0fmju22e
+
+If you want your users to refill the form but don't want them to fill all the details from scratch again then you can generate and send them a refill link.
+
+This link can be generated from the submission modal which you can open from the individual submission row in submissions page of the form.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-06-21-at-1-1718957365709-compressed.png)
+
+  
+
+Moreover, once you are done collecting data, you can disable the link as well.
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-06-21-at-1-1718957414451-compressed.png)
+
+  
+
+Please note this feature is only available in PRO plan.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Report Abuse
+Author: Davis Baer
+Published: 2024-05-29
+Category: Helpdesk
+URL: https://youform.com/blog/null
+
+**If you believe a Youform is not being used ethically, you can report it for abuse.**  
+
+#### Types of Abuse
+
+**1**. **Nudity.**
+
+We don't allow the sharing or publishing of content depicting nudity, graphic sex acts or other sexually explicit material. We don't allow content that drives traffic to pornography. We have a zero tolerance policy towards content that exploits children. This means we will terminate the accounts of any user that we find sharing or publishing child abuse content. We will also report the content and its owner to law enforcement. We do not allow the sharing or publishing of content that encourages or promotes sexual attraction towards children.
+
+**2**. **Promoting hatred, violence or illegal/offensive activities.**
+
+Users may not share or publish content that promotes hatred or violence towards other groups based on race, ethnicity, religion, disability, gender, age, sexual orientation or gender identity. Please note that individuals are not considered a protected group. Users may not share or publish crude content or violent content that is shockingly graphic. We will also remove content that threatens, harasses or bullies other people or promotes dangerous and illegal activities.
+
+**3**. **Spam, malware or 'phishing'.**
+
+We do not allow spamming or content that transmits viruses, causes pop-ups, attempts to install software without the user's consent, or otherwise impacts users with malicious code or scripts. We do not allow phishing activity.
+
+**4**. **Private and confidential information.**
+
+We do not allow users to create questions that ask for a respondent’s confidential information. Examples include: passwords, credit card details, bank account numbers, Social Security Numbers (SSN) in the US, file uploads that include the copy of an ID, or similar types of private information. Please note that we may remove forms, delete data, and/or block accounts that do not comply.
+
+**5**. **Copyright infringement.**
+
+It is our policy to respond to clear notices of alleged copyright infringement. If you own the copyright to material in a Youform, let us know.
+
+#### Report Abuse
+
+If you feel a Youform falls into one or more of the above categories, report it to us using the form below. 
+
+  
+
+​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Embed Youform in Framer
+Author: Davis Baer
+Published: 2024-05-08
+Category: Helpdesk
+URL: https://youform.com/blog/null
+
+Embeding Youform in Framer website is quite easy. Just follow this step by step video:
+
+  
+
+Check this example [Framer site](https://functional-teams-474110.framer.app/) and scroll down a little to see embedded Youform in action.​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## What’s the best free Google Forms alternative?
+Author: Davis Baer
+Published: 2024-05-03
+Category: Blog
+URL: https://youform.com/blog/whats-the-best-free-google-forms-alternative
+
+If you're looking for a free alternative to Google Forms, you're in the right place.
+
+**[Youform](https://youform.io/)** is a free Google Forms alternative that allows unlimited forms and unlimited responses for free.
+
+Let's compare Youform vs Google Forms:
+
+Feature  
+
+  **Youform**  ​  
+
+​**Google Forms**​  
+
+Free to use  
+
+✅
+
+✅
+
+Unlimited forms
+
+✅
+
+✅  
+
+Unlimited responses
+
+✅  
+
+✅  
+
+File uploads up to 10MB
+
+✅  
+
+✅  
+
+File uploads over 10MB  
+
+✅ (Pro)
+
+❌
+
+Full customization  
+
+✅
+
+❌  
+
+Conditional logic  
+
+✅  
+
+tricky
+
+Slack integration
+
+✅  
+
+❌  
+
+Remove branding  
+
+✅ (Pro)  
+
+❌  
+
+Custom domain
+
+✅ (Pro)  
+
+❌  
+
+Email notifications
+
+​✅  
+
+​✅  
+
+Google Sheets integration
+
+✅  
+
+✅  
+
+Add images to form
+
+✅  
+
+✅  
+
+Images in multiple  
+choice answers
+
+✅  
+
+✅  
+
+Webhooks
+
+✅  
+
+❌
+
+Embed forms on website
+
+✅  
+
+✅  
+
+Partial submissions  
+
+✅ (Pro)  
+
+❌  
+
+Redirect to a URL upon completion
+
+✅ (Pro)  
+
+❌  
+
+Allow users to fill out form without needing Gmail account
+
+✅  
+
+Only possible if you do **not** have any of the following in your Google Form:  
+
+*   Collect email addresses
+*   Allow response editing
+*   Limit to 1 response
+*   Ask for file upload
+
+_All features are available for free in Youform unless marked with "Pro"  
+Pro plan is $29/month_
+
+  
+
+  
+
+Which looks better to you?
+
+![Balaji's Google Form](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1714742769555-compressed.jpeg)
+
+![Converted Youform](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1714742780634-compressed.jpeg)
+
+### ​[Youform's website](https://youform.io/)​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## How to use webhooks in Youform?
+Author: Davis Baer
+Published: 2024-05-01
+Category: Helpdesk
+URL: https://youform.com/blog/how-to-use-webhooks-in-youform
+
+Youform makes it easy to integrate the forms to any apps that you use, using webhooks.
+
+Youform webhooks feature is available in free plan.
+
+Please note: this blog is targeted towards users who knows a little about webhooks. If you don't know what it is, consider sending this to your developer.
+
+The first step is to go into your form by choosing it from the dashboard.
+
+Once you are inside the form just click on the **Integrate** tab. The following page will open:
+
+![Integration page](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-05-01-at-4-1714560104554-compressed.png)
+
+Now click on the **connect button** next to the Webhook item.
+
+You will see a popup. Just enter your webhook URL. Please note that Youform will send a POST request to that URL with all the submitted data inside the body.
+
+![Integration page](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-05-01-at-4-1714560242624-compressed.png)
+
+Once you hit save, Youform will send webhook requests to that URL for completed responses. We don't send partial submissions to webhooks yet.
+
+A sample webhook payload for a form that has 2 fields will look like following, basically key-value pair of question and submitted answers.
+
+![Integration page](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screenshot-2024-05-01-at-4-1714560410807-compressed.png)
+
+You can connect your form to Zapier webhooks as well to connect it to all the 6000+ apps Zapier supports.
+
+Hope this guide will be helpful to you. Let us know if you need anything else in the webhooks feature. You can always add a feature request [here](https://youform.canny.io/feature-requests).​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Auto-filling via URL parameters in Youform
+Author: Davis Baer
+Published: 2024-04-19
+Category: Helpdesk
+URL: https://youform.com/blog/auto-filling-via-url-parameters-in-youform
+
+The "auto fill via URL parameter" feature allows you to have **Single Line** input blocks and **Rating** blocks automatically filled out.
+
+**How it works:**
+
+**​**Let's say you put "email" here:
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-04-19-at-2-1713549925870-compressed.png)
+
+Now you can add ?email=name@email.com to the end of your form's URL, and the email address "name@email.com" would be automatically added in the form.
+
+​  
+
+Click this form link to see it in action 👇
+
+[https://app.youform.io/forms/nlplkoxm?email=name@email.com](https://app.youform.io/forms/nlplkoxm?email=name@email.com)
+
+  
+
+_You can do the same for auto-filling name, address, or almost anything else. Moreover, do the same with the URL in your embed code, if you are embedding the Youform in your website._
+
+  
+
+\--------  
+
+For Rating blocks, you can do the same thing:
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-04-19-at-2-1713550377032-compressed.png)
+
+Then add ?rating=4 (or you could do 5) to the end of your form's URL:
+
+[https://app.youform.io/forms/j1wxpbpy?rating=4](https://app.youform.io/forms/j1wxpbpy?rating=4)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Hiding labels in picture choice questions in Youform
+Author: Davis Baer
+Published: 2024-04-19
+Category: Helpdesk
+URL: https://youform.com/blog/hiding-labels-in-picture-choice-questions-in-youform
+
+When you check the "Hide labels" box, the option labels will not be shown to users who fill out your form:
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/pastedimage41924131pm-1713548018107-compressed.jpg)
+
+  
+
+However, you SHOULD still add labels here:
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/aaaa-1713548114846-compressed.jpg)
+
+  
+
+...because that is what will show in your responses:
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-04-19-at-1-1713548251750-compressed.png)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## How to embed Youform in Squarespace 
+
+Author: Davis Baer
+Published: 2024-04-17
+Category: Helpdesk
+URL: https://youform.com/blog/how-to-embed-youform-in-squarespace
+
+1\. Login to your Youform account and select the “Share” option of the form you want to embed.
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364150579-compressed.png)
+
+  
+​  
+
+2. Now copy the embed code.
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364207659-compressed.png)
+
+**
+
+  
+
+3\. Then go to your Squarespace builder and select the page where you would like to embed Youform and open it in “Edit” mode.
+
+  
+
+4\. Click the “Add section” button to add a new section.
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364246353-compressed.png)
+
+**
+
+  
+
+5\. Here we will select a blank section for this example:
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364270749-compressed.png)
+
+**
+
+​
+
+  
+
+6\. Now click on “Add block” button and search for the “Embed” option
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364286382-compressed.png)
+
+**
+
+  
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364294984-compressed.png)
+
+
+
+**​  
+
+7. Now edit the embed block, select “Code Snippet” and then go to “Embed data”. Here you can paste the code that you copied from Youform. 
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364319696-compressed.png)
+
+**
+
+  
+
+8\. Adjust the embed by drag-and-drop option in Squarespace builder and hit “Save”.
+
+Your embed should now work like below:
+
+**
+
+![undefined](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/image-cp-1713364344510-compressed.png)
+
+**
+
+​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## How to add a file upload to a form in Squarespace
+Author: Davis Baer
+Published: 2024-04-09
+URL: https://youform.com/blog/how-to-add-a-file-upload-to-a-form-in-squarespace
+
+So you would like to add a file upload section to your form in Squarespace forms.
+
+But unfortunately Squarespace does not support that.
+
+Instead, you can use [Youform](http://www.youform.io), which is a form builder that supports file uploads (for free) and then [embed the form on your Squarespace site](https://youform.io/blog/how-to-embed-youform-in-squarespace).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-04-09-at-2-1712689715396-compressed.png)
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## here's a Microsoft Forms alternative that allows external file uploads
+Author: Davis Baer
+Published: 2024-04-09
+Category: Blog
+URL: https://youform.com/blog/null
+
+If you need a Microsoft Forms alternative that allows external file uploads, check out [Youform](http://www.youform.io).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-04-09-at-2-1712688820076-compressed.png)
+
+  
+
+Youform's free plan supports image uploads up to 10mb.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Youform fair usage policy
+Author: Davis Baer
+Published: 2024-04-04
+Category: Helpdesk
+URL: https://youform.com/blog/fair-usage-policy
+
+We love offering a ton of value in Youform!
+
+But sometimes people abuse Youform's generous limits.
+
+If you are using Youform to spam or do anything nefarious, we reserve the right to shut off your Youform account.
+
+If you are causing issues to our infrastructure due to extremely heavy use, we reserve the right to reach out to you about moving to a custom plan.
+
+#### Examples of heavy usage
+
+*   Receiving over 50,000 submissions per month consistently
+
+*   File uploads of 100 GB/month or 500 GB of total storage​
+*   Sending emails of over 10,000 per month
+
+While occasional periods of heavy usage are okay, if you're consistently exceeding these limits, we'll reach out to discuss a custom plan to ensure everything runs smoothly.
+
+**Please note**: If you are a not a PRO user and try to hide the Youform branding from your forms we have every right to take down your account. This goes against our policy. If you want to remove Youform branding from your forms please consider purchasing Youform PRO.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## here's a Google Forms alternative that allows you to view partial submissions
+Author: Davis Baer
+Published: 2024-03-20
+Category: Blog
+URL: https://youform.com/blog/heres-a-google-forms-alternative-that-allows-you-to-view-partial-submissions
+
+Google Forms is great, but it does not allow you to capture the responses of people who did not fully fill out your form.
+
+[Youform](https://youform.io) is a Google Forms alternative that allows you to view partial form submissions (in addition to complete form submissions).
+
+[![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/pastedimage312241108am-1710256248314-compressed.jpg)](https://youform.io/)
+
+With [Youform](https://youform.io/), when someone fills out a form, you can view the responses even if they are only partial responses, and they didn't fully complete the form.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## here's a Google Forms alternative with a signature field option
+Author: Davis Baer
+Published: 2024-03-20
+Category: Blog
+URL: https://youform.com/blog/heres-a-google-forms-alternative-with-a-signature-field-option
+
+If you need a Google Forms alternative with a signature field option, check out [Youform](https://youform.io/).
+
+[![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-03-20-at-9-1710942631843-compressed.png)](https://youform.io/)
+
+If you want to see how a live Youform looks with a signature option in the form, [check out this form](https://app.youform.io/forms/uf0c1gec).
+
+[Youform](https://youform.io/) has a free plan that allows unlimited forms and unlimited responses, and the signature field is available on the free plan 😊
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## Typeform alternative that allows more than 10MB file uploads?
+Author: Davis Baer
+Published: 2024-03-20
+Category: Blog
+URL: https://youform.com/blog/typeform-alternative-10mb-file-uploads
+
+If you need a Typeform alternative that allows file uploads of MORE than 10MB, check out [Youform](https://youform.io/)
+
+It allows file uploads up to 300MB (and if you need even more than that, contact us and we can probably make it happen for you 🤓).
+
+You can see what a live Youform file upload form looks like here:  
+  
+
+​[https://app.youform.io/forms/2byfpx1j](https://app.youform.io/forms/2byfpx1j)​
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## here's a Typeform alternative that allows you to view partial submissions
+Author: Davis Baer
+Published: 2024-03-12
+Category: Blog
+URL: https://youform.com/blog/null
+
+[Youform](https://youform.io) is a Typeform alternative that allows you to view partial form submissions (in addition to complete form submissions).
+
+[![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/pastedimage312241108am-1710256248314-compressed.jpg)](https://youform.io/)
+
+With Youform, when someone fills out a form, you can view the responses even if they are only partial responses, and they didn't fully complete the form.
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+
+## here's a free Typeform alternative with unlimited responses
+Author: Davis Baer
+Published: 2024-03-11
+Category: Blog
+URL: https://youform.com/blog/youform-is-a-free-typeform-alternative
+
+If you need a free Typeform alternative with unlimited responses, check out [Youform](https://youform.io).
+
+![](https://superblog.supercdn.cloud/site_cuid_clti911u70009j6wijndw66kq/images/screen-shot-2024-03-11-at-1-1710176427284-compressed.png)
+
+  
+
+Youform is a Typeform alternative that allows unlimited forms and unlimited responses on the free plan.
+
+Youform integrates with 6,000+ apps via Zapier or Make, so you can have any responses go directly to Google Sheets, Slack, Hubspot... wherever!
+
+
+---
+This blog is powered by Superblog. Visit https://superblog.ai to know more.
+---
+

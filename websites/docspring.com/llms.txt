@@ -1,0 +1,168 @@
+# DocSpring Integration Guide
+
+## Quick Start
+
+1. Install the official client library:
+
+    # Node.js
+    npm install docspring
+
+    # Python
+    pip install docspring
+
+    # Ruby
+    gem install docspring
+
+    # PHP
+    composer require docspring/docspring-php
+
+    # Java
+    <dependency>
+      <groupId>com.docspring</groupId>
+      <artifactId>docspring</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+2. Basic PDF generation (Python example):
+
+    import docspring
+    import urllib.request
+
+    client = docspring.Client()
+    client.api_client.configuration.username = "YOUR_API_TOKEN_ID"
+    client.api_client.configuration.password = "YOUR_API_TOKEN_SECRET"
+
+    response = client.generate_pdf({
+      "template_id": "tpl_xxx",
+      "test": True,
+      "data": {
+        "first_name": "John",
+        "last_name": "Smith"
+      }
+    })
+
+    urllib.request.urlretrieve(response.submission.download_url, "output.pdf")
+
+## Core Concepts
+
+1. Templates
+   - Manage at https://app.docspring.com
+   - Each template has a unique ID (e.g. tpl_xxx)
+   - Define field names, types, and validation
+   - Get the template_id from the URL or the “API” tab
+
+2. Authentication
+   - Generate tokens at https://app.docspring.com/api_tokens
+   - Test tokens (test_xxx) produce watermarked PDFs
+   - Live tokens (live_xxx) produce production PDFs
+   - Use HTTP Basic auth with token_id:token_secret
+   - Don’t commit tokens to source control
+
+3. PDF Generation
+   - Synchronous (recommended): sync.api.docspring.com returns the finished PDF immediately.
+   - Can use sync subdomain for all API requests.
+   - Append "?wait=false" to the URL to return a pending submission immediately.
+   - Asynchronous: api.docspring.com returns a submission ID, then you poll for completion
+   - For EU region: sync.api-eu.docspring.com or api-eu.docspring.com
+
+## Advanced Features
+
+1. Batch Processing
+
+    response = client.batch_generate_pdfs({
+      "template_id": "tpl_xxx",
+      "submissions": [
+        {"data": {"name": "John"}},
+        {"data": {"name": "Jane"}}
+      ]
+    })
+    # Up to 50 PDFs per request
+
+2. Data Requests (e.g., for signatures)
+
+    response = client.generate_pdf({
+      "template_id": "tpl_xxx",
+      "data": {"company": "Acme Inc"},
+      "data_requests": [{
+        "email": "john@example.com",
+        "fields": ["signature", "date"],
+        "auth_type": "email_link"
+      }]
+    })
+    # submission.state will be "waiting_for_data_requests"
+
+3. Combine PDFs
+
+    response = client.combine_pdfs({
+      "source_pdfs": [
+        {"type": "submission", "id": "sub_xxx"},
+        {"type": "submission", "id": "sub_yyy"}
+      ]
+    })
+
+4. Field Customization
+
+    response = client.generate_pdf({
+      "template_id": "tpl_xxx",
+      "data": {"name": "John"},
+      "field_overrides": {
+        "signature": {
+          "required": True,
+          "alignment": "center",
+          "font_size": 10
+        }
+      }
+    })
+
+## Common Issues & Solutions
+
+1. PDF Generation
+   - Use the sync API for simpler flow (no polling or webhooks needed)
+   - Check submission.state == "processed" (if not using sync API)
+   - Handle submission.json_schema_errors for invalid data
+   - download_url expires after 24 hours; use permanent_download_url for long-term access
+   - Check for truncated_text in logs when text overflows
+   - Batch requests support up to 50 PDFs
+
+2. Data Formatting
+   - Field names are case-sensitive
+   - Can use %%LF%% if \n doesn’t work for new lines
+   - Send dates as YYYY-MM-DD (ISO8601)
+   - Use numeric types for numbers, boolean true/false for booleans
+
+3. Templates
+   - All templates have a JSON schema based on the fields defined in the template editor
+   - Submission data is validated against the JSON schema before PDF generation
+   - Test changes with test tokens
+   - Validation happens on submission
+   - Existing submissions aren’t affected by edits
+
+## API Response Examples
+
+1. Successful submission
+
+    {
+      "status": "success",
+      "submission": {
+        "id": "sub_xxx",
+        "state": "processed",
+        "download_url": "https://...",
+        "permanent_download_url": "https://..."
+      }
+    }
+
+2. Validation error
+
+    {
+      "status": "error",
+      "error": "validation_error",
+      "json_schema_errors": [
+        {
+          "field": "name",
+          "message": "is required"
+        }
+      ]
+    }
+
+
+More details: https://docspring.com/docs/

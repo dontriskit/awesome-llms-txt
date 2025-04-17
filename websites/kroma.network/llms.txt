@@ -1,0 +1,58 @@
+# Kroma
+
+## Kroma
+
+- [Overview](https://docs.kroma.network/introduction/overview)
+- [KRO Tokenomics](https://docs.kroma.network/introduction/kro-tokenomics)
+- [Token Allocation](https://docs.kroma.network/introduction/kro-tokenomics/token-allocation)
+- [Token Distribution](https://docs.kroma.network/introduction/kro-tokenomics/token-distribution)
+- [Token Utilities](https://docs.kroma.network/introduction/kro-tokenomics/token-utilities)
+- [Airdrops](https://docs.kroma.network/introduction/kro-tokenomics/airdrops)
+- [Initial Airdrop](https://docs.kroma.network/introduction/kro-tokenomics/airdrops/initial-airdrop)
+- [Official Links](https://docs.kroma.network/introduction/official-links)
+- [Developers](https://docs.kroma.network/builders/developer-quickstart)
+- [Contract Deployment Tutorial](https://docs.kroma.network/builders/developer-quickstart/contract-deployment-tutorial): This section describes how to deploy smart contract on Kroma.
+- [Using Foundry](https://docs.kroma.network/builders/developer-quickstart/contract-deployment-tutorial/deploying-a-smart-contract): This page describes how to deploy smart contracts using Foundry.
+- [Using Remix IDE](https://docs.kroma.network/builders/developer-quickstart/contract-deployment-tutorial/using-remix-ide): This page describes how to deploy smart contracts using Remix IDE.
+- [Using Hardhat](https://docs.kroma.network/builders/developer-quickstart/contract-deployment-tutorial/using-hardhat): This page describes how to deploy smart contracts using Hardhat.
+- [JSON-RPC API](https://docs.kroma.network/builders/developer-quickstart/json-rpc-api)
+- [Oracles](https://docs.kroma.network/builders/developer-quickstart/oracles)
+- [Node Operators](https://docs.kroma.network/builders/node-operators): This page describes how to run a node on Kroma.
+- [Kroma MPT Migration Guide](https://docs.kroma.network/builders/node-operators/kroma-mpt-migration-guide): This is a guide on how to transition from ZK Trie to MPT and zkEVM to zkVM
+- [Running a Full Node](https://docs.kroma.network/builders/node-operators/running-a-full-node)
+- [Running a Kroma v2 Validator Node](https://docs.kroma.network/builders/node-operators/running-a-kroma-v2-validator-node)
+- [How to Migrate Your Validator to KRO-based Validator System](https://docs.kroma.network/builders/node-operators/running-a-kroma-v2-validator-node/how-to-migrate-your-validator-to-kro-based-validator-system)
+- [How to Sync Blocks Using a Snapshot](https://docs.kroma.network/builders/node-operators/how-to-sync-blocks-using-a-snapshot)
+- [FAQ](https://docs.kroma.network/builders/node-operators/faq)
+- [\[Deprecated\] Running a Kroma v1 Validator Node](https://docs.kroma.network/builders/node-operators/deprecated-running-a-kroma-v1-validator-node)
+- [How to Check and Claim the Validator Reward](https://docs.kroma.network/builders/node-operators/deprecated-running-a-kroma-v1-validator-node/how-to-check-and-claim-the-validator-reward)
+- [Network Information](https://docs.kroma.network/builders/network-information): This page displays the network information of Kroma Mainnet.
+- [Protocol Contracts](https://docs.kroma.network/builders/useful-addresses): This page lists contract addresses for dApps that we have deployed.
+- [Testnet](https://docs.kroma.network/builders/testnet)
+- [Setup](https://docs.kroma.network/builders/testnet/setup)
+- [Faucet](https://docs.kroma.network/builders/testnet/faucet)
+- [Bridge](https://docs.kroma.network/builders/testnet/bridge)
+- [Contract Addresses](https://docs.kroma.network/builders/testnet/contract-addresses)
+- [Wallet Configuration](https://docs.kroma.network/users/cofigure-your-wallet): This step will help you set up your wallet as the first step to using Kroma.
+- [Bridge](https://docs.kroma.network/users/use-the-bridge): These steps will help you how to use the bridge on Kroma Mainnet.
+- [Block Explorer](https://docs.kroma.network/users/block-explorer): This step describes Explorer, where you can see the transactions that have occurred.
+- [How to Swap legacy USDC to upgradable USDC](https://docs.kroma.network/users/how-to-swap-legacy-usdc-to-upgradable-usdc): This is a guide on swapping legacy USDC to upgradable USDC with the ratio of 1:1 for the users who bridged USDC tokens before November 23rd, 2023.
+- [Kroma Security Council](https://docs.kroma.network/governance/kroma-security-council)
+- [Overview](https://docs.kroma.network/kroma-guardian-house/overview)
+- [Philosophy](https://docs.kroma.network/kroma-guardian-house/philosophy)
+- [KRO & KGH NFT Staking](https://docs.kroma.network/kroma-guardian-house/kro-and-kgh-nft-staking)
+- [Validator Boosting by KGH NFT](https://docs.kroma.network/kroma-guardian-house/kro-and-kgh-nft-staking/validator-boosting-by-kgh-nft)
+- [How to Get KRO](https://docs.kroma.network/kroma-guardian-house/kro-and-kgh-nft-staking/how-to-get-kro)
+- [FAQ](https://docs.kroma.network/kroma-guardian-house/kro-and-kgh-nft-staking/faq)
+- [KGH NFT Migration & KYC](https://docs.kroma.network/kroma-guardian-house/kgh-nft-migration-and-kyc)
+- [KGH NFT Migration](https://docs.kroma.network/kroma-guardian-house/kgh-nft-migration-and-kyc/kgh-nft-migration)
+- [How to Complete KYC with Argos](https://docs.kroma.network/kroma-guardian-house/kgh-nft-migration-and-kyc/how-to-complete-kyc-with-argos)
+- [KGH NFT Sales (Ended)](https://docs.kroma.network/kroma-guardian-house/kgh-nft-sales-ended)
+- [KGH Utilities](https://docs.kroma.network/kroma-guardian-house/kgh-nft-sales-ended/kgh-utilities)
+- [Referral Program: Expand Your Impact](https://docs.kroma.network/kroma-guardian-house/kgh-nft-sales-ended/referral-program-expand-your-impact)
+- [Estimated Reward Value](https://docs.kroma.network/kroma-guardian-house/kgh-nft-sales-ended/estimated-reward-value)
+- [Notice](https://docs.kroma.network/kroma-guardian-house/notice)
+- [Security](https://docs.kroma.network/resources/security)
+- [Brand Kit](https://docs.kroma.network/resources/brand-kit)
+- [FAQs](https://docs.kroma.network/resources/faqs)
+- [Glossary](https://docs.kroma.network/resources/glossary)

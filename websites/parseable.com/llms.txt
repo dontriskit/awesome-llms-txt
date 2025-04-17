@@ -1,0 +1,2055 @@
+# Parseable Documentation
+
+This document contains [Parseable's official documentation and guides](https://www.parseable.com/docs) in a single-file easy-to-search form.
+If you find any issues, please report them [as a GitHub issue](https://github.com/parseablehq/parseable/issues).
+Contributions are very welcome in the form of [pull requests](https://github.com/parseablehq/parseable/pulls).
+If you are considering submitting a contribution to the documentation, please consult our [contributor guide](https://github.com/parseablehq/parseable/blob/main/CONTRIBUTING.md).
+
+Code repositories:
+
+* Parseable source code: [github.com/parseablehq/parseable](https://github.com/parseablehq/parseable)
+
+This content is designed to be easily copied and provided to Large Language Models (LLMs) for summarization and analysis. Use the copy button on the Parseable LLM Text page to easily transfer this content to your favorite AI assistant.
+
+Title: Introduction
+
+URL Source: https://www.parseable.com/docs/server/introduction
+
+Markdown Content:
+Parseable combines a purpose built OLAP, diskless database [Parseable DB](https://github.com/parseablehq/parseable) and Prism UI. These components are designed from first principles to work together, enabling efficient and fast ingestion, search, and correlation of MELT (Metrics, Events, Logs, and Traces) data.
+
+![Image 1](https://cdn.hashnode.com/res/hashnode/image/upload/v1741583028779/9916d711-42c5-42b5-bc0d-68284137c1db.png?auto=compress,format&format=webp&q=75)
+
+### **Key Features**
+
+*   **Cost-Effective**: Efficient compute utilization, compression and utilizing object storage like S3 offers up to 70% cost reduction compared to Elasticsearch or up to 90% compared to DataDog.
+    
+*   **Performance**: With Rust based design, modern query techniques, and intelligent caching on SSDs / NVMe and memory, Parseable offers extremely fast query experience for end users.
+    
+*   **Resource Efficiency:**
+    
+    *   Parseable consumes 50% less CPU and 80% less memory than traditional JVM-based solutions like Elasticsearch under similar workloads.
+        
+    *   Built-in compression to compress observability and telemetry data by up to 90%.
+        
+*   **Deploy Anywhere Securely**: Supports deployment across public or private clouds, containers, VMs, or bare metal environments with complete data ownership, data security and privacy.
+    
+*   **Easy Setup**: Single binary with a built-in UI (PRISM) allows setup within minutes.
+    
+*   **Flexible Data Handling**: Ingest logs, metrics, and traces in OpenTelemetry format, supporting structured and unstructured data. It employs an index-free approach, enabling high throughput ingestion with low latency for queries.
+
+Title: Design Choices
+
+URL Source: https://www.parseable.com/docs/server/design-choices
+
+Markdown Content:
+This document outlines our key design choices, ensuring durability, scalability, and efficiency for modern observability workloads. This page also covers the technical trade offs in Parseable.
+
+If you have a specific use case or need a feature tailored to your observability needs, let us know at [sales@parseable.com](mailto:sales@parseable.com).
+
+We ship fast and most of such requests can be done in a matter of days.
+
+**Low latency writes:** Ingested data is staged on local disk upon successful return by Parseable API. Data is then asynchronously committed to object store like S3. The commit window is one minute. This ensures low latency, high throughput ingestion.
+
+**Atomic batches:** Each ingestion batch received via API is concurrently appended to the same file within a one-minute window. When converted from Arrow to Parquet, entries are reordered to ensure the latest data appears first.
+
+**Efficient storage**: All data is stored initially (in staging phase) as Arrow files and then asynchronously converted to Parquet files and uploaded to object store. Parquet files are on an average compressed by 85% of the original data size. Parquet files on object storage, gives you the best value for money.
+
+**Index on demand:** By default data is stored in columnar Parquet files, allowing fast aggregations, filtering numerical columns and SQL queries. Parseable allows indexing specific chunks of data, on demand - to allow text search on log data as and when needed.
+
+**Global reads:** A query call requires start and end timestamp. This ensures data is queried across a fixed, definite set of files. Parseable ensures query response includes the staging and committed data on object storage as required.
+
+**Smart caching:** Frequently accessed logs are cached in memory and NVMe SSDs on query nodes for faster access. The system prioritizes recent data, manages cache eviction automatically, and minimizes object store API calls using Parseable manifest files and Parquet footers.
+
+**Stateless high availability**: High availability (HA) is ensured through a distributed mode in which multiple ingestion servers and a dedicated query server operate independently.
+
+**Object storage is the only dependency:** There is no separate consensus layer, eliminating complex coordination and reducing operational overhead. Object storage manages all concurrency control.
+
+* * *
+
+**High throughput, staged writes.** Parseable can ingestion millions of events per minute per node. All this data is staged on the ingestion node, for at least a minute. This trades immediate persistence for low latency ingestion.
+
+With a small, reliable storage attached to ingesting nodes ([EFS](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html), [Azure Files](https://azure.microsoft.com/en-us/products/storage/files/), [NFS](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-nfs) or equivalent), users can ensure complete data protection.
+
+**Occasional cold queries:** The query server fetches indexes from object storage and stores them in intelligent caching for faster access. Until the caching is formed, some queries may fetch data directly from object storage, leading to higher latency.
+
+**Caching latency:** While caching in memory and NVMe SSD speeds up queries, it adds storage overhead on query nodes and may cause higher latency on cache warm-up. Additionally, cached data prioritizes performance, so external updates to object storage might introduce a brief sync delay.
+
+**BYOC first:** Parseable is built from first principles for observability and telemetry data. It offers the best value for money (ease of running, storage efficiency, resource footprint) when run in the customer’s infrastructure. Our commercial offerings are aligned with BYOC-first principles. Designed for simplicity, Parseable runs as a single binary, with a built-in UI (PRISM) enables deployment within minutes, requiring no complex configuration.
+
+Title: Installation Planning
+
+URL Source: https://www.parseable.com/docs/server/installation-planning
+
+
+Markdown Content:
+Installation Planning
+=====================
+
+Details on various types of Parseable variants available to install and the value proposition of each of the variants
+
+There are two variants of Parseable platform: Distributed and Standalone
+
+### Distributed Mode
+
+In a Distributed deployment, multiple Ingestion nodes work together to ingest data, allowing for better scalability and load distribution. This setup supports ingestion from either a single high-volume data source or multiple independent sources, making it the recommended choice for handling large data streams efficiently.
+
+For testing purposes, please use Parseable standalone with `local store` mode. That is the fastest way to experience Parseable with your data.
+
+Parseable distributed cluster is recommended for production grade deployment. Hence it requires an object store as persistent storage.
+
+![Image 4](https://cdn.hashnode.com/res/hashnode/image/upload/v1741848752915/98f8d866-5c13-4725-9824-64a1bf7dcb49.png?auto=compress,format&format=webp&q=75)
+
+### Standalone
+
+The Standalone variant of the Parseable Observability Platform is designed for quick value realization, making it ideal for hobbyists and first-time users. In this mode Parseable operates with a single ingestion node, handling all data ingestion from various data sources. This setup is ideal for smaller workloads or testing environments where high availability and horizontal scaling are not primary concerns.
+
+Parseable standalone server can be run with `local store` argument to use the disk attached on the machine as store. So you can see Parseable in action without an object storage.
+
+This is not recommended for production deployments.
+
+![Image 5](https://cdn.hashnode.com/res/hashnode/image/upload/v1741846483661/276a6897-43b4-48a5-86cf-c5c96cd5bc73.png?auto=compress,format&format=webp&q=75)
+
+Title: Architecture
+
+URL Source: https://www.parseable.com/docs/server/architecture
+
+Markdown Content:
+This document outlines the overall architecture of the Parseable Observability Platform, detailing the flow of MELT data from ingestion to storage and querying.
+
+This document is organised into specific section for each sub-system like ingestion, query, search and index. To understand the specific decisions and trade-offs, refer the [design choices document](https://www.parseable.com/docs/server/design-choices).
+
+![Image 1](https://cdn.hashnode.com/res/hashnode/image/upload/v1741586726244/15ad81b7-b262-423e-a30b-a7aba7f7649a.png?auto=compress,format&format=webp&q=75)
+
+### Overview
+
+Parseable is shipped as a single unified binary (or container image if you prefer). This includes the Prism UI and Parseable DB. There is no additional dependency to run Parseable.
+
+The binary can be run in different modes. You’d generally run `standalone` mode to test and experience Parseable on your laptop, or a small testing server.
+
+As you move to a production setup, we recommend running the `distributed` mode. Here each node has a specific role, i.e. `ingestion`, `query` or `search`.
+
+### Ingestion
+
+Parseable ingestion nodes are based on shared nothing architecture. This means each node is independently capable of ingesting events end to end. In a production environment, you’d set up a load balancer in front of two or more ingestion nodes. Ingestion request can then be routed to any of the ingestion nodes.
+
+Once a node receives an ingestion request, the request is validated first. The node then converts the HTTP or Kafka protocol payload to Apache Arrow based file format and keeps it in a dedicated staging area. In this process it also validates the event schema. As the disk write is completed, the ingestion node responds with success.
+
+We recommend a small, reliable disk (NFS or similar) attached for staging area to ensure data protection against disk failures.
+
+A background job then reads the ingested Arrow files, converts those files to heavily compress Parquet files, and pushes these files to S3 or other object store as configured. In this process, the ingestion node also generates the metadata for this Parquet that helps during querying.
+
+![Image 2](https://cdn.hashnode.com/res/hashnode/image/upload/v1741771359094/ad1ea1fc-d8f4-4443-98be-328f516d560f.png?auto=compress,format&format=webp&q=75)
+
+### Query
+
+Query node is primarily responsible responding to query API. This node also serves as the leader node in a Parseable cluster and hence it also responds to other API.
+
+The query workflow starts when someone calls the query API with (a PostgreSQL compatible) SQL query, and a start and end timestamp. The query node looks up the metadata locally first, falling back to object store only if not found.
+
+Based on metadata, the node identifies the relevant parquet files and uses the object store API to get these files. Here again, this only happens if the files are not already present locally. If the files are to be downloaded from object storage - this adds to latency and hence the occasional cold queries.
+
+As the leader, query node also responds to all the role, user management, dataset management API.
+
+![Image 3](https://cdn.hashnode.com/res/hashnode/image/upload/v1741776943889/c0d90b71-a8bd-4b54-98cb-776adfc8121f.png?auto=compress,format&format=webp&q=75)
+
+Title: Alerts
+
+URL Source: https://www.parseable.com/docs/server/features/alerts
+
+Markdown Content:
+Parseable offers realtime alerting based on contents of incoming events. Each stream can have several alerts and each alert is evaluated independently.
+
+### How it works
+
+Alerts work in stream processing manner. For each alert configured for a stream, the server maintains an internal state machine that keeps track of the number of times the rule has been true. When the rule evaluates to true for the threshold specified (in the rule), the internal alert state changes to `firing` and the target is notified. When the rule evaluates to false, the alert state changes to `resolved` and the target is notified again with the resolved message.
+
+Alerts can be set via the Parseable Console or via the API, refer the [API documentation](https://www.parseable.com/docs/api/alerts) for details.
+
+![Image 1: Parseable alerting architecture](https://cdn.hashnode.com/res/hashnode/image/upload/v1731045651918/BQaYFZLKK.png?auto=format?auto=compress,format&format=webp&q=75)
+
+### Alert types
+
+You can configure any number of alerts for any stream. The alert evaluation rule can be configured to scan a single column or multiple columns.
+
+*   **Single column**: Scan events for values in a single column, e.g. alerts like `send an alert when the status code is 500 for 3 consecutive times`, or `send an alert when the message field contains 'fatal'` .
+    
+*   **Multiple columns**: Scan events for values in several columns, e.g. alerts like `send an alert when the status code is 500 and the message field contains 'fatal'`.
+    
+
+### Supported targets
+
+Parseable supports sending alerts to `Webhook`, `Slack`, and `Alertmanager` targets. You can configure multiple targets for each alert.
+
+### Configuration
+
+You can configure alerts via the Parseable. Navigate to the stream for which you want to set alerts and click on the `Manage` section. Then navigate to `Alerts` section on the bottom right corner. You can add, edit, or delete alerts from this page.
+
+![Image 2: Parseable alert setting page](https://cdn.hashnode.com/res/hashnode/image/upload/v1731045679911/Aok8r19ER.png?auto=format?auto=compress,format&format=webp&q=75)
+
+If you need to use the API calls instead, this section explains how to craft the alert configuration JSON. The configuration JSON has two top level fields, `version` and `alerts`. The `version` field specifies the version of alert specification to use. This is currently `v1`.
+
+The `alerts` field contains an array of alert configurations. Each alert configuration has `name`, `message`, `rule`, and `targets` sections. [See alert section](https://www.parseable.com/docs/server/features/alerts#alert) for details on each field.
+
+Here is sample alert configuration, with all the available options. Read the sections below for details on each field.
+
+```
+{
+    "version": "v1",
+    "alerts": [
+        {
+            "name": "Alert: Server side error",
+            "message": "server reporting status as 500",
+            "rule": {
+                "type": "column",
+                "config": {
+                    "column": "status",
+                    "operator": "=",
+                    "value": 500,
+                    "repeats": 2
+                }
+            },
+            "targets": [
+                {
+                    "type": "alertmanager",
+                    "endpoint": "http://localhost:9093/api/v2/alerts",
+                    "username": "admin",
+                    "password": "admin",
+                    "skip_tls_check": false,
+                    "repeat": {
+                        "interval": "30s",
+                        "times": 5
+                    }
+                },
+                {
+                    "type": "webhook",
+                    "endpoint": "https://example.com/",
+                    "headers": {
+                        "Authorization": "Basic dXNlcjpwYXNz"
+                    },
+                    "skip_tls_check": false,
+                    "repeat": {
+                        "interval": "3m 20s",
+                        "times": 5
+                    }
+                },
+                {
+                    "type": "slack",
+                    "endpoint": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+                    "repeat": {
+                        "interval": "3m 20s",
+                        "times": 5
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+These are the fields available in the alert configuration:
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `name`
+
+ | Yes
+
+ | Unique name to identify the alert.
+
+ |
+| `message`
+
+ | Yes
+
+ | Message to be sent to the targets. [See message section](https://www.parseable.com/docs/server/features/alerts#message)
+
+ |
+| `rule`
+
+ | Yes
+
+ | Condition that has to be true to trigger the alert. [See rules section](https://www.parseable.com/docs/server/features/alerts#rule)
+
+ |
+| `targets`
+
+ | Yes
+
+ | An array of multiple targets. This means each alert can be configured to be sent to multiple targets. [See target section](https://www.parseable.com/docs/server/features/alerts#targets)
+
+ |
+
+#### Message
+
+The message field can be a static string or can be configured to dynamically populate the value of a certain column (in the event that triggered the alert). This is useful when you want to send the value of a certain column in the alert message. You can specify as many placeholders as you want in the message field.
+
+For example, if you want to send the value of the `status` column in the alert message, you can configure the message field as follows:
+
+```
+"message": "{host} server reporting status as {status}"
+```
+
+Here `{host}` and `{status}` are placeholders that will be replaced with the value of the columns `host` and `status` in the event that triggered the alert.
+
+#### Rule
+
+A rule specifies the condition under which an alert should be triggered. The rule field contains the following parameters:
+
+*   `type`: Specifies the rule type. Can be `column` or `composite`. Column type means scanning a single column, Composite types means scanning several columns per event.
+    
+*   `config`: JSON object with details on rule configuration.
+    
+
+##### Column Rule
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `column`
+
+ | Yes
+
+ | Column name to be evaluated.
+
+ |
+| `value`
+
+ | Yes
+
+ | The value to compare against.
+
+ |
+| `operator`
+
+ | Yes
+
+ | The operator field supports dynamic values based on the field data type selected under column section. For Numerical types, operator field can be one of the following: `=,` `!=`, `>`, `>=`, `<`, `<=`, `~`. Where `~` is for regex pattern match. For String types, operator field can be one of the following: `=`, `!=`, `=%`, `!%`, `~`. Where `=` and `!=` are for matching entire string, `%=` is for checking if a string contains the `value` as substring and similarly `!%` is for checking that string does not contains `value`, `~` is for regex value.
+
+ |
+| `repeats`
+
+ | Yes
+
+ | The number of times the rule has to be true before triggering the alert. This is useful to avoid false positives. For example, if you want to trigger an alert when the status code is 500 for 3 consecutive times, you can set repeats to 3.
+
+ |
+| `ignore_case`
+
+ | No
+
+ | This is an optional field and is only applicable if the column specified under column section is of string type. If this field is set to true, the string comparison is case insensitive.
+
+ |
+
+Sample column rule:
+
+```
+"rule": {
+    "type": "column",
+    "config": {
+        "column": "status",
+        "operator": "=",
+        "value": 500,
+        "repeats": 2
+    }
+},
+```
+
+##### Composite Rule
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `config`
+
+ | Yes
+
+ | String format description for fields to track. Supports following operators for string columns: `=` for equals, '!=' for not equal, `=%` for contains, `!%` for doesn't contain, `~` for regex. For numeric columns: `<=`, `>=`, `!=`, `<`, `>`, `=`. Rule expression can be combined using conditions such as `and` and `or`. Parentheses `()` can be used to explicitly define the order of evaluation for the rules. You can also surround any rule/expression with `!()` to negate it.
+
+ |
+
+Sample composite rule:
+
+```
+"rule": {
+    "type": "composite",
+    "config": "(verb =% \"list\" or verb =% \"get\") and (objectRef_resource = \"secrets\" and user_username !% \"test\")"
+},
+```
+
+#### Targets
+
+Targets are the destinations where notifications are sent when an alert is triggered. The targets field is an array of target objects, each with the following common parameters:
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `type`
+
+ | Yes
+
+ | The type of target. Can be `alertmanager`, `webhook`, or `slack`.
+
+ |
+| `endpoint`
+
+ | Yes
+
+ | The URL of the target.
+
+ |
+| `repeat`
+
+ | No
+
+ | Specify the frequency of sending the alert to the target. By default the `repeat` field has `interval` set to `200s` and `times` set to `5`. The timeout is specified in the [Go duration format](https://pkg.go.dev/time#ParseDuration). For example, if you want to repeat the alert every 30 seconds, you can set repeat to 30s. If you want to repeat the alert every 5 minutes, you can set repeat to 5m.
+
+ |
+
+Sample target configuration:
+
+```
+{
+    "type": "alertmanager",
+    "endpoint": "http://localhost:9093/api/v2/alerts",
+    "username": "admin",
+    "password": "admin",
+    "skip_tls_check": false,
+    "repeat": {
+        "interval": "30s",
+        "times": 5
+    }
+},
+...
+```
+
+Apart from above common parameters, there are few `target` specific parameters that can be configured. Refer the sections below for details.
+
+##### Alertmanager
+
+The alertmanager target can be used to send notifications to [Alertmanager](https://github.com/prometheus/alertmanager) instance. Note that by default if you don't provide repeat configuration for this then Parseable will continue to send alerts to Alertmanager while it is active.
+
+Note hat Alertmanager expects clients to continuously re-send alerts as long as they are still active (usually on the order of 30 seconds to 3 minutes). Avoid specifying `repeat.times` in configuration unless you want Parseable to stop re-sending alerts after specified number of times.
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `endpoint`
+
+ | Yes
+
+ | The URL of the Alertmanager api to send notifications to. Compatible with Alertmanager API V2
+
+ |
+| `username`
+
+ | No
+
+ | Username for basic auth. See [Prometheus Docs](https://prometheus.io/docs/alerting/latest/https/#http-traffic) on how to setup basic auth.
+
+ |
+| `password`
+
+ | No
+
+ | Password for basic auth.
+
+ |
+| `skip_tls_check`
+
+ | No
+
+ | Whether to skip TLS verification when sending the alert to Alertmanager.
+
+ |
+
+Example json sent by Parseable to Alertmanager. Note that `rule_config_*` may differ depending on the type of rule that triggered the alert.
+
+```
+{
+    "labels": {
+        "alertname": "Status Alert",
+        "deployment_id": "01GTFFFFFFFFFFFF",
+        "rule_config_column": "status",
+        "rule_config_operator": "exact",
+        "rule_config_repeats": "2",
+        "rule_config_value": "500",
+        "rule_type": "column",
+        "status": "firing",
+        "stream": "app"
+    },
+    "annotations": {
+        "message": "message that was set for this alert",
+        "reason": "status column was equal to 500, 2 times"
+    },
+    ...
+}
+```
+
+##### Webhook
+
+The `webhook` target can be used to send notifications to a webhook URL. The target object contains the following parameters:
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `endpoint`
+
+ | Yes
+
+ | The URL of the webhook to send notifications to.
+
+ |
+| `headers`
+
+ | No
+
+ | Any custom headers to include in the webhook request
+
+ |
+| `skip_tls_check`
+
+ | No
+
+ | Whether to skip TLS verification when sending the webhook request.
+
+ |
+
+##### Slack
+
+The `slack` target can be used to send notifications to a Slack channel. The target object contains the following parameters:
+
+Title: Dashboards
+
+URL Source: https://www.parseable.com/docs/server/features/dashboards
+
+Markdown Content:
+Parseable Dashboards are customisable and support querying multiple data streams for comprehensive insights. You can also leverage text to SQL conversion for quick query creation. The Dashboards feature is designed to help you visualize data insights at a glance, enabling you to make informed decisions based on real-time data.
+
+![Image 1: dashboards](https://github.com/parseablehq/.github/blob/main/images/dashboards-view.png/?raw=true)
+
+### How it works
+
+Dashboards in Parseable are a collection of tiles, each representing a visualization of a query result. You can create multiple tiles on a dashboard, each with its own query and chart type. Further, a tile's chart can be configured for different colors, units and formatting. Each tile can be based on a query targeting different log stream. The tiles can be resized, repositioned, and exported in various formats for easy sharing and collaboration.
+
+Dashboard tiles can be dragged and repositioned anywhere on the dashboard. You can also adjust the tile size to fit your layout preferences, selecting from small, medium, large, or full screen widths (1/4, 2/4, 3/4, and full screen).
+
+#### Visualizations
+
+Currently, Parseable has six types of visualizations:
+
+*   Circular charts (donut and pie).
+    
+*   Area graphs.
+    
+*   Bar graphs.
+    
+*   Line graphs.
+    
+*   Simple table.
+    
+
+Each visualization comes with its own customization options, allowing you to adjust colors, orientation, types, and tick formatting to fit your preferences.
+
+#### Time Range
+
+Set a fixed time range for your dashboard to ensure all tiles load data consistently. You can save this time range with the dashboard, allowing for synchronized data views across all visualizations.
+
+#### How to create a dashboard
+
+*   Navigate to `/dashboards`.
+    
+*   Click on Create Dashboard.
+    
+*   Fill in the name and description and click Create.
+    
+
+You can also import predefined dashboard templates or use a dashboard configuration downloaded from Parseable.
+
+#### How to create a tile
+
+*   Select any dashboard & click add tile.
+    
+*   Enter a name and description (optional) for the tile.
+    
+*   Write your SQL query and validate it (ensure the query returns data).
+    
+*   Edit the visualization settings as desired.
+    
+*   Click Save to apply the changes.
+    
+
+### Exporting a Tile
+
+You can export a tile in multiple formats, including high-resolution PNG, JSON, or CSV.
+
+![Image 2: dashboards](https://github.com/parseablehq/.github/blob/main/images/dashboards-png-export.png/?raw=true)
+
+### Dashboard import & exports
+
+You can import and export dashboards in JSON format. This feature allows you to share dashboards across different Parseable instances or with other users.
+
+### Future Enhancements
+
+#### AI-Driven Dashboard Creation
+
+Upcoming enhancements will allow for the automatic creation of dashboards by leveraging AI to read schemas and understand sample data, simplifying the setup process.
+
+#### Extended Support for Tick Formats
+
+Currently, we support big numbers, sizes in bytes, and UTC timestamps for tick formatting functions. Future updates will expand support for additional tick formats, providing greater flexibility for data visualization. If you need specific tick formatting functions, please let us know by creating an [issue](https://github.com/parseablehq/console/issues/new).
+
+#### Dashboard Templates
+
+We are introducing support for predefined templates, ensuring stable configurations for common observability platforms. This feature facilitates the creation of dashboards with just a single click for popular systems, streamlining your setup process.
+
+### Upgrades
+
+If you use a version between `v1.5.1` to `v1.5.4`, there is a minor, one time manual intervention needed to ensure your old dashboards or filters are not lost. Please ensure to follow these steps before you upgrade to the latest version:
+
+*   Check in the storage (S3 or local) for any json files under `.users/<username>/<dashboard_id.json>` and verify if version field says `v2`.
+    
+*   Also check if dashboard with same `dashboard_id` is also available under `.users/<sha256-hash-of-username>/<dashboard_id.json>` and verify if version is `v3`.
+    
+*   If you find `v2` and v3`versions of the files for same`dashboard\_id`, please ensure to delete the old version (`v2\`) of the json file.
+    
+
+Once all duplicate files are removed successfully, upgrade to the latest version of Parseable. Same applies for all the saved filters created.
+
+Title: Role Based Access Control
+
+URL Source: https://www.parseable.com/docs/server/features/rbac-role-based-access-control
+
+Markdown Content:
+RBAC - Role Based Access Control | Parsesable
+
+### How it works
+
+There are five entities in Parseable Access Control model - `Action`, `Privilege`, `Resource`, `Role` and `User`. Below section explains each of these entities in detail.
+
+*   Actions: Each API corresponds to an Action on the Parseable server.
+    
+*   Privilege: It is a group of allowed actions. Actions and Privileges are predefined within a Parseable server instance. Current Privileges are `Admin`, `Editor`, `Writer`, `Reader` and `Ingester`.
+    
+*   Resources: Log streams are Resources. Each Resource has a unique name. For example, a log stream with name `my_stream` is a Resource.
+    
+*   Roles: Roles are dynamic, named entities on a Parseable server instance. Each role has a set of privileges and resources associated with it. A role can be assigned to several users. A user can have multiple roles assigned to it.
+    
+*   Users: Users refer to human or machine entities that can perform actions on a Parseable server instance. Each user has a unique username and password. A user can be assigned one or more roles.
+    
+
+**Important**  
+User passwords are hashed and stored in Parseable metadata file. Parseable does not store the password in plain text.
+
+### Overview of Roles & Access
+
+Each role—Admin, Editor, Writer, Reader, and Ingestor—has varying access to different endpoints, categorized into six sections: General, Access Management, Resource Based, Stream Related, and Query & Ingest Logs Related. Access permissions are denoted with either ✓ (allowed) or x (denied).
+
+#### General
+
+This section covers general system and informational endpoints, which are accessible to most roles for actions such as viewing the system's status or metrics.
+
+| Action
+ | Endpoint
+
+ | Admin
+
+ | Editor
+
+ | Writer
+
+ | Reader
+
+ | Ingester
+
+ |
+| --- | --- | --- | --- | --- | --- | --- |
+| GetAbout
+
+ | `GET /about`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetAnalytics
+
+ | `GET /analytics`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| GetLiveness
+
+ | `HEAD /liveness`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetReadiness
+
+ | `HEAD /readiness`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| ListCluster
+
+ | `GET /cluster/info`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| ListClusterMetrics
+
+ | `GET /cluster/metrics`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| DeleteIngestor
+
+ | `DELETE /cluster/{ingestor}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| Metrics
+
+ | `GET /metrics`
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ |
+
+#### Access Management
+
+This section deals with endpoints for managing roles and users. Only Admins have access to critical actions like creating, updating, and deleting roles or users, ensuring proper control over access management in the system.
+
+| Action
+ | Endpoint
+
+ | Admin
+
+ | Editor
+
+ | Writer
+
+ | Reader
+
+ | Ingester
+
+ |
+| --- | --- | --- | --- | --- | --- | --- |
+| PutRole
+
+ | `PUT /role/default`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| PutRole
+
+ | `PUT /role/{name}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| GetRole
+
+ | `GET /role/default`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| GetRole
+
+ | `GET /role/{name}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| DeleteRole
+
+ | `DELETE /role/{name}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| ListRole
+
+ | `GET /role`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| PutUser
+
+ | `POST /user/{username}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| PutUser
+
+ | `POST /user/{username}/generate-new-password`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| ListUser
+
+ | `GET /user`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| DeleteUser
+
+ | `DELETE /user/{username}`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| PutUserRoles
+
+ | `PUT /user/{username}/role`
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| GetUserRoles
+
+ | `GET /user/{username}/role`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+
+#### Resource Management
+
+This section defines access to resources such as dashboards and filters. While most roles can view and create resources, only Admins and Editors have permission to modify or delete them.
+
+| Action
+ | Endpoint
+
+ | Admin
+
+ | Editor
+
+ | Writer
+
+ | Reader
+
+ | Ingester
+
+ |
+| --- | --- | --- | --- | --- | --- | --- |
+| ListDashboard
+
+ | `GET /dashboards`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetDashboard
+
+ | `GET /dashboards/{dashboard_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| CreateDashboard
+
+ | `POST /dashboards`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| CreateDashboard
+
+ | `PUT /dashboards/{dashboard_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| DeleteDashboard
+
+ | `DELETE /dashboards/{dashboard_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetFilter
+
+ | `GET /filters/{filter_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| ListFilter
+
+ | `GET /filters`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| CreateFilter
+
+ | `POST /filters`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| CreateFilter
+
+ | `PUT /filters/{filter_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| DeleteFilter
+
+ | `DELETE /filters/{filter_id}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+
+#### Stream Management
+
+This section focuses on managing log streams. Both Admins and Editors have the ability to create, delete, or modify streams, while other roles have limited or no access to stream management functionalities.
+
+| Action
+ | Endpoint
+
+ | Admin
+
+ | Editor
+
+ | Writer
+
+ | Reader
+
+ | Ingester
+
+ |
+| --- | --- | --- | --- | --- | --- | --- |
+| CreateStream
+
+ | `PUT /logstream/{logstream}`
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| DeleteStream
+
+ | `DELETE /logstream/{logstream}`
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ | x
+
+ |
+| GetSchema
+
+ | `GET /logstream/{logstream}/schema`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetStats
+
+ | `GET /logstream/{logstream}/stats`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| GetStreamInfo
+
+ | `GET /logstream/{logstream}/info`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| ListStream
+
+ | `GET /logstream`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| PutAlert
+
+ | `PUT /logstream/{logstream}/alert`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| GetAlert
+
+ | `GET /logstream/{logstream}/alert`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| PutHotTierEnabled
+
+ | `PUT /logstream/{logstream}/hottier`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| GetHotTierEnabled
+
+ | `GET /logstream/{logstream}/hottier`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| DeleteHotTierEnabled
+
+ | `DELETE /logstream/{logstream}/hottier`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| GetRetention
+
+ | `GET /logstream/{logstream}/retention`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+| PutRetention
+
+ | `PUT /logstream/{logstream}/retention`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | x
+
+ |
+
+#### Query and Ingest Logs
+
+This section highlights endpoints related to querying and ingesting logs. Admins and Editors have full access to these functionalities, while other roles, like Readers and Ingestors, may have restricted access depending on their responsibilities.
+
+| Action
+ | Endpoint
+
+ | Admin
+
+ | Editor
+
+ | Writer
+
+ | Reader
+
+ | Ingester
+
+ |
+| --- | --- | --- | --- | --- | --- | --- |
+| Ingest
+
+ | `POST /logstream/{logstream}`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | ✓
+
+ |
+| Ingest
+
+ | `POST /ingest`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ | ✓
+
+ |
+| Query
+
+ | `POST /query`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+| QueryLLM
+
+ | `POST /llm`
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | ✓
+
+ | x
+
+ |
+
+### Get started
+
+#### Creating a Role
+
+This is the first step in setting up Role Based Access Control (RBAC) for Parseable. Use the [Create Role API](https://www.postman.com/parseable/workspace/parseable/request/22353706-5701ce63-361b-4a8c-9eb1-9cbf92c85fa6) to create a role. The Create Role API request body requires the role definition in JSON format. Below examples demonstrate sample JSON for different types of role and privileges.
+
+*   Role JSON with Admin Privilege
+
+```
+[
+    {
+        "privilege": "admin"
+    }
+]
+```
+
+*   Role JSON with Editor Privilege
+
+```
+[
+    {
+        "privilege": "editor"
+    }
+]
+```
+
+*   Role JSON with Writer Privilege: The `Writer` privilege is resource specific. A user with above role json, will be able to call the Writer specific API only on the specified resource. In the above example, the user will be able to call Writer specific API on `backend` and `frontend` log streams only.
+
+```
+[
+    {
+        "privilege": "writer",
+        "resource": {
+            "stream": "backend"
+        }
+    },
+    {
+        "privilege": "writer",
+        "resource": {
+            "stream": "frontend"
+        }
+    }
+]
+```
+
+*   Role JSON with Ingester Privilege: The `Ingester` privilege is resource specific. A user with above role json, will be able to call the Ingester specific API only on the specified resource. In the above example, the user will be able to call Ingester specific API on `backend` and `frontend` log streams only. This privilege is useful to be set in log agents, forwarders, and other log ingestion tools.
+
+```
+[
+    {
+        "privilege": "ingester",
+        "resource": {
+            "stream": "backend"
+        }
+    },
+    {
+        "privilege": "ingester",
+        "resource": {
+            "stream": "frontend"
+        }
+    }
+]
+```
+
+*   Role JSON with Reader Privilege: The `Reader` privilege is resource specific. A user with above role json, will be able to call the Reader specific API only on the specified resources. In the above example, the user will be able to call Reader specific API on `frontend` log stream, and only on events with tag `source=web`.
+
+```
+[
+    {
+        "privilege": "reader",
+        "resource": {
+            "stream": "frontend",
+            "tag": "source=web"   // optional field
+        }
+    }
+]
+```
+
+#### Creating User
+
+To create a `User`, use the [Create User API](https://www.postman.com/parseable/workspace/parseable/request/22353706-7afdfe2c-06d8-40a3-aceb-0e6969030c97). Here you can optionally pass a request body that has appropriate role name (as explained in the [role section](https://www.parseable.com/docs/server/features/rbac-role-based-access-control#creating-a-role)) to assign a role to the user.
+
+After successful Create User API call, you'll get the user's password in the response. Keep it in a safe place as this is the only time server will return the password in plain text.
+
+#### Assign a role
+
+To assign a role to a user after creating a user, use the [Assign Role API](https://www.postman.com/parseable/workspace/parseable/request/22353706-55ed8bab-de7d-4dd4-ad46-caa99bdcf400). This API takes the username and role name as input. After a successful API call, the user will be able to perform actions allowed by the assigned role.
+
+#### Reset password
+
+In any case if you need to reset password for a user. This can be done through [Reset Password](https://www.postman.com/parseable/workspace/parseable/request/22353706-e90933b7-71d8-4067-9190-73eee6d4a25c) API.
+
+#### Delete user
+
+To delete a user, use the [Delete User API](https://www.postman.com/parseable/workspace/parseable/request/22353706-29cbc875-0d1f-405f-83ec-acf57661ad56). This API will delete the user and all the roles assigned to it.
+
+**OpenID Connect**  
+For managing roles for your OAuth2 users, refer to [OIDC section](https://www.parseable.com/docs/oidc). Roles are automatically assigned by matching the role name with group name that is obtained to groups claim in the id token.
+
+Title: Retention
+
+URL Source: https://www.parseable.com/docs/server/features/setting-retention-for-log-stream
+
+Markdown Content:
+Retention
+=========
+
+Parseable allows setting the retention, or the amount of time that log data is kept in the system, for each log stream. The time can be set to a multiple of 1 day. Note that retention works at a stream level, and each stream can have a different retention period. Also, you can only set a single log stream per retention period.
+
+### Setting up
+
+You can set Retention via the Stream Management page (Stream \>\> Manage \>\> Retention). If you're using external applications to interact with Parseable, you can also use the retention API calls. Refer to the [API documentation](https://www.parseable.com/docs/api/retention) for details.
+
+### Configuration
+
+Here is sample retention configuration, with all the available options.
+
+Copy```
+[
+    {
+        "duration": "20d",
+        "action": "delete",
+        "description": "delete logs after 20 days"
+    }
+]
+```
+
+This table explains the configuration options.
+
+| Variable Name
+ | Required
+
+ | Description
+
+ |
+| --- | --- | --- |
+| `duration`
+
+ | Yes
+
+ | Total duration for which logs should be retained. Can be multiple of 1 day, e.g. `20d`.
+
+ |
+| `action`
+
+ | Yes
+
+ | Action to be taken when log data passes retention duration. Currently only `delete` is supported
+
+ |
+| `description`
+
+ | No
+
+ | Human friendly description of the log retention rule.
+
+ |
+
+
+ Title: Hot Tier
+
+URL Source: https://www.parseable.com/docs/server/features/tiering
+
+Markdown Content:
+### How it works
+
+Tiering in Parseable allows keeping a copy of log data on the query node (in addition to the object store). You can create storage tiers on query node disks, allowing hot/recent data on SSD and older data backed by S3/object storage. This architecture allows for much faster query response, while keeping costs very low because data is always backed on object store.
+
+The tiered storage capacity works at the log stream level. You can specify the size on disk available to a specific stream for **its** hot tier data. This is useful for situations where different streams have different query patterns, i.e. some stream need to be queried for predominantly recent data, while others not so much.
+
+### Setup hot tier
+
+To enable hot tier for a query node, add the environment variable `P_HOT_TIER_DIR` to the query node (or the standalone node) before starting the server. The value of environment variable should be set to the path of directory that you want to use for the data store. For example, `P_HOT_TIER_DIR=/path/to/hot/tier/directory`.
+
+Setting the environment variable enables the global hot tier mechanism. You'll now need to set hot tier size for specific streams based on your requirements. The setting is available in the `Manage` page of each stream, under the `Hot Tier Storage Size` section.
+
+### Under the hood
+
+When the global hot tier mechanism is enabled, the server identifies the drive (where the hot tier directory is created) and calculates the total size and the free size of the drive. The upper threshold for hot tier size is set to 80% of the total drive capacity. So if the drive is of 10 TiB, then 8 TiB is automatically considered the maximum size of hot tier (subject to disk availability).
+
+#### Size allocation
+
+Now when a specific stream requests a hot tier capacity of let's say 2 TiB GiB, server checks if it is possible to allocate. The maths is : max size possible (8 TiB) - total used size of the disk (assume 1.3 TiB) = 6.7 TiB. The server then allocates the 2 TiB to this stream.
+
+Once the hot tier is set up, a scheduler is configured to run every minute. This scheduler verifies if new files are available in remote object store and downloads them to the hot tier, ensuring that your most recent and frequently accessed data is always readily available.
+
+#### Populating hot tier
+
+Based on the size allocated for the hot tier (for a stream), the server starts downloading Parquet files from object store, beginning with the most recent data and moving backward in time. This approach ensures that the latest data, which is more likely to be queried, is prioritized.
+
+As each file is downloaded, it’s recorded in a `hottier.manifest.json` file. This manifest file is crucial for tracking which Parquet files are stored locally in the hot tier. Along with this, the system also updates the available and used sizes in the hot tier's JSON file, providing a clear view of the hot tier’s current state.
+
+The server deletes the oldest files when necessary. This happens under two conditions:
+
+*   Size exhaustion: When the total size of the files in the hot tier reaches the allocated limit.
+    
+*   Disk usage threshold: When the combined disk usage, including the hot tier, exceeds the configured disk usage threshold (e.g., 80%).
+    
+
+The `hottier.manifest.json` is updated to reflect the removal of old files, ensuring that the hot tier remains within its defined constraints while continuing to serve the most relevant data efficiently.
+
+#### Query flow for hot tier
+
+On receiving a query, the server fetches the `stream.json` and related `manifest.json` files based on the query time range. It then identifies the list of Parquet file paths from the manifest. The server checks if these files are available in the hot tier. If any of the Parquet files are present in the hot tier path, server utilizes those file, avoiding S3 GET calls. For files not in the hot tier, the system fetches the necessary data from S3.
+
+### Adjusting the hot tier Size
+
+If you need to adjust the size of the hot tier for an existing stream, you can do so with via the Stream Management page. Here’s how it works:
+
+*   Increasing the hot tier Size: When you increase the size of an existing hot tier, the system updates the meta file to reflect the new size. This allows for additional data to be stored locally without any interruption in service.
+    
+*   Decreasing the hot tier Size: Reducing the size of the hot tier is not allowed. If you attempt to do so, the server will respond with an error, maintaining the integrity of your current data storage setup.
+    
+Title: High Availability
+
+URL Source: https://www.parseable.com/docs/server/concepts/distributed-architecture
+
+Markdown Content:
+From the release v1.0.0 and onwards, Parseable supports a distributed, high-availability mode for production use cases where downtime is not an option. The distributed setup is designed to ensure fault tolerance and high availability for log ingestion.
+
+The distributed setup consists of multiple Parseable ingestion server, a query server and a S3 (or other object store) bucket. The cluster is managed by a leader server, doubling up as the query server.
+
+The Query (and leader) server uses metadata stored in the object store to query the data. The query server uses the Parseable manifest file and the Parquet footers in tandem to ensure that the data is read in fewest possible object store API calls.
+
+### Architecture
+
+Parseable distributed mode is based on a completely decoupled design with clear segregation between the compute and storage. Different components like the ingestor and querier, are on independent paths, and can be scaled independently.
+
+Each ingestor creates its own set of metadata files and data files - storing these files in a (internally) well-known location within the object storage system. This allows for a simple, clean path to scale ingestors as workloads increase. Similarly, this allows for clean scaling down of ingestors when workloads decrease. You can even scale ingestors to zero, and the system will continue to operate normally.
+
+The Query server primarily serves as a reader server, barring a few metadata files that it writes to the object store. This allows for a clean separation of concerns, and allows for the query server to be scaled vertically as needed. Query server also maintains a lazy list of ingestors that are currently active and uses this list to query the data.
+
+![Image 1: Parseable distributed cluster](https://cdn.hashnode.com/res/hashnode/image/upload/v1731045839423/FY-WvTj2e.png?auto=format?auto=compress,format&format=webp&q=75)
+
+### Migration from Standalone to Distributed
+
+If you're already running Parseable in standalone mode, and want to migrate to distributed mode, you can start the Parseable server(s) in distributed mode, and the server will automatically migrate the metadata and other relevant manifest files to the distributed mode. There is no additional step involved.
+
+Please note that this is a one way and one time process. It is not possible to move from a distributed deployment to a standalone deployment.
+
+### Pending features
+
+There are a few features that are not yet available in distributed mode. These will be added in future releases.
+
+*   Live querying from all the staging data in all the ingestors. Currently the query server queries all the data that is already pushed to the object store.
+    
+*   Caching of data in ingestors while ingestion.
+    
+*   Alerting is not yet supported in distributed mode. We're working on a way to provide alerts in distributed mode as well.
+    
+*   Live tail support is not yet available for distributed mode.
+
+Title: Ingestion
+
+URL Source: https://www.parseable.com/docs/server/concepts/ingestion
+
+Markdown Content:
+You can send Log events to Parseable via HTTP POST requests with data as JSON payload. You can use the HTTP output plugins of all the common logging agents like [FluentBit](https://www.parseable.com/docs/log-ingestion/agents/fluentbit), [Vector](https://www.parseable.com/docs/log-ingestion/agents/vector), [syslog-ng](https://www.parseable.com/docs/log-ingestion/agents/syslog-ng), [LogStash](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-http.html), among others to send log events to Parseable.
+
+You can also directly integrate Parseable with your application via [REST API calls](https://www.parseable.com/docs/server/api).
+
+### Log Streams
+
+Log streams are logical (and physical) collections of related log events. For example, in a Kubernetes cluster, you can have a log stream for each application or a log stream for each namespace - depending on how you want to query the data. A log stream is identified by a unique name, and role based access control, alerts, and notifications are supported at the log stream level.
+
+To start sending logs, you'll need to create a log stream first, via the Console `Create Log Stream` button.
+
+### Schema
+
+Schema is the structure of the log event. It defines the fields and their types. Parseable supports two types of schema - dynamic and static. You can choose the schema type while creating the log stream. Additionally, if you want to enforce a specific schema, you'll need to send that schema at the time of creating the log stream.
+
+At any point in time, you can fetch the schema of a log stream on the Console or the [Get Schema API](https://www.postman.com/parseable/workspace/parseable/request/22353706-cd821423-8b9d-4ce6-9d93-8926390eb82b).
+
+#### Dynamic
+
+Log streams by default have dynamic schema. This means you don't need to define a schema for a log stream. The Parseable server detects the schema from first event. If there are subsequent events (with new schema), it updates internal schema accordingly.
+
+Log data formats evolve over time, and users prefer a dynamic schema approach, where they don't have to worry about schema changes, and they are still able to ingest events to a given stream.
+
+**Note**  
+For dynamic schema, Parseable doesn't allow changing the type of an existing column whose type is already set. For example, if a column is detected as `string` in the first event, it can't be changed to `int` or `timestamp` in a later event. If you'd like to force a specific schema, you can set the schema while creating the stream.
+
+#### Static
+
+In some cases, you may want to enforce a specific schema for a log stream. You can do this by setting the static schema flag while creating the log stream. This schema will be enforced for all the events ingested to the stream. You'll need to provide the schema in the form of a JSON object with field names and their types, with the create stream API call. The following types are supported in the schema: `string`, `int`, `float`, `timestamp`, `boolean`.
+
+### Partitioning
+
+By default, the log events are partitioned based on the `p_timestamp` field. `p_timestamp` is an internal field added by Parseable to each log event. This field specifies the time when the Parseable server received this event. Parseable adds this field to ensure there is always a time axis to the log events, so it becomes easier to query the events based on time. Refer to the [historical data ingestion](https://www.parseable.com/docs/concepts/historical) section for more details.
+
+You can also partition the log events based on a custom _time_ field. For example, if you're sending events that contain a field called `datetime` (a column that has a timestamp in a valid format), you can specify this field as the partition field. This helps speed up the query performance when you're querying based on the partition field. Refer to the [custom partitioning](https://www.parseable.com/docs/concepts/partitioning) section for more details.
+
+### Flattening
+
+Nested JSON objects are automatically flattened. For example, the following JSON object
+
+```
+{
+  "foo": {
+    "bar": "baz"
+  }
+}
+```
+
+will be flattened to
+
+```
+{
+  "foo.bar": "baz"
+}
+```
+
+before it gets stored. While querying, this field should be referred to as `foo.bar`. For example, `select foo.bar from <stream-name>`. The flattened field will be available in the schema as well.
+
+### Batching and Compression
+
+Wherever applicable, we recommend enabling the log agent's compression and batching features to reduce network traffic and improve ingestion performance. The maximum payload size in Parseable is 10 MiB (10485760 Bytes). The payload can contain single log event as a JSON object or multiple log events in a JSON array. There is no limit to the number of batched events in a single call.
+
+### Timestamp
+
+Correct _time_ is critical to understand the proper sequence of events. Timestamps are important for debugging, analytics, and deriving transactions. We recommend that you include a timestamp in your log events formatted in [RFC3339](https://tools.ietf.org/html/rfc3339) format.
+
+Parseable uses the event-received timestamp and adds it to the log event in the field `p_timestamp`. This ensures there is a time reference in the log event, even if the original event doesn't have a timestamp. If you'd like to use your own timestamp instead for partitioning of data, please refer the [documentation here](https://www.parseable.com/docs/concepts/historical#time-partitioning-in-parseable).
+
+Staging in Parseable refers to the process of storing log data on locally attached storage before it is pushed to a long term and persistent store like S3 or something similar. Staging acts as a buffer for incoming events and allows a stable approach to pushing events to the persistent store.
+
+### Staging
+
+Once an HTTP call is received on the Parseable server, events are parsed and converted to Arrow format in memory. This Arrow data is then written to the staging directory (defaults to `$PWD/staging`). Every minute, the server converts the Arrow data to Parquet format and pushes it to the persistent store. We chose a minute as the default interval, so there is a clear boundary between events, and the prefix structure on S3 is predictable.
+
+The query flow in Parseable allows transparent access to the data in the staging directory. This means that the data in the staging directory is queryable in real-time. As a user, you won't see any difference in the data fetched from the staging directory or the persistent store.
+
+The staging directory can be configured using the `P_STAGING_DIR` environment variable, as explained in the [environment vars](https://www.parseable.com/docs/environment-variables) section.
+
+### Planning for Production
+
+When planning for the production deployment of Parseable, the two most important considerations from a staging perspective are:
+
+*   **Storage size**: Ensure that the staging area has sufficient capacity to handle the anticipated log volume. This prevents data loss due to disk space exhaustion. To calculate the storage size, consider the average log event size, the expected log volume for 5-10 minutes. This is done as under high loads, the conversion to Parquet and subsequent push to S3 may lag behind.
+    
+*   **Local storage redundancy**: Data in staging has not been committed to persistent store, it is important to have the staging itself reliable and redundant. This way, the staging data is protected from data loss due to simple disk failures. If using AWS, choose from services like EBS (Elastic Block Store) or EFS (Elastic File System), and mount these volumes on the Parseable server. Similarly, on Azure chose from Managed Disks or Azure Files. If you're using a private cloud, a reliable mounted volume from a NAS or SAN can be used.
+    
+Title: Partitioning
+
+URL Source: https://www.parseable.com/docs/server/concepts/partitioning
+
+Markdown Content:
+Parseable Partitioning: Partition log columns to improve query performance | ParseablePartitioning in databases generally refers to the splitting of data to achieve goals like high availability, scalability, or performance. Sometimes it is also confused with another data-splitting approach called _**Sharding**_. Sharding means spreading the data based on a shard key onto separate server instances to spread load.
+
+### Partitioning in Parseable
+
+Partitioning is the splitting of log data based on specific columns and value pairs to improve query performance and storage efficiency. The decision to choose specific columns for partitioning is based on the access patterns of the data. By partitioning log data, you can optimize query performance, reduce the amount of data scanned during queries, and improve storage efficiency.
+
+#### When should you use partitioning?
+
+Partitioning is useful when you have a clear understanding of the most common data access patterns for a given log stream (i.e. dataset). More specifically, when the columns where users are most likely to `filter` or `group` by are well known.
+
+Also, a relatively larger dataset (at least few TBs or more) is better suited for partitioning. For tiny datasets, the overhead of managing partitions might outweigh the benefits.
+
+#### Selecting columns for partitioning
+
+Thg first step is to find which columns users are most likely to `filter` or `group` by. Once you have this information, it is important to know the variance in the column values (i.e. the number of unique values in the column). For example, if you have a column `log_level` with only 2 unique values - `ERR` and `WARN`, and another column `os` with 3 unique values - `darwin`, `linux` and `windows`. You can select these two columns for partitioning. But if there is a column called `log_message` where each log event has a unique message, partitioning on this column will in fact make things worse.
+
+#### How to set up partitions?
+
+You can specify the columns for partitioning while creating a stream on the Parseable Console (Create Stream \>\> Custom Partition Field). Here, you can specify up to 3 columns per log stream. Once the stream is created, Parseable will automatically create physical partitions based on the column values.
+
+You can also edit the partitioning columns for an existing stream (Stream \>\> Manage \>\> Info \>\> Custom Partition Field). Note that this will have effect on all the new data that is ingested into the stream, and not the existing data.
+
+### How does partitioning work?
+
+When a stream is created with partitioning enabled, Parseable will create physical partitions based on the column values. For example, if you have a column `log_level` with the values `ERR` and `WARN`, Parseable will create two physical partitions, one for each value.
+
+When a query is run with a filter on `log_level`, Parseable will only scan the relevant partition(s) and not the entire dataset. This will significantly reduce the amount of data scanned during queries, and improve query performance.
+
+Let's understand this better with an example. Let's say you have log events with columns `timestamp`, `log_level`, `service_name`, `log_message` and `os`. One of the most common data query patterns is to run queries where events are filtered on `log_level` and `os`, i.e. most of the queries are of the form `select * from logs where log_level = '...' and  os = '...'`. Note that `...` is a placeholder here.
+
+In this case we recommend partitioning the data based on `log_level` and `os` column. This will create physical partitions (prefixes or sub-directories) based on various `log_level` and `os` and its values. Now that data is organized in this way, the query engine, on spotting a query with `log_level` filter, will only scan the relevant partition(s) and not the entire dataset. This will significantly reduce the amount of data scanned during queries, and improve query performance.
+
+Physically on the storage (S3 bucket or disk), you'll see the data organized by columns (that are partitioned) in alphabetical order. For example, if you have partitioning on `log_level` and `os`, you'll see the data organized like this:
+
+```
+  log_level=ERR
+    os=darwin
+    os=linux
+    os=windows
+  log_level=WARN
+    os=darwin
+    os=linux
+    os=windows
+```
+
+### Partitioning best practices
+
+*   **Choose the right columns**: Choose columns that are most frequently used in queries.
+*   **Understand the data distribution**: Ensure that the column you choose has a good distribution of values.
+*   **Avoid over partitioning**: Partitioning on columns with high cardinality (i.e. many unique values) can lead to over partitioning. This can lead to a large number of small partitions, which can be inefficient.
+*   **Monitor and adjust**: Monitor the query performance and adjust the partitions as needed.
+
+Title: Query
+
+URL Source: https://www.parseable.com/docs/server/concepts/query
+
+Markdown Content:
+In addition to a simple, easy to use filtering interface, Parseable also offers a PostgreSQL compatible SQL query interface to query log data. Users can choose to use the filter interface directly without having to deal with SQL at all. However for more complex queries and advanced users, Parseable offers a SQL query interface.
+
+You can specify the query and the relevant time range for which you want this query to be run. The response is inclusive of both the start and end timestamps.
+
+The filter interface is quite self explanatory, with options to filter by specific columns and values and also by time range. In this document, we'll cover more about the SQL API and its capabilities.
+
+Check out the [Query API](https://www.postman.com/parseable/workspace/parseable/request/22353706-7b281b33-2f37-4034-9386-9a78e37b1db1) in Postman.
+
+### How does it work?
+
+After parsing and creating the execution plan for a query, the Parseable query server uses the data manifest file to filter out the relevant Parquet files. The data manifest file is a JSON file that contains the specific column metadata for a whole day. The querier uses this file to filter the relevant Parquet files based on the query filters and the time range.
+
+Only the relevant Parquet file paths are then added as a data source to custom table provider. Datafusion then efficiently reads the files via the GetRange S3 API, pulling only the very specific data needed for the query. This ensures that only the relevant data is read from the storage, reducing the query time and cost.
+
+### Supported functions
+
+Parseable supports a wide range of SQL functions - Aggregate, Window and Scalar functions. Refer the Apache Datafusion documentation for the complete list of supported functions and their usage.
+
+*   [Aggregate Functions](https://datafusion.apache.org/user-guide/sql/aggregate_functions.html)
+    
+*   [Window Functions](https://datafusion.apache.org/user-guide/sql/window_functions.html)
+    
+*   [Scalar Functions](https://datafusion.apache.org/user-guide/sql/scalar_functions.html)
+    
+
+### Query with regular expressions
+
+This section provides examples of how to use regular expressions in Parseable queries.
+
+*   Match regular expression (Case Sensitive)
+
+```sql
+SELECT * FROM frontend where message ~ 'failing' LIMIT 9000;
+```
+
+*   Match regular expression (Case Insensitive)
+
+```sql
+SELECT * FROM frontend where message ~* 'application' LIMIT 9000;
+```
+
+*   Does not match regular expression (Case Sensitive)
+
+```sql
+SELECT * FROM frontend where message !~ 'started' LIMIT 9000;
+```
+
+*   Does not match regular expression (Case Insensitive)
+
+```sql
+SELECT * FROM frontend where message !~* 'application' LIMIT 9000;
+```
+
+*   Matches the beginning of the string (Case Insensitive)
+
+```sql
+SELECT * FROM frontend where message ~* '^a' LIMIT 9000;
+```
+
+*   Matches the end of the string
+
+```sql
+SELECT * FROM frontend where message ~ 'failing$' LIMIT 9000;
+```
+
+*   Matches numeric type data
+
+```sql
+SELECT * FROM frontend where uuid ~ '[0-9]' LIMIT 9000;
+```
+
+*   Matches numeric type data (two digits)
+
+```sql
+SELECT * FROM frontend where uuid ~ '[0-9][0-9]' LIMIT 9000;
+```
+
+*   Postgres `regexp_replace`: `REGEXP_REPLACE()` function is used to replace every instance of the numeric type data with the symbol `*`. In the below sample, we provided a flag `g` that searches for every instance of the specified pattern.
+
+```sql
+SELECT REGEXP_REPLACE(uuid,'[0-9]','*','g') FROM frontend LIMIT 9000;
+```
+
+*   Postgres `regexp_match`: When a Regex is run against a string, the `REGEXP_MATCHES()` function compares the two and returns the string that matches the pattern as a set.
+
+```sql
+SELECT REGEXP_MATCH(email,'@(.*)$')  FROM frontend where email is not null LIMIT 10;
+```
+
+*   Postgres regex numbers only: Use the `REGEXP_REPLACE()` function to extract only the numbers from a string in PostgreSQL.
+
+```sql
+SELECT REGEXP_REPLACE(email,'\\D','','g') FROM frontend where email is not null LIMIT 10;
+```
+
+*   Postgres regex split: `SPLIT_PART()` function can split a string into many parts. To divide a string into several pieces, we must pass the String, the Delimiter, and the Field Number.
+
+```sql
+SELECT SPLIT_PART(email,'@',1) FROM frontend where email is not null LIMIT 10 -- return before @ from email;
+SELECT SPLIT_PART(email,'@',2) FROM frontend where email is not null LIMIT 10 -- return after @ from email;
+```
+
+*   Postgres Regex Remove Special Characters: Using the REGEXP\_REPLACE() function, all Special Characters from a supplied text can be eliminated.
+
+```sql
+SELECT REGEXP_REPLACE(email, '[^\\w]+','','g') FROM frontend where email is not null LIMIT 10;
+```
+
+*   Functions and Operators in pattern matching: `Like` and other POSIX regular expressions are supported.
+
+```sql
+SELECT * FROM frontend where email LIKE '%test%' LIMIT 10;
+SELECT * FROM frontend where email ~ '^test' LIMIT 10;
+```
+
+### Case sensitivity
+
+Log stream column names are case sensitive. For example, if you send a log event like
+
+```json
+{
+  "foo": "bar",
+  "Foo": "bar"
+}
+```
+
+Parseable will create two columns, `foo` and `Foo` in the schema. So, while querying, please refer to the fields as `foo` and `Foo` respectively. While querying, unquoted identifiers are converted to lowercase. To query column names with uppercase letters, they must be passed in double quotes. For example, when sending a query via the REST API, the following JSON payload will apply the `WHERE` condition to the column `Foo`:
+
+```json
+{
+    "query":"select * from stream where \"Foo\"=bar",
+    "startTime":"2023-02-14T00:00:00+00:00",
+    "endTime":"2023-02-15T23:59:00+00:00"
+}
+```
+
+If you're querying Parseable via Grafana UI (via the [data source plugin](https://github.com/parseablehq/parseable-datasource)), you can use the following query to query the column `Foo`:
+
+```sql
+SELECT * FROM stream WHERE "Foo" = 'bar'
+```
+
+### Query analysis
+
+In some cases, you may want to understand the query performance. To view the detailed query execution plan, use the `EXPLAIN ANALYZE` keyword in the query. For example, the following query will return the query execution plan and time taken per step.
+
+```json
+{
+	"query": "EXPLAIN ANALYZE SELECT * FROM frontend LIMIT 100",
+	"startTime": "2023-03-07T05:28:10.428Z",
+	"endTime": "2023-03-08T05:28:10.428Z"
+}
+```
+
+### Get response fields information with query results
+
+To get the query result fields as a part of query API response, add the query parameter `fields=true` to the API call, e.g. `http://localhost:8000/api/v1/query?fields=true`.
+
+For example, for a query like `select count(*) as count from app1`, with the query parameter added will respond like this:
+
+```json
+{
+    "fields": [
+        "count"
+    ],
+    "records": [
+        {
+            "count": 2
+        }
+    ]
+}
+```
+
