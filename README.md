@@ -10,6 +10,7 @@ A curated collection of `llms.txt` files from across the web. This repository in
 
 An analysis of the `llms.txt` corpus shows the most referenced providers:
 
+| agentready.site | https://agentready.site/llms.txt | AI Readiness Scanner — measures website visibility to ChatGPT, Perplexity, Google AI Overviews, and Claude |
 | Provider               | Website Count |
 |------------------------|--------------:|
 | Google Vertex AI       | 91            |
