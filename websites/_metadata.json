@@ -192,7 +192,7 @@
     "urlFull": "https://docs.zapier.com/llms-full.txt",
     "title": "Zapier",
     "category": "Products",
-    "description": "Workflow automation software for everyone. Automate your work across 7,000+ app integrations\u2014no developers, no IT tickets, no delays.",
+    "description": "Workflow automation software for everyone. Automate your work across 7,000+ app integrations—no developers, no IT tickets, no delays.",
     "mainDomain": "https://zapier.com",
     "down": false,
     "llms-txt-tokens": 13038,
@@ -214,7 +214,7 @@
     "urlFull": "https://docs.pinecone.io/llms-full.txt",
     "title": "Pinecone",
     "category": "Developer tools",
-    "description": "Search through billions of items for similar matches to any object, in milliseconds. It\u2019s the next generation of search, an API call away.",
+    "description": "Search through billions of items for similar matches to any object, in milliseconds. It’s the next generation of search, an API call away.",
     "mainDomain": "https://pinecone.io",
     "down": false,
     "llms-txt-tokens": 10559,
@@ -324,7 +324,7 @@
     "urlFull": null,
     "title": "Campsite",
     "category": "Products",
-    "description": "Campsite is designed for distributed teams to cut through the noise of daily work \u2014 move faster with more transparent, organized, and thoughtful conversations.",
+    "description": "Campsite is designed for distributed teams to cut through the noise of daily work — move faster with more transparent, organized, and thoughtful conversations.",
     "mainDomain": "https://www.campsite.com/",
     "down": false,
     "llms-txt-tokens": 481,
@@ -379,7 +379,7 @@
     "urlFull": "https://dotenvx.com/llms-full.txt",
     "title": "dotenvx",
     "category": "Developer tools",
-    "description": "A better dotenv\u2013from the creator of dotenv",
+    "description": "A better dotenv–from the creator of dotenv",
     "mainDomain": "https://dotenvx.com/",
     "down": false,
     "llms-txt-tokens": 5504,
@@ -511,7 +511,7 @@
     "urlFull": "https://www.activepieces.com/docs/llms-full.txt",
     "title": "Activepieces",
     "category": "AI",
-    "description": "Activepieces is the best way to build a self-driven AI culture across HR, finance, marketing, sales and more \u2014 under the supervision of your IT ninjas",
+    "description": "Activepieces is the best way to build a self-driven AI culture across HR, finance, marketing, sales and more — under the supervision of your IT ninjas",
     "mainDomain": "https://activepieces.com",
     "down": false,
     "llms-txt-tokens": 4536,
@@ -577,7 +577,7 @@
     "urlFull": "https://docs.axle.insure/llms-full.txt",
     "title": "Axle",
     "category": "Developer tools",
-    "description": "Axle is \u201cPlaid for insurance\u201d - a universal API for insurance data.",
+    "description": "Axle is “Plaid for insurance” - a universal API for insurance data.",
     "mainDomain": "https://axle.insure",
     "down": false,
     "llms-txt-tokens": 1623,
@@ -709,7 +709,7 @@
     "urlFull": "https://docs.codeium.com/llms-full.txt",
     "title": "Codeium",
     "category": "AI",
-    "description": "Codeium offers best in class AI code completion, search, and chat \u2014 all for free.",
+    "description": "Codeium offers best in class AI code completion, search, and chat — all for free.",
     "mainDomain": "https://codeium.com/",
     "down": false,
     "llms-txt-tokens": 1076,
@@ -874,7 +874,7 @@
     "urlFull": "https://docs.luxalgo.com/llms-full.txt",
     "title": "LuxAlgo",
     "category": "Finance",
-    "description": "Markets, illuminated \u2014 World's largest provider of trading indicators for every market from stocks, crypto, and forex.",
+    "description": "Markets, illuminated — World's largest provider of trading indicators for every market from stocks, crypto, and forex.",
     "mainDomain": "https://luxalgo.com",
     "down": false,
     "llms-txt-tokens": 1701,
@@ -907,7 +907,7 @@
     "urlFull": "https://docs.pinata.cloud/llms-full.txt",
     "title": "Pinata",
     "category": "Developer tools",
-    "description": "Add file uploads and retrieval in minutes so you can focus on your app \u2014 because you\u2019ve got better things to code than infrastructure.",
+    "description": "Add file uploads and retrieval in minutes so you can focus on your app — because you’ve got better things to code than infrastructure.",
     "mainDomain": "https://pinata.cloud/",
     "down": false,
     "llms-txt-tokens": 4730,
@@ -1061,7 +1061,7 @@
     "urlFull": null,
     "title": "Evan Boehs",
     "category": "Websites",
-    "description": "Evan Boehs \u2014 personal website.",
+    "description": "Evan Boehs — personal website.",
     "mainDomain": "https://boehs.org",
     "down": false,
     "llms-txt-tokens": 132,
@@ -1083,7 +1083,7 @@
     "urlFull": "https://dev.writer.com/llms-full.txt",
     "title": "Writer",
     "category": "AI",
-    "description": "Build generative AI into any business process with Writer\u2019s secure enterprise platform. Trusted by world-class enterprises.",
+    "description": "Build generative AI into any business process with Writer’s secure enterprise platform. Trusted by world-class enterprises.",
     "mainDomain": "https://writer.com/",
     "down": false,
     "llms-txt-tokens": 3586,
@@ -1215,7 +1215,7 @@
     "urlFull": null,
     "title": "Webmemo",
     "category": "Websites",
-    "description": "Walter Sch\u00e4rer blogs at Webmemo about online marketing, WordPress, SEO, social media, blogger relations, and much more.",
+    "description": "Walter Schärer blogs at Webmemo about online marketing, WordPress, SEO, social media, blogger relations, and much more.",
     "mainDomain": "https://webmemo.ch/",
     "down": false,
     "llms-txt-tokens": 3334,
@@ -1370,7 +1370,7 @@
     "urlFull": "https://developers.avacloud.io/llms-full.txt",
     "title": "AvaCloud",
     "category": "Developer tools",
-    "description": "A managed blockchain service enabling teams to rapidly build, deploy, and scale decentralized networks\u2013customized for any use case.",
+    "description": "A managed blockchain service enabling teams to rapidly build, deploy, and scale decentralized networks–customized for any use case.",
     "mainDomain": "https://www.avacloud.io/",
     "down": false,
     "llms-txt-tokens": 5414,
@@ -2042,7 +2042,7 @@
     "urlFull": null,
     "title": "BtcTurk",
     "category": "Finance",
-    "description": "BtcTurk, u\u00e7tan uca sundu\u011fu self servis finansal hizmetlerin yan\u0131 s\u0131ra kriptopara ve Bitcoin ekosistemine de katk\u0131 sunuyor.",
+    "description": "BtcTurk, uçtan uca sunduğu self servis finansal hizmetlerin yanı sıra kriptopara ve Bitcoin ekosistemine de katkı sunuyor.",
     "mainDomain": "https://btcturk.com",
     "down": false,
     "llms-txt-tokens": 737,
@@ -2108,7 +2108,7 @@
     "urlFull": null,
     "title": "ChatKnow",
     "category": "Products",
-    "description": "Enterprise-level \u201ccross-border private\u201d domain marketing management tool.",
+    "description": "Enterprise-level “cross-border private” domain marketing management tool.",
     "mainDomain": "https://chatknow.com",
     "down": false,
     "llms-txt-tokens": 5932,
@@ -2372,7 +2372,7 @@
     "urlFull": null,
     "title": "WoowUp",
     "category": "Products",
-    "description": "WoowUp permite a las empresas retail a explotar al m\u00e1ximo los datos de sus clientes, poni\u00e9ndolos al servicio del negocio.",
+    "description": "WoowUp permite a las empresas retail a explotar al máximo los datos de sus clientes, poniéndolos al servicio del negocio.",
     "mainDomain": "https://www.woowup.com/",
     "down": false,
     "llms-txt-tokens": 2615,
@@ -2416,7 +2416,7 @@
     "urlFull": "https://clerk.com/docs/llms-full.txt",
     "title": "Clerk",
     "category": "Developer tools",
-    "description": "The easiest way to add authentication and user management to your application. Purpose-built for React, Next.js, Remix, and \u201cThe Modern Web\u201d.",
+    "description": "The easiest way to add authentication and user management to your application. Purpose-built for React, Next.js, Remix, and “The Modern Web”.",
     "mainDomain": "https://clerk.com",
     "down": false,
     "llms-txt-tokens": 11727,
@@ -2427,7 +2427,7 @@
     "urlFull": null,
     "title": "Designmodo",
     "category": "Products",
-    "description": "Build beautiful email designs, websites, and responsive landing pages with Designmodo\u2019s email & web design tools in minutes \u2014 no coding needed.",
+    "description": "Build beautiful email designs, websites, and responsive landing pages with Designmodo’s email & web design tools in minutes — no coding needed.",
     "mainDomain": "https://designmodo.com",
     "down": false,
     "llms-txt-tokens": 24533,
@@ -2603,7 +2603,7 @@
     "urlFull": null,
     "title": "Analog",
     "category": "Finance",
-    "description": "Analog is an omni-chain interoperability protocol suite consisting of the Timechain (a sovereign blockchain), developer toolkits, & a unified API\u2014all designed to simplify access to Web3 data while breaking down the barriers to cross-chain communication.",
+    "description": "Analog is an omni-chain interoperability protocol suite consisting of the Timechain (a sovereign blockchain), developer toolkits, & a unified API—all designed to simplify access to Web3 data while breaking down the barriers to cross-chain communication.",
     "mainDomain": "https://analog.one",
     "down": false,
     "llms-txt-tokens": 2228,
@@ -2744,9 +2744,9 @@
   {
     "url": "https://docs.bsquared.network/llms.txt",
     "urlFull": null,
-    "title": "B\u00b2 Network",
+    "title": "B² Network",
     "category": "Finance",
-    "description": "B\u00b2 Network is the most practical Bitcoin Layer2 Network.",
+    "description": "B² Network is the most practical Bitcoin Layer2 Network.",
     "mainDomain": "https://bsquared.network",
     "down": false,
     "llms-txt-tokens": 616,
@@ -3054,7 +3054,7 @@
     "urlFull": null,
     "title": "Common Ninja",
     "category": "Products",
-    "description": "Boost engagement and increase conversions on your website with Common Ninja\u2019s free widgets and apps\u2014simple to embed on any website.",
+    "description": "Boost engagement and increase conversions on your website with Common Ninja’s free widgets and apps—simple to embed on any website.",
     "mainDomain": "https://commoninja.com",
     "down": false,
     "llms-txt-tokens": 2127,
@@ -3129,9 +3129,9 @@
   {
     "url": "https://docs.danielvoelk.de/llms.txt",
     "urlFull": null,
-    "title": "Daniel V\u00f6lk",
+    "title": "Daniel Völk",
     "category": "Websites",
-    "description": "Webdesigner Freelancer Daniel V\u00f6lk. Schnell und unkompliziert zur neuen Webseite. Webdesign \u2713 SEO \u2713 Wordpress \u2713 Online-Marketing \u2713",
+    "description": "Webdesigner Freelancer Daniel Völk. Schnell und unkompliziert zur neuen Webseite. Webdesign ✓ SEO ✓ Wordpress ✓ Online-Marketing ✓",
     "mainDomain": "https://danielvoelk.de",
     "down": false,
     "llms-txt-tokens": 538,
@@ -3329,7 +3329,7 @@
     "urlFull": null,
     "title": "IDRISS",
     "category": "Finance",
-    "description": "Our apps bring the power of crypto and AI to your browsing experience, empower creators through digital ownership, and help find what\u2019s true on the internet.",
+    "description": "Our apps bring the power of crypto and AI to your browsing experience, empower creators through digital ownership, and help find what’s true on the internet.",
     "mainDomain": "https://idriss.xyz",
     "down": false,
     "llms-txt-tokens": 270,
@@ -3362,7 +3362,7 @@
     "urlFull": null,
     "title": "Imagine.Art",
     "category": "AI",
-    "description": "Create AI Art and turn your imaginations into reality with Imagine\u2019s AI Art Generator and produce stunning visuals to cover up your artistic thoughts.",
+    "description": "Create AI Art and turn your imaginations into reality with Imagine’s AI Art Generator and produce stunning visuals to cover up your artistic thoughts.",
     "mainDomain": "https://imagine.art",
     "down": false,
     "llms-txt-tokens": 829,
@@ -3560,7 +3560,7 @@
     "urlFull": null,
     "title": "Island Router",
     "category": "Products",
-    "description": "The best internet experience starts with the best router. That\u2019s why we built Island.",
+    "description": "The best internet experience starts with the best router. That’s why we built Island.",
     "mainDomain": "https://islandrouter.com",
     "down": false,
     "llms-txt-tokens": 6717,
@@ -3846,7 +3846,7 @@
     "urlFull": null,
     "title": "LightLink",
     "category": "Finance",
-    "description": "LightLink is an Ethereum Layer 2 blockchain that abstracts it all\u2014from transactions and private keys to any interaction with the blockchain.",
+    "description": "LightLink is an Ethereum Layer 2 blockchain that abstracts it all—from transactions and private keys to any interaction with the blockchain.",
     "mainDomain": "https://lightlink.io",
     "down": false,
     "llms-txt-tokens": 893,
@@ -3879,7 +3879,7 @@
     "urlFull": null,
     "title": "Livespotting",
     "category": "Products",
-    "description": "Die L\u00f6sung f\u00fcr zeitgem\u00e4\u00dfes Video-Marketing mit Webcams. Zielgruppen aktivieren und konvertieren. Live-Streaming bis 4K.",
+    "description": "Die Lösung für zeitgemäßes Video-Marketing mit Webcams. Zielgruppen aktivieren und konvertieren. Live-Streaming bis 4K.",
     "mainDomain": "https://livespotting.com",
     "down": false,
     "llms-txt-tokens": 8401,
@@ -3989,7 +3989,7 @@
     "urlFull": null,
     "title": "Redpanda",
     "category": "Developer tools",
-    "description": "Redpanda is a powerful, simple, and cost-efficient streaming data platform that is compatible with Kafka\u00c2\u00ae APIs while eliminating Kafka complexity.",
+    "description": "Redpanda is a powerful, simple, and cost-efficient streaming data platform that is compatible with KafkaÂ® APIs while eliminating Kafka complexity.",
     "mainDomain": "https://www.redpanda.com/",
     "down": false,
     "llms-txt-tokens": 1381,
@@ -4356,7 +4356,7 @@
     "urlFull": "https://handbook.exemplar.dev/llms-full.txt",
     "llms-full-txt-tokens": 96281,
     "mainDomain": "https://handbook.exemplar.dev",
-    "title": "The AI Engineer\u2019s Handbook",
+    "title": "The AI Engineer’s Handbook",
     "description": "Comprehensive guide for AI Engineers covering LLMs, Vector Databases, RAG Systems, AI Agents, Prompt Engineering, and System Design. Learn to build scalable AI applications."
   },
   {
@@ -4719,7 +4719,7 @@
     "urlFull": "https://liveblocks.io/llms-full.txt",
     "llms-full-txt-tokens": 442003,
     "mainDomain": "https://liveblocks.io",
-    "description": "The best products for the AI era aren\u2019t solo experiences\u2014they\u2019re collaborative, like Notion and Figma. Liveblocks provides ready\u2011made features that make your app multiplayer, engaging, and AI\u2011ready."
+    "description": "The best products for the AI era aren’t solo experiences—they’re collaborative, like Notion and Figma. Liveblocks provides ready‑made features that make your app multiplayer, engaging, and AI‑ready."
   },
   {
     "url": "https://monsterui.answer.ai/llms.txt",
@@ -4785,7 +4785,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://www.finsago.com",
-    "description": "Der erste Versicherungsrechner mit KI-gest\u00fczte, blitzschnell platform f\u00fcr \u00d6sterreich."
+    "description": "Der erste Versicherungsrechner mit KI-gestüzte, blitzschnell platform für Österreich."
   },
   {
     "url": "https://cog.run/llms.txt",
@@ -4862,7 +4862,7 @@
     "urlFull": "https://transloadit.com/llms-full.txt",
     "llms-full-txt-tokens": 1073,
     "mainDomain": "https://transloadit.com",
-    "description": "Transloadit is the world\u00e2\u0080\u0099s most advanced file uploading and processing service aimed at developers. Our API is an all-in-one tool for your users' files."
+    "description": "Transloadit is the worldâs most advanced file uploading and processing service aimed at developers. Our API is an all-in-one tool for your users' files."
   },
   {
     "url": "https://docs.moondream.ai/llms.txt",
@@ -4927,7 +4927,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://www.ovirank.com",
-    "description": "Augmentez le nombre de clics, visiteurs et clients avec Ovirank gr\u00c3\u00a2ce au SEO IA. Rankez sur Google et ChatGPT gr\u00c3\u00a2ce \u00c3\u00a0 nos strat\u00c3\u00a9gies de r\u00c3\u00a9f\u00c3\u00a9rencement naturel."
+    "description": "Augmentez le nombre de clics, visiteurs et clients avec Ovirank grÃ¢ce au SEO IA. Rankez sur Google et ChatGPT grÃ¢ce Ã  nos stratÃ©gies de rÃ©fÃ©rencement naturel."
   },
   {
     "url": "https://graphite-note.com/llms.txt",
@@ -4949,7 +4949,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://rcponline.pl",
-    "description": "Prosty system do rejestracji czasu pracy - Ewidencja Czasu Pracy, Uk\u0142adanie Grafik\u00f3w Pracy, Planowanie Urlop\u00f3w, Rejestratory Czasu Pracy."
+    "description": "Prosty system do rejestracji czasu pracy - Ewidencja Czasu Pracy, Układanie Grafików Pracy, Planowanie Urlopów, Rejestratory Czasu Pracy."
   },
   {
     "url": "https://www.fagaf.com/llms.txt",
@@ -4993,7 +4993,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://blueshift.com",
-    "description": "Automate cross-channel campaigns with Blueshift\u2019s customer engagement platform that combines the power of AI, a CDP, and marketing automation."
+    "description": "Automate cross-channel campaigns with Blueshift’s customer engagement platform that combines the power of AI, a CDP, and marketing automation."
   },
   {
     "url": "https://www.tryprofound.com/llms.txt",
@@ -5069,7 +5069,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://daitoku0110.net",
-    "description": "miibo Designer\u5ca1\u5927\u5fb3\u304c\u89e3\u8aac\u8a18\u4e8b\u3084\u5229\u7528\u4e8b\u4f8b\u3092\u63d0\u4f9b\u3057miibo\u306e\u304a\u56f0\u308a\u3054\u3068\u3092\u89e3\u6c7a\u3057\u307e\u3059\u3002"
+    "description": "miibo Designer岡大徳が解説記事や利用事例を提供しmiiboのお困りごとを解決します。"
   },
   {
     "url": "https://bun.sh/llms.txt",
@@ -5080,7 +5080,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://bun.sh",
-    "description": "Bundle, install, and run JavaScript & TypeScript \u2014 all in Bun. Bun is a new JavaScript runtime with a native bundler, transpiler, task runner, and npm client built-in."
+    "description": "Bundle, install, and run JavaScript & TypeScript — all in Bun. Bun is a new JavaScript runtime with a native bundler, transpiler, task runner, and npm client built-in."
   },
   {
     "url": "https://docs.reown.com/llms.txt",
@@ -5200,7 +5200,7 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://seolevante.com",
-    "description": "Como Consultor\u00eda SEO, mi trabajo consiste en posicionar tu empresa en internet con solidez y de forma duradera. Las fases son: auditor\u00eda, planificaci\u00f3n, ejecuci\u00f3n y seguimiento, contacta y lograr\u00e9 tu confianza."
+    "description": "Como Consultoría SEO, mi trabajo consiste en posicionar tu empresa en internet con solidez y de forma duradera. Las fases son: auditoría, planificación, ejecución y seguimiento, contacta y lograré tu confianza."
   },
   {
     "url": "https://www.essio.ai/llms.txt",
@@ -5404,7 +5404,7 @@
   {
     "url": "https://swred.com/llms.txt",
     "title": "SWRED",
-    "description": "Dise\u00f1o web integral Mobile First Responsive Hosting Dominio internacional Tienda e-commerce Clientes en Espa\u00f1a, USA. LATAM M\u00e1s de 20 a\u00f1os de experiencia",
+    "description": "Diseño web integral Mobile First Responsive Hosting Dominio internacional Tienda e-commerce Clientes en España, USA. LATAM Más de 20 años de experiencia",
     "category": "Websites",
     "llms-txt-tokens": 11363,
     "down": false,
@@ -5426,7 +5426,7 @@
   {
     "url": "https://serviwebsi.com/llms.txt",
     "title": "ServiwebSI",
-    "description": "Dise\u00f1o web centrado en m\u00f3vil Mobile-First Hosting Dominio Ecommerce 20 a\u00f1os de experiencia Clientes en toda Espa\u00f1a",
+    "description": "Diseño web centrado en móvil Mobile-First Hosting Dominio Ecommerce 20 años de experiencia Clientes en toda España",
     "category": "Websites",
     "llms-txt-tokens": 6254,
     "down": false,
@@ -5437,7 +5437,7 @@
   {
     "url": "https://brucgironashop.com/llms.txt",
     "title": "BrucGirona SHOP",
-    "description": "Venta online rollos brezo natural y seto artificial para vallas y ocultaciones de jard\u00edn. Env\u00edos a Espa\u00f1a. Pagos con tarjeta. Venta directa de f\u00e1brica.",
+    "description": "Venta online rollos brezo natural y seto artificial para vallas y ocultaciones de jardín. Envíos a España. Pagos con tarjeta. Venta directa de fábrica.",
     "category": "Websites",
     "llms-txt-tokens": 12453,
     "down": false,
@@ -5447,8 +5447,8 @@
   },
   {
     "url": "https://tiendaxpels.com/llms.txt",
-    "title": "TIENDA XP\u00c8LS",
-    "description": "Tienda online productos peluquer\u00eda, belleza est\u00e9tica las mejores marcas. Pagos con tarjeta de credito, transferencia, envios a toda la Peninsula desde Barcelona",
+    "title": "TIENDA XPÈLS",
+    "description": "Tienda online productos peluquería, belleza estética las mejores marcas. Pagos con tarjeta de credito, transferencia, envios a toda la Peninsula desde Barcelona",
     "category": "Websites",
     "llms-txt-tokens": 2496,
     "down": false,
@@ -5580,7 +5580,7 @@
   {
     "url": "https://kanbanpizza.onrender.com/static/llms.txt",
     "title": "Kanban Pizza",
-    "description": " Game: Master Agile and Kanban through virtual pizza-making. Collaborate online and streamline your workflow\u2014fun for teams!",
+    "description": " Game: Master Agile and Kanban through virtual pizza-making. Collaborate online and streamline your workflow—fun for teams!",
     "category": "Websites",
     "llms-txt-tokens": 929,
     "down": false,
@@ -5635,7 +5635,7 @@
   {
     "url": "https://etf.capital/llms.txt",
     "title": "etf.capital",
-    "description": "Die besten ETFs, Aktien & Sparpl\u00e4ne f\u00fcr langfristige Investitionen. Fonds finden und vergleichen. ETF-Sparplan-Vergleich und Sparplan-Rechner kostenlos!",
+    "description": "Die besten ETFs, Aktien & Sparpläne für langfristige Investitionen. Fonds finden und vergleichen. ETF-Sparplan-Vergleich und Sparplan-Rechner kostenlos!",
     "category": "Finance",
     "llms-txt-tokens": 2221,
     "down": false,
@@ -5702,7 +5702,7 @@
   {
     "url": "https://xuri.me/llms.txt",
     "title": "Ri Xu Online",
-    "description": "Ri Xu Online -- Weaving dreams \u00b7 Achievements of the future",
+    "description": "Ri Xu Online -- Weaving dreams · Achievements of the future",
     "category": "Developer tools",
     "llms-txt-tokens": 49381,
     "down": false,
@@ -5746,7 +5746,7 @@
   {
     "url": "https://tensorzero.com/llms.txt",
     "title": "TensorZero",
-    "description": "TensorZero creates a feedback loop for optimizing LLM applications \u2014 turning production data into smarter, faster, and cheaper models.",
+    "description": "TensorZero creates a feedback loop for optimizing LLM applications — turning production data into smarter, faster, and cheaper models.",
     "category": "AI",
     "llms-txt-tokens": 106,
     "down": false,
@@ -5812,7 +5812,7 @@
   {
     "url": "https://lacreme.ai/llms.txt",
     "title": "Lacreme.ai",
-    "description": "D\u00e9couvrez les meilleurs outils d'intelligence artificielle sur Lacreme.ai. Comparez les prix, avis et les fonctionnalit\u00e9s des derni\u00e8res IA.",
+    "description": "Découvrez les meilleurs outils d'intelligence artificielle sur Lacreme.ai. Comparez les prix, avis et les fonctionnalités des dernières IA.",
     "category": "AI",
     "llms-txt-tokens": 41390,
     "down": false,
@@ -5834,7 +5834,7 @@
   {
     "url": "https://laressourcehumaine.fr/llms.txt",
     "title": "La Ressource Humaine",
-    "description": "La Ressource Humaine accompagne les dirigeants d'entreprise dans la structuration et la gestion op\u00e9rationnelle de leur fonction RH.",
+    "description": "La Ressource Humaine accompagne les dirigeants d'entreprise dans la structuration et la gestion opérationnelle de leur fonction RH.",
     "category": "Websites",
     "llms-txt-tokens": 63293,
     "down": false,
@@ -5867,7 +5867,7 @@
   {
     "url": "https://etiqazur.com/llms.txt",
     "title": "Etiq'Azur",
-    "description": "\u00c9tiquettes personnalis\u00e9es ou vierges : petites, moyennes et grandes quantit\u00e9s. Imprimantes et \u00e9tiqueteuses. Impression professionnelle, devis sur mesure, r\u00e9activit\u00e9...",
+    "description": "Étiquettes personnalisées ou vierges : petites, moyennes et grandes quantités. Imprimantes et étiqueteuses. Impression professionnelle, devis sur mesure, réactivité...",
     "category": "Websites",
     "llms-txt-tokens": 8127,
     "down": false,
@@ -5889,7 +5889,7 @@
   {
     "url": "https://render.com/docs/llms.txt",
     "title": "Render",
-    "description": "On Render, you can build, deploy, and scale your apps with unparalleled ease \u2013 from your first user to your billionth.",
+    "description": "On Render, you can build, deploy, and scale your apps with unparalleled ease – from your first user to your billionth.",
     "category": "Developer tools",
     "llms-txt-tokens": 3846,
     "down": false,
@@ -5922,7 +5922,7 @@
   {
     "url": "https://cbdtech.fr/llms.txt",
     "title": "CBDtech",
-    "description": "Plongez dans l'univers de CBDtech, sp\u00e9cialiste du cannabidiol. Am\u00e9liorez votre sant\u00e9 avec nos produits vari\u00e9s : fleurs, huiles, g\u00e9lules et patchs de CBD.",
+    "description": "Plongez dans l'univers de CBDtech, spécialiste du cannabidiol. Améliorez votre santé avec nos produits variés : fleurs, huiles, gélules et patchs de CBD.",
     "category": "Websites",
     "llms-txt-tokens": 13226,
     "down": false,
@@ -5977,7 +5977,7 @@
   {
     "url": "https://www.darts-nerd.com/llms.txt",
     "title": "DartsNerd",
-    "description": "Actualit\u00e9 des Fl\u00e9chettes : infos & produits",
+    "description": "Actualité des Fléchettes : infos & produits",
     "category": "Websites",
     "llms-txt-tokens": 6668,
     "down": false,
@@ -5988,7 +5988,7 @@
   {
     "url": "https://www.gdm-pixel.fr/llms.txt",
     "title": "GDM-Pixel",
-    "description": "Besoin d'un site internet bien r\u00e9f\u00e9renc\u00e9 et d'une strat\u00e9gie digitale pour r\u00e9ussir sur internet ? D\u00e9couvrez notre agence web bas\u00e9e \u00e0 Caen !",
+    "description": "Besoin d'un site internet bien référencé et d'une stratégie digitale pour réussir sur internet ? Découvrez notre agence web basée à Caen !",
     "category": "Websites",
     "llms-txt-tokens": 3795,
     "down": false,
@@ -5999,7 +5999,7 @@
   {
     "url": "https://idnocode.fr/llms.txt",
     "title": "iDNoCode",
-    "description": "iDNoCode, Freelance d\u00e9veloppeur & int\u00e9grateur Webflow, cr\u00e9e des sites web sur mesure, automatise vos processus avec Make & Webflow.",
+    "description": "iDNoCode, Freelance développeur & intégrateur Webflow, crée des sites web sur mesure, automatise vos processus avec Make & Webflow.",
     "category": "Websites",
     "llms-txt-tokens": 2812,
     "down": false,
@@ -6021,7 +6021,7 @@
   {
     "url": "https://www.pastaclean.tv/llms.txt",
     "title": "Pastaclean",
-    "description": "Bei Pastaclean gibt`s \u2714\ufe0f Waschmittel \u2714\ufe0f Putzt\u00fccher \u2714\ufe0f Spezialreiniger \u2714\ufe0f Reiniger Konzentrate in Deutschland hergestellt",
+    "description": "Bei Pastaclean gibt`s ✔️ Waschmittel ✔️ Putztücher ✔️ Spezialreiniger ✔️ Reiniger Konzentrate in Deutschland hergestellt",
     "category": "Products",
     "llms-txt-tokens": 16661,
     "down": false,
@@ -6032,7 +6032,7 @@
   {
     "url": "https://fragments-studio.com/llms.txt",
     "title": "Fragments Studio",
-    "description": "Fragments Studio d\u00e9veloppe des logiciels et applications sur mesure avec une approche agile revisit\u00e9e, garantissant qualit\u00e9, rapidit\u00e9 et transparence.",
+    "description": "Fragments Studio développe des logiciels et applications sur mesure avec une approche agile revisitée, garantissant qualité, rapidité et transparence.",
     "category": "Websites",
     "llms-txt-tokens": 2966,
     "down": false,
@@ -6043,7 +6043,7 @@
   {
     "url": "https://digitalmiddleground.com/llms.txt",
     "title": "Digital Middle Ground",
-    "description": "Marketing & Design Partner \u2014 Real solutions for your business's challenges and goals.",
+    "description": "Marketing & Design Partner — Real solutions for your business's challenges and goals.",
     "category": "Websites",
     "llms-txt-tokens": 511,
     "down": false,
@@ -6098,7 +6098,7 @@
   {
     "url": "https://www.sylvaindelaporte.com/llms.txt",
     "title": "Sylvain de la Porte des Vaux",
-    "description": "Expert en communication num\u00e9rique et print, gestion de projet, directeur artistique et web designer, j'accompagne entreprises et institutions dans la cr\u00e9ation de solutions digitales performantes. Je maitrise les outils no-code et l'intelligence artificielle pour optimiser la conception et le d\u00e9ploiement de projets innovants.",
+    "description": "Expert en communication numérique et print, gestion de projet, directeur artistique et web designer, j'accompagne entreprises et institutions dans la création de solutions digitales performantes. Je maitrise les outils no-code et l'intelligence artificielle pour optimiser la conception et le déploiement de projets innovants.",
     "category": "Websites",
     "llms-txt-tokens": 6000,
     "down": false,
@@ -6143,7 +6143,7 @@
   {
     "url": "https://www.assuranceendirect.com/llms.txt",
     "title": "Assurance en Direct",
-    "description": "Assurance auto, habitation, scooter, moto et voiture sans permis. Assurance en ligne et souscription et \u00e9dition attestation et carte verte.",
+    "description": "Assurance auto, habitation, scooter, moto et voiture sans permis. Assurance en ligne et souscription et édition attestation et carte verte.",
     "category": "Finance",
     "llms-txt-tokens": 697613,
     "down": false,
@@ -6187,7 +6187,7 @@
   {
     "url": "https://www.adiacent.com/llms.txt",
     "title": "Adiacent",
-    "description": "Adiacent \u00e8 il global digital business partner di riferimento per la Total Experience.",
+    "description": "Adiacent è il global digital business partner di riferimento per la Total Experience.",
     "category": "Websites",
     "llms-txt-tokens": 176638,
     "down": false,
@@ -6231,7 +6231,7 @@
   {
     "url": "https://www.twoshoes.be/llms.txt",
     "title": "TwoShoes",
-    "description": "Discover an extensive collection of women's shoes. Free delivery in Belgium. Brands: Geox, Tamaris, Tango, Skechers, N\u00f8-name, Nathan-Baume.",
+    "description": "Discover an extensive collection of women's shoes. Free delivery in Belgium. Brands: Geox, Tamaris, Tango, Skechers, Nø-name, Nathan-Baume.",
     "category": "Products",
     "llms-txt-tokens": 1645,
     "down": false,
@@ -6253,7 +6253,7 @@
   {
     "url": "https://www.tidio.com/llms.txt",
     "title": "Tidio",
-    "description": "Convert more leads, provide stellar support, and boost your revenue with Tidio\u2019s game-changing AI-driven customer service solution.",
+    "description": "Convert more leads, provide stellar support, and boost your revenue with Tidio’s game-changing AI-driven customer service solution.",
     "category": "Products",
     "llms-txt-tokens": 3717,
     "down": false,
@@ -6319,7 +6319,7 @@
   {
     "url": "https://www.simplyweb.com.pl/llms.txt",
     "title": "Simplyweb",
-    "description": "\u2705Szukasz agencji marketingowej? Potrzebujesz now\u0105 stron\u0119, SEO lub kampani\u0119 reklamow\u0105? \ud83d\ude80 Nie obiecujemy, dzia\u0142amy \u2013 skuteczny marketing dla Twojej firmy!",
+    "description": "✅Szukasz agencji marketingowej? Potrzebujesz nową stronę, SEO lub kampanię reklamową? 🚀 Nie obiecujemy, działamy – skuteczny marketing dla Twojej firmy!",
     "category": "Websites",
     "llms-txt-tokens": 781,
     "down": false,
@@ -6330,7 +6330,7 @@
   {
     "url": "https://juanluismora.es/llms.txt",
     "title": "Juan Luis Mora",
-    "description": "Juan Luis Mora Consultor SEO Freelance. Potencia tu presencia online Atrae p\u00fablico a tu web. Estrategias SEO & ADS personalizadas Contacta YA",
+    "description": "Juan Luis Mora Consultor SEO Freelance. Potencia tu presencia online Atrae público a tu web. Estrategias SEO & ADS personalizadas Contacta YA",
     "category": "Websites",
     "llms-txt-tokens": 137984,
     "down": false,
@@ -6363,7 +6363,7 @@
   {
     "url": "https://langchain-ai.github.io/langgraph/llms.txt",
     "title": "LangGraph (Python Docs)",
-    "description": "LangGraph \u2014 used by Replit, Uber, LinkedIn, GitLab and more \u2014 is a low-level orchestration framework for building controllable agents.",
+    "description": "LangGraph — used by Replit, Uber, LinkedIn, GitLab and more — is a low-level orchestration framework for building controllable agents.",
     "category": "Developer tools",
     "llms-txt-tokens": 9904,
     "down": false,
@@ -6374,7 +6374,7 @@
   {
     "url": "https://langchain-ai.github.io/langgraphjs/llms.txt",
     "title": "LangGraph (JavaScript Docs)",
-    "description": "LangGraph JS \u2014 used by Replit, Uber, LinkedIn, GitLab and more \u2014 is a low-level orchestration framework for building controllable agents.",
+    "description": "LangGraph JS — used by Replit, Uber, LinkedIn, GitLab and more — is a low-level orchestration framework for building controllable agents.",
     "category": "Developer tools",
     "llms-txt-tokens": 5172,
     "down": false,
@@ -6473,7 +6473,7 @@
   {
     "url": "https://petitebox.it/llms.txt",
     "title": "PetiteBox.it",
-    "description": "\u201cPetite Box\u201d offre box letterarie a tema, abbinando romanzi selezionati con gadget unici, snack locali e bevande tematiche. Ogni box \u00e8 un viaggio culturale che arricchisce l\u2019avventura della lettura immersiva.",
+    "description": "“Petite Box” offre box letterarie a tema, abbinando romanzi selezionati con gadget unici, snack locali e bevande tematiche. Ogni box è un viaggio culturale che arricchisce l’avventura della lettura immersiva.",
     "category": "Products",
     "llms-txt-tokens": 1426,
     "down": false,
@@ -6484,7 +6484,7 @@
   {
     "url": "https://ohmygodz.fr/llms.txt",
     "title": "Oh My God'Z",
-    "description": "Loveshop haut de gamme en ligne! D\u00e9couvrez notre s\u00e9lection de sextoys, lingerie sexy et produits bien-\u00eatre haut de gamme. Large catalogue de vibromasseurs, stimulateurs et accessoires intimes.",
+    "description": "Loveshop haut de gamme en ligne! Découvrez notre sélection de sextoys, lingerie sexy et produits bien-être haut de gamme. Large catalogue de vibromasseurs, stimulateurs et accessoires intimes.",
     "category": "Websites",
     "llms-txt-tokens": 5762,
     "down": false,
@@ -6495,7 +6495,7 @@
   {
     "url": "https://quotidianomotori.com/llms.txt",
     "title": "Quotidiano Motori",
-    "description": "Novit\u00e0 su auto, moto, Formula 1, MotoGP, volo, lifestyle, viaggi e tecnologia. I test drive e le recensioni dei nuovi modelli.",
+    "description": "Novità su auto, moto, Formula 1, MotoGP, volo, lifestyle, viaggi e tecnologia. I test drive e le recensioni dei nuovi modelli.",
     "category": "Websites",
     "llms-txt-tokens": 373,
     "down": false,
@@ -6506,7 +6506,7 @@
   {
     "url": "https://www.china2move.com/llms.txt",
     "title": "China2Move",
-    "description": "China2Move \u00e8 il primo ed unico sito italiano dedicato esclusivamente ad auto e moto cinesi con nuovi modelli, prezzo, prove ed approfondimenti.",
+    "description": "China2Move è il primo ed unico sito italiano dedicato esclusivamente ad auto e moto cinesi con nuovi modelli, prezzo, prove ed approfondimenti.",
     "category": "Websites",
     "llms-txt-tokens": 97457,
     "down": false,
@@ -6517,7 +6517,7 @@
   {
     "url": "https://prsuperstar.co.uk/llms.txt",
     "title": "PR Superstar",
-    "description": "Want coverage in The Sunday Times, The FT or on the BBC? I\u2019m an experienced, straight-talking and hardworking publicist in London UK. Call me now!",
+    "description": "Want coverage in The Sunday Times, The FT or on the BBC? I’m an experienced, straight-talking and hardworking publicist in London UK. Call me now!",
     "category": "Websites",
     "llms-txt-tokens": 0,
     "down": true,
@@ -6645,5 +6645,16 @@
     "urlFull": null,
     "llms-full-txt-tokens": 0,
     "mainDomain": "https://simplepdf.com"
+  },
+  {
+    "url": "https://app.sfdj.net/llms.txt",
+    "urlFull": null,
+    "title": "AnswerLens",
+    "category": "Developer tools",
+    "description": "B2B SaaS public-evidence audit for AEO/GEO readiness, comparison pages, proof, and llms.txt.",
+    "mainDomain": "https://app.sfdj.net",
+    "down": false,
+    "llms-txt-tokens": 295,
+    "llms-full-txt-tokens": 0
   }
 ]

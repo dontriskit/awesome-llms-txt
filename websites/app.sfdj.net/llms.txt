@@ -1,0 +1,49 @@
+# AnswerLens
+
+AnswerLens audits the public evidence layer of B2B SaaS websites and turns visible gaps into source-backed validation, monitoring, recovery, or implementation reports.
+
+## Canonical URL
+https://app.sfdj.net
+
+## Audience
+B2B software founders, marketers, and operators evaluating whether public website evidence can be cited and summarized by search and answer engines.
+
+## Product
+AnswerLens checks public website crawlability, metadata, proof surfaces, comparison coverage, buyer question coverage, freshness, and implementation gaps.
+
+## Important URLs
+- Homepage: https://app.sfdj.net/
+- Pricing: https://app.sfdj.net/pricing
+- Contact: https://app.sfdj.net/contact
+- Blog: https://app.sfdj.net/blog
+- Use cases: https://app.sfdj.net/use-cases
+- Blog article: https://app.sfdj.net/blog/free-scan-vs-paid-implementation-report
+- Blog article: https://app.sfdj.net/blog/why-chatgpt-does-not-mention-your-saas
+- Blog article: https://app.sfdj.net/blog/what-public-proof-does-your-saas-website-need-for-ai-search
+- Blog article: https://app.sfdj.net/blog/does-llms-txt-help-ai-visibility
+- Blog article: https://app.sfdj.net/blog/what-to-put-in-llms-txt-for-a-saas-website
+- Blog article: https://app.sfdj.net/blog/ai-seo-audit-vs-traditional-seo-audit
+- Blog article: https://app.sfdj.net/blog/how-to-audit-your-website-for-llm-visibility
+- Privacy Policy: https://app.sfdj.net/privacy
+- Terms of Service: https://app.sfdj.net/terms
+- Refund Policy: https://app.sfdj.net/refund-policy
+- B2B SaaS AI search audit: https://app.sfdj.net/use-cases/b2b-saas-ai-search-audit
+- AI SEO audit for SaaS: https://app.sfdj.net/use-cases/ai-seo-audit-for-saas
+- Free AI search teardown campaign: https://app.sfdj.net/campaigns/free-ai-search-teardown
+- Free client intake diagnostic for SaaS agencies: https://app.sfdj.net/campaigns/free-client-intake-diagnostic
+- Public SaaS teardown challenge: https://app.sfdj.net/campaigns/public-saas-teardown-challenge
+- Answer engine readiness audit: https://app.sfdj.net/use-cases/answer-engine-readiness-audit
+- LLM visibility audit: https://app.sfdj.net/use-cases/llm-visibility-audit
+- AI citation readiness audit: https://app.sfdj.net/use-cases/ai-citation-readiness-audit
+- SaaS comparison page audit: https://app.sfdj.net/use-cases/saas-comparison-page-audit
+- SaaS comparison page gap analysis: https://app.sfdj.net/use-cases/saas-comparison-page-gap-analysis
+- SaaS pricing page AI search audit: https://app.sfdj.net/use-cases/saas-pricing-page-ai-search-audit
+- SaaS website proof checklist for AI search: https://app.sfdj.net/use-cases/saas-website-proof-checklist-ai-search
+- AI answer engine optimization audit: https://app.sfdj.net/use-cases/ai-answer-engine-optimization-audit
+- Sitemap: https://app.sfdj.net/sitemap.xml
+
+## Public Commercial Terms
+Free public evidence reports cost $0. Paid evidence reports are one-time digital purchases for $79 USD. The paid output may be a validation brief, monitoring baseline, technical recovery check, or implementation-ready report depending on evidence quality. Refund exceptions are reviewed manually under the public refund policy.
+
+## Access Notes
+Admin, report detail, and API routes are private or restricted. Public crawlers should use the homepage and sitemap only.
